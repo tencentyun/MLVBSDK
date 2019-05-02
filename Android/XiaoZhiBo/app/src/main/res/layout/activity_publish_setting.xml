@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="contentDescription"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_live_preview"
+            android:textSize="@dimen/h10" />
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:onClick="onClick"
+            android:text="@string/btn_cancel"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:orientation="vertical"
+        android:id="@+id/xml_push_title">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="fitXY"
+                android:onClick="onClick" />
+            <TextView
+                android:id="@+id/tv_pic_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:drawableTop="@drawable/image"
+                android:drawablePadding="5dp"
+                android:textColor="@color/colorTextG2"
+                android:text="@string/text_live_add_title_tips"
+                android:textSize="16sp"
+                />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/live_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:background="@color/colorPrimary"
+                android:gravity="top"
+                android:hint="@string/text_live_title_input"
+                android:maxLength="32"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorTextG4"
+                android:textColorHint="@color/colorTextG2"
+                android:textSize="@dimen/h6" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray2" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorTextWhite">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="onClick">
+
+                <ImageView
+                    android:id="@+id/img_lbs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:src="@drawable/icon_lbs_off" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/text_live_close_lbs"
+                    android:textSize="@dimen/h6" />
+            </LinearLayout>
+
+            <com.tencent.qcloud.xiaozhibo.common.widget.TCCustomSwitch
+                android:id="@+id/btn_lbs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:src="@drawable/btn_switch_off" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray2" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorTextWhite">
+            <RadioGroup
+                android:id="@+id/rg_record_type"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RadioButton
+                    android:id="@+id/rb_record_camera"
+                    android:text="摄像头直播"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:textColor="@color/colorTextG3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_record_screen"
+                    android:text="录屏直播"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorTextG3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_orientation"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:background="@color/colorTextWhite">-->
+        <!--<RadioGroup-->
+        <!--android:id="@+id/rg_orientation"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_orientation_landscape"-->
+        <!--android:text="横屏录制"-->
+        <!--android:layout_weight="1"-->
+        <!--android:checked="true"-->
+        <!--android:textColor="@color/colorTextG3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_orientation_vertical"-->
+        <!--android:text="竖屏录制"-->
+        <!--android:layout_weight="0.87"-->
+        <!--android:textColor="@color/colorTextG3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</RadioGroup>-->
+        <!--</RelativeLayout>-->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray2" />
+
+        <RelativeLayout
+            android:id="@+id/rl_bitrate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorTextWhite">
+            <RadioGroup
+                android:id="@+id/rg_bitrate"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RadioButton
+                    android:id="@+id/rb_bitrate_slow"
+                    android:text="流畅"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorTextG3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_bitrate_normal"
+                    android:text="高清"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:textColor="@color/colorTextG3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_bitrate_fast"
+                    android:text="超清"
+                    android:layout_weight="0.3"
+                    android:textColor="@color/colorTextG3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorGray2" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/colorTextWhite">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="80dp"
+                android:textColor="@color/colorTextG3"
+                android:text="分享到"/>
+
+            <CheckBox
+                android:id="@+id/cb_share_wx"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:button="@drawable/rb_share_wx" />
+
+            <CheckBox
+                android:id="@+id/cb_share_circle"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:button="@drawable/rb_share_circle" />
+
+            <CheckBox
+                android:id="@+id/cb_share_qq"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:button="@drawable/rb_share_qq" />
+
+            <CheckBox
+                android:id="@+id/cb_share_qzone"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:button="@drawable/rb_share_qzone" />
+
+            <CheckBox
+                android:id="@+id/cb_share_wb"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:button="@drawable/rb_share_wb" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray2" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_publish"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="150dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="@string/text_publish"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="@dimen/h9"
+        android:textStyle="bold" />
+
+</RelativeLayout>

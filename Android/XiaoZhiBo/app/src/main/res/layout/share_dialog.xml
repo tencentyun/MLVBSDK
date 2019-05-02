@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/background_gray4">
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btn_share_wx"
+                style="@style/share_platform_btn"
+                android:drawableTop="@drawable/icon_share_wx"
+                android:text="微信"
+                />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btn_share_circle"
+                style="@style/share_platform_btn"
+                android:drawableTop="@drawable/icon_share_circle"
+                android:text="朋友圈"
+                />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btn_share_qq"
+                style="@style/share_platform_btn"
+                android:drawableTop="@drawable/icon_share_qq"
+                android:text="QQ"
+                />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btn_share_qzone"
+                style="@style/share_platform_btn"
+                android:drawableTop="@drawable/icon_share_qzone"
+                android:text="QQ空间"
+                />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btn_share_wb"
+                style="@style/share_platform_btn"
+                android:drawableTop="@drawable/icon_share_wb"
+                android:text="微博"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_share_cancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="取消"
+            android:textSize="12sp"
+            android:textColor="@color/text_gray1"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

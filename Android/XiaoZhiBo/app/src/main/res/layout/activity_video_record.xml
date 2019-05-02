@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/rl_play_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="contentDescription">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"/>
+
+    <FrameLayout
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:background="@drawable/record_mask_top"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/record_mask_buttom"/>
+    </FrameLayout>
+
+    <!--录制-->
+    <RelativeLayout
+        android:id="@+id/record_layout"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_alignParentBottom="true"
+        android:background="#4D000000">
+
+        <com.tencent.qcloud.xiaozhibo.videorecord.RecordProgressView
+            android:id="@+id/record_progress_view"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"/>
+
+        <TextView
+            android:id="@+id/progress_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/record_progress_view"
+            android:layout_marginRight="14dp"
+            android:text="00:00"
+            android:textColor="#fff"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_record_btns"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="35dp">
+
+            <com.tencent.qcloud.xiaozhibo.videorecord.ComposeRecordBtn
+                android:id="@+id/compose_record_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="onClick"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btn_torch"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="25dp"
+                    android:onClick="onClick"
+                    android:src="@drawable/selector_torch_close"/>
+
+                <ImageView
+                    android:id="@+id/btn_switch_camera"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="25dp"
+                    android:onClick="onClick"
+                    android:src="@drawable/selector_switch_camera"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/record">
+
+                <ImageView
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:onClick="onClick"
+                    android:src="@drawable/selector_record_confirm"/>
+
+                <ImageView
+                    android:id="@+id/btn_delete_last_part"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toLeftOf="@id/btn_confirm"
+                    android:onClick="onClick"
+                    android:src="@drawable/selector_delete_last_part"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/btn_pause"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_orientation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/record"
+                android:background="@color/transparent"
+                android:onClick="onClick"
+                android:padding="5dp"
+                android:text="横屏"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/autoLocateView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_above="@id/layout_record_btns"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="27dp"
+            android:visibility="gone"/>
+
+        <RadioGroup
+            android:id="@+id/rg_record_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/layout_record_btns"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_slowest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:padding="10dp"
+                android:text="极慢"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_slow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:padding="10dp"
+                android:text="慢"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:padding="10dp"
+                android:text="标准"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_fast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:padding="10dp"
+                android:text="快"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_fastest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:padding="10dp"
+                android:text="极快"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <!--<com.tencent.liteav.demo.common.widget.BeautySettingPannel-->
+        <!--android:id="@+id/beauty_pannel"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:clickable="true"-->
+        <!--android:visibility="gone"/>-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="41dp">
+
+        <LinearLayout
+            android:id="@+id/back_ll"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="23dp"
+                android:layout_gravity="center"
+                android:src="@drawable/selector_record_back"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_aspect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_scale"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/record_round_bg"
+            android:onClick="onClick"
+            android:padding="6dp"
+            android:src="@drawable/selector_aspect169"/>
+
+        <ImageView
+            android:id="@+id/iv_scale_mask"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/record_round_bg"
+            android:onClick="onClick"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_scale"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="屏比"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_aspect_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@id/layout_aspect"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_scale_first"
+            android:layout_width="@dimen/ugc_aspect_width"
+            android:layout_height="44dp"
+            android:layout_marginRight="@dimen/ugc_aspect_divider"
+            android:background="@drawable/record_round_bg"
+            android:onClick="onClick"
+            android:padding="6dp"
+            android:src="@drawable/selector_aspect169"/>
+
+        <ImageView
+            android:id="@+id/iv_scale_second"
+            android:layout_width="@dimen/ugc_aspect_width"
+            android:layout_height="44dp"
+            android:layout_marginRight="@dimen/ugc_aspect_divider"
+            android:layout_toRightOf="@id/iv_scale_first"
+            android:background="@drawable/record_round_bg"
+            android:onClick="onClick"
+            android:padding="6dp"
+            android:src="@drawable/selector_aspect169"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/layout_aspect"
+        android:layout_marginRight="14dp">
+
+        <LinearLayout
+            android:id="@+id/layout_beauty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btn_beauty"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_below="@id/iv_scale"
+                android:background="@drawable/record_round_bg"
+                android:onClick="onClick"
+                android:padding="6dp"
+                android:src="@drawable/ugc_record_beautiful_girl"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="美颜"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_beauty"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btn_music_pannel"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/record_round_bg"
+                android:onClick="onClick"
+                android:padding="6dp"
+                android:src="@drawable/ugc_record_music"/>
+
+            <ImageView
+                android:id="@+id/iv_music_mask"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/record_round_bg"
+                android:onClick="onClick"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_music_pannel"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="音乐"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.tencent.qcloud.xiaozhibo.videorecord.TCAudioControl
+        android:id="@+id/layoutAudioControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

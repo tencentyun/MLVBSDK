@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_new_vod_bg">
+
+    <!--标题-->
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:src="@drawable/ic_new_vod_back_normal" />
+
+        <TextView
+            android:id="@+id/et_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="超级播放器"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <ImageButton
+            android:id="@+id/webrtc_link_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/question_link" />
+
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/webrtc_link_button"
+            android:background="@drawable/ic_qcode" />
+
+
+        <View
+            android:id="@+id/super_view_title_mask"
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:visibility="gone"
+            android:alpha="0.7"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <!-- 超级播放器-->
+    <RelativeLayout
+        android:id="@+id/layout_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:background="@color/black">
+
+        <com.tencent.liteav.demo.play.SuperPlayerView
+            android:id="@+id/superVodPlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/small_rl_mask_one"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:alpha="0.7"
+                android:layout_height="match_parent">
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/small_tv_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_btn_vod_known"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:text="我知道了"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/small_tv_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="上下滑动调节屏幕明暗"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_above="@id/small_tv_1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:scaleType="center"
+                        android:src="@drawable/super_vod_left_guide" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/small_tv_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="左右滑动快进/倒退"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_above="@id/small_tv_2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:scaleType="center"
+                        android:src="@drawable/super_vod_middle_guide" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/small_tv_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="上下滑动调节音量大小"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_above="@id/small_tv_3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:scaleType="center"
+                        android:src="@drawable/super_vod_right_guide" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/small_rl_mask_two"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:alpha="0.7"
+                android:layout_height="match_parent">
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/small_tv_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_btn_vod_known"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:text="我知道了"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:id="@+id/small_rl_progress_mask"
+                    android:background="@drawable/shape_rl_progress_mask"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="30dp">
+
+                    <View
+                        android:id="@+id/small_v_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#ED6455"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_centerVertical="true" />
+
+                    <ImageView
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/super_vod_small_point"
+                        android:layout_marginLeft="5dp"
+                        />
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_above="@id/small_rl_progress_mask"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/small_iv_pointer"
+                    android:src="@drawable/super_vod_progress_pointer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_above="@id/small_iv_pointer"
+                    android:layout_toLeftOf="@id/small_iv_pointer"
+                    android:textColor="@color/white"
+                    android:text="向左拖动可观看先前直播内容"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/layout_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- tab1 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/text_live"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="直播列表"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <!--<ImageView-->
+                <!--android:id="@+id/image_live"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="3dp"-->
+                <!--android:layout_gravity="center_horizontal|bottom"-->
+                <!--android:src="@color/white" />-->
+            </FrameLayout>
+
+            <!-- tab2 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/text_vod"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="点播列表"
+                    android:textColor="@color/colorGray4"
+                    android:textSize="16sp" />
+
+                <!--<ImageView-->
+                <!--android:id="@+id/image_vod"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="3dp"-->
+                <!--android:layout_gravity="center_horizontal|bottom"-->
+                <!--android:src="@color/white"-->
+                <!--android:visibility="invisible"/>-->
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!--&lt;!&ndash;点播播放列表&ndash;&gt;-->
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/layout_vodlist"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/layout_player"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="视频列表"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="16dp" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/iv_add"-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:src="@drawable/ic_vod_add" />-->
+        <!--</RelativeLayout>-->
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/iv_add"
+            android:layout_below="@+id/tab_layout">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/logo"
+                android:layout_below="@+id/tab_layout"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <!--<ImageView-->
+        <!--android:id="@+id/iv_logo"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:padding="20dp"-->
+        <!--android:src="@drawable/ic_cloud_logo" />-->
+
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ic_vod_add" />
+
+
+        <View
+            android:id="@+id/super_view_list_mask"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:background="@color/black"
+            android:alpha="0.7"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

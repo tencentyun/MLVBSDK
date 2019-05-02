@@ -1,0 +1,74 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++925FF3E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "51F35418D12A1BD990BA6D5487061E63CCB6404F+++46064FB" : {
+
+    },
+    "9ef9aeba-bb21-11e3-b948-d5cbf7ad44f0++5821+++6F65558" : {
+
+    },
+    "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++A92E924" : {
+      "DVTSourceControlWorkingCopyRepositoryBranchesLocationKey" : "branches",
+      "DVTSourceControlWorkingCopyRepositoryTagsLocationKey" : "tags",
+      "DVTSourceControlWorkingCopyRepositoryPrimaryBranchLocationKey" : "trunk"
+    },
+    "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++925FF3E" : {
+
+    },
+    "51F35418D12A1BD990BA6D5487061E63CCB6404F+++EA73A91" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "51F35418D12A1BD990BA6D5487061E63CCB6404F+++46064FB" : 9223372036854775807,
+    "9ef9aeba-bb21-11e3-b948-d5cbf7ad44f0++5821+++6F65558" : 9223372036854775807,
+    "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++A92E924" : 9223372036854775807,
+    "7C53D769B28E83A42825C8881620AA14AE66A7A5+++44F8942" : 9223372036854775807,
+    "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++925FF3E" : 9223372036854775807,
+    "51F35418D12A1BD990BA6D5487061E63CCB6404F+++EA73A91" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "48089A28-A183-41BA-876E-91B0A94B65D2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "51F35418D12A1BD990BA6D5487061E63CCB6404F+++46064FB" : "qcloud_libs_proj\/",
+    "9ef9aeba-bb21-11e3-b948-d5cbf7ad44f0++5821+++6F65558" : "trunk\/",
+    "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++A92E924" : "liteav-trunk\/",
+    "7C53D769B28E83A42825C8881620AA14AE66A7A5+++44F8942" : "saturn\/",
+    "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++925FF3E" : "LiteAV\/",
+    "51F35418D12A1BD990BA6D5487061E63CCB6404F+++EA73A91" : "qcloud_libs_proj\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TXLiteAVDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "liteav\/project\/ios\/demo\/liteav\/TXLiteAVDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/tc-svn.tencent.com\/qcloudlibs\/qcloud_libs_proj",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++925FF3E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/tc-svn.tencent.com\/qcloudlibs\/qcloud_libs_proj",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3279db5e-1f5d-11e7-999d-3b1299acc1ec++505+++A92E924"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/tc-svn.tencent.com\/qcloudlibs\/qcloud_libs_proj",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51F35418D12A1BD990BA6D5487061E63CCB6404F+++46064FB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.xwises.com:alderzhang\/VideoEngine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51F35418D12A1BD990BA6D5487061E63CCB6404F+++EA73A91"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.code.oa.com:cloudLive\/saturn.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7C53D769B28E83A42825C8881620AA14AE66A7A5+++44F8942"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/tc-svn.tencent.com\/qcloudlibs\/qcloud_libs_proj",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9ef9aeba-bb21-11e3-b948-d5cbf7ad44f0++5821+++6F65558"
+    }
+  ]
+}

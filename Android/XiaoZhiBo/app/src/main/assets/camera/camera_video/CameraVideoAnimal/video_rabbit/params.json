@@ -1,0 +1,99 @@
+{
+  "minAppVersion": 350,
+  "shaderType": 0,
+  "itemList": [
+    {
+      "id": "ear",
+      "frameDuration": 83,
+      "frames": 24,
+      "height": 404,
+      "width": 780,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        86,
+        88
+      ],
+      "anchorPoint": [
+        390,
+        360
+      ],
+      "scalePivots": [
+        0,
+        18
+      ],
+      "scaleFactor": 480
+    },
+    {
+      "id": "huzi",
+      "frameDuration": 83,
+      "frames": 12,
+      "height": 240,
+      "width": 616,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        64
+      ],
+      "anchorPoint": [
+        308,
+        98
+      ],
+      "scalePivots": [
+        0,
+        18
+      ],
+      "scaleFactor": 480
+    },
+    {
+      "id": "nose",
+      "frameDuration": 83,
+      "frames": 1,
+      "height": 144,
+      "width": 144,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        64
+      ],
+      "anchorPoint": [
+        72,
+        56
+      ],
+      "scalePivots": [
+        57,
+        61
+      ],
+      "scaleFactor": 120
+    },
+    {
+      "id": "tooth",
+      "frameDuration": 83,
+      "frames": 24,
+      "height": 68,
+      "width": 76,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        81
+      ],
+      "anchorPoint": [
+        38,
+        10
+      ],
+      "scalePivots": [
+        65,
+        66
+      ],
+      "scaleFactor": 180
+    }
+  ]
+}

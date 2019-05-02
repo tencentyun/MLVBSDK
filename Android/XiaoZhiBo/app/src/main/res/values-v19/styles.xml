@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Login and register Activity theme. -->
+    <style name="BaseWhiteTransparentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorTransparentGray</item>
+        <item name="android:textColorHint">@color/colorTransparentGray</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/colorDarkTransparentGray</item>
+    </style>
+
+    <style name="LoginTheme" parent="BaseWhiteTransparentTheme">
+
+    </style>
+
+    <style name="RegisterTheme" parent="BaseWhiteTransparentTheme">
+        <item name="android:windowAnimationStyle">@style/PlayerAnimation</item>
+    </style>
+
+</resources>

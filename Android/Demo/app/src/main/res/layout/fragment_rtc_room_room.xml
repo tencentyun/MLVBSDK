@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tencent.liteav.demo.rtmp.sample.RtcRoomDemoActivity">
+
+    <LinearLayout
+        android:id="@+id/controller_container"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:background="#222222"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/rtmproom_beauty_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/beauty"/>
+
+        <Button
+            android:id="@+id/rtmproom_camera_switcher_btn"
+            android:layout_width="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="32dp"
+            android:background="@drawable/camera_change"/>
+
+        <Button
+            android:id="@+id/rtmproom_log_switcher_btn"
+            android:layout_width="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="32dp"
+            android:background="@drawable/log_show"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_above="@id/controller_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:background="#000000"
+                    android:src="@drawable/people"/>
+
+                <com.tencent.rtmp.ui.TXCloudVideoView
+                    android:id="@+id/rtmproom_video_0"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/rtmproom_video_name_0"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/username_mask"
+                    android:textSize="14sp"
+                    android:text="hello"/>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:background="#000000"
+                    android:src="@drawable/people"/>
+
+                <com.tencent.rtmp.ui.TXCloudVideoView
+                    android:id="@+id/rtmproom_video_1"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/rtmproom_video_name_1"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/username_mask"
+                    android:textSize="14sp"
+                    android:text="hello"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:background="#000000"
+                    android:src="@drawable/people"/>
+
+                <com.tencent.rtmp.ui.TXCloudVideoView
+                    android:id="@+id/rtmproom_video_2"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/rtmproom_video_name_2"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/username_mask"
+                    android:textSize="14sp"
+                    android:text="hello"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:background="#000000"
+                    android:src="@drawable/people"/>
+
+                <com.tencent.rtmp.ui.TXCloudVideoView
+                    android:id="@+id/rtmproom_video_3"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/rtmproom_video_name_3"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/username_mask"
+                    android:textSize="14sp"
+                    android:text="hello"/>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:background="#000000"
+                    android:src="@drawable/people"/>
+
+                <com.tencent.rtmp.ui.TXCloudVideoView
+                    android:id="@+id/rtmproom_video_4"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/rtmproom_video_name_4"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/username_mask"
+                    android:textSize="14sp"
+                    android:text="hello"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:background="#000000"
+                    android:src="@drawable/people"/>
+
+                <com.tencent.rtmp.ui.TXCloudVideoView
+                    android:id="@+id/rtmproom_video_5"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/rtmproom_video_name_5"
+                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/username_mask"
+                    android:textSize="14sp"
+                    android:text="hello"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.tencent.liteav.demo.common.view.BeautySettingPannel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutFaceBeauty"
+        android:visibility="gone"
+        android:clickable="true"
+        android:layout_above="@id/controller_container"/>
+
+
+</RelativeLayout>

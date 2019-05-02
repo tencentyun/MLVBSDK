@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="10dp"
+    >
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/add"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/roomid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:background="@drawable/input_box"
+        android:layout_marginRight="5dp"
+        android:text="11"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:textColorHint="#3f000000"
+        android:layout_toLeftOf="@+id/btnScan"/>
+</RelativeLayout>

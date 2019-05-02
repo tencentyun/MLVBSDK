@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UMSocialShareSelectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="platformNameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etG-Ls-AXc">
+                    <rect key="frame" x="0.0" y="85" width="100" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="meo-rc-0Bh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oei-jx-Nif" userLabel="logoImageView">
+                    <rect key="frame" x="7" y="0.0" width="86" height="86"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="etG-Ls-AXc" secondAttribute="trailing" id="2qc-bx-idt"/>
+                <constraint firstItem="Oei-jx-Nif" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CUj-tL-mub"/>
+                <constraint firstItem="Oei-jx-Nif" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="T93-E2-eyn"/>
+                <constraint firstAttribute="bottom" secondItem="Oei-jx-Nif" secondAttribute="bottom" constant="14" id="cVP-RO-Xe6"/>
+                <constraint firstAttribute="trailing" secondItem="Oei-jx-Nif" secondAttribute="trailing" constant="7" id="cfm-04-YLe"/>
+                <constraint firstAttribute="bottom" secondItem="etG-Ls-AXc" secondAttribute="bottom" id="wGN-Cg-MeY"/>
+                <constraint firstItem="etG-Ls-AXc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yNW-Zq-vkv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="logoImageView" destination="Oei-jx-Nif" id="3k1-J9-oHo"/>
+                <outlet property="platformNameLabel" destination="etG-Ls-AXc" id="SQD-ZO-AO9"/>
+            </connections>
+            <point key="canvasLocation" x="-163" y="-333"/>
+        </view>
+    </objects>
+</document>

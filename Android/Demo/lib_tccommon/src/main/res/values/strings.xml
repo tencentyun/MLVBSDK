@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">lib_tccommon</string>
+    <string name="music_empty">空空如也</string>
+    <string name="music_loading">正在加载本地音乐...</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingTop="10dp"
+    android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/rtmproom_hint_dialog_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="24sp"
+    android:textColor="#000000"
+    android:textAlignment="center"
+    android:text="题目" />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"/>
+
+    <TextView
+        android:id="@+id/rtmproom_hint_dialog_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="#555555"/>
+
+    <Button
+        style="?borderlessButtonStyle"
+        android:background="@drawable/hint_dialog_selector_bg"
+        android:layout_marginTop="16dp"
+        android:id="@+id/rtmproom_hint_dialog_confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/ok"
+        android:layout_gravity="bottom"/>
+
+</LinearLayout>

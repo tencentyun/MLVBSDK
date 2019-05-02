@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/answer_dialog_shape"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/question"
+        style="@style/question_text"
+        android:text="12.我国古代哪个朝代的“状元”最多？" />
+
+    <TextView
+        android:id="@+id/answer_1"
+        style="@style/answer_text"
+        android:text="唐朝" />
+
+    <TextView
+        android:id="@+id/answer_2"
+        style="@style/answer_text"
+        android:text="清朝" />
+
+    <TextView
+        android:id="@+id/answer_3"
+        style="@style/answer_text"
+        android:layout_marginBottom="15dp"
+        android:text="宋朝" />
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="关闭" />
+</LinearLayout>

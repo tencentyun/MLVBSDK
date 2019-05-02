@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.tencent.liteav.demo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "2.0"
+        multiDexEnabled true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+//
+    configurations{
+        all*.exclude module: 'okhttp'
+        all*.exclude module: 'okio'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'libs/upload')
+    compile(name: 'zxing-1.8.4', ext: 'aar')
+    compile(name: 'barcodescanner-core-1.8.4', ext: 'aar')
+    compile(name: 'volley-1.0.0', ext: 'aar')
+    compile(name: 'LiteAVSDK_Smart', ext: 'aar')
+//    compile(name: 'lib_tcsuperplayer', ext: 'aar')
+    //    compile 'com.facebook.fresco:fresco:0.7.0'
+    //    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
+    //compile(name: 'imsdk-4.2.52', ext: 'aar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.0'
+    //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    //    compile 'com.android.support:design:25.+'
+    //    compile 'com.android.support:cardview-v7:25.+'
+    //    compile 'com.android.support:recyclerview-v7:25.+'
+    //    compile 'com.android.support:multidex:1.0.1'
+    //    compile 'com.facebook.stetho:stetho:1.5.0'
+    //    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    compile project(':lib_tccommon')
+}

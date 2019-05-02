@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#efeff4"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/back_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:src="@drawable/btn_back_gray"/>
+
+            <TextView
+                android:id="@+id/back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:gravity="center_vertical"
+                android:text="返回"
+                android:textColor="#000000"
+                android:textSize="14dp"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/publish_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="分享"
+            android:textColor="@color/black"
+            android:textSize="@dimen/h10"/>
+
+        <TextView
+            android:id="@+id/btn_publish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:text="发布"
+            android:textColor="#0accac"
+            android:textSize="@dimen/h8"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/video_publish_prompt_text"
+            android:text="发布到小视频"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/white">
+
+            <com.tencent.liteav.demo.common.activity.videopreview.TCVideoView
+                android:id="@+id/video_view"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:background="@color/transparent"
+                android:visibility="visible"/>
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@null"
+                android:cursorVisible="true"
+                android:gravity="top"
+                android:hint="说点什么…"
+                android:maxLength="500"
+                android:textColorHint="#999"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8"/>
+
+        <TextView
+            style="@style/video_publish_prompt_text"
+            android:text="同时分享到"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#d8d8d8"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+
+            <LinearLayout style="@style/video_publish_share_layout">
+
+                <CheckBox
+                    android:id="@+id/vpcb_share_wx"
+                    style="@style/video_publish_share_checkbox"
+                    android:button="@drawable/vp_share_wx"/>
+
+                <TextView
+                    style="@style/video_publish_share_text"
+                    android:text="微信"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/video_publish_share_layout">
+
+                <CheckBox
+                    android:id="@+id/vpcb_share_circle"
+                    style="@style/video_publish_share_checkbox"
+                    android:button="@drawable/vp_share_circle"/>
+
+                <TextView
+                    style="@style/video_publish_share_text"
+                    android:text="朋友圈"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/video_publish_share_layout">
+
+                <CheckBox
+                    android:id="@+id/vpcb_share_qq"
+                    style="@style/video_publish_share_checkbox"
+                    android:button="@drawable/vp_share_qq"/>
+
+                <TextView
+                    style="@style/video_publish_share_text"
+                    android:text="QQ"/>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/video_publish_share_layout">
+
+                <CheckBox
+                    android:id="@+id/vpcb_share_qzone"
+                    style="@style/video_publish_share_checkbox"
+                    android:button="@drawable/vp_share_qzone"/>
+
+                <TextView
+                    style="@style/video_publish_share_text"
+                    android:text="QQ空间"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/video_publish_share_layout">
+
+                <CheckBox
+                    android:id="@+id/vpcb_share_wb"
+                    style="@style/video_publish_share_checkbox"
+                    android:button="@drawable/vp_share_wb"/>
+
+                <TextView
+                    style="@style/video_publish_share_text"
+                    android:text="微博"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_publish"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#efeff4"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/publishing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/publish_0"/>
+
+        <TextView
+            android:id="@+id/publish_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/publishing"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="正在上传请稍等"
+            android:textColor="#0accac"
+            android:textSize="24sp"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

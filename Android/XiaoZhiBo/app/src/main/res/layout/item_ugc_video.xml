@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:padding="2dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frmQueue"
+            android:layout_width="90dp"
+            android:layout_height="120dp"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/iv_thumb"
+                android:layout_width="90dp"
+                android:layout_height="120dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/iv_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:scaleType="center"
+            android:src="@drawable/ic_check"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/bgm_ll_main_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            android:id="@+id/bgm_rl_bgm_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bgm_iv_music_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/bgm_music_icon"/>
+
+            <TextView
+                android:id="@+id/bgm_tv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/delete"
+                android:textColor="#0ACCAC"
+                android:textSize="@dimen/h7"/>
+
+            <TextView
+                android:id="@+id/bgm_tv_music_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/bgm_iv_music_icon"
+                android:layout_toLeftOf="@id/bgm_tv_delete"
+                android:layout_toRightOf="@id/bgm_iv_music_icon"
+                android:layout_toStartOf="@id/bgm_tv_delete"
+                android:text="Happly.mp3"
+                android:textColor="#777777"
+                android:textSize="@dimen/h7"/>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/bgm_tv_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="29dp"
+            android:gravity="center"
+            android:text="截取所需音频片段"
+            android:textColor="#777"
+            android:textSize="@dimen/h7"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:overScrollMode="never"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/bgm_wave_voice"/>
+
+            <com.tencent.qcloud.xiaozhibo.videoeditor.RangeSlider
+                android:id="@+id/bgm_range_slider"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                app:leftThumbDrawable="@drawable/ic_progress_left"
+                app:leftThumbIndex="0"
+                app:lineColor="@color/colorAccent"
+                app:lineHeight="3dp"
+                app:rightThumbDrawable="@drawable/ic_progress_right"
+                app:thumbWidth="19dp"
+                app:tickCount="100"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="音量控制"
+                android:textColor="#777777"
+                android:textSize="@dimen/h7"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/bgm_icon_mic"/>
+
+            <com.tencent.qcloud.xiaozhibo.videoeditor.bgm.TCReversalSeekBar
+                android:id="@+id/bgm_sb_voice"
+                android:layout_width="0dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                app:rs_backgroundColor="#BBBBBB"
+                app:rs_pointerBackground="@drawable/icon_seek_bar_cursor"
+                app:rs_progress="0.5"
+                app:rs_progressColor="@color/colorAccent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bgm_music_icon"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bgm_ll_chose_music"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0d0d0d"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/bgm_tv_chose_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="添加音乐"
+            android:textColor="#fff"
+            android:textSize="@dimen/h7"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bgm_rv_chose_music"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <com.tencent.qcloud.xiaozhibo.videoeditor.bgm.TCMusicChooseLayout
+        android:id="@+id/bgm_rl_chose"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

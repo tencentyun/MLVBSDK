@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202530">
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/back_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:src="@drawable/btn_back_gray" />
+
+            <TextView
+                android:id="@+id/back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:gravity="center_vertical"
+                android:text="返回"
+                android:textColor="#ffffff"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/publish_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="预览"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h10" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/video_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/layout_title"
+        android:layout_marginTop="10dp"
+        android:background="@color/black">
+
+        <com.tencent.liteav.demo.common.activity.videopreview.TCVideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_view_container"
+        android:layout_marginTop="20dp"
+        android:background="#202530">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="标题："
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_video_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/tv_title"
+            android:background="@null"
+            android:hint="设置标题…"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_title"
+        android:layout_marginTop="10dp"
+        android:background="#202530">
+
+        <TextView
+            android:id="@+id/tv_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="封面："
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_video_cover"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/tv_cover"
+            android:scaleType="fitCenter" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_publish"
+        android:layout_width="345dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorAccent"
+        android:text="发布"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="@dimen/h8" />
+
+</RelativeLayout>

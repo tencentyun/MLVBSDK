@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tencent.liteav.demo.rtmp.sample.fragment.RtcRoomRoomListFragment">
+
+
+    <FrameLayout
+        android:id="@+id/log_and_help_layout"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/log"/>
+
+            <TextView
+                android:id="@+id/rtmproom_log"
+                android:padding="6dp"
+                android:layout_gravity="center_vertical"
+                android:text="查看Log"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_marginLeft="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/help"/>
+
+            <TextView
+                android:id="@+id/rtmproom_help"
+                android:padding="6dp"
+                android:layout_gravity="center_vertical"
+                android:text="查看帮助"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+
+    <Button
+        android:id="@+id/rtmproom_create_room_button"
+        android:layout_width="match_parent"
+        android:layout_above="@id/log_and_help_layout"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="4dp"
+        android:text="新建房间"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/rtmproom_create_room_seletor" />
+
+
+    <TextView
+        android:id="@+id/rtmproom_tip_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:singleLine="false"
+        android:text="选择房间点击进入"
+        android:textAlignment="center"
+        android:textColor="#AAAAAA" />
+
+
+    <TextView
+        android:id="@+id/rtmproom_tip_null_list_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:singleLine="false"
+        android:visibility="gone"
+        android:text="当前没有任何房间\n点击可以新建房间"
+        android:textAlignment="center"
+        android:textColor="#AAAAAA" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/rtmproom_swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rtmproom_tip_textview"
+        android:layout_above="@id/rtmproom_create_room_button"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <ListView
+            android:id="@+id/rtmproom_room_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/video_compress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="41dp">
+
+        <LinearLayout
+        android:id="@+id/back_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="12dp">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:src="@drawable/btn_back_gray"/>
+
+        <TextView
+            android:id="@+id/back_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#ffffff"
+            android:textSize="14dp"/>
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="压缩视频"
+            android:textColor="#ffffff"
+            android:textSize="18dp"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_compress_resolution"
+        android:layout_below="@id/video_compress_bar"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rect_bg_gray" >
+
+        <RadioGroup
+            android:id="@+id/rg_video_resolution"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_video_compress_none"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="无"
+                android:textColor="@color/text_settings_color"
+                android:textSize="14sp"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rb_video_compress_resolution_360p"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="360p"
+                android:textColor="@color/text_settings_color"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_video_compress_resolution_480p"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="480p"
+                android:textColor="@color/text_settings_color"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_video_compress_resolution_540p"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="540p"
+                android:textColor="@color/text_settings_color"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_video_compress_resolution_720p"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_radio_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="720p"
+                android:textColor="@color/text_settings_color"
+                android:textSize="14sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bite_rate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rl_compress_resolution"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rect_bg_gray"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_compress_biterate_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="码率(kbps)"
+            android:textColor="@color/record_settings_tip"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/et_compress_bitrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="15dp"
+            android:hint=""
+            android:inputType="number"
+            android:maxLength="5"
+            android:background="@null"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="visible"/>
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_biterate"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:layout_toRightOf="@id/tv_biterate_tip"-->
+            <!--android:background="@null"-->
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:gravity="center_vertical|right"-->
+            <!--android:hint="建议600-4800，默认2400"-->
+            <!--android:inputType="number"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textColorHint="@color/colorGray4"-->
+            <!--android:textSize="14dp"-->
+            <!--android:theme="@style/CustomEditText"/>-->
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_compress_ok"
+        android:layout_width="345dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorAccent"
+        android:text="确定"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="@dimen/h8"/>
+</RelativeLayout>

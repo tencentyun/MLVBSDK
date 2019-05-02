@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0d0d0d"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_editer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:background="#181818">
+
+
+            <TextView
+                android:id="@+id/back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/h8"
+                android:text="@string/btn_cancel"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/h8" />
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="@string/video_edit"
+                android:textColor="#ffffff"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/btn_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/h8"
+                android:text="@string/btn_save"
+                android:textColor="@color/colorAccent"
+                android:textSize="16dp" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_player"
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:background="@color/black">
+
+            <FrameLayout
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageButton
+                android:id="@+id/btn_play"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_play_bg"
+                android:src="@drawable/ic_pause" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_player">
+
+            <TextView
+                android:id="@+id/tv_duration"
+                style="@style/TimelineItemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="#777777"
+                android:textSize="@dimen/h4" />
+
+            <TextView
+                android:id="@+id/tv_current"
+                style="@style/TimelineItemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/tv_duration"
+                android:textColor="#777777"
+                android:textSize="@dimen/h4" />
+        </RelativeLayout>
+
+        <com.tencent.qcloud.xiaozhibo.videoeditor.EditPannel
+            android:id="@+id/edit_pannel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <ProgressBar
+
+        android:id="@+id/progress_load"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <FrameLayout
+        android:id="@+id/editer_fl_word_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

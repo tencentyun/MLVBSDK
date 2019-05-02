@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:minHeight="105dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_gravity="bottom">
+
+    <LinearLayout
+        android:id="@+id/music_mic_volume_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="MIC Volume"
+            android:textColor="#FF888888"
+            android:textSize="16sp" />
+        <SeekBar
+            android:id="@+id/music_mic_volume_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="18dp"
+            android:maxHeight="4.0dip"
+            android:minHeight="4.0dip"
+            android:visibility="visible"
+            android:progressDrawable="@drawable/seekbar_progress_drawable"
+            android:thumb="@drawable/circle"
+            android:max="100"
+            android:progress="100"
+            android:indeterminate="false" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/music_bgm_volume_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="BGM Volume"
+            android:textColor="#FF888888"
+            android:textSize="16sp" />
+        <SeekBar
+            android:id="@+id/music_bgm_volume_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="18dp"
+            android:maxHeight="4.0dip"
+            android:minHeight="4.0dip"
+            android:visibility="visible"
+            android:progressDrawable="@drawable/seekbar_progress_drawable"
+            android:thumb="@drawable/circle"
+            android:max="100"
+            android:progress="100"
+            android:indeterminate="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/play_start"/>
+
+        <Button
+            android:id="@+id/btnPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/play_pause"/>
+
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle"/>
+    </LinearLayout>
+
+
+</LinearLayout>

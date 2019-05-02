@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_btn_pressed_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="#181818"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/h8"
+            android:text="@string/btn_return"
+            android:textColor="@color/colorAccent"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/publish_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/video_join"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h10" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/video_drag_sort"
+        android:textColor="@color/tencent_tls_ui_deepgray"
+        android:textSize="@dimen/h4" />
+
+    <Button
+        android:id="@+id/segment_preview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"
+        android:text="@string/video_join_preview"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h8" />
+
+
+    <com.tencent.qcloud.xiaozhibo.videojoiner.widget.swipemenu.SwipeMenuRecyclerView
+        android:id="@+id/swipe_menu_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/segment_preview"
+        android:layout_below="@+id/tv_tip" />
+</RelativeLayout>

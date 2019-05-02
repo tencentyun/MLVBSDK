@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tencent.qcloud.xiaozhibo.videoeditor.word.widget.TCWordOperationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/SingleTouchView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    app:controlDrawable="@drawable/icon_word_rotation"
+    app:controlLocation="right_bottom"
+    app:deleteDrawable="@drawable/icon_word_delete"
+    app:editDrawable="@drawable/icon_word_edit"
+    app:frameColor="@color/colorAccent"
+    app:frameWidth="0.5dp"
+    app:scale="1.0" />

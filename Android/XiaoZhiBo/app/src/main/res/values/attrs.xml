@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 标题模板自定义属性 -->
+    <declare-styleable name="TCActivityTitle">
+        <!-- 标题文案 -->
+        <attr name="titleText" format="string"/>
+        <!-- 是否有back按钮 -->
+        <attr name="canBack" format="boolean"/>
+        <!-- back按钮文案 -->
+        <attr name="backText" format="string"/>
+        <!-- 右侧更多功能按钮文字 -->
+        <attr name="moreText" format="string"/>
+    </declare-styleable>
+
+    <!-- 条形控制控件自定义属性 -->
+    <declare-styleable name="TCLineView">
+        <!-- 名称 -->
+        <attr name="name" format="string"/>
+        <!-- 内容或当前状态 -->
+        <attr name="content" format="string"/>
+        <!-- 是否是列表中最后一个 -->
+        <attr name="isBottom" format="boolean"/>
+        <!-- 是否可以跳转 -->
+        <attr name="canNav" format="boolean"/>
+        <!-- 是否是开关 -->
+        <attr name="isSwitch" format="boolean"/>
+    </declare-styleable>
+
+    <!-- 飘星自定义属性 -->
+    <declare-styleable name="HeartLayout">
+        <attr name="initX" format="dimension" />
+        <attr name="initY" format="dimension" />
+        <attr name="xRand" format="dimension" />
+        <attr name="animLengthRand" format="dimension" />
+        <attr name="xPointFactor" format="dimension" />
+        <attr name="animLength" format="dimension" />
+        <attr name="heart_width" format="dimension" />
+        <attr name="heart_height" format="dimension" />
+        <attr name="bezierFactor" format="integer" />
+        <attr name="anim_duration" format="integer" />
+    </declare-styleable>
+	
+	<declare-styleable name="RoundProgressBar">
+        <attr name="bgColor" format="color"/>
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="textColorP" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="leftViewId" format="reference" />
+        <attr name="rightViewId" format="reference" />
+        <attr name="contentViewId" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="RangeSlider">
+        <attr name="lineHeight" format="dimension" />
+        <attr name="thumbWidth" format="dimension" />
+        <attr name="lineColor" format="color" />
+        <attr name="maskColor" format="color" />
+        <attr name="tickCount" format="integer" />
+        <attr name="leftThumbIndex" format="integer" />
+        <attr name="rightThumbIndex" format="integer" />
+        <attr name="leftThumbDrawable" format="reference" />
+        <attr name="rightThumbDrawable" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="TCReversalSeekBar">
+        <attr name="rs_pointerBackground" format="reference"/>
+        <attr name="rs_backgroundColor" format="color"/>
+        <attr name="rs_progressColor" format="color"/>
+        <attr name="rs_progress" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="absProgressBar">
+        <attr name="progress" format="integer"/>
+        <attr name="backgroundColor" format="reference|color"/>
+        <attr name="textColor" format="reference|color"/>
+    </declare-styleable>
+    <declare-styleable name="progressBar">
+        <attr name="startFillColor" format="reference|color"/>
+        <attr name="middleFillColor" format="reference|color"/>
+        <attr name="endFillColor" format="reference|color"/>
+        <attr name="arrowPointColor" format="reference|color"/>
+        <attr name="arrowPointRadius" format="dimension|reference"/>
+    </declare-styleable>
+    <declare-styleable name="floatTextProgressBar">
+        <attr name="triangleColor" format="reference|color"/>
+        <attr name="rectColor" format="reference|color"/>
+        <attr name="fillColor" format="reference|color"/>
+    </declare-styleable>
+    <declare-styleable name="RangeSeekBar">
+        <attr name="rsb_pointerBackground" format="reference"/>
+        <attr name="rsb_backgroundColor" format="color"/>
+        <attr name="rsb_progressColor" format="color"/>
+        <attr name="rsb_range" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="TCWordOperationView">
+        <attr name="src" format="reference"/>            <!-- 用于缩放旋转的图标 -->
+        <attr name="editable" format="boolean"/>          <!-- 是否处于可编辑状态 -->
+        <attr name="frameColor" format="color"/>         <!-- 边框颜色 -->
+        <attr name="frameWidth" format="dimension"/>     <!-- 边框线宽度 -->
+        <attr name="framePadding" format="dimension"/>   <!-- 边框与图片的间距 -->
+        <attr name="degree" format="float"/>             <!-- 旋转角度 -->
+        <attr name="scale" format="float"/>              <!-- 缩放比例 -->
+        <attr name="controlDrawable" format="reference"/> <!-- 控制图标 -->
+        <attr name="editDrawable" format="reference"/>   <!--编辑图标位置-->
+        <attr name="deleteDrawable" format="reference"/> <!--删除图标位置-->
+        <attr name="controlLocation">                     <!-- 控制图标的位置 -->
+            <enum name="left_top" value="0"/>
+            <enum name="right_top" value="1"/>
+            <enum name="right_bottom" value="2"/>
+            <enum name="left_bottom" value="3"/>
+        </attr>
+        <attr name="editLocation">                     <!-- 编辑图标的位置 -->
+            <enum name="left_top" value="0"/>
+            <enum name="right_top" value="1"/>
+            <enum name="right_bottom" value="2"/>
+            <enum name="left_bottom" value="3"/>
+        </attr>
+        <attr name="deleteLocation">                     <!-- 删除图标的位置 -->
+            <enum name="left_top" value="0"/>
+            <enum name="right_top" value="1"/>
+            <enum name="right_bottom" value="2"/>
+            <enum name="left_bottom" value="3"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer"/>
+        <attr name="progress_max" format="integer"/>
+
+        <attr name="progress_unreached_color" format="color"/>
+        <attr name="progress_reached_color" format="color"/>
+
+        <attr name="progress_reached_bar_height" format="dimension"/>
+        <attr name="progress_unreached_bar_height" format="dimension"/>
+
+        <attr name="progress_text_size" format="dimension"/>
+        <attr name="progress_text_color" format="color"/>
+
+        <attr name="progress_text_offset" format="dimension"/>
+
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

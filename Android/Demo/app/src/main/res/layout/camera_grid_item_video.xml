@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/content_frame"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    android:background="@android:color/white">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:orientation="vertical">-->
+
+        <FrameLayout
+            android:id="@+id/thumb_container"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            >
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/thumb"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/camera_video_grid_bg"
+                android:scaleType="fitXY"
+                />
+
+            <ImageView
+                android:id="@+id/hover"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                />
+
+            <com.tencent.liteav.demo.videorecord.widget.RoundProgressBar
+                android:id="@+id/progress_round"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_gravity="center"
+                app:roundColor="#4cffffff"
+                app:roundProgressColor="@color/pink"
+                app:roundWidth="3dp"
+                app:textIsDisplayable="false"
+                app:textColorP="@color/pink"
+                app:textSize="12sp"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/download"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="3dp"
+                android:src="@drawable/ic_video_material_download"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/audio"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/ic_camera_audio"
+                android:visibility="gone"
+                />
+
+        </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+    <com.tencent.qcloud.xiaozhibo.videoeditor.word.widget.BorderImage
+        android:id="@+id/item_iv_add"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:src="@drawable/icon_word_add"/>
+
+    <TextView
+        android:id="@+id/item_tv_word"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/selector_word_bg"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="2"
+        android:padding="5dp"
+        android:text="点击添加文字"
+        android:textColor="#fff"
+        android:textSize="@dimen/h1"/>
+
+</LinearLayout>

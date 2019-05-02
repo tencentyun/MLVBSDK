@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.tencent.qcloud.xiaozhibo"
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode 1
+        versionName "xiaozhiboversion"
+
+        renderscriptTargetApi 14
+        renderscriptSupportModeEnabled true
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            ndk {
+                abiFilters "armeabi"//, "armeabi-v7a"
+            }
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            signingConfig signingConfigs.debug
+
+            ndk {
+                abiFilters "armeabi"//, "armeabi-v7a"
+            }
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/com.squareup.okhttp3/okhttp/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okhttp3/okhttp/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'src/main/jniLibs')
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.github.ctiao:dfm:0.4.4'
+    //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta1' // or 1.4-beta1
+    //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1' // or 1.4-beta1
+    //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1' // or 1.4-beta1
+    compile(name: 'volley-1.0.0', ext: 'aar')
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.facebook.fresco:fresco:0.7.0'
+}
+

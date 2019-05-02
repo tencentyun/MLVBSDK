@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/cut_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.tencent.qcloud.xiaozhibo.videoeditor.TCVideoEditView
+            android:id="@+id/editView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/cb_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="30dp"
+            android:button="@drawable/ic_speed_selector"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filter_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="29dp"
+            android:text="视频滤镜"
+            android:textColor="#777"
+            android:textSize="14dp"/>
+
+        <com.tencent.qcloud.xiaozhibo.videoeditor.TCHorizontalScrollView
+            android:id="@+id/filter_sv"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@android:id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"/>
+        </com.tencent.qcloud.xiaozhibo.videoeditor.TCHorizontalScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bgm_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.tencent.qcloud.xiaozhibo.videoeditor.bgm.TCBGMEditView
+            android:id="@+id/panel_bgm_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/word_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.tencent.qcloud.xiaozhibo.videoeditor.word.widget.TCWordEditView
+            android:id="@+id/panel_word_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panel_ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_cut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ic_cut_press"/>
+
+        <ImageButton
+            android:id="@+id/btn_filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ic_beautiful"/>
+
+        <ImageButton
+            android:id="@+id/btn_music"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ic_music"/>
+
+        <ImageButton
+            android:id="@+id/btn_word"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ic_word"/>
+    </LinearLayout>
+</LinearLayout>

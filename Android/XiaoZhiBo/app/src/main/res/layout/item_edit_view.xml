@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:seekbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/video_edit_segment"
+        android:textColor="#777777"
+        android:textSize="@dimen/h6" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tv_tip"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:overScrollMode="never"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
+
+        <com.tencent.qcloud.xiaozhibo.videoeditor.RangeSlider
+            android:id="@+id/range_slider"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            seekbar:leftThumbDrawable="@drawable/ic_progress_left"
+            seekbar:leftThumbIndex="0"
+            seekbar:lineColor="@color/colorAccent"
+            seekbar:lineHeight="3dp"
+            seekbar:rightThumbDrawable="@drawable/ic_progress_right"
+            seekbar:thumbWidth="19dp"
+            seekbar:tickCount="100"/>
+    </RelativeLayout>
+</RelativeLayout>

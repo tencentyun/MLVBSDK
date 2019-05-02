@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/umeng_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar"
+        />
+
+    <LinearLayout
+        android:id="@+id/li1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/title_bar"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/umeng_menu_bottom"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/umeng_white"
+            android:gravity="center"
+            android:text="页面底部菜单-1"
+
+            android:textColor="@color/umeng_black" />
+
+        <TextView
+            android:id="@+id/umeng_menu_center"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/umeng_white"
+            android:gravity="center"
+            android:text="页面中部菜单-1"
+            android:textColor="@color/umeng_black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/li1"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/umeng_menu_bottom2"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/umeng_white"
+            android:gravity="center"
+            android:text="页面底部菜单-2"
+            android:textColor="@color/umeng_black" />
+
+        <TextView
+            android:id="@+id/umeng_menu_center2"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/umeng_white"
+            android:gravity="center"
+            android:text="页面中部菜单-2"
+            android:textColor="@color/umeng_black" />
+    </LinearLayout>
+</RelativeLayout>

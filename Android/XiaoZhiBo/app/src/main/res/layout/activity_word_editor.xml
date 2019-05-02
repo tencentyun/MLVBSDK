@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0d0d0d"
+                android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="41dp">
+
+            <LinearLayout
+                android:id="@+id/back_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:src="@drawable/btn_back_gray"/>
+
+                <TextView
+                    android:id="@+id/tv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:text="返回"
+                    android:textColor="#ffffff"
+                    android:textSize="14dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/video_edit"
+                android:textColor="#ffffff"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/btn_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="16dp"
+                android:text="保存"
+                android:textColor="#ffffff"
+                android:textSize="18dp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/word_fl_player"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/black">
+
+            <FrameLayout
+                android:id="@+id/word_fl_video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"/>
+
+            <com.tencent.qcloud.xiaozhibo.videoeditor.word.widget.TCOperationViewGroup
+                android:id="@+id/word_rl_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="12.5dp"
+            android:layout_marginTop="36dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:src="@drawable/icon_word_play"/>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/word_tv_tip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/video_edit_segment"
+                        android:textColor="#777777"
+                        android:textSize="@dimen/h6"/>
+
+                    <com.tencent.qcloud.xiaozhibo.videoeditor.word.widget.RangeSeekBar
+                        android:id="@+id/word_sb_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:visibility="gone"
+                        app:rsb_backgroundColor="@color/line_btn"
+                        app:rsb_pointerBackground="@drawable/icon_seek_bar_cursor"
+                        app:rsb_progressColor="@color/colorAccent"/>
+
+                </LinearLayout>
+
+                <com.tencent.qcloud.xiaozhibo.videoeditor.word.widget.FloatTextProgressBar
+                    android:id="@+id/pb_player"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingBottom="20dp"
+                    android:visibility="visible"
+                    app:backgroundColor="#d8d8d8"
+                    app:fillColor="@color/colorAccent"
+                    app:rectColor="@color/colorAccent"
+                    app:textColor="@color/white"
+                    app:triangleColor="@color/colorAccent"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/word_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:text="00:00"
+                android:textColor="#777777"
+                android:textSize="@dimen/h3"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorGray8"
+            android:paddingBottom="17.5dp"
+            android:paddingLeft="17.5dp"
+            android:paddingRight="17.5dp"
+            android:paddingTop="17.5dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/word_rv_word"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/word_fl_input_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

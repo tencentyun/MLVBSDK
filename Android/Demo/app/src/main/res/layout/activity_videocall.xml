@@ -1,0 +1,219 @@
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bkg"
+        >
+
+
+    <FrameLayout
+            android:id="@+id/remoteViews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            >
+    </FrameLayout>
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/local_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center">
+    </android.support.v4.view.ViewPager>
+
+    <com.tencent.liteav.demo.common.view.BeautySettingPannel
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutFaceBeauty"
+            android:visibility="gone"
+            android:clickable="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="50dp"
+            />
+
+    <RelativeLayout
+            android:id="@+id/test_releative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:id="@+id/btns_tests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true">
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+            <Button
+                    android:id="@+id/btnPlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/play_start"/>
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+            <Button
+                    android:id="@+id/btnCameraChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/camera_change"/>
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/btnFaceBeauty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/beauty"/>
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+            <Button
+                    android:id="@+id/btnLog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/log_show"/>
+
+            <!--<TextView-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_weight="1"/>-->
+
+
+            <!--<Button-->
+                    <!--android:id="@+id/btnPushOrientation"-->
+                    <!--android:layout_width="34dp"-->
+                    <!--android:layout_height="34dp"-->
+                    <!--android:text="横屏"-->
+                    <!--android:background="@drawable/circlebackground"/>-->
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+            <Button
+                    android:id="@+id/btnRenderMode"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:text="全屏"
+                    android:background="@drawable/circlebackground"/>
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+            <Button
+                    android:id="@+id/muteMic"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/mute"/>
+
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+            <Button
+                    android:id="@+id/muteVideo"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/off"/>
+
+            <!--android:id="@+id/btn_video_src"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/video_press"/>-->
+            <!--<Button-->
+            <!--android:id="@+id/btn_music_pannel"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/video_press"/>-->
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        <LinearLayout
+                android:id="@+id/back_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_gravity="center_vertical">
+
+            <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/btn_back_gray"
+                    android:gravity="center"/>
+
+            <TextView
+                    android:id="@+id/back_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14dp"
+                    android:textColor="#ffffff"
+                    android:text="返回"/>
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:text="视频通话"/>
+    </FrameLayout>
+
+    <include
+            layout="@layout/titlebar_videocall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="45dp"/>
+
+    <TextView
+            android:id="@+id/netbusy_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:background="@color/colorRed"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:textColor="#ffffff"
+            android:text="当前网络质量很糟糕，建议您拉近离路由器的距离，避免WiFi穿墙！"/>
+
+</FrameLayout>

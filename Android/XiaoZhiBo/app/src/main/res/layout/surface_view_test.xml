@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tencent.qcloud.xiaozhibo.ui.SurfaceViewTestActivity">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/suface_v"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <TextureView
+        android:id="@+id/texture_v"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:targetApi="ice_cream_sandwich" />
+
+</LinearLayout>

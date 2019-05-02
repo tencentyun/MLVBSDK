@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+	    <bitmap
+			android:src="@drawable/toolbar_bg"
+			android:antialias="true"
+    		android:dither="true"
+    		android:filter="true"
+			android:tileMode="repeat" />
+	</item>
+</layer-list>

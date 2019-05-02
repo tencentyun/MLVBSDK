@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <Button
+        android:id="@+id/dialog_btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@+id/btn_publish"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorAccent"
+        android:text="仅保存"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h8"
+        />
+
+    <Button
+        android:id="@+id/dialog_btn_publish"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:text="保存并发布"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h8"
+        />
+
+    <Button
+        android:id="@+id/only_publish"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:text="仅发布"
+        android:textColor="@color/white"
+        android:textSize="@dimen/h8"
+        />
+</LinearLayout>

@@ -1,0 +1,91 @@
+{
+  "shaderType": 0,
+  "minAppVersion": 350,
+  "itemList": [
+    {
+      "id": "cloth",
+      "frameDuration": 83,
+      "frames": 1,
+      "width": 1600,
+      "height": 1000,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        9
+      ],
+      "anchorPoint": [
+        800,
+        198
+      ],
+      "scalePivots": [
+        0,
+        18
+      ],
+      "scaleFactor": 480
+    },
+    {
+      "id": "head",
+      "frameDuration": 83,
+      "frames": 8,
+      "height": 306,
+      "width": 514,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        86,
+        88
+      ],
+      "anchorPoint": [
+        257,
+        144
+      ],
+      "scalePivots": [
+        0,
+        18
+      ],
+      "scaleFactor": 480
+    },
+    {
+      "id": "eyes",
+      "frameDuration": 83,
+      "frames": 24,
+      "width": 560,
+      "height": 380,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 2,
+      "alignFacePoints": [
+        83
+      ],
+      "anchorPoint": [
+        280,
+        100
+      ],
+      "scalePivots": [
+        0,
+        18
+      ],
+      "scaleFactor": 480
+    },
+    {
+      "id": "apple",
+      "frameDuration": 83,
+      "frames": 24,
+      "width": 582,
+      "height": 304,
+      "triggerType": 2,
+      "playCount": 0,
+      "alwaysTriggered": 1,
+      "type": 1,
+      "position": [
+        0.096,
+        0.683
+      ]
+    }
+  ]
+}

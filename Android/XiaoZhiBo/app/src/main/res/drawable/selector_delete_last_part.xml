@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ugc_delete_last_part" android:state_pressed="false" />
+
+    <item android:drawable="@drawable/ugc_delete_last_part_hover" android:state_pressed="true" />
+
+</selector>
