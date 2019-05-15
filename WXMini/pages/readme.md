@@ -6,9 +6,7 @@
 
 │   ├── board-component						//白板组件
 
-│   ├── live-room							//直播组件
-
-│   ├── rtc-room							//多人音视频通话组件，使用移动直播方案
+│   ├── mlvb-live-room							//直播组件
 
 │   ├── sketchpad							/画板组件，没有用到
 
@@ -22,7 +20,7 @@
 
 │   └── push-config						//推流设置页面
 
-├── live-room-demo							//使用live-room的demo示例
+├── mlvb-live-room-demo							//使用live-room的demo示例
 
 │   ├── room								//房间页面
 
@@ -49,7 +47,7 @@
 
 
 #组件使用说明
-##live-room组件
+##mlvb-live-room组件
 
 ###属性
 
@@ -59,7 +57,7 @@
 | roomid | String | '' | 必要，房间id |
 | roomname | String | '' | 必要，房间名 |
 | debug | Boolean | false | 可选，是否打开log |
-| template | String | 'float' | 必要，模版名，live-room只有float这种类型 |
+| template | String | 'float' | 必要，模版名，mlvb-live-room只有float这种类型 |
 | beauty | Number | 5 | 可选，美颜，取值范围 0-9 ，0 表示关闭 |
 | muted | Boolean | false | 可选，是否静音，指推流 |
 | pureaudio | Boolean | false | 可选，是否纯音频推流 |
@@ -79,11 +77,11 @@
 
 ###叠加图标的实现
 
-live-room组件提供两个<slot> 节点，用于承载组件引用时提供的子节点。slot名分别为caster（主播），audience（观众）。
+mlvb-live-room组件提供两个<slot> 节点，用于承载组件引用时提供的子节点。slot名分别为caster（主播），audience（观众）。
 
 ```js
 <view class='container-box'>
-  <live-room id="id_liveroom" wx:if="{{showLiveRoom}}" roomid="{{roomID}}" role="{{role}}" roomname="{{roomName}}" pureaudio="{{pureAudio}}" debug="{{debug}}" muted="{{muted}}" beauty="{{beauty}}" template="float" bindRoomEvent="onRoomEvent">
+  <mlvb-live-room id="id_liveroom" wx:if="{{showLiveRoom}}" roomid="{{roomID}}" role="{{role}}" roomname="{{roomName}}" pureaudio="{{pureAudio}}" debug="{{debug}}" muted="{{muted}}" beauty="{{beauty}}" template="float" bindRoomEvent="onRoomEvent">
     <!-- 主播推流界面上叠加的操作按钮 -->
     <cover-view slot="caster" style='height:100%;width:100%'>
       <cover-view class="operate">
@@ -119,7 +117,7 @@ live-room组件提供两个<slot> 节点，用于承载组件引用时提供的�
       <cover-image wx:if="{{phoneNum}}" class='center' src="/pages/Resources/{{phoneNum}}.png"></cover-image>
       <cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
     </cover-view>
-  </live-room>
+  </mlvb-live-room>
 </view>
 ```
 
