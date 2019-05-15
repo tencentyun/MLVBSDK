@@ -18,7 +18,9 @@
 | iOS | [GitHub](https://github.com/tencentyun/MLVBSDK/tree/master/iOS)| [DOC](https://cloud.tencent.com/document/product/454/34750)| 待补充 | [API](https://cloud.tencent.com/document/product/454/19526) |
 | Android | [GitHub](https://github.com/tencentyun/MLVBSDK/tree/master/Android)| [DOC](https://cloud.tencent.com/document/product/454/34750)| 待补充 | [API](https://cloud.tencent.com/document/product/454/14407) |
 
+## SDK 下载地址
 
+> [**SDK 各版本下载地址（精简版、专业版、企业版）**](https://github.com/tencentyun/MLVBSDK/blob/master/SDK%E4%B8%8B%E8%BD%BD.md)
 
 ## MLVB Demo
 
