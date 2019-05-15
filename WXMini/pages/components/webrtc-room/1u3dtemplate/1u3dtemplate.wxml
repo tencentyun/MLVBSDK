@@ -1,0 +1,86 @@
+<template name="1u3dtemplate">
+		<view class="t1u3d videoview" wx:if="{{!isCaster}}">
+				<view class="player-caster-box">
+						<view class="player-caster-item" wx:for="{{presenter}}" wx:key="userID">
+								<view class="poster">
+										<cover-image class="set" src="https://miniprogram-1252463788.file.myqcloud.com/roomset_1.png"></cover-image>
+								</view>
+								<live-player id="{{item.userID}}" autoplay="{{autoplay}}" mode="RTC" object-fit="fillCrop" min-cache="0.1" max-cache="0.3" src="{{item.accelerateURL}}" debug="{{debug}}" background-mute="{{true}}" bindstatechange="onPlay">
+										<cover-view class="dis-camera-bg" hidden="{{playerVideoStatus[item.userID] || playerVideoStatus[item.userID] === undefined}}">
+												<cover-image src="/pages/Resources/disable-camera.png"></cover-image>
+										</cover-view>
+										<cover-view class="loading" wx:if="{{item.loading}}">
+												<cover-image src="/pages/Resources/loading_image0.png"></cover-image>
+										</cover-view>
+										<cover-view class="player-sound" bindtap="enableAudioTap" data-uid="{{item.userID}}">
+												<cover-image wx:if="{{playerMutedStatus[item.userID]}}" src="/pages/Resources/sound-dis.png"></cover-image>
+												<cover-image wx:else src="/pages/Resources/sound.png"></cover-image>
+										</cover-view>
+										<cover-view class="player-camera" bindtap="enableVidoTap" data-uid="{{item.userID}}">
+												<cover-image wx:if="{{playerVideoStatus[item.userID] || playerVideoStatus[item.userID] === undefined}}" src="/pages/Resources/off.png"></cover-image>
+												<cover-image wx:else src="/pages/Resources/camera-dis.png"></cover-image>
+										</cover-view>
+                    <cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
+								</live-player>
+						</view>
+				</view>
+				<view class="player-box">
+						<view class="pusher-item player-item">
+								<live-pusher wx:if="{{pushURL}}" id="rtcpusher" autopush enable-camera="{{enableCamera}}" mode="RTC" url="{{pushURL}}" aspect="{{aspect}}" min-bitrate="{{minBitrate}}" max-bitrate="{{maxBitrate}}" audio-quality="high" beauty="{{beauty}}" whiteness="{{whiteness}}" muted="{{muted}}" waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg" background-mute="{{true}}" debug="{{debug}}" bindstatechange="onPush" binderror="onError"></live-pusher>
+								<view class="poster">
+										<cover-image class="set" wx:if="{{!pushURL}}" src="https://miniprogram-1252463788.file.myqcloud.com/roomset_2.png"></cover-image>
+								</view>
+						</view>
+						<view class="player-item" wx:for="{{audience}}" wx:key="userID">
+								<view class="poster">
+										<cover-image class="set" src="https://miniprogram-1252463788.file.myqcloud.com/roomset_{{index + 3}}.png"></cover-image>
+								</view>
+								<live-player id="{{item.userID}}" autoplay="{{autoplay}}" mode="RTC" wx:if="{{item.accelerateURL && item.userID}}" object-fit="fillCrop" min-cache="0.1" max-cache="0.3" src="{{item.accelerateURL}}" debug="{{debug}}" background-mute="{{true}}" bindstatechange="onPlay">
+										<cover-view class="dis-camera-bg" hidden="{{playerVideoStatus[item.userID] || playerVideoStatus[item.userID] === undefined}}">
+												<cover-image src="/pages/Resources/disable-camera.png"></cover-image>
+										</cover-view>
+										<cover-view class="loading" wx:if="{{item.loading}}">
+												<cover-image src="/pages/Resources/loading_image0.png"></cover-image>
+										</cover-view>
+										<cover-view class="player-sound" bindtap="enableAudioTap" data-uid="{{item.userID}}">
+												<cover-image wx:if="{{playerMutedStatus[item.userID]}}" src="/pages/Resources/sound-dis.png"></cover-image>
+												<cover-image wx:else src="/pages/Resources/sound.png"></cover-image>
+										</cover-view>
+										<cover-view class="player-camera" bindtap="enableVidoTap" data-uid="{{item.userID}}">
+												<cover-image wx:if="{{playerVideoStatus[item.userID] || playerVideoStatus[item.userID] === undefined}}" src="/pages/Resources/off.png"></cover-image>
+												<cover-image wx:else src="/pages/Resources/camera-dis.png"></cover-image>
+										</cover-view>
+								</live-player>
+						</view>
+				</view>
+		</view>
+		<!-- 自己是主播 -->
+		<view class="t1u3d videoview" wx:if="{{isCaster}}">
+				<view class="pusher-box">
+						<live-pusher wx:if="{{pushURL}}" id="rtcpusher" autopush enable-camera="{{enableCamera}}" mode="RTC" url="{{pushURL}}" aspect="{{aspect}}" min-bitrate="{{minBitrate}}" max-bitrate="{{maxBitrate}}" audio-quality="high" beauty="{{beauty}}" whiteness="{{whiteness}}" muted="{{muted}}" waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg" background-mute="{{true}}" debug="{{debug}}" bindstatechange="onPush" binderror="onError"></live-pusher>
+				</view>
+				<view class="player-box">
+						<view class="player-item" wx:for="{{members}}" wx:key="userID">
+								<view class="poster">
+										<cover-image class="set" src="https://miniprogram-1252463788.file.myqcloud.com/roomset_{{index + 2}}.png"></cover-image>
+								</view>
+								<live-player id="{{item.userID}}" autoplay="{{autoplay}}" mode="RTC" wx:if="{{item.accelerateURL}}" object-fit="fillCrop" min-cache="0.1" max-cache="0.3" src="{{item.accelerateURL}}" debug="{{debug}}" background-mute="{{true}}" bindstatechange="onPlay">
+										<cover-view class="dis-camera-bg" hidden="{{playerVideoStatus[item.userID] || playerVideoStatus[item.userID] === undefined}}">
+												<cover-image src="/pages/Resources/disable-camera.png"></cover-image>
+										</cover-view>
+										<cover-view class="loading" wx:if="{{item.loading}}">
+												<cover-image src="/pages/Resources/loading_image0.png"></cover-image>
+										</cover-view>
+										<cover-view class="player-sound" bindtap="enableAudioTap" data-uid="{{item.userID}}">
+												<cover-image wx:if="{{playerMutedStatus[item.userID]}}" src="/pages/Resources/sound-dis.png"></cover-image>
+												<cover-image wx:else src="/pages/Resources/sound.png"></cover-image>
+										</cover-view>
+										<cover-view class="player-camera" bindtap="enableVidoTap" data-uid="{{item.userID}}">
+												<cover-image wx:if="{{playerVideoStatus[item.userID] || playerVideoStatus[item.userID] === undefined}}" src="/pages/Resources/off.png"></cover-image>
+												<cover-image wx:else src="/pages/Resources/camera-dis.png"></cover-image>
+										</cover-view>
+								</live-player>
+						</view>
+				</view>
+		</view>
+</template>

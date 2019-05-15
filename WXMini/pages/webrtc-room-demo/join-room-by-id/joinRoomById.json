@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "输入房间号加入房间",
+  "usingComponents":{
+    "i-icon":"/iview/icon/index"
+  }
+}

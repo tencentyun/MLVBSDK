@@ -1,0 +1,39 @@
+/* pages/liveroom/roomlist/roomlist.wxss */
+.container-box {
+  background:-webkit-gradient(linear, 0% 0%, 0% 80%,from(#061c36), to(#12161d));
+  height: calc(100vh - 70px);
+  overflow: auto;
+  padding-bottom: 70px;
+}
+.list-box {
+  background-color: transparent;
+  background-image:url(https://miniprogram-1252463788.file.myqcloud.com/live_room_item_bg.png);
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  width: 88vw;
+  margin: 3vw;
+  padding: 3vw;
+}
+.list-info {
+  font-size: 14px;
+}
+.extext {
+  font-size: 13px;
+  color: #ffffff;
+  padding: 0 0 2vw;
+  text-align: center;
+}
+.no-room {
+  padding-top: 30vh;
+}
+.bottom-btn {
+  position: fixed;
+  width: 92vw;
+  left: 4vw;
+  bottom: 6vh;
+}
+.bottom-btn button {
+   background-color: #006eff;
+   border-radius: 50px;
+ }

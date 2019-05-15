@@ -1,0 +1,9 @@
+<!-- components/board-component/board-component.wxml -->
+<view class="tic-board-box">
+  <canvas class="tic_board_canvas" canvas-id="tic_board_canvas"></canvas>
+  <image id="tic_board_img_bg" class="tic_board_img_bg" wx:if="{{currentPic}}" src="{{currentPic}}" mode="aspectFit" bindload="imgOnLoad" binderror="imgOnLoadError"></image>
+  <view class="tic_board_color_bg" style="background-color:{{bgColor}}"></view>
+  <view>
+    <image wx:for="{{ imgLoadList }}" wx:key="*this" src="{{ item }}" data-src="{{ item }}" style="width:0;height:0;" />
+  </view>
+</view>

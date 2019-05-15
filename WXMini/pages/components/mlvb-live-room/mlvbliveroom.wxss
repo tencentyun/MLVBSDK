@@ -1,0 +1,178 @@
+.mlvbliveroom-container {
+  display: inline-block;  
+  width: 100vw;
+  height: fit-content;
+}
+.inner-container {
+    position: relative; 
+    display: inline-block; 
+    overflow: visible;
+    text-align: center;
+    margin-bottom: 2px;
+    vertical-align: top;
+}
+
+.view-size-small {
+    width: 100%;
+    height: 56.25vw;
+}
+
+.view-size-big {
+    width: 100%;
+    height: 89.58vw
+}
+
+.list-container {
+  position: relative;
+  display:inline-block;
+  overflow: hidden;
+  width: 100%;
+  height: 33.33vw;
+}
+.list-item-box {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 32.33vw;
+  height: 100%;
+  margin-right: 2px;
+}
+
+live-pusher {
+    width: 100%;
+	height: 100%; 
+}
+
+.poster {
+    position: absolute;  
+    width: 100%;
+    height: 100%; 
+    background-color: #000;
+  opacity:0.55;
+}
+live-player {
+  width: 100%;
+	height: 100%; 
+}
+.character {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /* z-index: 1000; */
+  font-size: 16px;
+  color: #999;
+  width: 100%;
+  height: 10vw;
+  line-height: 10vw;
+  text-align: left;
+}
+.set {
+  position: absolute;
+  width: 32px;
+  height: 56px;
+  top: 50%;
+  left: 50%;
+  margin: -28px 0 0 -16px;
+}
+.loading {
+  position: absolute;
+  width: 100%;  
+  height: 100%; 
+}
+.loading cover-image {
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  width: 30px;
+  height: 30px;
+}
+.close-ico {
+  position: absolute;
+  top: 0;
+  right: 2vw;
+  text-align: center;
+  font-size: 24px;
+  color: #ffffff;
+}
+.close-ico:hover {
+  color: #afafaf;
+}
+.player-box {
+	position: relative; 
+	display: inline-block; 
+	overflow: hidden;
+	width: 46vw;
+	height: 61.33vw; 
+	text-align: center;
+    margin-bottom: 2vw;
+    vertical-align: top;
+}
+.player-box:nth-child(2),.player-box:nth-child(4) {
+   margin-left: 1vw; 
+} 
+.poster {
+	position: absolute;  
+    width: 100%;
+	height: 100%; 
+	background-color: #000;
+  opacity:0.55;
+}
+.set {
+  position: absolute;
+  width: 32px;
+  height: 56px;
+  top: 50%;
+  left: 50%;
+  margin: -28px 0 0 -16px;
+}
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #000000;
+  line-height: 40px;
+  text-align: center;
+  background-color: #ACA9A9;
+}
+
+ .img-box {
+  position: relative;
+  display:inline-block;
+  height: 8vw;
+  width: 13.6vw;
+  vertical-align: middle;
+}
+
+.img-view {
+  position: relative;
+  display: block;
+  width: 8vw;
+  height: 8vw;
+  margin-left: 2.8vw;
+}
+.img-view:active{
+  opacity: 0.55
+}
+.text-view {
+  position: relative;
+  display: block;
+  color: #ffffff;
+  width: 100%;
+  font-size:10px;
+  text-align: center;
+} 
+
+.operate {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  bottom: 6vh;
+  width: fit-content;
+  height: 8vw;
+}
+
+@import "/app.wxss";
+@import "./floattemplate/floattemplate.wxss";

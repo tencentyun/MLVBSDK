@@ -1,0 +1,19 @@
+/* pages/sketchpad.wxss */
+.pic {
+	position: absolute;
+	/* left: 50%;
+	transform: translate(-50%, -50%);
+	top: 50%; */
+	z-index: 0;
+}
+
+.rotate{
+	-webkit-transform: rotate(90deg);
+	transform-origin: left top 0;
+}
+
+.pretreatment-img {
+	position: absolute;
+	width: 0;
+	height: 0;
+}

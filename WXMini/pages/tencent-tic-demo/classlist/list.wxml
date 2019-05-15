@@ -1,0 +1,20 @@
+<view class='container-box'>
+  <view class='title' style='padding-top:{{(headerHeight + statusBarHeight)/2 - 12}}px'>
+    <text>互动课堂</text>
+  </view>
+  <view class='extext' wx-if="{{roomList.length}}">选择课堂点击进入</view>
+  <view class='extext no-room' wx-if="{{!roomList.length}}">
+    <view>当前没有任何课堂</view>
+    <view>请点击新建课堂</view>
+  </view>
+  <view wx:for="{{roomList}}" class="list-box" bindtap="joinClassRoom" data-index="{{index}}">
+    <view>
+      <view class='list-info'>课堂名: {{item.conf_name}}</view>
+      <view class='list-info'>课堂ID: {{item.conf_id}}</view>
+    </view>
+  </view>
+</view>
+<view class='bottom-btn'>
+  <button type="primary" bindtap="createRoom" hover-class="none">创建课堂</button>
+</view>
+<cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>

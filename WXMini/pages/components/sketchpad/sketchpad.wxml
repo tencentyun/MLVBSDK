@@ -1,0 +1,9 @@
+<!-- pages/sketchpad.wxml -->
+<view class="container">
+  <canvas style="{{horizontal ? ('width: ' + width + 'px; height: ' + height + 'px;') : ('width: ' + height + 'px; height: ' + width + 'px;')}} z-index: 1;" canvas-id="sketchpad" disable-scroll="true" bindtouchstart="start" bindtouchmove="move" bindtouchend="end" bindtouchcancel="end">
+    <image id="t_bg_img" onload="imgLoaded" class="pic {{horizontal ? '' : 'rotate'}}" style="{{imgStyle}}" data-src="{{backgroundPic[currentBoard].url}}" src="{{backgroundPic[currentBoard].url}}"></image>
+    <slot></slot>
+  </canvas>
+  <import src="img-loader.wxml" />
+  <template is="img-loader" data="{{ imgLoadList }}"></template>
+</view>

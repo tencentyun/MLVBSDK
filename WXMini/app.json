@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/play/play",
+    "pages/push/push-config/push-config",
+    "pages/push/push",
+    "pages/mlvb-live-room-demo/room/room",
+    "pages/mlvb-live-room-demo/roomlist/roomlist",
+    "pages/mlvb-live-room-demo/roomname/roomname",
+    "pages/tencent-tic-demo/classlist/list",
+    "pages/tencent-tic-demo/classroom/room",
+    "pages/webrtc-room-demo/room/room",
+    "pages/webrtc-room-demo/join-room-by-id/joinRoomById",
+    "pages/rtplay/rtplay"
+  ],
+  "networkTimeout": {
+    "request": 60000
+  },
+  "window": {
+    "backgroundColor": "#888",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "腾讯视频云",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

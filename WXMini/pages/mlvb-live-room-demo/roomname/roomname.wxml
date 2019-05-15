@@ -1,0 +1,30 @@
+<!--pages/liveroom/roomname/roomname.wxml-->
+<view class='container-box'>
+  <view class='title' style='padding-top:{{(headerHeight + statusBarHeight)/2 - 12}}px'>
+    <text>手机直播</text>
+  </view>
+  <view class="input-box">
+    <input value="{{roomName}}" maxlength="20" bindinput='bindRoomName' placeholder="请输入直播间名称" placeholder-style="color:#ffffff;opacity: 0.55;"/>
+  </view>
+  <!-- <checkbox-group bindchange="checkboxChange" class="check-box">
+    <label class="checkbox">
+      <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!pureAudio}}"></icon>
+      <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{pureAudio}}"></icon>
+      <checkbox checked="{{pureAudio}}"/>纯音频推流
+    </label>
+  </checkbox-group> -->
+</view>
+<image class='video' src="../../Resources/{{pureAudio?'video':'video_press'}}.png" bindtap='tapVideo'></image>
+<view class='video-box' hidden='{{pureAudio}}'>
+<image src='../../Resources/tips.png'></image>
+<text>音视频推流</text>
+</view>
+<image class='audio' src="../../Resources/{{pureAudio?'pureAudio_press':'pureaudio'}}.png" bindtap='tapAudio'></image>
+<view class='audio-box'  hidden='{{!pureAudio}}'>
+<image src='../../Resources/tips.png'></image>
+<text>纯音频推流</text>
+</view> 
+<view class='bottom-btn'>
+  <button type="primary" bindtap="create" hover-class="none">开始直播</button>
+</view>
+<cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
