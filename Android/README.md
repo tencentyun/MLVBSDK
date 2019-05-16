@@ -62,12 +62,15 @@ Demo 中已经集成了 **LiteAVSDK 精简版**，您可直接运行 Demo。
 
 - **第一步：下载 LiteAVSDK**
   点击 [LiteAVSDK_Professional](http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/LiteAVSDK_Professional_6.4.7328.aar) 下载最新**专业版 SDK** ( SDK 版本区别，您可以参考此[文档](<https://github.com/tencentyun/MLVBSDK/blob/master/SDK%E4%B8%8B%E8%BD%BD.md>))。
+  
 - **第二步：拷贝 LiteAVSDK 到工程目录**
   将下载的 aar 文件拷贝到工程的 **app/src/main/jniLibs** 目录下
   ![](https://main.qcloudimg.com/raw/8a46839bb91b13227b58860b05765016.png)
+  
 - **第三步：添加 LiteAVSDK 依赖**
   在 app/build.gradle 中，添加引用 aar 包的代码。
   ![](https://main.qcloudimg.com/raw/5fd063ba3854b08f783d4f788c729034.png)
+  
 - **第四步：同步 SDK**
   单击 Sync Now 按钮，完成 LiteAVSDK 的集成工作。
 
