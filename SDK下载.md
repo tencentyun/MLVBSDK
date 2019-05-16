@@ -5,7 +5,7 @@
 | 所属平台 | SDK 下载 | Demo运行说明 | SDK集成指引 | 64位支持 | 安装包增量 |
 |:---------:| :--------:| :--------:| :--------:| :--------:|:--------:|
 | iOS | [Framework](https://github.com/tencentyun/MLVBSDK/tree/master/iOS/SDK)|[DOC](https://cloud.tencent.com/document/product/454/34750)|[DOC](https://cloud.tencent.com/document/product/454/7877)|支持|1.90M（arm64）|
-| Android | [AAR + ZIP](https://github.com/tencentyun/MLVBSDK/tree/master/Android/SDK)| [DOC](https://cloud.tencent.com/document/product/454/34750)|[DOC](https://cloud.tencent.com/document/product/454/7876)|支持| jar：1.7M；<br> so(armeabi)：8.8 M；<br> so(armeabi-v7a)：7.7M；<br>so(arm64-v8a)：11.4M |
+| Android | [AAR + ZIP](https://github.com/tencentyun/MLVBSDK/tree/master/Android/SDK)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)|[DOC](https://cloud.tencent.com/document/product/454/7876)|支持| jar：1.7M；<br> so(armeabi)：8.8 M；<br> so(armeabi-v7a)：7.7M；<br>so(arm64-v8a)：11.4M |
 
 
 > 阅读文档 [如何缩减安装包体积](https://cloud.tencent.com/document/product/647/34400) 了解如何减少 SDK 带来的安装包体积增量。
