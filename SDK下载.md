@@ -31,8 +31,8 @@ LiteAVSDK 的企业版，除了包含专业版的所有功能以外，还集成�
 
 | 所属平台 | 下载地址 | 64位支持 | 安装包增量 | 安装包瘦身|
 |:---------:| :--------:| :--------:|:--------:|:--------:|
-| iOS | [ZIP](http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Enterprise_iOS_6.4.7328.zip) |支持|4.08M（arm64）|  [DOC](https://cloud.tencent.com/document/product/647/34400) |
-| Android | [ZIP](http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/LiteAVSDK_Enterprise_Android_6.4.7328.zip)|支持|  jar：2.3M；so(armeabi)：20.4M |[DOC](https://cloud.tencent.com/document/product/647/34400) |
+| iOS | [ZIP](http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Enterprise_iOS_6.4.7328.zip) |支持|4.08M（arm64）|  [DOC](https://cloud.tencent.com/document/product/454/34927) |
+| Android | [ZIP](http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/LiteAVSDK_Enterprise_Android_6.4.7328.zip)|支持|  jar：2.3M；so(armeabi)：20.4M |[DOC](https://cloud.tencent.com/document/product/454/34927) |
 
 > Windows 和 Mac 版的 SDK 暂无 AI 特效组件，没有做精简版、专业版和企业版的区分。
 
