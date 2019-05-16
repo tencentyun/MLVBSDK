@@ -5,12 +5,15 @@
         <cover-view class="loading" wx:if="{{members[0].loading}}">
           <cover-image src="/pages/Resources/loading_image0.png"></cover-image>
         </cover-view>
-        <slot name="float"></slot>
+        <slot name="floatBackButton-play"></slot>
+        <slot name="float-play"></slot>
       </live-player>
     </view>
     <view class="local-box {{hasPlayerEnter ? '': 'fullscreen' }}">
       <live-pusher id="rtcpusher" autopush mode="RTC" url="{{pushURL}}" aspect="{{aspect}}" min-bitrate="{{minBitrate}}" max-bitrate="{{maxBitrate}}" audio-quality="high" beauty="{{beauty}}" muted="{{muted}}" enable-camera="{{enableCamera}}" waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg"
         background-mute="{{true}}" debug="{{debug}}" bindstatechange="onPush" binderror="onError">
+        <slot name="floatBackButton-push"></slot>
+        <slot name="float-push"></slot>
       </live-pusher>
     </view>
     <view class="side-box">

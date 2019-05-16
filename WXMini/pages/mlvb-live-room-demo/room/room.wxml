@@ -1,5 +1,14 @@
 <view class='container-box'>
   <mlvb-live-room id="id_liveroom" wx:if="{{showLiveRoom}}" roomid="{{roomID}}" role="{{role}}" roomname="{{roomName}}" pureaudio="{{pureAudio}}" debug="{{debug}}" muted="{{muted}}" beauty="{{beauty}}" template="float" bindRoomEvent="onRoomEvent">
+
+    <cover-view slot="casterBackButton" style='position:absolute;left:0;height:10%;width:10%;top:{{(headerHeight + statusBarHeight) - 26}}rpx'>
+        <cover-image class='close' src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
+    </cover-view>
+
+    <cover-view slot="audienceBackButton" style='position:absolute;left:0;height:10%;width:10%;top:{{(headerHeight + statusBarHeight) - 26}}rpx'>
+        <cover-image class='close' src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
+    </cover-view>
+      
     <!-- 主播推流界面上叠加的操作按钮 -->
     <cover-view slot="caster" style='position:absolute;bottom:0;height:10%;width:100%'>
       <cover-view class="operate">
@@ -34,5 +43,4 @@
       <cover-image wx:if="{{phoneNum}}" class='center' src="/pages/Resources/{{phoneNum}}.png"></cover-image>
     </cover-view>
   </mlvb-live-room>
-  <cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
 </view>

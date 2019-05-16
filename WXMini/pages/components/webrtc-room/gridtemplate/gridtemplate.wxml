@@ -1,4 +1,5 @@
 <template name='gridtemplate'>
+    <slot name="gridBackButton"></slot>
     <slot name="grid"></slot>
     <view class='grid videoview' style='margin-top:calc(5vw + {{headerHeight}}px);height:calc(100% - 5vw - {{headerHeight}}px)'>
         <view class="pusher-box">

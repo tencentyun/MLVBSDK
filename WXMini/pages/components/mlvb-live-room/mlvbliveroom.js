@@ -469,6 +469,15 @@ Component({
         linkJionPusher() {
             console.log("linkJionPusher() called")
             var self = this;
+            if (!self.data.linkPusherInfo.url || !self.data.roomID) {
+              console.warn("linkJionPusher() stop.");
+              return;
+            }
+            if (self.data.quitLinking) {
+              //正在退出连麦，所以不进行连麦操作
+              console.warn("正在退出连麦");
+              return;
+            }
             liveroom.joinAnchor({
                 data: {
                     pushURL: self.data.linkPusherInfo.url,
@@ -702,11 +711,12 @@ Component({
                 },
               fail: (e) => {
                     console.error('quitJoinAnchor Error: ', e);
-                    self.triggerEvent('RoomEvent', {
-                        tag: 'error',
-                        code: -1,
-                        detail: '退出连麦"quitJoinAnchor"返回错误'
-                    })
+                    self.resetToAudience();
+                    // self.triggerEvent('RoomEvent', {
+                    //     tag: 'error',
+                    //     code: -1,
+                    //     detail: '退出连麦"quitJoinAnchor"返回错误'
+                    // })
                     self.data.quitLinking = false;
                 }
             })
