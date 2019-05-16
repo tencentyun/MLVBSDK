@@ -52,7 +52,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //    compile 'com.android.volley:volley:1.0.0'
     compile 'com.github.ctiao:dfm:0.4.4'
-    compile(name:'LiteAVSDK_Enterprise_6.4.7328',ext:'aar')
     //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta1' // or 1.4-beta1
     //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1' // or 1.4-beta1
     //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1' // or 1.4-beta1
