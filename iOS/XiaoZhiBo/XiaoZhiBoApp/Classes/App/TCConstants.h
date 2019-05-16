@@ -10,6 +10,7 @@
 #define TCConstants_h
 
 //Http配置
+// 请参考 https://cloud.tencent.com/document/product/454/15187 填写您的“小直播”服务器接口地址
 #define kHttpServerAddr                     @""
 
 //数据上报
@@ -34,9 +35,6 @@
 #define kQQZone_Share_ID                     @"101360044"
 #define kQQZone_Share_Secrect                @"a78d337fc7ad4dae29272160beddab88"
 
-//小直播appid
-//#define kXiaoZhiBoAppId                      @"1252463788"
-#define kXiaoZhiBoAppId                        @"1253155606" //test
 
 //**********************************************************************
 
