@@ -1,3 +1,3 @@
-SDK下载地址如下，需要下载后将其中的 framework 放到此目录下。
+Demo编译时将会自动下载SDK到此目录。
 
-http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip
+SDK的下载地址为：http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip
