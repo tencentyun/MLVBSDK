@@ -4,11 +4,7 @@
 
 ├── components								//组件
 
-│   ├── board-component						//白板组件
-
 │   ├── mlvb-live-room							//直播组件
-
-│   ├── sketchpad							/画板组件，没有用到
 
 │   └── webrtc-room							//多人音视频通话组件，使用实时音视频方案
 

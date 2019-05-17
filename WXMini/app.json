@@ -7,8 +7,6 @@
     "pages/mlvb-live-room-demo/room/room",
     "pages/mlvb-live-room-demo/roomlist/roomlist",
     "pages/mlvb-live-room-demo/roomname/roomname",
-    "pages/tencent-tic-demo/classlist/list",
-    "pages/tencent-tic-demo/classroom/room",
     "pages/webrtc-room-demo/room/room",
     "pages/webrtc-room-demo/join-room-by-id/joinRoomById",
     "pages/rtplay/rtplay"

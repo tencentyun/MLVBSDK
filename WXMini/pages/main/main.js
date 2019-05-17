@@ -13,8 +13,7 @@ Page({
       { icon: "../Resources/multiroom.png", title: "视频通话", desc: "<webrtc-room>", navigateTo: "../webrtc-room-demo/join-room-by-id/joinRoomById" },
       { icon: "../Resources/push.png", title: "RTMP推流", desc: "<live-pusher>", navigateTo: "../push/push-config/push-config" },
       { icon: "../Resources/play.png", title: "直播播放", desc: "<live-player>", navigateTo: "../play/play" },
-      { icon: "../Resources/rtplay.png", title: "低延时播放", desc: "<live-player>", navigateTo: "../rtplay/rtplay" },
-      { icon: "../Resources/edu_mini.png", title: "互动课堂", desc: "<tencent-tic>", navigateTo: "../tencent-tic-demo/classlist/list"}
+      { icon: "../Resources/rtplay.png", title: "低延时播放", desc: "<live-player>", navigateTo: "../rtplay/rtplay" }
 
     ],
     headerHeight: app.globalData.headerHeight, //

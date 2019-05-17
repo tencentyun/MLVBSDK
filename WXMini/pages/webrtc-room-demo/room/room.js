@@ -29,10 +29,6 @@ Page({
     comment: [],
     toview: null,
     ROLE_TYPE: ROLE_TYPE,
-    sketchpad: {
-      width: 0,
-      height: 0
-    },
     isErrorModalShow: false,
     heartBeatFailCount: 0, //心跳失败次数
     autoplay: true,
