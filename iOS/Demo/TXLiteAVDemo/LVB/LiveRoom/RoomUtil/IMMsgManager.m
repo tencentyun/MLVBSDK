@@ -325,7 +325,7 @@ double getSystemUptime(void)
             }
         }
         [TIMFriendshipManager.sharedInstance getUsersProfile:userIds
-                                                 forceUpdate:NO
+                                                 forceUpdate:YES
                                                         succ:^(NSArray<TIMUserProfile *> *profiles) {
                                                             NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:members.count];
                                                             for (TIMUserProfile *profile in profiles) {
