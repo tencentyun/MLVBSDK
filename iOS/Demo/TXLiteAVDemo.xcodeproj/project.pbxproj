@@ -1107,7 +1107,6 @@
 				400921E21F4FCC52009B882D /* Resources */,
 				D6D9E37C20D2850D00B6D607 /* Embed App Extensions */,
 				45C37775226763540054D0B8 /* Embed Frameworks */,
-				4009229D1F4FCC52009B882D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1206,19 +1205,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4009229D1F4FCC52009B882D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# compress application.\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/Payload\n/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/${PRODUCT_NAME}.app $CONFIGURATION_BUILD_DIR/Payload\n#/bin/cp images/logo_itunes.png $CONFIGURATION_BUILD_DIR/iTunesArtwork\ncd $CONFIGURATION_BUILD_DIR\n# zip up the HelloWorld directory\n/usr/bin/zip -r -q ${PRODUCT_NAME}.ipa Payload iTunesArtwork\n";
-		};
 		45B26DAD228C00B300CBA8B0 /* Download SDK */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1235,7 +1221,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\ncurl http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\norkspace to insert its path.\n";
+			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\ncurl http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
