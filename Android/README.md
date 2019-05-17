@@ -1,5 +1,5 @@
 ## 如何跑通 Demo 与 小直播 App
-> 小直播需要您搭建一个业务后台用来进行帐号和回看列表的管理，请参考： https://cloud.tencent.com/document/product/454/15187 。
+> 小直播需要您搭建一个业务后台用来进行帐号和回看列表的管理，请参考： [快速搭建“小直播”](https://cloud.tencent.com/document/product/454/15187)。
 
 本文将一步一步教您如何跑通 Github 提供的 Demo 以及 小直播 App
 
