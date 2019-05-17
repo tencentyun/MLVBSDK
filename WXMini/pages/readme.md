@@ -1,6 +1,8 @@
-#目录结构
+﻿# 目录结构
 
 ├── Resources								//资源目录
+
+├── main									//首页
 
 ├── components								//组件
 
@@ -24,15 +26,7 @@
 
 │   └── roomname							//新建房间页面
 
-├── main									//首页
-
 ├── readme.md								//文档
-
-├── tencent-tic-demo						//互动课堂，使用webrtc-room
-
-│   ├── classlist							//房间列表
-
-│   └── classroom							//房间页面
 
 └── webrtc-room-demo						//使用webrtc-room的demo示例
 
@@ -42,10 +36,10 @@
 
 
 
-#组件使用说明
-##mlvb-live-room组件
+# 组件使用说明
+## mlvb-live-room组件
 
-###属性
+### 属性
 
 | 属性 | 类型 | 默认值 | 说明 |
 |:--------:|:---------:|---------|:-----: |
@@ -59,7 +53,7 @@
 | pureaudio | Boolean | false | 可选，是否纯音频推流 |
 
 
-###接口
+### 接口
 
 | 函数名                                          | 说明         |
 |-------------------------------------------------|--------------|
@@ -71,7 +65,7 @@
 | respondJoinAnchor(agree:Boolean, audience:Object) | 同意连麦，适用于anchor  |
 | switchCamera()                           | 切换摄像头   |
 
-###叠加图标的实现
+### 叠加图标的实现
 
 mlvb-live-room组件提供两个<slot> 节点，用于承载组件引用时提供的子节点。slot名分别为caster（主播），audience（观众）。
 
@@ -118,80 +112,8 @@ mlvb-live-room组件提供两个<slot> 节点，用于承载组件引用时提�
 ```
 
 
-##rtc-room组件
-
-###属性
-
-| 属性 | 类型 | 默认值 | 说明 |
-|:--------:|:---------:|---------|:-----: |
-| roomID | String | 'audience' | 必要，房间id |
-| roomInfo | String | '' | 必要，房间名 |
-| template | String | '' | 必要，样式模板，可选值有'float', 'grid' |
-| beauty | Number | 5 | 可选，美颜，取值范围 0-9 ，0 表示关闭 |
-| aspect | String | '3:4' | 可选，宽高比，可选值有 '3:4', '9:16' |
-| minBitrate | Number | 200 | 可选，最小码率|
-| maxBitrate | Number | 400 | 可选，最大码率 |
-| muted | Boolean | false | 可选，是否静音，指推流 |
-| debug | Boolean | false | 可选，是否打开log |
-| enableCamera | Boolean | true | 可选，是否开启摄像头 |
-
-###接口
-
-| 函数名                                          | 说明         |
-|-------------------------------------------------|--------------|
-| start()                                         | 启动     |
-| pause()                                       | 暂停     |
-| resume()                                     | 恢复    |
-| stop()                                          | 停止     |
-| switchCamera()                           | 切换摄像头   |
-
-###叠加图标的实现
-rtc-room组件提供两个<slot> 节点，用于承载组件引用时提供的子节点。slot名分别为grid（四宫格布局），float（嵌套布局）。
-设置两个slot的原因是为了解决选择布局跟默认布局float不一致，导致子节点失效的问题。
-```js
-<view class='container-box'>
-  <rtc-room id="rtcroom" roomID="{{roomID}}" roomInfo="{{roomname}}" template="{{template}}" beauty="{{beauty}}" muted="{{muted}}" debug="{{debug}}" bindonRoomEvent="onRoomEvent">
-     <cover-view wx:if="{{template == 'grid'}}" slot="grid" style='height:100%;width:100%;position: absolute;'>
-      <cover-view class="operate">
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/camera{{frontCamera?"":"-gray"}}.png' bindtap="changeCamera"></cover-image>
-        </cover-view>
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/{{beauty? "beauty" : "beauty-dis"}}.png' bindtap="setBeauty"></cover-image>
-        </cover-view>
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/{{muted ? "mic-dis" : "mic"}}.png' bindtap="changeMute"></cover-image>
-        </cover-view>
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/{{debug? "log" : "log2"}}.png' bindtap="showLog"></cover-image>
-        </cover-view>
-      </cover-view>
-      <cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
-    </cover-view>
-
-    <cover-view wx:elif="{{template == 'float'}}" slot="float" style='height:100%;width:100%;position: absolute;'>
-      <cover-view class="operate">
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/camera{{frontCamera?"":"-gray"}}.png' bindtap="changeCamera"></cover-image>
-        </cover-view>
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/{{beauty? "beauty" : "beauty-dis"}}.png' bindtap="setBeauty"></cover-image>
-        </cover-view>
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/{{muted ? "mic-dis" : "mic"}}.png' bindtap="changeMute"></cover-image>
-        </cover-view>
-        <cover-view class='img-box'>
-          <cover-image class='img-view' src='/pages/Resources/{{debug? "log" : "log2"}}.png' bindtap="showLog"></cover-image>
-        </cover-view>
-      </cover-view>
-      <cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
-    </cover-view>
-  </rtc-room>
-</view>
-```
-
-##webrtc-room组件
-###属性
+## webrtc-room组件
+### 属性
 
 | 属性      | 类型    | 默认值           | 说明       |
 |:---------:|:---------:|:---------:|--------------|
@@ -206,7 +128,7 @@ rtc-room组件提供两个<slot> 节点，用于承载组件引用时提供的�
 | debug     | Boolean | false | 可选，是否打开log   |
 | enableIM     | Boolean | false | 可选，是否启用IM   |
 
-###接口
+### 接口
 
 | 函数名                                          | 说明         |
 |-------------------------------------------------|--------------|
@@ -216,7 +138,7 @@ rtc-room组件提供两个<slot> 节点，用于承载组件引用时提供的�
 | stop()                                          | 停止     |
 | switchCamera()                           | 切换摄像头   |
 
-###叠加图标的实现
+### 叠加图标的实现
 
 webrtc-room组件提供两个<slot> 节点，用于承载组件引用时提供的子节点。slot名分别为grid（四宫格布局），float（嵌套布局）。
 设置两个slot的原因是为了解决选择布局跟默认布局float不一致，导致子节点失效的问题。
