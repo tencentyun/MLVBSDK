@@ -130,7 +130,7 @@ function login(options) {
 	request({
 		url: 'login',
 		params: {
-			accountType: 0,
+			accountType: '0',
 			sdkAppID: accountInfo.sdkAppID,
 			userSig: accountInfo.userSig,
 			platform: "WeChat"
@@ -204,7 +204,7 @@ function loginIM(options) {
 	// 初始化设置参数
 	webimhandler.init({
 		accountMode: accountInfo.accountMode,
-		accountType: 0,
+		accountType: '0',
 		sdkAppID: accountInfo.sdkAppID,
 		avChatRoomId: options.roomID || 0,
 		selType: webim.SESSION_TYPE.GROUP,
