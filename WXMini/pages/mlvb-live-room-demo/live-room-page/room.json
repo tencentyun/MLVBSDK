@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "直播体验室",
+    "usingComponents": {
+        "mlvb-live-room": "/pages/components/mlvb-live-room/mlvbliveroomview"
+    }
+}

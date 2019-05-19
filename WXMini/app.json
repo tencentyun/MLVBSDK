@@ -1,15 +1,13 @@
 {
   "pages": [
-    "pages/main/main",
-    "pages/play/play",
-    "pages/push/push-config/push-config",
-    "pages/push/push",
-    "pages/mlvb-live-room-demo/room/room",
-    "pages/mlvb-live-room-demo/roomlist/roomlist",
-    "pages/mlvb-live-room-demo/roomname/roomname",
-    "pages/webrtc-room-demo/room/room",
-    "pages/webrtc-room-demo/join-room-by-id/joinRoomById",
-    "pages/rtplay/rtplay"
+    "pages/home-page/main",
+    "pages/live-player-demo/play",
+    "pages/live-pusher-demo/push-config/push-config",
+    "pages/live-pusher-demo/push",
+    "pages/mlvb-live-room-demo/live-room-page/room",
+    "pages/mlvb-live-room-demo/room-list-page/roomlist",
+    "pages/mlvb-live-room-demo/new-room-page/roomname",
+    "pages/rtc-player-demo/rtplay"
   ],
   "networkTimeout": {
     "request": 60000
@@ -21,6 +19,5 @@
     "navigationBarTitleText": "腾讯视频云",
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

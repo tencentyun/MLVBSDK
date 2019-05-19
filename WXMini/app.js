@@ -1,12 +1,7 @@
 //app.js
 
-var qcloud = require('./lib/index');
-
 App({
   onLaunch: function (options) {
-    // 展示本地存储能力
-    // qcloud.setLoginUrl(config.url + 'getwxinfo');
-    // qcloud.setLoginUrl(config.url + 'login');
     const { model, system, statusBarHeight } = wx.getSystemInfoSync();
     var headHeight;
     if (/iphone\s{0,}x/i.test(model)) {
