@@ -268,7 +268,7 @@ Page({
     return {
       // title: '多人音视频',
       // path: '/pages/multiroom/roomlist/roomlist',
-      path: '/pages/main/main',
+      path: '/pages/home-page/main',
       imageUrl: 'https://mc.qcloudimg.com/static/img/dacf9205fe088ec2fef6f0b781c92510/share.png'
     }
   },

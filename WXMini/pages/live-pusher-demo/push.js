@@ -151,7 +151,7 @@ Page({
     return {
       // title: 'RTMP推流',
       // path: '/pages/push/push',
-      path: '/pages/main/main',
+      path: '/pages/home-page/main',
       imageUrl: 'https://mc.qcloudimg.com/static/img/dacf9205fe088ec2fef6f0b781c92510/share.png'
     }
   },

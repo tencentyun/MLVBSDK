@@ -115,7 +115,7 @@ Page({
     console.log("onShareAppMessage");
     return {
       title: '腾讯视频云',
-      path: '/pages/main/main',
+      path: '/pages/home-page/main',
       imageUrl: 'https://mc.qcloudimg.com/static/img/dacf9205fe088ec2fef6f0b781c92510/share.png'
     }
   }
