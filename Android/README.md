@@ -5,7 +5,8 @@
 
 - 步骤一：申请 Licence。
 - 步骤二：将 Licence 内容填写到 App 的相关位置。
-- 步骤三：下载 SDK 集成到工程中。
+- 步骤三：将包名修改为申请 License 时填写的 Package Name。
+- 步骤四：下载 SDK 集成到工程中。
 
 ## 步骤一：申请 Licence
 
@@ -55,7 +56,17 @@ String licenceUrl = ""; // licence url
 String licenseKey = ""; // licence key
 ```
 
-## 步骤三：下载 SDK 集成
+## 步骤三：将包名修改为申请 License 时填写的 Package Name。
+
+- **如下图所示，将 Demo 包名修改为您申请 License 时填写的 Package Name**
+
+![](https://main.qcloudimg.com/raw/e7f4562577392fb1a94fb841726cb36b.png)
+
+- **如下图所示，将小直播 App 的包名修改为您申请 License 时填写的 Package Name**
+
+![](https://main.qcloudimg.com/raw/4f8a1865980dcabb9c53bbbb1d5ae486.png)
+
+## 步骤四：下载 SDK 集成
 
 Demo 中已经集成了 **LiteAVSDK 精简版**，您可直接运行 Demo；小直播 App 中目前**尚未集成** SDK，接下来将会指引您集成 SDK。
 
