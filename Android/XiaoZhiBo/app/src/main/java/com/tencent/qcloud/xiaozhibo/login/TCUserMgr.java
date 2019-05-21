@@ -530,6 +530,10 @@ public class TCUserMgr {
      * @param callback
      */
     public void uploadLogs(String action, String userName, long code, String errorMsg, okhttp3.Callback callback) {
+        if (TextUtils.isEmpty(TCConstants.DEFAULT_ELK_HOST)) {
+            // github 版本会移除ELK上报，这里不进行上报。
+            return;
+        }
         TXLog.w(TAG, "uploadLogs: errorMsg " + errorMsg);
         String reqUrl = TCConstants.DEFAULT_ELK_HOST;
         String body = "";
