@@ -5,6 +5,7 @@
 
 - 步骤一：申请 Licence。
 - 步骤二：将 Licence 内容填写到 App 的相关位置。
+- 步骤三：将 Demo 与小直播 App 的 Bundle Identifier 修改为申请 License 时填写的Bundle Id。
 
 ## 步骤一：申请 Licence
 
@@ -52,6 +53,21 @@ Demo 中填写 Licence 的位置在 `Demo/TXLiteAVDemo/App/AppDelegate.m` 和 `D
 [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#Licence Key#>"];
 ```
 
+## 步骤三：将 Demo 与小直播 App 的 Bundle Identifier 修改为申请 License 时填写的Bundle Id。
+
+### 如下图所示，分两步修改 Demo 的 Bundle Identifier
+
+- **步骤一：修改 Target: TXLiteAVDemo_Smart 的 Budle Identifier**
+
+![](https://main.qcloudimg.com/raw/6231af8c59df8de803cf856b1c50ea6e.png)
+
+- **步骤二：修改 Target: TXReplaykitUpload_Smart 的 Budle Identifier**
+
+![](https://main.qcloudimg.com/raw/64da88974e8f62d6e0f28208e766169a.png)
+
+### 如下图所示，修改小直播 App 的 Bundle Identifier
+
+![](https://main.qcloudimg.com/raw/3c2d09095d6ec0c3bb559f099d039d70.png)
 
 
 ## 关于 Licence 
