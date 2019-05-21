@@ -1929,10 +1929,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\ncurl http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
+			shellScript = "echo \"1\"\n# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\ncurl http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
 		};
 		CFB30BFBE82844BD91BB30BC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
