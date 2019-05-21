@@ -180,7 +180,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     _endTime = [[NSDate date] timeIntervalSince1970];
-    [TCUtil report:xiaozhibo_live_play_duration userName:nil code:_endTime - _beginTime msg:@"直播播放时长"];
 }
 
 - (void)initLogicView {
@@ -273,12 +272,10 @@
 
                 [self.liveRoom sendRoomCustomMsg:[@(TCMsgModelType_MemberEnterRoom) stringValue] msg:nil completion:nil];
                 self->_isNotifiedEnterGroup = YES;
-                [TCUtil report:xiaozhibo_live_play userName:nil code:-10001 msg:@"进入MLVBLiveRoom失败"];
             } else {
                 NSLog(@"进入直播间失败");
                 [TCUtil toastTip:[NSString stringWithFormat:@"%@%d", kErrorMsgRtmpPlayFailed, errCode] parentView:self.view];
                 [self closeVCWithRefresh:YES popViewController:YES];
-                [TCUtil report:xiaozhibo_live_play userName:nil code:10000 msg:@"进入MLVBLiveRoom成功"];
             }
         });
     }];

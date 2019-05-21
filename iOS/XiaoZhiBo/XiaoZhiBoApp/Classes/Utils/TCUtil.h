@@ -16,19 +16,6 @@
 typedef void(^videoIsReadyBlock)(void);
 
 
-//report
-static NSString * const xiaozhibo_install  = @"install";
-static NSString * const xiaozhibo_startup  = @"startup";
-static NSString * const xiaozhibo_staytime = @"stay_time";
-static NSString * const xiaozhibo_login    = @"login";
-static NSString * const xiaozhibo_register = @"register";
-static NSString * const xiaozhibo_vod_play = @"vod_play";
-static NSString * const xiaozhibo_vod_play_duration = @"vod_play_duration";
-static NSString * const xiaozhibo_live_play = @"live_play";
-static NSString * const xiaozhibo_live_play_duration = @"live_play_duration";
-static NSString * const xiaozhibo_camera_push = @"camera_push";
-static NSString * const xiaozhibo_camera_push_duration = @"camera_push_duration";
-
 typedef NS_ENUM(NSInteger, TCSocialPlatform) {
     TCSocialPlatformUnknown        = -2,
     TCSocialPlatformSina           = 0,
@@ -87,8 +74,6 @@ typedef NS_ENUM(NSInteger, TCSocialPlatform) {
 + (void)shareLive:(TCLiveInfo *)liveInfo currentViewController:(UIViewController *)currentViewController;
 
 + (void)shareDataWithPlatform:(TCSocialPlatform)platformType  liveInfo:(TCLiveInfo *)liveInfo currentViewController:(UIViewController *)currentViewController;
-
-+ (void)report:(NSString *)type userName:(NSString *)userName code:(UInt64)code  msg:(NSString *)msg;
 
 @end
 
