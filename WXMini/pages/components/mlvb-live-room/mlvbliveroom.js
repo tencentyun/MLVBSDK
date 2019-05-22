@@ -795,12 +795,16 @@ function createRoom(options) {
 	proto_createRoom(options);
 }
 function proto_createRoom(options) {
+  var createRoomInfo = {
+    userID: accountInfo.userID,
+    roomInfo: roomInfo.roomInfo
+  };
+  if (options.data.roomID && options.data.roomID.length > 0) {
+    createRoomInfo.roomID = options.data.roomID;
+  }
 	request({
 		url: 'create_room',
-		data: {
-			userID: accountInfo.userID,
-			roomInfo: roomInfo.roomInfo
-		},
+    data: createRoomInfo,
 		success: function (ret) {
 			if (ret.data.code) {
 				console.log('创建房间失败:', ret);
