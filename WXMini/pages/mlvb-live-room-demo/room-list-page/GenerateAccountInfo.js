@@ -1,12 +1,9 @@
-/**
- * 获取登录信息
- */
-var liveroom = require('../../components/mlvb-live-room/mlvbliveroom.js');
-
 //客户业务后台请求域名，用于获取IM信息
 var GetTestLoginInfoUrl = "https://room.qcloud.com";
 
-// 获取微信登录信息，用于获取openid
+/**
+ * 通过一个 http 接口获取腾讯云提供的 TRTC 测试账号，该接口仅用于测试和体验目的，正式上线时请替换为自己的腾讯云账号。
+ */
 function getLoginInfo(options) {
   wx.login({
     success: function (res) {
@@ -65,11 +62,8 @@ function proto_getLoginInfo(options) {
         return;
       }
       console.log('获取IM登录信息成功: ', ret.data);
-      ret.data.userName = options.userName;
-      liveroom.login({
-        data: ret.data,
-        success: options.success,
-        fail: options.fail
+      options.success && options.success({
+        data: ret.data
       });
     },
     fail: function (ret) {

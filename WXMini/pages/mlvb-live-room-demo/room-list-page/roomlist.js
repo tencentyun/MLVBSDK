@@ -115,18 +115,41 @@ Page({
     })
     // 获取登录信息
     getlogininfo.getLoginInfo({
-      type: 'live_room',
       success: function (ret) {
-        self.data.firstshow = false;
-        self.data.isGetLoginInfo = true;
-        self.getRoomList();
-        console.log('我的昵称：', ret.userName);
-        self.setData({
-          userName: ret.userName
+        var loginInfo = {
+          sdkAppID: ret.data.sdkAppID,
+          userID: ret.data.userID,
+          userSig: ret.data.userSig,
+          userName: self.userName,
+          userAvatar: ''
+        }
+        //MLVB 登录
+        liveroom.login({
+          data: loginInfo,
+          success: function(ret) {
+            //登录成功，拉取房间列表
+            self.data.firstshow = false;
+            self.data.isGetLoginInfo = true;
+            self.getRoomList();
+            wx.hideLoading();
+          },
+          fail: function(ret) {
+            //登录失败
+            self.data.isGetLoginInfo = false;
+            wx.hideLoading();
+            wx.showModal({
+              title: '提示',
+              content: ret.errMsg,
+              showCancel: false,
+              complete: function () {
+                wx.navigateBack({});
+              }
+            });
+          }
         });
-        wx.hideLoading();
       },
       fail: function (ret) {
+        //获取IM信息失败
         self.data.isGetLoginInfo = false;
         wx.hideLoading();
         wx.showModal({
