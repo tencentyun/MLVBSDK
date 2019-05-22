@@ -115,7 +115,6 @@
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     NSTimeInterval endTime = [[NSDate date] timeIntervalSince1970];
-    [TCUtil report:xiaozhibo_vod_play_duration userName:nil code:endTime - _beginTime msg:@"点播播放时长"];
 }
 
 -(void)viewDidLoad{
@@ -472,25 +471,18 @@
 -(void)report:(int)EvtID
 {
     if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:0 msg:@"视频播放成功"];
     }
     else if(EvtID == PLAY_ERR_NET_DISCONNECT){
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:-1 msg:@"网络断连,且经多次重连抢救无效,可以放弃治疗,更多重试请自行重启播放"];
     }
     else if(EvtID == PLAY_ERR_GET_RTMP_ACC_URL_FAIL){
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:-2 msg:@"获取加速拉流地址失败"];
     }
     else if(EvtID == PLAY_ERR_FILE_NOT_FOUND){
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:-3 msg:@"播放文件不存在"];
     }
     else if(EvtID == PLAY_ERR_HEVC_DECODE_FAIL){
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:-4 msg:@"H265解码失败"];
     }
     else if(EvtID == PLAY_ERR_HLS_KEY){
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:-5 msg:@"HLS解码key获取失败"];
     }
     else if(EvtID == PLAY_ERR_GET_PLAYINFO_FAIL){
-        [TCUtil report:xiaozhibo_vod_play userName:nil code:-6 msg:@"获取点播文件信息失败"];
     }
 }
 

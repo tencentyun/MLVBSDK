@@ -1122,6 +1122,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6D9E37220D283E700B6D607 /* Build configuration list for PBXNativeTarget "TXReplaykitUpload_Smart" */;
 			buildPhases = (
+				45C4D8592293A4B1005C88CF /* Download SDK */,
 				D6D9E36620D283E700B6D607 /* Sources */,
 				D6D9E36B20D283E700B6D607 /* Frameworks */,
 				D6D9E37120D283E700B6D607 /* Resources */,
@@ -1218,6 +1219,25 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\ncurl http://liteavsdk-1252463788.cosgz.myqcloud.com/6.4/TXLiteAVSDK_Smart_iOS_6.4.7328.zip --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
+		};
+		45C4D8592293A4B1005C88CF /* Download SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Download SDK";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

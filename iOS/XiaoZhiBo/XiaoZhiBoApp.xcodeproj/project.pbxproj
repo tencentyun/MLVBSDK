@@ -1929,6 +1929,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -248,12 +248,10 @@
     playItem.pending = false;
     [_playItems addObject:playItem];
     _beginTime = [[NSDate date] timeIntervalSince1970];
-    [TCUtil report:xiaozhibo_camera_push userName:nil code:0 msg:@"摄像头推流"];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     _endTime = [[NSDate date] timeIntervalSince1970];
-    [TCUtil report:xiaozhibo_camera_push_duration userName:nil code:_endTime - _beginTime msg:@"摄像头推流时长"];
 }
 
 - (void)viewWillAppear:(BOOL)animated

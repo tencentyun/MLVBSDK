@@ -13,9 +13,6 @@
 // 请参考 https://cloud.tencent.com/document/product/454/15187 填写您的“小直播”服务器接口地址
 #define kHttpServerAddr                     @""
 
-//数据上报
-#define DEFAULT_ELK_HOST                     @""
-
 //bugly组件Appid，bugly为腾讯提供的用于App Crash收集和分析的组件
 #define BUGLY_APP_ID                         @"i1400012894"
 
