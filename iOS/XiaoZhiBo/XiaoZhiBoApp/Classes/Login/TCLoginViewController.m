@@ -94,8 +94,8 @@
             });
             
         } fail:^(int errCode, NSString *errMsg) {
-            [[HUDHelper sharedInstance] syncStopLoading];
             dispatch_async(dispatch_get_main_queue(), ^{
+                [[HUDHelper sharedInstance] syncStopLoading];
                 NSLog(@"自动登录失败%s %d %@", __func__, errCode, errMsg);
                 [self pullLoginUI];
             });

@@ -109,7 +109,10 @@
             });
             return;
         }
-        
+        if ([kHttpServerAddr length] == 0) {
+            handler(kError_HttpError, @"未填写服务器地址", nil);
+            return;
+        }
         NSString* urlString = [kHttpServerAddr stringByAppendingPathComponent:command];
         NSMutableString *strUrl = [[NSMutableString alloc] initWithString:urlString];
         
@@ -284,28 +287,6 @@
     return nil;
 }
 
-+ (void)report:(NSString *)type userName:(NSString *)userName code:(UInt64)code  msg:(NSString *)msg;
-{
-    if(userName == nil){
-        userName = [TCLoginParam shareInstance].identifier;
-    }
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    // 过渡期间同时上报type和business保证报表数据可以连续展示
-    [param setObject:@"xiaozhibo" forKey:@"type"];
-    [param setObject:@"xiaozhibo" forKey:@"bussiness"];
-    [param setObject:@"ios" forKey:@"platform"];
-    [param setObject:userName == nil ? @"" : userName forKey:@"userName"];
-    [param setObject:type == nil ? @"" : type forKey:@"action"];
-    [param setObject:@(code) forKey:@"action_result_code"];
-    [param setObject:msg == nil ? @"" : msg forKey:@"action_result_msg"];
-    [param setObject:[[NSBundle mainBundle] bundleIdentifier] forKey:@"appidentifier"];
-    [param setObject:[self getPackageName] forKey:@"appname"];
-    [self report:param handler:^(int resultCode, NSString *message) {
-        //to do
-    }];
-    
-}
-
 + (NSString *)getPackageName {
     static NSString *packname = nil;
     if (packname)
@@ -318,62 +299,6 @@
     }
     return packname;
 }
-
-+ (void)report:(NSMutableDictionary *)param handler:(void (^)(int resultCode, NSString *message))handler;
-{
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData* data = [self dictionary2JsonData:param];
-        if (data == nil)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (handler) handler(kError_ConvertJsonFailed, nil);
-            });
-            return;
-        }
-        
-        NSMutableString *strUrl = [[NSMutableString alloc] initWithString:DEFAULT_ELK_HOST];
-        
-        NSURL *URL = [NSURL URLWithString:strUrl];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-        
-        if (data)
-        {
-            [request setValue:[NSString stringWithFormat:@"%ld",(long)[data length]] forHTTPHeaderField:@"Content-Length"];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-            
-            [request setHTTPBody:data];
-        }
-        
-        [request setTimeoutInterval:kHttpTimeout];
-        
-        
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error != nil)
-            {
-                NSLog(@"internalSendRequest failed，NSURLSessionDataTask return error code:%ld, des:%@", (long)[error code], [error description]);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (handler) handler(kError_HttpError, nil);
-                });
-            }
-            else
-            {
-                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([responseString isEqualToString:@"ok"]) {
-                        if (handler) handler(0, responseString);
-                    }else{
-                        if (handler) handler(-1, responseString);
-                    }
-                });
-            }
-        }];
-        
-        [task resume];
-    });
-}
-
 
 //创建高斯模糊效果图片
 +(UIImage *)gsImage:(UIImage *)image withGsNumber:(CGFloat)blur

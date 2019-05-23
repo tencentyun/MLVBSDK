@@ -1,15 +1,13 @@
 # 腾讯云移动直播终端组件 MLVB SDK
-覆盖iOS、Android和微信小程序三大应用平台，致力于提供全球最好的直播连麦解决方案。
+- [移动直播 SDK](https://cloud.tencent.com/product/mlvb)：基于腾讯云 LiteAV 音视频框架实现的一套推流、播放和连麦组件，致力于帮您快速上线手机直播解决方案。
+- [云直播](https://cloud.tencent.com/product/lvb)：移动直播 SDK 所依赖的的云端服务，主要提供 RTMP 推流接入点、直播 CDN、实时转码等云端能力。
 
-## 最新版本 6.4.7328 @ 2019.05.15
-
-全平台优化
-1. RTMP推流DEMO重构与优化。
-2. 全新推出开源直播组件MLVBLiveRoom。
-3. 直播推流组件TXLivePusher加入License校验功能。
-4. 直播拉流组件TXLivePlayer在实时拉流模式下，若无法获取加速地址，在抛出错误码-2302后，不再自动切换到CDN拉流。
-5. 修复近期反馈的bug，进一步提升稳定性。 
-
+## 最新版本 6.4.7328 @ 2019.05.15 
+1. 各端 DEMO 源码的重构与优化。
+2. 全新推出开源直播组件 MLVBLiveRoom，帮助您一天实现快速的直播+连麦能力。
+3. 优化 RTMP-ACC 处理流程，如果 TXLivePlayer 以 RTMP-ACC 低延时模式播放出现问题，不再自动切换到 CDN 地址，而是抛出错误码 -2302。
+4. 修复近期反馈的bug，进一步提升稳定性。 
+5. 6.4 版本开始，TXLivePusher 组件加入 License 校验功能，您可以通过购买购买[移动直播套餐](https://cloud.tencent.com/document/product/454/34750)免费获得一年的 License 使用权限。
 
 ## API 文档指引
 

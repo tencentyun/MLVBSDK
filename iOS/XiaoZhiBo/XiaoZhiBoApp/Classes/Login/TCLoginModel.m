@@ -77,16 +77,12 @@ static TCLoginModel *_sharedInstance = nil;
         NSLog(@"%d, %@, %@", resultCode, message, resultDict.description);
         if (resultCode == 200) {
             succ(username, hashPwd);
-            [TCUtil report:xiaozhibo_register userName:username code:0 msg:@"注册成功"];
         }
         else {
             fail(resultCode, message);
             if (resultCode == 610 ) {
-                [TCUtil report:xiaozhibo_register userName:username code:-1 msg:@"用户名格式错误"];
             } else if(resultCode == 611){
-                [TCUtil report:xiaozhibo_register userName:username code:-2 msg:@"密码格式错误"];
             } else {
-                [TCUtil report:xiaozhibo_register userName:username code:-3 msg:@"用户已存在"];
             }
         }
     }];
@@ -146,14 +142,11 @@ static TCLoginModel *_sharedInstance = nil;
                         fail(errCode, errMsg);
                     }
                 }];
-                [TCUtil report:xiaozhibo_login userName:username code:0 msg:@"登录成功"];
             }];
         } else {
             fail(resultCode, message);
             if (resultCode == 620) {
-                [TCUtil report:xiaozhibo_login userName:username code:-1 msg:@"用户不存在"];
             } else {
-                [TCUtil report:xiaozhibo_login userName:username code:-2 msg:@"密码错误"];
             }
         }
     }];

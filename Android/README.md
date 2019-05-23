@@ -58,11 +58,11 @@ String licenseKey = ""; // licence key
 
 ## 步骤三：将包名修改为申请 License 时填写的 Package Name。
 
-- **如下图所示，将 Demo 包名修改为您申请 License 时填写的 Package Name**
+- **如下图所示，修改 Demo 的包名**
 
 ![](https://main.qcloudimg.com/raw/e7f4562577392fb1a94fb841726cb36b.png)
 
-- **如下图所示，将小直播 App 的包名修改为您申请 License 时填写的 Package Name**
+- **如下图所示，修改小直播 App 的包名**
 
 ![](https://main.qcloudimg.com/raw/4f8a1865980dcabb9c53bbbb1d5ae486.png)
 

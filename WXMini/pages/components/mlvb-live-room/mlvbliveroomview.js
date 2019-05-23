@@ -1,4 +1,4 @@
-var liveroom = require('./mlvbliveroom.js');
+var liveroom = require('./mlvbliveroomcore.js');
 const app = getApp()
 
 // 没使用到
@@ -413,11 +413,15 @@ Component({
         create() {
             console.log('create() called')
             var self = this;
+            var createRoomInfo = {
+              roomInfo: self.data.roomname,
+              pushURL: self.data.mainPusherInfo.url
+            };
+            if (self.data.roomID && self.data.roomID.length > 0) {
+              createRoomInfo.roomID = self.data.roomID;
+            }
             liveroom.createRoom({
-                data: {
-                    roomInfo: self.data.roomname,
-                    pushURL: self.data.mainPusherInfo.url
-                },
+                data: createRoomInfo,
                 success: function (ret) {
                     console.log('创建房间成功, ret = ', ret)
                     self.setData({

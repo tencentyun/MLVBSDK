@@ -49,14 +49,25 @@
     // ELK
     if (![[NSUserDefaults standardUserDefaults] boolForKey:isFirstInstallApp]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:isFirstInstallApp];
-        [TCUtil report:xiaozhibo_install userName:nil code:0 msg:@"首次安装成功"];
     }
-    [TCUtil report:xiaozhibo_startup userName:nil code:0 msg:@"启动成功"];
     
     // Config UMSocial
     [TCUtil initializeShare];
     
     _beginTime = [[NSDate date] timeIntervalSince1970];
+    
+    if ([kHttpServerAddr length] == 0) {
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"未填写后台服务地址"
+                                                                            message:@"需要搭建小直播后台，详情请点击“查看”"
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *viewAction = [UIAlertAction actionWithTitle:@"查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [application openURL:[NSURL URLWithString:@"https://cloud.tencent.com/document/product/454/15187"]];
+        }];
+        [controller addAction:viewAction];
+        
+        [self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+    }
+    
     return YES;
 }
 
@@ -69,7 +80,6 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     _endTime = [[NSDate date] timeIntervalSince1970];
-    [TCUtil report:xiaozhibo_staytime userName:nil code:_endTime - _beginTime  msg:@"App体验时长"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

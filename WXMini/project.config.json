@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.4.3",
 	"appid": "xxxxxxxxxxxxxx",
-	"projectname": "trtcrom-trunk",
+	"projectname": "mlvb-demo",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
