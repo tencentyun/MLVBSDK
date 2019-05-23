@@ -1,4 +1,4 @@
-var liveroom = require('../../components/mlvb-live-room/mlvbliveroom.js');
+var liveroom = require('../../components/mlvb-live-room/mlvbliveroomcore.js');
 var getlogininfo = require('./GenerateAccountInfo.js');
 const app = getApp()
 

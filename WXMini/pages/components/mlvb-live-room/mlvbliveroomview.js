@@ -1,4 +1,4 @@
-var liveroom = require('./mlvbliveroom.js');
+var liveroom = require('./mlvbliveroomcore.js');
 const app = getApp()
 
 // 没使用到
