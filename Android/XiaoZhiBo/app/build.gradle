@@ -60,5 +60,6 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.facebook.fresco:fresco:0.7.0'
     compile files('src/main/jniLibs/imsdk-4.3.118.jar')
+    compile(name:'LiteAVSDK_Professional_6.4.7328', ext:'aar')
 }
 
