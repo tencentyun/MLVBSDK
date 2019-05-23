@@ -67,7 +67,7 @@ String licenseKey = ""; // licence key
 
 ## 关于 Licence 
 
-关于 Licence 的更多信息，您可以查阅[腾讯云 - Licence 使用指南](<https://cloud.tencent.com/document/product/454/34750>)。
+关于 Licence 的更多信息，可参考：[Licence 使用指南](<https://cloud.tencent.com/document/product/454/34750>)。
 
 ## 注意事项
-小直播需要您**搭建一个业务后台**用来进行帐号和回看列表的管理，请参考： [快速搭建“小直播”](https://cloud.tencent.com/document/product/454/15187)。
+小直播需要您**搭建一个业务后台**用来进行帐号和回看列表的管理，可参考： [快速搭建“小直播”](https://cloud.tencent.com/document/product/454/15187)。
