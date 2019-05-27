@@ -3,7 +3,8 @@
 
 注册小程序请单击 [微信公众平台](https://mp.weixin.qq.com) ，完成注册后，在小程序管理页面的【开发】>【开发设置】中记录下小程序 AppID 供后面使用。
 
->!必须以**非个人主体**类型进行注册，否则无法开通 &lt;live-pusher&gt; 和 &lt;live-player&gt; 这两个标签。
+>注意：
+>必须以**非个人主体**类型进行注册，否则无法开通 &lt;live-pusher&gt; 和 &lt;live-player&gt; 这两个标签。
 
 ## 2. 开通标签使用权限
 出于政策和合规的考虑，微信暂时没有放开所有小程序对 [&lt;live-pusher&gt;](https://developers.weixin.qq.com/miniprogram/dev/component/live-pusher.html) 和 [&lt;live-player&gt;](https://developers.weixin.qq.com/miniprogram/dev/component/live-player.html) 标签的支持：
@@ -47,7 +48,8 @@
 - 符合类目要求的小程序，需要在小程序管理后台的【开发】-【接口设置】中自助开通推拉流标签的使用权限，如下图所示：
 ![](https://main.qcloudimg.com/raw/cabb6b98121754b7956bd02029714616.jpg)
 
->?如果以上设置都正确，但小程序依然不能正常工作，可能是微信内部的缓存没更新，请删除小程序并重启微信后，再进行尝试。
+>说明：
+>如果以上设置都正确，但小程序依然不能正常工作，可能是微信内部的缓存没更新，请删除小程序并重启微信后，再进行尝试。
 
 ## 3. 开通腾讯云直播服务
 
@@ -66,7 +68,8 @@
 
 **3.3 域名 CNAME**
 在您添加域名成功后，您的域名需要指向腾讯云直播的云服务集群。根据域名列表中的提示，您需要在您注册的域名服务商处将域名解析地址 CNAME 到云直播控制台的域名列表中对应域名的 CNAME 地址，CNAME 添加方法请参见 [CNAME 配置](https://cloud.tencent.com/document/product/267/30560)。
->! CNAME 成功后通常需要一定时间生效，CNAME 不成功是无法使用腾讯云直播服务的。
+>注意：
+>CNAME 成功后通常需要一定时间生效，CNAME 不成功是无法使用腾讯云直播服务的。
 
 ![](https://main.qcloudimg.com/raw/27f83cf6e6685197c95fe458023dbf22.png)
 如果 CNAME 操作后，检测始终不成功，建议您向您的域名注册服务商咨询。
@@ -81,7 +84,8 @@
 **5.1 创建应用**
 进入云直播控制台的【直播SDK】>[【房间管理】](https://console.cloud.tencent.com/live/license/appmanage)页面，单击【创建应用】填写应用信息。完成创建后，您将会在应用列表中看到您创建的应用，记录其 SDKAppID 信息，如下图所示：
 ![](https://main.qcloudimg.com/raw/0f88e296acf31ce322667bf0b191ab58.jpg)
->?该操作的目的是创建一个云通信应用，并将当前云直播账号和该云通信应用绑定起来。云通信应用能为小直播 App 提供聊天室和连麦互动的能力。
+>说明：
+>该操作的目的是创建一个云通信应用，并将当前云直播账号和该云通信应用绑定起来。云通信应用能为小直播 App 提供聊天室和连麦互动的能力。
 
 **5.2 获取直播服务配置信息**
 1. 单击目标应用的 SDKAppID，进入应用详情页面。
@@ -108,7 +112,7 @@
 ![](https://main.qcloudimg.com/raw/dedb3c66e8de325e46959a100e4d34da.jpg)
 4. 单击【预览】，生成二维码，通过手机微信扫码二维码即可进入小程序。
 
->! 
+>注意：
 >- 小程序 &lt;live-player&gt; 和 &lt;live-pusher&gt; 标签需要在手机微信上才能使用，微信开发者工具上无法使用。
 >- 为了小程序能够使用腾讯云房间管理服务，您需要在手机微信上开启调试功能：手机微信扫码二维码后，单击右上角【...】>【打开调试】。
 ![](https://main.qcloudimg.com/raw/3241357d57baa4c3eec40bb5a791cd83.jpg)
