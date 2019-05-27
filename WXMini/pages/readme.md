@@ -26,6 +26,7 @@
 
 └── readme.md								//文档
 
+>注意：如需使用 “腾讯视频云” 小程序中的<font color=red> “视频通话” </font>组件，请查看 [TRTCSDK](https://github.com/tencentyun/TRTCSDK/tree/master/WXMini)
 
 
 # 组件使用说明
