@@ -15,6 +15,7 @@
 |:---------:| :--------:|:--------:| :--------:|:--------:|
 | iOS | [GitHub](https://github.com/tencentyun/MLVBSDK/tree/master/iOS)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/iOS/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7876) | [API](https://cloud.tencent.com/document/product/454/34753) |
 | Android | [GitHub](https://github.com/tencentyun/MLVBSDK/tree/master/Android)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
+| 小程序 | [GitHub](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
 ## SDK 下载地址
 
