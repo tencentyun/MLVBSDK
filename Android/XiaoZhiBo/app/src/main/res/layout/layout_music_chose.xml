@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:ignore="contentDescription">
+
+    <com.tencent.qcloud.xiaozhibo.common.widget.TCActivityTitle
+        android:id="@+id/music_ac_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#d8d8d8"
+        app:backText=""
+        app:titleText="选择歌曲" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/music_btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/scan"
+            android:text="扫描本地音乐" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.tencent.qcloud.xiaozhibo.anchor.music.MusicListView
+        android:id="@+id/music_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+    </com.tencent.qcloud.xiaozhibo.anchor.music.MusicListView>
+
+</LinearLayout>

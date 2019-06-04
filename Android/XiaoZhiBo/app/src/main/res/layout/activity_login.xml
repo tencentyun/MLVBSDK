@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_login_root"
+    android:layout_width="match_parent"
+    android:paddingTop="32dp"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/et_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="24"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:hint="@string/activity_login_username"
+                android:textColorHint="@color/white"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_below="@+id/til_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_login_password"
+                android:textColor="@color/white"
+                android:layout_below="@+id/et_login"
+                android:imeActionId="@+id/login"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLength="24"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_below="@+id/til_password"
+            android:text="@string/activity_login_login"
+            android:textColor="@color/white"
+            android:padding="0dp"
+            android:textSize="14sp"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:background="@drawable/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_login"
+            android:layout_alignRight="@+id/til_password"
+            android:layout_alignEnd="@+id/til_password"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="@string/activity_login_register"
+            android:padding="10dp"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:textColor="@color/colorTransparentGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_register"
+            android:layout_below="@+id/btn_login"
+            android:layout_alignRight="@+id/btn_login"
+            android:layout_alignEnd="@+id/btn_login" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:visibility="gone"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/btn_login"/>
+
+        <TextView
+            android:id="@+id/tv_technical_support"
+            android:layout_below="@+id/btn_register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/technical_support"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/tv_follow_public_number"
+            android:layout_below="@id/tv_technical_support"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/follow_public_number"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_below="@id/tv_follow_public_number"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_msg_to_public_number"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

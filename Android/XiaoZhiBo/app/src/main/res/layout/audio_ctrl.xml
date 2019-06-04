@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="0dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/xml_music_control_part"
+        android:orientation="vertical"
+        android:background="@color/colorTransparentGray"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/btn_select_bgm"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:text="伴奏"
+                android:textSize="12dp"
+                android:focusable="false"
+                android:background="@drawable/round_button"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_above="@+id/seekBar_bgm_volume"/>
+
+            <Button
+                android:id="@+id/btn_stop_bgm"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:text="结束"
+                android:textSize="12dp"
+                android:focusable="false"
+                android:background="@drawable/round_button"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toRightOf="@+id/btn_select_bgm"
+                android:layout_above="@+id/seekBar_bgm_volume" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp" >
+            <TextView
+                android:id="@+id/textView_bgm_pitch"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="伴奏音调"
+                android:textSize="12dp"
+                android:textColor="@color/colorTextBlack"
+                android:layout_marginBottom="8dp"
+                android:layout_above="@+id/textView_bgm_seek"
+                android:layout_marginLeft="15dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar_bgm_pitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="4.0dip"
+                android:minHeight="4.0dip"
+                android:visibility="visible"
+                android:progressDrawable="@drawable/seekbar_progress_drawable"
+                android:max="100"
+                android:progress="50"
+                android:indeterminate="false"
+                android:layout_marginBottom="15dp"
+                android:layout_above="@+id/seekBar_bgm_seek"
+                android:layout_toRightOf="@+id/textView_bgm_pitch" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp" >
+            <TextView
+                android:id="@+id/textView_bgm_seek"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="伴奏快进"
+                android:textSize="12dp"
+                android:textColor="@color/colorTextBlack"
+                android:layout_marginBottom="8dp"
+                android:layout_above="@+id/textView_bgm_volume"
+                android:layout_marginLeft="15dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar_bgm_seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="4.0dip"
+                android:minHeight="4.0dip"
+                android:visibility="visible"
+                android:progressDrawable="@drawable/seekbar_progress_drawable"
+                android:max="100"
+                android:progress="0"
+                android:indeterminate="false"
+                android:layout_marginBottom="15dp"
+                android:layout_above="@+id/seekBar_bgm_volume"
+                android:layout_toRightOf="@+id/textView_bgm_volume" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp" >
+            <TextView
+                android:id="@+id/textView_bgm_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="伴奏音量"
+                android:textSize="12dp"
+                android:textColor="@color/colorTextBlack"
+                android:layout_marginBottom="8dp"
+                android:layout_above="@+id/textView_voice_volume"
+                android:layout_marginLeft="15dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar_bgm_volume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="4.0dip"
+                android:minHeight="4.0dip"
+                android:visibility="visible"
+                android:progressDrawable="@drawable/seekbar_progress_drawable"
+                android:max="100"
+                android:progress="50"
+                android:indeterminate="false"
+                android:layout_marginBottom="15dp"
+                android:layout_above="@+id/seekBar_voice_volume"
+                android:layout_toRightOf="@+id/textView_bgm_volume" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:id="@+id/textView_voice_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="人声音量"
+                android:textSize="12dp"
+                android:textColor="@color/colorTextBlack"
+                android:layout_marginBottom="8dp"
+                android:layout_above="@+id/layout_reverb"
+                android:layout_marginLeft="15dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar_voice_volume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="4.0dip"
+                android:minHeight="4.0dip"
+                android:visibility="visible"
+                android:progressDrawable="@drawable/seekbar_progress_drawable"
+                android:max="100"
+                android:progress="50"
+                android:indeterminate="false"
+                android:layout_toRightOf="@+id/textView_voice_volume" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:layout_above="@+id/textView_audio_ctrl_title">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_default"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="原声"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="KTV"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="房间"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="会堂"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="低沉"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="洪亮"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_reverb_6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="磁性"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:layout_above="@+id/textView_audio_ctrl_title">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_default"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="原声"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="熊孩子"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="萝莉"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="大叔"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="重金属"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="感冒"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:layout_above="@+id/textView_audio_ctrl_title">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="外国人"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_7"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="困兽"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_8"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="死肥仔"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_9"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="强电流"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_10"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="重机械"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_voicechanger_11"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="空灵"
+                    android:textSize="12dp"
+                    android:focusable="false"
+                    android:background="@drawable/round_button_2"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGray7"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="音效调节"
+            android:textSize="16dp"
+            android:textColor="@color/colorTextBlack"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_alignParentBottom="true" />
+
+    </LinearLayout>
+
+    <com.tencent.qcloud.xiaozhibo.anchor.music.TCMusicSelectView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/xml_music_select_view"
+        android:visibility="gone"
+        android:clickable="true"
+        android:background="@color/white">
+    </com.tencent.qcloud.xiaozhibo.anchor.music.TCMusicSelectView>
+
+</LinearLayout>

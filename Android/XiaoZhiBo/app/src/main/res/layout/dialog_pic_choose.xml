@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/chos_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/colorTextWhite"
+        android:textColor="@color/colorTextBlack"
+        android:text="@string/btn_take_photo"
+        android:onClick="onClick"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorTextG2"
+        />
+
+    <TextView
+        android:id="@+id/pic_lib"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/colorTextWhite"
+        android:textColor="@color/colorTextBlack"
+        android:text="@string/btn_pic_photo"
+        android:onClick="onClick"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGray1"
+        />
+
+    <TextView
+        android:id="@+id/anchor_btn_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/colorTextWhite"
+        android:textColor="@color/colorTextBlack"
+        android:text="@string/btn_cancel"
+        android:onClick="onClick"
+        />
+
+</LinearLayout>
