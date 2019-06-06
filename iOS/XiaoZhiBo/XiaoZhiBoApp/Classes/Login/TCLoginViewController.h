@@ -1,10 +1,8 @@
-//
-//  TCLoginViewController.h
-//  TCLVBIMDemo
-//
-//  Created by dackli on 16/8/1.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCLoginViewController
+ *
+ * Function: 登录界面
+ */
 
 #import <UIKit/UIKit.h>
 

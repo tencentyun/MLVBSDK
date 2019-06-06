@@ -1,16 +1,14 @@
-//
-//  TCRegisterViewController.h
-//  TCLVBIMDemo
-//
-//  Created by dackli on 16/10/1.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCRegisterViewController
+ *
+ * Function: 注册界面
+ */
 
 #import <UIKit/UIKit.h>
-#import "TCLoginModel.h"
+#import "TCAccountMgrModel.h"
 
-@interface TCRegisterViewController : UIViewController <UITextFieldDelegate>
+@interface TCRegisterViewController : UIViewController
 
-@property (nonatomic, weak) id<TCLoginListener> loginListener;
+@property (nonatomic, weak) id<TCLoginDelegate> delegate;
 
 @end

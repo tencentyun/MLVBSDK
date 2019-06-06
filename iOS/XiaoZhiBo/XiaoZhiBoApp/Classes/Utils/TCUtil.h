@@ -1,30 +1,17 @@
-//
-//  TCUtil.h
-//  TCLVBIMDemo
-//
-//  Created by felixlin on 16/8/2.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCUtil
+ *
+ * Function: 实用函数
+ */
 
 #import <Foundation/Foundation.h>
 #import "TCLog.h"
 #import "TCConstants.h"
 #import "SDKHeader.h"
 #import "UIAlertView+BlocksKit.h"
-#import "TCLiveListModel.h"
+#import "TCRoomListModel.h"
 
 typedef void(^videoIsReadyBlock)(void);
-
-
-typedef NS_ENUM(NSInteger, TCSocialPlatform) {
-    TCSocialPlatformUnknown        = -2,
-    TCSocialPlatformSina           = 0,
-    TCSocialPlatformWechatSession  = 1,
-    TCSocialPlatformWechatTimeline = 2,
-    TCSocialPlatformQQ             = 4,
-    TCSocialPlatformQZone          = 5
-};
-
 
 @interface TCUtil : NSObject
 
@@ -43,7 +30,7 @@ typedef NS_ENUM(NSInteger, TCSocialPlatform) {
 
 + (NSString *)transImageURL2HttpsURL:(NSString *)httpURL;
 
-+ (NSString*) getStreamIDByStreamUrl:(NSString*) strStreamUrl;
++ (NSString*)getStreamIDByStreamUrl:(NSString*) strStreamUrl;
 
 + (UIImage *)gsImage:(UIImage *)image withGsNumber:(CGFloat)blur;
 
@@ -56,24 +43,6 @@ typedef NS_ENUM(NSInteger, TCSocialPlatform) {
 + (float)heightForString:(UITextView *)textView andWidth:(float)width;
 
 + (BOOL)isSuitableMachine:(int)targetPlatNum;
-
-
-#pragma mark - 分享相关
-+ (void)initializeShare;
-
-+ (void)dismissShareDialog;
-
-+ (void)shareDataWithPlatform:(TCSocialPlatform)platformType
-                        title:(NSString *)title
-                          url:(NSString *)url
-                         text:(NSString*)text
-                    thumbnail:(id)thumbnail
-                        image:(id)image
-        currentViewController:(UIViewController *)currentViewController;
-
-+ (void)shareLive:(TCLiveInfo *)liveInfo currentViewController:(UIViewController *)currentViewController;
-
-+ (void)shareDataWithPlatform:(TCSocialPlatform)platformType  liveInfo:(TCLiveInfo *)liveInfo currentViewController:(UIViewController *)currentViewController;
 
 @end
 
@@ -106,38 +75,3 @@ typedef NS_ENUM(NSInteger, TCSocialPlatform) {
 #define TC_PROTECT_STR(x) (x == nil ? @"" : x)
 #endif
 
-
-// ITCLivePushListener
-@protocol ITCLivePushListener <NSObject>
-@optional
--(void)onLivePushEvent:(NSString*) pushUrl withEvtID:(int)evtID andParam:(NSDictionary*)param;
-
-@optional
--(void)onLivePushNetStatus:(NSString*) pushUrl withParam: (NSDictionary*) param;
-@end
-
-
-// TXLivePushListenerImpl
-@interface TCLivePushListenerImpl: NSObject<TXLivePushListener>
-@property (nonatomic, strong) NSString*   pushUrl;
-@property (nonatomic, weak) id<ITCLivePushListener> delegate;
-@end
-
-
-
-// ITCLivePlayListener
-@protocol ITCLivePlayListener <NSObject>
-@optional
--(void)onLivePlayEvent:(NSString*) playUrl withEvtID:(int)evtID andParam:(NSDictionary*)param;
-
-@optional
--(void)onLivePlayNetStatus:(NSString*) playUrl withParam: (NSDictionary*) param;
-@end
-
-
-
-// TXLivePlayListenerImpl
-@interface TCLivePlayListenerImpl: NSObject<TXLivePlayListener>
-@property (nonatomic, strong) NSString*   playUrl;
-@property (nonatomic, weak) id<ITCLivePlayListener> delegate;
-@end

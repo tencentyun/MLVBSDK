@@ -1,16 +1,15 @@
-//
-//  TCUserAgreementController.m
-//  TCLVBIMDemo
-//
-//  Created by zhangxiang on 16/9/14.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCUserAgreementController
+ *
+ * Function: 用户条款
+ */
 
 #import "TCUserAgreementController.h"
 #import "UIView+Additions.h"
 #import "AppDelegate.h"
-#import "TCLoginModel.h"
+#import "TCAccountMgrModel.h"
 #import "ColorMacro.h"
+#import "TCConstants.h"
 
 @implementation TCUserAgreementController
 {
@@ -18,7 +17,8 @@
     NSLock *_lock;
     NSString *_htmlContent;
 }
--(instancetype)init{
+
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self loadResourceInBackground];
@@ -35,10 +35,17 @@
                                                         encoding:NSUTF8StringEncoding
                                                            error:nil];
         [self->_lock unlock];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([self isViewLoaded]) {
+                NSString *path = [[NSBundle mainBundle] bundlePath];
+                NSURL *baseURL = [NSURL fileURLWithPath:path];
+                [self->_webView loadHTMLString:self->_htmlContent baseURL:baseURL];
+            }
+        });
     });
 }
 
--(void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
     CGFloat bottom = 0;
     if (@available(iOS 11, *)) {
@@ -79,15 +86,15 @@
     [self.view addSubview:agreeBtn];
 }
 
--(void)unAgree{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [[TCLoginModel sharedInstance] logout:^{
-        [app enterLoginUI];
+- (void)unAgree {
+    [[TCAccountMgrModel sharedInstance] logout:^{
+        [[AppDelegate sharedInstance] enterLoginUI];
     }];
 }
 
--(void)agree{
-     [[NSUserDefaults standardUserDefaults] setObject:@YES forKey:hasEnteredXiaoZhiBo];
-     [[AppDelegate sharedAppDelegate] enterMainUI];
+- (void)agree {
+    [[NSUserDefaults standardUserDefaults] setObject:@YES forKey:hasEnteredXiaoZhiBo];
+    [[AppDelegate sharedInstance] enterMainUI];
 }
+
 @end

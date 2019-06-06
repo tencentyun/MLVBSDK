@@ -1,20 +1,27 @@
-//
-//  AppDelegate.h
-//  TCLVBIMDemo
-//
-//  Created by kuenzhang on 16/7/29.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: AppDelegate
+ *
+ * Function: App入口 & 初始化
+ */
 
 #import <UIKit/UIKit.h>
-#import "TCBaseAppDelegate.h"
 
-#define hasEnteredXiaoZhiBo @"_hasEnteredXiaoZhiBo_"
-#define isFirstInstallApp     @"_isFirstInstallApp_"
+@interface AppDelegate : UIResponder<UIApplicationDelegate>
 
-@interface AppDelegate : TCBaseAppDelegate
+@property (strong, nonatomic) UIWindow *window;
 
++ (instancetype)sharedInstance;
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (UIViewController *)popViewController:(BOOL)animated;
+- (void)presentViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion;
+- (void)dismissViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion;
+
+// 进入主界面
 - (void)enterMainUI;
+
+// 进入登录界面
 - (void)enterLoginUI;
+
 @end
 
