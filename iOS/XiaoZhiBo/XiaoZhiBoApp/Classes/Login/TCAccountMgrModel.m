@@ -8,7 +8,7 @@
 #import "MLVBLiveRoomDef.h"
 #import "TCUserProfileModel.h"
 #import "TCRoomListModel.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "TCUtil.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"

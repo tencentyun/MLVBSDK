@@ -11,7 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import "UIImage+Additions.h"
 #import "UIView+CustomAutoLayout.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "TCAccountMgrModel.h"
 #import "V8HorizontalPickerView.h"
 #import "ColorMacro.h"

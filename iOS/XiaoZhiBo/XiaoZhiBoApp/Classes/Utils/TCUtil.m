@@ -5,7 +5,7 @@
  */
 
 #import "TCUtil.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "NSData+Common.h"
 #import "NSString+Common.h"
 #import <mach/mach.h>

@@ -13,7 +13,7 @@
 #import <mach/mach.h>
 #import "TCMsgModel.h"
 #import "TCUserProfileModel.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "NSString+Common.h"
 #import <CWStatusBarNotification/CWStatusBarNotification.h>
 #import "TCStatusInfoView.h"

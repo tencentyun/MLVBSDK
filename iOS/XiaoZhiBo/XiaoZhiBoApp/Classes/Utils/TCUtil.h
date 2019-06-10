@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TCLog.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "SDKHeader.h"
 #import "UIAlertView+BlocksKit.h"
 #import "TCRoomListModel.h"

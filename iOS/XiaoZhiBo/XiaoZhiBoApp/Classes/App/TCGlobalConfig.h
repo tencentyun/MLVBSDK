@@ -1,11 +1,11 @@
 /**
- * Module: TCConstants
+ * Module: TCGlobalConfig
  *
  * Function: 全局配置 & 常量
  */
 
-#ifndef TCConstants_h
-#define TCConstants_h
+#ifndef TCGlobalConfig_h
+#define TCGlobalConfig_h
 
 // 首次安装和进入小直播，需要有不同的提示，写配置文件
 #define hasEnteredXiaoZhiBo   @"_hasEnteredXiaoZhiBo_"
@@ -47,4 +47,4 @@
 #define POD_PITU 0
 #endif
 
-#endif /* TCConstants_h */
+#endif /* TCGlobalConfig_h */

@@ -9,7 +9,7 @@
 #import "TCMainTabViewController.h"
 #import "TCLoginViewController.h"
 #import "TCLog.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import <Bugly/Bugly.h>
 #import "TCUserAgreementController.h"
 #import "TCUtil.h"

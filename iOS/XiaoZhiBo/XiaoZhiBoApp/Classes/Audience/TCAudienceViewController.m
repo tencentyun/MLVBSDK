@@ -9,7 +9,7 @@
 #import <mach/mach.h>
 #import <UIImageView+WebCache.h>
 #import "TCMsgModel.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "TCAccountMgrModel.h"
 #import "NSString+Common.h"
 #import "TCStatusInfoView.h"

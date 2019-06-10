@@ -7,7 +7,7 @@
 #import "TCUserProfileModel.h"
 #import "TCAccountMgrModel.h"
 #import <UIImageView+WebCache.h>
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import "TCUtil.h"
 
 #define kUserInfoKey     @"kUserInfoKey"

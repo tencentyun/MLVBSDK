@@ -598,7 +598,7 @@
 		4568105822A9076C001A08E1 /* TCUserAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserAgreementController.m; sourceTree = "<group>"; };
 		4568105922A9076C001A08E1 /* TCMainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMainTabViewController.h; sourceTree = "<group>"; };
 		4568105B22A9076C001A08E1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4568105C22A9076C001A08E1 /* TCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
+		4568105C22A9076C001A08E1 /* TCGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlobalConfig.h; sourceTree = "<group>"; };
 		4568105D22A9076C001A08E1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4568106022A9076C001A08E1 /* TCPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPlaceHolderTextView.m; sourceTree = "<group>"; };
 		4568106122A9076C001A08E1 /* TCPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPlaceHolderTextView.h; sourceTree = "<group>"; };
@@ -811,7 +811,7 @@
 			children = (
 				4568105B22A9076C001A08E1 /* AppDelegate.h */,
 				4568105D22A9076C001A08E1 /* AppDelegate.m */,
-				4568105C22A9076C001A08E1 /* TCConstants.h */,
+				4568105C22A9076C001A08E1 /* TCGlobalConfig.h */,
 			);
 			path = App;
 			sourceTree = "<group>";
