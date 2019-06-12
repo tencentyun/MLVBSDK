@@ -71,7 +71,7 @@ public interface IMLVBLiveRoomListener {
      *
      * 主播退房时，房间内的所有用户都会收到此通知
      *
-     * @param roomID 房间ID
+     * @param roomID 房间 ID
      */
     public void onRoomDestroy(String roomID) ;
 	
@@ -175,8 +175,8 @@ public interface IMLVBLiveRoomListener {
     /**
      * 收到文本消息
      *
-     * @param roomID        房间ID
-     * @param userID        发送者ID
+     * @param roomID        房间 ID
+     * @param userID        发送者 ID
      * @param userName      发送者昵称
      * @param userAvatar    发送者头像
      * @param message       文本消息
@@ -186,11 +186,11 @@ public interface IMLVBLiveRoomListener {
     /**
      * 收到自定义消息
      *
-     * @param roomID        房间ID
-     * @param userID        发送者ID
+     * @param roomID        房间 ID
+     * @param userID        发送者 ID
      * @param userName      发送者昵称
      * @param userAvatar    发送者头像
-     * @param cmd           自定义cmd
+     * @param cmd           自定义 cmd
      * @param message       自定义消息内容
      */
     public void onRecvRoomCustomMsg(String roomID, String userID, String userName, String userAvatar, String cmd, String message) ;
@@ -349,7 +349,7 @@ public interface IMLVBLiveRoomListener {
         /**
          * 错误回调
          *
-         * @param errCode 错误码RequestRoomPKCallback
+         * @param errCode 错误码 RequestRoomPKCallback
          * @param errInfo 错误信息
          */
         void onError(int errCode, String errInfo);
@@ -379,7 +379,7 @@ public interface IMLVBLiveRoomListener {
     }
 
     /**
-     * 请求跨房PK的结果回调接口
+     * 请求跨房 PK 的结果回调接口
      */
     public interface RequestRoomPKCallback {
         /**
@@ -390,7 +390,7 @@ public interface IMLVBLiveRoomListener {
         void onAccept(AnchorInfo anchorInfo);
 
         /**
-         * 拒绝PK
+         * 拒绝 PK
          *
          * @param reason 拒绝原因
          */

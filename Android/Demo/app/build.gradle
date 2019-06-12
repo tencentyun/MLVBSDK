@@ -45,7 +45,7 @@ dependencies {
     compile(name: 'zxing-1.8.4', ext: 'aar')
     compile(name: 'barcodescanner-core-1.8.4', ext: 'aar')
     compile(name: 'volley-1.0.0', ext: 'aar')
-    compile(name: 'LiteAVSDK_Smart', ext: 'aar')
+    compile(name: 'LiteAVSDK_Smart_6.5.7272', ext: 'aar')
 //    compile(name: 'lib_tcsuperplayer', ext: 'aar')
     //    compile 'com.facebook.fresco:fresco:0.7.0'
     //    compile 'com.github.bumptech.glide:glide:3.7.0'

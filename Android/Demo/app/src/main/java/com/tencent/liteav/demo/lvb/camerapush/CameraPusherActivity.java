@@ -96,9 +96,9 @@ import okhttp3.Response;
  *
  * 5. 处理 SDK 回调事件参考： {@link #onPushEvent(int, Bundle)}
  *
- * 6. 混响、变声、码率自适应、硬件加速，使用参考： {@link PusherSettingFragment} 与 {@link com.tencent.liteav.demo.lvb.camerapush.PusherSettingFragment.OnSettingChangeListener}
+ * 6. 混响、变声、码率自适应、硬件加速，使用参考： {@link PusherSettingFragment} 与 {@link PusherSettingFragment.OnSettingChangeListener}
  *
- * 7. 横竖屏推流、静音、静画、观众端镜像、闪光灯、调试信息、水印、对焦、缩放功能，使用参考： {@link PusherMoreFragment} 与 {@link com.tencent.liteav.demo.lvb.camerapush.PusherMoreFragment.OnMoreChangeListener}
+ * 7. 横竖屏推流、静音、静画、观众端镜像、闪光灯、调试信息、水印、对焦、缩放功能，使用参考： {@link PusherMoreFragment} 与 {@link PusherMoreFragment.OnMoreChangeListener}
  *
  * 8. 横屏推流使用参考：该功能较为复杂，需要区分Activity是否可以旋转。
  *      A. 不可旋转情况下开启横屏推流：直接参考 {@link #onOrientationChange(boolean)} 即可
@@ -1426,7 +1426,7 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
     @Override
     public void onBGMPitchChange(float pitch) {
         if (mLivePusher != null) {
-            mLivePusher.setBgmPitch(pitch);
+            mLivePusher.setBGMPitch(pitch);
         }
     }
 
