@@ -1111,7 +1111,7 @@ andCompleteNotify:(void (^)(NSInteger errCode))completeNotify {
 }
 
 - (BOOL)setBGMPitch:(float)pitch {
-    return [_livePusher setBgmPitch:pitch];
+    return [_livePusher setBGMPitch:pitch];
 }
 
 - (BOOL)setReverbType:(TXReverbType)reverbType {

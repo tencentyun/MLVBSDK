@@ -858,7 +858,7 @@
 }
 
 - (void)onBgmPitch:(float)pitch {
-    [_pusher setBgmPitch:pitch];
+    [_pusher setBGMPitch:pitch];
 }
 
 #pragma mark - 辅助函数
