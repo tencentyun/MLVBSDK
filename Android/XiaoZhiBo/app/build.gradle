@@ -46,7 +46,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 //  COS 上传需要依赖的jar
     compile fileTree(include: ['*.jar'], dir: 'libs/upload')
-    compile(name: 'LiteAVSDK_Professional_6.4.7328', ext: 'aar')
+    compile(name: 'LiteAVSDK_Professional_6.5.7272', ext: 'aar')
     compile 'com.android.support:design:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
 //  MLVB 需要依赖 okhttp 拦截器

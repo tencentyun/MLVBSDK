@@ -688,5 +688,26 @@ public abstract class MLVBLiveRoom {
      */
     public abstract void setVoiceChangerType(int voiceChangerType);
 
+    /**
+     * 设置背景音乐的音调。
+     *
+     * 该接口用于混音处理，比如将背景音乐与麦克风采集到的声音混合后播放。
+     *
+     * @param pitch 音调，0为正常音调，范围是 -1 - 1。
+     */
+    public abstract void setBGMPitch(float pitch);
+
+    /**
+     * 指定背景音乐的播放位置
+     *
+     * @note 请尽量避免频繁地调用该接口，因为该接口可能会再次读写 BGM 文件，耗时稍高。
+     *       例如：当配合进度条使用时，请在进度条拖动完毕的回调中调用，而避免在拖动过程中实时调用。
+     *
+     * @param position 背景音乐的播放位置，单位ms。
+     *
+     * @return 结果是否成功，true：成功；false：失败。
+     */
+    public abstract boolean setBGMPosition(int position);
+
     /// @}
 }

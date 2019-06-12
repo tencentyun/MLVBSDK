@@ -177,7 +177,6 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
         if (mHttpRequest != null) {
             mHttpRequest.cancelAllRequests();
-            mHttpRequest = null;
         }
         mHttpRequest = new HttpRequests(mServerDomain);
         mHttpRequest.setHeartBeatCallback(this);
@@ -194,8 +193,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                 if (retcode == 0) {
                     mTimeDiff = System.currentTimeMillis() - data.timestamp;
                     // 初始化IM SDK，内部完成login
-                    if (mIMMessageMgr != null) {
-                        mIMMessageMgr.initialize(mSelfAccountInfo.userID, mSelfAccountInfo.userSig, (int) mSelfAccountInfo.sdkAppID, new IMMessageMgr.Callback() {
+                    IMMessageMgr imMessageMgr = mIMMessageMgr;
+                    if (imMessageMgr != null) {
+                        imMessageMgr.initialize(mSelfAccountInfo.userID, mSelfAccountInfo.userSig, (int) mSelfAccountInfo.sdkAppID, new IMMessageMgr.Callback() {
                             @Override
                             public void onError(final int code, final String errInfo) {
                                 String msg = "[IM] 初始化失败[" + errInfo + ":" + code + "]";
@@ -208,7 +208,10 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             public void onSuccess(Object... args) {
                                 //设置IM的个人信息
                                 String msg = String.format("[LiveRoom] 登录成功, userID {%s}, userName {%s} " + "sdkAppID {%s}", mSelfAccountInfo.userID, mSelfAccountInfo.userName, mSelfAccountInfo.sdkAppID);
-                                mIMMessageMgr.setSelfProfile(loginInfo.userName, loginInfo.userAvatar);
+                                IMMessageMgr imMessageMgr = mIMMessageMgr;
+                                if (imMessageMgr != null) {
+                                    imMessageMgr.setSelfProfile(loginInfo.userName, loginInfo.userAvatar);
+                                }
                                 TXCLog.d(TAG, msg);
                                 callbackOnThread(mListener, "onDebugLog", msg);
                                 callbackOnThread(callback, "onSuccess");
@@ -237,7 +240,6 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                 @Override
                 public void onResponse(int retcode, String retmsg, HttpResponse data) {
                     mHttpRequest.cancelAllRequests();
-                    mHttpRequest = null;
                 }
             });
         }
@@ -263,13 +265,14 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             mSelfAccountInfo.userName = userName;
             mSelfAccountInfo.userAvatar = avatarURL;
         }
-        if (mIMMessageMgr != null) {
-            mIMMessageMgr.setSelfProfile(userName, avatarURL);
+        IMMessageMgr imMessageMgr = mIMMessageMgr;
+        if (imMessageMgr != null) {
+            imMessageMgr.setSelfProfile(userName, avatarURL);
         }
     }
 
     /**
-     * 获取房间列表e
+     * 获取房间列表
      *
      * 该接口支持分页获取房间列表，可以用 index 和 count 两个参数控制列表分页的逻辑，
      * - index = 0 & count = 10 代表获取第一页的10个房间。
@@ -324,29 +327,32 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             }
             callbackOnThread(callback, "onSuccess", audienceList);
         } else {
-            mIMMessageMgr.getGroupMembers(mCurrRoomID, MAX_MEMBER_SIZE, new TIMValueCallBack<List<TIMUserProfile>>() {
-                @Override
-                public void onError(final int i, final String s) {
-                    callbackOnThread(callback, "onError", i, "[IM] 获取群成员失败[" + s + "]");
-                }
-
-                @Override
-                public void onSuccess(List<TIMUserProfile> timUserProfiles) {
-                    for (TIMUserProfile userProfile : timUserProfiles) {
-                        AudienceInfo audienceInfo = new AudienceInfo();
-                        audienceInfo.userID = userProfile.getIdentifier();
-                        audienceInfo.userName = userProfile.getNickName();
-                        audienceInfo.userAvatar = userProfile.getFaceUrl();
-                        mAudiences.put(userProfile.getIdentifier(), audienceInfo);
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.getGroupMembers(mCurrRoomID, MAX_MEMBER_SIZE, new TIMValueCallBack<List<TIMUserProfile>>() {
+                    @Override
+                    public void onError(final int i, final String s) {
+                        callbackOnThread(callback, "onError", i, "[IM] 获取群成员失败[" + s + "]");
                     }
 
-                    final ArrayList<AudienceInfo> audienceList = new ArrayList<>();
-                    for (Map.Entry<String, AudienceInfo> item : mAudiences.entrySet()) {
-                        audienceList.add(item.getValue());
+                    @Override
+                    public void onSuccess(List<TIMUserProfile> timUserProfiles) {
+                        for (TIMUserProfile userProfile : timUserProfiles) {
+                            AudienceInfo audienceInfo = new AudienceInfo();
+                            audienceInfo.userID = userProfile.getIdentifier();
+                            audienceInfo.userName = userProfile.getNickName();
+                            audienceInfo.userAvatar = userProfile.getFaceUrl();
+                            mAudiences.put(userProfile.getIdentifier(), audienceInfo);
+                        }
+
+                        final ArrayList<AudienceInfo> audienceList = new ArrayList<>();
+                        for (Map.Entry<String, AudienceInfo> item : mAudiences.entrySet()) {
+                            audienceList.add(item.getValue());
+                        }
+                        callbackOnThread(callback, "onSuccess", audienceList);
                     }
-                    callbackOnThread(callback, "onSuccess", audienceList);
-                }
-            });
+                });
+            }
         }
     }
 
@@ -533,37 +539,46 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         //1. 结束心跳
         mHeartBeatThread.stopHeartbeat();
 
+        // 停止 BGM
+        stopBGM();
+        
         if (mSelfRoleType == LIVEROOM_ROLE_PUSHER) {
             //2. 如果是大主播，则销毁群
-            mIMMessageMgr.destroyGroup(mCurrRoomID, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(int code, String errInfo) {
-                    TXCLog.e(TAG, "[IM] 销毁群失败:" + code + ":" + errInfo);
-                }
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.destroyGroup(mCurrRoomID, new IMMessageMgr.Callback() {
+                    @Override
+                    public void onError(int code, String errInfo) {
+                        TXCLog.e(TAG, "[IM] 销毁群失败:" + code + ":" + errInfo);
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
-                    TXCLog.d(TAG, "[IM] 销毁群成功");
-                }
-            });
+                    @Override
+                    public void onSuccess(Object... args) {
+                        TXCLog.d(TAG, "[IM] 销毁群成功");
+                    }
+                });
+            }
+
         } else {
             //通知房间内其他主播
             notifyPusherChange();
 
             //2. 调用IM的quitGroup
-            mIMMessageMgr.quitGroup(mCurrRoomID, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(int code, String errInfo) {
-                    TXCLog.e(TAG, "[IM] 退群失败:" + code + ":" + errInfo);
-                }
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.quitGroup(mCurrRoomID, new IMMessageMgr.Callback() {
+                    @Override
+                    public void onError(int code, String errInfo) {
+                        TXCLog.e(TAG, "[IM] 退群失败:" + code + ":" + errInfo);
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
-                    TXCLog.d(TAG, "[IM] 退群成功");
-                }
-            });
+                    @Override
+                    public void onSuccess(Object... args) {
+                        TXCLog.d(TAG, "[IM] 退群成功");
+                    }
+                });
+            }
         }
-
 
         Runnable runnable = new Runnable() {
             @Override
@@ -761,24 +776,28 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
             String content = new Gson().toJson(request, new TypeToken<CommonJson<JoinAnchorRequest>>(){}.getType());
             String toUserID = getRoomCreator(mCurrRoomID);
-            mIMMessageMgr.sendC2CCustomMessage(toUserID, content, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(final int code, final String errInfo) {
-                    callbackOnThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (mJoinAnchorCallback != null) {
-                                mJoinAnchorCallback.onError(code, "[IM] 请求连麦失败[" + errInfo + ":" + code + "]");
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.sendC2CCustomMessage(toUserID, content, new IMMessageMgr.Callback() {
+                    @Override
+                    public void onError(final int code, final String errInfo) {
+                        callbackOnThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (mJoinAnchorCallback != null) {
+                                    mJoinAnchorCallback.onError(code, "[IM] 请求连麦失败[" + errInfo + ":" + code + "]");
+                                }
                             }
-                        }
-                    });
-                }
+                        });
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
+                    @Override
+                    public void onSuccess(Object... args) {
 
-                }
-            });
+                    }
+                });
+            }
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -816,17 +835,20 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             response.data.roomID = mCurrRoomID;
             response.data.timestamp = System.currentTimeMillis() - mTimeDiff;
             String content = new Gson().toJson(response, new TypeToken<CommonJson<JoinAnchorResponse>>(){}.getType());
-            mIMMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(final int code, final String errInfo) {
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
+                    @Override
+                    public void onError(final int code, final String errInfo) {
 
-                }
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
+                    @Override
+                    public void onSuccess(Object... args) {
 
-                }
-            });
+                    }
+                });
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -997,7 +1019,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             response.data.roomID = mCurrRoomID;
             response.data.timestamp = System.currentTimeMillis() - mTimeDiff;
             String content = new Gson().toJson(response, new TypeToken<CommonJson<KickoutResponse>>(){}.getType());
-            mIMMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
                 @Override
                 public void onError(final int code, final String errInfo) {
 
@@ -1008,6 +1032,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
                 }
             });
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -1071,17 +1096,20 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             mPKAnchorInfo = new AnchorInfo(userID, "", "", "");
 
             String content = new Gson().toJson(request, new TypeToken<CommonJson<PKRequest>>(){}.getType());
-            mIMMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(final int code, final String errInfo) {
-                    callbackOnThread(callback, "onError", code, "[IM] 请求PK失败[" + errInfo + ":" + code + "]");
-                }
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
+                    @Override
+                    public void onError(final int code, final String errInfo) {
+                        callbackOnThread(callback, "onError", code, "[IM] 请求PK失败[" + errInfo + ":" + code + "]");
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
+                    @Override
+                    public void onSuccess(Object... args) {
 
-                }
-            });
+                    }
+                });
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -1121,7 +1149,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             response.data.timestamp = System.currentTimeMillis() - mTimeDiff;
 
             String content = new Gson().toJson(response, new TypeToken<CommonJson<PKResponse>>(){}.getType());
-            mIMMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
+            IMMessageMgr imMessageMgr = mIMMessageMgr;
+            if (imMessageMgr != null) {
+                imMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
                 @Override
                 public void onError(final int code, final String errInfo) {
 
@@ -1132,6 +1162,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
                 }
             });
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -1164,7 +1195,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                 request.data.timestamp = System.currentTimeMillis() - mTimeDiff;
 
                 String content = new Gson().toJson(request, new TypeToken<CommonJson<PKRequest>>() {}.getType());
-                mIMMessageMgr.sendC2CCustomMessage(mPKAnchorInfo.userID, content, new IMMessageMgr.Callback() {
+                IMMessageMgr imMessageMgr = mIMMessageMgr;
+                if (imMessageMgr != null) {
+                    imMessageMgr.sendC2CCustomMessage(mPKAnchorInfo.userID, content, new IMMessageMgr.Callback() {
                     @Override
                     public void onError(final int code, final String errInfo) {
                         callbackOnThread(callback, "onError", code, "[IM] 退出PK失败[" + errInfo + ":" + code + "]");
@@ -1175,6 +1208,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                         callbackOnThread(callback, "onSuccess");
                     }
                 });
+                }
             } else {
                 TXCLog.e(TAG, "获取不到 PK 主播信息，请确认是否已经跨房 PK");
             }
@@ -1394,6 +1428,17 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     public void muteLocalAudio(boolean mute) {
         if (mTXLivePusher != null) {
             mTXLivePusher.setMute(mute);
+        }
+    }
+
+    /**
+     * 设置背景音乐的回调接口
+     *
+     * @param notify 回调接口
+     */
+    public void setBGMNofify(TXLivePusher.OnBGMNotify notify) {
+        if (mTXLivePusher != null) {
+            mTXLivePusher.setBGMNofify(notify);
         }
     }
 
@@ -1686,19 +1731,22 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
      */
     @Override
     public void sendRoomTextMsg(String message, final IMLVBLiveRoomListener.SendRoomTextMsgCallback callback) {
-        mIMMessageMgr.sendGroupTextMessage(mSelfAccountInfo.userName, mSelfAccountInfo.userAvatar, message, new IMMessageMgr.Callback() {
-            @Override
-            public void onError(final int code, final String errInfo) {
-                String msg = "[IM] 消息发送失败[" + errInfo + ":" + code + "]";
-                TXCLog.e(TAG, msg);
-                callbackOnThread(callback, "onError", code, msg);
-            }
+        IMMessageMgr imMessageMgr = mIMMessageMgr;
+        if (imMessageMgr != null) {
+            imMessageMgr.sendGroupTextMessage(mSelfAccountInfo.userName, mSelfAccountInfo.userAvatar, message, new IMMessageMgr.Callback() {
+                @Override
+                public void onError(final int code, final String errInfo) {
+                    String msg = "[IM] 消息发送失败[" + errInfo + ":" + code + "]";
+                    TXCLog.e(TAG, msg);
+                    callbackOnThread(callback, "onError", code, msg);
+                }
 
-            @Override
-            public void onSuccess(Object... args) {
-                callbackOnThread(callback, "onSuccess");
-            }
-        });
+                @Override
+                public void onSuccess(Object... args) {
+                    callbackOnThread(callback, "onSuccess");
+                }
+            });
+        }
     }
 
     /**
@@ -1719,19 +1767,22 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         customMessage.data.cmd = cmd;
         customMessage.data.msg = message ;
         final String content = new Gson().toJson(customMessage, new TypeToken<CommonJson<CustomMessage>>(){}.getType());
-        mIMMessageMgr.sendGroupCustomMessage(content, new IMMessageMgr.Callback() {
-            @Override
-            public void onError(int code, String errInfo) {
-                String msg = "[IM] 自定义消息发送失败[" + errInfo + ":" + code + "]";
-                TXCLog.e(TAG, msg);
-                callbackOnThread(callback, "onError", code, msg);
-            }
+        IMMessageMgr imMessageMgr = mIMMessageMgr;
+        if (imMessageMgr != null) {
+            imMessageMgr.sendGroupCustomMessage(content, new IMMessageMgr.Callback() {
+                @Override
+                public void onError(int code, String errInfo) {
+                    String msg = "[IM] 自定义消息发送失败[" + errInfo + ":" + code + "]";
+                    TXCLog.e(TAG, msg);
+                    callbackOnThread(callback, "onError", code, msg);
+                }
 
-            @Override
-            public void onSuccess(Object... args) {
-                callbackOnThread(callback, "onSuccess");
-            }
-        });
+                @Override
+                public void onSuccess(Object... args) {
+                    callbackOnThread(callback, "onSuccess");
+                }
+            });
+        }
     }
 
     /**
@@ -1744,35 +1795,6 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     public boolean playBGM(String path) {
         if (mTXLivePusher != null) {
             return mTXLivePusher.playBGM(path);
-        }
-        return false;
-    }
-
-
-    /**
-     * 设置背景音乐的回调接口
-     *
-     * @param notify 回调接口
-     */
-    public void setBGMNofify(TXLivePusher.OnBGMNotify notify) {
-        if (mTXLivePusher != null) {
-            mTXLivePusher.setBGMNofify(notify);
-        }
-    }
-
-    /**
-     * 指定背景音乐的播放位置
-     *
-     * @note 请尽量避免频繁地调用该接口，因为该接口可能会再次读写 BGM 文件，耗时稍高。
-     *       例如：当配合进度条使用时，请在进度条拖动完毕的回调中调用，而避免在拖动过程中实时调用。
-     *
-     * @param position 背景音乐的播放位置，单位ms。
-     *
-     * @return 结果是否成功，true：成功；false：失败。
-     */
-    public boolean setBGMPosition(int position) {
-        if (mTXLivePusher != null) {
-//            return mTXLivePusher.setBGMPosition(position);
         }
         return false;
     }
@@ -1885,8 +1907,25 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
      */
     public void setBGMPitch(float pitch) {
         if (mTXLivePusher != null) {
-//            mTXLivePusher.setBGMPitch(pitch);
+            mTXLivePusher.setBGMPitch(pitch);
         }
+    }
+
+    /**
+     * 指定背景音乐的播放位置
+     *
+     * @note 请尽量避免频繁地调用该接口，因为该接口可能会再次读写 BGM 文件，耗时稍高。
+     *       例如：当配合进度条使用时，请在进度条拖动完毕的回调中调用，而避免在拖动过程中实时调用。
+     *
+     * @param position 背景音乐的播放位置，单位ms。
+     *
+     * @return 结果是否成功，true：成功；false：失败。
+     */
+    public boolean setBGMPosition(int position) {
+        if (mTXLivePusher != null) {
+            return mTXLivePusher.setBGMPosition(position);
+        }
+        return false;
     }
 
     protected MLVBLiveRoomImpl(Context context) {
@@ -2006,35 +2045,41 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     }
 
     protected void createIMGroup(final String groupId, final String groupName, final StandardCallback callback) {
-        mIMMessageMgr.createGroup(groupId, "AVChatRoom", groupName, new IMMessageMgr.Callback() {
-            @Override
-            public void onError(int code, String errInfo) {
-                String msg = "[IM] 创建群失败[" + errInfo + ":" + code + "]";
-                TXCLog.e(TAG, "msg");
-                callback.onError(code, msg);
-            }
+        IMMessageMgr imMessageMgr = mIMMessageMgr;
+        if (imMessageMgr != null) {
+            imMessageMgr.createGroup(groupId, "AVChatRoom", groupName, new IMMessageMgr.Callback() {
+                @Override
+                public void onError(int code, String errInfo) {
+                    String msg = "[IM] 创建群失败[" + errInfo + ":" + code + "]";
+                    TXCLog.e(TAG, "msg");
+                    callback.onError(code, msg);
+                }
 
-            @Override
-            public void onSuccess(Object... args) {
-                callback.onSuccess();
-            }
-        });
+                @Override
+                public void onSuccess(Object... args) {
+                    callback.onSuccess();
+                }
+            });
+        }
     }
 
     protected void jionIMGroup(final String roomID, final StandardCallback callback){
-        mIMMessageMgr.jionGroup(roomID, new IMMessageMgr.Callback() {
-            @Override
-            public void onError(int code, String errInfo) {
-                String msg = "[IM] 进群失败[" + errInfo + ":" + code + "]";
-                TXCLog.e(TAG, msg);
-                callback.onError(code, msg);
-            }
+        IMMessageMgr imMessageMgr = mIMMessageMgr;
+        if (imMessageMgr != null) {
+            imMessageMgr.jionGroup(roomID, new IMMessageMgr.Callback() {
+                @Override
+                public void onError(int code, String errInfo) {
+                    String msg = "[IM] 进群失败[" + errInfo + ":" + code + "]";
+                    TXCLog.e(TAG, msg);
+                    callback.onError(code, msg);
+                }
 
-            @Override
-            public void onSuccess(Object... args) {
-                callback.onSuccess();
-            }
-        });
+                @Override
+                public void onSuccess(Object... args) {
+                    callback.onSuccess();
+                }
+            });
+        }
     }
 
     private void notifyPusherChange() {
@@ -2044,17 +2089,20 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         msg.data = new AnchorInfo();
         msg.data.userID = mSelfAccountInfo.userID;
         String content = new Gson().toJson(msg, new TypeToken<CommonJson<AnchorInfo>>(){}.getType());
-        mIMMessageMgr.sendGroupCustomMessage(content, new IMMessageMgr.Callback() {
-            @Override
-            public void onError(int code, String errInfo) {
-                TXCLog.e(TAG, "[IM] 发送房间列表更新通知失败[" + errInfo + ":" + code + "]");
-            }
+        IMMessageMgr imMessageMgr = mIMMessageMgr;
+        if (imMessageMgr != null) {
+            imMessageMgr.sendGroupCustomMessage(content, new IMMessageMgr.Callback() {
+                @Override
+                public void onError(int code, String errInfo) {
+                    TXCLog.e(TAG, "[IM] 发送房间列表更新通知失败[" + errInfo + ":" + code + "]");
+                }
 
-            @Override
-            public void onSuccess(Object... args) {
-                TXCLog.d(TAG, "发送房间列表更新通知成功");
-            }
-        });
+                @Override
+                public void onSuccess(Object... args) {
+                    TXCLog.d(TAG, "发送房间列表更新通知成功");
+                }
+            });
+        }
     }
 
     protected void cleanPlayers() {
@@ -2316,11 +2364,8 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             callbackOnThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    IMLVBLiveRoomListener.RequestJoinAnchorCallback callback = mJoinAnchorCallback;
-                                    if (callback != null) {
-                                        callback.onAccept();
-                                        mJoinAnchorCallback = null;
-                                    }
+                                    mJoinAnchorCallback.onAccept();
+                                    mJoinAnchorCallback = null;
                                     mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                                 }
                             });
@@ -2329,11 +2374,8 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             callbackOnThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    IMLVBLiveRoomListener.RequestJoinAnchorCallback callback = mJoinAnchorCallback;
-                                    if (callback != null) {
-                                        callback.onReject(response.reason);
-                                        mJoinAnchorCallback = null;
-                                    }
+                                    mJoinAnchorCallback.onReject(response.reason);
+                                    mJoinAnchorCallback = null;
                                     mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                                 }
                             });
@@ -2343,11 +2385,8 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                     callbackOnThread(new Runnable() {
                         @Override
                         public void run() {
-                            IMLVBLiveRoomListener.RequestJoinAnchorCallback callback = mJoinAnchorCallback;
-                            if (callback != null) {
-                                callback.onError(LiveRoomErrorCode.ERROR_PARAMETERS_INVALID, "[LiveRoom] 无法识别的连麦响应[" + message + "]");
-                                mJoinAnchorCallback = null;
-                            }
+                            mJoinAnchorCallback.onError(LiveRoomErrorCode.ERROR_PARAMETERS_INVALID, "[LiveRoom] 无法识别的连麦响应[" + message + "]");
+                            mJoinAnchorCallback = null;
                             mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                         }
                     });
@@ -2632,7 +2671,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     private class StreamMixturer {
         private String              mMainStreamId = "";
         private String              mPKStreamId   = "";
-        private Vector<String> mSubStreamIds = new java.util.Vector<String>();
+        private Vector<String> mSubStreamIds = new Vector<String>();
         private int                 mMainStreamWidth = 540;
         private int                 mMainStreamHeight = 960;
 
