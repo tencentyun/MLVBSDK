@@ -206,12 +206,22 @@ function createBigGroup(options, callback, callbackOptions) {
             });
             return;
         }
+        selToID = options.roomID;
         // 建房成功
         callback && callback({
             errCode: 0,
             callback: callbackOptions
         });
     },function(ret){
+        if (ret && ret.ErrorCode == 10025) {
+          //群组 ID 已被使用，并且操作者为群主，可以直接使用
+          // 建房成功
+          callback && callback({
+            errCode: 0,
+            callback: callbackOptions
+          });
+          return;
+        }
         // 建房失败
         callback && callback({
             errCode: ret.ErrorCode,
