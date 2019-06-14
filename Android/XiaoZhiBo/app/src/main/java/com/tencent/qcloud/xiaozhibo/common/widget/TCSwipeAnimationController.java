@@ -16,8 +16,10 @@ import android.widget.RelativeLayout;
 import com.tencent.qcloud.xiaozhibo.R;
 
 /**
- * Created by Administrator on 2016/8/21
- * 滑动动画控制类
+ * Module:   TCSwipeAnimationController
+ *
+ * Function: 观众、主播的页面的滑动动画控制类
+ *
  */
 public class TCSwipeAnimationController {
 

@@ -1,24 +1,22 @@
-//
-//  TCLoginViewController.m
-//  TCLVBIMDemo
-//
-//  Created by dackli on 16/8/1.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCLoginViewController
+ *
+ * Function: 登录界面
+ */
 
 #import "TCLoginViewController.h"
-#import "TCLoginModel.h"
+#import "TCAccountMgrModel.h"
 #import "TCUtil.h"
-#import "TCLoginParam.h"
+#import "TCAccountMgrModel.h"
 #import "TCRegisterViewController.h"
 #import "UIView+CustomAutoLayout.h"
 #import "HUDHelper.h"
 #import "TCRegisterViewController.h"
-#import "TCUserInfoModel.h"
-#import "TXWechatInfoView.h"
+#import "TCUserProfileModel.h"
+#import "TCWechatInfoView.h"
 #import "AppDelegate.h"
 
-@interface TCLoginViewController ()<UITextFieldDelegate,TCLoginListener>
+@interface TCLoginViewController () <UITextFieldDelegate,TCLoginDelegate>
 {
     TCLoginParam *_loginParam;
 
@@ -28,7 +26,7 @@
     UITextField    *_pwdTextField;      // 密码/验证码
     UIButton       *_loginBtn;          // 登录
     UIButton       *_regBtn;            // 注册
-    TXWechatInfoView *_wechatInfoView;    // 公众号信息
+    TCWechatInfoView *_wechatInfoView;    // 公众号信息
     UIView         *_lineView1;
     UIView         *_lineView2;
     UIImageView    *_logoView;
@@ -51,7 +49,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     // 先判断是否自动登录
-    BOOL isAutoLogin = [TCLoginModel isAutoLogin];
+    BOOL isAutoLogin = [TCAccountMgrModel isAutoLogin];
     if (isAutoLogin) {
         _loginParam = [TCLoginParam loadFromLocal];
     }
@@ -87,10 +85,10 @@
     if (![_loginParam isExpired]) {
         // 刷新票据
         [[HUDHelper sharedInstance] syncLoading];
-        [[TCLoginModel sharedInstance] loginByToken:_loginParam.identifier hashPwd:_loginParam.hashedPwd succ:^(NSString *userName, NSString *md5pwd) {
+        [[TCAccountMgrModel sharedInstance] loginByToken:_loginParam.identifier hashPwd:_loginParam.hashedPwd succ:^(NSString *userName, NSString *md5pwd) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[HUDHelper sharedInstance] syncStopLoading];
-                [[AppDelegate sharedAppDelegate] enterMainUI];
+                [[AppDelegate sharedInstance] enterMainUI];
             });
             
         } fail:^(int errCode, NSString *errMsg) {
@@ -182,7 +180,7 @@
     _regBtn.height = 44;
     [_regBtn addTarget:self action:@selector(reg:) forControlEvents:UIControlEventTouchUpInside];
     [_regBtn setTitleColor: [UIColor colorWithRed:51/255.0 green:139/255.0 blue:255/255.0 alpha:1.0] forState:UIControlStateNormal];
-    TXWechatInfoView *infoView = [[TXWechatInfoView alloc] initWithFrame:CGRectMake(10, _regBtn.bottom+20, self.view.width - 20, 100)];
+    TCWechatInfoView *infoView = [[TCWechatInfoView alloc] initWithFrame:CGRectMake(10, _regBtn.bottom+20, self.view.width - 20, 100)];
     _wechatInfoView = infoView;
 
     [self.view addSubview:_accountLabel];
@@ -249,7 +247,7 @@
 
 - (void)reg:(UIButton *)button {
     TCRegisterViewController *regViewController = [[TCRegisterViewController alloc] init];
-    regViewController.loginListener = self;
+    regViewController.delegate = self;
     [self.navigationController pushViewController:regViewController animated:YES];
 }
 
@@ -275,37 +273,31 @@
     __weak typeof(self) weakSelf = self;
     [self clickScreen];
     [[HUDHelper sharedInstance] syncLoading];
-    [[TCLoginModel sharedInstance] loginWithUsername:userName password:pwd succ:^(NSString *userName, NSString *md5pwd) {
+    [[TCAccountMgrModel sharedInstance] loginWithUsername:userName password:pwd succ:^(NSString *userName, NSString *md5pwd) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[HUDHelper sharedInstance] syncStopLoading];
-            id listener = weakSelf;
-            [listener LoginOK:userName hashedPwd:md5pwd];
+            
+            __strong typeof(weakSelf) self = weakSelf;
+            if (self) {
+                [self loginSuccess:userName hashedPwd:md5pwd];
+            }
         });
 
     } fail:^(int errCode, NSString *errMsg) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[HUDHelper sharedInstance] syncStopLoading];
-            if(errCode == 620){
-                [HUDHelper alertTitle:nil message:@"账号未注册" cancel:@"确定"];
-            }
-            else if(errCode == 621){
-                [HUDHelper alertTitle:nil message:@"密码错误" cancel:@"确定"];
-            }
-            else{
-                [HUDHelper alertTitle:nil message:@"登录失败" cancel:@"确定"];
-            }
+            [HUDHelper alertTitle:@"登录失败" message:errMsg cancel:@"确定"];
             NSLog(@"%s %d %@", __func__, errCode, errMsg);
         });
     }];
 }
 
-- (void)LoginOK:(NSString*)userName hashedPwd:(NSString*)hashedPwd
-{
+- (void)loginSuccess:(NSString*)userName hashedPwd:(NSString*)hashedPwd {
     // 进入主界面
     _loginParam.identifier = userName;
     _loginParam.hashedPwd = hashedPwd;
     [_loginParam saveToLocal];
-    [[AppDelegate sharedAppDelegate] enterMainUI];
+    [[AppDelegate sharedInstance] enterMainUI];
 }
 
 #pragma mark - UITextFieldDelegate

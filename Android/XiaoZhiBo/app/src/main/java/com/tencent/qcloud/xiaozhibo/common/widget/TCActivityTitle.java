@@ -13,7 +13,10 @@ import com.tencent.qcloud.xiaozhibo.R;
 
 
 /**
- * 标题控件
+ * Module:   TCActivityTitle
+ *
+ * Function: 标题样式布局
+ *
  */
 public class TCActivityTitle extends RelativeLayout {
 

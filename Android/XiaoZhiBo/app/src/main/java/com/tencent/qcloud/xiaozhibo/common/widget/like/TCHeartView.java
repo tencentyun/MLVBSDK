@@ -31,7 +31,10 @@ import com.tencent.qcloud.xiaozhibo.R;
 
 
 /**
- * 飘心动画心形界面类
+ * Module:   TCHeartView
+ *
+ * Function: 飘心动画心形界面类
+ *
  * 一个TCHeartView代表一个心形，由heart.png组成
  */
 public class TCHeartView extends ImageView {

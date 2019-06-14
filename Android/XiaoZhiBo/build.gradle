@@ -2,12 +2,11 @@
 
 buildscript {
     repositories {
-        //jcenter()
-        //google()
-        maven { url "http://maven.oa.com/nexus/content/groups/androidbuild" }
+        jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.4.0'
 //        classpath 'com.android.tools.build:gradle-experimental:0.7.0'
 //
         // NOTE: Do not place your application dependencies here; they belong
@@ -20,9 +19,8 @@ allprojects {
         flatDir {
             dirs 'src/main/jniLibs'
         }
-        //jcenter()
-        //google()
-        maven { url "http://maven.oa.com/nexus/content/groups/androidbuild"}
+        jcenter()
+        google()
     }
 }
 
@@ -33,13 +31,13 @@ task clean(type: Delete) {
 ext {
     compileSdkVersion = 25
     buildToolsVersion = "23.0.3"
-    minSdkVersion = 15
+    minSdkVersion = 16
     targetSdkVersion = 21
     versionCode = 1
     versionName = "v1.0"
     proguard = true
     rootPrj = "$projectDir/.."
-    ndkAbi = 'armeabi'//, 'armeabi-v7a', 'arm64-v8a'
+    ndkAbi = 'armeabi-v7a'//'armeabi'//, 'arm64-v8a'
     noffmpeg = false
     noijkplay = false
 }

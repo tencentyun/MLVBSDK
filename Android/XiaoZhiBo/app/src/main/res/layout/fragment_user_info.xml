@@ -44,7 +44,7 @@
 
     </RelativeLayout>
 
-    <com.tencent.qcloud.xiaozhibo.common.widget.TCLineControllerView
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
         android:id="@+id/lcv_ui_set"
         android:layout_below="@+id/rl_user_info"
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
         app:name="@string/app_set"
         app:canNav="true"
         />
-    <com.tencent.qcloud.xiaozhibo.common.widget.TCLineControllerView
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/lcv_ui_set"
@@ -60,7 +60,7 @@
         android:id="@+id/lcv_ui_version"
         app:isBottom="true"
         app:canNav="true"/>
-    <com.tencent.qcloud.xiaozhibo.common.widget.TCLineControllerView
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/lcv_ui_version"
@@ -110,7 +110,7 @@
         android:layout_height="1px"
         android:background="@color/line" />
 
-    <com.tencent.qcloud.xiaozhibo.common.widget.TCLineControllerView
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
         android:id="@+id/lcv_ui_logout"
         android:layout_width="match_parent"
         android:layout_height="40dp"

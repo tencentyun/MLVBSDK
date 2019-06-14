@@ -1,20 +1,18 @@
-//
-//  TCRegisterViewController.m
-//  TCLVBIMDemo
-//
-//  Created by dackli on 16/10/1.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCRegisterViewController
+ *
+ * Function: 注册界面
+ */
 
 #import "TCRegisterViewController.h"
 #import "UIView+CustomAutoLayout.h"
-#import "TCLoginModel.h"
-#import "TXWechatInfoView.h"
+#import "TCAccountMgrModel.h"
+#import "TCWechatInfoView.h"
 #import "HUDHelper.h"
 
 #define L(X) NSLocalizedString((X), nil)
 
-@interface TCRegisterViewController ()
+@interface TCRegisterViewController () <UITextFieldDelegate>
 
 @end
 
@@ -27,7 +25,7 @@
     UITextField    *_accountTextField;  // 用户名/手机号
     UITextField    *_pwdTextField;      // 密码/验证码
     UITextField    *_pwdConfirmField;     // 确认密码（用户名注册）
-    TXWechatInfoView *_wechatInfoView;
+    TCWechatInfoView *_wechatInfoView;
     UIButton       *_regBtn;            // 注册
     UIView         *_lineView1;
     UIView         *_lineView2;
@@ -140,7 +138,7 @@
 
     _regBtn = createButton(@"注册", @selector(reg:));
     
-    TXWechatInfoView *infoView = [[TXWechatInfoView alloc] initWithFrame:CGRectMake(10, _regBtn.bottom+20, self.view.width - 20, 100)];
+    TCWechatInfoView *infoView = [[TCWechatInfoView alloc] initWithFrame:CGRectMake(10, _regBtn.bottom+20, self.view.width - 20, 100)];
     _wechatInfoView = infoView;
 
     [self.view addSubview:_accountLabel];
@@ -217,7 +215,6 @@
 }
 
 - (void)reg:(UIButton *)button {
-
     NSString *userName = _accountTextField.text;
     if (userName == nil || [userName length] == 0) {
         [HUDHelper alertTitle:@"用户名错误" message:@"用户名不能为空" cancel:@"确定"];
@@ -263,19 +260,22 @@
     // 用户名密码注册
     __weak typeof(self) weakSelf = self;
     [[HUDHelper sharedInstance] syncLoading];
-    [[TCLoginModel sharedInstance] registerWithUsername:userName password:pwd succ:^(NSString *userName, NSString *md5pwd) {
+    [[TCAccountMgrModel sharedInstance] registerWithUsername:userName password:pwd succ:^(NSString *userName, NSString *md5pwd) {
         // 注册成功后直接登录
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[TCLoginModel sharedInstance] loginWithUsername:userName password:pwd succ:^(NSString *userName, NSString *md5pwd) {
+            [[TCAccountMgrModel sharedInstance] loginWithUsername:userName password:pwd succ:^(NSString *userName, NSString *md5pwd) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[HUDHelper sharedInstance] syncStopLoading];
-                    id listener = weakSelf.loginListener;
-                    [listener LoginOK:userName hashedPwd:md5pwd];
+                    
+                    __strong typeof(weakSelf) self = weakSelf;
+                    if (self) {
+                        [self.delegate loginSuccess:userName hashedPwd:md5pwd];
+                    }
                 });
             } fail:^(int errCode, NSString *errMsg) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[HUDHelper sharedInstance] syncStopLoading];
-                    [HUDHelper alertTitle:@"提示" message:@"登录失败" cancel:@"确定"];
+                    [HUDHelper alertTitle:@"登录失败" message:errMsg cancel:@"确定"];
                     NSLog(@"%s %d %@", __func__, errCode, errMsg);
                 });
             }];

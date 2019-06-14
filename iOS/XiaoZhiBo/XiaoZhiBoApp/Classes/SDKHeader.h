@@ -1,10 +1,8 @@
-//
-//  SDKHeader.h
-//  TCLVBIMDemo
-//
-//  Created by cui on 2019/4/26.
-//  Copyright © 2019 tencent. All rights reserved.
-//
+/**
+ * Module: SDKHeader.h
+ *
+ * Function: 全局导入LiteAVSDK头文件，其他文件只要包含 SDKHeader.h 即可
+ */
 
 #ifndef SDKHeader_h
 #define SDKHeader_h

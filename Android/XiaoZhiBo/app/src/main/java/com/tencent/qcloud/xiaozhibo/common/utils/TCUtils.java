@@ -54,7 +54,6 @@ import com.bumptech.glide.request.target.Target;
 import com.tencent.qcloud.xiaozhibo.R;
 import com.tencent.qcloud.xiaozhibo.login.TCLoginActivity;
 import com.tencent.qcloud.xiaozhibo.login.TCUserMgr;
-import com.tencent.qcloud.xiaozhibo.mainui.TCMainActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -68,18 +67,12 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * Created by Administrator on 2016/8/3.
+ * Module:   TCUtils
+ *
+ * Function: 工具函数的集合类
+ *
  */
 public class TCUtils {
-
-    /**
-     * 判断手机号是否有效
-     * @param phoneNum 手机号
-     * @return 有效则返回true, 无效则返回false
-     * */
-    public static boolean isPhoneNumValid(String phoneNum) {
-        return phoneNum.length() == 11 && phoneNum.matches("[0-9]{1,}");
-    }
 
     /**
      *
@@ -119,24 +112,6 @@ public class TCUtils {
      */
     public static boolean isUsernameVaild(String username) {
         return !username.matches("[0-9]+") && username.matches("^[a-z0-9_-]{4,24}$");
-    }
-
-    /**
-     * @param verifyCode 验证码
-     * @return 同上
-     */
-    public static boolean isVerifyCodeValid(String verifyCode) {
-        return verifyCode.length() > 3;
-    }
-
-    /**
-     *
-     * @param countryCode 国家码
-     * @param phoneNumber 手机号
-     * @return 返回拼接后的字符串
-     */
-    public static String getWellFormatMobile(String countryCode, String phoneNumber) {
-        return countryCode + "-" + phoneNumber;
     }
 
     // 根据原图绘制圆形图片
@@ -320,46 +295,11 @@ public class TCUtils {
     }
 
     /**
-     * 在按钮上启动一个定时器
-     * @param tvVerifyCode 验证码控件
-     * @param defaultString 按钮上默认的字符串
-     * @param max 失效时间（单位：s）
-     * @param interval 更新间隔（单位：s）
-     * */
-    public static void startTimer(final WeakReference<TextView> tvVerifyCode,
-                                  final String defaultString,
-                                  int max,
-                                  int interval)
-    {
-        tvVerifyCode.get().setEnabled(false);
-
-        // 由于CountDownTimer并不是准确计时，在onTick方法调用的时候，time会有1-10ms左右的误差，这会导致最后一秒不会调用onTick()
-        // 因此，设置间隔的时候，默认减去了10ms，从而减去误差。
-        // 经过以上的微调，最后一秒的显示时间会由于10ms延迟的积累，导致显示时间比1s长max*10ms的时间，其他时间的显示正常,总时间正常
-        new CountDownTimer(max * 1000, interval * 1000 - 10) {
-
-            @Override
-            public void onTick(long time) {
-                // 第一次调用会有1-10ms的误差，因此需要+15ms，防止第一个数不显示，第二个数显示2s
-                if(null == tvVerifyCode.get())
-                    this.cancel();
-                else
-                    tvVerifyCode.get().setText("" + ((time + 15) / 1000) + "s");
-            }
-
-            @Override
-            public void onFinish() {
-                if(null == tvVerifyCode.get()) {
-                    this.cancel();
-                    return;
-                }
-                tvVerifyCode.get().setEnabled(true);
-                tvVerifyCode.get().setText(defaultString);
-
-            }
-        }.start();
-    }
-
+     * 根据枚举值转换具体的性别
+     *
+     * @param genderType
+     * @return
+     */
     public static String EnumGenderToString (int genderType) {
         if (TCConstants.MALE == genderType)  return "男";
         if (TCConstants.FEMALE == genderType) return "女";
@@ -464,7 +404,7 @@ public class TCUtils {
 
 
     /**
-     * 获取网络类型
+     * 高斯模糊
      */
     public static void blurBgPic(final Context context, final ImageView view, final String url, int defResId) {
         if (context == null || view == null) {
@@ -477,22 +417,7 @@ public class TCUtils {
             Glide.with(context.getApplicationContext())
                 .load(url)
                 .asBitmap()
-                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
-                        if (resource == null) {
-                            return;
-                        }
-
-                        final Bitmap bitmap = blurBitmap(resource, context.getApplicationContext());
-                        view.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                view.setImageBitmap(bitmap);
-                            }
-                        });
-                    }
-                });
+                .into(view);
         }
     }
 
@@ -543,7 +468,6 @@ public class TCUtils {
     }
 
 
-
     /**
      * 获取一段字符串的字符个数（包含中英文，一个中文算2个字符）
      */
@@ -569,97 +493,12 @@ public class TCUtils {
         return num;
     }
 
-    /**
-     * 计算指定的 View 在屏幕中的坐标。
-     */
-    public static RectF calcViewScreenLocation(View view) {
-        int[] location = new int[2];
-        // 获取控件在屏幕中的位置，返回的数组分别为控件左顶点的 x、y 的值
-        view.getLocationOnScreen(location);
-        return new RectF(location[0], location[1], location[0] + view.getWidth(),
-                location[1] + view.getHeight());
-    }
-
-    /**
-     * 网络是否正常
-     * @param context Context
-     * @return true 表示网络可用
-     */
-    public static int getNetWorkType(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            String type = networkInfo.getTypeName();
-
-            if (type.equalsIgnoreCase("WIFI")) {
-                return TCConstants.NETTYPE_WIFI;
-            } else if (type.equalsIgnoreCase("MOBILE")) {
-                NetworkInfo mobileInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-                if(mobileInfo != null) {
-                    switch (mobileInfo.getType()) {
-                        case ConnectivityManager.TYPE_MOBILE:// 手机网络
-                            switch (mobileInfo.getSubtype()) {
-                                case TelephonyManager.NETWORK_TYPE_UMTS:
-                                case TelephonyManager.NETWORK_TYPE_EVDO_0:
-                                case TelephonyManager.NETWORK_TYPE_EVDO_A:
-                                case TelephonyManager.NETWORK_TYPE_HSDPA:
-                                case TelephonyManager.NETWORK_TYPE_HSUPA:
-                                case TelephonyManager.NETWORK_TYPE_HSPA:
-                                case TelephonyManager.NETWORK_TYPE_EVDO_B:
-                                case TelephonyManager.NETWORK_TYPE_EHRPD:
-                                case TelephonyManager.NETWORK_TYPE_HSPAP:
-                                    return TCConstants.NETTYPE_3G;
-                                case TelephonyManager.NETWORK_TYPE_CDMA:
-                                case TelephonyManager.NETWORK_TYPE_GPRS:
-                                case TelephonyManager.NETWORK_TYPE_EDGE:
-                                case TelephonyManager.NETWORK_TYPE_1xRTT:
-                                case TelephonyManager.NETWORK_TYPE_IDEN:
-                                    return TCConstants.NETTYPE_2G;
-                                case TelephonyManager.NETWORK_TYPE_LTE:
-                                    return TCConstants.NETTYPE_4G;
-                                default:
-                                    return TCConstants.NETTYPE_NONE;
-                            }
-                    }
-                }
-            }
-        }
-
-        return TCConstants.NETTYPE_NONE;
-    }
 
     /**
      * 显示被踢下线通知
      * @param context activity
      */
     public static void showKickOut(final Context context) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.NormalDialog);
-//        builder.setTitle(context.getResources().getString(R.string.tip_force_offline));
-//        builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//                TCUserMgr.getInstance().logout();
-//                Intent intent = new Intent(context, TCLoginActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                context.startActivity(intent);
-//            }
-//        });
-//        builder.setNegativeButton("重新登录", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//                TCUserMgr.getInstance().autoLogin(null);
-//                Intent intent = new Intent(context, TCMainActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                context.startActivity(intent);
-//            }
-//        });
-//
-//        AlertDialog alertDialog = builder.create();
-//        alertDialog.setCancelable(false);
-//        alertDialog.show();
         Toast.makeText(context, "您的账号已在其他地方登录，您被迫下线。", Toast.LENGTH_SHORT).show();
         TCUserMgr.getInstance().logout();
         Intent intent = new Intent(context, TCLoginActivity.class);
@@ -757,33 +596,6 @@ public class TCUtils {
         return result;
     }
 
-    public static String getStreamIDByStreamUrl(String strStreamUrl) {
-        if (strStreamUrl == null || strStreamUrl.length() == 0) {
-            return null;
-        }
-
-        strStreamUrl = strStreamUrl.toLowerCase();
-
-        //推流地址格式：rtmp://8888.livepush.myqcloud.com/live/8888_test_12345_test?txSecret=aaaa&txTime=bbbb
-        //拉流地址格式：rtmp://8888.liveplay.myqcloud.com/live/8888_test_12345_test
-        //            http://8888.liveplay.myqcloud.com/live/8888_test_12345_test.flv
-        //            http://8888.liveplay.myqcloud.com/live/8888_test_12345_test.m3u8
-
-        String strLive = "/live/";
-        int index = strStreamUrl.indexOf(strLive);
-        if (index == -1) {
-            return null;
-        }
-
-        String strSubString = strStreamUrl.substring(index + strLive.length());
-        String [] strArrays = strSubString.split("[?.]");
-        if (strArrays.length > 0) {
-            return strArrays[0];
-        }
-
-        return null;
-    }
-
     /**
      * 滤镜定义
      */
@@ -873,6 +685,12 @@ public class TCUtils {
         return bmp;
     }
 
+    /**
+     * 绿幕定义
+     *
+     * @param index
+     * @return
+     */
     public static String getGreenFileName(int index) {
         String strGreenFileName;
         switch (index) {
@@ -892,8 +710,13 @@ public class TCUtils {
         return strGreenFileName;
     }
 
+    /**
+     * 录制权限检测：存储权限、摄像头权限、录音权限
+     * @param activity
+     * @return
+     */
     public static boolean checkRecordPermission(Activity activity) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             List<String> permissions = new ArrayList<>();
             if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -914,7 +737,4 @@ public class TCUtils {
 
         return true;
     }
-//    public static boolean supportLinkMic() {
-//        return Build.VERSION.SDK_INT >= 18;
-//    }
 }

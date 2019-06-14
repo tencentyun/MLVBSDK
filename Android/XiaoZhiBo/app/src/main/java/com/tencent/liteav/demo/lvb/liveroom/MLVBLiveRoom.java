@@ -8,6 +8,7 @@ import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.LoginInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.MLVBCommonDef;
 import com.tencent.rtmp.TXLiveConstants;
+import com.tencent.rtmp.TXLivePusher;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 /*
@@ -71,7 +72,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param listener 回调接口
      *
-     * @note 默认是在 Main Thread中回调，如果需要自定义回调线程，可使用 {@link MLVBLiveRoom#setListenerHandler(Handler)}
+     * @note 默认是在 Main Thread 中回调，如果需要自定义回调线程，可使用 {@link MLVBLiveRoom#setListenerHandler(Handler)}
      */
     public abstract void setListener(IMLVBLiveRoomListener listener);
 
@@ -233,7 +234,7 @@ public abstract class MLVBLiveRoom {
      *
 	 * 主播在收到 {@link IMLVBLiveRoomListener#onRequestJoinAnchor(AnchorInfo, String)} 回调之后会需要调用此接口来处理观众的连麦请求。
      *
-     * @param userID 观众ID
+     * @param userID 观众 ID
      * @param agree true：同意；false：拒绝
      * @param reason 同意/拒绝连麦的原因描述
      *
@@ -265,7 +266,7 @@ public abstract class MLVBLiveRoom {
      *
      * 主播调用此接口踢除连麦观众后，被踢连麦观众会收到 {@link IMLVBLiveRoomListener#onKickoutJoinAnchor()} 回调通知
      *
-     * @param userID 连麦观众ID
+     * @param userID 连麦观众 ID
      *
      * @see {@link IMLVBLiveRoomListener#onKickoutJoinAnchor()}
      */
@@ -282,7 +283,7 @@ public abstract class MLVBLiveRoom {
     /// @{
 
     /**
-     * 请求跨房PK
+     * 请求跨房 PK
 	 *
 	 * 主播和主播之间可以跨房间 PK，两个正在直播中的主播 A 和 B，他们之间的跨房 PK 流程如下：
 	 * 1. 【主播 A】调用 requestRoomPK() 向主播 B 发起连麦请求。
@@ -292,8 +293,8 @@ public abstract class MLVBLiveRoom {
 	 * 5. 【主播 A】会收到 {@link IMLVBLiveRoomListener.RequestRoomPKCallback} 回调通知，可以得知请求是否被同意。
 	 * 6. 【主播 A】如果请求被同意，则可以调用 startRemoteView() 显示主播 B 的视频画面。
      *
-     * @param userID 被邀约主播ID
-     * @param callback 请求跨房PK的结果回调
+     * @param userID 被邀约主播 ID
+     * @param callback 请求跨房 PK 的结果回调
      *
      * @see {@link IMLVBLiveRoomListener#onRequestRoomPK(AnchorInfo)}
      */
@@ -306,7 +307,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param userID 发起 PK 请求的主播 ID
      * @param agree true：同意；false：拒绝
-     * @param reason 同意/拒绝PK的原因描述
+     * @param reason 同意/拒绝 PK 的原因描述
      *
      * @return 0：响应成功；非0：响应失败
      */
@@ -386,7 +387,7 @@ public abstract class MLVBLiveRoom {
     /**
      * 是否屏蔽本地音频
      *
-     * @param mute true:屏蔽 false:开启
+     * @param mute true：屏蔽 false：开启
      */
     public abstract void muteLocalAudio(boolean mute);
 
@@ -394,14 +395,14 @@ public abstract class MLVBLiveRoom {
      * 设置指定用户是否静音
      *
      * @param userID 对方的用户标识
-     * @param mute true:静音 false:非静音
+     * @param mute true：静音 false：非静音
      */
     public abstract void muteRemoteAudio(String userID, boolean mute);
 
     /**
      * 设置所有远端用户是否静音
      *
-     * @param mute true:静音 false:非静音
+     * @param mute true：静音 false：非静音
      */
     public abstract void muteAllRemoteAudio(boolean mute);
 
@@ -493,9 +494,9 @@ public abstract class MLVBLiveRoom {
      * 添加水印，height 不用设置，sdk 内部会根据水印宽高比自动计算 height
      *
      * @param image 水印图片 null 表示清除水印
-     * @param x     归一化水印位置的 X 轴坐标，取值[0,1]
-     * @param y     归一化水印位置的 Y 轴坐标，取值[0,1]
-     * @param width 归一化水印宽度，取值[0,1]
+     * @param x     归一化水印位置的 X 轴坐标，取值[0，1]
+     * @param y     归一化水印位置的 Y 轴坐标，取值[0，1]
+     * @param width 归一化水印宽度，取值[0，1]
      *
      */
     public abstract void setWatermark(Bitmap image, float x, float y, float width);
@@ -510,14 +511,14 @@ public abstract class MLVBLiveRoom {
     /**
      * 设置绿幕文件
      *
-     * 目前图片支持jpg/png，视频支持mp4/3gp等Android系统支持的格式
+     * 目前图片支持 jpg/png，视频支持 mp4/3gp 等 Android 系统支持的格式
      *
      * @param file 绿幕文件位置，支持两种方式：
-     *             1.资源文件放在assets目录，path直接取文件名
-     *             2.path取文件绝对路径
+     *             1.资源文件放在 assets 目录，path 直接取文件名
+     *             2.path 取文件绝对路径
      * @return false：调用失败；true：调用成功
      *
-     * @note API要求18
+     * @note API 要求18
      */
     public abstract boolean setGreenScreenFile(String file);
 
@@ -529,9 +530,9 @@ public abstract class MLVBLiveRoom {
     public abstract void setEyeScaleLevel(int level);
 
     /**
-     * 设置V脸（特权版本有效，普通版本设置此参数无效）
+     * 设置 V 脸（特权版本有效，普通版本设置此参数无效）
      *
-     * @param level V脸级别取值范围 0 ~ 9。数值越大，效果越明显。默认值：0
+     * @param level V 脸级别取值范围 0 ~ 9。数值越大，效果越明显。默认值：0
      */
     public abstract void setFaceVLevel(int level);
 
@@ -622,6 +623,13 @@ public abstract class MLVBLiveRoom {
     public abstract boolean playBGM(String path);
 
     /**
+     * 设置背景音乐的回调接口
+     *
+     * @param notify 回调接口
+     */
+    public abstract void setBGMNofify(TXLivePusher.OnBGMNotify notify);
+
+    /**
      * 停止播放背景音乐
      */
     public abstract void stopBGM();
@@ -683,11 +691,23 @@ public abstract class MLVBLiveRoom {
     /**
      * 设置背景音乐的音调。
      *
-     * 该接口用于混音处理,比如将背景音乐与麦克风采集到的声音混合后播放。
+     * 该接口用于混音处理，比如将背景音乐与麦克风采集到的声音混合后播放。
      *
      * @param pitch 音调，0为正常音调，范围是 -1 - 1。
      */
-    public abstract void setBgmPitch(float pitch);
+    public abstract void setBGMPitch(float pitch);
+
+    /**
+     * 指定背景音乐的播放位置
+     *
+     * @note 请尽量避免频繁地调用该接口，因为该接口可能会再次读写 BGM 文件，耗时稍高。
+     *       例如：当配合进度条使用时，请在进度条拖动完毕的回调中调用，而避免在拖动过程中实时调用。
+     *
+     * @param position 背景音乐的播放位置，单位ms。
+     *
+     * @return 结果是否成功，true：成功；false：失败。
+     */
+    public abstract boolean setBGMPosition(int position);
 
     /// @}
 }

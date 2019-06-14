@@ -10,13 +10,14 @@ import android.widget.Toast;
 
 import com.tencent.qcloud.xiaozhibo.R;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
-import com.tencent.qcloud.xiaozhibo.im.TCSimpleUserInfo;
+import com.tencent.qcloud.xiaozhibo.common.msg.TCSimpleUserInfo;
 
 import java.util.LinkedList;
-
 /**
- * Created by teckjiang on 2016/8/21.
- * 直播头像列表Adapter
+ * Module:   TCUserAvatarListAdapter
+ *
+ * Function: 直播头像列表Adapter
+ *
  */
 public class TCUserAvatarListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -96,7 +97,7 @@ public class TCUserAvatarListAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        TCUtils.showPicWithUrl(mContext, ((AvatarViewHolder)holder).ivAvatar,mUserAvatarList.get(position).headpic,
+        TCUtils.showPicWithUrl(mContext, ((AvatarViewHolder)holder).ivAvatar,mUserAvatarList.get(position).avatar,
                 R.drawable.face);
 
     }

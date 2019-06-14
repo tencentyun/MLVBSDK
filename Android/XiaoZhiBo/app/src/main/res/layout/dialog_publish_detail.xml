@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/btn_cancel"
+        android:id="@+id/anchor_btn_cancel"
         android:layout_marginTop="50dp"
         android:padding="5dp"
         android:text="@string/btn_return_home"

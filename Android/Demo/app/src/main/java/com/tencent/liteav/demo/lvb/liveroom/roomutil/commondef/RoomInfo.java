@@ -116,7 +116,7 @@ public class RoomInfo implements Parcelable {
         dest.writeList(this.pushers);
     }
 
-    public static final Parcelable.Creator<RoomInfo> CREATOR = new Parcelable.Creator<RoomInfo>() {
+    public static final Creator<RoomInfo> CREATOR = new Creator<RoomInfo>() {
         @Override
         public RoomInfo createFromParcel(Parcel source) {
             return new RoomInfo(source);

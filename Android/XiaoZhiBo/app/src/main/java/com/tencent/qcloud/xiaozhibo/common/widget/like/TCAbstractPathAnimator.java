@@ -27,8 +27,12 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
+
 /**
- * 飘心路径
+ * Module:   TCAbstractPathAnimator
+ *
+ * Function: 心心飘扬的动画基类
+ *
  */
 public abstract class TCAbstractPathAnimator {
     private final Random mRandom;

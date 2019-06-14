@@ -1,10 +1,8 @@
-//
-//  TCLog.h
-//  TCLVBIMDemo
-//
-//  Created by kuenzhang on 16/9/5.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCLog
+ *
+ * Function: 日志模块
+ */
 
 #import <Foundation/Foundation.h>
 #import "TXLiveBase.h"
@@ -20,8 +18,8 @@
 
 + (instancetype)shareInstance;
 
--(void) log:(NSString *)formatStr, ...;
+- (void)log:(NSString *)formatStr, ...;
 
--(void) onLog:(NSString*)log LogLevel:(int)level WhichModule:(NSString*)module;
+- (void)onLog:(NSString*)log LogLevel:(int)level WhichModule:(NSString *)module;
 
 @end

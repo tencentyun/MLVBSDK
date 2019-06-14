@@ -170,7 +170,7 @@ public class AndroidPermissions {
                 setTittle(title);
             }
 
-            public HintDialog.Builder setTittle(String title){
+            public Builder setTittle(String title){
                 this.titile = title;
                 return this;
             }
@@ -194,7 +194,7 @@ public class AndroidPermissions {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        HintDialog.Builder.this.build().show();
+                        Builder.this.build().show();
                     }
                 });
             }

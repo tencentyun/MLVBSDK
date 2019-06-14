@@ -1,21 +1,17 @@
-//
-//  TCMainTabViewController.m
-//  TCLVBIMDemo
-//
-//  Created by annidyfeng on 16/7/29.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCMainTabViewController
+ *
+ * Function: 主界面的Tab控件，用于切换列表、推流和个人资料页面
+ */
 
 #import "TCMainTabViewController.h"
-#import "TCNavigationController.h"
-//#import "TCShowViewController.h"
-#import "TCLiveListViewController.h"
-#import "TCPushViewController.h"
+#import "TCRoomListViewController.h"
+#import "TCAnchorViewController.h"
 #import "UIImage+Additions.h"
-#import "TCPushPrepareViewController.h"
-#import "TCUserInfoViewController.h"
+#import "TCAnchorPrepareViewController.h"
+#import "TCUserProfileViewController.h"
 #import "UIAlertView+BlocksKit.h"
-#import "TCLoginModel.h"
+#import "TCAccountMgrModel.h"
 #import "UIView+Additions.h"
 
 #define BOTTOM_VIEW_HEIGHT              225
@@ -25,10 +21,9 @@ typedef enum : NSUInteger {
     PickerComposite = 2
 } PickerType;
 
-@interface TCMainTabViewController ()<UITabBarControllerDelegate>
+@interface TCMainTabViewController () <UITabBarControllerDelegate>
 
-@property UIButton *liveBtn;
-
+@property (nonatomic, strong) UIButton *liveBtn;
 @property (nonatomic, strong) MLVBLiveRoom *liveRoom;
 @property (nonatomic, assign) BOOL     initSucc;
 
@@ -36,8 +31,7 @@ typedef enum : NSUInteger {
 
 @implementation TCMainTabViewController
 {
-    TCLiveListViewController *_showVC;
-    
+    TCRoomListViewController *_showVC;
     PickerType               _pickerType;
 }
 
@@ -81,17 +75,17 @@ typedef enum : NSUInteger {
     self.tabBar.clipsToBounds = NO;
     self.tabBar.tintColor = [UIColor whiteColor];
     self.tabBar.shadowImage = [[UIImage alloc]init];
-    _showVC = [TCLiveListViewController new];
+    _showVC = [TCRoomListViewController new];
     
     UIViewController *_ = [UIViewController new];
-    UIViewController *v3 = [TCUserInfoViewController new];
+    UIViewController *v3 = [TCUserProfileViewController new];
     self.viewControllers = @[_showVC, _, v3];
     
     [self addChildViewController:_showVC imageName:@"video_normal" selectedImageName:@"video_click" title:nil];
     [self addChildViewController:_ imageName:nil selectedImageName:nil title:nil];
     [self addChildViewController:v3 imageName:@"User_normal" selectedImageName:@"User_click" title:nil];
     
-    self.delegate = self; // this make tabBaController call
+    self.delegate = self; // this make tabBarController call
     [self setSelectedIndex:0];
 }
 
@@ -111,7 +105,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)addChildViewController:(UIViewController *)childController imageName:(NSString *)normalImg selectedImageName:(NSString *)selectImg title:(NSString *)title {
-    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:childController];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:childController];
     childController.tabBarItem.image = normalImg ? [[UIImage imageNamed:normalImg] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] : nil;
     childController.tabBarItem.selectedImage = selectImg ? [[UIImage imageNamed:selectImg] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] : nil;
     childController.title = title;
@@ -123,8 +117,7 @@ typedef enum : NSUInteger {
     return YES;
 }
 
-- (void)onLiveButtonClicked
-{
+- (void)onLiveButtonClicked {
     if (_showVC != nil && _showVC.playVC != nil) {
         _showVC.playVC = nil;
     }
@@ -132,10 +125,9 @@ typedef enum : NSUInteger {
     [self showPushSettingView];
 }
 
-- (void)showPushSettingView
-{
-    TCPushPrepareViewController *publish = [TCPushPrepareViewController new];
-    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:publish];
+- (void)showPushSettingView {
+    TCAnchorPrepareViewController *publish = [TCAnchorPrepareViewController new];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:publish];
     [self presentViewController:nav animated:YES completion:nil];
 }
 
@@ -143,10 +135,9 @@ typedef enum : NSUInteger {
     return UIInterfaceOrientationMaskPortrait;
 }
 
-
-- (void)initLiveRoom
-{
+- (void)initLiveRoom {
     self.liveRoom = [MLVBLiveRoom sharedInstance];
-    [TCLiveListMgr sharedMgr].liveRoom = self.liveRoom;
+    [TCRoomListMgr sharedMgr].liveRoom = self.liveRoom;
 }
+
 @end

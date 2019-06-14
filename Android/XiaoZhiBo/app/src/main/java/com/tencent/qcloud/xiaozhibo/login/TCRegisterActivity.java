@@ -22,21 +22,24 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.tencent.qcloud.xiaozhibo.R;
+import com.tencent.qcloud.xiaozhibo.common.net.TCHTTPMgr;
+import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
-import com.tencent.qcloud.xiaozhibo.mainui.TCMainActivity;
+import com.tencent.qcloud.xiaozhibo.main.TCMainActivity;
 
 import org.json.JSONObject;
 
 
 /**
- * Created by RTMP on 2016/8/1
+ *  Module:   TCRegisterActivity
+ *
+ *  Function: 注册小直播账号
+ *
  */
 public class TCRegisterActivity extends Activity  {
 
     public static final String TAG = TCRegisterActivity.class.getSimpleName();
-
-    private String mPassword;
 
     //共用控件
     private RelativeLayout relativeLayout;
@@ -220,8 +223,6 @@ public class TCRegisterActivity extends Activity  {
             return ;
         }
 
-        mPassword = password;
-
         register(username, password);
     }
 
@@ -246,25 +247,27 @@ public class TCRegisterActivity extends Activity  {
 
     private void register(final String username, final String password) {
         final TCUserMgr tcLoginMgr = TCUserMgr.getInstance();
-        tcLoginMgr.register(username, password, new TCUserMgr.Callback() {
+        tcLoginMgr.register(username, password, new TCHTTPMgr.Callback() {
             @Override
             public void onSuccess(JSONObject data) {
                 showToast("成功注册");
-                tcLoginMgr.login(username, password, new TCUserMgr.Callback() {
+
+                // 注册成功之后，将自动登录。
+                tcLoginMgr.login(username, password, new TCHTTPMgr.Callback() {
                     @Override
                     public void onSuccess(JSONObject data) {
                         showToast("自动登录成功");
-                        jumpToHomeActivity();
+                        jumpToHomeActivity(); // 登录成功，跳转到 MainActivity
                     }
 
                     @Override
                     public void onFailure(int code, final String msg) {
                         showToast("自动登录失败");
                         showOnLoadingInUIThread(false);
-                        jumpToLoginActivity();
+                        jumpToLoginActivity(); // 登录失败，登录界面。
                     }
                 });
-                tcLoginMgr.uploadLogs(TCConstants.ELK_ACTION_REGISTER, username, 0, "注册成功", null);
+                TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, 0, "注册成功", null);
             }
 
             @Override
@@ -272,13 +275,13 @@ public class TCRegisterActivity extends Activity  {
                 String errorMsg = msg;
                 if (code == 610) {
                     errorMsg = "用户名格式错误";
-                    tcLoginMgr.uploadLogs(TCConstants.ELK_ACTION_REGISTER, username, -1, errorMsg, null);
+                    TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -1, errorMsg, null);
                 } else if (code == 611){
                     errorMsg = "密码格式错误";
-                    tcLoginMgr.uploadLogs(TCConstants.ELK_ACTION_REGISTER, username, -2, errorMsg, null);
+                    TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -2, errorMsg, null);
                 } else if (code == 612){
                     errorMsg = "用户已存在";
-                    tcLoginMgr.uploadLogs(TCConstants.ELK_ACTION_REGISTER, username, -3, errorMsg, null);
+                    TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -3, errorMsg, null);
                 }
                 showToast("注册失败 ：" + errorMsg);
                 showOnLoadingInUIThread(false);

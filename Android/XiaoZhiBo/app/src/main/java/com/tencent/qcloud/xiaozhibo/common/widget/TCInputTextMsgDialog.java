@@ -21,7 +21,10 @@ import com.tencent.qcloud.xiaozhibo.R;
 
 
 /**
- * 文本输入框
+ * Module:   TCInputTextMsgDialog
+ *
+ * Function: 观众、主播的弹幕或普通文本的输入框
+ *
  */
 public class TCInputTextMsgDialog extends Dialog {
 
@@ -40,8 +43,6 @@ public class TCInputTextMsgDialog extends Dialog {
     private LinearLayout mConfirmArea;
     private OnTextSendListener mOnTextSendListener;
     private boolean mDanmuOpen = false;
-//    private final String reg = "[`~@#$%^&*()-_+=|{}':;,/.<>￥…（）—【】‘；：”“’。，、]";
-//    private Pattern pattern = Pattern.compile(reg);
 
     public TCInputTextMsgDialog(Context context, int theme) {
         super(context, theme);

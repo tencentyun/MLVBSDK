@@ -40,6 +40,10 @@ import master.flame.danmaku.danmaku.model.android.SpannedCacheStuffer;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 
 /**
+ * Module:   TCDanmuMgr
+ *
+ * Function: 弹幕管理类
+ *
  * 弹幕管理类，代码源自
  * https://github.com/wangpeiyuan/DanmuDemo
  * https://github.com/Bilibili/DanmakuFlameMaster

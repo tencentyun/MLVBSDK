@@ -32,7 +32,7 @@ public class MusicSettingPannel extends FrameLayout implements SeekBar.OnSeekBar
     }
 
     public interface IOnMusicParamsChangeListener{
-        void onMusicParamsChange(MusicSettingPannel.MusicParams params, int key);
+        void onMusicParamsChange(MusicParams params, int key);
     }
 
     public void setListener(IOnMusicParamsChangeListener listener){

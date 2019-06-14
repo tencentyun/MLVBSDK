@@ -15,6 +15,13 @@ import android.graphics.drawable.Drawable;
 
 import com.tencent.qcloud.xiaozhibo.R;
 
+
+/**
+ * Module:   TCCircleDrawable
+ *
+ * Function: 弹幕所需的圆形 Drawable
+ *
+ */
 public class TCCircleDrawable extends Drawable {
 
     private Paint   mPaint;

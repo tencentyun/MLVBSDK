@@ -336,7 +336,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
             mActivityInterface.getLiveRoom().setCameraMuteImage(BitmapFactory.decodeResource(getResources(), R.drawable.pause_publish));
             mActivityInterface.getLiveRoom().setBeautyStyle(mBeautyStyle, mBeautyLevel, mWhiteningLevel, mRuddyLevel);
             mActivityInterface.getLiveRoom().muteLocalAudio(mPusherMute);
-            mActivityInterface.getLiveRoom().createRoom("",mRoomInfo.roomInfo, new IMLVBLiveRoomListener.CreateRoomCallback() {
+            mActivityInterface.getLiveRoom().createRoom("",mRoomInfo.roomInfo, new CreateRoomCallback() {
                 @Override
                 public void onSuccess(String roomId) {
                     mRoomInfo.roomID = roomId;
@@ -349,7 +349,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
             });
         }
         else {
-            mActivityInterface.getLiveRoom().enterRoom(mRoomInfo.roomID, videoView, new IMLVBLiveRoomListener.EnterRoomCallback() {
+            mActivityInterface.getLiveRoom().enterRoom(mRoomInfo.roomID, videoView, new EnterRoomCallback() {
                 @Override
                 public void onError(int errCode, String errInfo) {
                     errorGoBack("进入直播间错误", errCode, errInfo);
@@ -389,13 +389,14 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
     @Override
     public void onDetach() {
         super.onDetach();
+        hideNoticeToast();
         mActivity = null;
         mActivityInterface = null;
     }
 
     public void onBackPressed() {
         if (mActivityInterface != null) {
-            mActivityInterface.getLiveRoom().exitRoom(new IMLVBLiveRoomListener.ExitRoomCallback() {
+            mActivityInterface.getLiveRoom().exitRoom(new ExitRoomCallback() {
                 @Override
                 public void onSuccess() {
                     Log.i(TAG, "exitRoom Success");
@@ -550,7 +551,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
     }
 
     private void sendMessage(final String message){
-        mActivityInterface.getLiveRoom().sendRoomTextMsg(message, new IMLVBLiveRoomListener.SendRoomTextMsgCallback() {
+        mActivityInterface.getLiveRoom().sendRoomTextMsg(message, new SendRoomTextMsgCallback() {
             @Override
             public void onError(int errCode, String errInfo) {
                 new AlertDialog.Builder(mActivity, R.style.RtmpRoomDialogTheme).setMessage(errInfo)
@@ -660,7 +661,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
         }
 
         videoView.startLoading();
-        mActivityInterface.getLiveRoom().startRemoteView(anchorInfo, videoView.videoView, new IMLVBLiveRoomListener.PlayCallback() {
+        mActivityInterface.getLiveRoom().startRemoteView(anchorInfo, videoView.videoView, new PlayCallback() {
             @Override
             public void onBegin() {
                 videoView.stopLoading(mCreateRoom); //推流成功，stopLoading 大主播显示出踢人的button
@@ -984,7 +985,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
         mBtnLinkMic.setEnabled(false);
         showNoticeToast("等待主播接受......");
 
-        mActivityInterface.getLiveRoom().requestJoinAnchor("", new IMLVBLiveRoomListener.RequestJoinAnchorCallback() {
+        mActivityInterface.getLiveRoom().requestJoinAnchor("", new RequestJoinAnchorCallback() {
             @Override
             public void onAccept() {
                 hideNoticeToast();
@@ -997,7 +998,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
                 mActivityInterface.getLiveRoom().startLocalPreview(true, videoView.videoView);
                 mActivityInterface.getLiveRoom().setCameraMuteImage(BitmapFactory.decodeResource(getResources(), R.drawable.pause_publish));
                 mActivityInterface.getLiveRoom().setBeautyStyle(mBeautyStyle, mBeautyLevel, mWhiteningLevel, mRuddyLevel);
-                mActivityInterface.getLiveRoom().joinAnchor(new IMLVBLiveRoomListener.JoinAnchorCallback() {
+                mActivityInterface.getLiveRoom().joinAnchor(new JoinAnchorCallback() {
                     @Override
                     public void onError(int errCode, String errInfo) {
                         stopLinkMic();
@@ -1053,7 +1054,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
         recycleVideoView(mSelfUserID);
 
         mActivityInterface.getLiveRoom().stopLocalPreview();
-        mActivityInterface.getLiveRoom().quitJoinAnchor(new IMLVBLiveRoomListener.QuitAnchorCallback() {
+        mActivityInterface.getLiveRoom().quitJoinAnchor(new QuitAnchorCallback() {
             @Override
             public void onError(int errCode, String errInfo) {
 
@@ -1077,7 +1078,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
             return;
         }
 
-        mActivityInterface.getLiveRoom().getRoomList(0, 1000, new IMLVBLiveRoomListener.GetRoomListCallback() {
+        mActivityInterface.getLiveRoom().getRoomList(0, 1000, new GetRoomListCallback() {
             @Override
             public void onError(int errCode, String errInfo) {
                 Toast.makeText(getActivity(), "获取在线主播列表失败！", Toast.LENGTH_SHORT).show();
@@ -1128,7 +1129,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
         mBtnPK.setEnabled(false);
         showNoticeToast("PK请求已发出，等待对方接受......");
 
-        mActivityInterface.getLiveRoom().requestRoomPK(userID, new IMLVBLiveRoomListener.RequestRoomPKCallback() {
+        mActivityInterface.getLiveRoom().requestRoomPK(userID, new RequestRoomPKCallback() {
             @Override
             public void onAccept(AnchorInfo anchorInfo) {
                 mPKAnchorInfo = anchorInfo;
@@ -1182,7 +1183,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
 
         TXCloudVideoView videoView = (TXCloudVideoView)mActivity.findViewById(R.id.video_view_pk);
         videoView.setLogMargin(12, 12, 35, 12);
-        mActivityInterface.getLiveRoom().startRemoteView(anchorInfo, videoView, new IMLVBLiveRoomListener.PlayCallback() {
+        mActivityInterface.getLiveRoom().startRemoteView(anchorInfo, videoView, new PlayCallback() {
             @Override
             public void onBegin() {
                 showPKLoadingAnimation(false);
@@ -1213,7 +1214,7 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
 
         mActivityInterface.getLiveRoom().stopRemoteView(anchorInfo);
         if (force) {
-            mActivityInterface.getLiveRoom().quitRoomPK(new IMLVBLiveRoomListener.QuitRoomPKCallback() {
+            mActivityInterface.getLiveRoom().quitRoomPK(new QuitRoomPKCallback() {
                 @Override
                 public void onError(int errCode, String errInfo) {
 

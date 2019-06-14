@@ -1,23 +1,22 @@
-//
-//  AppDelegate.m
-//  TCLVBIMDemo
-//
-//  Created by kuenzhang on 16/7/29.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: AppDelegate
+ *
+ * Function: App入口 & 初始化
+ */
 
 #import "AppDelegate.h"
-#import "SDKHeader.h"
+#import "TXLivePlayer.h"
 #import "TCMainTabViewController.h"
 #import "TCLoginViewController.h"
 #import "TCLog.h"
-#import "TCConstants.h"
+#import "TCGlobalConfig.h"
 #import <Bugly/Bugly.h>
 #import "TCUserAgreementController.h"
 #import "TCUtil.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UISplitViewControllerDelegate>
 {
+    // 统计App使用时长
     uint64_t          _beginTime;
     uint64_t          _endTime;
 }
@@ -25,35 +24,37 @@
 
 @implementation AppDelegate
 
++ (instancetype)sharedInstance {
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // 设置默认属性
     application.statusBarStyle = UIStatusBarStyleDefault;
-    
-    [self initCrashReport];
-    // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
-    [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#License Key#>"];
-
-    //初始化log模块
-    [TXLiveBase sharedInstance].delegate = [TCLog shareInstance];
     
     UIColor *blueColor = [UIColor colorWithRed:51/255.0 green:139/255.0 blue:255/255.0 alpha:1.0];
     [[UINavigationBar appearance] setBarTintColor:blueColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     self.window.backgroundColor = [UIColor whiteColor];
-   
+
+    
+    // 初始化crash上报
+    [self initCrashReport];
+    
+    // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
+
+    [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#License Key#>"];
+    
+    //初始化log模块
+    [TXLiveBase sharedInstance].delegate = [TCLog shareInstance];
+    
+    
+
+    // 进入登录界面
     [self enterLoginUI];
-    
-    // ELK
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:isFirstInstallApp]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:isFirstInstallApp];
-    }
-    
-    // Config UMSocial
-    [TCUtil initializeShare];
-    
     _beginTime = [[NSDate date] timeIntervalSince1970];
     
     if ([kHttpServerAddr length] == 0) {
@@ -67,7 +68,7 @@
         
         [self.window.rootViewController presentViewController:controller animated:YES completion:nil];
     }
-    
+
     return YES;
 }
 
@@ -96,7 +97,6 @@
 }
 
 - (void)initCrashReport {
-
     //启动bugly组件，bugly组件为腾讯提供的用于crash上报和分析的开放组件，如果您不需要该组件，可以自行移除
     BuglyConfig * config = [[BuglyConfig alloc] init];
     config.version = [TXLiveBase getSDKVersionStr];
@@ -108,8 +108,7 @@
     
     [Bugly startWithAppId:BUGLY_APP_ID config:config];
     
-    NSLog(@"rtmp demo init crash report");
-    
+    NSLog(@"xiaozhibo init crash report");
 }
 
 - (void)enterLoginUI {
@@ -120,37 +119,66 @@
 - (void)enterMainUI {
     if (YES == [[[NSUserDefaults standardUserDefaults] objectForKey:hasEnteredXiaoZhiBo] boolValue]) {
         [self confirmEnterMainUI];
-    }else{
+    } else {
         [self enterUserAgreementUI];
     }
 }
 
-- (void)confirmEnterMainUI{
+- (void)confirmEnterMainUI {
     self.window.rootViewController = [[TCMainTabViewController alloc] init];
     [self.window makeKeyAndVisible];
 }
 
-- (void)enterUserAgreementUI{
+- (void)enterUserAgreementUI {
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[TCUserAgreementController alloc] init]];
 }
-/*
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
-    if (!result) {
-        
+
+#pragma mark - utils
+
+// 获取当前活动的NavigationController
+- (UINavigationController *)navigationViewController {
+    UIWindow *window = self.window;
+    if ([window.rootViewController isKindOfClass:[UINavigationController class]]) {
+        return (UINavigationController *)window.rootViewController;
+    } else if ([window.rootViewController isKindOfClass:[UITabBarController class]]) {
+        UIViewController *selectVc = [((UITabBarController *)window.rootViewController) selectedViewController];
+        if ([selectVc isKindOfClass:[UINavigationController class]]) {
+            return (UINavigationController *)selectVc;
+        }
     }
-    return result;
+    return nil;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
-    if (!result) {
-        
-    }
-    return result;
+- (UIViewController *)topViewController {
+    UINavigationController *nav = [self navigationViewController];
+    return nav.topViewController;
 }
-*/
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    viewController.hidesBottomBarWhenPushed = YES;
+    [[self navigationViewController] pushViewController:viewController animated:animated];
+}
+
+- (UIViewController *)popViewController:(BOOL)animated {
+    return [[self navigationViewController] popViewControllerAnimated:animated];
+}
+
+- (void)presentViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion {
+    UIViewController *top = [self topViewController];
+    if (vc.navigationController == nil) {
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [top presentViewController:nav animated:animated completion:completion];
+    } else {
+        [top presentViewController:vc animated:animated completion:completion];
+    }
+}
+
+- (void)dismissViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (vc.navigationController != [[AppDelegate sharedInstance] navigationViewController]) {
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self popViewController:animated];
+    }
+}
 
 @end

@@ -1,10 +1,9 @@
-//
-//  TCLog.m
-//  TCLVBIMDemo
-//
-//  Created by kuenzhang on 16/9/5.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Module: TCLog
+ *
+ * Function: 日志模块
+ */
+
 
 #import "TCLog.h"
 
@@ -16,8 +15,7 @@
 
 static TCLog *_shareInstance = nil;
 
-+ (instancetype)shareInstance
-{
++ (instancetype)shareInstance {
     static dispatch_once_t predicate;
     
     dispatch_once(&predicate, ^{
@@ -26,8 +24,7 @@ static TCLog *_shareInstance = nil;
     return _shareInstance;
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init])
     {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask,YES);
@@ -41,8 +38,7 @@ static TCLog *_shareInstance = nil;
     return self;
 }
 
--(void) dealloc
-{
+- (void)dealloc {
     if (_pFileHandle)
     {
         fclose(_pFileHandle);
@@ -50,8 +46,7 @@ static TCLog *_shareInstance = nil;
     _pFileHandle = NULL;
 }
 
--(void) onLog:(NSString*)log LogLevel:(int)level WhichModule:(NSString*)module
-{
+- (void)onLog:(NSString*)log LogLevel:(int)level WhichModule:(NSString*)module {
     NSLog(@"rtmpsdk:%@",log);
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -61,23 +56,20 @@ static TCLog *_shareInstance = nil;
     [self writeLogFile:logMsg];
 }
 
--(void) writeLogFile:(NSString*)log
-{
-    if (_pFileHandle == NULL)
-    {
+- (void)writeLogFile:(NSString*)log {
+    if (_pFileHandle == NULL) {
         _pFileHandle = fopen((char*)_logFilePath.UTF8String, "aw+");
     }
     
-    if (_pFileHandle)
-    {
+    if (_pFileHandle) {
         fwrite(log.UTF8String, 1, strlen(log.UTF8String), _pFileHandle);
     }
 }
 
--(void) log:(NSString *)formatStr, ...
-{
-    if (!formatStr)
+- (void)log:(NSString *)formatStr, ... {
+    if (!formatStr) {
         return;
+    }
     
     va_list arglist;
     va_start(arglist, formatStr);
@@ -92,4 +84,5 @@ static TCLog *_shareInstance = nil;
     NSString *logMsg = [NSString stringWithFormat:@"%@|applog|%@\n",formatDate,outStr];
     [self writeLogFile:logMsg];
 }
+
 @end

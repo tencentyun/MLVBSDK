@@ -44,22 +44,24 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile fileTree(include: ['*.jar'], dir: 'src/main/jniLibs')
-    compile fileTree(include: ['*.jar'], dir: 'src/main/jniLibs/upload')
+//  COS 上传需要依赖的jar
+    compile fileTree(include: ['*.jar'], dir: 'libs/upload')
+    compile(name: 'LiteAVSDK_Professional_6.5.7272', ext: 'aar')
     compile 'com.android.support:design:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    //    compile 'com.android.volley:volley:1.0.0'
-    compile 'com.github.ctiao:dfm:0.4.4'
-    //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta1' // or 1.4-beta1
-    //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1' // or 1.4-beta1
-    //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1' // or 1.4-beta1
-    compile(name: 'volley-1.0.0', ext: 'aar')
+//  MLVB 需要依赖 okhttp 拦截器
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+//  MLVB 需要使用 gson 进行 json 解析
+    compile 'com.google.code.gson:gson:2.3.1'
+//  MLVB 需要依赖腾讯云 IM 服务
+    compile 'com.tencent.imsdk:imsdk:4.3.118'
+//  弹幕功能需要依赖此库
+    compile 'com.github.ctiao:dfm:0.4.4'
+//  Demo 依赖的图片加载库
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+//  Dex 多分包依赖
     compile 'com.android.support:multidex:1.0.0'
-    compile 'com.facebook.fresco:fresco:0.7.0'
-    compile files('src/main/jniLibs/imsdk-4.3.118.jar')
-    compile(name:'LiteAVSDK_Professional_6.4.7328', ext:'aar')
+//  Demo 用于 crash 上报的 bugly 组件
+    compile 'com.tencent.bugly:crashreport:3.0.0'
 }
 

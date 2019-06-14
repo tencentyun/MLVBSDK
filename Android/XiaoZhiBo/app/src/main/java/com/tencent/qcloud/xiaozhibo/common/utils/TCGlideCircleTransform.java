@@ -7,7 +7,10 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 /**
- * Glide图像裁剪
+ * Module:   TCGlideCircleTransform
+ *
+ * Function: Glide图像裁剪
+ *
  */
 public class TCGlideCircleTransform extends BitmapTransformation {
     public TCGlideCircleTransform(Context context){

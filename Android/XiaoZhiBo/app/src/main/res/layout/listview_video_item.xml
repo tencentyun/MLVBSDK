@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/cover"
+            android:id="@+id/anchor_btn_cover"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:scaleType="centerCrop" />
@@ -63,7 +63,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/live_title"
+                    android:id="@+id/anchor_tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxWidth="200dp"

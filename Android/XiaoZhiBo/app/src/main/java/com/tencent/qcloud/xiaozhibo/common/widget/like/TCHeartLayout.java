@@ -28,9 +28,11 @@ import com.tencent.qcloud.xiaozhibo.R;
 
 import java.util.Random;
 
-
 /**
- * 飘心动画界面布局类
+ * Module:   TCHeartLayout
+ *
+ * Function: 飘心动画界面布局类
+ *
  * 通过动画控制每个心形界面的显示
  * TCPathAnimator 控制显示路径
  * TCHeartView 单个心形界面

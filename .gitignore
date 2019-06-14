@@ -1,6 +1,9 @@
 Android/XiaoZhiBo/.idea
 Android/XiaoZhiBo/.gradle
 Android/XiaoZhiBo/app/build/
+Android/XiaoZhiBo/build.gradle
+Android/XiaoZhiBo/gradle.properties
+
 .gradle
 .idea
 Android/Demo/.gradle
@@ -8,8 +11,10 @@ Android/Demo/.idea
 Android/Demo/app/build
 Android/Demo/lib_tccommon/build
 
+
 .DS_Store
 .vscode
 .project
 .settings
 xcuserdata
+*.iml

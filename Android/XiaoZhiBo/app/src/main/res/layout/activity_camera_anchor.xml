@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/anchor_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+    <!--连麦：播放小窗口定义 开始-->
+
+    <!--连麦：第一个播放小窗口-->
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="56dp"
+        android:layout_marginRight="8dp">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_player1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        </com.tencent.rtmp.ui.TXCloudVideoView>
+
+        <FrameLayout
+            android:id="@+id/loading_background1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_kick_out1"
+        android:layout_alignTop="@id/frameLayout1"
+        android:layout_alignRight="@id/frameLayout1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/btn_kick_out"
+        android:layout_gravity="top|right"
+        android:visibility="invisible"
+        android:onClick="onClick"/>
+
+    <!--连麦：第二个播放小窗口-->
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/frameLayout1"
+        android:layout_alignRight="@+id/frameLayout1">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_player2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        </com.tencent.rtmp.ui.TXCloudVideoView>
+
+        <FrameLayout
+            android:id="@+id/loading_background2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_kick_out2"
+        android:layout_alignTop="@id/frameLayout2"
+        android:layout_alignRight="@id/frameLayout2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/btn_kick_out"
+        android:layout_gravity="top|right"
+        android:visibility="invisible"
+        android:onClick="onClick"/>
+
+    <!--连麦：第三个播放小窗口-->
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/frameLayout2"
+        android:layout_alignRight="@+id/frameLayout2">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_player3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+        </com.tencent.rtmp.ui.TXCloudVideoView>
+
+        <FrameLayout
+            android:id="@+id/loading_background3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_kick_out3"
+        android:layout_alignTop="@id/frameLayout3"
+        android:layout_alignRight="@id/frameLayout3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/btn_kick_out"
+        android:layout_gravity="top|right"
+        android:visibility="invisible"
+        android:onClick="onClick"/>
+
+    <!--连麦：播放小窗口定义 结束-->
+
+    <RelativeLayout
+        android:id="@+id/anchor_rl_controllLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include android:id="@+id/layout_live_pusher_info"
+            layout="@layout/layout_live_pusher_info"
+            android:layout_margin="5dp"
+            android:layout_width="110dp"
+            android:layout_height="35dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/anchor_rv_avatar"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/layout_live_pusher_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/btn_message_input"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/icon_message"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/anchor_btn_flash"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/icon_flash"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/switch_cam"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/icon_switch_camera_on"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/beauty_btn"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/icon_beauty_drawable"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_audio_ctrl"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/music_big"
+                android:onClick="onClick"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_log"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/icon_log_off"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="@dimen/live_btn_size"
+                android:layout_height="@dimen/live_btn_size"
+                android:background="@drawable/btn_close"
+                android:onClick="onClick"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:id="@+id/anchor_ll_audio_plugin"
+            android:visibility="gone">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:text="音效"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:id="@+id/btn_audio_effect"
+                android:onClick="onClick"
+                android:background="@drawable/shape_round_button"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:text="结束"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:id="@+id/btn_audio_close"
+                android:onClick="onClick"
+                android:background="@drawable/shape_round_button"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/im_msg_listview"
+            android:layout_width="250dp"
+            android:layout_height="10dp"
+            android:scrollbars="none"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@id/tool_bar"
+            android:cacheColorHint="#00000000"
+            android:divider="#3c421b1b"
+            android:scrollbarStyle="outsideOverlay"
+            android:stackFromBottom="true"
+            android:transcriptMode="normal" />
+        <com.tencent.qcloud.xiaozhibo.anchor.music.TCAudioControl
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="0dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="#ffffff"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/anchor_audio_control"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:minHeight="105dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/layoutFaceBeauty"
+            android:layout_marginBottom="0dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/activity_publish_beauty"
+                    android:textSize="16sp" />
+                <SeekBar
+                    android:id="@+id/beauty_seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/beauty_seekbar_icon"
+                    android:progressDrawable="@drawable/beauty_seekbar_progress"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="18dp"
+                    android:maxHeight="1.0dip"
+                    android:minHeight="1.0dip"
+                    android:visibility="visible"
+                    android:indeterminate="false" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/activity_publish_white"
+                    android:textSize="16sp" />
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/beauty_seekbar_icon"
+                    android:progressDrawable="@drawable/beauty_seekbar_progress"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="18dp"
+                    android:maxHeight="1.0dip"
+                    android:minHeight="1.0dip"
+                    android:visibility="visible"
+                    android:indeterminate="false" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--点赞动画-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <com.tencent.qcloud.xiaozhibo.common.widget.like.TCHeartLayout
+                android:id="@+id/heart_layout"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <!--点赞动画-->
+
+
+        <!--弹幕-->
+        <master.flame.danmaku.ui.widget.DanmakuView
+            android:id="@+id/anchor_danmaku_view"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</RelativeLayout>

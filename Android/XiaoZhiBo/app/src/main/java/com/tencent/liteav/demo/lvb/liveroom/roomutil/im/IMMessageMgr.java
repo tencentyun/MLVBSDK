@@ -67,7 +67,7 @@ public class IMMessageMgr implements TIMMessageListener {
      */
     public interface Callback{
         void onError(int code, String errInfo);
-        void onSuccess(Object ...args);
+        void onSuccess(Object... args);
     }
 
     /**
@@ -160,14 +160,16 @@ public class IMMessageMgr implements TIMMessageListener {
     public void initialize(final String userID, final String userSig, final int appID, final Callback callback){
         if (userID == null || userSig == null) {
             mMessageListener.onDebugLog("参数错误，请检查 UserID， userSig 是否为空！");
-            callback.onError(-1, "参数错误");
+            if (callback != null) {
+                callback.onError(-1, "参数错误");
+            }
             return;
         }
 
         this.mSelfUserID  = userID;
         this.mSelfUserSig = userSig;
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 long initializeStartTS = System.currentTimeMillis();
@@ -221,6 +223,14 @@ public class IMMessageMgr implements TIMMessageListener {
         });
     }
 
+    public void runOnHandlerThread(Runnable runnable) {
+        Handler handler = mHandler;
+        if (handler != null) {
+            handler.post(runnable);
+        } else {
+            Log.e(TAG, "runOnHandlerThread -> Handler == null");
+        }
+    }
     /**
      * 反初始化
      */
@@ -249,7 +259,6 @@ public class IMMessageMgr implements TIMMessageListener {
         }
         if (mMessageListener != null) {
             mMessageListener.setListener(null);
-            mMessageListener = null;
         }
 
         logout(null);
@@ -263,11 +272,13 @@ public class IMMessageMgr implements TIMMessageListener {
     public void jionGroup(final String groupId, final Callback callback){
         if (!mLoginSuccess){
             mMessageListener.onDebugLog("[jionGroup] IM 没有初始化");
-            callback.onError(-1, "IM 没有初始化");
+            if (callback != null) {
+                callback.onError(-1, "IM 没有初始化");
+            }
             return;
         }
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMGroupManager.getInstance().applyJoinGroup(groupId, "who care?", new TIMCallBack() {
@@ -299,11 +310,13 @@ public class IMMessageMgr implements TIMMessageListener {
     public void quitGroup(final String groupId, final Callback callback){
         if (!mLoginSuccess){
             mMessageListener.onDebugLog("[quitGroup] IM 没有初始化");
-            callback.onError(-1, "IM 没有初始化");
+            if (callback != null) {
+                callback.onError(-1, "IM 没有初始化");
+            }
             return;
         }
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMGroupManager.getInstance().quitGroup(groupId, new TIMCallBack() {
@@ -333,12 +346,14 @@ public class IMMessageMgr implements TIMMessageListener {
     public void createGroup(final String groupId, final String groupType, final String groupName, final Callback callback) {
         if (!mLoginSuccess){
             mMessageListener.onDebugLog("IM 没有初始化");
-            callback.onError(-1, "IM 没有初始化");
+            if (callback != null) {
+                callback.onError(-1, "IM 没有初始化");
+            }
             return;
         }
         final TIMGroupManager.CreateGroupParam param = new TIMGroupManager.CreateGroupParam(groupType, groupName);
         param.setGroupId(groupId);
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMGroupManager.getInstance().createGroup(param, new TIMValueCallBack<String>() {
@@ -367,11 +382,13 @@ public class IMMessageMgr implements TIMMessageListener {
     public void destroyGroup(final String groupId, final Callback callback){
         if (!mLoginSuccess){
             mMessageListener.onDebugLog("IM 没有初始化");
-            callback.onError(-1, "IM 没有初始化");
+            if (callback != null) {
+                callback.onError(-1, "IM 没有初始化");
+            }
             return;
         }
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMGroupManager.getInstance().deleteGroup(groupId, new TIMCallBack() {
@@ -407,7 +424,7 @@ public class IMMessageMgr implements TIMMessageListener {
             return;
         }
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMMessage message = new TIMMessage();
@@ -471,7 +488,7 @@ public class IMMessageMgr implements TIMMessageListener {
             return;
         }
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMMessage message = new TIMMessage();
@@ -524,7 +541,7 @@ public class IMMessageMgr implements TIMMessageListener {
             return;
         }
 
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMMessage message = new TIMMessage();
@@ -564,7 +581,7 @@ public class IMMessageMgr implements TIMMessageListener {
     }
 
     public void getGroupMembers(final String groupId, final int maxSize, final TIMValueCallBack<List<TIMUserProfile>> cb) {
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 TIMGroupManagerExt.getInstance().getGroupMembers(groupId, new TIMValueCallBack<List<TIMGroupMemberInfo>>() {
@@ -596,7 +613,7 @@ public class IMMessageMgr implements TIMMessageListener {
         if (nickname == null && faceURL == null) {
             return;
         }
-        this.mHandler.post(new Runnable() {
+        this.runOnHandlerThread(new Runnable() {
             @Override
             public void run() {
                 HashMap<String, Object> profileMap = new HashMap<>();
@@ -739,7 +756,9 @@ public class IMMessageMgr implements TIMMessageListener {
 
     private void login(final Callback cb){
         if (mSelfUserID == null || mSelfUserSig == null ){
-            cb.onError(-1, "没有 UserId");
+            if (cb != null) {
+                cb.onError(-1, "没有 UserId");
+            }
             return;
         }
 
@@ -819,7 +838,9 @@ public class IMMessageMgr implements TIMMessageListener {
                 mMessageListener.onDisconnected();
             }
             else {
-                callback.onError(-1, s);
+                if (callback != null) {
+                    callback.onError(-1, s);
+                }
             }
             mConnectSuccess = false;
         }
@@ -874,7 +895,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onConnected() {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -885,7 +906,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onDisconnected() {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -895,7 +916,7 @@ public class IMMessageMgr implements TIMMessageListener {
         }
         @Override
         public void onPusherChanged() {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -906,7 +927,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onGroupDestroyed(final String groupID) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -917,7 +938,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onDebugLog(final String line) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -928,7 +949,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onGroupMemberEnter(final String groupID, final ArrayList<TIMUserProfile> users) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -939,7 +960,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onGroupMemberExit(final String groupID, final ArrayList<TIMUserProfile> users) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -950,7 +971,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onForceOffline() {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null) {
@@ -962,7 +983,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onGroupTextMessage(final String roomID, final String senderID, final String userName, final String headPic, final String message) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -973,7 +994,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onGroupCustomMessage(final String groupID, final String senderID, final String message) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)
@@ -984,7 +1005,7 @@ public class IMMessageMgr implements TIMMessageListener {
 
         @Override
         public void onC2CCustomMessage(final String senderID, final String cmd, final String message) {
-            mHandler.post(new Runnable() {
+            runOnHandlerThread(new Runnable() {
                 @Override
                 public void run() {
                     if (listener != null)

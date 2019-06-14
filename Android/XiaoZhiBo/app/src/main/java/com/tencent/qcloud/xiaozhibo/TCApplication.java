@@ -1,173 +1,76 @@
 package com.tencent.qcloud.xiaozhibo;
 
-import android.app.Activity;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.os.Bundle;
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
-import android.util.Log;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.liteav.demo.lvb.liveroom.MLVBLiveRoomImpl;
+import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
-import com.tencent.qcloud.xiaozhibo.common.utils.TCLog;
 import com.tencent.qcloud.xiaozhibo.login.TCUserMgr;
 import com.tencent.rtmp.TXLiveBase;
-import com.umeng.socialize.PlatformConfig;
-
-//import com.squareup.leakcanary.LeakCanary;
-//import com.squareup.leakcanary.RefWatcher;
 
 /**
- * 小直播应用类，用于全局的操作，如
- * sdk初始化,全局提示框
+ * Module:   TCApplication
+ *
+ * Function: 初始化 App 所需要的组件
+ *
+ * 1. 【重要】初始化直播需要的 Licence : {@link TXLiveBase#setLicence(Context, String, String)}
+ *
+ * 2. 初始化 App 用户逻辑管理类。
+ *
+ * 3. 初始化 bugly 组件上报 crash。
+ *
+ * 4. 初始化友盟分享组件，分享内容到 QQ 或 微信。
+ *
+ * 5. 初始化小直播ELK上报数据系统，此系统用于 Demo 收集使用数据；您可以不关注相关代码。
  */
 public class TCApplication extends MultiDexApplication {
     private static final String TAG = "TCApplication";
-//    private RefWatcher mRefWatcher;
-
-    private static TCApplication instance;
 
     // 如何获取License? 请参考官网指引 https://cloud.tencent.com/document/product/454/34750
-    String licenceUrl = "";
-    String licenseKey = "";
+    private static final String LICENCE_URL = "http://ugc-licence-test-1252463788.coscd.myqcloud.com/XiaoZhiBo_Android.license";
+    private static final String LICENCE_KEY = "9bc74ac7bfd07ea392e8fdff2ba5678a";
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        instance = this;
+        // 必须：初始化 LiteAVSDK Licence。 用于直播推流鉴权。
+        TXLiveBase.getInstance().setLicence(this, LICENCE_URL, LICENCE_KEY);
 
-        initSDK();
+        // 必须：初始化 MLVB 组件
+        MLVBLiveRoomImpl.sharedInstance(this);
 
-        //配置分享第三方平台的appkey
-        PlatformConfig.setWeixin(TCConstants.WEIXIN_SHARE_ID, TCConstants.WEIXIN_SHARE_SECRECT);
-        PlatformConfig.setSinaWeibo(TCConstants.SINA_WEIBO_SHARE_ID, TCConstants.SINA_WEIBO_SHARE_SECRECT, TCConstants.SINA_WEIBO_SHARE_REDIRECT_URL);
-        PlatformConfig.setQQZone(TCConstants.QQZONE_SHARE_ID, TCConstants.QQZONE_SHARE_SECRECT);
+        // 必须：初始化全局的 用户信息管理类，记录个人信息。
+        TCUserMgr.getInstance().initContext(getApplicationContext());
 
-        Fresco.initialize(this);
-//        mRefWatcher =
-//        LeakCanary.install(this);
+        // 可选：初始化 bugly crash上报系统。
+        initBuglyCrashReportSDK();
 
-        // 上报启动次数
-        TCUserMgr.getInstance().uploadLogs(TCConstants.ELK_ACTION_START_UP, TCUserMgr.getInstance().getUserId(), 0, "启动成功", null);
-        TCUserMgr.getInstance().setAppName(getELKAPPName());
-        TCUserMgr.getInstance().setPackageName(getELKPackageName());
-        registerActivityLifecycleCallbacks(new MyActivityLifecycleCallbacks(this));
-
-        TXLiveBase.getInstance().setLicence(instance, licenceUrl, licenseKey);
+        // 可选：初始化小直播上报组件
+        initXZBAppELKReport();
     }
 
-    public String getELKAPPName() {
-        ApplicationInfo applicationInfo = this.getApplicationInfo();
-        int stringId = applicationInfo.labelRes;
-        return stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : getString(stringId);
-    }
-
-    public String getELKPackageName() {
-        PackageInfo info;
-        String packagename = "";
-        if (this != null) {
-            try {
-                info = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
-
-                // 当前版本的包名
-                packagename = info.packageName;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return packagename;
-    }
-
-    public static TCApplication getApplication() {
-        return instance;
-    }
-
-//    public static RefWatcher getRefWatcher(Context context) {
-//        TCApplication application = (TCApplication) context.getApplicationContext();
-//        return application.mRefWatcher;
-//    }
 
     /**
-     * 初始化SDK，包括Bugly，IMSDK，RTMPSDK等
+     * 初始化 bugly crash 组件：用于上报小直播的 crash。
      */
-    public void initSDK() {
-        Log.w("App","xzb_process: app init sdk");
-        //启动bugly组件，bugly组件为腾讯提供的用于crash上报和分析的开放组件，如果您不需要该组件，可以自行移除
+    private void initBuglyCrashReportSDK() {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppVersion(TXLiveBase.getSDKVersionStr());
-        CrashReport.initCrashReport(getApplicationContext(), TCConstants.BUGLY_APPID, true, strategy);
-
-        //设置rtmpsdk log回调，将log保存到文件
-        TXLiveBase.setListener(new TCLog(getApplicationContext()));
-
-        //初始化httpengine
-//        TCHttpEngine.getInstance().initContext(getApplicationContext());
-
-        TCUserMgr.getInstance().initContext(getApplicationContext());
+        // 若您需要使用的话，请将 TCConstants.BUGLY_APPID 替换为您的 appid，否则会出现无法上报的问题。
+        CrashReport.initCrashReport(getApplicationContext(), TCGlobalConfig.BUGLY_APPID, true, strategy);
     }
 
-
-    private class MyActivityLifecycleCallbacks implements ActivityLifecycleCallbacks {
-
-        private int foregroundActivities;
-        private boolean isChangingConfiguration;
-        private long time;
-
-        public MyActivityLifecycleCallbacks(TCApplication tcApplication) {
-
-        }
-
-        @Override
-        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
-        }
-
-        @Override
-        public void onActivityStarted(Activity activity) {
-            foregroundActivities++;
-            if (foregroundActivities == 1 && !isChangingConfiguration) {
-                // 应用进入前台
-                time = System.currentTimeMillis();
-            }
-            isChangingConfiguration = false;
-        }
-
-        @Override
-        public void onActivityResumed(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityPaused(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityStopped(Activity activity) {
-            foregroundActivities--;
-            if (foregroundActivities == 0) {
-                // 应用切入后台
-                long bgTime = System.currentTimeMillis();
-                long diff = (bgTime - time) / 1000 ;
-                uploadStayTime(diff);
-            }
-            isChangingConfiguration = activity.isChangingConfigurations();
-        }
-
-        @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-        }
-
-        @Override
-        public void onActivityDestroyed(Activity activity) {
-
-        }
+    /**
+     *
+     * 初始化 ELK 数据上报：仅仅适用于数据收集上报，您可以不关注；或者将相关代码删除。
+     */
+    private void initXZBAppELKReport() {
+        TCELKReportMgr.getInstance().init(this);
+        TCELKReportMgr.getInstance().registerActivityCallback(this);
+        TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_START_UP, TCUserMgr.getInstance().getUserId(), 0, "启动成功", null);
     }
 
-    private void uploadStayTime(long diff) {
-        TCUserMgr.getInstance().uploadLogs(TCConstants.ELK_ACTION_STAY_TIME, TCUserMgr.getInstance().getUserId(), diff, "App体验时长", null);
-    }
 }

@@ -31,7 +31,10 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 飘心路径动画器
+ * Module:   TCPathAnimator
+ *
+ * Function: 飘心路径动画器
+ *
  */
 public class TCPathAnimator extends TCAbstractPathAnimator {
     private final AtomicInteger mCounter = new AtomicInteger(0);

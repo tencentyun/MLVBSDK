@@ -11,8 +11,8 @@
 #import <QCloudCore/QCloudCore.h>
 #import <QCloudCOSXML/QCloudCOSXML.h>
 #import "QCloudAuthentationHeadV5Creator.h"
-#import "TCLoginModel.h"
-#import "TCUserInfoModel.h"
+#import "TCAccountMgrModel.h"
+#import "TCUserProfileModel.h"
 
 #define kTCHeadUploadCosKey             @"head_icon"
 
@@ -50,7 +50,7 @@ static TCUploadHelper *_shareInstance = nil;
 - (void) setupCOSXMLShareService {
     QCloudServiceConfiguration* configuration = [QCloudServiceConfiguration new];
     
-    TCUserInfoData *infoData = [[TCUserInfoModel sharedInstance] getUserProfile];
+    TCUserProfileData *infoData = [[TCUserProfileModel sharedInstance] getUserProfile];
     configuration.appID =  infoData.appid;
     configuration.signatureProvider = self;
     QCloudCOSXMLEndPoint* endpoint = [[QCloudCOSXMLEndPoint alloc] init];
@@ -102,7 +102,7 @@ static TCUploadHelper *_shareInstance = nil;
                 {
                     QCloudCOSXMLUploadObjectRequest* upload = [QCloudCOSXMLUploadObjectRequest new];
                     upload.body = [NSURL fileURLWithPath:pathSave];
-                    upload.bucket = [[TCUserInfoModel sharedInstance] getUserProfile].bucket;
+                    upload.bucket = [[TCUserProfileModel sharedInstance] getUserProfile].bucket;
                     upload.object = [NSUUID UUID].UUIDString;
                     
                     [upload setFinishBlock:^(QCloudUploadObjectResult *result, NSError * error) {
@@ -155,7 +155,7 @@ static TCUploadHelper *_shareInstance = nil;
 
 - (void)getCOSSign:(void (^)(int errCode))handler
 {
-    [[TCLoginModel sharedInstance] getCosSign:^(int errCode, NSString *msg, NSDictionary *resultDict) {
+    [[TCAccountMgrModel sharedInstance] getCosSign:^(int errCode, NSString *msg, NSDictionary *resultDict) {
         if (errCode != 200)
         {
             DebugLog(@"getCOSSign failed");
@@ -176,9 +176,9 @@ static TCUploadHelper *_shareInstance = nil;
             
             
             if (_creator == nil) {
-                _creator = [[QCloudAuthentationHeadV5Creator alloc] initWithSignKey:[[TCUserInfoModel sharedInstance] getUserProfile].secretId  signKey:strSignKey keyTime:strKeyTime];
+                _creator = [[QCloudAuthentationHeadV5Creator alloc] initWithSignKey:[[TCUserProfileModel sharedInstance] getUserProfile].secretId  signKey:strSignKey keyTime:strKeyTime];
             } else {
-                [_creator setSignKey:[[TCUserInfoModel sharedInstance] getUserProfile].secretId signKey:strSignKey keyTime:strKeyTime];
+                [_creator setSignKey:[[TCUserProfileModel sharedInstance] getUserProfile].secretId signKey:strSignKey keyTime:strKeyTime];
             }
             handler(errCode);
         }

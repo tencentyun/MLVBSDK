@@ -20,20 +20,25 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.tencent.qcloud.xiaozhibo.R;
-import com.tencent.qcloud.xiaozhibo.common.TCLiveRoomMgr;
+import com.tencent.qcloud.xiaozhibo.common.net.TCHTTPMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
-import com.tencent.qcloud.xiaozhibo.mainui.TCMainActivity;
+import com.tencent.qcloud.xiaozhibo.main.TCMainActivity;
 
 import org.json.JSONObject;
 
 /**
- * Created by RTMP on 2016/8/1
+ *  Module:   TCLoginActivity
+ *
+ *  Function: 用于登录小直播的页面
+ *
+ *  1. 未登陆过，输入账号密码登录
+ *
+ *  2. 已经登陆过，小直播获取读取缓存，并且自动登录。 详见{@link TCUserMgr}
  */
 public class TCLoginActivity extends Activity {
 
     private static final String TAG = TCLoginActivity.class.getSimpleName();
 
-    //共用控件
     private RelativeLayout rootRelativeLayout;
 
     private ProgressBar progressBar;
@@ -87,16 +92,6 @@ public class TCLoginActivity extends Activity {
 
         //检测是否存在缓存
         checkLogin();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     /**
@@ -199,7 +194,7 @@ public class TCLoginActivity extends Activity {
 
     private void login(String username, String password) {
         final TCUserMgr tcLoginMgr = TCUserMgr.getInstance();
-        tcLoginMgr.login(username, password, new TCUserMgr.Callback() {
+        tcLoginMgr.login(username, password, new TCHTTPMgr.Callback() {
             @Override
             public void onSuccess(JSONObject data) {
                 showToast("登录成功");
@@ -219,14 +214,14 @@ public class TCLoginActivity extends Activity {
             //返回true表示存在本地缓存，进行登录操作，显示loadingFragment
             if (TCUserMgr.getInstance().hasUser()) {
                 showOnLoadingInUIThread(true);
-                TCUserMgr.getInstance().autoLogin(new TCUserMgr.Callback() {
+                TCUserMgr.getInstance().autoLogin(new TCHTTPMgr.Callback() {
                     @Override
                     public void onSuccess(JSONObject data) {
                         jumpToHomeActivity();
                     }
 
                     @Override
-                    public void onFailure(int code, final String msg) {
+                    public void onFailure(int code, String msg) {
                         showToast("自动登录失败");
                         showOnLoadingInUIThread(false);
                     }

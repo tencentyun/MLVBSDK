@@ -9,6 +9,12 @@ import android.text.style.ImageSpan;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * Module:   TCCenteredImageSpan
+ *
+ * Function: 弹幕控件
+ *
+ */
 public class TCCenteredImageSpan extends ImageSpan {
 
     private WeakReference<Drawable> mDrawableRef;
