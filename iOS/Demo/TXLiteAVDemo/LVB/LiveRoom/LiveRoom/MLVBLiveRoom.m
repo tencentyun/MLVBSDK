@@ -956,7 +956,7 @@ static pthread_mutex_t sharedInstanceLock;
         }
         self.roomInfo.anchorInfoArray = [self.roomInfo.anchorInfoArray filteredArrayUsingPredicate:
                                          [NSPredicate predicateWithFormat:
-                                         @"%@ != %@", NSStringFromSelector(@selector(userID)), anchor.userID]];
+                                          @"%@ != %@", NSStringFromSelector(@selector(userID)), anchor.userID]];
     }];
 }
 
@@ -1071,6 +1071,10 @@ static pthread_mutex_t sharedInstanceLock;
 
 #pragma mark - 背景混音相关接口函数
 - (BOOL)playBGM:(NSString *)path {
+    TXLivePushConfig *config = _livePusher.config;
+    config.enableAudioPreview = YES; // 开启耳返
+    [_livePusher setConfig:config];
+    
     return [_livePusher playBGM:path];
 }
 
@@ -1078,10 +1082,18 @@ static pthread_mutex_t sharedInstanceLock;
 withBeginNotify:(void (^)(NSInteger errCode))beginNotify
 withProgressNotify:(void (^)(NSInteger progressMS, NSInteger durationMS))progressNotify
 andCompleteNotify:(void (^)(NSInteger errCode))completeNotify {
+    TXLivePushConfig *config = _livePusher.config;
+    config.enableAudioPreview = YES; // 开启耳返
+    [_livePusher setConfig:config];
+    
     return [_livePusher playBGM:path withBeginNotify:beginNotify withProgressNotify:progressNotify andCompleteNotify:completeNotify];
 }
 
 - (BOOL)stopBGM {
+    TXLivePushConfig *config = _livePusher.config;
+    config.enableAudioPreview = NO; // 关闭耳返
+    [_livePusher setConfig:config];
+    
     return [_livePusher stopBGM];
 }
 
@@ -1107,6 +1119,11 @@ andCompleteNotify:(void (^)(NSInteger errCode))completeNotify {
 
 - (BOOL)setBGMPitch:(float)pitch {
     return [_livePusher setBGMPitch:pitch];
+}
+
+- (BOOL)setBGMPosition:(float)position {
+    int duration = [_livePusher getMusicDuration:NULL];
+    return [_livePusher setBGMPosition:duration*position];
 }
 
 - (BOOL)setReverbType:(TXReverbType)reverbType {
@@ -1232,9 +1249,9 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         }
         
         NSDictionary *params = @{@"roomID": self.roomInfo.roomID,
-                                @"userID": self->_currentUser.userID,
-                                @"roomStatusCode": self.roomStatusCode ?: @0
-                                };
+                                 @"userID": self->_currentUser.userID,
+                                 @"roomStatusCode": self.roomStatusCode ?: @0
+                                 };
         
         [self requestWithName:kHttpServerAddr_AnchorHeartBeat params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (errCode == 0) {
@@ -1449,6 +1466,8 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                                 //启动心跳
                                 //mStreamMixturer.setMainVideoStream(pushURL);
                                 errCode = 0;
+                            } else if (errCode == 10036) {
+                                NSLog(@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】 https://buy.cloud.tencent.com/avc");
                             }
                             finish(errCode, errMsg);
                         }];
@@ -1536,7 +1555,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 NSString *accURL = responseObject[@"accelerateURL"];
                 self->_pushUrl = pushURL;
                 self->_accUrl = accURL;
-
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     int result = [self->_livePusher startPush:pushURL];
                     dispatch_async(self->_queue, ^{
@@ -1671,13 +1690,13 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 [self sendDebugMsg:[NSString stringWithFormat:@"merge_video_stream请求失败: error[%@]", errMsg]];
                 return;
             }
-
+            
             int merge_code = [responseObject[@"merge_code"] intValue];
             NSString *merge_msg = responseObject[@"merge_message"];
             NSNumber *timestamp = responseObject[@"timestamp"];
-
+            
             [self sendDebugMsg:[NSString stringWithFormat:@"AppSvr回复merge_video_stream请求: errCode[%d] errMsg[%@] description[code = %d message = %@ timestamp = %@]", errCode, errMsg, merge_code, merge_msg, timestamp]];
-
+            
             if (merge_code != 0) {
                 if (retryCount > 0) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{

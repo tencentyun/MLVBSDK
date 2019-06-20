@@ -379,6 +379,20 @@ typedef NS_ENUM(NSInteger, PKStatus) {
                         [controller addAction:cancelAction];
                         [self presentViewController:controller animated:YES completion:nil];
                     });
+                } else if (errCode == 10036) {
+                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
+                                                                                        message:nil
+                                                                                 preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"去开通" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.cloud.tencent.com/avc"]];
+                    }];
+                    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                    [controller addAction:action];
+                    [controller addAction:confirm];
+                    [self presentViewController:controller animated:YES completion:nil];
                 } else {
                     [self alertTips:@"创建直播间失败" msg:errMsg completion:^{
                         [self.navigationController popViewControllerAnimated:YES];
