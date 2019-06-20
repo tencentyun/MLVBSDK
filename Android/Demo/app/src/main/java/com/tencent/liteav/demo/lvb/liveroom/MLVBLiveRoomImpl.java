@@ -3,6 +3,7 @@ package com.tencent.liteav.demo.lvb.liveroom;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -541,7 +542,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
         // 停止 BGM
         stopBGM();
-        
+
         if (mSelfRoleType == LIVEROOM_ROLE_PUSHER) {
             //2. 如果是大主播，则销毁群
             IMMessageMgr imMessageMgr = mIMMessageMgr;
@@ -1975,8 +1976,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     }
 
     private void destroy() {
-        //TODO
-        mHeartBeatThread.quit();
+        mHeartBeatThread.stopHeartbeat();
     }
 
 
@@ -3054,42 +3054,56 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         }
     }
 
-    protected class HeartBeatThread extends HandlerThread {
+    protected class HeartBeatThread {
         private Handler handler;
-        private boolean running = false;
 
         public HeartBeatThread() {
-            super("HeartBeatThread");
-            this.start();
-            handler = new Handler(this.getLooper());
         }
 
         private Runnable heartBeatRunnable = new Runnable() {
             @Override
             public void run() {
+                Handler localHander = handler;
+                if (localHander == null) {
+                    return;
+                }
                 if (mSelfAccountInfo != null && mSelfAccountInfo.userID != null && mSelfAccountInfo.userID.length() > 0 && mCurrRoomID != null && mCurrRoomID.length() > 0) {
                     if (mHttpRequest != null) {
                         mHttpRequest.heartBeat(mSelfAccountInfo.userID, mCurrRoomID, mRoomStatusCode);
                     }
-                    if (handler != null) {
-                        handler.postDelayed(heartBeatRunnable, 5000);
-                    }
+                    localHander.postDelayed(heartBeatRunnable, 5000);
                 }
             }
         };
 
-        public boolean running() {
-            return running;
-        }
-
         public void startHeartbeat(){
-            running = true;
-            handler.postDelayed(heartBeatRunnable, 1000);
+            synchronized (this) {
+                if (handler != null && handler.getLooper() != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                        handler.getLooper().quitSafely();
+                    } else {
+                        handler.getLooper().quit();
+                    }
+                }
+                HandlerThread thread = new HandlerThread("HeartBeatThread");
+                thread.start();
+                handler = new Handler(thread.getLooper());
+                handler.postDelayed(heartBeatRunnable, 1000);
+            }
         }
 
         public void stopHeartbeat(){
-            running = false;
-            handler.removeCallbacks(heartBeatRunnable);
+            synchronized (this) {
+                if (handler != null) {
+                    handler.removeCallbacks(heartBeatRunnable);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                        handler.getLooper().quitSafely();
+                    } else {
+                        handler.getLooper().quit();
+                    }
+                    handler = null;
+                }
+            }
         }
     }
 

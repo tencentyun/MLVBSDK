@@ -31,6 +31,7 @@ import com.tencent.imsdk.TIMUserProfile;
 import com.tencent.imsdk.TIMUserStatusListener;
 import com.tencent.imsdk.TIMValueCallBack;
 import com.tencent.imsdk.ext.group.TIMGroupManagerExt;
+import com.tencent.liteav.basic.log.TXCLog;
 
 import java.util.ArrayList;
 import java.util.FormatFlagsConversionMismatchException;
@@ -360,6 +361,11 @@ public class IMMessageMgr implements TIMMessageListener {
                     @Override
                     public void onError(int i, String s) {
                         printDebugLog("创建群 {%s} 失败：%s(%d)", groupId, s, i);
+                        if (i == 10036) {
+                            String createRoomErrorMsg = "您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】，地址：https://buy.cloud.tencent.com/avc";
+                            TXCLog.e(TAG, createRoomErrorMsg);
+                            printDebugLog(createRoomErrorMsg);
+                        }
                         callback.onError(i, s);
                     }
 

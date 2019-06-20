@@ -433,6 +433,22 @@ public class LiveRoomChatFragment extends Fragment implements BeautySettingPanne
             };
             spannableStrBuidler.setSpan(new ForegroundColorSpan(Color.BLUE), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableStrBuidler.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (errCode == 10036 /*IM 创建聊天室数量超过限额错误*/) {
+            int start = "您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【".length();
+            int end = "您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室".length();
+            spannableStrBuidler = new SpannableStringBuilder("您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】");
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    Uri content_url = Uri.parse("https://buy.cloud.tencent.com/avc");
+                    intent.setData(content_url);
+                    startActivity(intent);
+                }
+            };
+            spannableStrBuidler.setSpan(new ForegroundColorSpan(Color.BLUE), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableStrBuidler.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else {
             spannableStrBuidler = new SpannableStringBuilder(errInfo);
         }
