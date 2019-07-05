@@ -366,6 +366,9 @@ public class IMMessageMgr implements TIMMessageListener {
                             TXCLog.e(TAG, createRoomErrorMsg);
                             printDebugLog(createRoomErrorMsg);
                         }
+                        if (i == 10025) {
+                            mGroupID = groupId;
+                        }
                         callback.onError(i, s);
                     }
 
