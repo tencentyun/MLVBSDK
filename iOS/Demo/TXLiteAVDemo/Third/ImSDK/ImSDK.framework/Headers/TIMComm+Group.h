@@ -12,6 +12,7 @@
 #import "TIMComm.h"
 
 @class TIMGroupPendencyMeta;
+@class TIMCreateGroupMemberInfo;
 
 #pragma mark - 枚举类型
 
@@ -221,14 +222,14 @@ typedef NS_ENUM(NSInteger, TIMGroupPendencyHandleResult) {
 /**
  *  群成员列表回调
  *
- *  @param members 群成员列表
+ *  @param members 群成员列表，成员类型 TIMGroupMemberInfo
  */
 typedef void (^TIMGroupMemberSucc)(NSArray * members);
 
 /**
  *  群列表回调
  *
- *  @param arr 群列表
+ *  @param arr 群列表，成员类型 TIMGroupInfo
  */
 typedef void (^TIMGroupListSucc)(NSArray * arr);
 
@@ -329,7 +330,7 @@ typedef void (^TIMGetGroupPendencyListSucc)(TIMGroupPendencyMeta * meta, NSArray
 /**
  *  创建成员（TIMCreateGroupMemberInfo*）列表
  */
-@property(nonatomic,strong) NSArray* membersInfo;
+@property(nonatomic,strong) NSArray <TIMCreateGroupMemberInfo *>* membersInfo;
 
 @end
 

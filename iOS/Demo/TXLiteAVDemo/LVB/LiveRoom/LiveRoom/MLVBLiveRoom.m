@@ -499,7 +499,6 @@ static pthread_mutex_t sharedInstanceLock;
                         playConfig.maxAutoAdjustCacheTime = 2.0f;
                         [player setupVideoWidget:CGRectZero containView:view insertIndex:0];
                         [player setConfig:playConfig];
-                        [player stopPlay];
                         [player startPlay:self.roomInfo.mixedPlayURL type:[self getPlayType:self.roomInfo.mixedPlayURL]];
                         [player setLogViewMargin:UIEdgeInsetsMake(120, 10, 60, 10)];
                     });
@@ -731,7 +730,6 @@ static pthread_mutex_t sharedInstanceLock;
                 NSAssert(player, @"nil player");
                 if (player) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [player stopPlay];
                         NSAssert(self.roomCreatorPlayerURL, @"empty acc url");
                         // 播放大主播的直播流地址，注意type是 PLAY_TYPE_LIVE_RTMP_ACC
                         [player startPlay:self.roomCreatorPlayerURL type:PLAY_TYPE_LIVE_RTMP_ACC];
@@ -785,7 +783,6 @@ static pthread_mutex_t sharedInstanceLock;
                 playConfig.minAutoAdjustCacheTime = 2.0f;
                 playConfig.maxAutoAdjustCacheTime = 2.0f;
                 [bigPlayer setConfig:playConfig];
-                [bigPlayer stopPlay];
                 [bigPlayer startPlay:self.roomInfo.mixedPlayURL type:[self getPlayType:self.roomInfo.mixedPlayURL]];
                 if (self->_inBackground == YES) {
                     [bigPlayer pause];
@@ -945,7 +942,7 @@ static pthread_mutex_t sharedInstanceLock;
                              valueForKey:@"accelerateURL"];
             [self requestMergeStreamWithPlayUrlArray:urls withMode:self->_mixMode];
             
-            if (self.roomInfo.anchorInfoArray == 0) {
+            if (self.roomInfo.anchorInfoArray.count == 0) {
                 // 无连麦或PK，设置推流模式为直播模式(高清）
                 self->_videoQuality = VIDEO_QUALITY_HIGH_DEFINITION;
                 [self->_livePusher setVideoQuality:self->_videoQuality adjustBitrate:NO adjustResolution:NO];
@@ -956,7 +953,7 @@ static pthread_mutex_t sharedInstanceLock;
         }
         self.roomInfo.anchorInfoArray = [self.roomInfo.anchorInfoArray filteredArrayUsingPredicate:
                                          [NSPredicate predicateWithFormat:
-                                          @"%@ != %@", NSStringFromSelector(@selector(userID)), anchor.userID]];
+                                         @"%@ != %@", NSStringFromSelector(@selector(userID)), anchor.userID]];
     }];
 }
 
@@ -1249,9 +1246,9 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         }
         
         NSDictionary *params = @{@"roomID": self.roomInfo.roomID,
-                                 @"userID": self->_currentUser.userID,
-                                 @"roomStatusCode": self.roomStatusCode ?: @0
-                                 };
+                                @"userID": self->_currentUser.userID,
+                                @"roomStatusCode": self.roomStatusCode ?: @0
+                                };
         
         [self requestWithName:kHttpServerAddr_AnchorHeartBeat params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (errCode == 0) {
@@ -1555,7 +1552,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 NSString *accURL = responseObject[@"accelerateURL"];
                 self->_pushUrl = pushURL;
                 self->_accUrl = accURL;
-                
+
                 dispatch_async(dispatch_get_main_queue(), ^{
                     int result = [self->_livePusher startPush:pushURL];
                     dispatch_async(self->_queue, ^{
@@ -1690,13 +1687,13 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 [self sendDebugMsg:[NSString stringWithFormat:@"merge_video_stream请求失败: error[%@]", errMsg]];
                 return;
             }
-            
+
             int merge_code = [responseObject[@"merge_code"] intValue];
             NSString *merge_msg = responseObject[@"merge_message"];
             NSNumber *timestamp = responseObject[@"timestamp"];
-            
+
             [self sendDebugMsg:[NSString stringWithFormat:@"AppSvr回复merge_video_stream请求: errCode[%d] errMsg[%@] description[code = %d message = %@ timestamp = %@]", errCode, errMsg, merge_code, merge_msg, timestamp]];
-            
+
             if (merge_code != 0) {
                 if (retryCount > 0) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{

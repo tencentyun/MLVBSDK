@@ -10,6 +10,7 @@
 @interface PushBgmControl() <UITextFieldDelegate> {
     UISwitch    *_onlineSwitch;
     UITextField *_loopTimesFiled;
+    UIButton    *_pauseBtn;
 }
 @end
 
@@ -78,11 +79,11 @@
         [startBtn addTarget:self action:@selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
         startBtn.tag = 0;
         
-        UIButton *pauseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 120, startBtn.top, startBtn.width, startBtn.height)];
-        [pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
-        [pauseBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-        [pauseBtn addTarget:self action:@selector(clickPause:) forControlEvents:UIControlEventTouchUpInside];
-        pauseBtn.tag = 0;
+        _pauseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 120, startBtn.top, startBtn.width, startBtn.height)];
+        [_pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+        [_pauseBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        [_pauseBtn addTarget:self action:@selector(clickPause:) forControlEvents:UIControlEventTouchUpInside];
+        _pauseBtn.tag = 0;
         
         
         [self addSubview:loopTimesLabel];
@@ -96,7 +97,7 @@
         [self addSubview:bgmPitchLabel];
         [self addSubview:bgmPitchSlider];
         [self addSubview:startBtn];
-        [self addSubview:pauseBtn];
+        [self addSubview:_pauseBtn];
     }
     return self;
 }
@@ -117,6 +118,8 @@
     } else {
         [btn setTitle:@"开始" forState:UIControlStateNormal];
         btn.tag = 0;
+        [_pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+        _pauseBtn.tag = 0;
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(onBgmStop)]) {
             [self.delegate onBgmStop];

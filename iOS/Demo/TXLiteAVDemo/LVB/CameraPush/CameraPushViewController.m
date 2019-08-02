@@ -32,10 +32,9 @@
     PushSettingDelegate,
     PushMoreSettingDelegate,
     PushBgmControlDelegate
-    > {
-    
+    >
+{
     AddressBarController *_addressBarController;  // 推流地址/二维码扫描 工具栏
-    MBProgressHUD *_hub;
     CWStatusBarNotification *_notification;
     
     UIView              *_localView;    // 本地预览
@@ -412,24 +411,6 @@
     // 开始推流
     int ret = [_pusher startPush:rtmpUrl];
     if (ret != 0) {
-        if (ret == -5) {
-            UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"License校验失败"
-                                                                                message:@"请获取您的License后，在AppDelegate填写相关信息"
-                                                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:@"去获取License"
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * _Nonnull action) {
-                                                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://cloud.tencent.com/document/product/454/34750"]];
-                                                           }];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                 }];
-            [controller addAction:action];
-            [controller addAction:cancelAction];
-            [self presentViewController:controller animated:YES completion:nil];
-            return NO;
-        }
         [self toastTip:[NSString stringWithFormat:@"推流器启动失败: %d", ret]];
         NSLog(@"推流器启动失败");
         return NO;
@@ -452,43 +433,56 @@
     }
 }
 
-#pragma mark - AddressBarControllerDelegate
+#pragma mark - HUD
+- (void)showInProgressText:(NSString *)text
+{
+    MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+    if (hud == nil) {
+        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = text;
+    [hud showAnimated:YES];
+}
 
+- (void)showText:(NSString *)text {
+    [self showText:text withDetailText:nil];
+}
+
+- (void)showText:(NSString *)text withDetailText:(NSString *)detail {
+    MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = text;
+    hud.detailsLabel.text = detail;
+    [hud.button addTarget:self action:@selector(onCloseHUD:) forControlEvents:UIControlEventTouchUpInside];
+    [hud.button setTitle:@"关闭" forState:UIControlStateNormal];
+    [hud showAnimated:YES];
+    [hud hideAnimated:YES afterDelay:2];
+}
+
+- (void)onCloseHUD:(id)sender {
+    [[MBProgressHUD HUDForView:self.view] hideAnimated:YES];
+}
+
+#pragma mark - AddressBarControllerDelegate
 // 从业务后台获取推流地址
 - (void)addressBarControllerTapCreateURL:(AddressBarController *)controller {
     if (_btnPush.tag == 1) {
         [self clickPush:_btnPush];
     }
+
+    [self showInProgressText:@"地址获取中"];
     
-    _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _hub.mode = MBProgressHUDModeIndeterminate;
-    _hub.label.text = @"地址获取中";
-    [_hub showAnimated:YES];
-    
-    __weak __typeof(self) weakSelf = self;
     [TCHttpUtil asyncSendHttpRequest:@"get_test_pushurl" httpServerAddr:kHttpServerAddr HTTPMethod:@"GET" param:nil handler:^(int result, NSDictionary *resultDict) {
-        if (result != 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _hub = [MBProgressHUD HUDForView:weakSelf.view];
-                _hub.mode = MBProgressHUDModeText;
-                _hub.label.text = @"获取推流地址失败";
-                [_hub showAnimated:YES];
-                [_hub hideAnimated:YES afterDelay:2];
-            });
-        }
-        else {
-            NSString *pusherUrl = nil;
-            NSString *rtmpPlayUrl = nil;
-            NSString *flvPlayUrl = nil;
-            NSString *hlsPlayUrl = nil;
-            NSString *accPlayUrl = nil;
-            if (resultDict) {
-                pusherUrl = resultDict[@"url_push"];
-                rtmpPlayUrl = resultDict[@"url_play_rtmp"];
-                flvPlayUrl = resultDict[@"url_play_flv"];
-                hlsPlayUrl = resultDict[@"url_play_hls"];
-                accPlayUrl = resultDict[@"url_play_acc"];
-            }
+        if (result != 0 || resultDict == nil) {
+            [self showText:@"获取推流地址失败"];
+        } else {
+            NSString *pusherUrl = resultDict[@"url_push"];
+            NSString *rtmpPlayUrl = resultDict[@"url_play_rtmp"];
+            NSString *flvPlayUrl = resultDict[@"url_play_flv"];
+            NSString *hlsPlayUrl = resultDict[@"url_play_hls"];
+            NSString *accPlayUrl = resultDict[@"url_play_acc"];
+            
             controller.text = pusherUrl;
             NSString *(^c)(NSString *x, NSString *y) = ^(NSString *x, NSString *y) {
                 return [NSString stringWithFormat:@"%@,%@", x, y];
@@ -502,14 +496,7 @@
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = playUrls;
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _hub = [MBProgressHUD HUDForView:weakSelf.view];
-                _hub.mode = MBProgressHUDModeText;
-                _hub.label.text = @"获取地址成功";
-                _hub.detailsLabel.text = @"播放地址已复制到剪贴板";
-                [_hub showAnimated:YES];
-                [_hub hideAnimated:YES afterDelay:3];
-            });
+            [self showText:@"获取地址成功" withDetailText:@"播放地址已复制到剪贴板"];
         }
     }];
 }
@@ -604,29 +591,25 @@
 
 - (void)onLoadPituStart {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        _hub.mode = MBProgressHUDModeText;
-        _hub.label.text = @"开始加载资源";
+        [self showInProgressText:@"开始加载资源"];
     });
 }
 
 - (void)onLoadPituProgress:(CGFloat)progress {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _hub.label.text = [NSString stringWithFormat:@"正在加载资源%d %%",(int)(progress * 100)];
+        [self showInProgressText:[NSString stringWithFormat:@"正在加载资源%d %%",(int)(progress * 100)]];
     });
 }
 
 - (void)onLoadPituFinished {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _hub.label.text = @"资源加载成功";
-        [_hub hideAnimated:YES afterDelay:1];
+        [self showText:@"资源加载成功"];
     });
 }
 
 - (void)onLoadPituFailed {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _hub.label.text = @"资源加载失败";
-        [_hub hideAnimated:YES afterDelay:1];
+        [self showText:@"资源加载失败"];
     });
 }
 
