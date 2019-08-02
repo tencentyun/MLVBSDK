@@ -542,7 +542,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
         // 停止 BGM
         stopBGM();
-
+        
         if (mSelfRoleType == LIVEROOM_ROLE_PUSHER) {
             //2. 如果是大主播，则销毁群
             IMMessageMgr imMessageMgr = mIMMessageMgr;
@@ -761,8 +761,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                         callbackOnThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (mJoinAnchorCallback != null) {
-                                    mJoinAnchorCallback.onTimeOut();
+                                IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                if (reqJoinCallback != null) {
+                                    reqJoinCallback.onTimeOut();
                                     mJoinAnchorCallback = null;
                                 }
                             }
@@ -785,8 +786,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                         callbackOnThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (mJoinAnchorCallback != null) {
-                                    mJoinAnchorCallback.onError(code, "[IM] 请求连麦失败[" + errInfo + ":" + code + "]");
+                                IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                if (reqJoinCallback != null) {
+                                    reqJoinCallback.onError(code, "[IM] 请求连麦失败[" + errInfo + ":" + code + "]");
                                 }
                             }
                         });
@@ -2364,8 +2366,11 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             callbackOnThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mJoinAnchorCallback.onAccept();
-                                    mJoinAnchorCallback = null;
+                                    IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                    if (reqJoinCallback != null) {
+                                        reqJoinCallback.onAccept();
+                                        mJoinAnchorCallback = null;
+                                    }
                                     mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                                 }
                             });
@@ -2374,8 +2379,11 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             callbackOnThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mJoinAnchorCallback.onReject(response.reason);
-                                    mJoinAnchorCallback = null;
+                                    IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                    if (reqJoinCallback != null) {
+                                        reqJoinCallback.onReject(response.reason);
+                                        mJoinAnchorCallback = null;
+                                    }
                                     mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                                 }
                             });
@@ -2385,8 +2393,11 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                     callbackOnThread(new Runnable() {
                         @Override
                         public void run() {
-                            mJoinAnchorCallback.onError(LiveRoomErrorCode.ERROR_PARAMETERS_INVALID, "[LiveRoom] 无法识别的连麦响应[" + message + "]");
-                            mJoinAnchorCallback = null;
+                            IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                            if (reqJoinCallback != null) {
+                                reqJoinCallback.onError(LiveRoomErrorCode.ERROR_PARAMETERS_INVALID, "[LiveRoom] 无法识别的连麦响应[" + message + "]");
+                                mJoinAnchorCallback = null;
+                            }
                             mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                         }
                     });
@@ -3080,7 +3091,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             synchronized (this) {
                 if (handler != null && handler.getLooper() != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        handler.getLooper().quitSafely();
+                         handler.getLooper().quitSafely();
                     } else {
                         handler.getLooper().quit();
                     }

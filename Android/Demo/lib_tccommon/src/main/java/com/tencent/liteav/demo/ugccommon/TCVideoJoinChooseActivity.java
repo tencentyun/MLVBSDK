@@ -26,7 +26,6 @@ import com.bumptech.glide.Glide;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.liteav.demo.common.R;
 import com.tencent.liteav.demo.common.utils.TCConstants;
-import com.tencent.rtmp.TXLog;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -236,7 +235,6 @@ public class TCVideoJoinChooseActivity extends Activity implements View.OnClickL
             intent.setAction("com.tencent.liteav.demo.videopreprocess");
             TCVideoFileInfo fileInfo = mAdapter.getSingleSelected();
             if (fileInfo == null) {
-                TXCLog.d(TAG, "select file null");
                 return;
             }
             if (TCVideoEditUtil.isVideoDamaged(fileInfo)) {
@@ -263,7 +261,6 @@ public class TCVideoJoinChooseActivity extends Activity implements View.OnClickL
             intent.setAction("com.tencent.liteav.demo.videojoiner");
             ArrayList<TCVideoFileInfo> videoFileInfos = mAdapter.getMultiSelected();
             if (videoFileInfos == null || videoFileInfos.size() == 0) {
-                TXCLog.d(TAG, "select file null");
                 return;
             }
             if (videoFileInfos.size() < 2) {
@@ -296,7 +293,6 @@ public class TCVideoJoinChooseActivity extends Activity implements View.OnClickL
             intent.setAction("com.tencent.liteav.demo.videoediter");
             ArrayList<TCVideoFileInfo> pictureList = mAdapter.getInOrderMultiSelected();
             if (pictureList == null || pictureList.size() == 0) {
-                TXCLog.d(TAG, "select file null");
                 return;
             }
             if (pictureList.size() < 3) {
@@ -339,7 +335,6 @@ public class TCVideoJoinChooseActivity extends Activity implements View.OnClickL
             Intent intent = new Intent();
             TCVideoFileInfo fileInfo = mAdapter.getSingleSelected();
             if (fileInfo == null) {
-                TXLog.d(TAG, "select file null");
                 return;
             }
             if (TCVideoEditUtil.isVideoDamaged(fileInfo)) {

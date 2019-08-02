@@ -3,7 +3,6 @@ package com.tencent.liteav.demo.ugccommon;
 import android.graphics.Bitmap;
 
 import com.bumptech.glide.gifencoder.AnimatedGifEncoder;
-import com.tencent.liteav.basic.log.TXCLog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -25,13 +24,11 @@ public class GifUtil {
         gifEncoder.start(baos);
         gifEncoder.setRepeat(0);
         gifEncoder.setDelay(delayMs);
-        TXCLog.i(TAG, "start make gif");
         for(Bitmap bitmap : bitmapList){
             Bitmap resizeBitmap = TCEditerUtil.zoomImg(bitmap, width, height);
             gifEncoder.addFrame(resizeBitmap);
         }
         gifEncoder.finish();
-        TXCLog.i(TAG, "finish make gif");
         FileOutputStream fos = new FileOutputStream(filePath);
         baos.writeTo(fos);
         baos.flush();

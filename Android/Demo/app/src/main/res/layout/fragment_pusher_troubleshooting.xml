@@ -52,7 +52,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_top"
@@ -72,7 +71,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段一：检查地址合法性"
@@ -93,7 +91,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段二：连接到云服务器"
@@ -115,7 +112,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段三：摄像头打开成功"
@@ -158,7 +154,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段五：开始进入推流中..."

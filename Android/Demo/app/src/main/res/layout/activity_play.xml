@@ -7,7 +7,6 @@
     android:orientation="vertical" >
 
     <FrameLayout
-        android:id="@+id/video_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0dp">
@@ -102,7 +101,6 @@
                 android:onClick="onClick"
                 android:background="@drawable/acc_on"/>
             <TextView
-                android:id="@+id/btnAccMargin"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"/>
@@ -115,7 +113,6 @@
                 android:visibility="gone"
                 android:background="@drawable/video_press"/>
             <TextView
-                android:id="@+id/btnStreamRecordMargin"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:visibility="gone"
@@ -255,7 +252,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="25dp"
                 android:visibility="visible"
-                android:id="@+id/cacheStrategyRadioGroup"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -316,7 +312,6 @@
                     android:src="@drawable/btn_back_gray"
                     android:gravity="center"/>
                 <TextView
-                    android:id="@+id/back_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
@@ -352,7 +347,6 @@
             android:layout_marginRight="12dp"
             android:layout_marginTop="45dp" />
         <Button
-            android:id="@+id/button"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

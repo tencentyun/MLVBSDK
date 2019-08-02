@@ -9,7 +9,6 @@
     android:layout_gravity="bottom">
 
     <LinearLayout
-        android:id="@+id/music_mic_volume_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -40,7 +39,6 @@
 
 
     <LinearLayout
-        android:id="@+id/music_bgm_volume_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"

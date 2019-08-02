@@ -28,7 +28,6 @@
                 android:src="@drawable/log"/>
 
             <TextView
-                android:id="@+id/rtmproom_log"
                 android:padding="6dp"
                 android:layout_gravity="center_vertical"
                 android:text="查看Log"
@@ -43,7 +42,6 @@
                 android:src="@drawable/help"/>
 
             <TextView
-                android:id="@+id/rtmproom_help"
                 android:padding="6dp"
                 android:layout_gravity="center_vertical"
                 android:text="查看帮助"

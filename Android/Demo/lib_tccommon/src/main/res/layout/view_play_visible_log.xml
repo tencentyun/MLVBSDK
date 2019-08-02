@@ -61,7 +61,6 @@
         android:layout_marginTop="15dp">
 
         <LinearLayout
-            android:id="@+id/layout_jitter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -176,7 +175,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段一：检查地址合法性"
@@ -218,7 +216,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段三：成功连接到服务器"
@@ -260,7 +257,6 @@
                 android:src="@drawable/ic_red" />
 
             <TextView
-                android:id="@+id/tv_seg5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="阶段五：收到首帧视频数据"

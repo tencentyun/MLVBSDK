@@ -34,8 +34,4 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="CustomEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/colorGray4</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-    </style>
 </resources>

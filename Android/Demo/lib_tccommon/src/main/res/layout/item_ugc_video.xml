@@ -9,7 +9,6 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/frmQueue"
             android:layout_width="90dp"
             android:layout_height="120dp"
             android:background="@color/black">
