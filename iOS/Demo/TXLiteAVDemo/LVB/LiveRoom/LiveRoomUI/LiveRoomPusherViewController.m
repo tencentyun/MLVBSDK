@@ -358,46 +358,24 @@ typedef NS_ENUM(NSInteger, PKStatus) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errCode == 0) {
                 [self appendSystemMsg:@"连接成功"];
+            } else if (errCode == 10036) {
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"去开通" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.cloud.tencent.com/avc"]];
+                }];
+                UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                [controller addAction:action];
+                [controller addAction:confirm];
+                [self presentViewController:controller animated:YES completion:nil];
             } else {
-                if (errCode == -5) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"License校验失败"
-                                                                                            message:@"请获取您的License后，在AppDelegate填写相关信息"
-                                                                                     preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *action = [UIAlertAction actionWithTitle:@"去获取License"
-                                                                         style:UIAlertActionStyleDefault
-                                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://cloud.tencent.com/document/product/454/34750"]];
-                                                                           [self.navigationController popViewControllerAnimated:YES];
-                                                                       }];
-                        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                                               style:UIAlertActionStyleCancel
-                                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                                 [self.navigationController popViewControllerAnimated:YES];
-                                                                             }];
-                        [controller addAction:action];
-                        [controller addAction:cancelAction];
-                        [self presentViewController:controller animated:YES completion:nil];
-                    });
-                } else if (errCode == 10036) {
-                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
-                                                                                        message:nil
-                                                                                 preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"去开通" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [self.navigationController popViewControllerAnimated:YES];
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.cloud.tencent.com/avc"]];
-                    }];
-                    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }];
-                    [controller addAction:action];
-                    [controller addAction:confirm];
-                    [self presentViewController:controller animated:YES completion:nil];
-                } else {
-                    [self alertTips:@"创建直播间失败" msg:errMsg completion:^{
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }];
-                }
+                [self alertTips:@"创建直播间失败" msg:errMsg completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
             }
         });
         
