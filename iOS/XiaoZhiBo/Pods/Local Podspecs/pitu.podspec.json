@@ -1,0 +1,50 @@
+{
+  "name": "pitu",
+  "version": "0.0.1",
+  "summary": "pitu for TXRTMPSDK",
+  "homepage": "http:testsdk.com",
+  "license": {
+    "type": "MIT",
+    "file": "FILE_LICENSE"
+  },
+  "description": "Nothing",
+  "authors": {
+    "annidyfeng": "annidy@gmail.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "http://local/pitu.git",
+    "tag": "0.0.1"
+  },
+  "source_files": "PituMotionDemo/**/*.{h,m}",
+  "exclude_files": [
+    "PituMotionDemo/AppDelegate.*",
+    "PituMotionDemo/main.m",
+    "PituMotionDemo/MainViewController.*"
+  ],
+  "resources": [
+    "PituMotionDemo/Frameworks/FilterEngine.bundle",
+    "PituMotionDemo/Frameworks/YoutuBeauty/ufa.bundle",
+    "PituMotionDemo/Frameworks/YoutuBeauty/youtubeauty.bundle",
+    "PituMotionDemo/YTFaceSDK.licence",
+    "PituMotionDemo/Res/*.png",
+    "PituMotionDemo/Frameworks/YoutuBeauty/PE.dat"
+  ],
+  "frameworks": [
+    "OpenGLES",
+    "CoreMedia",
+    "Accelerate",
+    "AVFoundation",
+    "AssetsLibrary",
+    "PituAlgorithm",
+    "youtubeauty",
+    "opencv2",
+    "FilterEngine",
+    "YTFaceSDK",
+    "PoseEstimateFramework"
+  ],
+  "libraries": "c++",
+  "requires_arc": true
+}

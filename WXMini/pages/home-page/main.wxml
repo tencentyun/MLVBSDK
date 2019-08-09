@@ -1,0 +1,29 @@
+<!--pages/main/main.wxml-->
+ <!-- <view class="mainUI"  style="background-image: url(/pages/Resources/bg.png);">  -->
+ <view class="mainUI"> 
+  <view class='title'style='padding-top:{{(headerHeight + statusBarHeight)/2 - 12}}px'>
+    <text>腾讯视频云</text>
+  </view>
+  <view class='tips'>
+    <text>以下将展示小程序互动音视频能力，由腾讯云提供技术支持</text>
+  </view>
+  <view class='guide-box'>
+    <view wx:for="{{entryInfos}}" wx:key="*this" id="{{index}}" class='guide' bindtap='onEntryTap'>
+      <block>
+        <image class="guide_icon" src="{{item.icon}}" mode="aspectFit" />
+        <view class="guide_label">{{item.title}}</view>
+        <view class="guide_desc">{{item.desc}}</view>
+      </block>
+    </view>
+    <!-- <view class='guide-nomore guide-nomore-bk'>
+      <view class="guide_nomore_label">
+        <view>更多功能</view>
+        <view>敬请期待</view> 
+      </view>
+    </view> -->
+    <!-- <view class='guide-nomore'></view> -->
+  </view>
+  <view class='logo-box'>
+    <image class='logo' src='../Resources/logo.png'></image>
+  </view>
+</view>

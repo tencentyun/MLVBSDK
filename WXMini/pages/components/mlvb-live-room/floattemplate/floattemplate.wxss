@@ -1,0 +1,35 @@
+.v-full {
+    width: 100vw;
+    height: 100vh;
+}
+
+.v-full2 {
+    width: 100vw;
+    height: 123.07vw; 
+}
+
+.v-main-video{
+    width: 100vw;
+    height: 100vh;
+}
+
+.v-sub-video {
+    position: relative;
+    display: inline-block;
+    width: 30.65vw;
+    height: calc(123.07vw/3);
+    margin-top: 2vw;
+}
+.v-sub-video-list {
+    position: absolute;
+    display: flex;
+    width: 30.65vw;
+    height: 123.07vw + 6vw;
+    right: 0;
+    bottom: 20vw;
+    overflow: hidden;    
+    flex-direction:column-reverse;
+}
+.v-border {
+    border: 1px solid red;    
+}

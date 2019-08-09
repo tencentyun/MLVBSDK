@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">腾讯云工具包</string>
+
+    <string name="title_activity_rtmp_room_demo">RtmpRoomDemoActivity</string>
+
+    <string name="title_activity_txdownload">TXDownloadActivity</string>
+</resources>

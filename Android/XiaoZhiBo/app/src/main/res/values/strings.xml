@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">小直播</string>
+
+    <!-- login re fragment-->
+
+
+    <string name="btn_take_photo">拍照</string>
+    <string name="btn_pic_photo">从手机相册选择</string>
+    <string name="btn_return_home">返回首页</string>
+    <string name="btn_return">返回</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_sure">确定</string>
+
+
+    <!--loginActivity -->
+    <string name="activity_login_login">登录</string>
+    <string name="activity_login_register">注册新用户</string>
+    <string name="activity_login_username">用户名</string>
+    <string name="activity_login_password">密码</string>
+    <!--loginActivity -->
+
+    <!--registerActivity -->
+    <string name="activity_register_register">注册</string>
+    <string name="activity_register_username">用户名(4~24位字母、数字、下划线)</string>
+    <string name="activity_register_password">密码(8~16位个字符)</string>
+    <string name="activity_register_password_verify">确认密码</string>
+    <string name="activity_register_return">返回</string>
+    <!--registerActivity -->
+
+    <!-- permission check-->
+    <string name="float_window_not_allow">悬浮窗权限未开启 请在应用-权限中打开悬浮窗权限</string>
+
+    <string name="dialog_input_text_hint">开启弹幕互动吧</string>
+
+    <string name="dialog_selectSex">请选择</string>
+    <!-- live fragment-->
+    <string name="live_unknown">不显示地理位置</string>
+
+    <!-- publish activity-->
+    <string name="activity_publish_beauty">美颜效果</string>
+    <string name="activity_publish_white">美白效果</string>
+
+    <!-- live play -->
+    <string name="send">发送</string>
+    <string name="live_end_tips">直播结束啦!</string>
+    <string name="live_time_tips">直播时长</string>
+    <string name="live_members_tips">观看人数</string>
+    <string name="live_admires_tips">获赞数量</string>
+
+    <!-- pushstream -->
+
+    <!-- msgadapter -->
+    <item type="id" name="tag_first"></item>
+    <item type="id" name="tag_second"></item>
+
+
+    <!-- userinfo fragment-->
+    <string name="userinfo_title">编辑个人信息</string>
+    <string name="userinfo_head">头像</string>
+    <string name="userinfo_nickname">昵称</string>
+    <string name="userinfo_sex">性别</string><![CDATA[
+    string>
+
+    ]]>
+    <string name="userinfo_sex_female">女</string>
+    <string name="userinfo_sex_male">男</string>
+
+    <string name="app_about">关于小直播</string>
+    <string name="app_set">编辑个人信息</string>
+    <string name="btn_login_out">退出登录</string>
+
+    <!-- set -->
+
+    <!-- icon_edit -->
+
+
+    <!-- fragment publish -->
+    <string name="publish_wait_uploading">请等待封面上传完成</string>
+    <string name="text_publish">开始直播</string>
+    <string name="text_live_preview">发布直播</string>
+    <string name="text_live_title_input">请输入直播标题</string>
+    <string name="text_live_close_lbs">不显示地理位置</string>
+    <string name="text_live_location">正在定位中</string>
+    <string name="text_live_lbs_fail">定位失败</string>
+    <string name="text_live_add_title_tips">给你的直播设置一个满意的封面</string>
+    <string name="tip_no_permission">权限不足</string>
+
+
+    <!--registerActivity  loginActivity-->
+    <string name="technical_support">如何获取技术支持服务？</string>
+    <string name="follow_public_number">关注公众号“腾讯云视频”</string>
+    <string name="send_msg_to_public_number">给公众号发送“小直播”</string>
+
+    <!-- userinfo fragment-->
+    <string name="get_technical_support">获取技术支持服务</string>
+    <string name="download_sdk"><a href='https://cloud.tencent.com/document/product/454/7873'>下载 SDK</a></string>
+    <string name="product_introduction"><a href='https://cloud.tencent.com/product/mlvb'>产品介绍</a></string>
+
+    <string name="follow_and_send_msg_to_public_number">关注公众号“腾讯云视频”\n给公众号发送“小直播”</string>
+</resources>

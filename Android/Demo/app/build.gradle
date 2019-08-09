@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.tencent.liteav.demo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "2.0"
+        multiDexEnabled true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name: 'LiteAVSDK_Smart_6.6.7458', ext: 'aar')               // LiteAV SDK
+    compile(name: 'imsdk-4.4.845', ext: 'aar')                          // IM SDK. MLVB 组件依赖腾讯云云通信组件 IM。 版本更新详见：https://cloud.tencent.com/document/product/269/32679
+
+    compile(name: 'barcodescanner-core-1.8.4', ext: 'aar')              // 二维码扫描
+    compile(name: 'zxing-1.8.4', ext: 'aar')                            // 二维码扫描
+
+    compile project(':lib_tccommon')
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+
+    compile 'com.tencent.bugly:crashreport:latest.release'              // 其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'        // 其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile 'com.android.support:multidex:1.0.0'
+
+
+}

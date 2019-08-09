@@ -1,0 +1,46 @@
+<view class='container-box'>
+  <mlvb-live-room id="id_liveroom" wx:if="{{showLiveRoom}}" roomid="{{roomID}}" role="{{role}}" roomname="{{roomName}}" pureaudio="{{pureAudio}}" debug="{{debug}}" muted="{{muted}}" beauty="{{beauty}}" template="float" bindRoomEvent="onRoomEvent">
+
+    <cover-view slot="casterBackButton" style='position:absolute;left:0;height:10%;width:10%;top:{{(headerHeight + statusBarHeight) - 26}}rpx'>
+        <cover-image class='close' src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
+    </cover-view>
+
+    <cover-view slot="audienceBackButton" style='position:absolute;left:0;height:10%;width:10%;top:{{(headerHeight + statusBarHeight) - 26}}rpx'>
+        <cover-image class='close' src="/pages/Resources/back.png" bindtap="onBack"></cover-image>
+    </cover-view>
+      
+    <!-- 主播推流界面上叠加的操作按钮 -->
+    <cover-view slot="caster" style='position:absolute;bottom:0;height:10%;width:100%'>
+      <cover-view class="operate">
+        <cover-view class='img-box'>
+          <cover-image class='img-view' src='/pages/Resources/camera{{frontCamera?"":"-gray"}}.png' bindtap="changeCamera"></cover-image>
+        </cover-view>
+        <cover-view class='img-box'>
+          <cover-image class='img-view' src='/pages/Resources/{{beauty > 0? "beauty" : "beauty-dis"}}.png' bindtap="setBeauty"></cover-image>
+        </cover-view>
+        <cover-view class='img-box'>
+          <cover-image class='img-view' src='/pages/Resources/{{debug? "log" : "log2"}}.png' bindtap="showLog"></cover-image>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+
+    <!-- 观众播放界面上叠加的操作按钮 -->
+    <cover-view slot="audience" style='position:absolute;bottom:0;height:10%;width:100%'>
+      <cover-view class='{{!linked? "operate-nolink" : "operate"}}'>
+        <cover-view wx:if="{{linked}}" class='img-box'>
+          <cover-image class='img-view' src='/pages/Resources/camera.png' bindtap="changeCamera"></cover-image>
+        </cover-view>
+        <cover-view wx:if="{{linked}}" class='img-box'>
+          <cover-image class='img-view' src='/pages/Resources/{{beauty > 0? "beauty" : "beauty-dis"}}.png' bindtap="setBeauty"></cover-image>
+        </cover-view>
+        <cover-view wx:if="{{!linked}}" class='img-box-big'>
+          <cover-image class='img-view-big' src='/pages/Resources/video-call.png' bindtap="onLinkClick"></cover-image>
+        </cover-view>
+        <cover-view class='{{!linked? "img-box-small" : "img-box"}}'>
+          <cover-image class='{{!linked? "img-view-small" : "img-view"}}' src='/pages/Resources/{{debug? "log" : "log2"}}.png' bindtap="showLog"></cover-image>
+        </cover-view>
+      </cover-view>
+      <cover-image wx:if="{{phoneNum}}" class='center' src="/pages/Resources/{{phoneNum}}.png"></cover-image>
+    </cover-view>
+  </mlvb-live-room>
+</view>

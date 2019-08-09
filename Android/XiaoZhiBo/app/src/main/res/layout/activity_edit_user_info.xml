@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="contentDescription">
+
+    <com.tencent.qcloud.xiaozhibo.common.widget.TCActivityTitle
+        android:id="@+id/at_eui_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backText="@string/btn_return"
+        app:titleText="@string/userinfo_title" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <RelativeLayout
+        android:id="@+id/rl_eui_head"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:onClick="onClick"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:text="@string/userinfo_head"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_eui_head"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical" />
+    </RelativeLayout>
+
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineEditTextView
+        android:id="@+id/letv_eui_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="onClick"
+        app:canNav="false"
+        app:isBottom="false"
+        app:name="@string/userinfo_nickname" />
+
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
+        android:id="@+id/lcv_eui_sex"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="onClick"
+        app:canNav="true"
+        app:isBottom="true"
+        app:name="@string/userinfo_sex" />
+</LinearLayout>

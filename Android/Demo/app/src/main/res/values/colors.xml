@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="c9">#777777</color>
+
+    <color name="colorAccent">#0accac</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="colorTransparentBlack">#44777777</color>
+
+    <color name="line_btn">#BBBBBB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <!--蒙版-->
+
+    <!--app主色调，背景色-->
+    <!--背景色-->
+    <!--app主题色，应用于导航，按钮-->
+    <!--主题色激活态，如按钮高亮-->
+    <!--红色标签/提示-->
+    <!--红色标签/提示高亮-->
+    <!--黄色色标签/提示-->
+    <!--黄色色标签/提示高亮-->
+    <!--黄色蒙版-->
+    <!--红色-->
+    <color name="colorRed">#FF3333</color>
+    <!--文字白色-->
+    <!--文字G1-->
+    <!--文字G2-->
+    <!--文字G3-->
+    <!--文字G4-->
+    <!--文字black-->
+    <!--gray1-->
+    <!--light gray-->
+    <!--gray2-->
+    <!--gray3-->
+    <!--gray4-->
+    <color name="colorGray4">#787878</color>
+    <!--gray5-->
+    <!--gray6-->
+    <!--gray7-->
+    <!--gray8-->
+    <!--green-->
+
+
+    <!--蒙版-->
+
+    <!-- 40%不透明度 -->
+
+
+    <!--?xml version="1.0" encoding="UTF-8"?-->
+
+    <!-- 裁剪范围颜色 -->
+
+    <!--special color-->
+    <!--MainActivity item被选中的颜色-->
+    <color name="main_item_selected_color">#555555</color>
+    <color name="main_item_unselected_color">#2A2A2A</color>
+    <color name="main_item_divide_color">#0d0d0d</color>
+
+    <color name="hlfTransparent">#30000000</color>
+
+</resources>

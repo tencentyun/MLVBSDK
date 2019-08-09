@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_h"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_v"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline_v"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_h">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_view_pk"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/loading_background_pk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview_pk"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_push"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_view_full_screen"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/controller_container"
+        android:orientation="horizontal"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_chat_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/icon_message" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/camera_switch_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_camera_switcher_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/camera_change" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/beauty_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_beauty_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/beauty" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mute_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_mute_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/mic_normal" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/linkmic_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_linkmic_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/linkmic_start" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/pk_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_pk_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/pk_start" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/rtmproom_log_switcher_btn"
+                android:layout_gravity="center"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:background="@drawable/log_show" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/chat_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_h"
+        app:layout_constraintBottom_toTopOf="@id/controller_container">
+
+        <ListView
+            android:id="@+id/chat_list_view"
+            android:dividerHeight="2dp"
+            android:divider="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/online_pushers_layout"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:background="#333333"
+        app:layout_constraintTop_toBottomOf="@id/guideline_h"
+        app:layout_constraintBottom_toTopOf="@id/controller_container"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/online_pushers_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="请选择主播"
+            android:textColor="@android:color/darker_gray"/>
+
+        <ListView
+            android:id="@+id/online_pushers_list_view"
+            android:dividerHeight="1dp"
+            android:layout_below="@id/online_pushers_label"
+            android:divider="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        </ListView>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/controller_container">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_player1"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/loading_background1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_kick_out1"
+        app:layout_constraintTop_toTopOf="@id/frame_layout_1"
+        app:layout_constraintRight_toRightOf="@id/frame_layout_1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/btn_kick_out"
+        android:visibility="invisible"/>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frame_layout_1">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_player2"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/loading_background2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_kick_out2"
+        app:layout_constraintTop_toTopOf="@id/frame_layout_2"
+        app:layout_constraintRight_toRightOf="@id/frame_layout_2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/btn_kick_out"
+        android:visibility="invisible"/>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_3"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frame_layout_2">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_player3"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/loading_background3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/loading_imageview3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_kick_out3"
+        app:layout_constraintTop_toTopOf="@id/frame_layout_3"
+        app:layout_constraintRight_toRightOf="@id/frame_layout_3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/btn_kick_out"
+        android:visibility="invisible"/>
+
+    <com.tencent.liteav.demo.common.view.BeautySettingPannel
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutFaceBeauty"
+        android:clickable="true"
+        android:visibility="gone"
+        android:background="@color/colorGray4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

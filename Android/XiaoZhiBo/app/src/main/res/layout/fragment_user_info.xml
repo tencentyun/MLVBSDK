@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="contentDescription"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/color_bottom_bar_background">
+
+        <ImageView
+            android:id="@+id/iv_ui_head"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/tv_ui_nickname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_ui_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/tv_ui_user_id"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_ui_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
+        android:id="@+id/lcv_ui_set"
+        android:layout_below="@+id/rl_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:name="@string/app_set"
+        app:canNav="true"
+        />
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/lcv_ui_set"
+        app:name="@string/app_about"
+        android:id="@+id/lcv_ui_version"
+        app:isBottom="true"
+        app:canNav="true"/>
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/lcv_ui_version"
+        app:name="@string/get_technical_support"
+        android:id="@+id/lcv_get_technical_support"
+        app:isBottom="true"
+        app:canNav="true"/>
+    <View
+        android:id="@+id/sep1"
+        android:layout_below="@id/lcv_get_technical_support"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+    <TextView
+        android:id="@+id/tv_download_sdk"
+        android:layout_below="@id/sep1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="20dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:text="@string/download_sdk"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <View
+        android:id="@+id/sep2"
+        android:layout_below="@id/tv_download_sdk"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <TextView
+        android:id="@+id/tv_product_introduction"
+        android:layout_below="@id/sep2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="20dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:text="@string/product_introduction"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <View
+        android:id="@+id/sep3"
+        android:layout_below="@id/tv_product_introduction"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <com.tencent.qcloud.xiaozhibo.profile.view.TCLineControllerView
+        android:id="@+id/lcv_ui_logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:name="@string/btn_login_out"
+        android:textColor="@color/black"
+        android:layout_below="@+id/sep3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp" />
+</RelativeLayout>

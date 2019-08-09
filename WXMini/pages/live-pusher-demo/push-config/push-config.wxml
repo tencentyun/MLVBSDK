@@ -1,0 +1,56 @@
+<!--pages/push-config/push-config.wxml-->
+<view class="mainUI">
+  <view class='title' style='padding-top:{{(headerHeight + statusBarHeight)/2 - 12}}px'>
+    <text>RTMP推流</text>
+  </view>
+  <view class='item' style='padding-top:2vh'>
+    <text class='item-title'>推流获取</text>
+    <button class="item-button1" bindtap="onScanQR">扫码读取</button>
+    <button class="item-button1" bindtap="onNewUrlClick">自动生成</button>
+  </view>
+
+  <view class='item'>
+    <text class='item-title'>推流地址</text>
+    <input class='item-input' placeholder="rtmp://" focus="{{focusPush}}" bindtap='onPushInputTap' bindinput="onPushInputChange" value="{{pushUrl}}"></input>
+    <image class='item-image' bindtap="onCopyPushUrl" src='/pages/Resources/copy.png'></image>
+  </view>
+
+  <view class='item'>
+    <text class='item-title'>播放地址</text>
+    <input class='item-input' placeholder="http://" focus="{{focusPlay}}" bindtap='onPlayInputTap' bindinput="onPlayInputChange" value="{{playUrl}}"></input>
+    <image class='item-image' bindtap="onCopyPlayUrl" src='/pages/Resources/copy.png'></image>
+  </view>
+
+  <view class='item'>
+    <text class='item-title'>画面质量</text>
+    <radio-group class="radio-group" bindchange="modeRadioChange">
+      <label class="radio" wx:for="{{modeItems}}" wx:key="" class="{{mode == item.value ? 'bc_blue white': 'blue'}}">
+        <radio value="{{item.value}}" checked="{{item.checked}}" /> {{item.title}}
+      </label>
+    </radio-group>
+  </view>
+
+  <view class='item'>
+    <text class='item-title'>画面方向</text>
+    <radio-group class="radio-group" bindchange="orientationRadioChange">
+      <label class="radio" wx:for="{{orientationItems}}" wx:key="" class="{{orientation == item.value ? 'bc_blue white': 'blue'}}">
+        <radio value="{{item.value}}" checked="{{item.checked}}" /> {{item.title}}
+      </label>
+    </radio-group>
+  </view>
+
+  <view class='item'>
+    <text class='item-title'>仅推声音</text>
+    <switch class='item-switch' checked="{{!enableCamera}}" bindchange="switchChange" />
+  </view>
+</view>
+
+<view class='start-box'>
+  <button class='start' bindtap="startPush" src='/pages/Resources/logo.png'>开始</button>
+</view>
+
+<view class='logo-box'>
+  <image class='logo' src='/pages/Resources/logo.png'></image>
+</view>
+
+<cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>

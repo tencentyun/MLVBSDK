@@ -1,0 +1,22 @@
+<!--pages/liveroom/roomlist/roomlist.wxml-->
+<view class='container-box'>
+  <view class='title' style='padding-top:{{(headerHeight + statusBarHeight)/2 - 12}}px'>
+    <text>手机直播</text>
+  </view>
+  <view class='extext' wx-if="{{roomList.length}}">选择直播间点击进入</view>
+  <view class='extext no-room' wx-if="{{!roomList.length}}">
+    <view>当前没有进行中的直播</view>
+    <view>请点击新建直播间</view>
+  </view>
+  <view wx:for="{{roomList}}" wx:key="{{index}}" class="list-box" bindtap="goRoom" data-roomid="{{item.roomID}}" data-roomname="{{item.roomInfo}}" data-accelerateurl="{{item.mixedPlayURL}}">
+    <view>
+      <view class='list-info'>直播间名称: {{item.roomInfo}}</view>
+      <view class='list-info'>直播间ID: {{item.roomID}}</view>
+      <!-- <view>在线人数: {{item.pushers.length}}人</view>  -->
+    </view>
+  </view>
+</view>
+<view class='bottom-btn'>
+  <button type="primary" bindtap="create" hover-class="none">新建直播间</button>
+</view>
+<cover-image class='close' style="top:{{(headerHeight + statusBarHeight) - 26}}rpx" src="/pages/Resources/back.png" bindtap="onBack"></cover-image>

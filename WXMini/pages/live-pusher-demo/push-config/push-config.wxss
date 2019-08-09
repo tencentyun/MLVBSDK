@@ -1,0 +1,107 @@
+/* pages/push-config/push-config.wxss */
+.item {
+  width:88vw;
+  height:30px;
+  padding-left: 6vw;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  display:flex;
+  flex-flow: row;
+  align-items:center;
+}
+
+.item-title {
+  width:20vw;
+  height:20px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.item-button1 {
+  display: flex;
+  width:23vw;
+  height:30px;
+  padding: 0 0 0 ;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  font-size: 14px;
+  color: #000000;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-input {
+  width:50vw;
+  height:30px;
+  margin-left: 2vw;
+  font-size: 14px;
+  color: #000000;
+  background-color: #ffffff; 
+  border-radius:8rpx;
+}
+
+.item-image {
+  margin-left: 3vw;
+  width:10vw;
+  height:10vw;
+}
+
+.radio-group {
+  background-color:white;
+  display: flex;
+  width: 50vw;
+  margin-left: 2vw;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #0076FF;
+  border-radius: 5px;
+}
+
+.radio-group radio {
+  display: none;
+}
+
+.blue{
+  color: #0076FF;
+}
+
+.bc_blue{
+  background-color: #0076FF;
+}
+
+.white {
+  color: white;
+}
+
+label {
+  text-align: center;
+  padding: 3px 0;
+  flex: 1;
+  border-right: 1px solid #0076FF;
+}
+
+label:last-child {
+  border-right: 0;
+}
+
+.item-switch {
+   margin-left: 2vw;
+}
+
+.start-box {
+  position: absolute;
+  width: 100vw;
+  bottom: 150rpx;
+  text-align: center;
+}
+
+.start {
+  display: flex;
+  width: 20vh;
+  height: 20vh;
+  font-size: 20px;
+  color: #0080FF;
+  border-radius: 10vh;
+  justify-content: center;
+  align-items: center;
+}

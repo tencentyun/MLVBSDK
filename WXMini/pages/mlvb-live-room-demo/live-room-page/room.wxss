@@ -1,0 +1,85 @@
+/* pages/liveroom_component_demo/liveroom_verticall1v3_page/liveroom.wxss */
+
+.container-box {
+    background-image: url(https://mc.qcloudimg.com/static/img/7da57e0050d308e2e1b1e31afbc42929/bg.png);
+    background-color: #333;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.center {
+  position: absolute;
+  left: calc(50vw - 55px);
+  top: calc(50vh - 55px);
+  width: 110px;
+  height: 110px;
+}
+
+
+.operate {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  bottom: 3vh;
+  width: fit-content;
+  height: 50px;
+}
+
+.operate-nolink {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: fit-content;
+  height: 80px;
+}
+
+.img-box {
+  position: relative;
+  display:inline-block;
+  height: 50px;
+  width: 80px;
+  vertical-align: middle;
+}
+
+.img-view {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.img-box-big {
+  position: relative;
+  display:inline-block;
+  height: 60px;
+  width: 60px;
+  padding-left: 40px;
+  vertical-align: middle;
+}
+
+.img-view-big {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+.img-box-small {
+  position: relative;
+  display:inline-block;
+  margin-left: calc(100vw - 80px - 50px - 80px);
+  height: 50px;
+  width: 50px;
+  vertical-align: middle;
+}
+
+.img-view-small {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+}

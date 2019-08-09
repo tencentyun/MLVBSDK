@@ -1,0 +1,51 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- umeng -->
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="title">18sp</dimen>
+    <dimen name="sub_content">14sp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+    <!--大小-->
+    <!--h1-->
+    <!--h2-->
+    <!--h3-->
+    <!--h4-->
+    <!--h5-->
+    <!--h6-->
+    <dimen name="h6">14sp</dimen>
+    <!--h7-->
+    <dimen name="h7">15sp</dimen>
+    <!--h8-->
+    <!--h9-->
+    <dimen name="h9">17sp</dimen>
+    <!--h10-->
+    <dimen name="h10">18sp</dimen>
+    <!--h11-->
+
+    <dimen name="h12">20sp</dimen>
+
+    <!-- 飘星 -->
+    <dimen name="heart_anim_bezier_x_rand">50.0dp</dimen>
+    <dimen name="heart_anim_length">100.0dp</dimen>
+    <dimen name="heart_anim_length_rand">350.0dp</dimen>
+
+
+    <dimen name="live_btn_size">35dp</dimen>
+
+
+    <!-- AVSDK *******************************************************************************************************************************-->
+
+    <!-- 视频聊天中小窗口移动时的阈值 -->
+
+    <!-- AVSDK *******************************************************************************************************************************-->
+
+    <!-- UGC*******************************************************************************************************************************-->
+    <!-- UGC*******************************************************************************************************************************-->
+
+</resources>

@@ -1,0 +1,10 @@
+<block wx:if="{{template == 'float'}}">
+    <import src='/pages/components/mlvb-live-room/floattemplate/floattemplate.wxml' />
+    <template is="floattemplate" data="{{debug, menuItems, isCaster, mainPusherInfo, beauty, muted, pureaudio, userName, visualPlayers, linkPusherInfo, members, mode,roomname,headerHeight,statusBarHeight}}" />
+</block>
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- umeng -->
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+    <!-- 飘星 -->
+
+
+    <dimen name="live_btn_size">35dp</dimen>
+
+
+    <!-- AVSDK *******************************************************************************************************************************-->
+
+    <!-- 视频聊天中小窗口移动时的阈值 -->
+
+    <!-- AVSDK *******************************************************************************************************************************-->
+
+    <!--<RTMP ROOM> ************************************************************ -->
+
+    <!--</RTMP ROOM> ************************************************************ -->
+
+
+    <!-- MEDIA CONTROLLER -->
+
+    <dimen name="icon_width">40dp</dimen>
+    <dimen name="icon_height">40dp</dimen>
+
+</resources>

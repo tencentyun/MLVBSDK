@@ -1,0 +1,37 @@
+<template name="floattemplate">
+  <view class="{{linkPusherInfo.url || isCaster ? 'v-full2': 'v-full'}}">
+    <view wx:if="{{isCaster}}" class='v-main-video'>
+      <live-pusher id="pusher" mode="{{mode}}" url="{{mainPusherInfo.url}}" min-bitrate="{{mainPusherInfo.minBitrate}}" max-bitrate="{{mainPusherInfo.maxBitrate}}" beauty="{{beauty}}" enable-camera="{{!pureaudio}}" muted="{{muted}}"
+        aspect="9:16" waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg" background-mute="{{true}}" debug="{{debug}}" bindstatechange="onMainPush" binderror="onMainError">
+        <slot name="casterBackButton"></slot>
+        <slot name="caster"></slot>
+      </live-pusher>
+    </view>
+
+    <view hidden="{{isCaster}}" class="{{linkPusherInfo.url ? 'v-main-video' : 'v-full'}}">
+      <live-player autoplay id="player" mode="{{visualPlayers[0].mode}}" min-cache="{{visualPlayers[0].minCache}}" max-cache="{{visualPlayers[0].maxCache}}" object-fit="{{visualPlayers[0].objectFit}}" src="{{visualPlayers[0].url}}" debug="{{debug}}" muted="{{muted}}" background-mute="{{visualPlayers[0].mute}}"
+        bindstatechange="onMainPlayState" binderror="onMainPlayError">
+        <slot name="audienceBackButton"></slot>
+        <slot name="audience"></slot>
+      </live-player>
+    </view>
+  </view>
+
+  <view wx:if="{{linkPusherInfo.url || isCaster}}" class='v-sub-video-list'>
+
+    <view class='.v-sub-video' wx:if="{{!isCaster && linkPusherInfo.url}}">
+      <live-pusher wx:if="{{!isCaster && linkPusherInfo.url}}" max-bitrate="300" min-bitrate="200" id="audience_pusher" mode="RTC" url="{{linkPusherInfo.url}}" beauty="{{beauty}}" enable-camera="{{!pureaudio}}" muted="{{muted}}" aspect="9:16" waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg"
+        background-mute="true" debug="{{debug}}" bindstatechange="onLinkPush" binderror="onLinkError">
+        <cover-view class='close-ico' bindtap="quitLink">x</cover-view>
+      </live-pusher>
+    </view>
+    <view class='.v-sub-video' wx:for="{{members}}" wx:key="{{item.userID}}">
+      <live-player wx:if="{{item.accelerateURL}}" id="{{item.userID}}" autoplay mode="RTC" object-fit="fillCrop" min-cache="0.1" max-cache="0.3" src="{{item.accelerateURL}}" debug="{{debug}}" background-mute="{{true}}">
+        <cover-view class="close-ico" wx:if="{{item.userID == userID || isCaster}}" bindtap="kickoutJoinAnchor" data-userid="{{item.userID}}">x</cover-view>
+        <cover-view class='loading' wx:if="{{false}}">
+          <cover-image src="/pages/Resources/loading_image0.png"></cover-image>
+        </cover-view>
+      </live-player>
+    </view>
+  </view>
+</template>

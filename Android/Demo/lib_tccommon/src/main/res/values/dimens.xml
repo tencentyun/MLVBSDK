@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--大小-->
+    <!--h1-->
+    <!--h2-->
+    <!--h3-->
+    <!--h4-->
+    <!--h5-->
+    <!--h6-->
+    <!--h7-->
+    <!--h8-->
+    <dimen name="h8">16sp</dimen>
+    <!--h9-->
+    <!--h10-->
+    <dimen name="h10">18sp</dimen>
+    <!--h11-->
+
+</resources>
