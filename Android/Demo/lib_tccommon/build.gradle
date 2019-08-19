@@ -29,6 +29,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.+'
     compile 'com.android.support:recyclerview-v7:25.+'
-    compile(name: 'LiteAVSDK_Smart_6.6.7458', ext: 'aar')               // LiteAV SDK
+    compile 'com.tencent.liteavsdk:LiteAVSDK_Smart:6.6.7458'            // LiteAV SDK
     compile files('libs/glide-3.7.0.jar')
 }

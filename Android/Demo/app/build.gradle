@@ -31,8 +31,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile(name: 'LiteAVSDK_Smart_6.6.7458', ext: 'aar')               // LiteAV SDK
-    compile(name: 'imsdk-4.4.845', ext: 'aar')                          // IM SDK. MLVB 组件依赖腾讯云云通信组件 IM。 版本更新详见：https://cloud.tencent.com/document/product/269/32679
+    compile 'com.tencent.liteavsdk:LiteAVSDK_Smart:6.6.7458'            // LiteAV SDK
+    compile 'com.tencent.imsdk:imsdk:4.4.900'                           // IM SDK. MLVB 组件依赖腾讯云云通信组件 IM。 版本更新详见：https://cloud.tencent.com/document/product/269/32679
 
     compile(name: 'barcodescanner-core-1.8.4', ext: 'aar')              // 二维码扫描
     compile(name: 'zxing-1.8.4', ext: 'aar')                            // 二维码扫描
