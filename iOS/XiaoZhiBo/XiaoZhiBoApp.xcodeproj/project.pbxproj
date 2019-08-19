@@ -50,13 +50,8 @@
 		456810B722A9076C001A08E1 /* TCLVBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568108322A9076C001A08E1 /* TCLVBWebViewController.m */; };
 		456810B822A9076C001A08E1 /* TCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568108722A9076C001A08E1 /* TCUtil.m */; };
 		456810B922A9076C001A08E1 /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568108922A9076C001A08E1 /* UIImage+Additions.m */; };
-		457845D32272A93300A5F2BA /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CED41D4B28120028B598 /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45784EB62272E3E700A5F2BA /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784BE02272E3E400A5F2BA /* Bugly.framework */; };
-		45784EB72272E3E700A5F2BA /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784BE12272E3E400A5F2BA /* ImSDK.framework */; };
 		45784EBA2272E3E700A5F2BA /* UserProtocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 45784BE42272E3E400A5F2BA /* UserProtocol.html */; };
 		45784EBB2272E3E700A5F2BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45784BE52272E3E400A5F2BA /* Assets.xcassets */; };
-		45784EDB2272E3E700A5F2BA /* QCloudCOSXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784C312272E3E400A5F2BA /* QCloudCOSXML.framework */; };
-		45784EDC2272E3E700A5F2BA /* QCloudCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784C322272E3E400A5F2BA /* QCloudCore.framework */; };
 		45784EF72272E3E700A5F2BA /* RoomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 45784C742272E3E500A5F2BA /* RoomUtil.m */; };
 		45784EF82272E3E700A5F2BA /* IMMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45784C752272E3E500A5F2BA /* IMMsgManager.m */; };
 		45784EFA2272E3E700A5F2BA /* MLVBLiveRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 45784C7F2272E3E500A5F2BA /* MLVBLiveRoom.m */; };
@@ -536,7 +531,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				457845D32272A93300A5F2BA /* ImSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,12 +635,8 @@
 		4568108A22A9076C001A08E1 /* HUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDHelper.h; sourceTree = "<group>"; };
 		4568108B22A9076C001A08E1 /* TCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLog.h; sourceTree = "<group>"; };
 		4568108C22A9076C001A08E1 /* ColorMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMacro.h; sourceTree = "<group>"; };
-		45784BE02272E3E400A5F2BA /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
-		45784BE12272E3E400A5F2BA /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
 		45784BE42272E3E400A5F2BA /* UserProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UserProtocol.html; sourceTree = "<group>"; };
 		45784BE52272E3E400A5F2BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		45784C312272E3E400A5F2BA /* QCloudCOSXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCOSXML.framework; sourceTree = "<group>"; };
-		45784C322272E3E400A5F2BA /* QCloudCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCore.framework; sourceTree = "<group>"; };
 		45784C742272E3E500A5F2BA /* RoomUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomUtil.m; sourceTree = "<group>"; };
 		45784C752272E3E500A5F2BA /* IMMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMMsgManager.m; sourceTree = "<group>"; };
 		45784C762272E3E500A5F2BA /* RoomUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomUtil.h; sourceTree = "<group>"; };
@@ -686,7 +676,6 @@
 		EF47CE601D4B1F8B0028B598 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		EF47CE621D4B1F9D0028B598 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EF47CED21D4B28120028B598 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bugly.framework; path = XiaoZhiBoApp/Framework/Bugly.framework; sourceTree = "<group>"; };
-		EF47CED41D4B28120028B598 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = XiaoZhiBoApp/Framework/ImSDK.framework; sourceTree = "<group>"; };
 		EF47CEDE1D4B28340028B598 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F4ECE3C5B38BD4FC3E4533D9 /* Pods-XiaoZhiBoApp.dailybuild.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoZhiBoApp.dailybuild.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp.dailybuild.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -697,17 +686,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4553C6F52272FE1B008544F7 /* AssetsLibrary.framework in Frameworks */,
-				45784EB62272E3E700A5F2BA /* Bugly.framework in Frameworks */,
 				91479BC61E70FD39007ECCEB /* Accelerate.framework in Frameworks */,
-				45784EDB2272E3E700A5F2BA /* QCloudCOSXML.framework in Frameworks */,
-				45784EB72272E3E700A5F2BA /* ImSDK.framework in Frameworks */,
 				B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */,
 				EF47CEDF1D4B28340028B598 /* libsqlite3.tbd in Frameworks */,
 				45B26D91228BC0D000CBA8B0 /* TXLiteAVSDK_Smart.framework in Frameworks */,
 				45B1125C2289B8030085AEEC /* TXLiteAVSDK_Smart.framework in Frameworks */,
 				EF47CE631D4B1F9D0028B598 /* SystemConfiguration.framework in Frameworks */,
 				EF47CE611D4B1F8B0028B598 /* CoreTelephony.framework in Frameworks */,
-				45784EDC2272E3E700A5F2BA /* QCloudCore.framework in Frameworks */,
 				EF47CE5F1D4B1F5D0028B598 /* libz.tbd in Frameworks */,
 				EF47CE5D1D4B1EE10028B598 /* AVFoundation.framework in Frameworks */,
 				EF47CE5B1D4B1ED60028B598 /* libstdc++.tbd in Frameworks */,
@@ -924,8 +909,6 @@
 			isa = PBXGroup;
 			children = (
 				45B1125B2289B8030085AEEC /* TXLiteAVSDK_Smart.framework */,
-				45784BE02272E3E400A5F2BA /* Bugly.framework */,
-				45784BE12272E3E400A5F2BA /* ImSDK.framework */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -948,15 +931,6 @@
 				4568107022A9076C001A08E1 /* Utils */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		45784C302272E3E400A5F2BA /* COSSDK */ = {
-			isa = PBXGroup;
-			children = (
-				45784C312272E3E400A5F2BA /* QCloudCOSXML.framework */,
-				45784C322272E3E400A5F2BA /* QCloudCore.framework */,
-			);
-			path = COSSDK;
 			sourceTree = "<group>";
 		};
 		45784C722272E3E500A5F2BA /* LiveRoom */ = {
@@ -994,7 +968,6 @@
 		45784CEF2272E3E500A5F2BA /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				45784C302272E3E400A5F2BA /* COSSDK */,
 				45784D042272E3E500A5F2BA /* WXApi */,
 			);
 			path = Thirdparty;
@@ -1124,7 +1097,6 @@
 				EF47CEDE1D4B28340028B598 /* libsqlite3.tbd */,
 				EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */,
 				EF47CED21D4B28120028B598 /* Bugly.framework */,
-				EF47CED41D4B28120028B598 /* ImSDK.framework */,
 				EF47CE621D4B1F9D0028B598 /* SystemConfiguration.framework */,
 				EF47CE601D4B1F8B0028B598 /* CoreTelephony.framework */,
 				EF47CE5C1D4B1EE10028B598 /* AVFoundation.framework */,
@@ -1167,15 +1139,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF47CE3F1D4B03FC0028B598 /* Build configuration list for PBXNativeTarget "XiaoZhiBoApp" */;
 			buildPhases = (
-				45B26DA5228BF6D000CBA8B0 /* Download SDK */,
 				053C9159096C0D842960296D /* [CP] Check Pods Manifest.lock */,
+				45B26DA5228BF6D000CBA8B0 /* Download SDK */,
 				EF47CE241D4B03FC0028B598 /* Sources */,
 				EF47CE251D4B03FC0028B598 /* Frameworks */,
 				EF47CE261D4B03FC0028B598 /* Resources */,
 				91BECB9A1D9B5C6B002FCD1E /* Embed Frameworks */,
 				91BECB9D1D9B61B7002FCD1E /* CopyFiles */,
-				CFB30BFBE82844BD91BB30BC /* [CP] Copy Pods Resources */,
 				EFCCED911D75CACE0062F02F /* Run Script */,
+				D2D754D0B746ECCF1230D107 /* [CP] Embed Pods Frameworks */,
+				BF020143BA8816A0EFA61A96 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1743,7 +1716,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
 		};
-		CFB30BFBE82844BD91BB30BC /* [CP] Copy Pods Resources */ = {
+		BF020143BA8816A0EFA61A96 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1761,6 +1734,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2D754D0B746ECCF1230D107 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks.sh",
+				"${PODS_ROOT}/ImSDK/ImSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFCCED911D75CACE0062F02F /* Run Script */ = {

@@ -16,3 +16,6 @@ Android/Demo/lib_tccommon/build
 .settings
 xcuserdata
 *.iml
+
+iOS/XiaoZhiBo/Pods/
+iOS/Demo/Pods/

@@ -1,0 +1,12 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+
+target 'TXLiteAVDemo_Smart' do
+
+pod 'ImSDK', :podspec => 'https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/ImSDK/ImSDK.podspec'
+pod 'Bugly', :podspec => 'https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/Bugly/Bugly.podspec'
+
+end

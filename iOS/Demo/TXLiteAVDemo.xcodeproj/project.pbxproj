@@ -51,7 +51,6 @@
 		400921DE1F4FCC52009B882D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F8553A1EE8FDBF00EE47D7 /* Accelerate.framework */; };
 		400921DF1F4FCC52009B882D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F855381EE8FDB600EE47D7 /* Security.framework */; };
 		400921E01F4FCC52009B882D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F855361EE8FDAD00EE47D7 /* AssetsLibrary.framework */; };
-		400921E11F4FCC52009B882D /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F855001EE8FD4400EE47D7 /* Bugly.framework */; };
 		400921E51F4FCC52009B882D /* QBImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40F8551E1EE8FD9100EE47D7 /* QBImagePicker.storyboard */; };
 		4009223A1F4FCC52009B882D /* QBImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40F8550C1EE8FD9100EE47D7 /* QBImagePicker.strings */; };
 		400922481F4FCC52009B882D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40F853311EE8FC9B00EE47D7 /* LaunchScreen.storyboard */; };
@@ -62,9 +61,8 @@
 		45ACE879227B2B9D002CE945 /* SmallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 45ACE877227B2B9D002CE945 /* SmallButton.m */; };
 		45B32B4D228B152A0071CCE8 /* LiveRoomAccPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B32B4C228B152A0071CCE8 /* LiveRoomAccPlayerView.m */; };
 		45B32B50228B154A0071CCE8 /* PushLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B32B4F228B154A0071CCE8 /* PushLogView.m */; };
-		45C37773226763530054D0B8 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB334C11FA9A6C6007C8244 /* ImSDK.framework */; };
-		45C37774226763530054D0B8 /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB334C11FA9A6C6007C8244 /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45C3779A226765A60054D0B8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 45C37797226765A60054D0B8 /* Settings.bundle */; };
+		473F019C4E808866C5D5D5F0 /* libPods-TXLiteAVDemo_Smart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB351DD78CCD469FBC91BDA /* libPods-TXLiteAVDemo_Smart.a */; };
 		6A03ED431FD13E0C00F2F063 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */; };
 		6AB3343C1FA96543007C8244 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB334061FA96543007C8244 /* UIProgressView+AFNetworking.m */; };
 		6AB334451FA96543007C8244 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB334081FA96543007C8244 /* UIRefreshControl+AFNetworking.m */; };
@@ -132,7 +130,6 @@
 		D541374F22796084006D9C9D /* PushBgmControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3107182272E31A002F6115 /* PushBgmControl.m */; };
 		D54137502279608E006D9C9D /* paomo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6A31073F22730514002F6115 /* paomo.mp3 */; };
 		D61B484D1FB59EF0002F0C6C /* TCHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D61B484A1FB59EF0002F0C6C /* TCHttpUtil.m */; };
-		D62ED8D01FF3ABE900092D1A /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB334C11FA9A6C6007C8244 /* ImSDK.framework */; };
 		D62EDBED1FF4D77900092D1A /* FilterResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE7C6E4A1FC2C5320095663F /* FilterResource.bundle */; };
 		D6D9E36720D283E700B6D607 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D47F3D20B6B13C0072AC0B /* SampleHandler.m */; };
 		D6D9E36820D283E700B6D607 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F8550A1EE8FD9100EE47D7 /* MBProgressHUD.m */; };
@@ -162,7 +159,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				45C37774226763530054D0B8 /* ImSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B5DE502E2FDBEBA65666C37 /* Pods-TXLiteAVDemo_Smart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXLiteAVDemo_Smart.release.xcconfig"; path = "Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart.release.xcconfig"; sourceTree = "<group>"; };
 		400922A11F4FCC52009B882D /* TXLiteAVDemo_Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TXLiteAVDemo_Smart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40407ACA1F3035CA006C7301 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		40F8531E1EE8FC4700EE47D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,7 +217,6 @@
 		40F853531EE8FCDF00EE47D7 /* ColorMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMacro.h; sourceTree = "<group>"; };
 		40F853551EE8FCDF00EE47D7 /* ScanQRController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanQRController.h; sourceTree = "<group>"; };
 		40F853561EE8FCDF00EE47D7 /* ScanQRController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScanQRController.mm; sourceTree = "<group>"; };
-		40F855001EE8FD4400EE47D7 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bugly.framework; path = TXLiteAVDemo/Bugly.framework; sourceTree = "<group>"; };
 		40F855061EE8FD9100EE47D7 /* CWStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStatusBarNotification.h; sourceTree = "<group>"; };
 		40F855071EE8FD9100EE47D7 /* CWStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStatusBarNotification.m; sourceTree = "<group>"; };
 		40F855091EE8FD9100EE47D7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -274,6 +270,7 @@
 		45B32B4F228B154A0071CCE8 /* PushLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushLogView.m; sourceTree = "<group>"; };
 		45C37797226765A60054D0B8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		51A4AD391F1F8AE300B4A806 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		69C32FBA936346476F24E405 /* Pods-TXLiteAVDemo_Smart.dailybuild.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXLiteAVDemo_Smart.dailybuild.xcconfig"; path = "Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart.dailybuild.xcconfig"; sourceTree = "<group>"; };
 		6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		6A03ED401FD13DFB00F2F063 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		6A3107172272E31A002F6115 /* PushBgmControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushBgmControl.h; sourceTree = "<group>"; };
@@ -312,7 +309,7 @@
 		6AB334251FA96543007C8244 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		6AB334261FA96543007C8244 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		6AB334271FA96543007C8244 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		6AB334C11FA9A6C6007C8244 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = TXLiteAVDemo/Third/ImSDK/ImSDK.framework; sourceTree = "<group>"; };
+		7CB351DD78CCD469FBC91BDA /* libPods-TXLiteAVDemo_Smart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TXLiteAVDemo_Smart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		912A62062160D78A00C16E41 /* CFDanmaku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFDanmaku.h; sourceTree = "<group>"; };
 		912A62072160D78A00C16E41 /* CFDanmaku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFDanmaku.m; sourceTree = "<group>"; };
 		912A62082160D78A00C16E41 /* CFDanmakuInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFDanmakuInfo.h; sourceTree = "<group>"; };
@@ -449,6 +446,7 @@
 		D6EA0E1D1F447ECE00D31507 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlView.m; sourceTree = "<group>"; };
 		D6EA0E1E1F447ECE00D31507 /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
 		D6EA0E1F1F447ECE00D31507 /* TextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
+		DE53BFC6C16A7DB114F99987 /* Pods-TXLiteAVDemo_Smart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXLiteAVDemo_Smart.debug.xcconfig"; path = "Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,17 +463,15 @@
 				400921D41F4FCC52009B882D /* libz.tbd in Frameworks */,
 				400921D51F4FCC52009B882D /* libc++.tbd in Frameworks */,
 				400921D71F4FCC52009B882D /* libresolv.tbd in Frameworks */,
-				D62ED8D01FF3ABE900092D1A /* ImSDK.framework in Frameworks */,
 				400921D81F4FCC52009B882D /* SystemConfiguration.framework in Frameworks */,
 				400921D91F4FCC52009B882D /* CoreTelephony.framework in Frameworks */,
 				400921DA1F4FCC52009B882D /* VideoToolbox.framework in Frameworks */,
 				400921DC1F4FCC52009B882D /* CoreMedia.framework in Frameworks */,
 				400921DD1F4FCC52009B882D /* CoreGraphics.framework in Frameworks */,
 				400921DE1F4FCC52009B882D /* Accelerate.framework in Frameworks */,
-				45C37773226763530054D0B8 /* ImSDK.framework in Frameworks */,
 				400921DF1F4FCC52009B882D /* Security.framework in Frameworks */,
 				400921E01F4FCC52009B882D /* AssetsLibrary.framework in Frameworks */,
-				400921E11F4FCC52009B882D /* Bugly.framework in Frameworks */,
+				473F019C4E808866C5D5D5F0 /* libPods-TXLiteAVDemo_Smart.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +496,7 @@
 				91D47F3B20B6B13C0072AC0B /* ReplaykitUpload */,
 				40F854FF1EE8FD2F00EE47D7 /* Frameworks */,
 				40F853041EE8FB3800EE47D7 /* Products */,
+				484684DAE1BAB149F3FE4F37 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -650,7 +647,6 @@
 				D650607A20EE145F00C8BC44 /* libc.tbd */,
 				91F87A7E1FF4A0FC001644B1 /* libsqlite3.tbd */,
 				CF31F0EB1FBB2A7E0066BF7D /* Metal.framework */,
-				6AB334C11FA9A6C6007C8244 /* ImSDK.framework */,
 				40407ACA1F3035CA006C7301 /* Foundation.framework */,
 				51A4AD391F1F8AE300B4A806 /* MediaPlayer.framework */,
 				CE45D2971F15C527003506D1 /* libc++.tbd */,
@@ -666,8 +662,8 @@
 				40F8553A1EE8FDBF00EE47D7 /* Accelerate.framework */,
 				40F855381EE8FDB600EE47D7 /* Security.framework */,
 				40F855361EE8FDAD00EE47D7 /* AssetsLibrary.framework */,
-				40F855001EE8FD4400EE47D7 /* Bugly.framework */,
 				91D47F3920B6B13C0072AC0B /* ReplayKit.framework */,
+				7CB351DD78CCD469FBC91BDA /* libPods-TXLiteAVDemo_Smart.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -752,6 +748,16 @@
 				45ACE878227B2B9D002CE945 /* SmallButton.h */,
 			);
 			path = SmallButton;
+			sourceTree = "<group>";
+		};
+		484684DAE1BAB149F3FE4F37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE53BFC6C16A7DB114F99987 /* Pods-TXLiteAVDemo_Smart.debug.xcconfig */,
+				0B5DE502E2FDBEBA65666C37 /* Pods-TXLiteAVDemo_Smart.release.xcconfig */,
+				69C32FBA936346476F24E405 /* Pods-TXLiteAVDemo_Smart.dailybuild.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		6AB334021FA96543007C8244 /* AFNetworking */ = {
@@ -1114,12 +1120,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4009229E1F4FCC52009B882D /* Build configuration list for PBXNativeTarget "TXLiteAVDemo_Smart" */;
 			buildPhases = (
+				DBC36BE191417638C394FCE7 /* [CP] Check Pods Manifest.lock */,
 				45B26DAD228C00B300CBA8B0 /* Download SDK */,
 				400921941F4FCC52009B882D /* Sources */,
 				400921CE1F4FCC52009B882D /* Frameworks */,
 				400921E21F4FCC52009B882D /* Resources */,
 				D6D9E37C20D2850D00B6D607 /* Embed App Extensions */,
 				45C37775226763540054D0B8 /* Embed Frameworks */,
+				0B1514FB69BEF8C15DF6B832 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1219,6 +1227,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0B1514FB69BEF8C15DF6B832 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart-frameworks.sh",
+				"${PODS_ROOT}/ImSDK/ImSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		45B26DAD228C00B300CBA8B0 /* Download SDK */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1255,6 +1281,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\necho \"Downloading SDK from $URL\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
+		};
+		DBC36BE191417638C394FCE7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TXLiteAVDemo_Smart-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1420,6 +1468,7 @@
 /* Begin XCBuildConfiguration section */
 		4009229F1F4FCC52009B882D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE53BFC6C16A7DB114F99987 /* Pods-TXLiteAVDemo_Smart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1432,8 +1481,6 @@
 					"$(PROJECT_DIR)/TXLiteAVDemo",
 					"$(PROJECT_DIR)/TXLiteAVDemo//Third/PiTu",
 					"$(PROJECT_DIR)/../SDK",
-					"$(PROJECT_DIR)/TXLiteAVDemo//Third/ImSDK",
-					"$(PROJECT_DIR)/TXLiteAVDemo/Third/ImSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1454,11 +1501,15 @@
 					"$(PROJECT_DIR)/../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"$(PROJECT_DIR)/TXLiteAVDemo//Third/Masonry",
 					"$(PROJECT_DIR)/SuperPlayer/SuperPlayer/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = TXLiteAVDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
@@ -1468,6 +1519,7 @@
 		};
 		400922A01F4FCC52009B882D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B5DE502E2FDBEBA65666C37 /* Pods-TXLiteAVDemo_Smart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1482,8 +1534,6 @@
 					"$(PROJECT_DIR)/TXLiteAVDemo",
 					"$(PROJECT_DIR)/TXLiteAVDemo//Third/PiTu",
 					"$(PROJECT_DIR)/../SDK",
-					"$(PROJECT_DIR)/TXLiteAVDemo//Third/ImSDK",
-					"$(PROJECT_DIR)/TXLiteAVDemo/Third/ImSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1504,12 +1554,16 @@
 					"$(PROJECT_DIR)/../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"$(PROJECT_DIR)/TXLiteAVDemo//Third/Masonry",
 					"$(PROJECT_DIR)/SuperPlayer/SuperPlayer/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = TXLiteAVDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
@@ -1518,6 +1572,7 @@
 		};
 		40CF9E221F5E5082005B6B4D /* DailyBuild */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C32FBA936346476F24E405 /* Pods-TXLiteAVDemo_Smart.dailybuild.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1532,8 +1587,6 @@
 					"$(PROJECT_DIR)/TXLiteAVDemo",
 					"$(PROJECT_DIR)/TXLiteAVDemo//Third/PiTu",
 					"$(PROJECT_DIR)/../SDK",
-					"$(PROJECT_DIR)/TXLiteAVDemo//Third/ImSDK",
-					"$(PROJECT_DIR)/TXLiteAVDemo/Third/ImSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1554,12 +1607,16 @@
 					"$(PROJECT_DIR)/../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"$(PROJECT_DIR)/TXLiteAVDemo//Third/Masonry",
 					"$(PROJECT_DIR)/SuperPlayer/SuperPlayer/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = TXLiteAVDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.DeviceManageIOSApp.dailybuild;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "com.tencent.DeviceManageIOSApp.dailybuild InHouse";
