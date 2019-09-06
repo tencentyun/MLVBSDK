@@ -1170,7 +1170,7 @@
 				TargetAttributes = {
 					EF47CE271D4B03FC0028B598 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = QE8PS7F45A;
+						DevelopmentTeam = 5GHU44CJHG;
 						DevelopmentTeamName = "Xing Feng";
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1714,7 +1714,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nrm -rf __MACOSX\nmv TXLiteAVSDK_Smart/*.framework .\nrmdir TXLiteAVSDK_Smart\nrm TXLiteAVSDK_Smart_iOS.zip\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nmv TXLiteAVSDK_Smart_*/SDK/*.framework .\nrm -rf TXLiteAVSDK_Smart_*\nfi\n";
 		};
 		BF020143BA8816A0EFA61A96 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2062,7 +2062,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = QE8PS7F45A;
+				DEVELOPMENT_TEAM = 5GHU44CJHG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../SDK",
