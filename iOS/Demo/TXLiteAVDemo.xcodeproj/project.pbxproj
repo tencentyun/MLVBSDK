@@ -110,6 +110,9 @@
 		A035040A20D20A01007E61C6 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A035040720D20A01007E61C6 /* QRCode.m */; };
 		A035043220D24F99007E61C6 /* AddressBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A035042F20D24F99007E61C6 /* AddressBarController.m */; };
 		A035044020D2511A007E61C6 /* AddressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A035043D20D2511A007E61C6 /* AddressBar.m */; };
+		A0ECD6B5233873CE0027A878 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0ECD6B4233873CE0027A878 /* Bugly.framework */; };
+		A0ECD6B723387CAA0027A878 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0ECD6B623387CAA0027A878 /* ImSDK.framework */; };
+		A0ECD6B923387D150027A878 /* ImSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A0ECD6B623387CAA0027A878 /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D541373E22796084006D9C9D /* IMMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D50292D62272BAFE00C052B7 /* IMMsgManager.m */; };
 		D541373F22796084006D9C9D /* RoomUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D50292D42272BAFE00C052B7 /* RoomUtil.m */; };
 		D541374022796084006D9C9D /* LiveRoomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50292E52272BB0600C052B7 /* LiveRoomListViewController.m */; };
@@ -139,7 +142,6 @@
 		D6D9E37020D283E700B6D607 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D47F3920B6B13C0072AC0B /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D6D9E37920D2850D00B6D607 /* TXReplaykitUpload_Smart.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D6D9E37620D283E700B6D607 /* TXReplaykitUpload_Smart.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D6E5D1C520B7B62000812B2F /* Replaykit2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* Replaykit2ViewController.m */; };
-		ED5FB140AE6C015EBE2CF1A1 /* libPods-TXLiteAVDemo_Smart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB351DD78CCD469FBC91BDA /* libPods-TXLiteAVDemo_Smart.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +163,16 @@
 			files = (
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0ECD6B823387CFE0027A878 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A0ECD6B923387D150027A878 /* ImSDK.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D6D9E37C20D2850D00B6D607 /* Embed App Extensions */ = {
@@ -309,7 +321,6 @@
 		6AB334251FA96543007C8244 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		6AB334261FA96543007C8244 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		6AB334271FA96543007C8244 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		7CB351DD78CCD469FBC91BDA /* libPods-TXLiteAVDemo_Smart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TXLiteAVDemo_Smart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		912A62062160D78A00C16E41 /* CFDanmaku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFDanmaku.h; sourceTree = "<group>"; };
 		912A62072160D78A00C16E41 /* CFDanmaku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFDanmaku.m; sourceTree = "<group>"; };
 		912A62082160D78A00C16E41 /* CFDanmakuInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFDanmakuInfo.h; sourceTree = "<group>"; };
@@ -384,6 +395,8 @@
 		A035043C20D2511A007E61C6 /* AddressBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressBar.h; sourceTree = "<group>"; };
 		A035043D20D2511A007E61C6 /* AddressBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressBar.m; sourceTree = "<group>"; };
 		A06E854B214F9E1E00DF949B /* Common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Common.xcassets; sourceTree = "<group>"; };
+		A0ECD6B4233873CE0027A878 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bugly.framework; path = ../SDK/Bugly.framework; sourceTree = "<group>"; };
+		A0ECD6B623387CAA0027A878 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = ../SDK/ImSDK.framework; sourceTree = "<group>"; };
 		CE1B08C01FC529D0006A57B5 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		CE1B08C21FC529D0006A57B5 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
 		CE1B08C31FC529D0006A57B5 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
@@ -457,9 +470,11 @@
 				912E57A5206A3A6500340AF5 /* libsqlite3.tbd in Frameworks */,
 				400921CF1F4FCC52009B882D /* Foundation.framework in Frameworks */,
 				400921D01F4FCC52009B882D /* AVFoundation.framework in Frameworks */,
+				A0ECD6B723387CAA0027A878 /* ImSDK.framework in Frameworks */,
 				400921D11F4FCC52009B882D /* MediaPlayer.framework in Frameworks */,
 				45ACE853227B2851002CE945 /* TXLiteAVSDK_Smart.framework in Frameworks */,
 				400921D31F4FCC52009B882D /* libiconv.tbd in Frameworks */,
+				A0ECD6B5233873CE0027A878 /* Bugly.framework in Frameworks */,
 				400921D41F4FCC52009B882D /* libz.tbd in Frameworks */,
 				400921D51F4FCC52009B882D /* libc++.tbd in Frameworks */,
 				400921D71F4FCC52009B882D /* libresolv.tbd in Frameworks */,
@@ -471,7 +486,6 @@
 				400921DE1F4FCC52009B882D /* Accelerate.framework in Frameworks */,
 				400921DF1F4FCC52009B882D /* Security.framework in Frameworks */,
 				400921E01F4FCC52009B882D /* AssetsLibrary.framework in Frameworks */,
-				ED5FB140AE6C015EBE2CF1A1 /* libPods-TXLiteAVDemo_Smart.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +657,8 @@
 		40F854FF1EE8FD2F00EE47D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0ECD6B623387CAA0027A878 /* ImSDK.framework */,
+				A0ECD6B4233873CE0027A878 /* Bugly.framework */,
 				45ACE852227B2851002CE945 /* TXLiteAVSDK_Smart.framework */,
 				D650607A20EE145F00C8BC44 /* libc.tbd */,
 				91F87A7E1FF4A0FC001644B1 /* libsqlite3.tbd */,
@@ -663,7 +679,6 @@
 				40F855381EE8FDB600EE47D7 /* Security.framework */,
 				40F855361EE8FDAD00EE47D7 /* AssetsLibrary.framework */,
 				91D47F3920B6B13C0072AC0B /* ReplayKit.framework */,
-				7CB351DD78CCD469FBC91BDA /* libPods-TXLiteAVDemo_Smart.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1120,14 +1135,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4009229E1F4FCC52009B882D /* Build configuration list for PBXNativeTarget "TXLiteAVDemo_Smart" */;
 			buildPhases = (
-				E71E72DB9BBA5A3570DE1F14 /* [CP] Check Pods Manifest.lock */,
 				45B26DAD228C00B300CBA8B0 /* Download SDK */,
 				400921941F4FCC52009B882D /* Sources */,
 				400921CE1F4FCC52009B882D /* Frameworks */,
 				400921E21F4FCC52009B882D /* Resources */,
 				D6D9E37C20D2850D00B6D607 /* Embed App Extensions */,
 				45C37775226763540054D0B8 /* Embed Frameworks */,
-				0B1514FB69BEF8C15DF6B832 /* [CP] Embed Pods Frameworks */,
+				A0ECD6B823387CFE0027A878 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1227,24 +1241,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B1514FB69BEF8C15DF6B832 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart-frameworks.sh",
-				"${PODS_ROOT}/ImSDK/ImSDK.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImSDK.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		45B26DAD228C00B300CBA8B0 /* Download SDK */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1261,7 +1257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\necho \"Downloading SDK from $URL\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nmv TXLiteAVSDK_Smart_*/SDK/*.framework .\nrm -rf TXLiteAVSDK_Smart_*\nfi\n";
+			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\necho \"Downloading SDK from $URL\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nmv TXLiteAVSDK_Smart_*/SDK/*.framework .\nrm -rf TXLiteAVSDK_Smart_*\nfi\n\nif [ ! -e \"${PROJECT_DIR}/../SDK/ImSDK.framework\" ]; then\nURL=\"https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/ImSDK/ImSDK.framework.zip\"\necho \"Downloading IM SDK from $URL\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/ImSDK.zip\ncd ${PROJECT_DIR}/../SDK\nunzip ImSDK.zip\nrm -rf ImSDK.zip\nrm -rf __MACOSX\nfi\n\nif [ ! -e \"${PROJECT_DIR}/../SDK/Bugly.framework\" ]; then\nURL=\"https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/Bugly/Bugly.framework.zip\"\necho \"Downloading Bugly SDK from $URL\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/Bugly.zip\ncd ${PROJECT_DIR}/../SDK\nunzip Bugly.zip\nrm -rf Bugly.zip\nfi\n";
 		};
 		45C4D8592293A4B1005C88CF /* Download SDK */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1281,28 +1277,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\necho \"Downloading SDK from $URL\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nmv TXLiteAVSDK_Smart_*/SDK/*.framework .\nrm -rf TXLiteAVSDK_Smart_*\nfi\n";
-		};
-		E71E72DB9BBA5A3570DE1F14 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TXLiteAVDemo_Smart-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1468,7 +1442,6 @@
 /* Begin XCBuildConfiguration section */
 		4009229F1F4FCC52009B882D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE53BFC6C16A7DB114F99987 /* Pods-TXLiteAVDemo_Smart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1519,7 +1492,6 @@
 		};
 		400922A01F4FCC52009B882D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B5DE502E2FDBEBA65666C37 /* Pods-TXLiteAVDemo_Smart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1572,7 +1544,6 @@
 		};
 		40CF9E221F5E5082005B6B4D /* DailyBuild */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69C32FBA936346476F24E405 /* Pods-TXLiteAVDemo_Smart.dailybuild.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
