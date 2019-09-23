@@ -5,14 +5,11 @@
 ## 国内镜像
 访问 Github 较慢的客户，可以考虑使用 [Gitee](https://gitee.com/cloudtencent/MLVBSDK) 上的镜像仓库。
 
-## 最新版本 6.6.7458 @ 2019.08.02
-1. iOS修复了iOS 13 上的一些兼容性问题
-2. iOS修复onNetStatus回调NET_SPEED不准的问题；
-3. iOS修复按时间获取缩略图接口的问题；
-4. iOS修复设置动效切后台后无效的问题；
-5. Android企业版新增64位支持，P图库支持动态下载；
-6. Android短视频修复编辑视频页Crash；
-7. 6.4 版本开始，TXLivePusher 组件加入 License 校验功能，您可以通过购买购买[移动直播套餐](https://cloud.tencent.com/document/product/454/34750)免费获得一年的 License 使用权限。
+## 最新版本 6.6Patch @ 2019.09.10
+- iOS：iOS13兼容性支持。
+- Android：企业版修复内存占用及库冲突问题。
+- iOS&Android：修复若干bug。
+- iOS&Android：6.4 版本开始，TXLivePusher 组件加入 License 校验功能，您可以通过购买购买[移动直播套餐](https://cloud.tencent.com/document/product/454/34750)免费获得一年的 License 使用权限。
 
 ## API 文档指引
 
