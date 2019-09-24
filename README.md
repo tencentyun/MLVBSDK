@@ -12,9 +12,9 @@
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
 ## 最新版本 6.6Patch @ 2019.09.10
-- iOS：iOS13兼容性支持。
+- iOS：iOS13 兼容性支持。
 - Android：企业版修复内存占用及库冲突问题。
-- iOS&Android：修复若干bug。
+- iOS&Android：修复若干 bug。
 - iOS&Android：6.4 版本开始，TXLivePusher 组件加入 License 校验功能，您可以通过购买购买[移动直播套餐](https://cloud.tencent.com/document/product/454/34750)免费获得一年的 License 使用权限。
 
 ## MLVB Demo
