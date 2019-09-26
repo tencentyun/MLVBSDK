@@ -17,6 +17,8 @@
 - iOS&Android：修复若干 bug。
 - iOS&Android：6.4 版本开始，TXLivePusher 组件加入 License 校验功能，您可以通过购买购买[移动直播套餐](https://cloud.tencent.com/document/product/454/34750)免费获得一年的 License 使用权限。
 
+>!iOS如果集成的是Professional或者Enterprise版SDK，更新后需要在项目里面添加系统依赖库OpenAL.framework
+
 ## MLVB Demo
 
 ![](https://main.qcloudimg.com/raw/ddf1ce540e29f5a43091d9274672e5f1.jpg)
