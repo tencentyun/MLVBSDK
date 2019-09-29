@@ -11,13 +11,15 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-## 最新版本 6.6Patch @ 2019.09.10
-- iOS：iOS13 兼容性支持。
-- Android：企业版修复内存占用及库冲突问题。
-- iOS&Android：修复若干 bug。
-- iOS&Android：6.4 版本开始，TXLivePusher 组件加入 License 校验功能，您可以通过购买购买[移动直播套餐](https://cloud.tencent.com/document/product/454/34750)免费获得一年的 License 使用权限。
-
->注意：iOS如果集成的是Professional或者Enterprise版SDK，更新后需要在项目里面添加系统依赖库OpenAL.framework
+## Version 6.7.7733 @ 2019.09.29
+- iOS：iOS13 录屏兼容性问题处理。
+- iOS：解决阿拉伯文兼容性问题。
+- iOS：解决编辑视频使用高质量保存偶现失败的问题。
+- Android：短视频合成偶现杂音问题 fix。
+- Android：STL 库统一直接使用系统库，解决因 STL 库冲突引起的偶现 CRASH 问题。
+- iOS&Android：精简版极速模式拉流有画面无声音问题 fix。
+- iOS&Android：录制增加16：9分辨率支持。
+- iOS&Android：重点解决上报的偶现 CRASH 问题。
 
 ## MLVB Demo
 
