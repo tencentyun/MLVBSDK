@@ -57,7 +57,7 @@ public class AnchorInfo implements Parcelable {
         dest.writeString(this.userAvatar);
     }
 
-    public static final Creator<AnchorInfo> CREATOR = new Creator<AnchorInfo>() {
+    public static final Parcelable.Creator<AnchorInfo> CREATOR = new Parcelable.Creator<AnchorInfo>() {
         @Override
         public AnchorInfo createFromParcel(Parcel source) {
             return new AnchorInfo(source);

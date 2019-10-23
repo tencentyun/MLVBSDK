@@ -65,7 +65,7 @@ public class LoginInfo implements Parcelable {
         dest.writeString(this.userSig);
     }
 
-    public static final Creator<LoginInfo> CREATOR = new Creator<LoginInfo>() {
+    public static final Parcelable.Creator<LoginInfo> CREATOR = new Parcelable.Creator<LoginInfo>() {
         @Override
         public LoginInfo createFromParcel(Parcel source) {
             return new LoginInfo(source);

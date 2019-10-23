@@ -31,6 +31,7 @@ import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AudienceInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.MLVBCommonDef;
 import com.tencent.qcloud.xiaozhibo.R;
+import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.ui.ErrorDialogFragment;
 import com.tencent.qcloud.xiaozhibo.common.widget.beauty.TCBeautyControl;
@@ -255,24 +256,26 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
         mBgImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         mBtnLinkMic = (Button) findViewById(R.id.audience_btn_linkmic);
-        mBtnLinkMic.setVisibility(View.VISIBLE);
-        mBtnLinkMic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mIsBeingLinkMic == false) {
-                    long curTime = System.currentTimeMillis();
-                    if (curTime < mLastLinkMicTime + LINK_MIC_INTERVAL) {
-                        Toast.makeText(getApplicationContext(), "太频繁啦，休息一下！", Toast.LENGTH_SHORT).show();
+        if (TCGlobalConfig.ENABLE_LINKMIC) {
+            mBtnLinkMic.setVisibility(View.VISIBLE);
+            mBtnLinkMic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mIsBeingLinkMic == false) {
+                        long curTime = System.currentTimeMillis();
+                        if (curTime < mLastLinkMicTime + LINK_MIC_INTERVAL) {
+                            Toast.makeText(getApplicationContext(), "太频繁啦，休息一下！", Toast.LENGTH_SHORT).show();
+                        } else {
+                            mLastLinkMicTime = curTime;
+                            startLinkMic();
+                        }
                     } else {
-                        mLastLinkMicTime = curTime;
-                        startLinkMic();
+                        stopLinkMic();
+                        startPlay();
                     }
-                } else {
-                    stopLinkMic();
-                    startPlay();
                 }
-            }
-        });
+            });
+        }
 
         mBtnSwitchCamera = (Button) findViewById(R.id.audience_btn_switch_cam);
         mBtnSwitchCamera.setOnClickListener(new View.OnClickListener() {

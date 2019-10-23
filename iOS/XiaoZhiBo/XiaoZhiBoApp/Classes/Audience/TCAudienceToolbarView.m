@@ -11,7 +11,7 @@
 #import "UIView+Additions.h"
 #import "TCUserProfileModel.h"
 #import "TCAccountMgrModel.h"
-#import "TCGlobalConfig.h"
+#import "TCConfig.h"
 #import "TCRoomListModel.h"
 #import "HUDHelper.h"
 #import <Masonry/Masonry.h>

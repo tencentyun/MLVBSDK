@@ -335,19 +335,18 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
 
     /**
      * COS 存储上传封面图回调的结果
-     *
      * @param code
-     * @param url
+     * @param retData
      */
     @Override
-    public void onUploadResult(int code, String url) {
+    public void onUploadResult(int code, String retData) {
         if (0 == code) {
-            TCUserMgr.getInstance().setCoverPic(url, null);
+            TCUserMgr.getInstance().setCoverPic(retData, null);
             RequestManager req = Glide.with(this);
-            req.load(url).into(mIvCover);
+            req.load(retData).into(mIvCover);
             Toast.makeText(this, "上传封面成功", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "上传封面失败，错误码 " + code, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "上传封面失败，错误信息 " + retData, Toast.LENGTH_SHORT).show();
         }
         mUploadingCover = false;
     }
@@ -424,9 +423,14 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
         switch (type) {
             case CAPTURE_IMAGE_CAMERA:
                 mSourceFileUri = createCoverUri("");
-                Intent intent_photo = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mSourceFileUri);
-                startActivityForResult(intent_photo, CAPTURE_IMAGE_CAMERA);
+                if(ContextCompat.checkSelfPermission( TCAnchorPrepareActivity.this,Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED)
+                {
+                    ActivityCompat.requestPermissions(TCAnchorPrepareActivity.this,
+                            new String[]{Manifest.permission.CAMERA},
+                            TCConstants.CAMERA_PERMISSION_REQ_CODE);
+                } else {
+                    takePhoto();
+                }
                 break;
             case IMAGE_STORE:
                 mSourceFileUri = createCoverUri("_select");
@@ -436,6 +440,11 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
                 break;
 
         }
+    }
+    private void takePhoto() {
+        Intent intent_photo = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mSourceFileUri);
+        startActivityForResult(intent_photo, CAPTURE_IMAGE_CAMERA);
     }
 
     /**
@@ -492,6 +501,11 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
                     }
                 }
                 mPermission = true;
+                break;
+            case TCConstants.CAMERA_PERMISSION_REQ_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePhoto();
+                }
                 break;
             default:
                 break;

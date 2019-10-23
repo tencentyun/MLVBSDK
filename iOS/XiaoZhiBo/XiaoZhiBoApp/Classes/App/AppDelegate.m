@@ -9,6 +9,7 @@
 #import "TCMainTabViewController.h"
 #import "TCLoginViewController.h"
 #import "TCLog.h"
+#import "TCConfig.h"
 #import "TCGlobalConfig.h"
 #import <Bugly/Bugly.h>
 #import "TCUserAgreementController.h"
@@ -46,29 +47,15 @@
     
     // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
 
-    [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#License Key#>"];
+    [TXLiveBase setLicenceURL:LICENCE_URL key:LICENCE_KEY];
     
     //初始化log模块
     [TXLiveBase sharedInstance].delegate = [TCLog shareInstance];
-    
-    
 
     // 进入登录界面
     [self enterLoginUI];
     _beginTime = [[NSDate date] timeIntervalSince1970];
     
-    if ([kHttpServerAddr length] == 0) {
-        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"未填写后台服务地址"
-                                                                            message:@"需要搭建小直播后台，详情请点击“查看”"
-                                                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *viewAction = [UIAlertAction actionWithTitle:@"查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [application openURL:[NSURL URLWithString:@"https://cloud.tencent.com/document/product/454/15187"]];
-        }];
-        [controller addAction:viewAction];
-        
-        [self.window.rootViewController presentViewController:controller animated:YES completion:nil];
-    }
-
     return YES;
 }
 

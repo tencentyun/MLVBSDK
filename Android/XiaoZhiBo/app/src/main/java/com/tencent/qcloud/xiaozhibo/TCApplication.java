@@ -26,18 +26,22 @@ import com.tencent.rtmp.TXLiveBase;
  * 5. 初始化小直播ELK上报数据系统，此系统用于 Demo 收集使用数据；您可以不关注相关代码。
  */
 public class TCApplication extends MultiDexApplication {
-    private static final String TAG = "TCApplication";
 
-    // 如何获取License? 请参考官网指引 https://cloud.tencent.com/document/product/454/34750
-    private static final String LICENCE_URL = "http://ugc-licence-test-1252463788.coscd.myqcloud.com/XiaoZhiBo_Android.license";
-    private static final String LICENCE_KEY = "9bc74ac7bfd07ea392e8fdff2ba5678a";
+    /**
+     * bugly 组件的 AppId
+     *
+     * bugly sdk 系腾讯提供用于 APP Crash 收集和分析的组件。
+     */
+    public static final String BUGLY_APPID = "1400012894";
+
+    private static final String TAG = "TCApplication";
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         // 必须：初始化 LiteAVSDK Licence。 用于直播推流鉴权。
-        TXLiveBase.getInstance().setLicence(this, LICENCE_URL, LICENCE_KEY);
+        TXLiveBase.getInstance().setLicence(this, TCGlobalConfig.LICENCE_URL, TCGlobalConfig.LICENCE_KEY);
 
         // 必须：初始化 MLVB 组件
         MLVBLiveRoomImpl.sharedInstance(this);
@@ -59,8 +63,8 @@ public class TCApplication extends MultiDexApplication {
     private void initBuglyCrashReportSDK() {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppVersion(TXLiveBase.getSDKVersionStr());
-        // 若您需要使用的话，请将 TCConstants.BUGLY_APPID 替换为您的 appid，否则会出现无法上报的问题。
-        CrashReport.initCrashReport(getApplicationContext(), TCGlobalConfig.BUGLY_APPID, true, strategy);
+        // 若您需要使用的话，请将 BUGLY_APPID 替换为您的 appid，否则会出现无法上报的问题。
+        CrashReport.initCrashReport(getApplicationContext(), BUGLY_APPID, true, strategy);
     }
 
     /**

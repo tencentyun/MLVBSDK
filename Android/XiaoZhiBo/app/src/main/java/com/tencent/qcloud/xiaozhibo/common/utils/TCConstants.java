@@ -28,6 +28,7 @@ public class TCConstants {
 
     public static final int LOCATION_PERMISSION_REQ_CODE = 1;
     public static final int WRITE_PERMISSION_REQ_CODE    = 2;
+    public static final int CAMERA_PERMISSION_REQ_CODE    = 3;
 
     public static final String ROOM_TITLE       = "room_title";
     public static final String COVER_PIC        = "cover_pic";

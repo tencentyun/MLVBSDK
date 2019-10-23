@@ -40,13 +40,16 @@ android {
         all*.exclude module: 'okhttp'
         all*.exclude module: 'okio'
     }
+      packagingOptions {
+          pickFirst '**/libc++_shared.so'
+      }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 //  COS 上传需要依赖的jar
     compile fileTree(include: ['*.jar'], dir: 'libs/upload')
-    compile 'com.tencent.liteav:LiteAVSDK_Professional:6.6.7458'
+    compile 'com.tencent.liteav:LiteAVSDK_Professional:latest.release'
     compile 'com.android.support:design:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
 //  MLVB 需要依赖 okhttp 拦截器
@@ -54,7 +57,7 @@ dependencies {
 //  MLVB 需要使用 gson 进行 json 解析
     compile 'com.google.code.gson:gson:2.3.1'
 //  MLVB 需要依赖腾讯云 IM 服务
-    compile 'com.tencent.imsdk:imsdk:4.4.479'
+    compile 'com.tencent.imsdk:imsdk:4.5.45'
 //  弹幕功能需要依赖此库
     compile 'com.github.ctiao:dfm:0.4.4'
 //  Demo 依赖的图片加载库

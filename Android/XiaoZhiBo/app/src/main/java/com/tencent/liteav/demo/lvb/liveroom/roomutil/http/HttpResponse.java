@@ -5,6 +5,7 @@ import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AudienceInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.RoomInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jac on 2017/10/30.
@@ -56,6 +57,6 @@ public class HttpResponse {
     }
 
     public static class GetCustomInfoResponse extends HttpResponse {
-        public String custom;
+        public Map<String, Object> custom;
     }
 }

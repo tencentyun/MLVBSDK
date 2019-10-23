@@ -198,10 +198,14 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
         }
         switch (type) {
             case CAPTURE_IMAGE_CAMERA:
-                Intent intent_photo = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                mAvatarPicUri = createCoverUri("_icon");
-                intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mAvatarPicUri);
-                startActivityForResult(intent_photo, CAPTURE_IMAGE_CAMERA);
+                if(ContextCompat.checkSelfPermission( TCEditUseInfoActivity.this,Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED)
+                {
+                    ActivityCompat.requestPermissions(TCEditUseInfoActivity.this,
+                        new String[]{Manifest.permission.CAMERA},
+                        TCConstants.CAMERA_PERMISSION_REQ_CODE);
+                } else {
+                    takePhoto();
+                }
                 break;
             case IMAGE_STORE:
                 mAvatarPicUri = createCoverUri("_select_icon");
@@ -210,6 +214,12 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
                 startActivityForResult(intent_album, IMAGE_STORE);
                 break;
         }
+    }
+    private void takePhoto() {
+        Intent intent_photo = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        mAvatarPicUri = createCoverUri("_icon");
+        intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mAvatarPicUri);
+        startActivityForResult(intent_photo, CAPTURE_IMAGE_CAMERA);
     }
 
 
@@ -258,6 +268,11 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
                 }
                 mPermission = true;
                 break;
+            case TCConstants.CAMERA_PERMISSION_REQ_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePhoto();
+                }
+                break;
             default:
                 break;
         }
@@ -271,11 +286,11 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
      * /////////////////////////////////////////////////////////////////////////////////
      */
     @Override
-    public void onUploadResult(int code, String url) {
+    public void onUploadResult(int code, String retData) {
         if (0 == code) {
             Toast.makeText(this,"上传头像成功",Toast.LENGTH_LONG).show();
-            TCUtils.showPicWithUrl(this, mIvAvatar, url, R.color.transparent);
-            TCUserMgr.getInstance().setAvatar(url, new TCHTTPMgr.Callback() {
+            TCUtils.showPicWithUrl(this, mIvAvatar, retData, R.color.transparent);
+            TCUserMgr.getInstance().setAvatar(retData, new TCHTTPMgr.Callback() {
                 @Override
                 public void onSuccess(JSONObject data) {
                     runOnUiThread(new Runnable() {
@@ -297,8 +312,8 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
                 }
             });
         }else{
-            Log.w(TAG, "onUploadResult->failed: "+code);
-            Toast.makeText(this, "上传头像失败", Toast.LENGTH_LONG).show();
+            Log.w(TAG, "onUploadResult->failed: " + code + " " + retData);
+            Toast.makeText(this, "上传头像失败" + retData, Toast.LENGTH_LONG).show();
         }
     }
 

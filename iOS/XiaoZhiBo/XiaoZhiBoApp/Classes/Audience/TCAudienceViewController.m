@@ -9,6 +9,7 @@
 #import <mach/mach.h>
 #import <UIImageView+WebCache.h>
 #import "TCMsgModel.h"
+#import "TCConfig.h"
 #import "TCGlobalConfig.h"
 #import "TCAccountMgrModel.h"
 #import "NSString+Common.h"
@@ -203,27 +204,34 @@
                 float icon_center_interval = (_logicView.width - 2*startSpace - icon_size)/(icon_count - 1);
                 float icon_center_y = _logicView.height - icon_size/2 - startSpace;
                 
-                //Button: 发起连麦
-                _btnLinkMic = [UIButton buttonWithType:UIButtonTypeCustom];
-                _btnLinkMic.center = CGPointMake(_logicView.closeBtn.center.x - icon_center_interval, icon_center_y);
-                [_btnLinkMic setImage:[UIImage imageNamed:@"linkmic_on"] forState:UIControlStateNormal];
-                [_btnLinkMic addTarget:self action:@selector(clickBtnLinkMic:) forControlEvents:UIControlEventTouchUpInside];
-                [_logicView addSubview:_btnLinkMic];
-                [_btnLinkMic mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.equalTo(self->_logicView.closeBtn.mas_left).offset(-icon_center_interval*2-icon_size);
-                    make.centerY.equalTo(self->_logicView.closeBtn);
-                }];
-                
-                
-                //Button: 前置后置摄像头切换
-                CGRect rectBtnLinkMic = _btnLinkMic.frame;
-                _btnCamera = [UIButton buttonWithType:UIButtonTypeCustom];
-                _btnCamera.center = CGPointMake(_btnLinkMic.center.x - icon_center_interval, icon_center_y);
-                _btnCamera.bounds = CGRectMake(0, 0, CGRectGetWidth(rectBtnLinkMic), CGRectGetHeight(rectBtnLinkMic));
-                [_btnCamera setImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
-                [_btnCamera addTarget:self action:@selector(clickBtnCamera:) forControlEvents:UIControlEventTouchUpInside];
-                _btnCamera.hidden = YES;
-                [_logicView addSubview:_btnCamera];
+                if (kEnableLinkMic) {
+                    //Button: 发起连麦
+                    _btnLinkMic = [UIButton buttonWithType:UIButtonTypeCustom];
+                    _btnLinkMic.center = CGPointMake(_logicView.closeBtn.center.x - icon_center_interval, icon_center_y);
+                    [_btnLinkMic setImage:[UIImage imageNamed:@"linkmic_on"] forState:UIControlStateNormal];
+                    [_btnLinkMic addTarget:self action:@selector(clickBtnLinkMic:) forControlEvents:UIControlEventTouchUpInside];
+                    [_logicView addSubview:_btnLinkMic];
+                    [_btnLinkMic mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.equalTo(self->_logicView.closeBtn.mas_left).offset(-icon_center_interval*2-icon_size);
+                        make.centerY.equalTo(self->_logicView.closeBtn);
+                    }];
+                    
+                    
+                    //Button: 前置后置摄像头切换
+                    CGRect rectBtnLinkMic = _btnLinkMic.frame;
+                    _btnCamera = [UIButton buttonWithType:UIButtonTypeCustom];
+                    _btnCamera.center = CGPointMake(_btnLinkMic.center.x - icon_center_interval, icon_center_y);
+                    _btnCamera.bounds = CGRectMake(0, 0, CGRectGetWidth(rectBtnLinkMic), CGRectGetHeight(rectBtnLinkMic));
+                    [_btnCamera setImage:[UIImage imageNamed:@"camera_record"] forState:UIControlStateNormal];
+                    [_btnCamera addTarget:self action:@selector(clickBtnCamera:) forControlEvents:UIControlEventTouchUpInside];
+                    _btnCamera.hidden = NO;
+                    [_logicView addSubview:_btnCamera];
+                    
+                    [_btnCamera mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.equalTo(self->_btnLinkMic.mas_left).offset(-icon_center_interval+icon_size);
+                        make.centerY.equalTo(self->_btnLinkMic);
+                    }];
+                }
             }
             
             //初始化连麦播放小窗口

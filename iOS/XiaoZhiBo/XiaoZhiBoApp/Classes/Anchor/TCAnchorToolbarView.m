@@ -11,7 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import "UIImage+Additions.h"
 #import "UIView+CustomAutoLayout.h"
-#import "TCGlobalConfig.h"
+#import "TCConfig.h"
 #import "TCAccountMgrModel.h"
 #import "V8HorizontalPickerView.h"
 #import "ColorMacro.h"
@@ -65,6 +65,8 @@
     UISlider              *_sldVolumeForVoice;
     UILabel               *_labVolumeForBGM;
     UISlider              *_sldVolumeForBGM;
+    UILabel               *_labPositionForBGM;
+    UISlider              *_sldPositionForBGM;
     UILabel               *_labPitchForBGM;
     UISlider              *_sldPitchForBGM;
     
@@ -705,6 +707,23 @@
     _sldVolumeForVoice.tag = 5;
     [_sldVolumeForVoice addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
     
+    _labPositionForBGM = [[UILabel alloc] init];
+    [_labPositionForBGM setText:@"伴奏快进"];
+    [_labPositionForBGM setFont:[UIFont systemFontOfSize:12.f]];
+    _labPositionForBGM.textColor = UIColorFromRGB(0x0ACCAC);
+    
+    _sldPositionForBGM = [[UISlider alloc] init];
+    _sldPositionForBGM.minimumValue = 0.f;
+    _sldPositionForBGM.maximumValue = 1.f;
+    _sldPositionForBGM.value = 0.f;
+    _sldPositionForBGM.continuous = NO;
+    [_sldPositionForBGM setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
+    [_sldPositionForBGM setMinimumTrackImage:[UIImage imageNamed:@"green"] forState:UIControlStateNormal];
+    [_sldPositionForBGM setMaximumTrackImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
+    _sldPositionForBGM.tag = 7;
+    [_sldPositionForBGM addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+    
+    
     for (int i=0; i<_audioEffectArry.count; ++i) {
         UIButton *btn = [[UIButton alloc] init];
         btn.titleLabel.font = [UIFont systemFontOfSize:12.f];
@@ -753,6 +772,8 @@
     [_vAudioEffectPanel addSubview:_sldVolumeForVoice];
     [_vAudioEffectPanel addSubview:_labVolumeForBGM];
     [_vAudioEffectPanel addSubview:_sldVolumeForBGM];
+    [_vAudioEffectPanel addSubview:_labPositionForBGM];
+    [_vAudioEffectPanel addSubview:_sldPositionForBGM];
     [_vAudioEffectPanel addSubview:_labPitchForBGM];
     [_vAudioEffectPanel addSubview:_sldPitchForBGM];
     
@@ -766,7 +787,7 @@
     
     //***
     //音乐 layout
-    [_vMusicPanel sizeWith:CGSizeMake(self.width, 330)];
+    [_vMusicPanel sizeWith:CGSizeMake(self.width, 365)];
     [_vMusicPanel alignParentTopWithMargin:self.height-_vMusicPanel.height];
     [_vMusicPanel alignParentLeftWithMargin:0];
     
@@ -774,7 +795,7 @@
     [_vBGMPanel alignParentTopWithMargin:0];
     [_vBGMPanel alignParentLeftWithMargin:0];
     
-    [_vAudioEffectPanel sizeWith:CGSizeMake(self.width, 310)];
+    [_vAudioEffectPanel sizeWith:CGSizeMake(self.width, 375)];
     [_vAudioEffectPanel layoutBelow:_vBGMPanel];
     [_vAudioEffectPanel alignParentLeftWithMargin:0];
     
@@ -796,12 +817,20 @@
     [_sldPitchForBGM alignParentTopWithMargin:20];
     [_sldPitchForBGM alignParentLeftWithMargin:90];
     
+    [_labPositionForBGM sizeWith:CGSizeMake(60, 20)];
+    [_labPositionForBGM layoutBelow:_labPitchForBGM margin:15];
+    [_labPositionForBGM alignParentLeftWithMargin:15];
+    
+    [_sldPositionForBGM sizeWith:CGSizeMake(270, 20)];
+    [_sldPositionForBGM layoutBelow:_sldPitchForBGM margin:15];
+    [_sldPositionForBGM alignParentLeftWithMargin:90];
+    
     [_labVolumeForBGM sizeWith:CGSizeMake(60, 20)];
-    [_labVolumeForBGM layoutBelow:_labPitchForBGM margin:15];
+    [_labVolumeForBGM layoutBelow:_labPositionForBGM margin:15];
     [_labVolumeForBGM alignParentLeftWithMargin:15];
     
     [_sldVolumeForBGM sizeWith:CGSizeMake(270, 20)];
-    [_sldVolumeForBGM layoutBelow:_labPitchForBGM margin:15];
+    [_sldVolumeForBGM layoutBelow:_sldPositionForBGM margin:15];
     [_sldVolumeForBGM alignParentLeftWithMargin:90];
     
     [_labVolumeForVoice sizeWith:CGSizeMake(60, 20)];

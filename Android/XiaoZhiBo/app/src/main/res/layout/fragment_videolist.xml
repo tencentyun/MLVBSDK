@@ -15,6 +15,7 @@
 
         <!-- tab1 -->
         <FrameLayout
+            android:id="@+id/tab_live"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -41,6 +42,7 @@
         </FrameLayout>
         <!-- tab2 -->
         <FrameLayout
+            android:id="@+id/tab_vod"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

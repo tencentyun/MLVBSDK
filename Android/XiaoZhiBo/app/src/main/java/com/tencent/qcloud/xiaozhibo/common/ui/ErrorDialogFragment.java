@@ -59,27 +59,6 @@ public class ErrorDialogFragment extends DialogFragment {
             tv.setText(spannableStrBuidler);
             tv.setPadding(20, 50, 20, 0);
             builder.setView(tv).setTitle("推流失败");
-        } else if (errorCode == 10036 /*IM 创建聊天室数量超过限额错误*/) {
-            int start = "您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【".length();
-            int end = "您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室".length();
-            SpannableStringBuilder spannableStrBuidler = new SpannableStringBuilder("您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】");
-            ClickableSpan clickableSpan = new ClickableSpan() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent();
-                    intent.setAction("android.intent.action.VIEW");
-                    Uri content_url = Uri.parse("https://buy.cloud.tencent.com/avc");
-                    intent.setData(content_url);
-                    startActivity(intent);
-                }
-            };
-            spannableStrBuidler.setSpan(new ForegroundColorSpan(Color.BLUE), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spannableStrBuidler.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView tv = new TextView(this.getActivity());
-            tv.setMovementMethod(LinkMovementMethod.getInstance());
-            tv.setText(spannableStrBuidler);
-            tv.setPadding(20, 50, 20, 0);
-            builder.setView(tv).setTitle("创建直播间失败");
         } else {
             String errInfo = getArguments().getString("errorMsg");
             builder.setTitle(errInfo);

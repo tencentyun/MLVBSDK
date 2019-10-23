@@ -3,6 +3,7 @@ package com.tencent.liteav.demo.lvb.liveroom;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -58,7 +59,6 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     protected static final int              LIVEROOM_ROLE_PLAYER    = 2;
 
     protected static MLVBLiveRoomImpl       mInstance = null;
-//    protected static final String         mServerDomain = "http://150.109.42.33:5601/weapp/live_room"; //RoomService后台域名
     protected static final String           mServerDomain = "https://liveroom.qcloud.com/weapp/live_room"; //RoomService后台域名
 
     protected Context                       mAppContext = null;
@@ -372,6 +372,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         TXCLog.i(TAG, "API -> createRoom:" + roomID + ":" + roomInfo);
         mSelfRoleType = LIVEROOM_ROLE_PUSHER;
 
+        if (mSelfAccountInfo == null) return;
         //1. 在应用层调用startLocalPreview，启动本地预览
 
         //2. 请求CGI:get_push_url，异步获取到推流地址pushUrl
@@ -671,7 +672,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         } else if (op == MLVBCommonDef.CustomFieldOp.INC) {
             strOp = "inc";
         } else if (op == MLVBCommonDef.CustomFieldOp.DEC) {
-            strOp = "del";
+            strOp = "dec";
         }
         mHttpRequest.setCustomInfo(mCurrRoomID, key, strOp, value, new HttpRequests.OnResponseCallback<HttpResponse>() {
             @Override
@@ -697,18 +698,8 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             public void onResponse(final int retcode, @Nullable final String retmsg, @Nullable HttpResponse.GetCustomInfoResponse data) {
                 if (retcode == HttpResponse.CODE_OK) {
                     final Map<String, Object> customList = new HashMap<>();
-                    if (data.custom != null && data.custom.length() > 0) {
-                        try {
-                            JSONObject customObj = new JSONObject(data.custom);
-                            Iterator<String> keys = customObj.keys();
-                            while (keys.hasNext()) {
-                                String key = keys.next();
-                                Object value = customObj.get(key);
-                                customList.put(key, value);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    if (data.custom != null && data.custom.size() > 0) {
+                        customList.putAll(data.custom);
                     }
                     callbackOnThread(callback, "onGetCustomInfo", customList);
                 } else {
@@ -760,8 +751,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                         callbackOnThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (mJoinAnchorCallback != null) {
-                                    mJoinAnchorCallback.onTimeOut();
+                                IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                if (reqJoinCallback != null) {
+                                    reqJoinCallback.onTimeOut();
                                     mJoinAnchorCallback = null;
                                 }
                             }
@@ -784,8 +776,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                         callbackOnThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (mJoinAnchorCallback != null) {
-                                    mJoinAnchorCallback.onError(code, "[IM] 请求连麦失败[" + errInfo + ":" + code + "]");
+                                IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                if (reqJoinCallback != null) {
+                                    reqJoinCallback.onError(code, "[IM] 请求连麦失败[" + errInfo + ":" + code + "]");
                                 }
                             }
                         });
@@ -1975,8 +1968,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     }
 
     private void destroy() {
-        //TODO
-        mHeartBeatThread.quit();
+        mHeartBeatThread.stopHeartbeat();
     }
 
 
@@ -2364,8 +2356,11 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             callbackOnThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mJoinAnchorCallback.onAccept();
-                                    mJoinAnchorCallback = null;
+                                    IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                    if (reqJoinCallback != null) {
+                                        reqJoinCallback.onAccept();
+                                        mJoinAnchorCallback = null;
+                                    }
                                     mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                                 }
                             });
@@ -2374,8 +2369,11 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                             callbackOnThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mJoinAnchorCallback.onReject(response.reason);
-                                    mJoinAnchorCallback = null;
+                                    IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                                    if (reqJoinCallback != null) {
+                                        reqJoinCallback.onReject(response.reason);
+                                        mJoinAnchorCallback = null;
+                                    }
                                     mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                                 }
                             });
@@ -2385,8 +2383,11 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                     callbackOnThread(new Runnable() {
                         @Override
                         public void run() {
-                            mJoinAnchorCallback.onError(LiveRoomErrorCode.ERROR_PARAMETERS_INVALID, "[LiveRoom] 无法识别的连麦响应[" + message + "]");
-                            mJoinAnchorCallback = null;
+                            IMLVBLiveRoomListener.RequestJoinAnchorCallback reqJoinCallback = mJoinAnchorCallback;
+                            if (reqJoinCallback != null) {
+                                reqJoinCallback.onError(LiveRoomErrorCode.ERROR_PARAMETERS_INVALID, "[LiveRoom] 无法识别的连麦响应[" + message + "]");
+                                mJoinAnchorCallback = null;
+                            }
                             mListenerHandler.removeCallbacks(mJoinAnchorTimeoutTask);
                         }
                     });
@@ -2433,7 +2434,8 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                     callbackOnThread(mListener, "onRequestRoomPK", info);
                 } else if (request.action.equalsIgnoreCase("stop")) {
                     callbackOnThread(mListener, "onDebugLog", String.format("[LiveRoom] 对方主播停止PK, UserID {%s} UserName {%s}", request.userID, request.userName));
-                    callbackOnThread(mListener, "onQuitRoomPK", mPKAnchorInfo);
+                    AnchorInfo anchorInfo = new AnchorInfo(request.userID, request.userName, request.userAvatar, request.accelerateURL);
+                    callbackOnThread(mListener, "onQuitRoomPK", anchorInfo);
                 }
                 return;
             }
@@ -2671,7 +2673,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     private class StreamMixturer {
         private String              mMainStreamId = "";
         private String              mPKStreamId   = "";
-        private Vector<String> mSubStreamIds = new Vector<String>();
+        private Vector<String> mSubStreamIds = new java.util.Vector<String>();
         private int                 mMainStreamWidth = 540;
         private int                 mMainStreamHeight = 960;
 
@@ -3054,42 +3056,56 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         }
     }
 
-    protected class HeartBeatThread extends HandlerThread {
+    protected class HeartBeatThread {
         private Handler handler;
-        private boolean running = false;
 
         public HeartBeatThread() {
-            super("HeartBeatThread");
-            this.start();
-            handler = new Handler(this.getLooper());
         }
 
         private Runnable heartBeatRunnable = new Runnable() {
             @Override
             public void run() {
+                Handler localHander = handler;
+                if (localHander == null) {
+                    return;
+                }
                 if (mSelfAccountInfo != null && mSelfAccountInfo.userID != null && mSelfAccountInfo.userID.length() > 0 && mCurrRoomID != null && mCurrRoomID.length() > 0) {
                     if (mHttpRequest != null) {
                         mHttpRequest.heartBeat(mSelfAccountInfo.userID, mCurrRoomID, mRoomStatusCode);
                     }
-                    if (handler != null) {
-                        handler.postDelayed(heartBeatRunnable, 5000);
-                    }
+                    localHander.postDelayed(heartBeatRunnable, 5000);
                 }
             }
         };
 
-        public boolean running() {
-            return running;
-        }
-
         public void startHeartbeat(){
-            running = true;
-            handler.postDelayed(heartBeatRunnable, 1000);
+            synchronized (this) {
+                if (handler != null && handler.getLooper() != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                         handler.getLooper().quitSafely();
+                    } else {
+                        handler.getLooper().quit();
+                    }
+                }
+                HandlerThread thread = new HandlerThread("HeartBeatThread");
+                thread.start();
+                handler = new Handler(thread.getLooper());
+                handler.postDelayed(heartBeatRunnable, 1000);
+            }
         }
 
         public void stopHeartbeat(){
-            running = false;
-            handler.removeCallbacks(heartBeatRunnable);
+            synchronized (this) {
+                if (handler != null) {
+                    handler.removeCallbacks(heartBeatRunnable);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                        handler.getLooper().quitSafely();
+                    } else {
+                        handler.getLooper().quit();
+                    }
+                    handler = null;
+                }
+            }
         }
     }
 

@@ -9,6 +9,7 @@
 #import "TCUserProfileModel.h"
 #import "TCAccountMgrModel.h"
 #import "TCUploadHelper.h"
+#import "TCConfig.h"
 
 #import <UIKit/UIKit.h>
 #import <mach/mach.h>
@@ -235,10 +236,15 @@
     {
         [[TCUserProfileModel sharedInstance] saveUserGender:gender handler:^(int code, NSString *msg)
          {
-             if (ERROR_SUCESS != code)
+             if (ERROR_SUCESS != code && kError_NotSupport != code)
              {
                  [[HUDHelper sharedInstance] tipMessage:@"上传用户性别信息失败"];
              }
+            else
+            {
+                //将信息同步到用户主界面显示
+                [[NSNotificationCenter defaultCenter] postNotificationName:KReloadUserInfoNotification object:nil];
+            }
          }];
     }
 }
@@ -299,7 +305,7 @@
     {
         [[TCUserProfileModel sharedInstance] saveUserNickName:cell->nickText.text handler:^(int code, NSString *msg)
          {
-             if (ERROR_SUCESS != code)
+             if (ERROR_SUCESS != code && kError_NotSupport != code)
              {
                  [[HUDHelper sharedInstance] tipMessage:@"上传用户昵称信息失败"];
              }

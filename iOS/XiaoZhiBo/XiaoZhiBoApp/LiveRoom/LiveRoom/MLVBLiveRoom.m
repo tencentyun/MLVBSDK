@@ -38,7 +38,7 @@
 #define kHttpServerAddr_Logout          @"logout"
 #define kHttpServerAddr_MergeStream     @"merge_stream"
 #define kHttpServerAddr_SetCustomField  @"set_custom_field"
-#define kHttpServerAddr_GetCustomInfo  @"get_custom_Info"
+#define kHttpServerAddr_GetCustomInfo  @"get_custom_info"
 
 static NSString * const RespCodeKey = @"code";
 
@@ -83,7 +83,7 @@ static const NSTimeInterval PKRequestTimeout = 10;
 }
 @property (nonatomic, strong) MLVBAnchorInfo *pkAnchor;
 @property (atomic, strong) IMMsgManager      * msgMgr;
-/// getAnchors 会返回一个code, 作为etag, 心跳时变了就返回pusher列表
+/// getPushers 会返回一个code, 作为etag, 心跳时变了就返回pusher列表
 @property (nonatomic, strong) NSNumber *roomStatusCode;
 @property (nonatomic, copy) void(^createRoomCompletion)(int errCode, NSString *reason);
 @property (nonatomic, copy) void(^joinAnchorCompletion)(int errCode, NSString *reason);
@@ -499,7 +499,6 @@ static pthread_mutex_t sharedInstanceLock;
                         playConfig.maxAutoAdjustCacheTime = 2.0f;
                         [player setupVideoWidget:CGRectZero containView:view insertIndex:0];
                         [player setConfig:playConfig];
-                        [player stopPlay];
                         [player startPlay:self.roomInfo.mixedPlayURL type:[self getPlayType:self.roomInfo.mixedPlayURL]];
                         [player setLogViewMargin:UIEdgeInsetsMake(120, 10, 60, 10)];
                     });
@@ -613,8 +612,17 @@ static pthread_mutex_t sharedInstanceLock;
     }];
 }
 
-- (void)setCustomInfo:(MLVBCustomFieldOp)op key:(NSString *)key value:(NSString *)value completion:(void(^)(int errCode, NSString *errMsg))completion
+- (void)setCustomInfo:(MLVBCustomFieldOp)op key:(NSString *)key value:(id)value completion:(void(^)(int errCode, NSString *errMsg))completion
 {
+    if (!([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])) {
+        completion(ROOM_ERR_INVALID_PARAM, @"Value type should be either NSString or NSNumber");
+        return;
+    }
+    if (op != MLVBCustomFieldOpSet && [value isKindOfClass:[NSString class]]) {
+        NSNumber *doubleValue = @([value doubleValue]);
+        NSLog(@"%s Setting string value(%@) when using INC or DEC operation. Converting to double value(%@).", __PRETTY_FUNCTION__, value, doubleValue);
+        value = doubleValue;
+    }
     NSString *operation = nil;;
     switch(op) {
         case MLVBCustomFieldOpSet:
@@ -647,7 +655,7 @@ static pthread_mutex_t sharedInstanceLock;
     }];
 }
 
-- (void)getCustomInfo:(void(^)(int errCode, NSString *errMsg, NSString *custom))completion
+- (void)getCustomInfo:(void(^)(int errCode, NSString *errMsg, NSDictionary *customInfo))completion
 {
     [self asyncRun:^(MLVBLiveRoom *self) {
         if (self.roomInfo.roomID == nil) {
@@ -658,7 +666,7 @@ static pthread_mutex_t sharedInstanceLock;
         [self requestWithName:kHttpServerAddr_GetCustomInfo params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (completion) {
                 if (errCode == 0) {
-                    NSString *custom = responseObject[@"custom"];
+                    NSDictionary *custom = responseObject[@"custom"];
                     completion(errCode, errMsg, custom);
                 } else {
                     completion(errCode, errMsg, nil);
@@ -731,7 +739,6 @@ static pthread_mutex_t sharedInstanceLock;
                 NSAssert(player, @"nil player");
                 if (player) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [player stopPlay];
                         NSAssert(self.roomCreatorPlayerURL, @"empty acc url");
                         // 播放大主播的直播流地址，注意type是 PLAY_TYPE_LIVE_RTMP_ACC
                         [player startPlay:self.roomCreatorPlayerURL type:PLAY_TYPE_LIVE_RTMP_ACC];
@@ -785,7 +792,6 @@ static pthread_mutex_t sharedInstanceLock;
                 playConfig.minAutoAdjustCacheTime = 2.0f;
                 playConfig.maxAutoAdjustCacheTime = 2.0f;
                 [bigPlayer setConfig:playConfig];
-                [bigPlayer stopPlay];
                 [bigPlayer startPlay:self.roomInfo.mixedPlayURL type:[self getPlayType:self.roomInfo.mixedPlayURL]];
                 if (self->_inBackground == YES) {
                     [bigPlayer pause];
@@ -945,7 +951,7 @@ static pthread_mutex_t sharedInstanceLock;
                              valueForKey:@"accelerateURL"];
             [self requestMergeStreamWithPlayUrlArray:urls withMode:self->_mixMode];
             
-            if (self.roomInfo.anchorInfoArray == 0) {
+            if (self.roomInfo.anchorInfoArray.count == 0) {
                 // 无连麦或PK，设置推流模式为直播模式(高清）
                 self->_videoQuality = VIDEO_QUALITY_HIGH_DEFINITION;
                 [self->_livePusher setVideoQuality:self->_videoQuality adjustBitrate:NO adjustResolution:NO];
@@ -956,7 +962,7 @@ static pthread_mutex_t sharedInstanceLock;
         }
         self.roomInfo.anchorInfoArray = [self.roomInfo.anchorInfoArray filteredArrayUsingPredicate:
                                          [NSPredicate predicateWithFormat:
-                                          @"%@ != %@", NSStringFromSelector(@selector(userID)), anchor.userID]];
+                                         @"%@ != %@", NSStringFromSelector(@selector(userID)), anchor.userID]];
     }];
 }
 
@@ -1249,9 +1255,9 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         }
         
         NSDictionary *params = @{@"roomID": self.roomInfo.roomID,
-                                 @"userID": self->_currentUser.userID,
-                                 @"roomStatusCode": self.roomStatusCode ?: @0
-                                 };
+                                @"userID": self->_currentUser.userID,
+                                @"roomStatusCode": self.roomStatusCode ?: @0
+                                };
         
         [self requestWithName:kHttpServerAddr_AnchorHeartBeat params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (errCode == 0) {
@@ -1555,7 +1561,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 NSString *accURL = responseObject[@"accelerateURL"];
                 self->_pushUrl = pushURL;
                 self->_accUrl = accURL;
-                
+
                 dispatch_async(dispatch_get_main_queue(), ^{
                     int result = [self->_livePusher startPush:pushURL];
                     dispatch_async(self->_queue, ^{
@@ -1690,13 +1696,13 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 [self sendDebugMsg:[NSString stringWithFormat:@"merge_video_stream请求失败: error[%@]", errMsg]];
                 return;
             }
-            
+
             int merge_code = [responseObject[@"merge_code"] intValue];
             NSString *merge_msg = responseObject[@"merge_message"];
             NSNumber *timestamp = responseObject[@"timestamp"];
-            
+
             [self sendDebugMsg:[NSString stringWithFormat:@"AppSvr回复merge_video_stream请求: errCode[%d] errMsg[%@] description[code = %d message = %@ timestamp = %@]", errCode, errMsg, merge_code, merge_msg, timestamp]];
-            
+
             if (merge_code != 0) {
                 if (retryCount > 0) {
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
@@ -1967,6 +1973,11 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 // 接收PK结束消息
 - (void)onRecvPKFinishRequest:(NSString *)roomID userID:(NSString *)userID {
     [self sendDebugMsg:[NSString stringWithFormat:@"收到房间[%@]主播[%@]的结束PK消息", roomID, userID]];
+    // 判断当前pk的人是不是userID
+    if (self.pkAnchor == nil || ![self.pkAnchor.userID isEqualToString:userID]) {
+        return;
+    }
+    
     [self asyncRun:^(MLVBLiveRoom *self) {
         self.pkAnchor = nil;
     }];

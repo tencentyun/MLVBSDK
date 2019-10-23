@@ -12,7 +12,7 @@
 #import <mach/mach.h>
 #import <UIImageView+WebCache.h>
 #import "TCMsgModel.h"
-#import "TCGlobalConfig.h"
+#import "TCConfig.h"
 #import <Accelerate/Accelerate.h>
 #import "TCAccountMgrModel.h"
 #import "NSString+Common.h"

@@ -475,7 +475,7 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
         }
         else if(seekBar.getId() == R.id.seekBar_bgm_pitch) {
             mBGMPitch = progress;
-//            mPusher.setBGMPitch(mBGMPitch/(float)100*2-1);
+            mPusher.setBGMPitch(mBGMPitch/(float)100*2-1);
         }
     }
 
@@ -488,7 +488,7 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
     public void onStopTrackingTouch(SeekBar seekBar) {
         if(seekBar.getId() == R.id.seekBar_bgm_seek) {
             int duration = mPusher.getBGMDuration(null);
-//            mPusher.setBGMPosition(duration*seekBar.getProgress()/100);
+            mPusher.setBGMPosition(duration*seekBar.getProgress()/100);
         }
     }
 

@@ -250,6 +250,9 @@ public class TCRegisterActivity extends Activity  {
         tcLoginMgr.register(username, password, new TCHTTPMgr.Callback() {
             @Override
             public void onSuccess(JSONObject data) {
+                int retCode = data.optInt("code", 0);
+                String message = data.optString("message", "");
+                if (retCode == 200) {
                 showToast("成功注册");
 
                 // 注册成功之后，将自动登录。
@@ -268,21 +271,25 @@ public class TCRegisterActivity extends Activity  {
                     }
                 });
                 TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, 0, "注册成功", null);
+                } else {
+                    if (retCode == 610) {
+                        message = "用户名格式错误";
+                        TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -1, message, null);
+                    } else if (retCode == 611){
+                        message = "密码格式错误";
+                        TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -2, message, null);
+                    } else if (retCode == 612){
+                        message = "用户已存在";
+                        TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -3, message, null);
+                    }
+                    showToast("注册失败 ：" + message);
+                    showOnLoadingInUIThread(false);
+                }
             }
 
             @Override
             public void onFailure(int code, final String msg) {
                 String errorMsg = msg;
-                if (code == 610) {
-                    errorMsg = "用户名格式错误";
-                    TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -1, errorMsg, null);
-                } else if (code == 611){
-                    errorMsg = "密码格式错误";
-                    TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -2, errorMsg, null);
-                } else if (code == 612){
-                    errorMsg = "用户已存在";
-                    TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_REGISTER, username, -3, errorMsg, null);
-                }
                 showToast("注册失败 ：" + errorMsg);
                 showOnLoadingInUIThread(false);
             }

@@ -372,7 +372,7 @@ public class HttpRequests {
             return;
         }
 
-        Request request = new Request.Builder().url(getRequestUrl("/get_custom_Info"))
+        Request request = new Request.Builder().url(getRequestUrl("/get_custom_info"))
                 .post(RequestBody.create(MEDIA_JSON, body))
                 .build();
 

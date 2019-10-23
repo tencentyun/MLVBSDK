@@ -8,6 +8,7 @@
 #import "TCUserProfileModel.h"
 #import "TCUserProfileEditViewController.h"
 #import "TCUtil.h"
+#import "TCGlobalConfig.h"
 
 #import <UIKit/UIKit.h>
 #import <mach/mach.h>
@@ -79,7 +80,7 @@
     if (TCUserProfile_View == item.type) {
         UIView* bgview = [[UIView alloc] init];
         bgview.opaque = YES;
-        bgview.backgroundColor = RGB(0x22,0x2B,0x48);
+        bgview.backgroundColor = kMainColor;
         [self setBackgroundView:bgview];
         
         UIColor *uiBorderColor = RGB(0x0A,0xCC,0xAC);

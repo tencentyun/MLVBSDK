@@ -13,7 +13,7 @@
 #import <mach/mach.h>
 #import "TCMsgModel.h"
 #import "TCUserProfileModel.h"
-#import "TCGlobalConfig.h"
+#import "TCConfig.h"
 #import "NSString+Common.h"
 #import <CWStatusBarNotification/CWStatusBarNotification.h>
 #import "TCStatusInfoView.h"
@@ -75,6 +75,7 @@
     float _bgmVolume;
     float _micVolume;
     float _bgmPitch;
+    float _bgmPosition;
     
     //link mic
     NSString*               _sessionId;
@@ -101,6 +102,7 @@
         _bgmVolume = 1.f;
         _micVolume = 1.f;
         _bgmPitch = 0.f;
+        _bgmPosition = 0.f;
         
         _camera_switch   = NO;
         _beauty_level    = 6.3;
@@ -275,17 +277,6 @@
                 [self.liveRoom setEyeScaleLevel:self->_eye_level];
                 [self.liveRoom setFaceScaleLevel:self->_face_level];
                 [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-                
-                NSDictionary* params = @{@"userid": self->_liveInfo.userid,
-                                         @"title": self->_liveInfo.title,
-                                         @"frontcover" : self->_liveInfo.userinfo.frontcover,
-                                         @"location" : self->_liveInfo.userinfo.location,
-                                         };
-                [TCUtil asyncSendHttpRequest:@"upload_room" token:[TCAccountMgrModel sharedInstance].token params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
-                    if (resultCode != 200) {
-                        NSLog(@"uploadRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
-                    }
-                }];
             } else if (errCode == 10036) {
                 UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
                                                                                     message:nil
@@ -627,6 +618,9 @@
     } else if (obj.tag == 6) { // bgm变调
         _bgmPitch =  obj.value/obj.maximumValue*2-1;
         [self.liveRoom setBGMPitch:_bgmPitch];
+    } else if (obj.tag == 7) { // bgm seek
+        _bgmPosition = obj.value/obj.maximumValue;
+        [self.liveRoom setBGMPosition:_bgmPosition];
     }
 }
 
