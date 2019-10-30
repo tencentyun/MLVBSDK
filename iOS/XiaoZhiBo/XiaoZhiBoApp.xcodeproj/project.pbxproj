@@ -63,6 +63,12 @@
 		45B1125C2289B8030085AEEC /* TXLiteAVSDK_Smart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B1125B2289B8030085AEEC /* TXLiteAVSDK_Smart.framework */; };
 		45B26D91228BC0D000CBA8B0 /* TXLiteAVSDK_Smart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B26D90228BC0D000CBA8B0 /* TXLiteAVSDK_Smart.framework */; };
 		91479BC61E70FD39007ECCEB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91479BC51E70FD39007ECCEB /* Accelerate.framework */; };
+		A065F79F2369434E002906F3 /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = A065F79D2369434E002906F3 /* GenerateTestUserSig.m */; };
+		A065F7A5236943EE002906F3 /* QCloudCOSXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A2236943ED002906F3 /* QCloudCOSXML.framework */; };
+		A065F7A6236943EE002906F3 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A3236943ED002906F3 /* ImSDK.framework */; };
+		A065F7A7236943EE002906F3 /* QCloudCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A4236943EE002906F3 /* QCloudCore.framework */; };
+		A065F7A923694418002906F3 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A823694418002906F3 /* Bugly.framework */; };
+		A065F7AA23694439002906F3 /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A3236943ED002906F3 /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B732EBB31D7C593C006E6FA0 /* libresolv.tbd */; };
 		D8D256811261DF4C40C7748A /* libPods-XiaoZhiBoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 894E4A2363E21E853A1F9757 /* libPods-XiaoZhiBoApp.a */; };
 		EF47CE5B1D4B1ED60028B598 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */; };
@@ -531,6 +537,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A065F7AA23694439002906F3 /* ImSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,6 +675,14 @@
 		91BA6E5B1F2721F4008700CF /* TXLiteAVSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TXLiteAVSDK.xcodeproj; path = ../../sdk/liteav/TXLiteAVSDK.xcodeproj; sourceTree = "<group>"; };
 		91BA6E871F27229C008700CF /* TXLiteAVSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TXLiteAVSDK.xcodeproj; path = ../../sdk/liteav/TXLiteAVSDK.xcodeproj; sourceTree = "<group>"; };
 		952A710DCB72E0868862BDB4 /* Pods-XiaoZhiBoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoZhiBoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp.debug.xcconfig"; sourceTree = "<group>"; };
+		A065F799236942D5002906F3 /* TCConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConfig.h; sourceTree = "<group>"; };
+		A065F79D2369434E002906F3 /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
+		A065F79E2369434E002906F3 /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
+		A065F7A0236943A9002906F3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		A065F7A2236943ED002906F3 /* QCloudCOSXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QCloudCOSXML.framework; path = ../SDK/QCloudCOSXML.framework; sourceTree = "<group>"; };
+		A065F7A3236943ED002906F3 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = ../SDK/ImSDK.framework; sourceTree = "<group>"; };
+		A065F7A4236943EE002906F3 /* QCloudCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QCloudCore.framework; path = ../SDK/QCloudCore.framework; sourceTree = "<group>"; };
+		A065F7A823694418002906F3 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bugly.framework; path = ../SDK/Bugly.framework; sourceTree = "<group>"; };
 		B732EBB31D7C593C006E6FA0 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		EF47CE281D4B03FC0028B598 /* XiaoZhiBoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoZhiBoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -675,7 +690,6 @@
 		EF47CE5E1D4B1F5D0028B598 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EF47CE601D4B1F8B0028B598 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		EF47CE621D4B1F9D0028B598 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		EF47CED21D4B28120028B598 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bugly.framework; path = XiaoZhiBoApp/Framework/Bugly.framework; sourceTree = "<group>"; };
 		EF47CEDE1D4B28340028B598 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F4ECE3C5B38BD4FC3E4533D9 /* Pods-XiaoZhiBoApp.dailybuild.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoZhiBoApp.dailybuild.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp.dailybuild.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -688,14 +702,18 @@
 				4553C6F52272FE1B008544F7 /* AssetsLibrary.framework in Frameworks */,
 				91479BC61E70FD39007ECCEB /* Accelerate.framework in Frameworks */,
 				B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */,
+				A065F7A7236943EE002906F3 /* QCloudCore.framework in Frameworks */,
+				A065F7A6236943EE002906F3 /* ImSDK.framework in Frameworks */,
 				EF47CEDF1D4B28340028B598 /* libsqlite3.tbd in Frameworks */,
 				45B26D91228BC0D000CBA8B0 /* TXLiteAVSDK_Smart.framework in Frameworks */,
+				A065F7A5236943EE002906F3 /* QCloudCOSXML.framework in Frameworks */,
 				45B1125C2289B8030085AEEC /* TXLiteAVSDK_Smart.framework in Frameworks */,
 				EF47CE631D4B1F9D0028B598 /* SystemConfiguration.framework in Frameworks */,
 				EF47CE611D4B1F8B0028B598 /* CoreTelephony.framework in Frameworks */,
 				EF47CE5F1D4B1F5D0028B598 /* libz.tbd in Frameworks */,
 				EF47CE5D1D4B1EE10028B598 /* AVFoundation.framework in Frameworks */,
 				EF47CE5B1D4B1ED60028B598 /* libstdc++.tbd in Frameworks */,
+				A065F7A923694418002906F3 /* Bugly.framework in Frameworks */,
 				D8D256811261DF4C40C7748A /* libPods-XiaoZhiBoApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,6 +812,7 @@
 		4568105A22A9076C001A08E1 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				A065F799236942D5002906F3 /* TCConfig.h */,
 				4568105B22A9076C001A08E1 /* AppDelegate.h */,
 				4568105D22A9076C001A08E1 /* AppDelegate.m */,
 				4568105C22A9076C001A08E1 /* TCGlobalConfig.h */,
@@ -936,6 +955,7 @@
 		45784C722272E3E500A5F2BA /* LiveRoom */ = {
 			isa = PBXGroup;
 			children = (
+				A065F79C2369434E002906F3 /* Debug */,
 				45784C732272E3E500A5F2BA /* RoomUtil */,
 				45784C7B2272E3E500A5F2BA /* LiveRoom */,
 			);
@@ -1078,6 +1098,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A065F79C2369434E002906F3 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				A065F79D2369434E002906F3 /* GenerateTestUserSig.m */,
+				A065F79E2369434E002906F3 /* GenerateTestUserSig.h */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		B49FE0366F1F0A7CBF2E06AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1091,12 +1120,16 @@
 		B80923DF28B8CAEB7F2FD31B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A065F7A823694418002906F3 /* Bugly.framework */,
+				A065F7A3236943ED002906F3 /* ImSDK.framework */,
+				A065F7A4236943EE002906F3 /* QCloudCore.framework */,
+				A065F7A2236943ED002906F3 /* QCloudCOSXML.framework */,
+				A065F7A0236943A9002906F3 /* Podfile */,
 				45B26D90228BC0D000CBA8B0 /* TXLiteAVSDK_Smart.framework */,
 				4553C6F42272FE1B008544F7 /* AssetsLibrary.framework */,
 				EF47CE5E1D4B1F5D0028B598 /* libz.tbd */,
 				EF47CEDE1D4B28340028B598 /* libsqlite3.tbd */,
 				EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */,
-				EF47CED21D4B28120028B598 /* Bugly.framework */,
 				EF47CE621D4B1F9D0028B598 /* SystemConfiguration.framework */,
 				EF47CE601D4B1F8B0028B598 /* CoreTelephony.framework */,
 				EF47CE5C1D4B1EE10028B598 /* AVFoundation.framework */,
@@ -1714,7 +1747,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nmv TXLiteAVSDK_Smart_*/SDK/*.framework .\nrm -rf TXLiteAVSDK_Smart_*\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! -e \"${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart.framework\" ]; then\nURL=\"$(cat ../SDK/README.md | grep -o 'http.*zip')\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/TXLiteAVSDK_Smart_iOS.zip\ncd ${PROJECT_DIR}/../SDK\nunzip TXLiteAVSDK_Smart_iOS.zip\nmv TXLiteAVSDK_Smart_*/SDK/*.framework .\nrm -rf TXLiteAVSDK_Smart_*\nfi\n\nif [ ! -e \"${PROJECT_DIR}/../SDK/ImSDK.framework\" ]; then\nURL=\"https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/ImSDK/ImSDK.framework.zip\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/ImSDK.framework.zip\ncd ${PROJECT_DIR}/../SDK\nunzip ImSDK.framework.zip\nrm -rf ImSDK.framework.zip\nrm -rf __MACOSX\nfi\n\nif [ ! -e \"${PROJECT_DIR}/../SDK/Bugly.framework\" ]; then\nURL=\"https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/Bugly/Bugly.framework.zip\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/Bugly.framework.zip\ncd ${PROJECT_DIR}/../SDK\nunzip Bugly.framework.zip\nrm -rf Bugly.framework.zip\nfi\n\nif [ ! -e \"${PROJECT_DIR}/../SDK/QCloudCOSXML.framework\" ]; then\nURL=\"https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/COS/QCloudCOSXML.framework.zip\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/QCloudCOSXML.framework.zip\ncd ${PROJECT_DIR}/../SDK\nunzip QCloudCOSXML.framework.zip\nrm -rf QCloudCOSXML.framework.zip\nfi\n\nif [ ! -e \"${PROJECT_DIR}/../SDK/QCloudCore.framework\" ]; then\nURL=\"https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/mlvbspec/COS/QCloudCore.framework.zip\"\ncurl \"$URL\" --output ${PROJECT_DIR}/../SDK/QCloudCore.framework.zip\ncd ${PROJECT_DIR}/../SDK\nunzip QCloudCore.framework.zip\nrm -rf QCloudCore.framework.zip\nfi\n\n\n";
 		};
 		BF020143BA8816A0EFA61A96 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1813,6 +1846,7 @@
 				456810A622A9076C001A08E1 /* AppDelegate.m in Sources */,
 				45784EF82272E3E700A5F2BA /* IMMsgManager.m in Sources */,
 				4568109E22A9076C001A08E1 /* TCAudienceViewController.m in Sources */,
+				A065F79F2369434E002906F3 /* GenerateTestUserSig.m in Sources */,
 				456810AC22A9076C001A08E1 /* TCPlayBackViewController.m in Sources */,
 				456810A322A9076C001A08E1 /* TCMsgListTableView.m in Sources */,
 				456810AD22A9076C001A08E1 /* UIColor+MLPFlatColors.m in Sources */,
