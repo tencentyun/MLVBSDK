@@ -176,6 +176,7 @@ static pthread_mutex_t sharedInstanceLock;
 
 - (void)dealloc
 {
+    [_msgMgr repareToDealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_httpSession invalidateSessionCancelingTasks:NO];
     [self stopHeartBeat];

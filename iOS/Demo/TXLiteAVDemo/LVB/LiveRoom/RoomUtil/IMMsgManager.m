@@ -9,6 +9,7 @@
 #import "IMMsgManager.h"
 #import "ImSDK/ImSDK.h"
 #import <mach/mach_time.h>
+#import <sys/sysctl.h>
 
 #define CMD_PUSHER_CHANGE      @"notifyPusherChange"
 #define CMD_CUSTOM_TEXT_MSG    @"CustomTextMsg"
@@ -51,7 +52,7 @@
     return self;
 }
 
-- (void)dealloc {
+- (void)repareToDealloc {
     [[TIMManager sharedInstance] removeMessageListener:self];
 }
 
@@ -75,19 +76,20 @@
 #pragma mark - Time
 double getSystemUptime(void)
 {
-    enum { NANOSECONDS_IN_MS = 1000 * 1000 };
-    static double multiply = 0;
-    if (multiply == 0)
-    {
-        mach_timebase_info_data_t s_timebase_info;
-        kern_return_t result = mach_timebase_info(&s_timebase_info);
-        assert(result == noErr);
-        // multiply to get value in the nano seconds
-        multiply = (double)s_timebase_info.numer / (double)s_timebase_info.denom;
-        // multiply to get value in the microseconds
-        multiply /= NANOSECONDS_IN_MS;
+    struct timeval boottime;
+    int mib[2] = {CTL_KERN, KERN_BOOTTIME};
+    size_t size = sizeof(boottime);
+    time_t now;
+    time_t uptime = -1;
+
+    (void)time(&now);
+
+    if (sysctl(mib, 2, &boottime, &size, NULL, 0) != -1 && boottime.tv_sec != 0) {
+        uptime = now - boottime.tv_sec;
     }
-    return mach_absolute_time() * multiply;
+
+    // 这里对精度要求只到秒，为方便处理统一转换为毫秒
+    return uptime*1000;
 }
 
 - (void)setLoginServerTime:(uint64_t)loginServerTime {

@@ -64,6 +64,9 @@
 
 - (instancetype)initWithConfig:(MLVBLoginInfo *)config;
 
+// 释放前必须调用此方法
+- (void)prepareToDealloc;
+
 - (void)setLoginServerTime:(uint64_t)loginServerTime;
 
 // 登录
