@@ -101,8 +101,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_login"
-            android:layout_alignRight="@+id/til_password"
-            android:layout_alignEnd="@+id/til_password"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

@@ -476,7 +476,7 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
         if (mTXCloudVideoView != null) {
             mTXCloudVideoView.showLog(mShowLog);
         }
-        Button liveLog = (Button) findViewById(R.id.btn_log);
+        ImageView liveLog = (ImageView) findViewById(R.id.btn_log);
         if (mShowLog) {
             if (liveLog != null) liveLog.setBackgroundResource(R.drawable.icon_log_on);
 
