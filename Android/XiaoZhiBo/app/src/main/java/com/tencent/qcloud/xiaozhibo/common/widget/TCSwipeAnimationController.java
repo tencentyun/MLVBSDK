@@ -105,12 +105,12 @@ public class TCSwipeAnimationController {
                 if (isMoving) {
                     //假如为滑动手势，启动相应动画（右滑隐藏 左滑出现）
                     if (distance >= mContext.getResources().getDisplayMetrics().widthPixels / 5 || velocityX > 1000f) {
-                        if(mViewGroup.getTranslationX() == 0){
+                        if(mViewGroup != null && mViewGroup.getTranslationX() == 0){
                             valueAnimator.setIntValues(0, (int) mScreenwidth);
                             valueAnimator.start();
                         }
                     } else if(distance < 0 - mContext.getResources().getDisplayMetrics().widthPixels / 5) {
-                        if(mViewGroup.getTranslationX() > 0){
+                        if(mViewGroup != null && mViewGroup.getTranslationX() > 0){
 
                             mViewGroup.setLayoutAnimation(null);
                             mViewGroup.setTranslationX((int) mScreenwidth);

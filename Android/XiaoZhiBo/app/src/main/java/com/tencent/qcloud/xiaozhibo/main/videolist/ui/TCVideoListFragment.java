@@ -285,9 +285,9 @@ public class TCVideoListFragment extends Fragment implements SwipeRefreshLayout.
             }
         }
 
-        mVideoListView.setNumColumns(1);
-        mVideoListView.setHorizontalSpacing(0);
-        mVideoListView.setVerticalSpacing(0);
+//        mVideoListView.setNumColumns(1);
+//        mVideoListView.setHorizontalSpacing(0);
+//        mVideoListView.setVerticalSpacing(0);
         mVideoListViewAdapter.clear();
         mVideoListViewAdapter.notifyDataSetChanged();
         mVideoListView.setAdapter(mVideoListViewAdapter);

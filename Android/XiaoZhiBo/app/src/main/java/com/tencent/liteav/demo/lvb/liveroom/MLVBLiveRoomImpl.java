@@ -3133,6 +3133,10 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                 String msg = "[LivePusher] 推流失败[网络断开]";
                 TXCLog.e(TAG,msg);
                 callbackOnThread(mCallback, "onError", event, msg);
+            } else if (event == TXLiveConstants.PUSH_ERR_SCREEN_CAPTURE_START_FAILED) {
+                String msg = "[LivePusher] 推流失败[录屏启动失败]";
+                TXCLog.e(TAG,msg);
+                callbackOnThread(mCallback, "onError", event, msg);
             }
         }
 

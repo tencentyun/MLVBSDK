@@ -47,7 +47,7 @@ public class TCActivityTitle extends RelativeLayout {
 
     private void setUpView(){
         tvReturn = (TextView)findViewById(R.id.menu_return);
-        tvReturn.setTextColor(getResources().getColor(R.color.colorAccent));
+        tvReturn.setTextColor(getResources().getColor(R.color.white));
         tvTitle = (TextView)findViewById(R.id.title);
         tvMore = (TextView)findViewById(R.id.menu_more);
 

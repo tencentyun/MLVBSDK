@@ -342,8 +342,8 @@ public class TCBeautyDialogFragment extends DialogFragment implements SeekBar.On
             int var4 = var3.length;
             for(int var5 = 0; var5 < var4; ++var5) {
                 String id = var3[var5];
-                String packageUrl = "http://st1.xiangji.qq.com/yunmaterials/" + id + "Android.zip";
-                String imageUrl = "http://st1.xiangji.qq.com/yunmaterials/" + id + ".png";
+                String packageUrl = "https://st1.xiangji.qq.com/yunmaterials/" + id + "Android.zip";
+                String imageUrl = "https://st1.xiangji.qq.com/yunmaterials/" + id + ".png";
                 newMaterials.add(new FileMetaData(id, "", packageUrl, imageUrl));
             }
             Iterator var1 = newMaterials.iterator();
@@ -496,8 +496,8 @@ public class TCBeautyDialogFragment extends DialogFragment implements SeekBar.On
 
         for(int var5 = 0; var5 < var4; ++var5) {
             String id = var3[var5];
-            String packageUrl = "http://st1.xiangji.qq.com/yunmaterials/" + id + "Android.zip";
-            String imageUrl = "http://st1.xiangji.qq.com/yunmaterials/" + id + ".png";
+            String packageUrl = "https://st1.xiangji.qq.com/yunmaterials/" + id + "Android.zip";
+            String imageUrl = "https://st1.xiangji.qq.com/yunmaterials/" + id + ".png";
             materials.add(new FileMetaData(id, "", packageUrl, imageUrl));
         }
 

@@ -46,13 +46,11 @@ public class TCLoginActivity extends Activity {
 
     private ProgressBar progressBar;
 
+    private EditText etUsername;
+
     private EditText etPassword;
 
-    private AutoCompleteTextView etLogin;
-
     private Button btnLogin;
-
-    private TextInputLayout tilLogin, tilPassword;
 
     private TextView tvRegister;
 
@@ -63,33 +61,15 @@ public class TCLoginActivity extends Activity {
 
         rootRelativeLayout = (RelativeLayout) findViewById(R.id.rl_login_root);
 
-        if (null != rootRelativeLayout) {
-            ViewTarget<RelativeLayout, GlideDrawable> viewTarget = new ViewTarget<RelativeLayout, GlideDrawable>(rootRelativeLayout) {
-                @Override
-                public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                    this.view.setBackgroundDrawable(resource.getCurrent());
-                }
-            };
-
-            Glide.with(getApplicationContext()) // safer!
-                    .load(R.drawable.bg_dark)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(viewTarget);
-        }
-
-        etLogin = (AutoCompleteTextView) findViewById(R.id.et_login);
-
         etPassword = (EditText) findViewById(R.id.et_password);
+
+        etUsername = (EditText) findViewById(R.id.et_username);
 
         tvRegister = (TextView) findViewById(R.id.btn_register);
 
         btnLogin = (Button) findViewById(R.id.btn_login);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
-
-        tilLogin = (TextInputLayout) findViewById(R.id.til_login);
-
-        tilPassword = (TextInputLayout) findViewById(R.id.til_password);
 
         userNameLoginViewInit();
 
@@ -102,17 +82,13 @@ public class TCLoginActivity extends Activity {
      */
     public void userNameLoginViewInit() {
 
-        etLogin.setInputType(EditorInfo.TYPE_CLASS_TEXT);
+        etUsername.setInputType(EditorInfo.TYPE_CLASS_TEXT);
 
-        etLogin.setText("");
-        etLogin.setError(null, null);
+        etUsername.setText("");
+        etUsername.setError(null, null);
 
         etPassword.setText("");
         etPassword.setError(null, null);
-
-        tilLogin.setHint(getString(R.string.activity_login_username));
-
-        tilPassword.setHint(getString(R.string.activity_login_password));
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +106,7 @@ public class TCLoginActivity extends Activity {
                 //调用normal登录逻辑
                 showOnLoading(true);
 
-                attemptNormalLogin(etLogin.getText().toString(), etPassword.getText().toString());
+                attemptNormalLogin(etUsername.getText().toString(), etPassword.getText().toString());
             }
         });
     }
@@ -144,13 +120,13 @@ public class TCLoginActivity extends Activity {
         if (active) {
             progressBar.setVisibility(View.VISIBLE);
             btnLogin.setVisibility(View.INVISIBLE);
-            etLogin.setEnabled(false);
+            etUsername.setEnabled(false);
             etPassword.setEnabled(false);
             tvRegister.setClickable(false);
         } else {
             progressBar.setVisibility(View.GONE);
             btnLogin.setVisibility(View.VISIBLE);
-            etLogin.setEnabled(true);
+            etUsername.setEnabled(true);
             etPassword.setEnabled(true);
             tvRegister.setClickable(true);
             tvRegister.setTextColor(getResources().getColor(R.color.colorTransparentGray));
@@ -177,7 +153,7 @@ public class TCLoginActivity extends Activity {
     }
 
     private void showLoginError(String errorString) {
-        etLogin.setError(errorString);
+        etUsername.setError(errorString);
         showOnLoading(false);
     }
 

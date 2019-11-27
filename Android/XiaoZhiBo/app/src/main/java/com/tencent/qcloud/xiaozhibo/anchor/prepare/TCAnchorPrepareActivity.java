@@ -23,12 +23,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.tencent.qcloud.xiaozhibo.R;
+import com.tencent.qcloud.xiaozhibo.anchor.screen.TCScreenAnchorActivity;
 import com.tencent.qcloud.xiaozhibo.common.net.TCHTTPMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.common.upload.TCUploadHelper;
@@ -40,6 +42,7 @@ import com.tencent.qcloud.xiaozhibo.anchor.TCCameraAnchorActivity;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +61,7 @@ import java.util.List;
  * <p>
  * 5. 设置分享到微信、微博、QQ等
  */
-public class TCAnchorPrepareActivity extends Activity implements View.OnClickListener, TCUploadHelper.OnUploadListener, TCLocationHelper.OnLocationListener {
+public class TCAnchorPrepareActivity extends Activity implements View.OnClickListener, TCUploadHelper.OnUploadListener, TCLocationHelper.OnLocationListener, RadioGroup.OnCheckedChangeListener {
     private static final String TAG = TCAnchorPrepareActivity.class.getSimpleName();
     private static final int CAPTURE_IMAGE_CAMERA = 100;    // 封面：发起拍照
     private static final int IMAGE_STORE = 200;             // 封面：选择图库
@@ -72,6 +75,8 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
     private Dialog                          mPicChsDialog;  // 图片选择弹窗
     private ImageView                       mIvCover;       // 图片封面
     private TCCustomSwitch                  mSwitchLocate;  // 发起定位的按钮
+    private RadioGroup                      mRGRecordType;  // 推流类型：摄像头推流或屏幕录制推流
+    private int                             mRecordType = TCConstants.RECORD_TYPE_CAMERA;   // 默认摄像头推流
 
     private Uri                              mSourceFileUri, mCropFileUri;      // 封面图源文件的Uri，裁剪过后的Uri
     private boolean                          mUploadingCover = false;           // 当前是否正在上传图片
@@ -91,11 +96,12 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
         mIvCover = (ImageView) findViewById(R.id.anchor_btn_cover);
         mTvLocation = (TextView) findViewById(R.id.anchor_tv_location);
         mSwitchLocate = (TCCustomSwitch) findViewById(R.id.anchor_btn_location);
+        mRGRecordType = (RadioGroup) findViewById(R.id.anchor_rg_record_type);
         mIvCover.setOnClickListener(this);
         mTvReturn.setOnClickListener(this);
         mTvPublish.setOnClickListener(this);
         mSwitchLocate.setOnClickListener(this);
-
+        mRGRecordType.setOnCheckedChangeListener(this);
 
         mPermission = checkPublishPermission();
         initPhotoDialog();
@@ -216,7 +222,14 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
      *
      */
     private void startPublish() {
-        Intent intent = new Intent(this, TCCameraAnchorActivity.class);
+        Intent intent = null;
+        if (mRecordType == TCConstants.RECORD_TYPE_SCREEN) {
+            //录屏
+            intent = new Intent(this, TCScreenAnchorActivity.class);
+        } else {
+            intent = new Intent(this, TCCameraAnchorActivity.class);
+        }
+
         if (intent != null) {
             intent.putExtra(TCConstants.ROOM_TITLE,
                     TextUtils.isEmpty(mTvTitle.getText().toString()) ? TCUserMgr.getInstance().getNickname() : mTvTitle.getText().toString());
@@ -512,4 +525,27 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
         }
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.anchor_rb_record_camera:
+                mRecordType = TCConstants.RECORD_TYPE_CAMERA;
+                break;
+            case R.id.anchor_rb_record_screen:
+                if (!checkScrRecordPermission()) {
+                    Toast.makeText(getApplicationContext(), "当前安卓系统版本过低，仅支持5.0及以上系统", Toast.LENGTH_SHORT).show();
+                    mRGRecordType.check(R.id.anchor_rb_record_camera);
+                    return;
+                }
+                try {
+                    TCUtils.checkFloatWindowPermission(TCAnchorPrepareActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mRecordType = TCConstants.RECORD_TYPE_SCREEN;
+                break;
+            default:
+                break;
+        }
+    }
 }

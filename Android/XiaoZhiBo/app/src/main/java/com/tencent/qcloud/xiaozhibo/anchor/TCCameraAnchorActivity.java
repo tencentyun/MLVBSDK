@@ -428,8 +428,8 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
                 }
                 mFlashOn = !mFlashOn;
                 mFlashView.setBackgroundDrawable(mFlashOn ?
-                        getResources().getDrawable(R.drawable.icon_flash_pressed) :
-                        getResources().getDrawable(R.drawable.icon_flash));
+                        getResources().getDrawable(R.drawable.flash_on) :
+                        getResources().getDrawable(R.drawable.flash_off));
 
                 break;
             case R.id.beauty_btn:
@@ -533,22 +533,5 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
             default:
                 break;
         }
-    }
-
-    @Override
-    protected void showPublishFinishDetailsDialog() {
-        super.showPublishFinishDetailsDialog();
-        //确认则显示观看detail
-        FinishDetailDialogFragment dialogFragment = new FinishDetailDialogFragment();
-        Bundle args = new Bundle();
-        args.putString("time", TCUtils.formattedTime(mSecond));
-        args.putString("heartCount", String.format(Locale.CHINA, "%d", mHeartCount));
-        args.putString("totalMemberCount", String.format(Locale.CHINA, "%d", mTotalMemberCount));
-        dialogFragment.setArguments(args);
-        dialogFragment.setCancelable(false);
-        if (dialogFragment.isAdded())
-            dialogFragment.dismiss();
-        else
-            dialogFragment.show(getFragmentManager(), "");
     }
 }

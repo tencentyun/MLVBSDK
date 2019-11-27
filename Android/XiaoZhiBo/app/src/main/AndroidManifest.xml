@@ -80,8 +80,28 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
+            android:name=".anchor.screen.TCScreenAnchorActivity"
+            android:theme="@style/RecordActivityTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".anchor.screen.TCScreenRecordService"
+            android:enabled="true"
+            android:exported="false">
+
+        </service>
+        <activity
             android:name=".profile.TCEditUseInfoActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name="com.tencent.rtmp.video.TXScreenCapture$TXScreenCaptureAssistantActivity" android:theme="@android:style/Theme.Translucent" />
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"

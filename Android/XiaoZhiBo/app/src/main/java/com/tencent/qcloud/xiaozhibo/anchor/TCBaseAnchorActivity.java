@@ -47,6 +47,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -578,7 +579,18 @@ public class TCBaseAnchorActivity extends Activity implements IMLVBLiveRoomListe
      * 如：观看数量、点赞数量、直播时长数
      */
     protected void showPublishFinishDetailsDialog() {
-
+        //确认则显示观看detail
+        FinishDetailDialogFragment dialogFragment = new FinishDetailDialogFragment();
+        Bundle args = new Bundle();
+        args.putString("time", TCUtils.formattedTime(mSecond));
+        args.putString("heartCount", String.format(Locale.CHINA, "%d", mHeartCount));
+        args.putString("totalMemberCount", String.format(Locale.CHINA, "%d", mTotalMemberCount));
+        dialogFragment.setArguments(args);
+        dialogFragment.setCancelable(false);
+        if (dialogFragment.isAdded())
+            dialogFragment.dismiss();
+        else
+            dialogFragment.show(getFragmentManager(), "");
     }
 
     /**

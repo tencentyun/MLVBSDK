@@ -22,11 +22,19 @@
     </style>
 
     <style name="LoginTheme" parent="BaseWhiteTransparentTheme">
+        <item name="colorControlNormal">@color/colorTextG4</item>
+        <item name="colorControlActivated">@color/colorTextG4</item>
+    </style>
 
+    <style name="RecordActivityTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
     <style name="RegisterTheme" parent="BaseWhiteTransparentTheme">
-        <item name="android:windowAnimationStyle">@style/PlayerAnimation</item>
+        <item name="colorControlNormal">@color/colorTextG4</item>
+        <item name="colorControlActivated">@color/colorTextG4</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">

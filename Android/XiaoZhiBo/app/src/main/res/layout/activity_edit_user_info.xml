@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:backText="@string/btn_return"
+        android:background="@color/colorAccent"
         app:titleText="@string/userinfo_title" />
 
 

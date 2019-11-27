@@ -17,11 +17,13 @@
     <!--h3-->
     <!--h4-->
     <!--h5-->
+    <dimen name="h5">12sp</dimen>
     <!--h6-->
     <dimen name="h6">14sp</dimen>
     <!--h7-->
     <dimen name="h7">15sp</dimen>
     <!--h8-->
+    <dimen name="h8">16sp</dimen>
     <!--h9-->
     <dimen name="h9">17sp</dimen>
     <!--h10-->

@@ -3,9 +3,12 @@ package com.tencent.qcloud.xiaozhibo.login;
 import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
@@ -46,13 +49,11 @@ public class TCRegisterActivity extends Activity  {
 
     private ProgressBar progressBar;
 
+    private EditText etUsername;
+
     private EditText etPassword;
 
     private EditText etPasswordVerify;
-
-    private AutoCompleteTextView etRegister;
-
-    private TextInputLayout tilRegister, tilPassword, tilPasswordVerify;
 
     private Button btnRegister;
 
@@ -68,35 +69,15 @@ public class TCRegisterActivity extends Activity  {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.rl_register_root);
 
-        if(null != relativeLayout) {
-            ViewTarget<RelativeLayout, GlideDrawable> viewTarget = new ViewTarget<RelativeLayout, GlideDrawable>(relativeLayout) {
-                @Override
-                public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                    this.view.setBackgroundDrawable(resource.getCurrent());
-                }
-            };
-
-            Glide.with(getApplicationContext()) // safer!
-                    .load(R.drawable.bg_dark)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(viewTarget);
-        }
-
-        etRegister = (AutoCompleteTextView) findViewById(R.id.et_register);
+        etUsername = (EditText) findViewById(R.id.et_username);
 
         etPassword = (EditText) findViewById(R.id.et_password);
 
         etPasswordVerify = (EditText) findViewById(R.id.et_password_verify);
 
-        tilPasswordVerify = (TextInputLayout) findViewById(R.id.til_password_verify);
-
         btnRegister = (Button) findViewById(R.id.btn_register);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
-
-        tilRegister = (TextInputLayout) findViewById(R.id.til_register);
-
-        tilPassword = (TextInputLayout) findViewById(R.id.til_password);
 
         tvBackBtn = (TextView) findViewById(R.id.tv_back);
 
@@ -104,10 +85,6 @@ public class TCRegisterActivity extends Activity  {
         fadeOutAnimation = new AlphaAnimation(1.0f, 0.0f);
         fadeInAnimation.setDuration(250);
         fadeOutAnimation.setDuration(250);
-
-        LayoutTransition layoutTransition = new LayoutTransition();
-        relativeLayout.setLayoutTransition(layoutTransition);
-
     }
 
     @Override
@@ -144,14 +121,14 @@ public class TCRegisterActivity extends Activity  {
             btnRegister.setVisibility(View.INVISIBLE);
             etPassword.setEnabled(false);
             etPasswordVerify.setEnabled(false);
-            etRegister.setEnabled(false);
+            etUsername.setEnabled(false);
             btnRegister.setEnabled(false);
         } else {
             progressBar.setVisibility(View.GONE);
             btnRegister.setVisibility(View.VISIBLE);
             etPassword.setEnabled(true);
             etPasswordVerify.setEnabled(true);
-            etRegister.setEnabled(true);
+            etUsername.setEnabled(true);
             btnRegister.setEnabled(true);
         }
 
@@ -159,30 +136,17 @@ public class TCRegisterActivity extends Activity  {
 
     private void userNameRegisterViewInit() {
 
-        etRegister.setText("");
-        etRegister.setError(null, null);
-
-        etRegister.setInputType(EditorInfo.TYPE_CLASS_TEXT);
-
         etPassword.setText("");
         etPassword.setError(null, null);
 
         etPasswordVerify.setText("");
         etPasswordVerify.setError(null, null);
 
-        tilPasswordVerify.setVisibility(View.VISIBLE);
-
-        tilRegister.setHint(getString(R.string.activity_register_username));
-
-        tilPassword.setHint(getString(R.string.activity_register_password));
-
-        tilPasswordVerify.setHint(getString(R.string.activity_register_password_verify));
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //调用normal注册逻辑
-                attemptNormalRegist(etRegister.getText().toString(),
+                attemptNormalRegist(etUsername.getText().toString(),
                         etPassword.getText().toString(), etPasswordVerify.getText().toString());
             }
         });
@@ -196,7 +160,7 @@ public class TCRegisterActivity extends Activity  {
     }
 
     private void showRegistError(String errorString) {
-        etRegister.setError(errorString);
+//        etRegister.setError(errorString);
         showOnLoading(false);
     }
 

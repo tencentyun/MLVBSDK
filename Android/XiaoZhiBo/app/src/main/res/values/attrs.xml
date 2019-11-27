@@ -54,4 +54,12 @@
             <enum name="FILL" value="1"></enum>
         </attr>
     </declare-styleable>
+    <declare-styleable name="RoundImageView">
+        <attr name="shape">
+            <enum name="circle" value="0" />
+            <enum name="fillet" value="1" />
+        </attr>
+        <attr name="radius" format="dimension" />
+        <attr name="cover_color" format="color" />
+    </declare-styleable>
 </resources>

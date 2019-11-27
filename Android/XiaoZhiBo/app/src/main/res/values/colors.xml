@@ -6,7 +6,7 @@
 
     <color name="color_bottom_bar_background">#222B48</color>
     <color name="colorPrimaryDark">#21a3f5</color>
-    <color name="colorAccent">#0accac</color>
+    <color name="colorAccent">#338BFF</color>
     <color name="transparent">#00000000</color>
     <color name="colorActivityBackground">#F3F3F3</color>
     <color name="colorTransparentGray">#88ffffff</color>
@@ -31,6 +31,7 @@
     <color name="colorBackground">#F5F5F5</color>
     <!--app主题色，应用于导航，按钮-->
     <!--主题色激活态，如按钮高亮-->
+    <color name="colorLight">#0accac</color>
     <!--红色标签/提示-->
     <!--红色标签/提示高亮-->
     <!--黄色色标签/提示-->

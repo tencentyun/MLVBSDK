@@ -16,9 +16,16 @@ public class TCConstants {
     public static final String USER_HEADPIC     = "user_headpic";
     public static final String USER_LOC         = "user_location";
 
+    //主播退出广播字段
+    public static final String EXIT_APP         = "EXIT_APP";
+
     public static final int USER_INFO_MAXLEN    = 20;
     public static final int TV_TITLE_MAX_LEN    = 30;
     public static final int NICKNAME_MAX_LEN    = 20;
+
+    //直播类型
+    public static final int RECORD_TYPE_CAMERA = 991;
+    public static final int RECORD_TYPE_SCREEN = 992;
 
     //直播端右下角listview显示type
     public static final int TEXT_TYPE           = 0;

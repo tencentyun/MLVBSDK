@@ -57,10 +57,10 @@ public class TCVideoListAdapter extends ArrayAdapter<TCVideoInfo> {
             holder.tvTitle = (TextView) convertView.findViewById(R.id.anchor_tv_title);
             holder.tvHost = (TextView) convertView.findViewById(R.id.host_name);
             holder.tvMembers = (TextView) convertView.findViewById(R.id.live_members);
-            holder.tvAdmires = (TextView) convertView.findViewById(R.id.praises);
+//            holder.tvAdmires = (TextView) convertView.findViewById(R.id.praises);
             holder.tvLbs = (TextView) convertView.findViewById(R.id.live_lbs);
-            holder.ivAvatar = (ImageView) convertView.findViewById(R.id.avatar);
-            holder.ivLogo = (ImageView) convertView.findViewById(R.id.live_logo);
+//            holder.ivAvatar = (ImageView) convertView.findViewById(R.id.avatar);
+//            holder.ivLogo = (ImageView) convertView.findViewById(R.id.live_logo);
 
             convertView.setTag(holder);
         }
@@ -80,9 +80,9 @@ public class TCVideoListAdapter extends ArrayAdapter<TCVideoInfo> {
         TCUtils.showPicWithUrl(mActivity,holder.ivAvatar,data.avatar,R.drawable.face);
         //主播昵称
         if (TextUtils.isEmpty(data.nickname)){
-            holder.tvHost.setText("@" + TCUtils.getLimitString(data.userId, 10));
+            holder.tvHost.setText(TCUtils.getLimitString(data.userId, 10));
         }else{
-            holder.tvHost.setText("@" + TCUtils.getLimitString(data.nickname, 10));
+            holder.tvHost.setText(TCUtils.getLimitString(data.nickname, 10));
         }
         //主播地址
         if (TextUtils.isEmpty(data.location)) {
@@ -96,15 +96,15 @@ public class TCVideoListAdapter extends ArrayAdapter<TCVideoInfo> {
         //直播观看人数
         holder.tvMembers.setText(""+data.viewerCount);
         //直播点赞数
-        holder.tvAdmires.setText(""+data.likeCount);
+//        holder.tvAdmires.setText(""+data.likeCount);
         //视频类型，直播或者回放
-        if (data.livePlay) {
-            holder.ivLogo.setVisibility(View.VISIBLE);
-            holder.ivLogo.setImageResource(R.drawable.live);
-        } else {
-            holder.ivLogo.setVisibility(View.VISIBLE);
-            holder.ivLogo.setImageResource(R.drawable.playback);
-        }
+//        if (data.livePlay) {
+//            holder.ivLogo.setVisibility(View.VISIBLE);
+//            holder.ivLogo.setImageResource(R.drawable.live);
+//        } else {
+//            holder.ivLogo.setVisibility(View.VISIBLE);
+//            holder.ivLogo.setImageResource(R.drawable.playback);
+//        }
         return convertView;
     }
 
