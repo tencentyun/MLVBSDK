@@ -176,7 +176,7 @@ static pthread_mutex_t sharedInstanceLock;
 
 - (void)dealloc
 {
-    [_msgMgr repareToDealloc];
+    [_msgMgr prepareToDealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_httpSession invalidateSessionCancelingTasks:NO];
     [self stopHeartBeat];
@@ -245,6 +245,11 @@ static pthread_mutex_t sharedInstanceLock;
             // 初始化userInfo
             self->_currentUser = [loginInfo copy];
             // 初始化 RoomMsgMgr 并登录
+            if (self->_msgMgr) {
+                self->_msgMgr.delegate = nil;
+                [self->_msgMgr logout:nil];
+                [self->_msgMgr prepareToDealloc];
+            }
             self-> _msgMgr = [[IMMsgManager alloc] initWithConfig:loginInfo];
             [self->_msgMgr setDelegate:self];
             
@@ -293,6 +298,7 @@ static pthread_mutex_t sharedInstanceLock;
             self->_created = NO;
             self->_msgMgr.delegate = nil;
             [self->_msgMgr logout:nil];
+            [self->_msgMgr prepareToDealloc];
             self->_msgMgr = nil;
             self->_apiAddr = nil;
             [self releaseLivePusher];

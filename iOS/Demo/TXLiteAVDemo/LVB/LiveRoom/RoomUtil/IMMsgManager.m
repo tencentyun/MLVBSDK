@@ -52,7 +52,7 @@
     return self;
 }
 
-- (void)repareToDealloc {
+- (void)prepareToDealloc {
     [[TIMManager sharedInstance] removeMessageListener:self];
 }
 

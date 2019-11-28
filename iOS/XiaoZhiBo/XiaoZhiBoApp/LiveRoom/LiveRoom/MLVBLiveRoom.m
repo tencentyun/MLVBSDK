@@ -38,7 +38,7 @@
 #define kHttpServerAddr_Logout          @"logout"
 #define kHttpServerAddr_MergeStream     @"merge_stream"
 #define kHttpServerAddr_SetCustomField  @"set_custom_field"
-#define kHttpServerAddr_GetCustomInfo  @"get_custom_info"
+#define kHttpServerAddr_GetCustomInfo  @"get_custom_Info"
 
 static NSString * const RespCodeKey = @"code";
 
@@ -176,7 +176,7 @@ static pthread_mutex_t sharedInstanceLock;
 
 - (void)dealloc
 {
-    [_msgMgr repareToDealloc];
+    [_msgMgr prepareToDealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_httpSession invalidateSessionCancelingTasks:NO];
     [self stopHeartBeat];
@@ -245,6 +245,11 @@ static pthread_mutex_t sharedInstanceLock;
             // 初始化userInfo
             self->_currentUser = [loginInfo copy];
             // 初始化 RoomMsgMgr 并登录
+            if (self->_msgMgr) {
+                self->_msgMgr.delegate = nil;
+                [self->_msgMgr logout:nil];
+                [self->_msgMgr prepareToDealloc];
+            }
             self-> _msgMgr = [[IMMsgManager alloc] initWithConfig:loginInfo];
             [self->_msgMgr setDelegate:self];
             
@@ -293,6 +298,7 @@ static pthread_mutex_t sharedInstanceLock;
             self->_created = NO;
             self->_msgMgr.delegate = nil;
             [self->_msgMgr logout:nil];
+            [self->_msgMgr prepareToDealloc];
             self->_msgMgr = nil;
             self->_apiAddr = nil;
             [self releaseLivePusher];
@@ -613,17 +619,8 @@ static pthread_mutex_t sharedInstanceLock;
     }];
 }
 
-- (void)setCustomInfo:(MLVBCustomFieldOp)op key:(NSString *)key value:(id)value completion:(void(^)(int errCode, NSString *errMsg))completion
+- (void)setCustomInfo:(MLVBCustomFieldOp)op key:(NSString *)key value:(NSString *)value completion:(void(^)(int errCode, NSString *errMsg))completion
 {
-    if (!([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])) {
-        completion(ROOM_ERR_INVALID_PARAM, @"Value type should be either NSString or NSNumber");
-        return;
-    }
-    if (op != MLVBCustomFieldOpSet && [value isKindOfClass:[NSString class]]) {
-        NSNumber *doubleValue = @([value doubleValue]);
-        NSLog(@"%s Setting string value(%@) when using INC or DEC operation. Converting to double value(%@).", __PRETTY_FUNCTION__, value, doubleValue);
-        value = doubleValue;
-    }
     NSString *operation = nil;;
     switch(op) {
         case MLVBCustomFieldOpSet:
@@ -656,7 +653,7 @@ static pthread_mutex_t sharedInstanceLock;
     }];
 }
 
-- (void)getCustomInfo:(void(^)(int errCode, NSString *errMsg, NSDictionary *customInfo))completion
+- (void)getCustomInfo:(void(^)(int errCode, NSString *errMsg, NSString *custom))completion
 {
     [self asyncRun:^(MLVBLiveRoom *self) {
         if (self.roomInfo.roomID == nil) {
@@ -667,7 +664,7 @@ static pthread_mutex_t sharedInstanceLock;
         [self requestWithName:kHttpServerAddr_GetCustomInfo params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (completion) {
                 if (errCode == 0) {
-                    NSDictionary *custom = responseObject[@"custom"];
+                    NSString *custom = responseObject[@"custom"];
                     completion(errCode, errMsg, custom);
                 } else {
                     completion(errCode, errMsg, nil);
@@ -1974,11 +1971,6 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 // 接收PK结束消息
 - (void)onRecvPKFinishRequest:(NSString *)roomID userID:(NSString *)userID {
     [self sendDebugMsg:[NSString stringWithFormat:@"收到房间[%@]主播[%@]的结束PK消息", roomID, userID]];
-    // 判断当前pk的人是不是userID
-    if (self.pkAnchor == nil || ![self.pkAnchor.userID isEqualToString:userID]) {
-        return;
-    }
-    
     [self asyncRun:^(MLVBLiveRoom *self) {
         self.pkAnchor = nil;
     }];
