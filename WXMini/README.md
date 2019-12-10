@@ -51,7 +51,7 @@
 ## 4. 开通即时通信 IM 服务
 
 进入 [即时通信 IM 管理控制台](https://console.cloud.tencent.com/avc)，如果还没有开通服务，单击【直接开通云通信】即可。如果是新认证的腾讯云账号，则即时通信 IM 的应用列表是空的，如下图：
-![](https://main.qcloudimg.com/raw/1d88fb0df520fc4c4784c40b25d2fb46/im_empty.png)
+![](https://main.qcloudimg.com/raw/56bb27d09e17784075a5e21a2eb2a2a1/im_empty.png)
 
 ## 5. 开通房间管理服务
 
