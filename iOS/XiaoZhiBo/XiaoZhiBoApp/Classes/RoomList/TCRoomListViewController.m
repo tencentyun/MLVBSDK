@@ -397,7 +397,7 @@
             }];
             [(TCAudienceViewController*)_playVC setOnPlayError:onPlayError];
         } else {
-            if (info.hls_play_url.length == 0) {
+            if (info.hls_play_url.length == 0 && info.playurl.length == 0) {
                 return;
             }
             _playVC = [[TCPlayBackViewController alloc] initWithPlayInfo:info videoIsReady:^{

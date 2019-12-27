@@ -258,6 +258,18 @@ public class TCBaseAnchorActivity extends Activity implements IMLVBLiveRoomListe
      */
     protected void onCreateRoomSuccess() {
         startTimer();
+        // 填写了后台服务器地址
+        if (!TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
+            try {
+                JSONObject body = new JSONObject().put("userid", mUserId)
+                        .put("title", mTitle)
+                        .put("frontcover", mCoverPicUrl)
+                        .put("location", mLocation);
+                TCHTTPMgr.getInstance().requestWithSign(TCGlobalConfig.APP_SVR_URL + "/upload_room", body, null);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     protected void stopPublish() {

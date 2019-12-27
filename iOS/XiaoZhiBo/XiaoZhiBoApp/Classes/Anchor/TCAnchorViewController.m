@@ -277,6 +277,17 @@
                 [self.liveRoom setEyeScaleLevel:self->_eye_level];
                 [self.liveRoom setFaceScaleLevel:self->_face_level];
                 [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+                
+                NSDictionary* params = @{@"userid": self->_liveInfo.userid,
+                                         @"title": self->_liveInfo.title,
+                                         @"frontcover" : self->_liveInfo.userinfo.frontcover,
+                                         @"location" : self->_liveInfo.userinfo.location,
+                                         };
+                [TCUtil asyncSendHttpRequest:@"upload_room" token:[TCAccountMgrModel sharedInstance].token params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
+                    if (resultCode != 200) {
+                        NSLog(@"uploadRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
+                    }
+                }];
             } else if (errCode == 10036) {
                 UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
                                                                                     message:nil
