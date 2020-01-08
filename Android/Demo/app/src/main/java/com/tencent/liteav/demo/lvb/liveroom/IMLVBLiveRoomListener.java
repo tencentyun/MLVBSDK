@@ -278,7 +278,7 @@ public interface IMLVBLiveRoomListener {
     }
 
     /**
-     * 创建房间的结果回调接口
+     * 进入房间的结果回调接口
      */
     public interface EnterRoomCallback {
         /**
@@ -361,7 +361,7 @@ public interface IMLVBLiveRoomListener {
     }
 
     /**
-     * 进入连麦的结果回调接口
+     * 退出连麦的结果回调接口
      */
     public interface QuitAnchorCallback {
         /**
