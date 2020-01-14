@@ -39,7 +39,7 @@ public class TCMusicSelectView extends LinearLayout{
         mContext = context;
     }
 
-    public void init(TCAudioControl audioControl, List<TCAudioControl.MediaEntity> data){
+    public void init(TCAudioControl audioControl, List<MusicEntity> data){
         mAudioCtrl = audioControl;
         LayoutInflater.from(mContext).inflate(R.layout.layout_music_chose,this);
         mMusicList = (MusicListView)findViewById(R.id.music_list_view);

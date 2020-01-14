@@ -1,1 +1,0 @@
-../../../../pitu/PituMotionDemo/MCTip.h

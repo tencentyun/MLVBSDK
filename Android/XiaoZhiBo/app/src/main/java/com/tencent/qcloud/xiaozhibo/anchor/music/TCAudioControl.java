@@ -3,6 +3,7 @@ package com.tencent.qcloud.xiaozhibo.anchor.music;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -10,7 +11,6 @@ import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -28,7 +28,7 @@ import com.tencent.liteav.demo.lvb.liveroom.MLVBLiveRoom;
 import com.tencent.qcloud.xiaozhibo.R;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 
-import java.io.Serializable;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +91,7 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
     private boolean          mBGMSwitch = false;
     private boolean          mScanning = false;
     Context                  mContext;
-    List<MediaEntity>        mMusicListData;
+    List<MusicEntity>        mMusicListData;
     MusicListView            mMusicList;
     public TCMusicSelectView mMusicSelectView;
     public LinearLayout      mMusicControlPart;
@@ -126,7 +126,8 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
             mMusicListData.get(mLastPlayingItemPos).state = 0;
         }
         if (!mPusher.playBGM(path)){
-            Toast.makeText(getActivity().getApplicationContext(), "打开BGM失败", Toast.LENGTH_SHORT).show();
+            // Note:AndroidQ(10)不可以读取非私有目录文件
+            Toast.makeText(getActivity().getApplicationContext(), "打开BGM失败:" + path, Toast.LENGTH_SHORT).show();
             mMusicList.getAdapter().notifyDataSetChanged();
             return ;
         }
@@ -162,7 +163,9 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
         }
         mMusicList.requestFocus();
         mMusicList.setItemChecked(mSelectItemPos, true);
-        playBGM(mMusicListData.get(mSelectItemPos).title, mMusicListData.get(mSelectItemPos).path,mSelectItemPos);
+
+        MusicEntity musicEntity = mMusicListData.get(mSelectItemPos);
+        playBGM(musicEntity.title, musicEntity.path, mSelectItemPos);
     }
 
     @Override
@@ -333,7 +336,7 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
         mBtnSelectActivity = (Button)findViewById(R.id.btn_select_bgm);
         mMusicSelectView = (TCMusicSelectView)findViewById(R.id.xml_music_select_view);
         mMusicControlPart = (LinearLayout)findViewById(R.id.xml_music_control_part);
-        mMusicListData = new ArrayList<MediaEntity>();
+        mMusicListData = new ArrayList<MusicEntity>();
         mMusicSelectView.init(this,mMusicListData);
         mMusicList = mMusicSelectView.mMusicList;
         mPathSet = new HashMap<String,String>();
@@ -354,7 +357,8 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
         mMusicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                playBGM(mMusicListData.get(position).title, mMusicListData.get(position).path, position);
+                MusicEntity entity = mMusicListData.get(position);
+                playBGM(entity.title, entity.path, position);
                 mSelectItemPos = position;
             }
         });
@@ -380,7 +384,7 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
             }
         });
     }
-    
+
     public void unInit(){
         if (mBGMSwitch){
             stopBGM();
@@ -398,19 +402,19 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
                         MediaStore.Audio.Media.DATA,
                         MediaStore.Audio.Media.SIZE},
                 null, null, null);
-        MediaEntity mediaEntity = new MediaEntity();
+        MusicEntity musicEntity = new MusicEntity();
         if(cursor == null) {
             Log.e(TAG, "GetMediaList cursor is null.");
-            mediaEntity.duration = 0;
-            mediaEntity.path = TCUtils.getPath(mContext,uri);
-            String[] names = mediaEntity.path.split("/");
+            musicEntity.duration = 0;
+            musicEntity.path = TCUtils.getPath(mContext,uri);
+            String[] names = musicEntity.path.split("/");
             if (names != null){
-                mediaEntity.display_name = names[names.length - 1];
-                mediaEntity.title = mediaEntity.display_name;
+                musicEntity.display_name = names[names.length - 1];
+                musicEntity.title = musicEntity.display_name;
             }
             else{
-                mediaEntity.display_name = "未命名歌曲";
-                mediaEntity.title = mediaEntity.display_name;
+                musicEntity.display_name = "未命名歌曲";
+                musicEntity.title = musicEntity.display_name;
             }
         }
         else{
@@ -421,38 +425,38 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
             }
             cursor.moveToFirst();
 
-            mediaEntity.id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
-            //mediaEntity.title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-            mediaEntity.display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
-            String title = mediaEntity.display_name.split("\\.")[0];
-            mediaEntity.title = title.equals("")?mediaEntity.display_name:title;
-            mediaEntity.size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE));
-//                if(!checkIsMusic(mediaEntity.duration, mediaEntity.size)) {
+            musicEntity.id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
+            //musicEntity.title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+            musicEntity.display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+            String title = musicEntity.display_name.split("\\.")[0];
+            musicEntity.title = title.equals("")? musicEntity.display_name:title;
+            musicEntity.size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE));
+//                if(!checkIsMusic(musicEntity.duration, musicEntity.size)) {
 //                    continue;
 //                }
-            mediaEntity.artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-            mediaEntity.path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-            if(mediaEntity.path == null){
-                mediaEntity.path = TCUtils.getPath(mContext,uri);
+            musicEntity.artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+            musicEntity.path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+            if(musicEntity.path == null){
+                musicEntity.path = TCUtils.getPath(mContext,uri);
             }
-            mediaEntity.duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
+            musicEntity.duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
         }
-        if(mediaEntity.path == null){
+        if(musicEntity.path == null){
             Toast.makeText(mContext,"Get Music Path Error",Toast.LENGTH_SHORT);
             return;
         }
         else{
-            if (mPathSet.get(mediaEntity.path) != null){
+            if (mPathSet.get(musicEntity.path) != null){
                 Toast.makeText(mContext,"请勿重复添加",Toast.LENGTH_SHORT);
                 return;
             }
         }
-        mPathSet.put(mediaEntity.path,mediaEntity.display_name);
-        if (mediaEntity.duration == 0){
-            mediaEntity.duration = mPusher.getBGMDuration(mediaEntity.path);
+        mPathSet.put(musicEntity.path, musicEntity.display_name);
+        if (musicEntity.duration == 0){
+            musicEntity.duration = mPusher.getBGMDuration(musicEntity.path);
         }
-        mediaEntity.durationStr = longToStrTime(mediaEntity.duration);
-        mMusicListData.add(mediaEntity);
+        musicEntity.durationStr = longToStrTime(musicEntity.duration);
+        mMusicListData.add(musicEntity);
         if (mMusicListData!=null) {
             mSelectItemPos = mMusicListData.size()-1;
         } else {
@@ -496,22 +500,29 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
         private AlertDialog.Builder  builder = null;
         private AlertDialog ad = null;
         Context mContext;
-        List<MediaEntity> mList;
+        List<MusicEntity> mList;
         TextView mPathView;
-        public void startScanner(Context context, TextView pathView,List<MediaEntity> list){
+        public void startScanner(Context context, TextView pathView,List<MusicEntity> list){
             mContext = context;
             mList = list;
             mPathView = pathView;
             IntentFilter intentfilter = new IntentFilter( Intent.ACTION_MEDIA_SCANNER_STARTED);
             intentfilter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
             intentfilter.addDataScheme("file");
+
+            File sdcardDir = mContext.getExternalFilesDir(null);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-                String[] paths = new String[]{Environment.getExternalStorageDirectory().toString()};
-                MediaScannerConnection.scanFile(mContext, paths, null, null);
+
+                if (sdcardDir != null) {
+                    String[] paths = new String[]{sdcardDir.getAbsolutePath()};
+                    MediaScannerConnection.scanFile(mContext, paths, null, null);
+                }
             }
             else{
                 mContext.registerReceiver(this, intentfilter);
-                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED ,Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath())));
+                if (sdcardDir != null) {
+                    mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + sdcardDir.getAbsolutePath())));
+                }
             }
         }
         @Override
@@ -537,9 +548,9 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
 
     static public boolean fPause = false;
 
-    public void getMusicList(Context context,List<MediaEntity> list) {
+    public void getMusicList(Context context,List<MusicEntity> list) {
         Cursor cursor = null;
-        List<MediaEntity> mediaList = list;
+        List<MusicEntity> mediaList = list;
         try {
             cursor = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     new String[] {
@@ -561,38 +572,44 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
                 Log.e(TAG, "GetMediaList cursor count is 0.");
                 return ;
             }
-            MediaEntity mediaEntity = null;
+            MusicEntity musicEntity = null;
 //          String[] columns = cursor.getColumnNames();
             while (!fPause && cursor.moveToNext()) {
-                mediaEntity = new MediaEntity();
-                mediaEntity.id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
-                mediaEntity.title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                mediaEntity.display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
-                mediaEntity.size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE));
-//                if(!checkIsMusic(mediaEntity.duration, mediaEntity.size)) {
+                musicEntity = new MusicEntity();
+                // 兼容 Android 10以上
+                Uri uri = ContentUris.withAppendedId(
+                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, cursor.getLong(cursor.getColumnIndexOrThrow((MediaStore.Audio.Media._ID))));
+                musicEntity.fileUri = uri;
+                musicEntity.id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
+                musicEntity.title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+                musicEntity.display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+                musicEntity.size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE));
+//                if(!checkIsMusic(musicEntity.duration, musicEntity.size)) {
 //                    continue;
 //                }
-                mediaEntity.artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-                mediaEntity.path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                if(mediaEntity.path == null){
+                musicEntity.artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+                musicEntity.path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+
+                Log.d(TAG, "MusicEntry:" + musicEntity.toString());
+                if(musicEntity.path == null){
                     fPause = false;
                     Toast.makeText(mContext,"Get Music Path Error",Toast.LENGTH_SHORT);
                     return;
                 }
                 else{
-                    if (mPathSet.get(mediaEntity.path) != null){
+                    if (mPathSet.get(musicEntity.path) != null){
                         Toast.makeText(mContext,"请勿重复添加",Toast.LENGTH_SHORT);
                         fPause = false;
                         return;
                     }
                 }
-                mPathSet.put(mediaEntity.path,mediaEntity.display_name);
-                mediaEntity.duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
-                if (mediaEntity.duration == 0){
-                    mediaEntity.duration = mPusher.getBGMDuration(mediaEntity.path);
+                mPathSet.put(musicEntity.path, musicEntity.display_name);
+                musicEntity.duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
+                if (musicEntity.duration == 0){
+                    musicEntity.duration = mPusher.getBGMDuration(musicEntity.path);
                 }
-                mediaEntity.durationStr = longToStrTime(mediaEntity.duration);
-                mediaList.add(mediaEntity);
+                musicEntity.durationStr = longToStrTime(musicEntity.duration);
+                mediaList.add(musicEntity);
             }
             fPause = false;
         } catch (Exception e) {
@@ -605,21 +622,5 @@ public class TCAudioControl extends LinearLayout implements SeekBar.OnSeekBarCha
         return ;
     }
 
-    class MediaEntity implements Serializable  {
-        private static final long serialVersionUID = 1L;
-        public int id; //id标识
-        public String title; // 显示名称
-        public String display_name; // 文件名称
-        public String path; // 音乐文件的路径
-        public int duration; // 媒体播放总时间
-        public String albums; // 专辑
-        public String artist; // 艺术家
-        public String singer; //歌手
-        public String durationStr;
-        public long size;
-        public char state = 0;//0:idle 1:playing
-        MediaEntity(){
-        }
-    }
 }
 

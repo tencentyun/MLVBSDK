@@ -25,6 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tencent.liteav.demo.beauty.BeautyPanel;
+import com.tencent.liteav.demo.beauty.BeautyParams;
 import com.tencent.liteav.demo.lvb.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.lvb.liveroom.MLVBLiveRoom;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
@@ -34,13 +36,12 @@ import com.tencent.qcloud.xiaozhibo.R;
 import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.ui.ErrorDialogFragment;
-import com.tencent.qcloud.xiaozhibo.common.widget.beauty.TCBeautyControl;
+import com.tencent.qcloud.xiaozhibo.common.widget.beauty.LiveRoomBeautyKit;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 import com.tencent.qcloud.xiaozhibo.common.widget.TCInputTextMsgDialog;
 import com.tencent.qcloud.xiaozhibo.common.widget.TCSwipeAnimationController;
 import com.tencent.qcloud.xiaozhibo.common.widget.TCUserAvatarListAdapter;
-import com.tencent.qcloud.xiaozhibo.common.widget.beauty.TCBeautyDialogFragment;
 import com.tencent.qcloud.xiaozhibo.common.widget.video.TCVideoView;
 import com.tencent.qcloud.xiaozhibo.common.widget.video.TCVideoViewMgr;
 import com.tencent.qcloud.xiaozhibo.common.widget.danmaku.TCDanmuMgr;
@@ -147,7 +148,7 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
     private TCVideoViewMgr                      mVideoViewMgr;                      // 主播对应的视频View管理类
 
     //美颜
-    private TCBeautyControl                     mBeautyControl;
+    private BeautyPanel                         mBeautyControl;
 
     private ErrorDialogFragment                 mErrDlgFragment = new ErrorDialogFragment();
     private long                                mStartPlayPts;
@@ -159,7 +160,7 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mStartPlayPts = System.currentTimeMillis();
-
+        setTheme(R.style.BeautyTheme);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -192,7 +193,8 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
         mLiveRoom = MLVBLiveRoom.sharedInstance(this);
 
         initView();
-
+        LiveRoomBeautyKit manager = new LiveRoomBeautyKit(mLiveRoom);
+        mBeautyControl.setProxy(manager);
         startPlay();
 
         //在这里停留，让列表界面卡住几百毫秒，给sdk一点预加载的时间，形成秒开的视觉效果
@@ -288,7 +290,7 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
         });
 
         //美颜功能
-        mBeautyControl = new TCBeautyControl(mLiveRoom);
+        mBeautyControl = (BeautyPanel) findViewById(R.id.beauty_panel);
 
         TCUtils.blurBgPic(this, mBgImageView, mCoverUrl, R.drawable.bg);
     }
@@ -452,8 +454,13 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
 
         mLiveRoom.startLocalPreview(true, videoView.videoView);
         mLiveRoom.setCameraMuteImage(BitmapFactory.decodeResource(getResources(), R.drawable.pause_publish));
-        TCBeautyDialogFragment.BeautyParams beautyParams = mBeautyControl.getParams();
-        mLiveRoom.setBeautyStyle(beautyParams.mBeautyStyle, beautyParams.mBeautyProgress, beautyParams.mWhiteProgress, beautyParams.mRuddyProgress);
+
+        BeautyParams beautyParams = new BeautyParams();
+        mLiveRoom.getBeautyManager().setBeautyStyle(beautyParams.mBeautyStyle);
+        mLiveRoom.getBeautyManager().setBeautyLevel(beautyParams.mBeautyLevel);
+        mLiveRoom.getBeautyManager().setWhitenessLevel(beautyParams.mWhiteLevel);
+        mLiveRoom.getBeautyManager().setRuddyLevel(beautyParams.mRuddyLevel);
+
         mLiveRoom.joinAnchor(new IMLVBLiveRoomListener.JoinAnchorCallback() {
             @Override
             public void onError(int errCode, String errInfo) {
@@ -1058,7 +1065,7 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
                         return;
                     }
                 }
-                joinPusher();
+                startLinkMic();
                 break;
             default:
                 break;

@@ -124,7 +124,9 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
         intent.putExtra("outputX", 200);
         intent.putExtra("outputY", 200);
         intent.putExtra("return-data", false);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, mCropAvatarPicUri);
+        if (mCropAvatarPicUri != null) {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mCropAvatarPicUri);
+        }
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(intent, CROP_CHOOSE);
     }
@@ -140,7 +142,9 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
 //            TCUserMgr.getInstance().setNickName(data.getStringExtra(TCTextEditActivity.RETURN_EXTRA));
             break;
         case CAPTURE_IMAGE_CAMERA:
-            startPhotoZoom(mAvatarPicUri);
+            if (mAvatarPicUri != null) {
+                startPhotoZoom(mAvatarPicUri);
+            }
             break;
         case IMAGE_STORE:
             String path = TCUtils.getPath(this, data.getData());
@@ -151,7 +155,9 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
             }
             break;
         case CROP_CHOOSE:
-            mCosUploadHelper.uploadPic(mCropAvatarPicUri.getPath());
+            if (mCropAvatarPicUri != null) {
+                mCosUploadHelper.uploadPic(mCropAvatarPicUri.getPath());
+            }
             break;
         }
     }
@@ -173,7 +179,12 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
      */
     private Uri createCoverUri(String type) {
         String filename = TCUserMgr.getInstance().getUserId() + type + ".jpg";
-        File outputImage = new File(Environment.getExternalStorageDirectory(), filename);
+        File sdcardDir = getExternalFilesDir(null);
+        if (sdcardDir == null) {
+            Log.e(TAG, "createCoverUri sdcardDir is null");
+            return null;
+        }
+        File outputImage = new File(sdcardDir, filename);
         if (ContextCompat.checkSelfPermission(TCEditUseInfoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(TCEditUseInfoActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, TCConstants.WRITE_PERMISSION_REQ_CODE);
@@ -215,10 +226,17 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
                 break;
         }
     }
+
+    /**
+     *  打开摄像头拍照
+     *
+     */
     private void takePhoto() {
         Intent intent_photo = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         mAvatarPicUri = createCoverUri("_icon");
-        intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mAvatarPicUri);
+        if (mAvatarPicUri != null) {
+            intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mAvatarPicUri);
+        }
         startActivityForResult(intent_photo, CAPTURE_IMAGE_CAMERA);
     }
 
@@ -286,11 +304,11 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
      * /////////////////////////////////////////////////////////////////////////////////
      */
     @Override
-    public void onUploadResult(int code, String retData) {
+    public void onUploadResult(int code, String url) {
         if (0 == code) {
             Toast.makeText(this,"上传头像成功",Toast.LENGTH_LONG).show();
-            TCUtils.showPicWithUrl(this, mIvAvatar, retData, R.color.transparent);
-            TCUserMgr.getInstance().setAvatar(retData, new TCHTTPMgr.Callback() {
+            TCUtils.showPicWithUrl(this, mIvAvatar, url, R.color.transparent);
+            TCUserMgr.getInstance().setAvatar(url, new TCHTTPMgr.Callback() {
                 @Override
                 public void onSuccess(JSONObject data) {
                     runOnUiThread(new Runnable() {
@@ -312,8 +330,8 @@ public class TCEditUseInfoActivity extends Activity implements View.OnClickListe
                 }
             });
         }else{
-            Log.w(TAG, "onUploadResult->failed: " + code + " " + retData);
-            Toast.makeText(this, "上传头像失败" + retData, Toast.LENGTH_LONG).show();
+            Log.w(TAG, "onUploadResult->failed: "+code);
+            Toast.makeText(this, "上传头像失败", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -515,7 +515,7 @@
     CFTimeInterval start = CFAbsoluteTimeGetCurrent();
 
     TCAnchorViewController *pubVC = [[TCAnchorViewController alloc] initWithPublishInfo:_liveInfo];
-
+    pubVC.modalPresentationStyle = UIModalPresentationFullScreen;
     NSString *str = _selectShare.titleLabel.text;
     
     NSLog(@"[TIME] TCPushViewController init time: %.6f", CFAbsoluteTimeGetCurrent() - start);

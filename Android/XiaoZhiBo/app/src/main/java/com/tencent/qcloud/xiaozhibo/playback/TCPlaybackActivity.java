@@ -33,6 +33,7 @@ import com.tencent.rtmp.TXVodPlayConfig;
 import com.tencent.rtmp.TXVodPlayer;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.Locale;
 
@@ -184,7 +185,10 @@ public class TCPlaybackActivity extends Activity implements View.OnClickListener
      * /////////////////////////////////////////////////////////////////////////////////
      */
     private void startPlay() {
-        mTXConfig.setCacheFolderPath(Environment.getExternalStorageDirectory().getPath() + "/xzbcache");
+        File sdcardDir = getExternalFilesDir(null);
+        if (sdcardDir != null) {
+            mTXConfig.setCacheFolderPath(sdcardDir.getAbsolutePath() + "/xzbcache");
+        }
         mTXConfig.setMaxCacheItems(3);
         mIvCover.setVisibility(View.VISIBLE);
         mTXVodPlayer.setPlayerView(mTXCloudVideoView);

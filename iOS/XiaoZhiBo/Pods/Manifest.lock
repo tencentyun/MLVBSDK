@@ -38,7 +38,6 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - ZipArchive (1.4.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -50,7 +49,6 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.1)
   - QBImagePickerController
   - SDWebImage (~> 3.8.1)
-  - ZipArchive
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -63,7 +61,6 @@ SPEC REPOS:
     - MJRefresh
     - QBImagePickerController
     - SDWebImage
-    - ZipArchive
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -75,8 +72,7 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
 
-PODFILE CHECKSUM: 49cbcaa2940f653aebddc6bcd99ef7a219e9b243
+PODFILE CHECKSUM: 83ef30b6b343c2d0a701bef6469dd4676962730e
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5

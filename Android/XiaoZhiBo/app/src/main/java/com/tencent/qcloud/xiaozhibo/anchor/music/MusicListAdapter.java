@@ -17,10 +17,10 @@ import java.util.List;
  * Function: 音乐列表的 Adapter
  */
 class MusicListAdapter extends BaseAdapter {
-    private List<TCAudioControl.MediaEntity> mData;
+    private List<MusicEntity> mData;
     private LayoutInflater                   mInflater;
 
-    MusicListAdapter(LayoutInflater inflater, List<TCAudioControl.MediaEntity> list) {
+    MusicListAdapter(LayoutInflater inflater, List<MusicEntity> list) {
         mInflater = inflater;
         mData = list;
     }

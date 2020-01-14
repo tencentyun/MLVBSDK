@@ -14,7 +14,7 @@ import java.util.List;
  * Function: 音乐列表的 ListView
  */
 public class MusicListView extends ListView {
-    private List<TCAudioControl.MediaEntity> mData;
+    private List<MusicEntity> mData;
     private BaseAdapter mAdapter;
 
     public BaseAdapter getAdapter() {
@@ -31,13 +31,13 @@ public class MusicListView extends ListView {
         this.setChoiceMode(CHOICE_MODE_SINGLE);
     }
 
-    public void setupList(LayoutInflater inflater, List<TCAudioControl.MediaEntity> data) {
+    public void setupList(LayoutInflater inflater, List<MusicEntity> data) {
         mData = data;
         mAdapter = new MusicListAdapter(inflater, data);
         setAdapter(mAdapter);
     }
 
-    public void setData(List<TCAudioControl.MediaEntity> data) {
+    public void setData(List<MusicEntity> data) {
         mData = data;
     }
     @Override

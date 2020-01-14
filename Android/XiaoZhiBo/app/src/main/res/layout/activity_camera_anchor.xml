@@ -244,6 +244,7 @@
                 android:background="@drawable/btn_close"
                 android:onClick="onClick"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -297,7 +298,12 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/anchor_audio_control"/>
 
-
+        <com.tencent.liteav.demo.beauty.BeautyPanel
+            android:id="@+id/beauty_panel"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tool_bar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -392,4 +398,5 @@
             android:layout_height="80dp"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
+
 </RelativeLayout>

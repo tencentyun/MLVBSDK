@@ -19,11 +19,11 @@
 #import "HUDHelper.h"
 
 #if POD_PITU
-#import "MCCameraDynamicView.h"
+//#import "MCCameraDynamicView.h"
 
-@interface TCAnchorToolbarView () <MCCameraDynamicDelegate>
-
-@end
+//@interface TCAnchorToolbarView () <MCCameraDynamicDelegate>
+//
+//@end
 #endif
 
 @implementation TCAnchorToolbarView
@@ -47,19 +47,6 @@
     UIAlertView           *_closeErrAlert;
     UIAlertView           *_closeErrRstAlert;
 
-    UIButton              *_beautyBtn;
-    UIButton              *_filterBtn;
-    
-    UILabel               *_beautyLabel;
-    UILabel               *_whiteLabel;
-    UILabel               *_bigEyeLabel;
-    UILabel               *_slimFaceLabel;
-    
-    UISlider              *_sdBeauty;
-    UISlider              *_sdWhitening;
-    UISlider              *_sdBigEye;
-    UISlider              *_sdSlimFace;
-    
     UILabel               *_labAudioEffect;
     UILabel               *_labVolumeForVoice;
     UISlider              *_sldVolumeForVoice;
@@ -89,20 +76,14 @@
     BOOL                  _viewsHidden;
     NSMutableArray        *_heartAnimationPoints;
 	
-    UIButton              *_motionBtn;
 #if POD_PITU
-    MCCameraDynamicView   *_tmplBar;
 #else
-    UIView                *_tmplBar;
 #endif
-    UIButton              *_greenBtn;
-    V8HorizontalPickerView  *_greenPickerView;
-    NSMutableArray *_greenArray;
+//    NSMutableArray *_greenArray;
     
-    NSInteger    _filterType;
-    NSInteger    _greenIndex;
-    V8HorizontalPickerView  *_filterPickerView;
-    NSMutableArray *_filterArray;
+//    NSInteger    _filterType;
+//    NSInteger    _greenIndex;
+//    NSMutableArray *_filterArray;
     
     UITapGestureRecognizer *_tap;
 }
@@ -131,6 +112,16 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)setButtonHidden:(BOOL)buttonHidden {
+    _btnChat.hidden = buttonHidden;
+    _btnCamera.hidden = buttonHidden;
+    _btnBeauty.hidden = buttonHidden;
+    _btnLog.hidden = buttonHidden;
+    _btnTorch.hidden = buttonHidden;
+    _btnMusic.hidden = buttonHidden;
+    _closeBtn.hidden = buttonHidden;
+}
+
 - (void)setLiveInfo:(TCRoomInfo *)liveInfo {
     _liveInfo = liveInfo;
     
@@ -156,145 +147,14 @@
 #else
     float icon_count = 6;
 #endif
-    float icon_center_y = self.height - icon_size/2 - startSpace;
+    CGFloat bottomOffset = 0;
+    if (@available(iOS 11, *)) {
+        bottomOffset = UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom;
+    }
+    float icon_center_y = self.height - icon_size/2 - startSpace - bottomOffset;
     float icon_center_interval = (self.width - 2*startSpace - icon_size)/(icon_count - 1);
     float first_icon_center_x = startSpace + icon_size/2;
-    _greenArray = [NSMutableArray new];
-    [_greenArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"无";
-        v.file = nil;
-        v.face = [UIImage imageNamed:@"greens_no"];
-        v;
-    })];
-    [_greenArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"卡通";
-        v.file = [[NSBundle mainBundle] URLForResource:@"goodluck" withExtension:@"mp4"];;
-        v.face = [UIImage imageNamed:@"greens_1"];
-        v;
-    })];
-    [_greenArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"DJ";
-        v.file = [[NSBundle mainBundle] URLForResource:@"2gei_5" withExtension:@"mp4"];
-        v.face = [UIImage imageNamed:@"greens_2"];
-        v;
-    })];
 
-    _filterArray = [NSMutableArray new];
-    
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"原图";
-        v.face = [UIImage imageNamed:@"orginal"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"标准";
-        v.face = [UIImage imageNamed:@"biaozhun"];
-        v;
-    })];
-    
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"樱红";
-        v.face = [UIImage imageNamed:@"yinghong"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"云裳";
-        v.face = [UIImage imageNamed:@"yunshang"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"纯真";
-        v.face = [UIImage imageNamed:@"chunzhen"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"白兰";
-        v.face = [UIImage imageNamed:@"bailan"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"元气";
-        v.face = [UIImage imageNamed:@"yuanqi"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"超脱";
-        v.face = [UIImage imageNamed:@"chaotuo"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"香氛";
-        v.face = [UIImage imageNamed:@"xiangfen"];
-        v;
-    })];
-    
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"美白";
-        v.face = [UIImage imageNamed:@"fwhite"];
-        v;
-    })];
-    
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"浪漫";
-        v.face = [UIImage imageNamed:@"langman"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"清新";
-        v.face = [UIImage imageNamed:@"qingxin"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"唯美";
-        v.face = [UIImage imageNamed:@"weimei"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"粉嫩";
-        v.face = [UIImage imageNamed:@"fennen"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"怀旧";
-        v.face = [UIImage imageNamed:@"huaijiu"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"蓝调";
-        v.face = [UIImage imageNamed:@"landiao"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"清凉";
-        v.face = [UIImage imageNamed:@"qingliang"];
-        v;
-    })];
-    [_filterArray addObject:({
-        V8LabelNode *v = [V8LabelNode new];
-        v.title = @"日系";
-        v.face = [UIImage imageNamed:@"rixi"];
-        v;
-    })];
     
     //聊天
     _btnChat = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -413,213 +273,25 @@
     [_msgInputView addSubview:msgInputFeildLine2];
     [self addSubview:_msgInputView];
     
+    CGFloat height = [TCBeautyPanel getHeight] + bottomOffset;
+    TCBeautyPanelTheme *theme = [[TCBeautyPanelTheme alloc] init];
 
-    //美颜拉杆浮层
-    float   beauty_btn_width  = 65;
-    float   beauty_btn_height = 19;
-#if POD_PITU
-    float   beauty_btn_count  = 4;
-#else
-    float   beauty_btn_count  = 2;
-#endif
-    float   beauty_center_interval = (self.width - 30 - beauty_btn_width)/(beauty_btn_count - 1);
-    float   first_beauty_center_x  = 15 + beauty_btn_width/2;
-    int ib = 0;
-    
-    _vBeauty = [[UIView  alloc] init];
-    _vBeauty.frame = CGRectMake(0, self.height-170, self.width, 170);
-    [_vBeauty setBackgroundColor:[UIColor whiteColor]];
-    float   beauty_center_y = _vBeauty.height - 35;
-    
-    _beautyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _beautyBtn.center = CGPointMake(first_beauty_center_x, beauty_center_y);
-    _beautyBtn.bounds = CGRectMake(0, 0, beauty_btn_width, beauty_btn_height);
-    [_beautyBtn setImage:[UIImage imageNamed:@"white_beauty"] forState:UIControlStateNormal];
-    [_beautyBtn setImage:[UIImage imageNamed:@"white_beauty_press"] forState:UIControlStateSelected];
-    [_beautyBtn setTitle:@"美颜" forState:UIControlStateNormal];
-    [_beautyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_beautyBtn setTitleColor:UIColorFromRGB(0x0ACCAC) forState:UIControlStateSelected];
-    _beautyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-    _beautyBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    _beautyBtn.tag = 0;
-    _beautyBtn.selected = YES;
-    [_beautyBtn addTarget:self action:@selector(selectBeauty:) forControlEvents:UIControlEventTouchUpInside];
-    ib++;
-    
-    _filterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _filterBtn.center = CGPointMake(first_beauty_center_x + ib*beauty_center_interval, beauty_center_y);
-    _filterBtn.bounds = CGRectMake(0, 0, beauty_btn_width, beauty_btn_height);
-    [_filterBtn setImage:[UIImage imageNamed:@"beautiful"] forState:UIControlStateNormal];
-    [_filterBtn setImage:[UIImage imageNamed:@"beautiful_press"] forState:UIControlStateSelected];
-    [_filterBtn setTitle:@"滤镜" forState:UIControlStateNormal];
-    [_filterBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_filterBtn setTitleColor:UIColorFromRGB(0x0ACCAC) forState:UIControlStateSelected];
-    _filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-    _filterBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    _filterBtn.tag = 1;
-    [_filterBtn addTarget:self action:@selector(selectBeauty:) forControlEvents:UIControlEventTouchUpInside];
-    ib++;
-    
-#if POD_PITU
-    _motionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _motionBtn.center = CGPointMake(first_beauty_center_x + ib*beauty_center_interval, beauty_center_y);
-    _motionBtn.bounds = CGRectMake(0, 0, beauty_btn_width, beauty_btn_height);
-    [_motionBtn setImage:[UIImage imageNamed:@"move"] forState:UIControlStateNormal];
-    [_motionBtn setImage:[UIImage imageNamed:@"move_press"] forState:UIControlStateSelected];
-    [_motionBtn setTitle:@"动效" forState:UIControlStateNormal];
-    [_motionBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_motionBtn setTitleColor:UIColorFromRGB(0x0ACCAC) forState:UIControlStateSelected];
-    _motionBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-    _motionBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    _motionBtn.tag = 2;
-    [_motionBtn addTarget:self action:@selector(selectBeauty:) forControlEvents:UIControlEventTouchUpInside];
-    ib++;
- 
-    _greenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _greenBtn.center = CGPointMake(first_beauty_center_x + ib*beauty_center_interval, beauty_center_y);
-    _greenBtn.bounds = CGRectMake(0, 0, beauty_btn_width, beauty_btn_height);
-    [_greenBtn setImage:[UIImage imageNamed:@"greens"] forState:UIControlStateNormal];
-    [_greenBtn setImage:[UIImage imageNamed:@"greens_press"] forState:UIControlStateSelected];
-    [_greenBtn setTitle:@"绿幕" forState:UIControlStateNormal];
-    [_greenBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_greenBtn setTitleColor:UIColorFromRGB(0x0ACCAC) forState:UIControlStateSelected];
-    _greenBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-    _greenBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    _greenBtn.tag = 3;
-    [_greenBtn addTarget:self action:@selector(selectBeauty:) forControlEvents:UIControlEventTouchUpInside];
-    ib++;
-#endif
-    
-    
-#if POD_PITU
-    _beautyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,  _beautyBtn.top - 40, 40, 20)];
-#else
-    _beautyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,  _beautyBtn.top - 95, 40, 20)];
-#endif
-    _beautyLabel.text = @"美颜";
-    _beautyLabel.font = [UIFont systemFontOfSize:12];
-    _sdBeauty = [[UISlider alloc] init];
-#if POD_PITU
-    _sdBeauty.frame = CGRectMake(_beautyLabel.right, _beautyBtn.top - 40, self.width / 2 - _beautyLabel.right - 7, 20);
-#else
-    _sdBeauty.frame = CGRectMake(_beautyLabel.right, _beautyBtn.top - 95, self.width - _beautyLabel.right - 10, 20);
-#endif
-    _sdBeauty.minimumValue = 0;
-    _sdBeauty.maximumValue = 9;
-    _sdBeauty.value = 6.3;
-    [_sdBeauty setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
-    [_sdBeauty setMinimumTrackImage:[UIImage imageNamed:@"green"] forState:UIControlStateNormal];
-    [_sdBeauty setMaximumTrackImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
-    [_sdBeauty addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-    _sdBeauty.tag = 0;
-    
-#if POD_PITU
-     _whiteLabel = [[UILabel alloc] initWithFrame:CGRectMake(_sdBeauty.right + 15, _beautyBtn.top - 40, 40, 20)];
-#else
-    _whiteLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _beautyBtn.top - 55, 40, 20)];
-#endif
-    _whiteLabel.text = @"美白";
-    _whiteLabel.font = [UIFont systemFontOfSize:12];
-    _sdWhitening = [[UISlider alloc] init];
-#if POD_PITU
-    _sdWhitening.frame =  CGRectMake(_whiteLabel.right, _beautyBtn.top - 40, self.width - _whiteLabel.right - 10, 20);
-#else
-    _sdWhitening.frame =  CGRectMake(_whiteLabel.right, _beautyBtn.top - 55, self.width - _whiteLabel.right - 10, 20);
-#endif
-    _sdWhitening.minimumValue = 0;
-    _sdWhitening.maximumValue = 9;
-    _sdWhitening.value = 6.0;
-    [_sdWhitening setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
-    [_sdWhitening setMinimumTrackImage:[UIImage imageNamed:@"green"] forState:UIControlStateNormal];
-    [_sdWhitening setMaximumTrackImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
-    [_sdWhitening addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-    _sdWhitening.tag = 1;
-    
-#if POD_PITU
-    _bigEyeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _sdBeauty.top - 60, 40, 20)];
-    _bigEyeLabel.text = @"大眼";
-    _bigEyeLabel.font = [UIFont systemFontOfSize:12];
-    _sdBigEye = [[UISlider alloc] init];
-    _sdBigEye.frame =  CGRectMake(_bigEyeLabel.right, _sdBeauty.top - 60, self.width / 2 - _bigEyeLabel.right - 7, 20);
-    _sdBigEye.minimumValue = 0;
-    _sdBigEye.maximumValue = 9;
-    _sdBigEye.value = 0;
-    [_sdBigEye setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
-    [_sdBigEye setMinimumTrackImage:[UIImage imageNamed:@"green"] forState:UIControlStateNormal];
-    [_sdBigEye setMaximumTrackImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
-    [_sdBigEye addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-    _sdBigEye.tag = 2;
-    
-    _slimFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_sdBigEye.right + 15, _sdBeauty.top - 60, 40, 20)];
-    _slimFaceLabel.text = @"瘦脸";
-    _slimFaceLabel.font = [UIFont systemFontOfSize:12];
-    _sdSlimFace = [[UISlider alloc] init];
-    _sdSlimFace.frame =  CGRectMake(_slimFaceLabel.right, _sdBeauty.top - 60, self.width - _slimFaceLabel.right - 10, 20);
-    _sdSlimFace.minimumValue = 0;
-    _sdSlimFace.maximumValue = 9;
-    _sdSlimFace.value = 0;
-    [_sdSlimFace setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
-    [_sdSlimFace setMinimumTrackImage:[UIImage imageNamed:@"green"] forState:UIControlStateNormal];
-    [_sdSlimFace setMaximumTrackImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
-    [_sdSlimFace addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-    _sdSlimFace.tag = 3;
-    
-#if ENABLE_LOG
-     _tmplBar = [[MCCameraDynamicView alloc] initWithFrame:CGRectMake(0.f, 0, self.width, 115.f)];
-#else
-     _tmplBar = [[MCCameraDynamicView alloc] initWithFrame:CGRectMake(0.f, 0, self.width, 105.f)];
-#endif
-    _tmplBar.delegate = self;
-    _tmplBar.hidden = YES;
-    [_vBeauty addSubview:_tmplBar];
-    // 美颜默认是3
-    _sdBeauty.minimumValue = 0;
-    _sdBeauty.maximumValue = 9;
-    _sdBeauty.value = 6.3;
-    
-    // TODO: pitu无美白接口
-    _sdWhitening.minimumValue = 0;
-    _sdWhitening.maximumValue = 9;
-    _sdWhitening.value = 6.0;
-    
-    _greenPickerView = [[V8HorizontalPickerView alloc] initWithFrame:CGRectMake(0, _beautyBtn.top - 96, self.width, 66)];
-    _greenPickerView.selectedTextColor = [UIColor blackColor];
-    _greenPickerView.textColor = [UIColor grayColor];
-    _greenPickerView.elementFont = [UIFont fontWithName:@"" size:14];
-    _greenPickerView.delegate = self;
-    _greenPickerView.dataSource = self;
-    _greenPickerView.hidden = YES;
-    _greenPickerView.selectedMaskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greens_selected.png"]];
-    _greenIndex = 0;
-#endif
-    
-    _filterPickerView = [[V8HorizontalPickerView alloc] initWithFrame:CGRectMake(0, _beautyBtn.top - 111, self.width, 100)];
+    UIColor *cyanColor = [UIColor colorWithRed:11.f/255.f
+                                         green:204.f/255.f
+                                          blue:172.f/255.f
+                                         alpha:1.0];
+    theme.beautyPanelSelectionColor = cyanColor;
+    theme.beautyPanelMenuSelectionBackgroundImage = [UIImage imageNamed:@"beauty_selection_bg"];
+    theme.sliderThumbImage = [UIImage imageNamed:@"slider"];
+    theme.sliderValueColor = theme.beautyPanelSelectionColor;
+    theme.sliderMinColor = cyanColor;
 
-    _filterPickerView.textColor = [UIColor grayColor];
-    _filterPickerView.elementFont = [UIFont fontWithName:@"" size:14];
-    _filterPickerView.delegate = self;
-    _filterPickerView.dataSource = self;
-    _filterPickerView.hidden = YES;
-    
-    UIImageView *sel = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"filter_selected"]];
+    _vBeauty = [[TCBeautyPanel  alloc] initWithFrame:CGRectMake(0, self.height-height,
+                                                                self.width, height)
+                                               theme:theme
+                                     actionPerformer:nil];
+    _vBeauty.bottomOffset = bottomOffset;
 
-    _filterPickerView.selectedMaskView = sel;
-    _filterType = FilterType_white;
-    
-    [_vBeauty addSubview:_beautyLabel];
-    [_vBeauty addSubview:_whiteLabel];
-    [_vBeauty addSubview:_sdWhitening];
-    [_vBeauty addSubview:_sdBeauty];
-    [_vBeauty addSubview:_beautyBtn];
-    [_vBeauty addSubview:_bigEyeLabel];
-    [_vBeauty addSubview:_sdBigEye];
-    [_vBeauty addSubview:_slimFaceLabel];
-    [_vBeauty addSubview:_sdSlimFace];
-    [_vBeauty addSubview:_filterPickerView];
-    [_vBeauty addSubview:_filterBtn];
-    [_vBeauty addSubview:_motionBtn];
-    [_vBeauty addSubview:_greenPickerView];
-    [_vBeauty addSubview:_greenBtn];
     _vBeauty.hidden = YES;
     [self addSubview: _vBeauty];
     
@@ -885,87 +557,21 @@
     switch (button.tag) {
         case 0:
         {
-            _sdWhitening.hidden = NO;
-            _sdBeauty.hidden    = NO;
-            _beautyLabel.hidden = NO;
-            _whiteLabel.hidden  = NO;
-            _bigEyeLabel.hidden = NO;
-            _sdBigEye.hidden    = NO;
-            _slimFaceLabel.hidden = NO;
-            _sdSlimFace.hidden    = NO;
-            _beautyBtn.selected  = YES;
-            _filterBtn.selected = NO;
-            _motionBtn.selected = NO;
-            _greenBtn.selected  = NO;
-            _tmplBar.hidden = YES;
-            _filterPickerView.hidden = YES;
-            _greenPickerView.hidden = YES;
             _vBeauty.frame = CGRectMake(0, self.height-170, self.width, 170);
         }
             break;
         case 1:
         {
-            _sdWhitening.hidden = YES;
-            _sdBeauty.hidden    = YES;
-            _beautyLabel.hidden = YES;
-            _whiteLabel.hidden  = YES;
-            _bigEyeLabel.hidden = YES;
-            _sdBigEye.hidden    = YES;
-            _slimFaceLabel.hidden = YES;
-            _sdSlimFace.hidden    = YES;
-            _beautyBtn.selected  = NO;
-            _filterBtn.selected = YES;
-            _motionBtn.selected = NO;
-            _greenBtn.selected  = NO;
-            _tmplBar.hidden = YES;
-            _filterPickerView.hidden = NO;
-            _greenPickerView.hidden = YES;
-            [_filterPickerView scrollToElement:_filterType animated:NO];
         }
             break;
         case 2: {
-            _sdWhitening.hidden = YES;
-            _sdBeauty.hidden    = YES;
-            _beautyLabel.hidden = YES;
-            _whiteLabel.hidden  = YES;
-            _bigEyeLabel.hidden = YES;
-            _sdBigEye.hidden    = YES;
-            _slimFaceLabel.hidden = YES;
-            _sdSlimFace.hidden    = YES;
-            _beautyBtn.selected  = NO;
-            _filterBtn.selected = NO;
-            _motionBtn.selected = YES;
-            _greenBtn.selected  = NO;
-            _tmplBar.hidden = NO;
-            _filterPickerView.hidden = YES;
-            _greenPickerView.hidden = YES;
         }
             break;
         case 3: {
-            _sdWhitening.hidden = YES;
-            _sdBeauty.hidden    = YES;
-            _beautyLabel.hidden = YES;
-            _whiteLabel.hidden  = YES;
-            _bigEyeLabel.hidden = YES;
-            _sdBigEye.hidden    = YES;
-            _slimFaceLabel.hidden = YES;
-            _sdSlimFace.hidden    = YES;
-            _beautyBtn.selected  = NO;
-            _filterBtn.selected = NO;
-            _motionBtn.selected = NO;
-            _greenBtn.selected  = YES;
-            _tmplBar.hidden = YES;
-            _filterPickerView.hidden = YES;
-            _greenPickerView.hidden = NO;
-            [_greenPickerView scrollToElement:_greenIndex animated:NO];
         }
         default:
             break;
     }
-    _beautyBtn.center = CGPointMake(_beautyBtn.center.x, _vBeauty.frame.size.height - 35);
-    _filterBtn.center = CGPointMake(_filterBtn.center.x, _vBeauty.frame.size.height - 35);
-    _greenBtn.center = CGPointMake(_greenBtn.center.x, _vBeauty.frame.size.height - 35);
-    _motionBtn.center = CGPointMake(_motionBtn.center.x, _vBeauty.frame.size.height - 35);
 }
 
 - (void)selectEffect:(UIButton *)button {
@@ -1292,50 +898,6 @@
     }
 }
 
-#pragma mark - HorizontalPickerView DataSource Methods/Users/annidy/Work/RTMPDemo_PituMerge/RTMPSDK/webrtc
-- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
-    if (picker == _greenPickerView) {
-        return [_greenArray count];
-    } else if(picker == _filterPickerView) {
-        return [_filterArray count];
-    }
-    return 0;
-}
-
-#pragma mark - HorizontalPickerView Delegate Methods
-- (UIView *)horizontalPickerView:(V8HorizontalPickerView *)picker viewForElementAtIndex:(NSInteger)index {
-    if (picker == _greenPickerView) {
-        V8LabelNode *v = [_greenArray objectAtIndex:index];
-        return [[UIImageView alloc] initWithImage:v.face];
-    } else if(picker == _filterPickerView) {
-        V8LabelNode *v = [_filterArray objectAtIndex:index];
-        return [[UIImageView alloc] initWithImage:v.face];
-    }
-    return nil;
-}
-
-- (NSInteger) horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index {
-    if (picker == _greenPickerView) {
-        return 70;
-    }
-    return 90;
-}
-
-- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index {
-    if (picker == _greenPickerView) {
-        _greenIndex = index;
-        if ([self.delegate respondsToSelector:@selector(greenSelected:)]) {
-            V8LabelNode *v = [_greenArray objectAtIndex:index];
-            [self.delegate greenSelected:v.file];
-        }
-    } else if(picker == _filterPickerView) {
-        _filterType = index;
-        if ([self.delegate respondsToSelector:@selector(filterSelected:)]) {
-            [self.delegate filterSelected:(int)index];
-        }
-    }
-}
-
 - (void)handleIMMessage:(IMUserAble *)info msgText:(NSString *)msgText
 {
     switch (info.cmdType) {
@@ -1412,7 +974,6 @@
 }
 
 - (void)triggeValue {
-    [_filterPickerView scrollToElement:_filterType animated:NO];
 
 }
 

@@ -19,17 +19,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tencent.liteav.demo.beauty.BeautyPanel;
+import com.tencent.liteav.demo.beauty.BeautyParams;
 import com.tencent.liteav.demo.lvb.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
 import com.tencent.qcloud.xiaozhibo.R;
 import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
-import com.tencent.qcloud.xiaozhibo.common.widget.beauty.TCBeautyControl;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 import com.tencent.qcloud.xiaozhibo.common.widget.TCUserAvatarListAdapter;
+import com.tencent.qcloud.xiaozhibo.common.widget.beauty.LiveRoomBeautyKit;
 import com.tencent.qcloud.xiaozhibo.common.widget.video.TCVideoView;
 import com.tencent.qcloud.xiaozhibo.common.widget.video.TCVideoViewMgr;
-import com.tencent.qcloud.xiaozhibo.common.widget.beauty.TCBeautyDialogFragment;
 import com.tencent.qcloud.xiaozhibo.common.msg.TCSimpleUserInfo;
 import com.tencent.qcloud.xiaozhibo.login.TCUserMgr;
 import com.tencent.qcloud.xiaozhibo.anchor.music.TCAudioControl;
@@ -52,7 +53,7 @@ import java.util.Locale;
  *
  * 3. 音效控制面板类 {@link TCAudioControl}
  *
- * 4. 美颜特效控制类 {@link TCBeautyControl}
+ * 4. 美颜特效控制类 {@link BeautyPanel}
  */
 public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
     private static final String TAG = TCCameraAnchorActivity.class.getSimpleName();
@@ -74,7 +75,7 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
     private TCAudioControl                  mAudioCtrl;             // 音效控制面板
     private LinearLayout                    mAudioPluginLayout;
 
-    private TCBeautyControl                 mBeautyControl;          // 美颜设置的控制类
+    private BeautyPanel                     mBeautyControl;          // 美颜设置的控制类
 
     // log相关
     private boolean                         mShowLog;               // 是否打开 log 面板
@@ -90,9 +91,13 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.BeautyTheme);
         super.onCreate(savedInstanceState);
         TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_CAMERA_PUSH, TCUserMgr.getInstance().getUserId(), 0, "摄像头推流", null);
         mPusherList = new ArrayList<>();
+
+        LiveRoomBeautyKit manager = new LiveRoomBeautyKit(mLiveRoom);
+        mBeautyControl.setProxy(manager);
     }
 
     @Override
@@ -124,7 +129,7 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
         mAudioCtrl = (TCAudioControl) findViewById(R.id.anchor_audio_control);
         mAudioPluginLayout = (LinearLayout) findViewById(R.id.anchor_ll_audio_plugin);
 
-        mBeautyControl = new TCBeautyControl(mLiveRoom);
+        mBeautyControl = (BeautyPanel) findViewById(R.id.beauty_panel);
 
         // 监听踢出的回调
         mPlayerVideoViewList = new TCVideoViewMgr(this, new TCVideoView.OnRoomViewListener() {
@@ -181,15 +186,19 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
     protected void startPublish() {
         mAudioCtrl.setPusher(mLiveRoom);
         mTXCloudVideoView.setVisibility(View.VISIBLE);
-        TCBeautyDialogFragment.BeautyParams beautyParams = mBeautyControl.getParams();
+
         // 打开本地预览，传入预览的 View
         mLiveRoom.startLocalPreview(true, mTXCloudVideoView);
         // 设置美颜参数
-        mLiveRoom.setBeautyStyle(beautyParams.mBeautyStyle, beautyParams.mBeautyProgress, beautyParams.mWhiteProgress, beautyParams.mRuddyProgress);
+        BeautyParams beautyParams = new BeautyParams();
+        mLiveRoom.getBeautyManager().setBeautyStyle(beautyParams.mBeautyStyle);
+        mLiveRoom.getBeautyManager().setBeautyLevel(beautyParams.mBeautyLevel);
+        mLiveRoom.getBeautyManager().setWhitenessLevel(beautyParams.mWhiteLevel);
+        mLiveRoom.getBeautyManager().setRuddyLevel(beautyParams.mRuddyLevel);
         // 设置瘦脸参数
-        mLiveRoom.setFaceSlimLevel(beautyParams.mFaceLiftProgress);
+        mLiveRoom.getBeautyManager().setFaceSlimLevel(beautyParams.mFaceSlimLevel);
         // 设置大眼参数
-        mLiveRoom.setEyeScaleLevel(beautyParams.mBigEyeProgress);
+        mLiveRoom.getBeautyManager().setEyeScaleLevel(beautyParams.mBigEyeLevel);
         if (TCUtils.checkRecordPermission(this)) {
             super.startPublish();
         }
@@ -433,10 +442,11 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
 
                 break;
             case R.id.beauty_btn:
-                if (mBeautyControl.isAdded())
-                    mBeautyControl.dismiss();
-                else
-                    mBeautyControl.show(getFragmentManager(), "");
+                if (mBeautyControl.isShown()) {
+                    mBeautyControl.setVisibility(View.GONE);
+                } else {
+                    mBeautyControl.setVisibility(View.VISIBLE);
+                }
                 break;
             case R.id.btn_close:
                 showExitInfoDialog("当前正在直播，是否退出直播？", false);

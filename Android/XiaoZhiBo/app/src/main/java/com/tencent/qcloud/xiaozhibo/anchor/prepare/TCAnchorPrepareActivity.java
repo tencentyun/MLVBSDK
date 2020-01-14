@@ -348,18 +348,19 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
 
     /**
      * COS 存储上传封面图回调的结果
+     *
      * @param code
-     * @param retData
+     * @param url
      */
     @Override
-    public void onUploadResult(int code, String retData) {
+    public void onUploadResult(int code, String url) {
         if (0 == code) {
-            TCUserMgr.getInstance().setCoverPic(retData, null);
+            TCUserMgr.getInstance().setCoverPic(url, null);
             RequestManager req = Glide.with(this);
-            req.load(retData).into(mIvCover);
+            req.load(url).into(mIvCover);
             Toast.makeText(this, "上传封面成功", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "上传封面失败，错误信息 " + retData, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "上传封面失败，错误码 " + code, Toast.LENGTH_SHORT).show();
         }
         mUploadingCover = false;
     }
@@ -399,7 +400,13 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
      */
     private Uri createCoverUri(String type) {
         String filename = TCUserMgr.getInstance().getUserId() + type + ".jpg";
-        String path = Environment.getExternalStorageDirectory() + "/xiaozhibo";
+
+        File sdcardDir = getExternalFilesDir(null);
+        if (sdcardDir == null) {
+            Log.e(TAG, "createCoverUri sdcardDir is null");
+            return null;
+        }
+        String path = sdcardDir + "/xiaozhibo";
 
         File outputImage = new File(path, filename);
         if (ContextCompat.checkSelfPermission(TCAnchorPrepareActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -454,6 +461,11 @@ public class TCAnchorPrepareActivity extends Activity implements View.OnClickLis
 
         }
     }
+
+    /**
+     *  打开摄像头拍照
+     *
+     */
     private void takePhoto() {
         Intent intent_photo = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent_photo.putExtra(MediaStore.EXTRA_OUTPUT, mSourceFileUri);

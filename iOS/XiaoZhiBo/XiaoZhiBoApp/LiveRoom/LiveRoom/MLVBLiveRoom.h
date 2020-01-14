@@ -10,6 +10,9 @@
 #import "MLVBLiveRoomDelegate.h"
 #import "MLVBLiveRoomDef.h"
 #import "RoomUtil.h"
+#import "TXBeautyManager.h"
+
+#define MLVB_DEPRECAETD_BEAUTY_API __deprecated_msg("Use getBeautyManager instead.")
 
 /** 腾讯云移动直播 - 连麦直播间
  *
@@ -459,9 +462,21 @@
 /// @{
 
 /**
+ * 获取美颜管理对象
+ *
+ * 通过美颜管理，您可以使用以下功能：
+ * - 设置"美颜风格"、“美白”、“红润”、“大眼”、“瘦脸”、“V脸”、“下巴”、“短脸”、“小鼻”、“亮眼”、“白牙”、“祛眼袋”、“祛皱纹”、“祛法令纹”等美容效果。
+ * - 调整“发际线”、“眼间距”、“眼角”、“嘴形”、“鼻翼”、“鼻子位置”、“嘴唇厚度”、“脸型”
+ * - 设置人脸挂件（素材）等动态效果
+ * - 添加美妆
+ * - 进行手势识别
+ */
+- (TXBeautyManager *)getBeautyManager;
+
+/**
  * 设置美颜、美白、红润效果级别
  *
- * @param beautyStyle    美颜风格，三种美颜风格：0 ：光滑；1：自然；2：天天 P 图版美颜（商用企业版有效，普通版本设置此选项无效）。
+ * @param beautyStyle    美颜风格，三种美颜风格：0 ：光滑；1：自然；2：天天 P 图版美颜（企业版有效，普通版本设置此选项无效）。
  * @param beautyLevel    美颜级别，取值范围 0 - 9； 0 表示关闭， 1 - 9值越大，效果越明显。
  * @param whitenessLevel 美白级别，取值范围 0 - 9； 0 表示关闭， 1 - 9值越大，效果越明显。
  * @param ruddinessLevel 红润级别，取值范围 0 - 9； 0 表示关闭， 1 - 9值越大，效果越明显。
@@ -469,7 +484,7 @@
 - (void)setBeautyStyle:(TX_Enum_Type_BeautyStyle)beautyStyle
            beautyLevel:(float)beautyLevel
         whitenessLevel:(float)whitenessLevel
-        ruddinessLevel:(float)ruddinessLevel;
+        ruddinessLevel:(float)ruddinessLevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
  * 设置指定素材滤镜特效
@@ -488,49 +503,49 @@
 - (void)setSpecialRatio:(float)specialValue;
 
 /**
- * 设置大眼级别（商用企业版有效，普通版本设置此参数无效）
+ * 设置大眼级别（企业版有效，普通版本设置此参数无效）
  *
  * @param eyeScaleLevel 大眼等级取值为 0 - 9。取值为0时代表关闭美颜效果。默认值：0
  */
-- (void)setEyeScaleLevel:(float)eyeScaleLevel;
+- (void)setEyeScaleLevel:(float)eyeScaleLevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
- * 设置瘦脸级别（商用企业版有效，普通版本设置此参数无效）
+ * 设置瘦脸级别（企业版有效，普通版本设置此参数无效）
  *
  * @param faceScaleLevel 瘦脸级别取值范围 0 - 9； 0 表示关闭 1 - 9值越大 效果越明显。
  */
-- (void)setFaceScaleLevel:(float)faceScaleLevel;
+- (void)setFaceScaleLevel:(float)faceScaleLevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
- * 设置 V 脸级别（商用企业版有效，其它版本设置此参数无效）。
+ * 设置 V 脸级别（企业版有效，其它版本设置此参数无效）。
  *
  * @param faceVLevel V 脸级别，取值范围0 - 9；0表示关闭，1 - 9值越大，效果越明显。
  */
-- (void)setFaceVLevel:(float)faceVLevel;
+- (void)setFaceVLevel:(float)faceVLevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
- * 设置下巴拉伸或收缩（商用企业版有效，其它版本设置此参数无效）。
+ * 设置下巴拉伸或收缩（企业版有效，其它版本设置此参数无效）。
  *
  * @param chinLevel 下巴拉伸或收缩级别，取值范围 -9 - 9；0 表示关闭，小于0表示收缩，大于0表示拉伸。
  */
-- (void)setChinLevel:(float)chinLevel;
+- (void)setChinLevel:(float)chinLevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
- * 设置短脸级别（商用企业版有效，其它版本设置此参数无效）。
+ * 设置短脸级别（企业版有效，其它版本设置此参数无效）。
  *
  * @param faceShortlevel 短脸级别，取值范围0 - 9；0表示关闭，1 - 9值越大，效果越明显。
  */
-- (void)setFaceShortLevel:(float)faceShortlevel;
+- (void)setFaceShortLevel:(float)faceShortlevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
- * 设置瘦鼻级别（商用企业版有效，其它版本设置此参数无效）。
+ * 设置瘦鼻级别（企业版有效，其它版本设置此参数无效）。
  *
  * @param noseSlimLevel 瘦鼻级别，取值范围0 - 9；0表示关闭，1 - 9值越大，效果越明显。
  */
-- (void)setNoseSlimLevel:(float)noseSlimLevel;
+- (void)setNoseSlimLevel:(float)noseSlimLevel MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
- * 设置绿幕背景视频（商用企业版有效，其它版本设置此参数无效）。
+ * 设置绿幕背景视频（企业版有效，其它版本设置此参数无效）。
  *
  * @note 此处的绿幕功能并非智能抠背，它需要被拍摄者的背后有一块绿色的幕布来辅助产生特效。
  *
@@ -539,12 +554,12 @@
 - (void)setGreenScreenFile:(NSURL *)file;
 
 /**
- * 选择使用哪一款 AI 动效挂件（商用企业版有效，其它版本设置此参数无效）。
+ * 选择使用哪一款 AI 动效挂件（企业版有效，其它版本设置此参数无效）。
  *
  * @param tmplName 动效名称
  * @param tmplDir 动效所在目录
  */
-- (void)selectMotionTmpl:(NSString *)tmplName inDir:(NSString *)tmplDir;
+- (void)selectMotionTmpl:(NSString *)tmplName inDir:(NSString *)tmplDir MLVB_DEPRECAETD_BEAUTY_API;
 /// @}
 
 

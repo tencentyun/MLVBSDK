@@ -68,7 +68,7 @@ public class IMMessageMgr implements TIMMessageListener {
      */
     public interface Callback{
         void onError(int code, String errInfo);
-        void onSuccess(Object... args);
+        void onSuccess(Object ...args);
     }
 
     /**

@@ -117,4 +117,8 @@
 
         <!--<item name="colorAccent">#0accac</item>-->
     </style>
+
+    <style name="BeautyTheme" parent="BeautyPanelStyle">
+        <item name="beautyPanelColorPrimary">@color/colorGreen</item>
+    </style>
 </resources>

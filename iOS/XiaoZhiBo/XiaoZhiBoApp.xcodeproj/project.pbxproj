@@ -69,6 +69,9 @@
 		A065F7A7236943EE002906F3 /* QCloudCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A4236943EE002906F3 /* QCloudCore.framework */; };
 		A065F7A923694418002906F3 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A823694418002906F3 /* Bugly.framework */; };
 		A065F7AA23694439002906F3 /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A065F7A3236943ED002906F3 /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A0B8CB2A23CDB61500061DD0 /* TCBeautyPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B8CB2323CDB56900061DD0 /* TCBeautyPanel.framework */; };
+		A0B8CB8123CDBAE900061DD0 /* TCBeautyPanelResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A0B8CB2523CDB56900061DD0 /* TCBeautyPanelResources.bundle */; };
+		A0B8CB9423CDBC9600061DD0 /* FilterResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A0B8CB9323CDBC9600061DD0 /* FilterResource.bundle */; };
 		B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B732EBB31D7C593C006E6FA0 /* libresolv.tbd */; };
 		D8D256811261DF4C40C7748A /* libPods-XiaoZhiBoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 894E4A2363E21E853A1F9757 /* libPods-XiaoZhiBoApp.a */; };
 		EF47CE5B1D4B1ED60028B598 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */; };
@@ -261,6 +264,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = 405653E51F18AA0F0030257E;
 			remoteInfo = TXLiteAVSDK_Play;
+		};
+		A0B8CB2223CDB56900061DD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4579C38623AC64DC005ECC1C;
+			remoteInfo = TCBeautyPanel;
+		};
+		A0B8CB2423CDB56900061DD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4579C3FA23AC660C005ECC1C;
+			remoteInfo = TCBeautyPanelResources;
+		};
+		A0B8CB7B23CDB9F500061DD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4579C38523AC64DC005ECC1C;
+			remoteInfo = TCBeautyPanel;
+		};
+		A0B8CB7D23CDB9F500061DD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4579C3F923AC660C005ECC1C;
+			remoteInfo = TCBeautyPanelResources;
 		};
 		A0E41A8B214B99B500DC8436 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -683,6 +714,8 @@
 		A065F7A3236943ED002906F3 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = ../SDK/ImSDK.framework; sourceTree = "<group>"; };
 		A065F7A4236943EE002906F3 /* QCloudCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QCloudCore.framework; path = ../SDK/QCloudCore.framework; sourceTree = "<group>"; };
 		A065F7A823694418002906F3 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bugly.framework; path = ../SDK/Bugly.framework; sourceTree = "<group>"; };
+		A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TCBeautyPanel.xcodeproj; path = BeautyPanel/TCBeautyPanel/TCBeautyPanel.xcodeproj; sourceTree = SOURCE_ROOT; };
+		A0B8CB9323CDBC9600061DD0 /* FilterResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FilterResource.bundle; path = XiaoZhiBoApp/FilterResource.bundle; sourceTree = SOURCE_ROOT; };
 		B732EBB31D7C593C006E6FA0 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		EF47CE281D4B03FC0028B598 /* XiaoZhiBoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoZhiBoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -699,6 +732,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B8CB2A23CDB61500061DD0 /* TCBeautyPanel.framework in Frameworks */,
 				4553C6F52272FE1B008544F7 /* AssetsLibrary.framework in Frameworks */,
 				91479BC61E70FD39007ECCEB /* Accelerate.framework in Frameworks */,
 				B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */,
@@ -908,6 +942,7 @@
 		45784BD82272E3E400A5F2BA /* XiaoZhiBoApp */ = {
 			isa = PBXGroup;
 			children = (
+				A0B8CB1C23CDB55200061DD0 /* BeautyPanel */,
 				45784C722272E3E500A5F2BA /* LiveRoom */,
 				45784BE62272E3E400A5F2BA /* Classes */,
 				45784CEF2272E3E500A5F2BA /* Thirdparty */,
@@ -935,6 +970,7 @@
 		45784BE62272E3E400A5F2BA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A0B8CB9323CDBC9600061DD0 /* FilterResource.bundle */,
 				4568102E22A9076B001A08E1 /* Anchor */,
 				4568105A22A9076C001A08E1 /* App */,
 				4568104722A9076B001A08E1 /* Audience */,
@@ -1107,6 +1143,23 @@
 			path = Debug;
 			sourceTree = "<group>";
 		};
+		A0B8CB1C23CDB55200061DD0 /* BeautyPanel */ = {
+			isa = PBXGroup;
+			children = (
+				A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */,
+			);
+			path = BeautyPanel;
+			sourceTree = "<group>";
+		};
+		A0B8CB1E23CDB56900061DD0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0B8CB2323CDB56900061DD0 /* TCBeautyPanel.framework */,
+				A0B8CB2523CDB56900061DD0 /* TCBeautyPanelResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B49FE0366F1F0A7CBF2E06AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,12 +1233,13 @@
 				91BECB9A1D9B5C6B002FCD1E /* Embed Frameworks */,
 				91BECB9D1D9B61B7002FCD1E /* CopyFiles */,
 				EFCCED911D75CACE0062F02F /* Run Script */,
-				D2D754D0B746ECCF1230D107 /* [CP] Embed Pods Frameworks */,
 				BF020143BA8816A0EFA61A96 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A0B8CB7C23CDB9F500061DD0 /* PBXTargetDependency */,
+				A0B8CB7E23CDB9F500061DD0 /* PBXTargetDependency */,
 			);
 			name = XiaoZhiBoApp;
 			productName = XiaoZhiBoApp;
@@ -1226,6 +1280,10 @@
 			productRefGroup = EF47CE291D4B03FC0028B598 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = A0B8CB1E23CDB56900061DD0 /* Products */;
+					ProjectRef = A0B8CB1D23CDB56900061DD0 /* TCBeautyPanel.xcodeproj */;
+				},
 				{
 					ProductGroup = 91BA6E5C1F2721F4008700CF /* Products */;
 					ProjectRef = 91BA6E5B1F2721F4008700CF /* TXLiteAVSDK.xcodeproj */;
@@ -1423,6 +1481,20 @@
 			fileType = wrapper.framework;
 			path = TXLiteAVSDK_Player.framework;
 			remoteRef = 91BA6E981F27229D008700CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A0B8CB2323CDB56900061DD0 /* TCBeautyPanel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TCBeautyPanel.framework;
+			remoteRef = A0B8CB2223CDB56900061DD0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A0B8CB2523CDB56900061DD0 /* TCBeautyPanelResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TCBeautyPanelResources.bundle;
+			remoteRef = A0B8CB2423CDB56900061DD0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A0E41A8C214B99B500DC8436 /* TXLiteAVSDK_Smart_WeiXin.framework */ = {
@@ -1703,6 +1775,8 @@
 				45784F4C2272E3E700A5F2BA /* Images.xcassets in Resources */,
 				4507D4C62284292700100F8B /* 2gei_5.mp4 in Resources */,
 				4507D4C82284294700100F8B /* goodluck.mp4 in Resources */,
+				A0B8CB9423CDBC9600061DD0 /* FilterResource.bundle in Resources */,
+				A0B8CB8123CDBAE900061DD0 /* TCBeautyPanelResources.bundle in Resources */,
 				45784F4D2272E3E700A5F2BA /* Launch Screen.storyboard in Resources */,
 				45784EBA2272E3E700A5F2BA /* UserProtocol.html in Resources */,
 				4568109322A9076C001A08E1 /* TCAnchorPrepareViewController.xib in Resources */,
@@ -1767,24 +1841,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D2D754D0B746ECCF1230D107 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks.sh",
-				"${PODS_ROOT}/ImSDK/ImSDK.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImSDK.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFCCED911D75CACE0062F02F /* Run Script */ = {
@@ -1857,6 +1913,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0B8CB7C23CDB9F500061DD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TCBeautyPanel;
+			targetProxy = A0B8CB7B23CDB9F500061DD0 /* PBXContainerItemProxy */;
+		};
+		A0B8CB7E23CDB9F500061DD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TCBeautyPanelResources;
+			targetProxy = A0B8CB7D23CDB9F500061DD0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		45784D132272E3E500A5F2BA /* Main.storyboard */ = {

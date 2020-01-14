@@ -38,7 +38,7 @@
 #define kHttpServerAddr_Logout          @"logout"
 #define kHttpServerAddr_MergeStream     @"merge_stream"
 #define kHttpServerAddr_SetCustomField  @"set_custom_field"
-#define kHttpServerAddr_GetCustomInfo  @"get_custom_Info"
+#define kHttpServerAddr_GetCustomInfo  @"get_custom_info"
 
 static NSString * const RespCodeKey = @"code";
 
@@ -619,8 +619,17 @@ static pthread_mutex_t sharedInstanceLock;
     }];
 }
 
-- (void)setCustomInfo:(MLVBCustomFieldOp)op key:(NSString *)key value:(NSString *)value completion:(void(^)(int errCode, NSString *errMsg))completion
+- (void)setCustomInfo:(MLVBCustomFieldOp)op key:(NSString *)key value:(id)value completion:(void(^)(int errCode, NSString *errMsg))completion
 {
+    if (!([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])) {
+        completion(ROOM_ERR_INVALID_PARAM, @"Value type should be either NSString or NSNumber");
+        return;
+    }
+    if (op != MLVBCustomFieldOpSet && [value isKindOfClass:[NSString class]]) {
+        NSNumber *doubleValue = @([value doubleValue]);
+        NSLog(@"%s Setting string value(%@) when using INC or DEC operation. Converting to double value(%@).", __PRETTY_FUNCTION__, value, doubleValue);
+        value = doubleValue;
+    }
     NSString *operation = nil;;
     switch(op) {
         case MLVBCustomFieldOpSet:
@@ -653,7 +662,7 @@ static pthread_mutex_t sharedInstanceLock;
     }];
 }
 
-- (void)getCustomInfo:(void(^)(int errCode, NSString *errMsg, NSString *custom))completion
+- (void)getCustomInfo:(void(^)(int errCode, NSString *errMsg, NSDictionary *customInfo))completion
 {
     [self asyncRun:^(MLVBLiveRoom *self) {
         if (self.roomInfo.roomID == nil) {
@@ -664,7 +673,7 @@ static pthread_mutex_t sharedInstanceLock;
         [self requestWithName:kHttpServerAddr_GetCustomInfo params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (completion) {
                 if (errCode == 0) {
-                    NSString *custom = responseObject[@"custom"];
+                    NSDictionary *custom = responseObject[@"custom"];
                     completion(errCode, errMsg, custom);
                 } else {
                     completion(errCode, errMsg, nil);
@@ -1015,8 +1024,17 @@ static pthread_mutex_t sharedInstanceLock;
     [_livePusher setMirror:isMirror];
 }
 #pragma mark - 美颜滤镜相关接口函数
+- (TXBeautyManager *)getBeautyManager
+{
+    return [_livePusher getBeautyManager];
+}
+
 - (void)setBeautyStyle:(TX_Enum_Type_BeautyStyle)beautyStyle beautyLevel:(float)beautyLevel whitenessLevel:(float)whitenessLevel ruddinessLevel:(float)ruddinessLevel {
-    [_livePusher setBeautyStyle:beautyStyle beautyLevel:beautyLevel whitenessLevel:whitenessLevel ruddinessLevel:ruddinessLevel];
+    TXBeautyManager *manager = [_livePusher getBeautyManager];
+    [manager setBeautyStyle:(TXBeautyStyle)beautyStyle];
+    [manager setBeautyLevel:beautyLevel];
+    [manager setWhitenessLevel:whitenessLevel];
+    [manager setRuddyLevel:ruddinessLevel];
 }
 
 - (void)setFilter:(UIImage *)image {
@@ -1024,11 +1042,11 @@ static pthread_mutex_t sharedInstanceLock;
 }
 
 - (void)setEyeScaleLevel:(float)eyeScaleLevel {
-    [_livePusher setEyeScaleLevel:eyeScaleLevel];
+    [[_livePusher getBeautyManager] setEyeScaleLevel:eyeScaleLevel];
 }
 
 - (void)setFaceScaleLevel:(float)faceScaleLevel {
-    [_livePusher setFaceScaleLevel:faceScaleLevel];
+    [[_livePusher getBeautyManager] setFaceSlimLevel:faceScaleLevel];
 }
 
 - (void)setSpecialRatio:(float)specialValue {
@@ -1036,19 +1054,19 @@ static pthread_mutex_t sharedInstanceLock;
 }
 
 - (void)setFaceVLevel:(float)faceVLevel {
-    [_livePusher setFaceVLevel:faceVLevel];
+    [[_livePusher getBeautyManager] setFaceVLevel:faceVLevel];
 }
 
 - (void)setChinLevel:(float)chinLevel {
-    [_livePusher setChinLevel:chinLevel];
+    [[_livePusher getBeautyManager] setChinLevel:chinLevel];
 }
 
 - (void)setFaceShortLevel:(float)faceShortlevel {
-    [_livePusher setFaceShortLevel:faceShortlevel];
+    [[_livePusher getBeautyManager] setFaceShortLevel:faceShortlevel];
 }
 
 - (void)setNoseSlimLevel:(float)noseSlimLevel {
-    [_livePusher setNoseSlimLevel:noseSlimLevel];
+    [[_livePusher getBeautyManager] setNoseSlimLevel:noseSlimLevel];
 }
 
 - (void)setGreenScreenFile:(NSURL *)file {
@@ -1057,7 +1075,7 @@ static pthread_mutex_t sharedInstanceLock;
 
 - (void)selectMotionTmpl:(NSString *)tmplName inDir:(NSString *)tmplDir;
 {
-    [_livePusher selectMotionTmpl:tmplName inDir:tmplDir];
+    [[_livePusher getBeautyManager] setMotionTmpl:tmplName inDir:tmplDir];
 }
 
 #pragma mark - 消息发送接口函数
@@ -1971,6 +1989,11 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 // 接收PK结束消息
 - (void)onRecvPKFinishRequest:(NSString *)roomID userID:(NSString *)userID {
     [self sendDebugMsg:[NSString stringWithFormat:@"收到房间[%@]主播[%@]的结束PK消息", roomID, userID]];
+    // 判断当前pk的人是不是userID
+    if (self.pkAnchor == nil || ![self.pkAnchor.userID isEqualToString:userID]) {
+        return;
+    }
+    
     [self asyncRun:^(MLVBLiveRoom *self) {
         self.pkAnchor = nil;
     }];
@@ -2259,7 +2282,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
     if (_object) {
         [invocation invokeWithTarget:_object];
     } else {
-        NSLog(@"Calling method on destroyed TRTCCloud: %p, %s", self, [NSStringFromSelector(invocation.selector) UTF8String]);
+        NSLog(@"Calling method on destroyed MLVBLiveRoom: %p, %s", self, [NSStringFromSelector(invocation.selector) UTF8String]);
     }
 }
 @end

@@ -383,5 +383,10 @@
 
     </RelativeLayout>
 
-
+    <com.tencent.liteav.demo.beauty.BeautyPanel
+        android:id="@+id/beauty_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
 </RelativeLayout>

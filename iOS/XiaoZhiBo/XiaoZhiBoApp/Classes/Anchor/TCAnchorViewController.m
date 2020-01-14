@@ -19,23 +19,24 @@
 #import "TCStatusInfoView.h"
 #import "TCAccountMgrModel.h"
 #import "UIView+Additions.h"
+#import <TCBeautyPanel/TCBeautyPanel.h>
 
 #if POD_PITU
-#import "MCTip.h"
-#import "MCCameraDynamicView.h"
-#import "MaterialManager.h"
+//#import "MCTip.h"
+//#import "MCCameraDynamicView.h"
+//#import "MaterialManager.h"
 
 @interface TCAnchorViewController () <
     AVCaptureVideoDataOutputSampleBufferDelegate,
     UITextFieldDelegate,
     MPMediaPickerControllerDelegate,
-    MCCameraDynamicDelegate,
+//    MCCameraDynamicDelegate,
     MLVBLiveRoomDelegate,
     TCAnchorToolbarDelegate>
 
 @property (nonatomic, strong) UIButton *filterBtn;
 @property (nonatomic, assign) NSInteger currentFilterIndex;
-@property (nonatomic, strong) MCCameraDynamicView *tmplBar;
+//@property (nonatomic, strong) MCCameraDynamicView *tmplBar;
 
 @end
 
@@ -173,9 +174,13 @@
     [_liveRoom setCameraMuteImage:[UIImage imageNamed:@"pause_publish.jpg"]];
     _liveRoom.delegate = self;
     [_liveRoom startLocalPreview:YES view:_videoParentView];
-    [_liveRoom setBeautyStyle:0 beautyLevel:_beauty_level whitenessLevel:_whitening_level ruddinessLevel:_ruddiness_level];
-    [self.liveRoom setSpecialRatio:0.5];
-        
+
+    _logicView.vBeauty.actionPerformer = [TCBeautyPanelActionProxy proxyWithSDKObject:_liveRoom];
+    [_logicView.vBeauty resetAndApplyValues];
+    _beauty_level = _logicView.vBeauty.beautyLevel;
+    _whitening_level = _logicView.vBeauty.whiteLevel;
+    _ruddiness_level = _logicView.vBeauty.ruddyLevel;
+
     _liveInfo.timestamp = [[NSDate date] timeIntervalSince1970];
         [self startRtmp];
     
@@ -213,7 +218,7 @@
     }
     
 #if POD_PITU
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(packageDownloadProgress:) name:kMC_NOTI_ONLINEMANAGER_PACKAGE_PROGRESS object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(packageDownloadProgress:) name:kMC_NOTI_ONLINEMANAGER_PACKAGE_PROGRESS object:nil];
 #endif
     
     [_logicView triggeValue];
@@ -288,7 +293,7 @@
                         NSLog(@"uploadRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
                     }
                 }];
-            } else if (errCode == 10036) {
+            }  else if (errCode == 10036) {
                 UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
                                                                                     message:nil
                                                                              preferredStyle:UIAlertControllerStyleAlert];
@@ -547,6 +552,7 @@
 
 - (void)clickScreen:(UITapGestureRecognizer *)gestureRecognizer {
     _logicView.vBeauty.hidden = YES;
+    [_logicView setButtonHidden:NO];
     _logicView.vMusicPanel.hidden = YES;
     
     //手动聚焦
@@ -564,6 +570,7 @@
 
 - (void)clickBeauty:(UIButton *)button {
     _logicView.vBeauty.hidden = NO;
+    [_logicView setButtonHidden:YES];
 }
 
 - (void)clickMusic:(UIButton *)button {
@@ -650,107 +657,28 @@
 #pragma mark - 特效设置
 #if POD_PITU
 //#warning step 1.3 切换动效素材
-- (void)motionTmplSelected:(NSString *)materialID {
-    if (materialID == nil) {
-        [MCTip hideText];
-    }
-    if ([MaterialManager isOnlinePackage:materialID]) {
-        [self.liveRoom selectMotionTmpl:materialID inDir:[MaterialManager packageDownloadDir]];
-    } else {
-        NSString *localPackageDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Resource"];
-        [self.liveRoom selectMotionTmpl:materialID inDir:localPackageDir];
-    }
-}
-
-- (void)packageDownloadProgress:(NSNotification *)notification {
-    if ([[notification object] isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *progressDic = [notification object];
-        CGFloat progress = [progressDic[kMC_USERINFO_ONLINEMANAGER_PACKAGE_PROGRESS] floatValue];
-        if (progress <= 0.f) {
-            [MCTip showText:@"素材下载失败" inView:self.view afterDelay:2.f];
-        }
-    }
-}
+//- (void)motionTmplSelected:(NSString *)materialID {
+//    if (materialID == nil) {
+//        [MCTip hideText];
+//    }
+//    if ([MaterialManager isOnlinePackage:materialID]) {
+//        [self.liveRoom selectMotionTmpl:materialID inDir:[MaterialManager packageDownloadDir]];
+//    } else {
+//        NSString *localPackageDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Resource"];
+//        [self.liveRoom selectMotionTmpl:materialID inDir:localPackageDir];
+//    }
+//}
+//
+//- (void)packageDownloadProgress:(NSNotification *)notification {
+//    if ([[notification object] isKindOfClass:[NSDictionary class]]) {
+//        NSDictionary *progressDic = [notification object];
+//        CGFloat progress = [progressDic[kMC_USERINFO_ONLINEMANAGER_PACKAGE_PROGRESS] floatValue];
+//        if (progress <= 0.f) {
+//            [MCTip showText:@"素材下载失败" inView:self.view afterDelay:2.f];
+//        }
+//    }
+//}
 #endif
-
-- (void)greenSelected:(NSURL *)mid {
-    NSLog(@"green %@", mid);
-    [self.liveRoom setGreenScreenFile:mid];
-}
-
-- (void)filterSelected:(int)index {
-    NSString* lookupFileName = @"";
-    
-    switch (index) {
-        case FilterType_None:
-            break;
-        case FilterType_biaozhun:
-            lookupFileName = @"filter_biaozhun";
-            break;
-        case FilterType_yinghong:
-            lookupFileName = @"filter_yinghong";
-            break;
-        case FilterType_yunshang:
-            lookupFileName = @"filter_yunshang";
-            break;
-        case FilterType_chunzhen:
-            lookupFileName = @"filter_chunzhen";
-            break;
-        case FilterType_bailan:
-            lookupFileName = @"filter_bailan";
-            break;
-        case FilterType_yuanqi:
-            lookupFileName = @"filter_yuanqi";
-            break;
-        case FilterType_chaotuo:
-            lookupFileName = @"filter_chaotuo";
-            break;
-        case FilterType_xiangfen:
-            lookupFileName = @"filter_xiangfen";
-            break;
-        case FilterType_white:
-            lookupFileName = @"filter_white";
-            break;
-        case FilterType_langman:
-            lookupFileName = @"filter_langman";
-            break;
-        case FilterType_qingxin:
-            lookupFileName = @"filter_qingxin";
-            break;
-        case FilterType_weimei:
-            lookupFileName = @"filter_weimei";
-            break;
-        case FilterType_fennen:
-            lookupFileName = @"filter_fennen";
-            break;
-        case FilterType_huaijiu:
-            lookupFileName = @"filter_huaijiu";
-            break;
-        case FilterType_landiao:
-            lookupFileName = @"filter_landiao";
-            break;
-        case FilterType_qingliang:
-            lookupFileName = @"filter_qingliang";
-            break;
-        case FilterType_rixi:
-            lookupFileName = @"filter_rixi";
-            break;
-        default:
-            break;
-    }
-    UIImage *image = [UIImage imageNamed:lookupFileName];
-    if (index != FilterType_None && image != nil) {
-        [self.liveRoom setFilter:image];
-//        if (index >= 1 && index <= 8) {
-//            [self.liveRoom setSpecialRatio:0.7];
-//        }
-//        else {
-//            [self.liveRoom setSpecialRatio:0.4];
-//        }
-    } else {
-        [self.liveRoom setFilter:nil];
-    }
-}
 
 #pragma mark - BGM
 //选中后调用

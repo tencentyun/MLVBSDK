@@ -153,6 +153,6 @@ public class TCUploadHelper {
     }
 
     public interface OnUploadListener {
-        void onUploadResult(int code, String retData);
+        void onUploadResult(int code, String url);
     }
 }

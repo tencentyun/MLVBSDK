@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 
+import com.tencent.liteav.beauty.TXBeautyManager;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.LoginInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.MLVBCommonDef;
@@ -466,6 +467,8 @@ public abstract class MLVBLiveRoom {
     /// @name 美颜滤镜相关接口函数
     /// @{
 
+    public abstract TXBeautyManager getBeautyManager();
+
     /**
      * 设置美颜、美白、红润效果级别
      *
@@ -474,6 +477,7 @@ public abstract class MLVBLiveRoom {
      * @param whitenessLevel 美白级别，取值范围 0 - 9； 0 表示关闭， 1 - 9值越大，效果越明显
      * @param ruddinessLevel 红润级别，取值范围 0 - 9； 0 表示关闭， 1 - 9值越大，效果越明显
      */
+    @Deprecated
     public abstract boolean setBeautyStyle(int beautyStyle , int beautyLevel, int whitenessLevel, int ruddinessLevel);
 
     /**
@@ -506,6 +510,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param filePaht 动态贴图文件路径
      */
+    @Deprecated
     public abstract void setMotionTmpl(String filePaht);
 
     /**
@@ -527,6 +532,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param level 大眼等级取值为 0 ~ 9。取值为0时代表关闭美颜效果。默认值：0
      */
+    @Deprecated
     public abstract void setEyeScaleLevel(int level);
 
     /**
@@ -534,6 +540,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param level V 脸级别取值范围 0 ~ 9。数值越大，效果越明显。默认值：0
      */
+    @Deprecated
     public abstract void setFaceVLevel(int level);
 
     /**
@@ -541,6 +548,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param level 瘦脸等级取值为 0 ~ 9。取值为0时代表关闭美颜效果。默认值：0
      */
+    @Deprecated
     public abstract void setFaceSlimLevel(int level);
 
     /**
@@ -548,6 +556,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param level 短脸级别取值范围 0 ~ 9。 数值越大，效果越明显。默认值：0
      */
+    @Deprecated
     public abstract void setFaceShortLevel(int level);
 
     /**
@@ -555,6 +564,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param chinLevel 下巴拉伸或收缩级别取值范围 -9 ~ 9。数值越大，拉伸越明显。默认值：0
      */
+    @Deprecated
     public abstract void setChinLevel(int chinLevel);
 
     /**
@@ -562,6 +572,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param noseSlimLevel 瘦鼻级别取值范围 0 ~ 9。数值越大，效果越明显。默认值：0
      */
+    @Deprecated
     public abstract void setNoseSlimLevel(int noseSlimLevel);
 
     /**

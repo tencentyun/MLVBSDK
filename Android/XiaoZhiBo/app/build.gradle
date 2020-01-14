@@ -66,5 +66,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
 //  Demo 用于 crash 上报的 bugly 组件
     compile 'com.tencent.bugly:crashreport:3.0.0'
+    // 美颜面板
+    compile project(':beauty')
 }
 

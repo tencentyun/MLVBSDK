@@ -8,27 +8,7 @@
 #import "TCMsgModel.h"
 #import "TCMsgListCell.h"
 #import "V8HorizontalPickerView.h"
-
-typedef NS_ENUM(NSInteger,TCLVFilterType) {
-    FilterType_None 		= 0,
-    FilterType_biaozhun     ,   //标准滤镜
-    FilterType_yinghong     ,   //樱红滤镜
-    FilterType_yunshang     ,   //云裳滤镜
-    FilterType_chunzhen     ,   //纯真滤镜
-    FilterType_bailan       ,   //白兰滤镜
-    FilterType_yuanqi       ,   //元气滤镜
-    FilterType_chaotuo      ,   //超脱滤镜
-    FilterType_xiangfen     ,   //香氛滤镜
-    FilterType_white        ,   //美白滤镜
-    FilterType_langman 		,   //浪漫滤镜
-    FilterType_qingxin 		,   //清新滤镜
-    FilterType_weimei 		,   //唯美滤镜
-    FilterType_fennen 		,   //粉嫩滤镜
-    FilterType_huaijiu 		,   //怀旧滤镜
-    FilterType_landiao 		,   //蓝调滤镜
-    FilterType_qingliang 	,   //清凉滤镜
-    FilterType_rixi 		,   //日系滤镜
-};
+#import <TCBeautyPanel/TCBeautyPanel.h>
 
 @protocol TCAnchorToolbarDelegate <NSObject>
 - (void)closeRTMP;
@@ -68,10 +48,10 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 @property (nonatomic, retain) UIButton   *btnTorch;
 @property (nonatomic, retain) UIButton   *btnMusic;
 @property (nonatomic, retain) UIView     *cover;
-@property (nonatomic, retain) UIView     *vBeauty;
-
+@property (nonatomic, retain) TCBeautyPanel *vBeauty;
 @property (nonatomic, retain) UIView     *vMusicPanel;
 
+- (void)setButtonHidden:(BOOL)buttonHidden;
 - (void)setLiveInfo:(TCRoomInfo *)liveInfo;
 
 - (void)closeVCWithError:(NSString *)msg Alert:(BOOL)isAlert Result:(BOOL)isShowResult;

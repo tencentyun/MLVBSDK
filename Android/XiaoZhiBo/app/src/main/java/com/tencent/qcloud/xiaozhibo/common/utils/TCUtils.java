@@ -240,6 +240,7 @@ public class TCUtils {
                 final String type = split[0];
 
                 if ("primary".equalsIgnoreCase(type)) {
+                    // FIXBUG：Android10此处Environment.getExternalStorageDirectory()不可以修改，不然从content://映射的路径则不正确
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
 
@@ -249,6 +250,10 @@ public class TCUtils {
             else if (isDownloadsDocument(uri)) {
 
                 final String id = DocumentsContract.getDocumentId(uri);
+                //FIXBUG：以raw:打头的，去掉raw:就是绝对路径
+                if (id != null && id.startsWith("raw:")) {
+                    return id.substring(4);
+                }
                 final Uri contentUri = ContentUris.withAppendedId(
                         Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
 
