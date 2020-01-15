@@ -1,0 +1,344 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bkg"
+    >
+
+    <FrameLayout
+        android:id="@+id/publisher_fl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextureView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|right"
+            android:layout_marginBottom="0dp" />
+
+        <com.tencent.liteav.renderer.TXCFocusIndicatorView
+            android:id="@+id/publisher_focus_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/btns_tests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <Button
+                android:id="@+id/btnPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/play_start"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnCameraChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lvb_camera_change"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnTouchFoucs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/manual"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnHWEncode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/quick"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnFaceBeauty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lvb_beauty"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnLog"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/log_show"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnBitrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/set"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnPushOrientation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/landscape"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/layoutBitrate"
+        android:layout_marginBottom="0dp"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:layout_gravity="bottom">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="推流模式"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:clickable="false"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="#FFFFFF"
+            android:visibility="visible"
+            android:clickable="true"
+            android:layout_gravity="bottom">
+            <Button
+                android:id="@+id/btn_auto_bitrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自适应码率"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:padding="3dp"
+                android:background="@drawable/resolution_radio"/>
+            <Button
+                android:id="@+id/btn_auto_resolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自适应分辨率"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:padding="3dp"
+                android:background="@drawable/resolution_radio"/>
+        </RelativeLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:visibility="visible"
+            android:id="@+id/resolutionRadioGroup"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+            <RadioButton
+                style="@style/RadiobuttonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SD"
+                android:tag="1"
+                android:layout_weight="1"
+                android:textColor="@color/text_radio_color"
+                android:background="@drawable/resolution_radio" />
+            <RadioButton
+                style="@style/RadiobuttonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HD"
+                android:tag="2"
+                android:textColor="@color/text_radio_color"
+                android:background="@drawable/resolution_radio" />
+            <RadioButton
+                style="@style/RadiobuttonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/resolution_radio"
+                android:tag="3"
+                android:text="FHD"
+                android:textColor="@color/text_radio_color" />
+
+            <RadioButton
+                style="@style/RadiobuttonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="连麦大"
+                android:tag="4"
+                android:textColor="@color/text_radio_color"
+                android:background="@drawable/resolution_radio" />
+
+            <RadioButton
+                style="@style/RadiobuttonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/resolution_radio"
+                android:tag="5"
+                android:text="连麦小"
+                android:textColor="@color/text_radio_color" />
+
+            <RadioButton
+                style="@style/RadiobuttonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RTC"
+                android:tag="6"
+                android:textColor="@color/text_radio_color"
+                android:background="@drawable/resolution_radio" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <com.tencent.liteav.demo.beauty.BeautyPanel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutFaceBeauty"
+        android:visibility="gone"
+        android:clickable="true"
+        android:layout_gravity="bottom" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/back_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/btn_back_gray"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:textSize="14dp"
+                android:textColor="#ffffff"
+                android:text="返回" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:text="标题"/>
+
+
+
+        <ImageButton
+            android:id="@+id/webrtc_link_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/question_link" />
+
+    </FrameLayout>
+
+    <include layout="@layout/titlebar_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:id="@+id/netbusy_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:background="@color/colorRed"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:textColor="#ffffff"
+        android:text="当前网络质量很糟糕，建议您拉近离路由器的距离，避免WiFi穿墙！"/>
+
+
+    <CheckBox
+        android:visibility="visible"
+        android:id="@+id/video_cb_surface"
+        android:text="是否设置Surface"
+        android:checked="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/video_btn_change_size"
+        android:text="改变Surface大小"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</FrameLayout>

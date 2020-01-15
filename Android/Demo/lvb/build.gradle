@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    compile 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release'      // LiteAV SDK
+    compile 'com.tencent.imsdk:imsdk:4.4.900'                           // IM SDK. MLVB 组件依赖腾讯云云通信组件 IM。 版本更新详见：https://cloud.tencent.com/document/product/269/32679
+
+    compile 'me.dm7.barcodescanner:zxing:1.8.4'
+    compile 'com.google.code.gson:gson:2.3.1'
+
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportSdkVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportSdkVersion"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:multidex:1.0.0'
+    compile project(':beauty')
+
+}
+

@@ -12,7 +12,7 @@ android {
         multiDexEnabled true
 
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+            abiFilters "armeabi-v7a","arm64-v8a"
         }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -27,6 +27,10 @@ android {
         javaMaxHeapSize "4g"
     }
 
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
+
+    }
 }
 
 dependencies {
@@ -34,10 +38,13 @@ dependencies {
     compile 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release'      // LiteAV SDK
     compile 'com.tencent.imsdk:imsdk:4.4.900'                           // IM SDK. MLVB 组件依赖腾讯云云通信组件 IM。 版本更新详见：https://cloud.tencent.com/document/product/269/32679
 
-    compile(name: 'barcodescanner-core-1.8.4', ext: 'aar')              // 二维码扫描
-    compile(name: 'zxing-1.8.4', ext: 'aar')                            // 二维码扫描
+    compile 'com.android.support:appcompat-v7:25.+'
+    compile 'com.android.support:recyclerview-v7:25.+'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
 
-    compile project(':lib_tccommon')
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
+    compile 'com.android.support.constraint:constraint-layout:1.1.3'
 
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
@@ -48,6 +55,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     compile 'com.android.support:multidex:1.0.0'
-
-
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(':lvb')
 }

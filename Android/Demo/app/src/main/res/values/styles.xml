@@ -20,53 +20,13 @@
         <!--<item name="android:windowBackground">@color/colorActivityBackground</item>-->
     </style>
 
-
-    <!--rtmp room -->
-    <style name="RtmproomActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
-    <style name="RtmpRoomDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert"/>
-
-    <!--/rtmp room-->
-
-    <style name="RadiobuttonStyle">
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:button">@null</item>
-    </style>
-
-    <!-- Input dialog theme. -->
-    <style name="InputDialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowFullscreen">false</item>
+    <!--meeting room -->
+    <style name="MeetingActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+    <style name="MeetingDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert"/>
+    <style name="MeetingFragmentDialogTheme" parent="@android:style/Theme.Holo.Dialog">
         <item name="android:windowNoTitle">true</item>
-        <item name="android:background">#00000000</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
-        <item name="colorControlNormal">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/c9</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/hlfTransparent</item>
+        <item name="android:windowIsFloating">false</item>
     </style>
-
-    <!-- 问题 -->
-
-    <!-- 答案选项 -->
-
-    <!-- Media Controller -->
-
-    <style name="room_setting_dlg" parent="@android:style/Theme.Holo.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-    </style>
-
-
-    <style name="mlvb_dialog_fragment" parent="@android:style/Theme.Holo.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-    </style>
-
-
 </resources>

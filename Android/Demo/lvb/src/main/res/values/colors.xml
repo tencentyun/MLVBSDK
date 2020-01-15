@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#0accac</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorRed">#FF3333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="hlfTransparent">#30000000</color>
+    <color name="line_btn">#BBBBBB</color>
+    <color name="colorGray4">#787878</color>
+    <color name="colorTransparentBlack">#44777777</color>
+    <color name="background_gray1">#EBEBEB</color>
+    <color name="colorPrimaryDark">#21a3f5</color>
+
+    <color name="c8">#FFFFFF</color>
+    <color name="c9">#777777</color>
+</resources>
