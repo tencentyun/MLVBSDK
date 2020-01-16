@@ -12,7 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ColorMacro.h"
 #import "LiveRoomMsgListTableView.h"
-#import "BeautySettingPanel.h"
+#import "ThemeConfigurator.h"
 #import "UIViewController+BackButtonHandler.h"
 #import "LiveRoomListViewController.h"
 #import "LiveRoomAccPlayerView.h"
@@ -26,14 +26,13 @@ typedef NS_ENUM(NSInteger, PKStatus) {
 @interface LiveRoomPusherViewController () <
                 MLVBLiveRoomDelegate,
                 UITextFieldDelegate,
-                BeautySettingPanelDelegate,
                 UITableViewDelegate,
                 UITableViewDataSource
                 > {
     UIView                   *_pusherView;
     NSMutableDictionary      *_playerViewDic;  // 小主播的画面，[userID, view]
     
-    BeautySettingPanel       *_vBeauty;  // 美颜界面组件
+    TCBeautyPanel       *_vBeauty;  // 美颜界面组件
     
     UIButton                 *_btnChat;
     UIButton                 *_btnCamera;
@@ -127,8 +126,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     }
     
     // 美颜初始化为默认值
-    [_vBeauty resetValues];
-    [_vBeauty trigglerValues];
+    [_vBeauty resetAndApplyValues];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -272,13 +270,6 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     [_msgInputView addSubview:_msgSendBtn];
     [self.view addSubview:_msgInputView];
     
-    // 美颜
-    NSUInteger controlHeight = [BeautySettingPanel getHeight];
-    _vBeauty = [[BeautySettingPanel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - controlHeight, self.view.frame.size.width, controlHeight)];
-    _vBeauty.hidden = YES;
-    _vBeauty.delegate = self;
-    [self.view addSubview:_vBeauty];
-    
     // 主播列表(用于PK)
     _roomCreatorListView = [[UITableView alloc] initWithFrame:CGRectMake((_btnPK.left + _btnPK.right) / 2.0 - 50, _btnPK.top-250, 128, 230)];
     _roomCreatorListView.hidden = YES;
@@ -301,9 +292,17 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     [self.view insertSubview:_pusherView atIndex:0];
     [_liveRoom startLocalPreview:YES view:_pusherView];
     
+    // 美颜
+    NSUInteger controlHeight = [TCBeautyPanel getHeight];
+    _vBeauty =[TCBeautyPanel beautyPanelWithFrame:CGRectMake(0, self.view.frame.size.height - controlHeight, self.view.frame.size.width, controlHeight)
+                                            SDKObject:_liveRoom];
+    [ThemeConfigurator configBeautyPanelTheme:_vBeauty];
+    _vBeauty.hidden = YES;
+    [self.view addSubview:_vBeauty];
+
+
     // 美颜初始化为默认值
-    [_vBeauty resetValues];
-    [_vBeauty trigglerValues];
+    [_vBeauty resetAndApplyValues];
 }
 
 - (LiveRoomAccPlayerView *)accPlayerViewForUID:(NSString *)uid {
@@ -350,6 +349,10 @@ typedef NS_ENUM(NSInteger, PKStatus) {
         playerView.frame = CGRectMake(originX, originY - videoViewHeight * index, videoViewWidth, videoViewHeight);
         ++ index;
     }
+}
+
+- (void)_onEnterRoom {
+    _vBeauty.actionPerformer = [TCBeautyPanelActionProxy proxyWithSDKObject:_liveRoom];
 }
 
 - (void)initRoomLogic {
@@ -873,53 +876,6 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _vBeauty.hidden = YES;
     _roomCreatorListView.hidden = YES;
     [self hideToolButtons:NO];
-}
-
-#pragma mark - BeautySettingPanelDelegate
-
-- (void)onSetBeautyStyle:(NSUInteger)beautyStyle beautyLevel:(float)beautyLevel whitenessLevel:(float)whitenessLevel ruddinessLevel:(float)ruddinessLevel{
-    [_liveRoom setBeautyStyle:beautyStyle beautyLevel:beautyLevel whitenessLevel:whitenessLevel ruddinessLevel:ruddinessLevel];
-}
-
-- (void)onSetEyeScaleLevel:(float)eyeScaleLevel {
-    [_liveRoom setEyeScaleLevel:eyeScaleLevel];
-}
-
-- (void)onSetFaceScaleLevel:(float)faceScaleLevel {
-    [_liveRoom setFaceScaleLevel:faceScaleLevel];
-}
-
-- (void)onSetFilter:(UIImage *)filterImage {
-    [_liveRoom setFilter:filterImage];
-}
-
-
-- (void)onSetGreenScreenFile:(NSURL *)file {
-    [_liveRoom setGreenScreenFile:file];
-}
-
-- (void)onSelectMotionTmpl:(NSString *)tmplName inDir:(NSString *)tmplDir {
-    [_liveRoom selectMotionTmpl:tmplName inDir:tmplDir];
-}
-
-- (void)onSetFaceVLevel:(float)vLevel{
-    [_liveRoom setFaceVLevel:vLevel];
-}
-
-- (void)onSetFaceShortLevel:(float)shortLevel{
-    [_liveRoom setFaceShortLevel:shortLevel];
-}
-
-- (void)onSetNoseSlimLevel:(float)slimLevel{
-    [_liveRoom setNoseSlimLevel:slimLevel];
-}
-
-- (void)onSetChinLevel:(float)chinLevel{
-    [_liveRoom setChinLevel:chinLevel];
-}
-
-- (void)onSetMixLevel:(float)mixLevel{
-    [_liveRoom setSpecialRatio:mixLevel / 10.0];
 }
 
 #pragma mark - UITableViewDataSource

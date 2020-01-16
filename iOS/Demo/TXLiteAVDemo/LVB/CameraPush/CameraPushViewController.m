@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "ScanQRController.h"
 #import "AddressBarController.h"
-#import "BeautySettingPanel.h"
+#import "ThemeConfigurator.h"
 #import "PushBgmControl.h"
 #import "PushLogView.h"
 #import "TCHttpUtil.h"
@@ -20,17 +20,24 @@
 #import "AFNetworkReachabilityManager.h"
 #import "CWStatusBarNotification.h"
 
+#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
+#import "CustomAudioFileReader.h"
+#define CUSTOM_AUDIO_CAPTURE_SAMPLERATE 48000
+#define CUSTOM_AUDIO_CAPTURE_CHANNEL 1
+#endif
+
 #define RTMP_PUBLISH_URL    @"请输入推流地址或者扫二维码进行输入"
 
 @interface CameraPushViewController () <
     TXLivePushListener,
-    BeautySettingPanelDelegate,
-    AddressBarControllerDelegate,
     ScanQRDelegate,
     BeautyLoadPituDelegate,
-    BeautySettingPanelDelegate,
     PushSettingDelegate,
     PushMoreSettingDelegate,
+    AddressBarControllerDelegate,
+#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
+    CustomAudioFileReaderDelegate,
+#endif
     PushBgmControlDelegate
     >
 {
@@ -41,9 +48,8 @@
     BOOL                _appIsInActive;
     BOOL                _appIsBackground;
         
-    BeautySettingPanel            *_beautyPanel;    // 美颜控件
+    TCBeautyPanel             *_beautyPanel;    // 美颜控件
     PushMoreSettingViewController *_moreSettingVC;  // 更多设置
-    PushBgmControl                *_bgmControl;     // BGM控制面板
     PushLogView                   *_logView;        // 显示app日志
     
     UIButton     *_btnPush;        // 开始/停止推流
@@ -57,6 +63,7 @@
 
 @property (nonatomic, strong) TXLivePush *pusher;
 @property (nonatomic, strong) NSString *pushUrl;
+@property (nonatomic, strong) PushBgmControl *bgmControl;     // BGM控制面板
 
 @end
 
@@ -192,13 +199,22 @@
                                   center:CGPointMake(startSpace + ICON_SIZE / 2 + centerInterVal * 6, iconY) size:ICON_SIZE];
     
     // 美颜控件
-    NSUInteger controlHeight = [BeautySettingPanel getHeight];
-    _beautyPanel = [[BeautySettingPanel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - controlHeight, self.view.frame.size.width, controlHeight)];
+    NSUInteger controlHeight = [TCBeautyPanel getHeight];
+    UIWindow *keyWindow = UIApplication.sharedApplication.keyWindow;
+    CGFloat bottomOffset = 0;
+    if (@available(iOS 11, *)) {
+        bottomOffset = keyWindow.safeAreaInsets.bottom;
+    }
+    CGRect frame = CGRectMake(0, self.view.frame.size.height - controlHeight - bottomOffset,
+                              self.view.frame.size.width, controlHeight + bottomOffset);
+    _beautyPanel = [TCBeautyPanel beautyPanelWithFrame:frame
+                                                 SDKObject:_pusher];
+    _beautyPanel.bottomOffset = bottomOffset;
+    [ThemeConfigurator configBeautyPanelTheme:_beautyPanel];
     _beautyPanel.hidden = YES;
-    _beautyPanel.delegate = self;
     _beautyPanel.pituDelegate = self;
     [self.view addSubview:_beautyPanel];
-    [_beautyPanel resetValues]; // 美颜设置初始值
+    [_beautyPanel resetAndApplyValues]; // 美颜设置初始值
     
     // BGM控件
     _bgmControl = [[PushBgmControl alloc] initWithFrame:CGRectMake(0, 200, self.view.width, 200)];
@@ -243,13 +259,13 @@
     config.pauseImg = [UIImage imageNamed:@"pause_publish"];
     config.touchFocus = [PushMoreSettingViewController isEnableTouchFocus];
     config.enableZoom = [PushMoreSettingViewController isEnableVideoZoom];
+    config.enablePureAudioPush = [PushMoreSettingViewController isEnablePureAudioPush];
     config.enableAudioPreview = [PushSettingViewController getEnableAudioPreview];
     config.frontCamera = _btnCamera.tag == 0 ? YES : NO;
     if ([PushMoreSettingViewController isEnableWaterMark]) {
         config.watermark = [UIImage imageNamed:@"watermark"];
         config.watermarkPos = CGPointMake(10, 10);
     }
-
     // 推流器初始化
     TXLivePush *pusher = [[TXLivePush alloc] initWithConfig:config];
     [pusher setReverbType:[PushSettingViewController getReverbType]];
@@ -258,6 +274,13 @@
     [pusher setMirror:[PushMoreSettingViewController isMirrorVideo]];
     [pusher setMute:[PushMoreSettingViewController isMuteAudio]];
     [pusher setVideoQuality:[PushSettingViewController getVideoQuality] adjustBitrate:[PushSettingViewController getBandWidthAdjust] adjustResolution:NO];
+
+#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
+    config.enableAEC = NO;
+    config.customModeType = CUSTOM_MODE_AUDIO_CAPTURE;
+    config.audioSampleRate = CUSTOM_AUDIO_CAPTURE_SAMPLERATE;
+    config.audioChannels = CUSTOM_AUDIO_CAPTURE_CHANNEL;
+#endif
     
     // 修改软硬编需要在setVideoQuality之后设置config.enableHWAcceleration
     config.enableHWAcceleration = [PushSettingViewController getEnableHWAcceleration];
@@ -361,6 +384,7 @@
     _btnCamera.hidden = hide;
     _btnBeauty.hidden = hide;
     _btnBgm.hidden = hide;
+    _btnLog.hidden = hide;
     _btnSetting.hidden = hide;
     _btnMoreSetting.hidden = hide;
 }
@@ -407,6 +431,13 @@
     
     // 开启预览
     [_pusher startPreview:_localView];
+
+#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
+    [CustomAudioFileReader sharedInstance].delegate = self;
+    [[CustomAudioFileReader sharedInstance] start:CUSTOM_AUDIO_CAPTURE_SAMPLERATE
+                                         channels:CUSTOM_AUDIO_CAPTURE_CHANNEL
+                                  framLenInSample:1024];
+#endif
     
     // 开始推流
     int ret = [_pusher startPush:rtmpUrl];
@@ -415,12 +446,9 @@
         NSLog(@"推流器启动失败");
         return NO;
     }
-    
+
     // 保存推流地址，其他地方需要
     _pushUrl = rtmpUrl;
-    
-    // 触发美颜设置
-    [_beautyPanel trigglerValues];
     
     return YES;
 }
@@ -431,6 +459,10 @@
         [_pusher stopPreview];
         [_pusher stopPush];
     }
+#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
+    [[CustomAudioFileReader sharedInstance] stop];
+    [CustomAudioFileReader sharedInstance].delegate = nil;
+#endif
 }
 
 #pragma mark - HUD
@@ -531,7 +563,7 @@
             
         } else if (evtID == PUSH_EVT_OPEN_CAMERA_SUCC) {
             [self.pusher toggleTorch:[PushMoreSettingViewController isOpenTorch]];
-            
+
         } else if (evtID == PUSH_ERR_OPEN_MIC_FAIL) {
             [self clickPush:_btnPush];
             [self toastTip:@"获取麦克风权限失败，请前往隐私-麦克风设置里面打开应用权限"];
@@ -611,55 +643,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showText:@"资源加载失败"];
     });
-}
-
-#pragma mark - BeautySettingPanelDelegate
-
-- (void)onSetBeautyStyle:(NSUInteger)beautyStyle beautyLevel:(float)beautyLevel whitenessLevel:(float)whitenessLevel ruddinessLevel:(float)ruddinessLevel {
-    [_pusher setBeautyStyle:beautyStyle beautyLevel:beautyLevel whitenessLevel:whitenessLevel ruddinessLevel:ruddinessLevel];
-}
-
-- (void)onSetMixLevel:(float)mixLevel {
-    [_pusher setSpecialRatio:mixLevel / 10.0];
-}
-
-- (void)onSetEyeScaleLevel:(float)eyeScaleLevel {
-    [_pusher setEyeScaleLevel:eyeScaleLevel];
-}
-
-- (void)onSetFaceScaleLevel:(float)faceScaleLevel {
-    [_pusher setFaceScaleLevel:faceScaleLevel];
-}
-
-- (void)onSetFaceBeautyLevel:(float)beautyLevel {
-}
-
-- (void)onSetFaceVLevel:(float)vLevel {
-    [_pusher setFaceVLevel:vLevel];
-}
-
-- (void)onSetChinLevel:(float)chinLevel {
-    [_pusher setChinLevel:chinLevel];
-}
-
-- (void)onSetFaceShortLevel:(float)shortLevel {
-    [_pusher setFaceShortLevel:shortLevel];
-}
-
-- (void)onSetNoseSlimLevel:(float)slimLevel {
-    [_pusher setNoseSlimLevel:slimLevel];
-}
-
-- (void)onSetFilter:(UIImage*)filterImage {
-    [_pusher setFilter:filterImage];
-}
-
-- (void)onSetGreenScreenFile:(NSURL *)file {
-    [_pusher setGreenScreenFile:file];
-}
-
-- (void)onSelectMotionTmpl:(NSString *)tmplName inDir:(NSString *)tmplDir {
-    [_pusher selectMotionTmpl:tmplName inDir:tmplDir];
 }
 
 #pragma mark - PushSettingDelegate
@@ -776,6 +759,13 @@
     [_pusher setConfig:config];
 }
 
+// 是否开始纯音频推流(直播不支持动态切换)
+- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc pureAudioPush:(BOOL)enable
+{
+    TXLivePushConfig *config = _pusher.config;
+    config.enablePureAudioPush = enable;
+}
+
 // 本地截图
 - (void)onPushMoreSettingSnapShot:(PushMoreSettingViewController *)vc {
     [_pusher snapshot:^(TXImage *img) {
@@ -785,6 +775,11 @@
             [self.navigationController presentViewController:vc animated:YES completion:nil];
         }
     }];
+}
+
+- (void)onPushMoreSettingSendMessage:(PushMoreSettingViewController *)vc message:(NSString *)message
+{
+    [_pusher sendMessageEx:[message dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 #pragma mark - PushBgmControlDelegate
@@ -797,9 +792,9 @@
     
     NSString *path = nil;
     if (online) {
-        path = @"http://bgm-1252463788.cosgz.myqcloud.com/Flo%20Rida%20-%20Whistle.mp3";
+        path = @"https://bgm-1252463788.cos.ap-guangzhou.myqcloud.com/keluodiya.mp3";
     } else {
-        path = [[NSBundle mainBundle] pathForResource:@"paomo" ofType:@"mp3"];
+        path = [[NSBundle mainBundle] pathForResource:@"bgm_demo" ofType:@"mp3"];
     }
     
     __block int repeatTimes = loopTimes;
@@ -811,11 +806,14 @@
         
     } andCompleteNotify:^(NSInteger errCode) {
         if (errCode == 0) {
-            if (--repeatTimes > 0) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf onBgmStart:repeatTimes online:online];
-                });
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong __typeof(self) self = weakSelf;
+                if (--repeatTimes > 0) {
+                    [self onBgmStart:repeatTimes online:online];
+                } else {
+                    [self.bgmControl notifyBgmIsEnded];
+                }
+            });
         }
     }];
 }
@@ -883,5 +881,11 @@
         toastView = nil;
     });
 }
+
+#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
+- (void)onAudioCapturePcm:(NSData *)pcmData sampleRate:(int)sampleRate channels:(int)channels ts:(uint32_t)timestampMs {
+    [self.pusher sendCustomPCMData:pcmData.bytes len:(uint32_t)pcmData.length];
+}
+#endif
 
 @end

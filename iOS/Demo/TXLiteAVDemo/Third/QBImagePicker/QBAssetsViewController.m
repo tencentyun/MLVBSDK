@@ -548,7 +548,7 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         return footerView;
     }
     
-    return nil;
+    return [[UICollectionReusableView alloc] init];
 }
 
 

@@ -24,6 +24,13 @@
 #define TAG_HW                      1004
 #define TAG_AUDIO_PREVIEW           1005
 
+@interface PushSettingQuality : NSObject
+@property (copy, nonatomic) NSString *title;
+@property (assign, nonatomic) TX_Enum_Type_VideoQuality value;
+@end
+
+@implementation PushSettingQuality
+@end
 
 @interface PushSettingViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
     UISwitch *_bandwidthSwitch;
@@ -31,8 +38,11 @@
     UISwitch *_audioPreviewSwitch;
     
     UIActionSheet *_actionSheet;
-    UITableView *_mainTableView;
+
+    NSArray<PushSettingQuality *> *_qualities;
 }
+@property (strong, nonatomic) UITableView *mainTableView;
+
 @end
 
 @implementation PushSettingViewController
@@ -40,7 +50,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设置";
-    
+
+    NSArray<NSString *> * titleArray = @[@"蓝光", @"超清", @"高清", @"标清",
+                                         @"连麦大主播", @"连麦小主播", @"实时音视频"];
+    TX_Enum_Type_VideoQuality qualityArray[] = {
+        VIDEO_QUALITY_ULTRA_DEFINITION,
+        VIDEO_QUALITY_SUPER_DEFINITION,
+        VIDEO_QUALITY_HIGH_DEFINITION,
+        VIDEO_QUALITY_STANDARD_DEFINITION,
+        VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER,
+        VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER,
+        VIDEO_QUALITY_REALTIME_VIDEOCHAT
+    };
+    NSMutableArray *qualities = [[NSMutableArray alloc] initWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; ++i) {
+        PushSettingQuality *quality = [[PushSettingQuality alloc] init];
+        quality.title = titleArray[i];
+        quality.value = qualityArray[i];
+        [qualities addObject:quality];
+    }
+    _qualities = qualities;
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedCancel:)];
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOK:)];
     
@@ -106,17 +136,14 @@
 }
 
 - (NSString *)getQualityStr {
-    static NSArray *arr = nil;
-    if (arr == nil) {
-        arr = [NSArray arrayWithObjects:@"标清", @"高清", @"超清", @"连麦大主播", @"连麦小主播", @"实时音视频", nil];
+    TX_Enum_Type_VideoQuality quality = [PushSettingViewController getVideoQuality];
+    for (PushSettingQuality *q in _qualities) {
+        if (q.value == quality) {
+            return q.title;
+        }
     }
-    
-    NSInteger index = [PushSettingViewController getVideoQuality] - 1;
-    if (index < arr.count && index >= 0) {
-        return arr[index];
-    }
-    
-    return arr[1];
+
+    return _qualities.firstObject.title;
 }
 
 - (NSString *)getReverbStr {
@@ -148,6 +175,35 @@
     return arr[0];
 }
 
++ (UIView *)buildAccessoryView {
+    return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
+}
+
+- (void)_showQualityActionSheet {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"画质"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    __weak __typeof(self) wself = self;
+    for (PushSettingQuality *q in _qualities) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:q.title
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+            __strong __typeof(wself) self = wself; if (nil == self) return;
+            [PushSettingViewController saveSetting:TAG_QUALITY value:q.value];
+            id<PushSettingDelegate> delegate = self.delegate;
+            if ([delegate respondsToSelector:@selector(onPushSetting:videoQuality:)]) {
+                [delegate onPushSetting:self videoQuality:q.value];
+            }
+            [self.mainTableView reloadData];
+        }];
+        [controller addAction:action];
+    }
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                   style:UIAlertActionStyleCancel
+                                                 handler:nil]];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
 #pragma mark - UITableView delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -163,13 +219,13 @@
 
     if (indexPath.section == SECTION_QUALITY) {
         cell.textLabel.text = [self getQualityStr];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [PushSettingViewController buildAccessoryView];
     } else if (indexPath.section == SECTION_REVERB) {
         cell.textLabel.text = [self getReverbStr];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [PushSettingViewController buildAccessoryView];
     } else if (indexPath.section == SECTION_VOICE_CHANGER) {
         cell.textLabel.text = [self getVoiceChangerStr];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [PushSettingViewController buildAccessoryView];
     } else if (indexPath.section == SECTION_BANDWIDTH_ADJUST) {
         cell.textLabel.text = @"开启带宽适应";
         cell.accessoryView = _bandwidthSwitch;
@@ -200,12 +256,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_QUALITY) {
-        _actionSheet = [[UIActionSheet alloc] initWithTitle:@"画质" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil
-                                          otherButtonTitles:@"标清", @"高清", @"超清", @"连麦大主播", @"连麦小主播", @"实时音视频", nil];
-        _actionSheet.tag = TAG_QUALITY;
-        _actionSheet.actionSheetStyle = UIBarStyleDefault;
-        [_actionSheet showInView:self.view];
-        
+        [self _showQualityActionSheet];
     } else if (indexPath.section == SECTION_REVERB) {
         _actionSheet = [[UIActionSheet alloc] initWithTitle:@"混响" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil
                                           otherButtonTitles:@"关闭混响", @"KTV", @"小房间", @"大会堂", @"低沉", @"洪亮", @"金属声", @"磁性", nil];
@@ -230,14 +281,7 @@
         return;
     }
     
-    if (actionSheet.tag == TAG_QUALITY) {
-        NSInteger quality = buttonIndex + 1;
-        [PushSettingViewController saveSetting:TAG_QUALITY value:quality];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(onPushSetting:videoQuality:)]) {
-            [self.delegate onPushSetting:self videoQuality:quality];
-        }
-        
-    } else if (actionSheet.tag == TAG_REVERB) {
+    if (actionSheet.tag == TAG_REVERB) {
         NSInteger reverbType = buttonIndex;
         [PushSettingViewController saveSetting:TAG_REVERB value:reverbType];
         if (self.delegate && [self.delegate respondsToSelector:@selector(onPushSetting:reverbType:)]) {
@@ -300,7 +344,7 @@
     if (d != nil) {
         return [d intValue];
     }
-    return VIDEO_QUALITY_HIGH_DEFINITION;
+    return VIDEO_QUALITY_SUPER_DEFINITION;
 }
 
 + (TXReverbType)getReverbType {

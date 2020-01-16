@@ -75,6 +75,11 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     // 创建播放器
     _player = [[TXLivePlayer alloc] init];
     
+    //允许接收消息
+    TXLivePlayConfig* config = _player.config;
+    config.enableMessage = YES;
+    [_player setConfig:config];
+    
     // 界面布局
     [self initUI];
 }
@@ -554,6 +559,11 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
                     }
                 }];
             }
+        }
+        else if (EvtID == EVT_PLAY_GET_MESSAGE) {
+            NSData* msgData = param[@"EVT_GET_MSG"];
+            NSString* msg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding];
+            [self toastTip:msg];
         }
     });
 }

@@ -11,6 +11,7 @@
     UISwitch    *_onlineSwitch;
     UITextField *_loopTimesFiled;
     UIButton    *_pauseBtn;
+    UIButton    *_startBtn;
 }
 @end
 
@@ -78,6 +79,7 @@
         [startBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         [startBtn addTarget:self action:@selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
         startBtn.tag = 0;
+        _startBtn = startBtn;
         
         _pauseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 120, startBtn.top, startBtn.width, startBtn.height)];
         [_pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
@@ -100,6 +102,11 @@
         [self addSubview:_pauseBtn];
     }
     return self;
+}
+
+- (void)notifyBgmIsEnded {
+    [_startBtn setTitle:@"开始" forState:UIControlStateNormal];
+    _startBtn.tag = 0;
 }
 
 - (void)clickStart:(UIButton *)btn {

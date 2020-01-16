@@ -15,7 +15,11 @@
 #import "LiveRoomTableViewCell.h"
 #import "LiveRoomNewViewController.h"
 #import "AppDelegate.h"
-#import "../Debug/GenerateTestUserSig.h"
+
+// 正式使用时需要换成您自己的 User Sig 签发接口
+// 请参考 https://cloud.tencent.com/document/product/454/14548
+#define kHttpServerAddr_GetLoginInfo    @"https://room.qcloud.com/weapp/utils/get_login_info_debug"
+static NSString * const kAPPID = @"1252463788";
 
 @interface LiveRoomListViewController () <UITableViewDelegate, UITableViewDataSource, MLVBLiveRoomDelegate> {
     NSArray<MLVBRoomInfo *>  	 *_roomInfoArray;
@@ -72,40 +76,77 @@
 #pragma mark - Login
 - (void)login {
     __block NSString * userID = [[NSUserDefaults standardUserDefaults] objectForKey: @"userID"];
-    if (userID == nil || userID.length == 0) {
-        char data[32];
-        for ( int x = 0; x < 32; data[x++] = (char)('a'+ (arc4random_uniform(26))));
-        userID = [[NSString alloc] initWithBytes:data length:32 encoding:NSUTF8StringEncoding];
-        [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"userID"];
+    NSString * strCgiUrl = kHttpServerAddr_GetLoginInfo;
+    if (userID != nil && userID.length > 0) {
+        strCgiUrl = [NSString stringWithFormat:@"%@?userID=%@", kHttpServerAddr_GetLoginInfo, userID];
     }
     
-    NSString * userSig = [GenerateTestUserSig genTestUserSig:userID];
+    // 从后台获取随机产生的userID，以及IMSDK所需要的appid、account_type, sig等信息
+    AFHTTPSessionManager *httpSession = [AFHTTPSessionManager manager];
+    [httpSession setRequestSerializer:[AFJSONRequestSerializer serializer]];
+    [httpSession setResponseSerializer:[AFJSONResponseSerializer serializer]];
+    httpSession.requestSerializer.timeoutInterval = 5.0;
+    httpSession.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/xml", @"text/plain", nil];
     
-    _userID = userID;
-    
-    MLVBLoginInfo *loginInfo = [MLVBLoginInfo new];
-    loginInfo.sdkAppID = _SDKAppID;
-    loginInfo.userID = userID;
-    loginInfo.userName = _userName;
-    loginInfo.userAvatar = @"headpic.png";
-    loginInfo.userSig = userSig;
-    
+    _createBtn.enabled = NO;
     __weak __typeof(self) weakSelf = self;
-    
-    // 初始化LiveRoom
-    [weakSelf.liveRoom loginWithInfo:loginInfo completion:^(int errCode, NSString *errMsg) {
-        __strong __typeof(weakSelf) self = weakSelf; if (nil == self) return;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self->_createBtn.enabled = YES;
-        });
-        NSLog(@"init LiveRoom errCode[%d] errMsg[%@]", errCode, errMsg);
-        if (errCode == 0) {
-            [self onLoginSucceed];
-            weakSelf.initSucc = YES;
-        } else {
+    __weak AFHTTPSessionManager *weakManager = httpSession;
+    [httpSession GET:strCgiUrl parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [weakManager invalidateSessionCancelingTasks:NO];
+        int errCode = [responseObject[@"code"] intValue];
+        NSString *errMsg = responseObject[@"message"];
+        NSNumber * sdkAppID = responseObject[@"sdkAppID"];
+        NSString * userSig = responseObject[@"userSig"];
+        
+        if (errCode != 0) {
+            NSLog(@"request login info failed: errCode[%d] errMsg[%@]", errCode, errMsg);
+            [weakSelf alertTips:@"获取登录信息失败" msg:errMsg];
             [self onLoginFailed];
-            [weakSelf alertTips:@"LiveRoom init失败" msg:errMsg];
+            return;
         }
+        
+        if (userID == nil || userID.length == 0) {
+            userID = responseObject[@"userID"];
+            if (userID == nil || userID.length == 0) {
+                NSLog(@"request login info failed: invalid userID");
+                [weakSelf alertTips:@"获取登录信息失败" msg: @"用户账号非法"];
+                [self onLoginFailed];
+                return;
+            }
+            else {
+                [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"userID"];
+            }
+        }
+        
+        _userID = userID;
+
+        MLVBLoginInfo *loginInfo = [MLVBLoginInfo new];
+        loginInfo.sdkAppID = [sdkAppID intValue];
+        loginInfo.userID = userID;
+        loginInfo.userName = _userName;
+        loginInfo.userAvatar = @"headpic.png";
+        loginInfo.userSig = userSig;
+        
+        // 初始化LiveRoom
+        [weakSelf.liveRoom loginWithInfo:loginInfo completion:^(int errCode, NSString *errMsg) {
+            __strong __typeof(weakSelf) self = weakSelf; if (nil == self) return;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self->_createBtn.enabled = YES;
+            });
+            NSLog(@"init LiveRoom errCode[%d] errMsg[%@]", errCode, errMsg);
+            if (errCode == 0) {
+                [self onLoginSucceed];
+                weakSelf.initSucc = YES;
+            } else {
+                [self onLoginFailed];
+                [weakSelf alertTips:@"LiveRoom init失败" msg:errMsg];
+            }
+        }];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"request login info failed: err[%@]", [error description]);
+        [weakSelf alertTips:@"提示" msg:@"网络请求超时，请检查网络设置"];
+        [self onLoginFailed];
+        [weakManager invalidateSessionCancelingTasks:NO];
     }];
 }
 

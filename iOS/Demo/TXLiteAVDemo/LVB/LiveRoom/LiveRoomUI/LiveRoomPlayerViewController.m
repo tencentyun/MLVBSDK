@@ -14,6 +14,12 @@
 #import "LiveRoomMsgListTableView.h"
 #import "LiveRoomAccPlayerView.h"
 
+#if DEBUG
+#  define Log NSLog
+#else
+#  define Log(...)
+#endif
+
 typedef NS_ENUM(NSInteger, LinkMicStatus) {
     LinkMicStatus_IDEL,          // 空闲状态
     LinkMicStatus_REQUESTING,    // 请求连麦过程中
@@ -97,7 +103,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
     
     if (_liveRoom) {
         [_liveRoom exitRoom:^(int errCode, NSString *errMsg) {
-            NSLog(@"exitRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
+            Log(@"exitRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
         }];
     }
     
@@ -229,7 +235,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
 
 - (void)initRoomLogic {
     [_liveRoom enterRoom:_roomID view:_playerView completion:^(int errCode, NSString *errMsg) {
-        NSLog(@"enterRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
+        Log(@"enterRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errCode == 0) {
                 [self appendSystemMsg:@"连接成功"];

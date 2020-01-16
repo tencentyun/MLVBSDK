@@ -19,6 +19,12 @@
 
 #define ErrMsg(x) [@"[IM] " stringByAppendingString:x]
 
+#if DEBUG
+#  define Log NSLog
+#else
+#  define Log(...)
+#endif
+
 @interface IMMsgManager() <TIMMessageListener, TIMGroupEventListener, TIMUserStatusListener> {
     MLVBLoginInfo     *_config;
     dispatch_queue_t     _queue;
@@ -95,7 +101,7 @@ double getSystemUptime(void)
 - (void)setLoginServerTime:(uint64_t)loginServerTime {
     _loginServerTime = loginServerTime;
     _loginUptime = getSystemUptime();
-    NSLog(@"[IM] setLoginServerTime: %llu, %llu", _loginServerTime, _loginUptime);
+    Log(@"[IM] setLoginServerTime: %llu, %llu", _loginServerTime, _loginUptime);
 }
 
 - (uint64_t)currentTimestamp {
@@ -105,7 +111,7 @@ double getSystemUptime(void)
 
 - (BOOL)isExpired:(uint64_t)timestamp {
     uint64_t current = [self currentTimestamp];
-    NSLog(@"current: %llu, timestamp: %llu", current, timestamp);
+    Log(@"current: %llu, timestamp: %llu", current, timestamp);
     uint64_t diff;
     if (current > timestamp) {
         diff = current - timestamp;
@@ -205,9 +211,9 @@ double getSystemUptime(void)
     
     if (_groupConversation) {
         [_groupConversation sendMessage:msg succ:^{
-            NSLog(@"sendCustomMessage success");
+            Log(@"sendCustomMessage success");
         } fail:^(int code, NSString *msg) {
-            NSLog(@"sendCustomMessage failed, data[%@]", data);
+            Log(@"sendCustomMessage failed, data[%@]", data);
         }];
     }
 }
@@ -216,8 +222,11 @@ double getSystemUptime(void)
 - (void)sendRoomCustomMsg:(NSString *)cmd msg:(NSString *)msg completion:(void (^)(int errCode, NSString *errMsg))completion {
     [self asyncRun:^{
         TIMCustomElem *elem = [[TIMCustomElem alloc] init];
-        NSDictionary *data = @{@"cmd": cmd, @"msg": msg == nil ? @"" : msg};
-        NSDictionary *customMsg = @{@"userName":self->_config.userName, @"userAvatar":self->_config.userAvatar, @"cmd": CMD_CUSTOM_CMD_MSG, @"data": data};
+        NSDictionary *data = @{@"cmd": cmd,
+                               @"msg": msg == nil ? @"" : msg,
+                               @"userName":self->_config.userName,
+                               @"userAvatar":self->_config.userAvatar,};
+        NSDictionary *customMsg = @{ @"cmd": CMD_CUSTOM_CMD_MSG, @"data": data};
         [elem setData:[self dictionary2JsonData:customMsg]];
         
         TIMMessage *msg = [[TIMMessage alloc] init];
@@ -225,10 +234,10 @@ double getSystemUptime(void)
         
         if (self->_groupConversation) {
             [self->_groupConversation sendMessage:msg succ:^{
-                NSLog(@"sendCustomMessage success");
+                Log(@"sendCustomMessage success");
                 if (completion) completion(0, nil);
             } fail:^(int code, NSString *msg) {
-                NSLog(@"sendCustomMessage failed, data[%@]", data);
+                Log(@"sendCustomMessage failed, data[%@]", data);
                 if (completion) completion(code, msg);
             }];
         }
@@ -245,12 +254,12 @@ double getSystemUptime(void)
     TIMConversation *conversation = [[TIMManager sharedInstance] getConversation:TIM_C2C receiver:userID];
     if (conversation) {
         [conversation sendMessage:msg succ:^{
-            NSLog(@"sendCCCustomMessage success");
+            Log(@"sendCCCustomMessage success");
             if (completion) {
                 completion(0, nil);
             }
         } fail:^(int code, NSString *msg) {
-            NSLog(@"sendCCCustomMessage failed, data[%@]", data);
+            Log(@"sendCCCustomMessage failed, data[%@]", data);
             if (completion) {
                 completion(code, ErrMsg(msg));
             }
@@ -275,10 +284,10 @@ double getSystemUptime(void)
         
         if (self->_groupConversation) {
             [self->_groupConversation sendMessage:msg succ:^{
-                NSLog(@"sendGroupTextMsg success");
+                Log(@"sendGroupTextMsg success");
                 if (completion) completion(0, nil);
             } fail:^(int code, NSString *msg) {
-                NSLog(@"sendGroupTextMsg failed, textMsg[%@]", textMsg);
+                Log(@"sendGroupTextMsg failed, textMsg[%@]", textMsg);
                 if (completion) completion(code, msg);
             }];
         }
@@ -298,7 +307,7 @@ double getSystemUptime(void)
     } fail:^(int code, NSString *msg) {
         if (code == 10025) {
             code = 0;
-            NSLog(@"群组 %@ 已被使用，并且操作者为群主，可以直接使用", groupID);
+            Log(@"群组 %@ 已被使用，并且操作者为群主，可以直接使用", groupID);
             [self switchGroup:groupID];
         }
         completion(code, ErrMsg(msg));
@@ -538,7 +547,7 @@ double getSystemUptime(void)
                 [_delegate onMemberChange:_groupID];
             }
         } else if ([elem isKindOfClass:[TIMGroupTipsElem class]]) {
-            NSLog(@"group tip message received: %@", elem);
+            Log(@"group tip message received: %@", elem);
             TIMGroupTipsElem *tips = (TIMGroupTipsElem *)elem;
             MLVBAudienceInfo *info = [[MLVBAudienceInfo alloc] init];
             info.userID = tips.opUserInfo.identifier;
@@ -571,7 +580,7 @@ double getSystemUptime(void)
         NSError *error = nil;
         NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
         if (error) {
-            NSLog(@"dictionary2JsonData failed: %@", dict);
+            Log(@"dictionary2JsonData failed: %@", dict);
             return nil;
         }
         return data;
@@ -586,7 +595,7 @@ double getSystemUptime(void)
     NSError *err = nil;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     if (err) {
-        NSLog(@"JjsonData2Dictionary failed: %@", jsonData);
+        Log(@"JjsonData2Dictionary failed: %@", jsonData);
         return nil;
     }
     return dic;
@@ -691,12 +700,12 @@ double getSystemUptime(void)
     NSDictionary *profile = @{TIMProfileTypeKey_Nick:userName,
                               TIMProfileTypeKey_FaceUrl:avatarURL};
     [[TIMFriendshipManager sharedInstance] modifySelfProfile:profile succ:^{
-        NSLog(@"[IM} modifySelfProfile succeed");
+        Log(@"[IM} modifySelfProfile succeed");
         if (completion) {
             completion(0, nil);
         }
     } fail:^(int code, NSString *msg) {
-        NSLog(@"[IM} modifySelfProfile failed: %d, %@", code, msg);
+        Log(@"[IM} modifySelfProfile failed: %d, %@", code, msg);
         if (completion) {
             completion(code, ErrMsg(msg));
         }

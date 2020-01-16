@@ -32,6 +32,9 @@
 
 
 @interface PushBgmControl : UIView
+
 @property (nonatomic, weak) id<PushBgmControlDelegate> delegate;
+
+- (void)notifyBgmIsEnded;
 
 @end

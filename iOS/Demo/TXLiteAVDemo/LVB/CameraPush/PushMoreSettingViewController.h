@@ -40,8 +40,14 @@
 // 是否开启手势放大预览画面
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc videoZoom:(BOOL)enable;
 
+// 是否开始纯音频
+- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc pureAudioPush:(BOOL)enable;
+
 // 本地截图
 - (void)onPushMoreSettingSnapShot:(PushMoreSettingViewController *)vc;
+
+// 发送消息
+- (void)onPushMoreSettingSendMessage:(PushMoreSettingViewController *)vc message:(NSString*)message;
 
 @end
 
@@ -59,6 +65,7 @@
 + (BOOL)isEnableWaterMark;
 + (BOOL)isEnableTouchFocus;
 + (BOOL)isEnableVideoZoom;
++ (BOOL)isEnablePureAudioPush;
 
 /*** 写配置文件 ***/
 + (void)setDisableVideo:(BOOL)disable;

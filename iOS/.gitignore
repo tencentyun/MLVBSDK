@@ -1,4 +1,5 @@
-SDK/TXLiteAVSDK*.framework
+SDK/*.framework
+SDK/*.zip
 *.pbxuser
 !default.pbxuser
 *.mode1v3

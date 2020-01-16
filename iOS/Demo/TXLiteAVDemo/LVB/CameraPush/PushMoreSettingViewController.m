@@ -19,7 +19,9 @@
 #define CELL_DELAY_CHECK            7
 #define CELL_TOUCH_FOCUS            8
 #define CELL_ZOOM                   9
-#define CELL_SNAPSHOT               10
+#define CELL_PURE_AUDIO             10
+#define CELL_SNAPSHOT               11
+#define CELL_SEND_MESSAGE           12
 
 
 /* 编号，请不要修改，写配置文件依赖这个 */
@@ -33,8 +35,11 @@
 #define TAG_DELAY_CHECK            1007
 #define TAG_TOUCH_FOCUS            1008
 #define TAG_ZOOM                   1009
+#define TAG_PURE_AUDIO             1010
+#define TAG_SEND_MESSAGE           1011
 
-@interface PushMoreSettingViewController () {
+
+@interface PushMoreSettingViewController ()<UITextFieldDelegate> {
     UISwitch *_disableVideoSwitch;
     UISwitch *_muteAudioSwitch;
     UISwitch *_mirrorSwitch;
@@ -45,8 +50,11 @@
     UISwitch *_watermarkSwitch;
     UISwitch *_touchFocusSwitch;
     UISwitch *_zoomSwitch;
+    UISwitch *_pureAudioSwitch;
     UIButton *_snapShotButton;
     
+    UITextField* _messageField;
+    UIView* _messageView;
     UIColor  *_tintColor;
 }
 @end
@@ -71,17 +79,26 @@
     _watermarkSwitch      = [self createUISwitch:TAG_WARTERMARK on:[PushMoreSettingViewController isEnableWaterMark]];
     _touchFocusSwitch     = [self createUISwitch:TAG_TOUCH_FOCUS on:[PushMoreSettingViewController isEnableTouchFocus]];
     _zoomSwitch           = [self createUISwitch:TAG_ZOOM on:[PushMoreSettingViewController isEnableVideoZoom]];
+    _pureAudioSwitch      = [self createUISwitch:TAG_PURE_AUDIO on:[PushMoreSettingViewController isEnablePureAudioPush]];
     
-    _snapShotButton       = [UIButton new];
-    _snapShotButton.frame = CGRectMake(0, 0, 50, 30);
-    _snapShotButton.layer.cornerRadius  = 5;
-    _snapShotButton.layer.shadowOffset  =  CGSizeMake(1, 1);
-    _snapShotButton.layer.shadowOpacity = 0.8;
-    _snapShotButton.layer.shadowColor   =  [UIColor whiteColor].CGColor;
-    _snapShotButton.backgroundColor     = [_tintColor colorWithAlphaComponent:0.6];
-    _snapShotButton.titleLabel.font     = [UIFont systemFontOfSize:14];
-    [_snapShotButton setTitle:@"截图" forState:UIControlStateNormal];
-    [_snapShotButton addTarget:self action:@selector(onSnapShot:) forControlEvents:UIControlEventTouchUpInside];
+    _snapShotButton       = [self createButtonWithTitle:@"截图" action:@selector(onSnapShot:)];
+    _messageView          = [self createMessageView];
+}
+
+- (UIButton*)createButtonWithTitle:(NSString*)title action:(SEL)action
+{
+    UIButton* newBtn       = [UIButton new];
+    newBtn.frame = CGRectMake(0, 0, 50, 30);
+    newBtn.layer.cornerRadius  = 5;
+    newBtn.layer.shadowOffset  =  CGSizeMake(1, 1);
+    newBtn.layer.shadowOpacity = 0.8;
+    newBtn.layer.shadowColor   =  [UIColor whiteColor].CGColor;
+    newBtn.backgroundColor     = [_tintColor colorWithAlphaComponent:0.6];
+    newBtn.titleLabel.font     = [UIFont systemFontOfSize:14];
+    [newBtn setTitle:title forState:UIControlStateNormal];
+    [newBtn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    return newBtn;
 }
 
 - (UISwitch *)createUISwitch:(NSInteger)tag on:(BOOL)on {
@@ -92,6 +109,20 @@
     sw.onTintColor = _tintColor;
     [sw addTarget:self action:@selector(onSwitchTap:) forControlEvents:UIControlEventTouchUpInside];
     return sw;
+}
+
+- (UIView*)createMessageView
+{
+    UIView* panel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    _messageField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 140, 30)];
+    _messageField.delegate = self;
+    _messageField.backgroundColor = [UIColor whiteColor];
+    [panel addSubview:_messageField];
+    UIButton* sendButton = [self createButtonWithTitle:@"发送" action:@selector(onSendMessage:)];
+    sendButton.frame = CGRectMake(150, 0, 50, 30);
+    [panel addSubview:sendButton];
+    
+    return panel;
 }
 
 - (void)onSwitchTap:(UISwitch *)switchBtn {
@@ -151,7 +182,11 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(onPushMoreSetting:videoZoom:)]) {
             [self.delegate onPushMoreSetting:self videoZoom:switchBtn.on];
         }
-        
+    }
+    else if (switchBtn.tag == TAG_PURE_AUDIO) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onPushMoreSetting:videoZoom:)]) {
+            [self.delegate onPushMoreSetting:self pureAudioPush:switchBtn.on];
+        }
     }
 }
 
@@ -161,8 +196,21 @@
     }
 }
 
+- (void)onSendMessage:(UIButton *)btn {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(onPushMoreSettingSendMessage:message:)]) {
+        [self.delegate onPushMoreSettingSendMessage:self message:_messageField.text];
+    }
+    _messageField.text = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 11;
+    return 13;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -245,10 +293,21 @@
             
             break;
         }
+        case CELL_PURE_AUDIO: {
+            cell.textLabel.text = @"开启纯音频推流";
+            cell.accessoryView = _pureAudioSwitch;
             
+            break;
+        }
         case CELL_SNAPSHOT: {
             cell.textLabel.text = @"本地截图";
             cell.accessoryView = _snapShotButton;
+            
+            break;
+        }
+        case CELL_SEND_MESSAGE: {
+            cell.textLabel.text = @"发送消息";
+            cell.accessoryView = _messageView;
             
             break;
         }
@@ -355,6 +414,15 @@
 
 + (BOOL)isEnableVideoZoom {
     NSString *key = [PushMoreSettingViewController getKey:TAG_ZOOM];
+    NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (d != nil) {
+        return [d intValue];
+    }
+    return NO;
+}
+
++ (BOOL)isEnablePureAudioPush {
+    NSString *key = [PushMoreSettingViewController getKey:TAG_PURE_AUDIO];
     NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     if (d != nil) {
         return [d intValue];

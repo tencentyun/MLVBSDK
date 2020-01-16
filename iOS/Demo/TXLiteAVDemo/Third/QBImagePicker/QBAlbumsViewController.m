@@ -46,14 +46,25 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"black"] forBarMetrics:UIBarMetricsDefault];
     
     // Fetch user albums and smart albums
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
-    PHFetchResult *userAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
-    self.fetchResults = @[smartAlbums, userAlbums];
-    
-    [self updateAssetCollections];
-    
+    void (^doFetch)(void) = ^{
+        PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
+        PHFetchResult *userAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
+        self.fetchResults = @[smartAlbums, userAlbums];
+        [self updateAssetCollections];
+    };
+
     // Register observer
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+
+    if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+                dispatch_async(dispatch_get_main_queue(), doFetch);
+            }
+        }];
+    } else {
+        doFetch();
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -190,6 +201,7 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     }];
     
     self.assetCollections = assetCollections;
+    [self.tableView reloadData];
 }
 
 - (UIImage *)placeholderImageWithSize:(CGSize)size
@@ -279,7 +291,9 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     QBAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
     cell.borderWidth = 1.0 / [[UIScreen mainScreen] scale];
-    
+    if (nil == cell.accessoryView) {
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
+    }
     // Thumbnail
     PHAssetCollection *assetCollection = self.assetCollections[indexPath.row];
     

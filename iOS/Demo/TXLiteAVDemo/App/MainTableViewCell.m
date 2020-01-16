@@ -10,12 +10,61 @@
 #import "ColorMacro.h"
 
 
+@interface CellInfo ()
+@property (nonatomic, copy) NSString* controllerClassName;
+@property (copy, nonatomic) UIViewController *(^controllerCreator)(void);
+@property (readwrite, nonatomic) CellInfoType type;
+@property (copy, nonatomic) void(^action)(void);
+@end
+
 @implementation CellInfo
 - (id)init {
     self = [super init];
   
     return self;
 }
+
++ (instancetype)cellInfoWithTitle:(NSString *)title controllerClassName:(NSString *)className {
+    CellInfo *info = [[CellInfo alloc] init];
+    info.title = title;
+    info.controllerClassName = className;
+    info.type = CellInfoTypeEntry;
+    return info;
+}
+
++ (instancetype)cellInfoWithTitle:(NSString *)title
+          controllerCreationBlock:(UIViewController *(^)(void))creator {
+    CellInfo *info = [[CellInfo alloc] init];
+    info.title = title;
+    info.controllerCreator = creator;
+    info.type = CellInfoTypeEntry;
+    return info;
+}
+
++ (instancetype)cellInfoWithTitle:(NSString *)title actionBlock:(void (^)(void))action {
+    CellInfo *info = [[CellInfo alloc] init];
+    info.title = title;
+    info.action = action;
+    info.type = CellInfoTypeAction;
+    return info;
+}
+
+
+- (UIViewController *)createEntryController {
+    if (self.controllerClassName) {
+        return [[NSClassFromString(self.controllerClassName) alloc] init];
+    } else if (self.controllerCreator) {
+        return self.controllerCreator();
+    }
+    return nil;
+}
+
+- (void)performAction {
+    if (self.action) {
+        self.action();
+    }
+}
+
 @end
 
 

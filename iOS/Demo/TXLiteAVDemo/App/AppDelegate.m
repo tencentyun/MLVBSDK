@@ -9,12 +9,29 @@
 #import "AppDelegate.h"
 #import <Bugly/Bugly.h>
 
-#import "TXLiveBase.h"
+#ifdef ENABLE_TRTC
+#ifdef ENABLE_PLAY
+#import "TRTCCloud.h"
+#import "TXLiveBase.h"  //TRTC
+#else
+#import "TRTCCloud.h"   //TRTC_Smart
+#endif
+#else
+#import "TXLiveBase.h"  //非TRTC
+#endif
+
+#ifndef UGC_SMART
 #import "AppLogMgr.h"
+#endif
 #import "MainViewController.h"
+#import "AFNetworkReachabilityManager.h"
 #import "Replaykit2Define.h"
 #import <UserNotifications/UserNotifications.h>
 #import <objc/message.h>
+
+#ifdef ENABLE_UGC
+#import "TXUGCBase.h"
+#endif
 
 #define BUGLY_APP_ID @"18a2342254"
 
@@ -39,7 +56,11 @@ NSString *helpUrlDb[] = {
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
-
+//@implementation NSObject (Shit)
+//- (void)ac_dealloc {
+//
+//}
+//@end
 @implementation AppDelegate
 
 - (void)clickHelp:(UIButton *)sender {
@@ -61,7 +82,11 @@ NSString *helpUrlDb[] = {
     //启动bugly组件，bugly组件为腾讯提供的用于crash上报和分析的开放组件，如果您不需要该组件，可以自行移除
     BuglyConfig * config = [[BuglyConfig alloc] init];
     NSString *version = nil;
+#if ENABLE_TRTC
+    version = [TRTCCloud getSDKVersion];
+#else
     version = [TXLiveBase getSDKVersionStr];
+#endif
     
 #if DEBUG
     config.debugMode = YES;
@@ -72,7 +97,7 @@ NSString *helpUrlDb[] = {
     [Bugly startWithAppId:BUGLY_APP_ID config:config];
     // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
     [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#Licence Key#>"];
-    
+
     NSLog(@"rtmp demo init crash report");
 
     // Override point for customization after application launch.
@@ -83,7 +108,7 @@ NSString *helpUrlDb[] = {
     //初始化log模块
     [TXLiveBase sharedInstance].delegate = [AppLogMgr shareInstance];
     [TXLiveBase setConsoleEnabled:NO];
-    
+
     MainViewController* vc = [[MainViewController alloc] init];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-1000, 0)
@@ -97,13 +122,14 @@ NSString *helpUrlDb[] = {
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 
     UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:vc];
-
-    
     nc.navigationBar.hidden = YES;
     
     self.window.rootViewController = nc;
     
     [self.window makeKeyAndVisible];
+#ifndef ENABLE_TRTC
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+#endif
     //For ReplayKit2. 使用 UNUserNotificationCenter 来管理通知
     if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];

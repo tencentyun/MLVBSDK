@@ -7,13 +7,25 @@
 //
 
 #import "MainViewController.h"
+#ifdef ENABLE_PUSH
 #import "CameraPushViewController.h"
+#endif
+#ifdef ENABLE_PLAY
 #import "PlayViewController.h"
+
+#endif
+
+
+
 #import "ColorMacro.h"
 #import "MainTableViewCell.h"
+
 #import "TXLiveBase.h"
 
 #define STATUS_BAR_HEIGHT [UIApplication sharedApplication].statusBarFrame.size.height
+
+static NSString * const XiaoZhiBoAppStoreURLString = @"http://itunes.apple.com/cn/app/id1132521667?mt=8";
+static NSString * const XiaoShiPinAppStoreURLString = @"http://itunes.apple.com/cn/app/id1374099214?mt=8";
 
 @interface MainViewController ()<
 UITableViewDelegate,
@@ -22,7 +34,9 @@ UIPickerViewDataSource,
 UIPickerViewDelegate,
 UIAlertViewDelegate
 >
-
+#ifdef ENABLE_UGC
+@property (strong, nonatomic) UGCKitWrapper *ugcWrapper;
+#endif
 @property (nonatomic) NSMutableArray<CellInfo*>* cellInfos;
 @property (nonatomic) NSArray<CellInfo*>* addNewCellInfos;
 @property (nonatomic) MainTableViewCell *selectedCell;
@@ -35,11 +49,19 @@ UIAlertViewDelegate
 
 @implementation MainViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+#ifdef ENABLE_UGC
+    _ugcWrapper = [[UGCKitWrapper alloc] initWithViewController:self theme:nil];
+#endif
+
     [self initCellInfos];
     [self initUI];
 }
@@ -49,6 +71,7 @@ UIAlertViewDelegate
     _cellInfos = [NSMutableArray new];
     CellInfo* cellInfo = nil;
     
+#if defined(ENABLE_PUSH) || defined(ENABLE_PLAY)
     cellInfo = [CellInfo new];
     cellInfo.title = @"移动直播";
     cellInfo.iconName = @"live_room";
@@ -57,33 +80,43 @@ UIAlertViewDelegate
         NSMutableArray *subCells = [NSMutableArray new];
         CellInfo* scellInfo;
         
-        scellInfo = [CellInfo new];
-        scellInfo.title = @"MLVBLiveRoom";
-        scellInfo.navigateToController = @"LiveRoomListViewController";
+#if defined(ENABLE_PUSH) && defined(ENABLE_PLAY)
+        scellInfo = [CellInfo cellInfoWithTitle:@"MLVBLiveRoom"
+                       controllerClassName:@"LiveRoomListViewController"];
         [subCells addObject:scellInfo];
-
-        scellInfo = [CellInfo new];
-        scellInfo.title = @"摄像头推流";
-        scellInfo.navigateToController = @"CameraPushViewController";
-        [subCells addObject:scellInfo];
-
-        scellInfo = [CellInfo new];
-        scellInfo.title = @"直播拉流";
-        scellInfo.navigateToController = @"PlayViewController";
+#endif
+        
+#ifdef ENABLE_PUSH
+        scellInfo = [CellInfo cellInfoWithTitle:@"摄像头推流"
+                       controllerClassName:@"CameraPushViewController"];
         [subCells addObject:scellInfo];
         
-        scellInfo = [CellInfo new];
-        scellInfo.title = @"录屏直播";
-        scellInfo.navigateToController = @"Replaykit2ViewController";
-        [subCells addObject:scellInfo];
+#endif
         
-        scellInfo = [CellInfo new];
-        scellInfo.title = @"小直播";
-        scellInfo.navigateToController = nil;
+#ifdef ENABLE_PLAY
+        scellInfo = [CellInfo cellInfoWithTitle:@"直播拉流"
+                       controllerClassName:@"PlayViewController"];
+        [subCells addObject:scellInfo];
+#endif
+        
+#if defined(ENABLE_PUSH) && defined(ENABLE_PLAY)
+        scellInfo = [CellInfo cellInfoWithTitle:@"录屏直播"
+                              controllerClassName:@"ScreenPushViewController"];
+        [subCells addObject:scellInfo];
+#endif
+        
+        scellInfo = [CellInfo cellInfoWithTitle:@"小直播" actionBlock:^{
+            // 打开小直播AppStore
+            [[UIApplication sharedApplication]
+             openURL:[NSURL URLWithString:XiaoZhiBoAppStoreURLString]];
+        }];
         [subCells addObject:scellInfo];
         
         subCells;
     });
+#endif
+
+
 }
 
 - (void)initUI
@@ -184,7 +217,6 @@ UIAlertViewDelegate
     return _cellInfos.count;
 }
 
-
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_cellInfos.count < indexPath.row)
@@ -253,20 +285,18 @@ UIAlertViewDelegate
         }
         return;
     }
-    
-    NSString* controllerClassName = cellInfo.navigateToController;
-    Class controllerClass = NSClassFromString(controllerClassName);
-    id controller = [[controllerClass alloc] init];
-    
-    if ([cellInfo.title isEqualToString:@"小直播"]) {
-//        NSString *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@", @"1132521667"];
-        NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/cn/app/id1132521667?mt=8"];
-        //打开链接地址
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-        
-        return;
+
+    if (cellInfo.type == CellInfoTypeEntry) {
+        UIViewController *controller = [cellInfo createEntryController];
+        if (controller) {
+            if (![controller isKindOfClass:NSClassFromString(@"MoviePlayerViewController")]) {
+                [self _hideSuperPlayer];
+            }
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    } else if (cellInfo.type == CellInfoTypeAction) {
+        [cellInfo performAction];
     }
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -278,6 +308,9 @@ UIAlertViewDelegate
     return 51;
 }
 
+- (void)_hideSuperPlayer {}
+
+
 - (void)handleLongPress:(UILongPressGestureRecognizer *)pressRecognizer
 {
     if (pressRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -286,6 +319,11 @@ UIAlertViewDelegate
         NSString *logDoc = [NSString stringWithFormat:@"%@%@", paths[0], @"/log"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSArray* fileArray = [fileManager contentsOfDirectoryAtPath:logDoc error:nil];
+        fileArray = [fileArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSString* file1 = (NSString*)obj1;
+            NSString* file2 = (NSString*)obj2;
+            return [file1 compare:file2] == NSOrderedDescending;
+        }];
         self.logFilesArray = [NSMutableArray new];
         for (NSString* logName in fileArray) {
             if ([logName hasSuffix:@"xlog"]) {
@@ -294,9 +332,10 @@ UIAlertViewDelegate
         }
         
         _logUploadView.alpha = 0.1;
+        UIView *logUploadView = _logUploadView;
         [UIView animateWithDuration:0.5 animations:^{
-            _logUploadView.hidden = NO;
-            _logUploadView.alpha = 1;
+            logUploadView.hidden = NO;
+            logUploadView.alpha = 1;
         }];
         [_logPickerView reloadAllComponents];
     }
@@ -318,12 +357,13 @@ UIAlertViewDelegate
         NSString* logPath = [logDoc stringByAppendingPathComponent:self.logFilesArray[row]];
         NSURL *shareobj = [NSURL fileURLWithPath:logPath];
         UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[shareobj] applicationActivities:nil];
+        UIView *logUploadView = _logUploadView;
         [self presentViewController:activityView animated:YES completion:^{
-            _logUploadView.hidden = YES;
+            logUploadView.hidden = YES;
         }];
     }
 }
-
+#pragma mark - UIPickerView
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
