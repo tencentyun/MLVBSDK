@@ -11,16 +11,14 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-## Version 6.8 @ 2019.11.15
-- Android：优化短视频生成速度，提高短视频编辑生成效率。
-- Android：修复自定义采集偶现无视频数据的问题。
-- Android：修复对焦右下边框比左上边框粗的问题。
-- Android： 企业版修复部分机型大眼、瘦脸、动效无效的问题。
-- iOS：短视频预览解决偶现黑屏的问题。
-- iOS&Android：播放器支持新的时移播放规则。
-- iOS&Android：短视频录制支持 4:3、1:1 分辨率。
-- iOS&Android：优化 QOS 流控，提高码率自适应恢复效率。
-- iOS&Android：企业版增加 P 图新功能，包括美肤、亮眼、白牙、祛皱、祛眼袋等新特性。
+### Version 6.9 @ 2020.01.15
+- iOS&Android：UGC TUIKit 实现，UI 组件化，支持自定义主题，方便集成与修改。
+- iOS&Android：UGC 支持三屏合拍及音量调节能力。
+- iOS&Android：直播支持 1080p 蓝光推流。
+- Android：Android 10 兼容支持。
+- Android：直播推流支持耳返能力。
+- Android：UGC 预处理采用硬遍，提高预处理速度。
+- iOS：UGC 合唱模块优化，解决音画不同步等相关问题。
 
 ## MLVB Demo
 
