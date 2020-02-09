@@ -146,6 +146,7 @@
 		D6D9E37020D283E700B6D607 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D47F3920B6B13C0072AC0B /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D6D9E37920D2850D00B6D607 /* TXReplaykitUpload_Smart.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D6D9E37620D283E700B6D607 /* TXReplaykitUpload_Smart.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D6E5D1C520B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
+		F228D93223F03A1E00F06941 /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = F228D93023F03A1E00F06941 /* GenerateTestUserSig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -471,6 +472,8 @@
 		D6E5D1C020B7B61F00812B2F /* ReplayKit2Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayKit2Define.h; sourceTree = "<group>"; };
 		D6E5D1C120B7B62000812B2F /* ScreenPushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenPushViewController.h; sourceTree = "<group>"; };
 		D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenPushViewController.m; sourceTree = "<group>"; };
+		F228D93023F03A1E00F06941 /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
+		F228D93123F03A1E00F06941 /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1059,6 +1062,7 @@
 		D50292D02272BA4A00C052B7 /* LiveRoom */ = {
 			isa = PBXGroup;
 			children = (
+				F228D92F23F03A1E00F06941 /* Debug */,
 				D50292D32272BA6100C052B7 /* RoomUtil */,
 				D50292D22272BA5900C052B7 /* LiveRoomUI */,
 				D50292D12272BA5100C052B7 /* LiveRoom */,
@@ -1135,6 +1139,15 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F228D92F23F03A1E00F06941 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				F228D93023F03A1E00F06941 /* GenerateTestUserSig.m */,
+				F228D93123F03A1E00F06941 /* GenerateTestUserSig.h */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1420,6 +1433,7 @@
 				400921BF1F4FCC52009B882D /* MBProgressHUD.m in Sources */,
 				918BFA852021AA8D001857DA /* SDWebImageDecoder.m in Sources */,
 				400921C01F4FCC52009B882D /* NSObject+CommonBlock.m in Sources */,
+				F228D93223F03A1E00F06941 /* GenerateTestUserSig.m in Sources */,
 				6AB334B11FA96543007C8244 /* AFNetworkReachabilityManager.m in Sources */,
 				400921C41F4FCC52009B882D /* main.m in Sources */,
 				400921C81F4FCC52009B882D /* NSData+Common.m in Sources */,
