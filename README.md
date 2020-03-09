@@ -15,7 +15,7 @@
 - iOS&Android：直播模式码率调优。
 - iOS&Android：直播模式新增 VOIP 模式支持。
 - Android：解决人脸动效偶现 Crash 问题。
-- Android：解决短视频频频繁切换摄像头同时停止录制引起的偶现 Crash 问题。
+- Android：解决短视频频繁切换摄像头同时停止录制引起的偶现 Crash 问题。
 
 ## MLVB Demo
 
