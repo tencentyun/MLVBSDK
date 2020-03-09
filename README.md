@@ -11,14 +11,11 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 6.9 @ 2020.01.15
-- iOS&Android：UGC TUIKit 实现，UI 组件化，支持自定义主题，方便集成与修改。
-- iOS&Android：UGC 支持三屏合拍及音量调节能力。
-- iOS&Android：直播支持 1080p 蓝光推流。
-- Android：Android 10 兼容支持。
-- Android：直播推流支持耳返能力。
-- Android：UGC 预处理采用硬遍，提高预处理速度。
-- iOS：UGC 合唱模块优化，解决音画不同步等相关问题。
+### Version 7.0 @ 2020.03.09
+- iOS&Android：直播模式码率调优。
+- iOS&Android：直播模式新增 VOIP 模式支持。
+- Android：解决人脸动效偶现 Crash 问题。
+- Android：解决短视频频频繁切换摄像头同时停止录制引起的偶现 Crash 问题。
 
 ## MLVB Demo
 
