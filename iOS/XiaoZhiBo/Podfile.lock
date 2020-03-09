@@ -51,7 +51,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.8.1)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - BlocksKit
     - CWStatusBarNotification
@@ -75,4 +75,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 83ef30b6b343c2d0a701bef6469dd4676962730e
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

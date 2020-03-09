@@ -964,7 +964,7 @@
 			children = (
 				45B1125B2289B8030085AEEC /* TXLiteAVSDK_Smart.framework */,
 			);
-			path = Framework;
+			name = Framework;
 			sourceTree = "<group>";
 		};
 		45784BE62272E3E400A5F2BA /* Classes */ = {
