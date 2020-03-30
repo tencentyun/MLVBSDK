@@ -96,7 +96,7 @@ NSString *helpUrlDb[] = {
     
     [Bugly startWithAppId:BUGLY_APP_ID config:config];
     // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
-    [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#Licence Key#>"];
+    [TXLiveBase setLicenceURL:<#@"Licence URL"#> key:<#@"Licence Key"#>];
 
     NSLog(@"rtmp demo init crash report");
 
