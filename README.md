@@ -11,11 +11,11 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 7.0 @ 2020.03.09
-- iOS&Android：直播模式码率调优。
-- iOS&Android：直播模式新增 VOIP 模式支持。
-- Android：解决人脸动效偶现 Crash 问题。
-- Android：解决短视频频繁切换摄像头同时停止录制引起的偶现 Crash 问题。
+### Version 7.1 @ 2020.03.30
+- iOS&Android：超级播放器跟点播后台更好的结合，新增 V4 协议支持，直接使用 fileid 就能播放，同时新增 SimpleAES 的支持，能够直接对标准的 HLS AES 加密视频进行播放。
+- Andorid：短视频编辑新增 HE-AAC 音频格式支持，更好的兼容第三方视频编辑。
+- Android：短视频 UGCKit 修复偶现裁剪页面显示异常、偶现录制报错等相关问题。
+- Android：C++ STL库统一，静态链接，彻底解决 STL 库冲突的问题。
 
 ## MLVB Demo
 
