@@ -75,8 +75,10 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     // 创建播放器
     _player = [[TXLivePlayer alloc] init];
     
-    //允许接收消息
     TXLivePlayConfig* config = _player.config;
+    // 开启 flvSessionKey 数据回调
+    //config.flvSessionKey = @"X-Tlive-SpanId";
+    // 允许接收消息
     config.enableMessage = YES;
     [_player setConfig:config];
     
@@ -561,9 +563,13 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
             }
         }
         else if (EvtID == EVT_PLAY_GET_MESSAGE) {
-            NSData* msgData = param[@"EVT_GET_MSG"];
-            NSString* msg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding];
+            NSData *msgData = param[@"EVT_GET_MSG"];
+            NSString *msg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding];
             [self toastTip:msg];
+        }
+        else if (EvtID == PLAY_EVT_GET_FLVSESSIONKEY) {
+            //NSString *Msg = (NSString*)[dict valueForKey:EVT_MSG];
+            //[self toastTip:[NSString stringWithFormat:@"event PLAY_EVT_GET_FLVSESSIONKEY: %@", Msg]];
         }
     });
 }

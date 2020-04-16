@@ -295,7 +295,8 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     // 美颜
     NSUInteger controlHeight = [TCBeautyPanel getHeight];
     _vBeauty =[TCBeautyPanel beautyPanelWithFrame:CGRectMake(0, self.view.frame.size.height - controlHeight, self.view.frame.size.width, controlHeight)
-                                            SDKObject:_liveRoom];
+                                            theme:nil
+                                        SDKObject:_liveRoom];
     [ThemeConfigurator configBeautyPanelTheme:_vBeauty];
     _vBeauty.hidden = YES;
     [self.view addSubview:_vBeauty];

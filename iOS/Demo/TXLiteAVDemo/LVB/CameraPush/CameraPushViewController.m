@@ -208,7 +208,8 @@
     CGRect frame = CGRectMake(0, self.view.frame.size.height - controlHeight - bottomOffset,
                               self.view.frame.size.width, controlHeight + bottomOffset);
     _beautyPanel = [TCBeautyPanel beautyPanelWithFrame:frame
-                                                 SDKObject:_pusher];
+                                                 theme:nil
+                                             SDKObject:_pusher];
     _beautyPanel.bottomOffset = bottomOffset;
     [ThemeConfigurator configBeautyPanelTheme:_beautyPanel];
     _beautyPanel.hidden = YES;

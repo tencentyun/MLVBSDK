@@ -493,14 +493,14 @@
  *
  * @note 滤镜素材请使用 png 格式，不能使用 jpg 格式，友情提示，Windows 里直接改文件的后缀名不能改变图片的格式，需要用 Photoshop 进行转换。
  */
-- (void)setFilter:(UIImage *)image;
+- (void)setFilter:(UIImage *)image MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
  * 设置滤镜浓度
  *
  * @param specialValue 从0到1，越大滤镜效果越明显，默认取值0.5
  */
-- (void)setSpecialRatio:(float)specialValue;
+- (void)setSpecialRatio:(float)specialValue MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
  * 设置大眼级别（企业版有效，普通版本设置此参数无效）
@@ -551,7 +551,7 @@
  *
  * @param file 视频文件路径。支持 MP4；nil 表示关闭特效。
  */
-- (void)setGreenScreenFile:(NSURL *)file;
+- (void)setGreenScreenFile:(NSURL *)file MLVB_DEPRECAETD_BEAUTY_API;
 
 /**
  * 选择使用哪一款 AI 动效挂件（企业版有效，其它版本设置此参数无效）。
