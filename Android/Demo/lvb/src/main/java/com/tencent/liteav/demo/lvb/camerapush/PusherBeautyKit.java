@@ -16,21 +16,21 @@ public class PusherBeautyKit implements IBeautyKit {
     @Override
     public void setFilter(Bitmap filterImage, int index) {
         if (mLivePusher != null) {
-            mLivePusher.setFilter(filterImage);
+            mLivePusher.getBeautyManager().setFilter(filterImage);
         }
     }
 
     @Override
-    public void setSpecialRatio(float specialRatio) {
+    public void setFilterStrength(float strength) {
         if (mLivePusher != null) {
-            mLivePusher.setSpecialRatio(specialRatio / 10.0f);
+            mLivePusher.getBeautyManager().setFilterStrength(strength / 10.0f);
         }
     }
 
     @Override
-    public void setGreenScreenFile(String path, boolean isLoop) {
+    public void setGreenScreenFile(String path) {
         if (mLivePusher != null) {
-            mLivePusher.setGreenScreenFile(path);
+            mLivePusher.getBeautyManager().setGreenScreenFile(path);
         }
     }
 

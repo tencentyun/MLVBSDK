@@ -11,11 +11,10 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 7.1 @ 2020.03.30
-- iOS&Android：超级播放器跟点播后台更好的结合，新增 V4 协议支持，直接使用 fileid 就能播放，同时新增 SimpleAES 的支持，能够直接对标准的 HLS AES 加密视频进行播放。
-- Andorid：短视频编辑新增 HE-AAC 音频格式支持，更好的兼容第三方视频编辑。
-- Android：短视频 UGCKit 修复偶现裁剪页面显示异常、偶现录制报错等相关问题。
-- Android：C++ STL库统一，静态链接，彻底解决 STL 库冲突的问题。
+### Version 7.2 @ 2020.04.17
+- iOS&Android：新增 TXLivePlayer 支持回调 HTTP Response 头字段，可用于 CDN 定制的 HTTP 响应头字段解析。
+- iOS&Android：新增 TXLivePusher 支持本地音量回调。
+- iOS&Android：优化滤镜、绿幕等视效接口，归并到 TXCBeautyManager 类下，实现统一的调用方式。
 
 ## MLVB Demo
 

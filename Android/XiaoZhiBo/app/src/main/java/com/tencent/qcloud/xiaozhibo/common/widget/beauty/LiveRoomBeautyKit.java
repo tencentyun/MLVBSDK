@@ -15,20 +15,23 @@ public class LiveRoomBeautyKit implements IBeautyKit {
 
     @Override
     public void setFilter(Bitmap filterImage, int index) {
-        if (mLiveRoom != null)
-            mLiveRoom.setFilter(filterImage);
+        if (mLiveRoom != null) {
+            mLiveRoom.getBeautyManager().setFilter(filterImage);
+        }
     }
 
     @Override
-    public void setSpecialRatio(float specialRatio) {
-        if (mLiveRoom != null)
-            mLiveRoom.setFilterConcentration(specialRatio / 10.0f);
+    public void setFilterStrength(float strength) {
+        if (mLiveRoom != null) {
+            mLiveRoom.getBeautyManager().setFilterStrength(strength / 10.0f);
+        }
     }
 
     @Override
-    public void setGreenScreenFile(String path, boolean isLoop) {
-        if (mLiveRoom != null)
-            mLiveRoom.setGreenScreenFile(path);
+    public void setGreenScreenFile(String path) {
+        if (mLiveRoom != null) {
+            mLiveRoom.getBeautyManager().setGreenScreenFile(path);
+        }
     }
 
     @Override

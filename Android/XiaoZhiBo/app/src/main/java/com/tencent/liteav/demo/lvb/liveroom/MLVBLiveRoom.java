@@ -485,6 +485,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param image 指定素材，即颜色查找表图片。注意：一定要用 png 格式！！！
      */
+    @Deprecated
     public abstract void setFilter(Bitmap image);
 
     /**
@@ -492,6 +493,7 @@ public abstract class MLVBLiveRoom {
      *
      * @param concentration 从0到1，越大滤镜效果越明显，默认取值0.5
      */
+    @Deprecated
     public abstract void setFilterConcentration(float concentration);
 
     /**
@@ -525,6 +527,7 @@ public abstract class MLVBLiveRoom {
      *
      * @note API 要求18
      */
+    @Deprecated
     public abstract boolean setGreenScreenFile(String file);
 
     /**

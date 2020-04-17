@@ -489,8 +489,8 @@ public class BeautyPanel extends FrameLayout implements SeekBar.OnSeekBarChangeL
         mBeautyParams = new BeautyParams();
         if (mProxy != null) {
             mProxy.setFilter(mBeautyParams.mFilterBmp, mBeautyParams.mFilterIndex);
-            mProxy.setSpecialRatio(mBeautyParams.mFilterMixLevel);
-            mProxy.setGreenScreenFile(mBeautyParams.mGreenFile, true);
+            mProxy.setFilterStrength(mBeautyParams.mFilterStrength);
+            mProxy.setGreenScreenFile(mBeautyParams.mGreenFile);
             mProxy.setBeautyStyle(mBeautyParams.mBeautyStyle);
             mProxy.setBeautyLevel(mBeautyParams.mBeautyLevel);
             mProxy.setWhitenessLevel(mBeautyParams.mWhiteLevel);
@@ -654,7 +654,7 @@ public class BeautyPanel extends FrameLayout implements SeekBar.OnSeekBarChangeL
         }
         mBeautyParams.mGreenFile = file;
         if (mProxy != null) {
-            mProxy.setGreenScreenFile(file, true);
+            mProxy.setGreenScreenFile(file);
         }
     }
 
@@ -831,7 +831,7 @@ public class BeautyPanel extends FrameLayout implements SeekBar.OnSeekBarChangeL
                 }
             } else if (mSencodGradleType == ITEM_TYPE_FILTTER) {
                 if (mProxy != null) {
-                    mProxy.setSpecialRatio(progress);
+                    mProxy.setFilterStrength(progress);
                 }
             }
 

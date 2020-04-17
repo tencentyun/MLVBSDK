@@ -32,7 +32,7 @@ public class PusherBGMFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NO_TITLE, R.style.mlvb_dialog_fragment);
 
-        Context context = getContext();
+        Context context = getActivity();
         if (context != null) {
             File sdcardDir = context.getExternalFilesDir(null);
             if (sdcardDir != null) {

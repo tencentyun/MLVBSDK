@@ -145,6 +145,7 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
     /**
      * 其他参数
      */
+    private boolean                         mIsUseCamera = false;
     private int                             mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960;   // 当前分辨率
     private boolean                         mIsPushing;                     // 当前是否正在推流
     private Bitmap                          mWaterMarkBitmap;               // 水印
@@ -312,6 +313,9 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
         findViewById(R.id.pusher_btn_switch_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!mIsUseCamera) {
+                    return;
+                }
                 // 表明当前是前摄像头
                 if (v.getTag() == null || (Boolean) v.getTag()) {
                     v.setTag(false);
@@ -510,7 +514,7 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
             mPusherView.onResume();
         }
 
-        if (mIsPushing && mLivePusher != null) {
+        if (mIsPushing && mIsUseCamera && mLivePusher != null) {
             // 如果当前是隐私模式，那么不resume
             if (!mPushMoreFragment.isPrivateMode()) {
                 mLivePusher.resumePusher();
@@ -526,7 +530,7 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
             mPusherView.onPause();
         }
 
-        if (mIsPushing && mLivePusher != null) {
+        if (mIsPushing && mIsUseCamera && mLivePusher != null) {
             // 如果当前已经是隐私模式，那么则不pause
             if (!mPushMoreFragment.isPrivateMode()) {
                 mLivePusher.pausePusher();
@@ -734,6 +738,29 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
             mPusherTroublieshootingFragment.setLogText(null, params, TXPushVisibleLogView.CHECK_RTMP_URL_FAIL);
             return false;
         }
+
+        AlertDialog.Builder dialogBuidler = new AlertDialog.Builder(this);
+        final String finalTRTMPURL = tRTMPURL;
+        dialogBuidler.setTitle("选择输入源")
+                .setView(new TextView(this))
+                .setPositiveButton("摄像头", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startPush(finalTRTMPURL, true);
+                    }
+                })
+                .setNegativeButton("录屏", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startPush(finalTRTMPURL, false);
+                    }
+                });
+        dialogBuidler.show();
+        return true;
+    }
+
+    private void startPush(String rtmpUrl, boolean useCamera) {
+        mIsUseCamera = useCamera;
         // 显示本地预览的View
         mPusherView.setVisibility(View.VISIBLE);
 
@@ -801,6 +828,10 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
 
         // 是否打开手势放大预览画面
         mLivePushConfig.setEnableZoom(mPushMoreFragment.isZoomEnable());
+        
+        mLivePushConfig.enablePureAudioPush(mPushMoreFragment.isPureAudio());
+
+        mLivePushConfig.enableAudioEarMonitoring(mPushSettingFragment.isEarmonitoringEnable());
 
         mLivePushConfig.enableAudioEarMonitoring(mPushSettingFragment.isEarmonitoringEnable());
 
@@ -812,11 +843,16 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
         // 设置场景
         setPushScene(mPushSettingFragment.getQualityType(), mPushSettingFragment.isEnableAdjustBitrate());
 
-        // 设置本地预览View
-        mLivePusher.startCameraPreview(mPusherView);
-        if (!mFrontCamera) mLivePusher.switchCamera();
+        if (useCamera) {
+            // 设置本地预览View
+            mLivePusher.startCameraPreview(mPusherView);
+            if (!mFrontCamera) mLivePusher.switchCamera();
+        } else {
+            mLivePusher.startScreenCapture();
+        }
+
         // 发起推流
-        int ret = mLivePusher.startPusher(tRTMPURL.trim());
+        int ret = mLivePusher.startPusher(rtmpUrl.trim());
         if (ret == -5) {
             String errInfo = "License 校验失败";
             int start = (errInfo + " 详情请点击[").length();
@@ -846,7 +882,7 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
                 }
             });
             dialogBuidler.show();
-            return false;
+            return;
         }
 
         // 设置混响
@@ -858,8 +894,6 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
         mIsPushing = true;
 
         mBtnStartPush.setBackgroundResource(R.mipmap.pusher_stop);
-
-        return true;
     }
 
 
@@ -872,8 +906,12 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
 
         // 停止BGM
         mLivePusher.stopBGM();
-        // 停止本地预览
-        mLivePusher.stopCameraPreview(true);
+        if (mIsUseCamera) {
+            // 停止本地预览
+            mLivePusher.stopCameraPreview(true);
+        } else {
+            mLivePusher.stopScreenCapture();
+        }
         // 移除监听
         mLivePusher.setPushListener(null);
         // 停止推流
@@ -920,7 +958,7 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
         if (mLivePusher.isPushing()) {
             mLivePusher.setConfig(mLivePushConfig);
             // 不是隐私模式，则开启摄像头推流。
-            if (!mPushMoreFragment.isPrivateMode()) {
+            if (!mPushMoreFragment.isPrivateMode() && mIsUseCamera) {
                 mLivePusher.stopCameraPreview(true);
                 mLivePusher.startCameraPreview(mPusherView);
             }
@@ -1241,6 +1279,14 @@ public class CameraPusherActivity extends Activity implements ITXLivePushListene
     public  void onEarmonitoringChange(boolean enable){
         if (mLivePusher != null) {
             mLivePusher.getConfig().enableAudioEarMonitoring(enable);
+            mLivePusher.setConfig(mLivePusher.getConfig());
+        }
+    }
+
+    @Override
+    public void onFpsChanged(int fps) {
+        if (mLivePusher != null) {
+            mLivePusher.getConfig().setVideoFPS(fps);
             mLivePusher.setConfig(mLivePusher.getConfig());
         }
     }

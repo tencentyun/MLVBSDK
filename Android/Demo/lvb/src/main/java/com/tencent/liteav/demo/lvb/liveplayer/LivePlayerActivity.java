@@ -134,6 +134,7 @@ public class LivePlayerActivity extends Activity implements ITXLivePlayListener,
         mActivityType = getIntent().getIntExtra("TYPE", ACTIVITY_TYPE_LIVE_PLAY);
 
         mPlayConfig = new TXLivePlayConfig();
+        //mPlayConfig.setFlvSessionKey("X-Tlive-SpanId");
 
         setContentView();
 
@@ -571,6 +572,9 @@ public class LivePlayerActivity extends Activity implements ITXLivePlayListener,
                 }
                 Toast.makeText(getApplicationContext(), seiMessage, Toast.LENGTH_SHORT).show();
             }
+        } else if (event == TXLiveConstants.PLAY_EVT_GET_FLVSESSIONKEY) {
+            //String flvSessionKey = param.getString(TXLiveConstants.EVT_DESCRIPTION, "");
+            //Toast.makeText(getApplicationContext(), "event PLAY_EVT_GET_FLVSESSIONKEY: " + flvSessionKey, Toast.LENGTH_SHORT).show();
         }
 
         if (event < 0) {

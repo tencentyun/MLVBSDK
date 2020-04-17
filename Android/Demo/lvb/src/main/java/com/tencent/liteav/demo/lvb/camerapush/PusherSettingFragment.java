@@ -36,6 +36,7 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
     public static final String SP_KEY_QUALIY = "sp_key_quality";
     public static final String SP_KEY_REVERB = "sp_key_reverb";
     public static final String SP_KEY_VOICE = "sp_key_voice";
+    public static final String SP_KEY_FPS = "sp_key_fps";
     public static final String SP_KEY_EARMONITORING = "sp_key_earmonitoring";
 
     // 画质偏好列表
@@ -58,6 +59,7 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
             TXLiveConstants.VOICECHANGER_TYPE_4, TXLiveConstants.VOICECHANGER_TYPE_5, TXLiveConstants.VOICECHANGER_TYPE_6,
             TXLiveConstants.VOICECHANGER_TYPE_7, TXLiveConstants.VOICECHANGER_TYPE_8, TXLiveConstants.VOICECHANGER_TYPE_9,
             TXLiveConstants.VOICECHANGER_TYPE_10, TXLiveConstants.VOICECHANGER_TYPE_11};
+    private static final List<String> FPS_LIST = Arrays.asList("15", "20");
 
     // CheckBox控件
     private CheckBox mCbHwAcc, mCbAdjustBitrate, mCbEarmonitoring;
@@ -65,7 +67,9 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
 
     // Spinner控件
     private Spinner mSpVideoQuality, mSpReverb, mSpVoiceChanger;
+    private Spinner mFpsSpinner;
     private int mQualityIndex = 1, mReverbIndex = 0, mVoiceChangerIndex = 0;
+    private int mFpsIndex=0;
 
 
     // 回调
@@ -120,6 +124,7 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
         initVideoQualitySpinner(view);
         initRevervSpinner(view);
         initVoiceChanegrSpinner(view);
+        initFpsSpinner(view);
     }
 
     public void setOnSettingChangeListener(OnSettingChangeListener listener) {
@@ -155,6 +160,27 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
             mIsEarmonitoringEnable = mCbEarmonitoring.isChecked();
             listener.onEarmonitoringChange(mIsEarmonitoringEnable);
         }
+    }
+
+    private void initFpsSpinner(View view) {
+        mFpsSpinner = (Spinner) view.findViewById(R.id.pusher_spinner_fps);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(), R.layout.pusher_setting_spinner_text, FPS_LIST);
+        mFpsSpinner.setAdapter(adapter);
+        mFpsSpinner.setSelection(mFpsIndex);
+        mFpsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mFpsIndex = position;
+                int fps = Integer.parseInt(FPS_LIST.get(position));
+                OnSettingChangeListener listener = getLisener();
+                if (listener != null) listener.onFpsChanged(fps);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void initVoiceChanegrSpinner(View view) {
@@ -236,6 +262,7 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
             mQualityIndex = s.getInt(SP_KEY_QUALIY, mQualityIndex);
             mReverbIndex = s.getInt(SP_KEY_REVERB, mReverbIndex);
             mVoiceChangerIndex = s.getInt(SP_KEY_VOICE, mVoiceChangerIndex);
+            mFpsIndex = s.getInt(SP_KEY_FPS,mFpsIndex);
             mIsEarmonitoringEnable = s.getBoolean(SP_KEY_EARMONITORING,mIsEarmonitoringEnable);
         } catch (Exception e) {
             e.printStackTrace();
@@ -254,6 +281,7 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
                     .putInt(SP_KEY_QUALIY, mQualityIndex)
                     .putInt(SP_KEY_REVERB, mReverbIndex)
                     .putInt(SP_KEY_VOICE, mVoiceChangerIndex)
+                    .putInt(SP_KEY_FPS,mFpsIndex)
                     .putBoolean(SP_KEY_EARMONITORING,mIsEarmonitoringEnable)
                     .apply();
         } catch (Exception e) {
@@ -305,6 +333,11 @@ public class PusherSettingFragment extends DialogFragment implements CompoundBut
          * @param enable
          */
         void onEarmonitoringChange(boolean enable);
+
+        /**
+         * 采集帧率
+         */
+        void onFpsChanged(int fps);
     }
 
     public int getQualityType() {
