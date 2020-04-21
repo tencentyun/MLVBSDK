@@ -14,7 +14,7 @@
 ### Version 7.2 @ 2020.04.17
 - iOS&Android：新增 TXLivePlayer 支持回调 HTTP Response 头字段，可用于 CDN 定制的 HTTP 响应头字段解析。
 - iOS&Android：新增 TXLivePusher 支持本地音量回调。
-- iOS&Android：优化滤镜、绿幕等视效接口，归并到 TXCBeautyManager 类下，实现统一的调用方式。
+- iOS&Android：优化滤镜、绿幕等视效接口，归并到 TXBeautyManager 类下，实现统一的调用方式。
 
 ## MLVB Demo
 
