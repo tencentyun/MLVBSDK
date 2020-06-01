@@ -682,6 +682,8 @@
             NSLog(@"exitRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
         }];
     }
+    // 停止的时候，要清理延时操作
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
