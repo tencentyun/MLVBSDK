@@ -10,6 +10,8 @@
 		401A9A42247FACAF00C0763B /* TCAudioSettingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 401A9A40247FACAF00C0763B /* TCAudioSettingManager.h */; };
 		401A9A43247FACAF00C0763B /* TCAudioSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A9A41247FACAF00C0763B /* TCAudioSettingManager.m */; };
 		401A9A48247FB78F00C0763B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 401A9A47247FB78F00C0763B /* libc++.tbd */; };
+		401ACFF024ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401ACFEF24ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework */; };
+		401ACFF124ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 401ACFEF24ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		40AF719F247D036200EBB371 /* AudioEffectSettingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 40AF719D247D036200EBB371 /* AudioEffectSettingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40AF71AD247D03E700EBB371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF71AC247D03E700EBB371 /* AppDelegate.swift */; };
 		40AF71AF247D03E700EBB371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF71AE247D03E700EBB371 /* SceneDelegate.swift */; };
@@ -70,7 +72,6 @@
 		40E25FB5248029F8005EB543 /* ASViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E25F9C248029F8005EB543 /* ASViewController+MASAdditions.h */; };
 		40E25FB6248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E25F9D248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m */; };
 		40E25FB924803F68005EB543 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 401A9A47247FB78F00C0763B /* libc++.tbd */; };
-		40E25FBE24804490005EB543 /* TXLiteAVSDK_Enterprise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E25FBD24804490005EB543 /* TXLiteAVSDK_Enterprise.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		401ACFF224ACD9E5003076C7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				401ACFF124ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40AF71C3247D040200EBB371 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -107,6 +119,7 @@
 		401A9A40247FACAF00C0763B /* TCAudioSettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCAudioSettingManager.h; sourceTree = "<group>"; };
 		401A9A41247FACAF00C0763B /* TCAudioSettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCAudioSettingManager.m; sourceTree = "<group>"; };
 		401A9A47247FB78F00C0763B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		401ACFEF24ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Professional.framework; path = ../XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
 		40AF719A247D036200EBB371 /* AudioEffectSettingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioEffectSettingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40AF719D247D036200EBB371 /* AudioEffectSettingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioEffectSettingKit.h; sourceTree = "<group>"; };
 		40AF719E247D036200EBB371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,7 +189,6 @@
 		40E25F9B248029F8005EB543 /* ASMASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMASLayoutConstraint.h; sourceTree = "<group>"; };
 		40E25F9C248029F8005EB543 /* ASViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		40E25F9D248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASNSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
-		40E25FBD24804490005EB543 /* TXLiteAVSDK_Enterprise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Enterprise.framework; path = ../../../SDK/TXLiteAVSDK_Enterprise.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40D08705249C9CF20055F9A6 /* Accelerate.framework in Frameworks */,
-				40E25FBE24804490005EB543 /* TXLiteAVSDK_Enterprise.framework in Frameworks */,
+				401ACFF024ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework in Frameworks */,
 				40E25FB924803F68005EB543 /* libc++.tbd in Frameworks */,
 				40D08707249C9D460055F9A6 /* AssetsLibrary.framework in Frameworks */,
 			);
@@ -266,9 +278,9 @@
 		40AF71BE247D040200EBB371 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				401ACFEF24ACD9E5003076C7 /* TXLiteAVSDK_Professional.framework */,
 				40D08706249C9D460055F9A6 /* AssetsLibrary.framework */,
 				40D08703249C9C130055F9A6 /* Accelerate.framework */,
-				40E25FBD24804490005EB543 /* TXLiteAVSDK_Enterprise.framework */,
 				401A9A47247FB78F00C0763B /* libc++.tbd */,
 			);
 			name = Frameworks;
@@ -449,6 +461,7 @@
 				40AF7196247D036200EBB371 /* Sources */,
 				40AF7197247D036200EBB371 /* Frameworks */,
 				40AF7198247D036200EBB371 /* Resources */,
+				401ACFF224ACD9E5003076C7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -779,7 +792,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../SDK/";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${SRCROOT}/../../../SDK/",
+					"${SRCROOT}/XiaoZhiBoApp/Framework/",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/AudioSettingKit/Tool/TCAudioSettingPrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -819,7 +835,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../SDK/";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${SRCROOT}/../../../SDK/",
+					"${SRCROOT}/XiaoZhiBoApp/Framework/",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/AudioSettingKit/Tool/TCAudioSettingPrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (

@@ -197,10 +197,10 @@
             make.right.equalTo(self).offset(-15);
         }];
         
-        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
-            make.centerY.equalTo(self->_closeBtn.mas_centerY);
-        }];
+//        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
+//            make.centerY.equalTo(self->_closeBtn.mas_centerY);
+//        }];
     } else {
         //直播
         //聊天
@@ -224,10 +224,10 @@
             make.right.equalTo(self).offset(-15);
         }];
         
-        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
-            make.centerY.equalTo(self->_closeBtn.mas_centerY);
-        }];
+//        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
+//            make.centerY.equalTo(self->_closeBtn.mas_centerY);
+//        }];
         //点赞
         _likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _likeBtn.frame = CGRectMake(0, 0, icon_size, icon_size);
