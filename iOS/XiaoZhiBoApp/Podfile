@@ -13,5 +13,7 @@ pod 'BlocksKit', '~> 2.2.5'
 pod 'QBImagePickerController'
 #pod 'pitu', :path => './pitu/'
 pod 'CWStatusBarNotification', '~> 2.3.5'
+pod 'TXIMSDK_iOS'
+pod 'Bugly'
 
 end
