@@ -23,15 +23,30 @@
 #ifndef UGC_SMART
 #import "AppLogMgr.h"
 #endif
+
+#ifndef TRTC
 #import "MainViewController.h"
+#else
+#import "PortalViewController.h"
+#endif
+
 #import "AFNetworkReachabilityManager.h"
-#import "Replaykit2Define.h"
 #import <UserNotifications/UserNotifications.h>
 #import <objc/message.h>
 
 #ifdef ENABLE_UGC
 #import "TXUGCBase.h"
 #endif
+
+#if !defined(UGC) && !defined(PLAYER)
+#import "TXLiteAVDemo-Swift.h"
+#import <ImSDK/ImSDK.h>
+#endif
+
+#if defined(ENTERPRISE) || defined(PROFESSIONAL) || defined(SMART) || defined(TRTC)
+#import "Replaykit2Define.h"
+#endif
+
 
 #define BUGLY_APP_ID @"18a2342254"
 
@@ -53,15 +68,41 @@ NSString *helpUrlDb[] = {
     [Help_TRTC] = @"https://cloud.tencent.com/document/product/647/32221",
     };
     
+#if !defined(PLAYER) && !defined(UGC)
+@interface AppDelegate () <UNUserNotificationCenterDelegate, V2TIMAPNSListener>
+#else
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
+#endif
 
+#ifndef TRTC
+@property (nonatomic, strong) MainViewController* mainViewController;
+#else
+@property (nonatomic, strong) PortalViewController* portalVC;
+#endif
 @end
-//@implementation NSObject (Shit)
-//- (void)ac_dealloc {
-//
-//}
-//@end
+
+
 @implementation AppDelegate
+
+
+#ifndef TRTC
+-(MainViewController *)mainViewController{
+    if (!_mainViewController) {
+        _mainViewController = [[MainViewController alloc] init];
+    }
+    return _mainViewController;
+}
+#else
+-(PortalViewController *)portalVC{
+    if (!_portalVC) {
+        _portalVC = [[UIStoryboard storyboardWithName:@"Portal" bundle:nil] instantiateInitialViewController];
+    }
+    return _portalVC;
+}
+
+#endif
+
+
 
 - (void)clickHelp:(UIButton *)sender {
     NSURL *helpUrl = [NSURL URLWithString:helpUrlDb[sender.tag]];
@@ -79,6 +120,7 @@ NSString *helpUrlDb[] = {
         [fm removeItemAtPath:[documentPath stringByAppendingPathComponent:@"TXLiveSDK.licence"] error:nil];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"remove_cache_preference"];
     }
+    [self registNotificaiton];
     //启动bugly组件，bugly组件为腾讯提供的用于crash上报和分析的开放组件，如果您不需要该组件，可以自行移除
     BuglyConfig * config = [[BuglyConfig alloc] init];
     NSString *version = nil;
@@ -95,9 +137,18 @@ NSString *helpUrlDb[] = {
     config.channel = @"LiteAV Demo";
     
     [Bugly startWithAppId:BUGLY_APP_ID config:config];
-    // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
-    [TXLiveBase setLicenceURL:<#@"Licence URL"#> key:<#@"Licence Key"#>];
-
+#ifdef ENABLE_UGC
+    [TXUGCBase setLicenceURL:@"" key:@""];
+#endif
+    
+#if defined(ENABLE_PUSH) && !defined(TRTC)
+    [TXLiveBase setLicenceURL:@"" key:@""];
+#endif
+    
+#ifdef TRTC
+    [TXLiveBase setLicenceURL:@"" key:@""];
+#endif
+    
     NSLog(@"rtmp demo init crash report");
 
     // Override point for customization after application launch.
@@ -105,12 +156,18 @@ NSString *helpUrlDb[] = {
     
     self.window.backgroundColor = [UIColor whiteColor];
     
+#ifdef ENABLE_TRTC
+    [TRTCCloud setConsoleEnabled:NO];
+    [TRTCCloud setLogLevel:TRTCLogLevelDebug];
+    [TRTCCloud setLogDelegate:[AppLogMgr shareInstance]];
+#else
     //初始化log模块
+#ifndef UGC_SMART
     [TXLiveBase sharedInstance].delegate = [AppLogMgr shareInstance];
     [TXLiveBase setConsoleEnabled:NO];
-
-    MainViewController* vc = [[MainViewController alloc] init];
-    
+    [TXLiveBase setAppID:@"1252463788"];
+#endif
+#endif
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-1000, 0)
                                                          forBarMetrics:UIBarMetricsDefault];
     
@@ -120,15 +177,21 @@ NSString *helpUrlDb[] = {
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"transparent.png"] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
-
-    UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    nc.navigationBar.hidden = YES;
+#ifdef NOT_LOGIN
+    [self showPortalConroller];
+#else
+    [self showLoginController];
+#endif
     
-    self.window.rootViewController = nc;
     
     [self.window makeKeyAndVisible];
 #ifndef ENABLE_TRTC
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+#endif
+
+#if !defined(PLAYER) && !defined(UGC)
+    // 自定义 APP 未读数
+    [[V2TIMManager sharedInstance] setAPNSListener:self];
 #endif
     //For ReplayKit2. 使用 UNUserNotificationCenter 来管理通知
     if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
@@ -147,13 +210,14 @@ NSString *helpUrlDb[] = {
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    
-    // 处理完成后条用 completionHandler ，用于指示在前台显示通知的形式
+    #if defined(ENTERPRISE) || defined(PROFESSIONAL) || defined(SMART)
     if (notification.request.content.userInfo.allKeys.count > 0) {
         if ([notification.request.content.userInfo[kReplayKit2UploadingKey] isEqualToString:kReplayKit2Stop]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kCocoaNotificationNameReplayKit2Stop object:nil];
         }
     }
+    #endif
+    // 处理完成后条用 completionHandler ，用于指示在前台显示通知的形式
     completionHandler(UNNotificationPresentationOptionSound + UNNotificationPresentationOptionBadge + UNAuthorizationOptionAlert);
 }
 
@@ -191,4 +255,39 @@ NSString *helpUrlDb[] = {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - 通知相关方法
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"error: %@", error);
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    self.deviceToken = deviceToken;
+}
+
+- (void)registNotificaiton {
+    UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+#pragma mark - 登录跳转方法
+- (void)showPortalConroller {
+#ifdef TRTC
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.portalVC];
+#else
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+#endif
+}
+
+- (void)showLoginController {
+#ifndef NOT_LOGIN
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+#endif
+}
+
+#pragma mark - 推送设置回调
+- (uint32_t)onSetAPPUnreadCount {
+    return 0;
+}
 @end

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11521.1" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11517.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Broadcast View Controller-->
+        <scene sceneID="7MM-of-jgj">
+            <objects>
+                <viewController id="ObA-dk-sSI" customClass="BroadcastViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qkL-Od-lgU"/>
+                        <viewControllerLayoutGuide type="bottom" id="n38-gi-rB5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入直播标题" textAlignment="center" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="wm6-0t-0Ue" customClass="UITextFieldEx">
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6m-KC-VdX">
+                                <color key="backgroundColor" red="0.043137254901960784" green="0.77254901960784317" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="LVz-3R-Oxa"/>
+                                    <constraint firstAttribute="height" constant="40" id="l6R-sv-zW4"/>
+                                </constraints>
+                                <color key="tintColor" white="0.93405172410000004" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="开始直播"/>
+                                <connections>
+                                    <action selector="startBroadcast:" destination="ObA-dk-sSI" eventType="touchUpInside" id="3s2-zM-km1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4r2-pT-bOy" userLabel="close">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="0CZ-1R-Pus"/>
+                                    <constraint firstAttribute="height" constant="35" id="rWC-6d-q7K"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="cancelBroadcast:" destination="ObA-dk-sSI" eventType="touchUpInside" id="Gmt-tM-fCh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10196078431372549" green="0.12549019607843137" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="wm6-0t-0Ue" firstAttribute="centerY" secondItem="zMn-AG-sqS" secondAttribute="centerY" id="7Wh-jR-yMR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4r2-pT-bOy" secondAttribute="trailing" constant="-13" id="Efe-wO-Amv"/>
+                            <constraint firstItem="wm6-0t-0Ue" firstAttribute="width" secondItem="zMn-AG-sqS" secondAttribute="width" constant="-32" id="fZ4-qo-Ybf"/>
+                            <constraint firstItem="wm6-0t-0Ue" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="nXp-0T-LRP"/>
+                            <constraint firstItem="y6m-KC-VdX" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="qIA-uf-ZRW"/>
+                            <constraint firstItem="4r2-pT-bOy" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" constant="8" id="w92-2l-E1b"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="y6m-KC-VdX" secondAttribute="bottom" constant="35" id="xic-Ag-doh"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="320"/>
+                    <connections>
+                        <outlet property="startBtn" destination="y6m-KC-VdX" id="PM3-ZY-V2Z"/>
+                        <outlet property="titleTextField" destination="wm6-0t-0Ue" id="7hF-KR-Ik2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32" y="36.881559220389811"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="35" height="35"/>
+    </resources>
+</document>

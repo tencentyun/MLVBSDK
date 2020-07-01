@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "1140"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "400921911F4FCC52009B882D"
-               BuildableName = "TXLiteAVDemo_Smart.app"
-               BlueprintName = "TXLiteAVDemo_Smart"
+               BlueprintIdentifier = "D6D9E36520D283E700B6D607"
+               BuildableName = "TXReplaykitUpload_Smart.appex"
+               BlueprintName = "TXReplaykitUpload_Smart"
                ReferencedContainer = "container:TXLiteAVDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,9 +29,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6D9E36520D283E700B6D607"
-               BuildableName = "TXReplaykitUpload_Smart.appex"
-               BlueprintName = "TXReplaykitUpload_Smart"
+               BlueprintIdentifier = "400921911F4FCC52009B882D"
+               BuildableName = "TXLiteAVDemo_Smart.app"
+               BlueprintName = "TXLiteAVDemo_Smart"
                ReferencedContainer = "container:TXLiteAVDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,23 +44,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "400921911F4FCC52009B882D"
-            BuildableName = "TXLiteAVDemo_Smart.app"
-            BlueprintName = "TXLiteAVDemo_Smart"
-            ReferencedContainer = "container:TXLiteAVDemo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
@@ -77,8 +67,6 @@
             ReferencedContainer = "container:TXLiteAVDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

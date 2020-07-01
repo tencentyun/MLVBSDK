@@ -9,20 +9,31 @@
 
 #import "SampleHandler.h"
 #import "TXLiveSDKTypeDef.h"
+
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
 #import "TXLivePush.h"
 #import "TXLiveBase.h"
+#endif
+
 #import "ReplayKit2Define.h"
 #import <VideoToolbox/VideoToolbox.h>
 #import <Accelerate/Accelerate.h>
 #import <UserNotifications/UserNotifications.h>
-#import <ReplayKit/RPBroadcastExtension.h>
+#import <ReplayKit/ReplayKit.h>
+#import "SimpleIPC.h"
+
+#if TRTC_EXT
+#import <TXLiteAVSDK_ReplayKitExt/TXLiteAVSDK_ReplayKitExt.h>
+#endif
 
 //  To handle samples with a subclass of RPBroadcastSampleHandler set the following in the extension's Info.plist file:
 //  - RPBroadcastProcessMode should be set to RPBroadcastProcessModeSampleBuffer
 //  - NSExtensionPrincipalClass should be set to this class
 //#define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
 static TXLivePush *s_txLivePublisher;
+#endif
 static NSString *s_rtmpUrl;
 static BOOL       s_landScape;   // 1 - 横屏；
 static SampleHandler *s_delegate;   // retain delegate
@@ -31,57 +42,81 @@ static CMSampleBufferRef s_lastSampleBuffer;
 static CGImagePropertyOrientation s_orientation = kCGImagePropertyOrientationUp;
 
 
-@interface SampleHandler() <TXLivePushListener, TXLiveBaseDelegate>
+@interface SampleHandler()
 
--(void) onPushEvent:(int)EvtID withParam:(NSDictionary*)param;
--(void) onNetStatus:(NSDictionary*) param;
+#if (!defined(TRTC) || defined(TRTC_APPSTORE)) && TRTC_EXT
+    <TXLivePushListener, TXLiveBaseDelegate, TXReplayKitExtDelegate>
+#elif (!defined(TRTC) || defined(TRTC_APPSTORE)) && !TRTC_EXT
+    <TXLivePushListener, TXLiveBaseDelegate>
+#elif TRTC_EXT
+    <TXReplayKitExtDelegate>
+#endif
+
+{
+#if !kReplayKitUseAppGroup
+    SimpleIPC *_ipc;
+#endif
+}
+- (void)onPushEvent:(int)EvtID withParam:(NSDictionary*)param;
+- (void)onNetStatus:(NSDictionary*) param;
 
 @end
 
 @implementation SampleHandler {
-    
+
 }
 
-- (NSDictionary *)jsonData2Dictionary:(NSString *)jsonData
-{
-    if (jsonData == nil) {
-        return nil;
+- (NSString *)_getConfigForKey:(NSString *)key fromConfig:(NSDictionary *)config {
+#if kReplayKitUseAppGroup
+    // 使用AppGroup时，从UserDefaults中获取数据，使用 SimpleIPC 会使用传来的 config
+    config = [[[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId] dictionaryRepresentation];
+#endif
+    return [config objectForKey:key];
+}
+
+- (void)_getStreamingConfig:(NSDictionary *)defaults {
+#if kReplayKitUseAppGroup
+    // 使用AppGroup时，从UserDefaults中获取数据，使用 SimpleIPC 会使用传来的 config
+    config = [[[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId] dictionaryRepresentation];
+#endif
+    s_rtmpUrl = [defaults objectForKey: kReplayKit2PushUrlKey];
+    NSString *resolution = [defaults objectForKey:kReplayKit2ResolutionKey];
+    if (resolution.length == 0) {
+        resolution = kResolutionHD;
     }
-    NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
-    if (err) {
-        NSLog(@"Json parse failed: %@", jsonData);
-        return nil;
-    }
-    return dic;
+    s_resolution = resolution;
+    NSString* rotate     = [defaults objectForKey:kReplayKit2RotateKey];
+    s_landScape = ![rotate isEqualToString:kReplayKit2Portrait];
 }
 
 - (instancetype) init {
     self = [super init];
-    // 请参考 https://cloud.tencent.com/document/product/454/34750 获取License
-    [TXLiveBase setLicenceURL:<#@"Licence URL"#> key:<#@"Licence Key"#>];
+    
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
+    [TXLiveBase setLicenceURL:@"" key:@""];
+#endif
 
+#if kReplayKitUseAppGroup
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReplayKit2PushStartNotification:) name:@"Cocoa_ReplayKit2_Push_Start" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReplayKit2PushStopNotification:) name:@"Cocoa_ReplayKit2_Push_Stop" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReplayKit2RotateChangeNotification:) name:@"Cocoa_ReplayKit2_Rotate_Change" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReplayKit2ResolutionChangeNotification:) name:@"Cocoa_ReplayKit2_Resolution_Change" object:nil];
 
-    
+
     CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
                                     (__bridge const void *)(self),
                                     onDarwinReplayKit2PushStart,
                                     kDarvinNotificationNamePushStart,
                                     NULL,
                                     CFNotificationSuspensionBehaviorDeliverImmediately);
-    
+
     CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
                                     (__bridge const void *)(self),
                                     onDarwinReplayKit2PushStop,
                                     kDarvinNotificaiotnNamePushStop,
                                     NULL,
                                     CFNotificationSuspensionBehaviorDeliverImmediately);
-    
+
     CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
                                     (__bridge const void *)(self),
                                     onDarwinReplayKit2RotateChange,
@@ -94,19 +129,26 @@ static CGImagePropertyOrientation s_orientation = kCGImagePropertyOrientationUp;
                                     kDarvinNotificaiotnNameResolutionChange,
                                     NULL,
                                     CFNotificationSuspensionBehaviorDeliverImmediately);
+#else
+    _ipc = [[SimpleIPC alloc] initWithPort:kReplayKitIPCPort];
+    __weak __typeof(self) wself = self;
+    [_ipc startListenWithHandler:^(NSString * _Nonnull cmd, NSDictionary * _Nonnull info) {
+        [wself onReceiveCmd:cmd info:info];
+    }];
 
+#endif
     return self;
 }
 
 
 - (void)dealloc {
+#if kReplayKitUseAppGroup
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     CFNotificationCenterRemoveObserver(CFNotificationCenterGetDarwinNotifyCenter(), (__bridge const void *)(self), kDarvinNotificationNamePushStart, NULL);
     CFNotificationCenterRemoveObserver(CFNotificationCenterGetDarwinNotifyCenter(), (__bridge const void *)(self), kDarvinNotificaiotnNamePushStop, NULL);
     CFNotificationCenterRemoveObserver(CFNotificationCenterGetDarwinNotifyCenter(), (__bridge const void *)(self), kDarvinNotificaiotnNameRotationChange, NULL);
     CFNotificationCenterRemoveObserver(CFNotificationCenterGetDarwinNotifyCenter(), (__bridge const void *)(self), kDarvinNotificaiotnNameResolutionChange, NULL);
-
-    
+#endif
 }
 
 static void onDarwinReplayKit2PushStart(CFNotificationCenterRef center,
@@ -124,7 +166,7 @@ static void onDarwinReplayKit2PushStop(CFNotificationCenterRef center,
                                        const void *object, CFDictionaryRef
                                        userInfo)
 {
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Cocoa_ReplayKit2_Push_Stop" object:nil];
 }
 
@@ -137,7 +179,7 @@ static void onDarwinReplayKit2RotateChange(CFNotificationCenterRef center,
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Cocoa_ReplayKit2_Rotate_Change" object:nil];
     });
-    
+
 }
 
 static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
@@ -154,23 +196,7 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
 
 - (void)handleReplayKit2PushStartNotification:(NSNotification*)noti
 {
-//    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-    
-    UIPasteboard* pb = [UIPasteboard generalPasteboard];
-    NSDictionary* defaults = [self jsonData2Dictionary:pb.string];
-    
-    s_rtmpUrl = [defaults objectForKey:kReplayKit2PushUrlKey];
-    s_resolution = [defaults objectForKey:kReplayKit2ResolutionKey];
-    if (s_resolution.length < 1) {
-        s_resolution = kResolutionHD;
-    }
-    NSString* rotate = [defaults objectForKey:kReplayKit2RotateKey];
-    if ([rotate isEqualToString:kReplayKit2Portrait]) {
-        s_landScape = NO;
-    }
-    else {
-        s_landScape = YES;
-    }
+    [self _getStreamingConfig:noti.userInfo];
 //    [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:[NSString stringWithFormat:@"推流地址:%@", s_rtmpUrl] userInfo:nil];
     [self start];
 }
@@ -183,14 +209,11 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
 
 - (void)handleReplayKit2RotateChangeNotification:(NSNotification*)noti
 {
-//    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-    UIPasteboard* pb = [UIPasteboard generalPasteboard];
-    NSDictionary* defaults = [self jsonData2Dictionary:pb.string];
-    if (!defaults) {
+    NSString *rotate = [self _getConfigForKey:kReplayKit2RotateKey fromConfig:noti.userInfo];
+    if (!rotate) {
         [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:@"切换失败" userInfo:nil];
         return;
     }
-    NSString* rotate = [defaults objectForKey:kReplayKit2RotateKey];
     if ([rotate isEqualToString:kReplayKit2Lanscape]) {
         s_landScape = YES;
     }
@@ -207,14 +230,8 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
 
 - (void)handleReplayKit2ResolutionChangeNotification:(NSNotification*)noti
 {
-//    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-
-    UIPasteboard* pb = [UIPasteboard generalPasteboard];
-    NSDictionary* defaults = [self jsonData2Dictionary:pb.string];
-    if (!defaults)
-        return;
-    s_resolution = [defaults objectForKey:kReplayKit2ResolutionKey];
-    if (s_resolution.length < 1) {
+    NSString *s_resolution = [self _getConfigForKey:kReplayKit2ResolutionKey fromConfig:noti.userInfo];
+    if (s_resolution.length == 0) {
         return;
     }
 //    [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:s_resolution userInfo:nil];
@@ -255,6 +272,7 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
 }
 
 - (void) initLivePublisher {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     @synchronized(self) {
         if (s_txLivePublisher) {
             [s_txLivePublisher stopPush];
@@ -286,10 +304,13 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
         }
     }
 //    [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:@"推流启动" userInfo:nil];
+    
+#endif
 }
 
 - (void)setCustomRotationAndResolution:(NSString *)rotation resolution:(NSString *)resolution
 {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     @synchronized(self) {
         TXLivePushConfig* config = s_txLivePublisher.config;
         CGSize screenSize = [[UIScreen mainScreen] currentMode].size;
@@ -339,12 +360,13 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
             [s_txLivePublisher sendVideoSampleBuffer:s_lastSampleBuffer];
         }
     }
+#endif
 }
 
 
 - (void)resetHomeOritation:(CGImagePropertyOrientation)orientation
 {
-    
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     TXLivePushConfig* config = s_txLivePublisher.config;
     TX_Enum_Type_HomeOrientation oldOrientation = s_txLivePublisher.config.homeOrientation;
     TX_Enum_Type_HomeOrientation newOrientation = HOME_ORIENTATION_DOWN;
@@ -359,24 +381,40 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
         return;
     
     config.homeOrientation = newOrientation;
-    if ((oldOrientation == HOME_ORIENTATION_DOWN && newOrientation != HOME_ORIENTATION_DOWN) || (oldOrientation != HOME_ORIENTATION_DOWN && newOrientation == HOME_ORIENTATION_DOWN)) {
-        config.sampleBufferSize = CGSizeMake(config.sampleBufferSize.height, config.sampleBufferSize.width);
+
+    CGSize portraitSize;
+    if (config.sampleBufferSize.width < config.sampleBufferSize.height) {
+        portraitSize = config.sampleBufferSize;
+    } else {
+        portraitSize = CGSizeMake(config.sampleBufferSize.height, config.sampleBufferSize.width);
     }
+    if (newOrientation == HOME_ORIENTATION_LEFT || newOrientation == HOME_ORIENTATION_RIGHT) {
+        config.sampleBufferSize = CGSizeMake(portraitSize.height, portraitSize.width);
+    } else {
+        config.sampleBufferSize = portraitSize;
+    }
+
     [s_txLivePublisher setConfig:config];
     if (s_lastSampleBuffer) {
         [s_txLivePublisher sendVideoSampleBuffer:s_lastSampleBuffer];
     }
+#endif
 }
 
 - (void)pause {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     [s_txLivePublisher setSendAudioSampleBufferMuted:YES];
+#endif
 }
 
 - (void)resume {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     [s_txLivePublisher setSendAudioSampleBufferMuted:NO];
+#endif
 }
 
 - (void)stop {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     @synchronized(self) {
         s_rtmpUrl = nil;
         
@@ -390,15 +428,21 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
         }
         s_delegate = nil;
     }
+#endif
 }
 
 - (void)start {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     if (s_rtmpUrl == nil) return;
     [self initLivePublisher];
+#endif
 }
 
 - (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
     [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:@"录屏已开始，请从这里点击回到Demo->直播->录屏推流->设置推流URL与横竖屏和清晰度" userInfo:@{kReplayKit2UploadingKey: kReplayKit2Uploading}];
+#if TRTC_EXT
+    [[TXReplayKitExt sharedInstance] setupWithAppGroup:kReplayKit2AppGroupId delegate:self];
+#endif
 }
 
 - (void)broadcastPaused {
@@ -420,6 +464,9 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
     NSLog(@"broadcastFinished");
     [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:@"录屏已结束" userInfo:@{kReplayKit2UploadingKey: kReplayKit2Stop}];
     [self stop];
+#if TRTC_EXT
+    [[TXReplayKitExt sharedInstance] finishBroadcast];
+#endif
 }
 
 
@@ -430,10 +477,14 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
             case RPSampleBufferTypeVideo:
                 // Handle audio sample buffer
             {
-                
+
                 if (!CMSampleBufferIsValid(sampleBuffer))
                     return;
-                
+
+#if TRTC_EXT
+                [[TXReplayKitExt sharedInstance] sendVideoSampleBuffer:sampleBuffer];
+#endif
+
                 //11.1以上支持自动旋转
 #ifdef __IPHONE_11_1
                 if (UIDevice.currentDevice.systemVersion.floatValue > 11.1) {
@@ -451,8 +502,9 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
                 }
                 s_lastSampleBuffer = sampleBuffer;
                 CFRetain(s_lastSampleBuffer);
-                
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
                 [s_txLivePublisher sendVideoSampleBuffer:sampleBuffer];
+#endif
 //                NSLog(@"videoPTS:%.2f", CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer)));
             }
                 break;
@@ -460,15 +512,19 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
                 // Handle audio sample buffer for app audio
                 //            if (s_headPhoneIn || s_isMicEnable == Mic_Disable) {
                 if (CMSampleBufferDataIsReady(sampleBuffer) != NO) {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
                     [s_txLivePublisher sendAudioSampleBuffer:sampleBuffer withType:sampleBufferType];
+#endif
                 }
-                NSLog(@"AppPTS:%.2f", CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer)));
+//                NSLog(@"AppPTS:%.2f", CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer)));
 
                 break;
             case RPSampleBufferTypeAudioMic:
                 // Handle audio sample buffer for mic audio
                 if (CMSampleBufferDataIsReady(sampleBuffer) != NO) {
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
                     [s_txLivePublisher sendAudioSampleBuffer:sampleBuffer withType:sampleBufferType];
+#endif
                 }
                 NSLog(@"MicPTS:%.2f", CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer)));
 
@@ -483,6 +539,7 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
 
 -(void) onPushEvent:(int)EvtID withParam:(NSDictionary*)param {
     NSLog(@"onPushEvent %d", EvtID);
+#if !defined(TRTC) || defined(TRTC_APPSTORE)
     if (EvtID == PUSH_ERR_NET_DISCONNECT) {
         [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:@"推流失败!请换个姿势再来一次" userInfo:nil];
     }  else if (EvtID == PUSH_EVT_PUSH_BEGIN) {
@@ -490,11 +547,52 @@ static void onDarwinReplayKit2ResolutionChange(CFNotificationCenterRef center,
     } else if (EvtID == PUSH_WARNING_NET_BUSY) {
         [self sendLocalNotificationToHostAppWithTitle:@"腾讯云录屏推流" msg:@"网络上行带宽不足" userInfo:nil];
     }
+#endif
 }
 
 -(void) onNetStatus:(NSDictionary*) param {
     
 }
 
+#pragma mark -
+
+- (void)onReceiveCmd:(NSString *)cmd info:(NSDictionary *)json {
+    NSNotification *noti = [NSNotification notificationWithName:cmd object:nil userInfo:json];
+    if ([cmd isEqualToString:(__bridge NSString *)kDarvinNotificationNamePushStart]) {
+        [self handleReplayKit2PushStartNotification:noti];
+    } else if ([cmd isEqualToString:(__bridge NSString *)kDarvinNotificaiotnNamePushStop]) {
+        [self handleReplayKit2PushStopNotification:noti];
+    } else if ([cmd isEqualToString:(__bridge NSString *)kDarvinNotificaiotnNameRotationChange]) {
+        [self handleReplayKit2RotateChangeNotification:noti];
+    } else if ([cmd isEqualToString:(__bridge NSString *)kDarvinNotificaiotnNameResolutionChange]) {
+        [self handleReplayKit2ResolutionChangeNotification:noti];
+    }
+}
+
+#pragma mark - TXReplayKitExtDelegate
+#if TRTC_EXT
+- (void)boradcastFinished:(TXReplayKitExt *)broadcast reason:(TXReplayKitExtReason)reason
+{
+    NSString *tip = @"";
+    switch (reason) {
+        case TXReplayKitExtReasonRequestedByMain:
+            tip = @"屏幕共享已结束";
+            break;
+        case TXReplayKitExtReasonDisconnected:
+            tip = @"应用断开";
+            break;
+        case TXReplayKitExtReasonVersionMismatch:
+            tip = @"集成错误（SDK 版本号不相符合）";
+            break;
+    }
+
+    NSError *error = [NSError errorWithDomain:NSStringFromClass(self.class)
+                                         code:0
+                                     userInfo:@{
+                                         NSLocalizedFailureReasonErrorKey:tip
+                                     }];
+    [self finishBroadcastWithError:error];
+}
+#endif
 
 @end

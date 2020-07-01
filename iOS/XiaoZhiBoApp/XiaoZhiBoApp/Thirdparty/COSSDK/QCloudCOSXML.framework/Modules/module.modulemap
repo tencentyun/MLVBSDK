@@ -1,0 +1,6 @@
+framework module QCloudCOSXML {
+  umbrella header "QCloudCOSXML.h"
+
+  export *
+  module * { export * }
+}

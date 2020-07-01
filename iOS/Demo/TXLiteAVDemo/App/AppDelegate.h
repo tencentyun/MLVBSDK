@@ -8,14 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic, nullable) NSData* deviceToken;
 
 - (void)clickHelp:(UIButton *)sender;
 
+- (void)showPortalConroller;
+- (void)showLoginController;
+
 @end
 
+NS_ASSUME_NONNULL_END
 // 新加跳转链接到在这里注册
 // annidy
 
