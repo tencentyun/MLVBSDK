@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:layout_marginBottom="8dp"
                 android:text="秀场直播"
-                android:textColor="#777"
+                android:textColor="#000"
                 android:textSize="16sp"/>
 
             <ImageView
@@ -38,8 +38,7 @@
                 android:layout_height="4dp"
                 android:layout_marginBottom="3dp"
                 android:layout_gravity="center_horizontal|bottom"
-                android:background="@drawable/line"
-                android:visibility="invisible"/>
+                android:background="@drawable/line" />
         </FrameLayout>
         <!-- tab2 -->
         <FrameLayout
@@ -48,6 +47,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_gravity="center"
+            android:visibility="invisible"
             android:layout_weight="1">
             <TextView
                 android:id="@+id/text_vod"

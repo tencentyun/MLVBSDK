@@ -1,15 +1,13 @@
 ## 目录结构说明
 
-本目录包含 iOS 版 移动直播 SDK 的Demo 源代码，主要演示接口如何调用以及最基本的功能。
+本目录包含 iOS 版 移动直播 SDK 的 Demo 源代码，主要演示接口如何调用以及最基本的功能。
 
 ```
 ├─ SDK 
 |  ├─ TXLiteAVSDK_Smart.framework // 如果您下载的是专业版 zip 包，解压后将出现此文件
 |  ├─ TXLiteAVSDK_Professional.framework // 如果您下载的是专业版 zip 包，解压后将出现此文件
 |  ├─ TXLiteAVSDK_Enterprise.framework   // 如果您下载的是企业版 zip 包，解压后将出现此文件
-|  ├─ TXLiteAVSDK_ReplayKitExt.framework   // 录屏直播需要的framework
-├─ Demo // 移动直播 Demo，包括直播推流，直播播放，互动直播（IM）
-├── ReplaykitUpload
+├─ Demo // 移动直播 Demo，包括直播推流，直播播放，互动直播
 └── TXLiteAVDemo
     ├── App               // 程序入口界面
     ├── AudioSettingKit   // 音效面板，包含BGM播放，变声，混响，变调等效果
