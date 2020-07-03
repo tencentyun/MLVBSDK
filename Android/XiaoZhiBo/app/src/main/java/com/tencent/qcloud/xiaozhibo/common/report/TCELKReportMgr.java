@@ -24,7 +24,7 @@ import org.json.JSONObject;
  */
 public class TCELKReportMgr {
     // 小直播做统计用的，您可以不用关心
-    private static final String DEFAULT_ELK_HOST = "https://ilivelog.qcloud.com";
+    private static final String DEFAULT_ELK_HOST = "";
     private static final String TAG = "TCELKReportMgr";
     private Context mContext;
     private String mAppName;
