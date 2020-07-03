@@ -11,10 +11,16 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 7.2 @ 2020.04.17
-- iOS&Android：新增 TXLivePlayer 支持回调 HTTP Response 头字段，可用于 CDN 定制的 HTTP 响应头字段解析。
-- iOS&Android：新增 TXLivePusher 支持本地音量回调。
-- iOS&Android：优化滤镜、绿幕等视效接口，归并到 TXBeautyManager 类下，实现统一的调用方式。
+### Version 7.4 @ 2020.07.03
+- iOS&Android：优化预处理清晰度，提高画质。
+- iOS&Android：支持全链路128kbps高音质立体声。
+- iOS&Android：支持多路背景音乐播放，用于支持原声和伴唱分离的 K 歌场景，同时支持双声道背景音乐及循环播放。
+- iOS&Android：在兼容老背景音播放接口的情况下，增加了全新的音效管理接口 TXAudioEffectManager，用于支持更加灵活和多样的音效能力。
+- iOS：耳返支持叠加混响等声音效果。
+- iOS：修复录屏直播声音卡顿问题；
+- iOS：修复前后摄像头偶现切换失败的问题；
+- iOS&Android：修复无音轨视频合并失败的问题；
+- Android：音效文件支持 asset 打包的音效文件。
 
 ## MLVB Demo
 
