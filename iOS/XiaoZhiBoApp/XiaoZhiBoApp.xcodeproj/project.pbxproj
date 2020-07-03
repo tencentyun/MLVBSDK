@@ -136,6 +136,7 @@
 		91B45A251E8CB0FF0058E8F6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91B45A1E1E8CB0FF0058E8F6 /* MainInterface.storyboard */; };
 		91B45A261E8CB0FF0058E8F6 /* BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B45A211E8CB0FF0058E8F6 /* BroadcastViewController.m */; };
 		91B45A281E8CB0FF0058E8F6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91B45A231E8CB0FF0058E8F6 /* Media.xcassets */; };
+		A0B7B19524AEDF700054C342 /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B7B19324AEDF700054C342 /* GenerateTestUserSig.m */; };
 		B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B732EBB31D7C593C006E6FA0 /* libresolv.tbd */; };
 		CEEDF8282181FF2900D4EB94 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D8D256811261DF4C40C7748A /* libPods-XiaoZhiBoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 894E4A2363E21E853A1F9757 /* libPods-XiaoZhiBoApp.a */; };
@@ -898,6 +899,9 @@
 		91BA6E5B1F2721F4008700CF /* TXLiteAVSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TXLiteAVSDK.xcodeproj; path = ../../sdk/liteav/TXLiteAVSDK.xcodeproj; sourceTree = "<group>"; };
 		91BA6E871F27229C008700CF /* TXLiteAVSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TXLiteAVSDK.xcodeproj; path = ../../sdk/liteav/TXLiteAVSDK.xcodeproj; sourceTree = "<group>"; };
 		952A710DCB72E0868862BDB4 /* Pods-XiaoZhiBoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoZhiBoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp.debug.xcconfig"; sourceTree = "<group>"; };
+		A0B7B19024AEDF510054C342 /* TCConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConfig.h; sourceTree = "<group>"; };
+		A0B7B19324AEDF700054C342 /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
+		A0B7B19424AEDF700054C342 /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 		B732EBB31D7C593C006E6FA0 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		B7558FA91D4B56C70072705F /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		BE489B46F454F100F5F7455A /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Professional.framework; path = ./XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
@@ -1060,6 +1064,7 @@
 		45784C722272E3E500A5F2BA /* LiveRoom */ = {
 			isa = PBXGroup;
 			children = (
+				A0B7B19224AEDF700054C342 /* Debug */,
 				45784C732272E3E500A5F2BA /* RoomUtil */,
 				45784C7B2272E3E500A5F2BA /* LiveRoom */,
 			);
@@ -1291,6 +1296,7 @@
 		6A786A2222B91E7500F47BE8 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				A0B7B19024AEDF510054C342 /* TCConfig.h */,
 				6A786A2522B91E7500F47BE8 /* AppDelegate.m */,
 				6A786A2322B91E7500F47BE8 /* AppDelegate.h */,
 				6A786A2422B91E7500F47BE8 /* TCGlobalConfig.h */,
@@ -1584,6 +1590,15 @@
 				453FD82A22578E1100DE2997 /* TXLiteAVSDK_TRTC_Mac.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A0B7B19224AEDF700054C342 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				A0B7B19324AEDF700054C342 /* GenerateTestUserSig.m */,
+				A0B7B19424AEDF700054C342 /* GenerateTestUserSig.h */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		B49FE0366F1F0A7CBF2E06AF /* Pods */ = {
@@ -2475,6 +2490,7 @@
 				45784EF82272E3E700A5F2BA /* IMMsgManager.m in Sources */,
 				6A786A9422B91E7500F47BE8 /* TCStatusInfoView.m in Sources */,
 				6A786A9E22B91E7500F47BE8 /* TCRoomListViewController.m in Sources */,
+				A0B7B19524AEDF700054C342 /* GenerateTestUserSig.m in Sources */,
 				6A786A9222B91E7500F47BE8 /* TCUtil.m in Sources */,
 				6A786A9F22B91E7500F47BE8 /* TCUserProfileEditViewController.m in Sources */,
 				6A786A8822B91E7500F47BE8 /* TCUploadHelper.m in Sources */,

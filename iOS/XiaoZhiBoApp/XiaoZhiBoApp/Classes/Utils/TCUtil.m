@@ -5,6 +5,7 @@
  */
 
 #import "TCUtil.h"
+#import "TCConfig.h"
 #import "TCGlobalConfig.h"
 #import "NSData+Common.h"
 #import "NSString+Common.h"
@@ -85,148 +86,90 @@
 }
 
 + (void)asyncSendHttpRequest:(NSString*)command token:(NSString*)token params:(NSDictionary*)params handler:(void (^)(int resultCode, NSString* message, NSDictionary* resultDict))handler {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData* data = [TCUtil dictionary2JsonData:params];
-        if (data == nil)
-        {
-            DebugLog(@"sendHttpRequest failed，参数转成json格式失败");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                handler(kError_ConvertJsonFailed, @"参数错误", nil);
-            });
-            return;
-        }
-        
-        NSString* urlString = [kHttpServerAddr stringByAppendingPathComponent:command];
-        NSMutableString *strUrl = [[NSMutableString alloc] initWithString:urlString];
-        
-        NSURL *URL = [NSURL URLWithString:strUrl];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-        
-        if (data)
-        {
-            [request setValue:[NSString stringWithFormat:@"%ld",(long)[data length]] forHTTPHeaderField:@"Content-Length"];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-            if (token.length > 0) {
-                NSString* sig = [[NSString stringWithFormat:@"%@%@", token, [data md5Hash]] md5];
-                [request setValue:sig forHTTPHeaderField:@"Liteav-Sig"];
-            }
-            [request setHTTPBody:data];
-        }
-        
-        [request setTimeoutInterval:kHttpTimeout];
-        
-        
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error != nil)
+    if ([kHttpServerAddr length] != 0) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSData* data = [TCUtil dictionary2JsonData:params];
+            if (data == nil)
             {
-                DebugLog(@"internalSendRequest failed，NSURLSessionDataTask return error code:%d, des:%@", [error code], [error description]);
+                DebugLog(@"sendHttpRequest failed，参数转成json格式失败");
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(kError_HttpError, @"服务请求失败", nil);
+                    handler(kError_ConvertJsonFailed, @"参数错误", nil);
                 });
+                return;
             }
-            else
+            
+            NSString* urlString = [kHttpServerAddr stringByAppendingPathComponent:command];
+            NSMutableString *strUrl = [[NSMutableString alloc] initWithString:urlString];
+            
+            NSURL *URL = [NSURL URLWithString:strUrl];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+            
+            if (data)
             {
-                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSDictionary* resultDict = [TCUtil jsonData2Dictionary:responseString];
-                int errCode = -1;
-                NSString* message = @"";
-                NSDictionary* dataDict = nil;
-                if (resultDict)
-                {
-                    if (resultDict[@"code"]) {
-                        errCode = [resultDict[@"code"] intValue];
-                    }
-                    
-                    if (resultDict[@"message"]) {
-                        message = resultDict[@"message"];
-                    }
-                    
-                    if (200 == errCode && resultDict[@"data"])
-                    {
-                        dataDict = resultDict[@"data"];
-                    }
+                [request setValue:[NSString stringWithFormat:@"%ld",(long)[data length]] forHTTPHeaderField:@"Content-Length"];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+                [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                if (token.length > 0) {
+                    NSString* sig = [[NSString stringWithFormat:@"%@%@", token, [data md5Hash]] md5];
+                    [request setValue:sig forHTTPHeaderField:@"Liteav-Sig"];
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(errCode, message, dataDict);
-                });
+                [request setHTTPBody:data];
             }
-        }];
-        
-        [task resume];
-    });
+            
+            [request setTimeoutInterval:kHttpTimeout];
+            
+            
+            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error != nil)
+                {
+                    DebugLog(@"internalSendRequest failed，NSURLSessionDataTask return error code:%d, des:%@", [error code], [error description]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        handler(kError_HttpError, @"服务请求失败", nil);
+                    });
+                }
+                else
+                {
+                    NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSDictionary* resultDict = [TCUtil jsonData2Dictionary:responseString];
+                    int errCode = -1;
+                    NSString* message = @"";
+                    NSDictionary* dataDict = nil;
+                    if (resultDict)
+                    {
+                        if (resultDict[@"code"]) {
+                            errCode = [resultDict[@"code"] intValue];
+                        }
+                        
+                        if (resultDict[@"message"]) {
+                            message = resultDict[@"message"];
+                        }
+                        
+                        if (200 == errCode && resultDict[@"data"])
+                        {
+                            dataDict = resultDict[@"data"];
+                        }
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        handler(errCode, message, dataDict);
+                    });
+                }
+            }];
+            
+            [task resume];
+        });
+    } else {
+        DebugLog(@"sendHttpRequest commond %@ failed, kHttpServerAddr is empty", command);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(kError_NotSupport, @"服务器地址未填写，暂不支持此功能", nil);
+        });
+        return;
+    }
 }
 
 + (void)asyncSendHttpRequest:(NSString*)command params:(NSDictionary*)params handler:(void (^)(int resultCode, NSString* message, NSDictionary* resultDict))handler {
     [self asyncSendHttpRequest:command token:nil params:params handler:handler];
 }
-
-
-+ (void)asyncSendHttpRequest:(NSDictionary*)param handler:(void (^)(int result, NSDictionary* resultDict))handler {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData* data = [TCUtil dictionary2JsonData:param];
-        if (data == nil)
-        {
-            DebugLog(@"sendHttpRequest failed，参数转成json格式失败");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                handler(kError_ConvertJsonFailed, nil);
-            });
-            return;
-        }
-        
-        NSMutableString *strUrl = [[NSMutableString alloc] initWithString:kHttpServerAddr];
-        
-        NSURL *URL = [NSURL URLWithString:strUrl];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-        
-        if (data)
-        {
-            [request setValue:[NSString stringWithFormat:@"%ld",(long)[data length]] forHTTPHeaderField:@"Content-Length"];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-            
-            [request setHTTPBody:data];
-        }
-        
-        [request setTimeoutInterval:kHttpTimeout];
-        
-        
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error != nil)
-            {
-                DebugLog(@"internalSendRequest failed，NSURLSessionDataTask return error code:%d, des:%@", [error code], [error description]);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(kError_HttpError, nil);
-                });
-            }
-            else
-            {
-                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSDictionary* resultDict = [TCUtil jsonData2Dictionary:responseString];
-                int errCode = -1;
-                NSDictionary* dataDict = nil;
-                if (resultDict)
-                {
-                    if (resultDict[@"returnValue"])
-                        errCode = [resultDict[@"returnValue"] intValue];
-                    
-                    if (0 == errCode && resultDict[@"returnData"])
-                    {
-                        dataDict = resultDict[@"returnData"];
-                    }
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(errCode, dataDict);
-                });
-            }
-        }];
-        
-        [task resume];
-    });
-}
-
 
 + (NSString *)transImageURL2HttpsURL:(NSString *)httpURL {
     if (httpURL.length == 0) {
