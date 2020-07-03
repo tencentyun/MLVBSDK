@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/mlvb_guideline_h"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/mlvb_guideline_v"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/mlvb_guideline_h"
+        app:layout_constraintLeft_toRightOf="@id/mlvb_guideline_v"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/mlvb_video_view_pk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/mlvb_loading_background_pk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/mlvb_black"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/mlvb_loading_imageview_pk"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mlvb_fl_push"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/mlvb_video_view_full_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/mlvb_ll_controller_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_chat_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_icon_message" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mlvb_camera_switch_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_camera_switcher_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_lvb_camera_change" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mlvb_beauty_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_beauty_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_lvb_beauty" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mlvb_mute_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_mute_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_mic_normal" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mlvb_linkmic_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_linkmic_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_linkmic_start" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mlvb_pk_btn_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_pk_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_pk_start" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mlvb_rtmproom_log_switcher_btn"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mlvb_log_show" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mlvb_rl_chat_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/mlvb_ll_controller_container"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mlvb_guideline_h">
+
+        <ListView
+            android:id="@+id/mlvb_chat_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="2dp"></ListView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mlvb_rl_online_pushers_layout"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="#333333"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/mlvb_ll_controller_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mlvb_guideline_h">
+
+        <TextView
+            android:id="@+id/mlvb_tv_online_pushers_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/mlvb_select_anchor"
+            android:textColor="@android:color/darker_gray" />
+
+        <ListView
+            android:id="@+id/mlvb_lv_online_pushers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/mlvb_tv_online_pushers_label"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="1dp">
+
+        </ListView>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/mlvb_frame_layout_1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toTopOf="@id/mlvb_ll_controller_container"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/mlvb_video_player1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/mlvb_fl_loading_background1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/mlvb_black"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/mlvb_iv_loading"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/mlvb_btn_kick_out1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/mlvb_btn_kick_out"
+        android:visibility="invisible"
+        app:layout_constraintRight_toRightOf="@id/mlvb_frame_layout_1"
+        app:layout_constraintTop_toTopOf="@id/mlvb_frame_layout_1" />
+
+    <FrameLayout
+        android:id="@+id/mlvb_frame_layout_2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toTopOf="@id/mlvb_frame_layout_1"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/mlvb_video_player2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/mlvb_loading_background2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/mlvb_black"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/mlvb_loading_imageview2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/mlvb_btn_kick_out2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/mlvb_btn_kick_out"
+        android:visibility="invisible"
+        app:layout_constraintRight_toRightOf="@id/mlvb_frame_layout_2"
+        app:layout_constraintTop_toTopOf="@id/mlvb_frame_layout_2" />
+
+    <FrameLayout
+        android:id="@+id/mlvb_frame_layout_3"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toTopOf="@id/mlvb_frame_layout_2"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/mlvb_video_player3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/mlvb_fl_loading_background3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:background="@color/mlvb_black"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/mlvb_loading_imageview3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/mlvb_btn_kick_out3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/mlvb_btn_kick_out"
+        android:visibility="invisible"
+        app:layout_constraintRight_toRightOf="@id/mlvb_frame_layout_3"
+        app:layout_constraintTop_toTopOf="@id/mlvb_frame_layout_3" />
+
+    <com.tencent.liteav.demo.beauty.view.BeautyPanel
+        android:id="@+id/mlvb_layout_face_beauty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

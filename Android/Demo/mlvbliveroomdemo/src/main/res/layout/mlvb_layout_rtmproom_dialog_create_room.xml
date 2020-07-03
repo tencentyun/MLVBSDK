@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/mlvb_create_room"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/mlvb_et_rtmproom_dialog_create_room"
+        android:layout_width="240dp"
+        android:layout_height="48sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/mlvb_input_room_name"
+        android:lines="1"
+        android:maxLength="20"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textColorHint="#666666" />
+
+</LinearLayout>

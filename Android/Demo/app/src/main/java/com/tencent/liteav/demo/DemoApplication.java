@@ -1,8 +1,15 @@
 package com.tencent.liteav.demo;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
 
+import com.blankj.utilcode.util.ServiceUtils;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.liteav.login.model.ProfileManager;
 import com.tencent.rtmp.TXLiveBase;
 
 import java.lang.reflect.Constructor;
@@ -19,8 +26,8 @@ public class DemoApplication extends MultiDexApplication {
     private static DemoApplication instance;
 
     // 如何获取License? 请参考官网指引 https://cloud.tencent.com/document/product/454/34750
-    String licenceUrl = "";
-    String licenseKey = "";
+    String licenceUrl = "请替换成您的licenseUrl";
+    String licenseKey = "请替换成您的licenseKey";
 
     @Override
     public void onCreate() {
@@ -36,13 +43,56 @@ public class DemoApplication extends MultiDexApplication {
 
         TXLiveBase.getInstance().setLicence(instance, licenceUrl, licenseKey);
 
+        // 短视频licence设置
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            builder.detectFileUriExposure();
+        }
         closeAndroidPDialog();
-//        File file = getFilesDir();
-//        Log.w("DemoApplication", "load:" + file.getAbsolutePath());
-//        TXLiveBase.setLibraryPath(file.getAbsolutePath());
-        //测试代码
-//        TCHttpEngine.getInstance().initContext(getApplicationContext());
-//        mRefWatcher = LeakCanary.install(this);
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                if (ProfileManager.getInstance().isLogin()
+                        && true) {
+                    startCallService();
+                }
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+    }
+
+    private void startCallService() {
     }
 
 //    public static RefWatcher getRefWatcher(Context context) {

@@ -74,21 +74,21 @@ public interface IMLVBLiveRoomListener {
      * @param roomID 房间 ID
      */
     public void onRoomDestroy(String roomID) ;
-	
-	
-	/////////////////////////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////////////////////////////////////////////
     //
     //                      主播 & 观众的进出事件回调
     //
     /////////////////////////////////////////////////////////////////////////////////
-	
-	/**
+
+    /**
      * 收到新主播进房通知
      *
      * 房间内的主播（和连麦中的观众）会收到新主播的进房事件，您可以调用 {@link MLVBLiveRoom#startRemoteView(AnchorInfo, TXCloudVideoView, PlayCallback)} 显示该主播的视频画面。
      *
      * @param anchorInfo 新进房用户信息
-	 *
+     *
      * @note 直播间里的普通观众不会收到主播加入和推出的通知。
      */
     public void onAnchorEnter(AnchorInfo anchorInfo) ;
@@ -117,9 +117,9 @@ public interface IMLVBLiveRoomListener {
      * @param audienceInfo 退房观众信息
      */
     public void onAudienceExit(AudienceInfo audienceInfo) ;
-	
-	
-	/////////////////////////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////////////////////////////////////////////
     //
     //                      主播和观众连麦事件回调
     //
@@ -138,9 +138,9 @@ public interface IMLVBLiveRoomListener {
      * 连麦观众收到被主播踢除连麦的消息，您需要调用 {@link MLVBLiveRoom#kickoutJoinAnchor(String)} 来退出连麦
      */
     public void onKickoutJoinAnchor() ;
-	
 
-	/////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////
     //
     //                      主播 PK 事件回调
     //

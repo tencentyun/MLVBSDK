@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.imsdk.TIMUserProfile;
 import com.tencent.imsdk.TIMValueCallBack;
+import com.tencent.liteav.audio.TXAudioEffectManager;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.liteav.beauty.TXBeautyManager;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
@@ -543,7 +544,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
 
         // 停止 BGM
         stopBGM();
-        
+
         if (mSelfRoleType == LIVEROOM_ROLE_PUSHER) {
             //2. 如果是大主播，则销毁群
             IMMessageMgr imMessageMgr = mIMMessageMgr;
@@ -1016,16 +1017,16 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             IMMessageMgr imMessageMgr = mIMMessageMgr;
             if (imMessageMgr != null) {
                 imMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(final int code, final String errInfo) {
+                    @Override
+                    public void onError(final int code, final String errInfo) {
 
-                }
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
+                    @Override
+                    public void onSuccess(Object... args) {
 
-                }
-            });
+                    }
+                });
             }
         }
         catch (Exception e) {
@@ -1146,16 +1147,16 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             IMMessageMgr imMessageMgr = mIMMessageMgr;
             if (imMessageMgr != null) {
                 imMessageMgr.sendC2CCustomMessage(userID, content, new IMMessageMgr.Callback() {
-                @Override
-                public void onError(final int code, final String errInfo) {
+                    @Override
+                    public void onError(final int code, final String errInfo) {
 
-                }
+                    }
 
-                @Override
-                public void onSuccess(Object... args) {
+                    @Override
+                    public void onSuccess(Object... args) {
 
-                }
-            });
+                    }
+                });
             }
         }
         catch (Exception e) {
@@ -1192,16 +1193,16 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                 IMMessageMgr imMessageMgr = mIMMessageMgr;
                 if (imMessageMgr != null) {
                     imMessageMgr.sendC2CCustomMessage(mPKAnchorInfo.userID, content, new IMMessageMgr.Callback() {
-                    @Override
-                    public void onError(final int code, final String errInfo) {
-                        callbackOnThread(callback, "onError", code, "[IM] 退出PK失败[" + errInfo + ":" + code + "]");
-                    }
+                        @Override
+                        public void onError(final int code, final String errInfo) {
+                            callbackOnThread(callback, "onError", code, "[IM] 退出PK失败[" + errInfo + ":" + code + "]");
+                        }
 
-                    @Override
-                    public void onSuccess(Object... args) {
-                        callbackOnThread(callback, "onSuccess");
-                    }
-                });
+                        @Override
+                        public void onSuccess(Object... args) {
+                            callbackOnThread(callback, "onSuccess");
+                        }
+                    });
                 }
             } else {
                 TXCLog.e(TAG, "获取不到 PK 主播信息，请确认是否已经跨房 PK");
@@ -3091,7 +3092,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
             synchronized (this) {
                 if (handler != null && handler.getLooper() != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                         handler.getLooper().quitSafely();
+                        handler.getLooper().quitSafely();
                     } else {
                         handler.getLooper().quit();
                     }
@@ -3153,6 +3154,14 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
         public void onNetStatus(Bundle status) {
 
         }
+    }
+
+    @Override
+    public TXAudioEffectManager getAudioEffectManager() {
+        if (mTXLivePusher == null) {
+            mTXLivePusher = new TXLivePusher(mAppContext);
+        }
+        return mTXLivePusher.getAudioEffectManager();
     }
 
     private void callbackOnThread(final Object object, final String methodName, final Object... args) {

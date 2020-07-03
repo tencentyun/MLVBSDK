@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="liveplayer_color_accent">#0accac</color>
+    <color name="liveplayer_transparent">#00000000</color>
+    <color name="liveplayer_red">#FF3333</color>
+    <color name="liveplayer_white">#FFFFFF</color>
+    <color name="liveplayer_black">#000000</color>
+    <color name="liveplayer_gray">#787878</color>
+    <color name="liveplayer_background_gray">#EBEBEB</color>
+    <color name="liveplayer_color_primary_dark">#21a3f5</color>
+    <color name="liveplayer_hint_color">#777777</color>
+    <color name="liveplayer_dim_gray">#696969</color>
+
+</resources>

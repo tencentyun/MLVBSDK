@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/livepusher_main_bkg">
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/livepusher_tx_cloud_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/livepusher_ll_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:src="@drawable/livepusher_back_btn_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:gravity="center_vertical"
+                android:text="@string/livepusher_back"
+                android:textColor="@color/livepusher_white"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/livepusher_rtmp_push"
+            android:textColor="@color/livepusher_white"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/livepusher_ib_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/livepusher_question_link" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/livepusher_ll_address_viewer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/livepusher_btn_code_viewer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/livepusher_qr_code_btn"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/livepusher_et_rtmp_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/livepusher_input_box"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:singleLine="true"
+            android:textColorHint="@color/livepusher_dark_gray" />
+
+        <Button
+            android:id="@+id/livepusher_btn_scanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/livepusher_qr_code_btn" />
+
+        <Button
+            android:id="@+id/livepusher_btn_new_push_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/livepusher_new_address" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/livepusher_ll_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_start"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:background="@drawable/livepusher_start" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_switch_camera"
+            android:layout_width="@dimen/livepusher_icon_width"
+            android:layout_height="@dimen/livepusher_icon_height"
+            android:background="@drawable/livepusher_camera_front" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_beauty"
+            android:layout_width="@dimen/livepusher_icon_width"
+            android:layout_height="@dimen/livepusher_icon_height"
+            android:background="@drawable/livepusher_lvb_beauty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_bgm"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/livepusher_bgm" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_show_log"
+            android:layout_width="@dimen/livepusher_icon_width"
+            android:layout_height="@dimen/livepusher_icon_height"
+            android:background="@drawable/livepusher_log_show_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_setting"
+            android:layout_width="@dimen/livepusher_icon_width"
+            android:layout_height="@dimen/livepusher_icon_height"
+            android:background="@drawable/livepusher_role" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/livepusher_btn_more"
+            android:layout_width="@dimen/livepusher_icon_width"
+            android:layout_height="@dimen/livepusher_icon_height"
+            android:background="@drawable/livepusher_more" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <com.tencent.liteav.demo.beauty.view.BeautyPanel
+        android:id="@+id/livepusher_bp_beauty_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/livepusher_tv_net_error_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/livepusher_red"
+        android:gravity="center"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:text="@string/livepusher_network_warning_hint"
+        android:textColor="@color/livepusher_white"
+        android:textSize="10dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/livepusher_ll_code_viewer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@id/livepusher_ll_bottom_bar"
+        android:layout_below="@id/livepusher_ll_address_viewer"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/livepusher_rtmp_url"
+            android:textColor="@color/livepusher_white" />
+
+        <ImageView
+            android:id="@+id/livepusher_iv_rtmp_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/livepusher_flv_url"
+            android:textColor="@color/livepusher_white" />
+
+        <ImageView
+            android:id="@+id/livepusher_iv_flv_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/livepusher_hls_url"
+            android:textColor="@color/livepusher_white" />
+
+        <ImageView
+            android:id="@+id/livepusher_iv_hls_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/livepusher_rtmp_speed_up_url"
+            android:textColor="@color/livepusher_white" />
+
+        <ImageView
+            android:id="@+id/livepusher_iv_rtmp_acc_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <com.tencent.liteav.audiosettingkit.AudioEffectPanel
+        android:id="@+id/livepusher_audio_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

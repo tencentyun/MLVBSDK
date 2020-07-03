@@ -1,24 +1,12 @@
 include ':app'
-
-include ':beauty'
-
-include ':lvb'
-
-
-
+include ':login'
+include ':debug'
+include ':beautysettingkit'
+//project(':beauty').projectDir = new File(settingsDir, '../../../../project/android/demo/liteav/beauty')
+include ':audioeffectsettingkit'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+include ':liveplayerdemo'
+include ':livepusherdemo'
+include ':mlvbliveroomdemo'

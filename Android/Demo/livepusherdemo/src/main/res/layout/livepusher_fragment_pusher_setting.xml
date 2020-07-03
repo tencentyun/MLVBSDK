@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/livepusher_hlf_transparent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/livepusher_video_quality"
+        android:textColor="@color/livepusher_btn_line" />
+
+    <Spinner
+        android:id="@+id/livepusher_spinner_video_quality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:entries="@array/livepusher_video_fps" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/livepusher_audio_channel"
+        android:textColor="@color/livepusher_btn_line" />
+
+    <Spinner
+        android:id="@+id/livepusher_spinner_audio_channel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:entries="@array/livepusher_video_fps" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/livepusher_hw_acc"
+            android:textColor="@color/livepusher_btn_line"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/livepusher_cb_hw_acc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/livepusher_adjust_bitrate"
+            android:textColor="@color/livepusher_btn_line"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/livepusher_cb_adjust_bitrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/livepusher_ear_monitoring"
+            android:textColor="@color/livepusher_btn_line"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/livepusher_cb_ear_monitoring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

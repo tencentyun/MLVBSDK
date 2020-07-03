@@ -25,7 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tencent.liteav.demo.beauty.BeautyPanel;
+import com.tencent.liteav.demo.beauty.view.BeautyPanel;
 import com.tencent.liteav.demo.beauty.BeautyParams;
 import com.tencent.liteav.demo.lvb.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.lvb.liveroom.MLVBLiveRoom;
@@ -33,7 +33,6 @@ import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AudienceInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.MLVBCommonDef;
 import com.tencent.qcloud.xiaozhibo.R;
-import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.ui.ErrorDialogFragment;
 import com.tencent.qcloud.xiaozhibo.common.widget.beauty.LiveRoomBeautyKit;
@@ -193,8 +192,8 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
         mLiveRoom = MLVBLiveRoom.sharedInstance(this);
 
         initView();
-        LiveRoomBeautyKit manager = new LiveRoomBeautyKit(mLiveRoom);
-        mBeautyControl.setProxy(manager);
+        LiveRoomBeautyKit liveRoomBeautyKit = new LiveRoomBeautyKit(mLiveRoom);
+        mBeautyControl.setBeautyKit(liveRoomBeautyKit);
         startPlay();
 
         //在这里停留，让列表界面卡住几百毫秒，给sdk一点预加载的时间，形成秒开的视觉效果
@@ -258,26 +257,24 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
         mBgImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         mBtnLinkMic = (Button) findViewById(R.id.audience_btn_linkmic);
-        if (TCGlobalConfig.ENABLE_LINKMIC) {
-            mBtnLinkMic.setVisibility(View.VISIBLE);
-            mBtnLinkMic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mIsBeingLinkMic == false) {
-                        long curTime = System.currentTimeMillis();
-                        if (curTime < mLastLinkMicTime + LINK_MIC_INTERVAL) {
-                            Toast.makeText(getApplicationContext(), "太频繁啦，休息一下！", Toast.LENGTH_SHORT).show();
-                        } else {
-                            mLastLinkMicTime = curTime;
-                            startLinkMic();
-                        }
+        mBtnLinkMic.setVisibility(View.VISIBLE);
+        mBtnLinkMic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mIsBeingLinkMic == false) {
+                    long curTime = System.currentTimeMillis();
+                    if (curTime < mLastLinkMicTime + LINK_MIC_INTERVAL) {
+                        Toast.makeText(getApplicationContext(), "太频繁啦，休息一下！", Toast.LENGTH_SHORT).show();
                     } else {
-                        stopLinkMic();
-                        startPlay();
+                        mLastLinkMicTime = curTime;
+                        startLinkMic();
                     }
+                } else {
+                    stopLinkMic();
+                    startPlay();
                 }
-            });
-        }
+            }
+        });
 
         mBtnSwitchCamera = (Button) findViewById(R.id.audience_btn_switch_cam);
         mBtnSwitchCamera.setOnClickListener(new View.OnClickListener() {

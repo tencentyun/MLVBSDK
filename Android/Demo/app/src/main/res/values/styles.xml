@@ -29,4 +29,8 @@
         <item name="android:windowBackground">@color/hlfTransparent</item>
         <item name="android:windowIsFloating">false</item>
     </style>
+
+    <style name="common_alert_dialog" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

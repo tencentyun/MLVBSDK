@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mlvb_color_accent">#0accac</color>
+    <color name="mlvb_transparent">#00000000</color>
+    <color name="mlvb_white">#FFFFFF</color>
+    <color name="mlvb_black">#000000</color>
+    <color name="mlvb_hlf_transparent">#30000000</color>
+    <color name="mlvb_color_gray">#787878</color>
+    <color name="mlvb_color_transparent_black">#44777777</color>
+    <color name="mlvb_background_gray">#EBEBEB</color>
+    <color name="mlvb_color_primary_dark">#21a3f5</color>
+    <color name="mlvb_c9">#777777</color>
+</resources>

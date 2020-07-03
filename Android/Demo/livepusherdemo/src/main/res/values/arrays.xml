@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="livepusher_video_fps">
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+    <!-- 画质偏好列表 -->
+    <string-array name="livepusher_video_quality_list">
+        <item>蓝光</item>
+        <item>超清</item>
+        <item>高清</item>
+        <item>标清</item>
+        <item>连麦大主播</item>
+        <item>连麦小主播</item>
+        <item>实时音视频</item>
+    </string-array>
+
+    <string-array name="livepusher_voice_channel">
+        <item>语音</item>
+        <item>标准</item>
+        <item>音乐</item>
+    </string-array>
+
+</resources>

@@ -230,48 +230,18 @@
                 android:layout_height="@dimen/live_btn_size"
                 android:background="@drawable/music_big"
                 android:onClick="onClick"/>
+
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"/>
 
             <Button
-
-
                 android:id="@+id/btn_close"
                 android:layout_width="@dimen/live_btn_size"
                 android:layout_height="@dimen/live_btn_size"
                 android:background="@drawable/btn_close"
                 android:onClick="onClick"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:id="@+id/anchor_ll_audio_plugin"
-            android:visibility="gone">
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="5"
-                android:layout_height="match_parent"
-                android:text="音效"
-                android:textSize="20dp"
-                android:textColor="#FFFFFF"
-                android:id="@+id/btn_audio_effect"
-                android:onClick="onClick"
-                android:background="@drawable/shape_round_button"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="5"
-                android:layout_height="match_parent"
-                android:text="结束"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp"
-                android:id="@+id/btn_audio_close"
-                android:onClick="onClick"
-                android:background="@drawable/shape_round_button"/>
         </LinearLayout>
 
         <ListView
@@ -287,23 +257,20 @@
             android:scrollbarStyle="outsideOverlay"
             android:stackFromBottom="true"
             android:transcriptMode="normal" />
-        <com.tencent.qcloud.xiaozhibo.anchor.music.TCAudioControl
+
+        <com.tencent.liteav.audiosettingkit.AudioEffectPanel
+            android:id="@+id/anchor_audio_control"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:padding="0dp"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:background="#ffffff"
             android:layout_alignParentBottom="true"
-            android:id="@+id/anchor_audio_control"/>
+            android:visibility="gone" />
 
-        <com.tencent.liteav.demo.beauty.BeautyPanel
+        <com.tencent.liteav.demo.beauty.view.BeautyPanel
             android:id="@+id/beauty_panel"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/tool_bar" />
+            android:layout_alignParentBottom="true" />
 
         <LinearLayout
             android:layout_width="match_parent"

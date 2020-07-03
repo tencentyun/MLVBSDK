@@ -1,0 +1,562 @@
+[
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_longpressed_holo.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_cherry.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_cherry.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_star_black_48dp.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_natural.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_natural.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_facev.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_facev.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_qingxin.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_qingxin.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_cutout_background_ai.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_cutout_background_ai.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_langman.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_langman.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_popup_background_mtrl_mult.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_rixi.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_rixi.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_qingliang.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_qingliang.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_seas.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_seas.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_star_half_black_16dp.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_chunzhen.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_chunzhen.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_biaozhun.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_biaozhun.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_star_ear.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_star_ear.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_ribbon.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_ribbon.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_biaozhun.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_biaozhun.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_orginal.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_orginal.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_focused_holo.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_gesture_tv_star.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_gesture_tv_star.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_goodluck.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_goodluck.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_landiao.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_landiao.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_star_black_16dp.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl_light.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl_light.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_white.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_white.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_rixi.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_rixi.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_constellation.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_constellation.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_bottom_bg.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_bottom_bg.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_mouse_width.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_mouse_width.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_eye_bright.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_eye_bright.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_ugly.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_ugly.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_play_seekbar_icon.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_play_seekbar_icon.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_star_half_black_48dp.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_huaijiu.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_huaijiu.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_widow.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_widow.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_face_change.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_face_change.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_gesture_bottle_cap_challenge.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_gesture_bottle_cap_challenge.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl_light.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl_light.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_chunzhen.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_chunzhen.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_pressed_holo_light.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_smooth.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_smooth.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_ruddy.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_ruddy.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_gesture_meteor_shower.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_gesture_meteor_shower.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_pink.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_pink.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_mouse_shape.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_mouse_shape.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_loading_circle_progress.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_loading_circle_progress.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_yunshang.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_yunshang.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_wrinkles.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_wrinkles.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_costume.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_costume.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_yunshang.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_yunshang.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl_light.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl_light.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_fennen.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_fennen.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_star_half_black_36dp.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_pouch_remove.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_pouch_remove.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_yuanqi.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_yuanqi.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_forehead.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_forehead.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_xiangfen.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_xiangfen.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_xiangfen.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_xiangfen.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_chin.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_chin.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_pitu.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_pitu.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_qingliang.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_qingliang.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_princess.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_princess.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_fwhite.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_fwhite.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_pressed_holo_dark.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_noseslim.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_noseslim.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_neon_rat.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_neon_rat.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_gesture_snow_control.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_gesture_snow_control.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_common_none.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_common_none.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_lip.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_lip.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_nose_wing.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_nose_wing.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_tooth_white.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_tooth_white.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_eye_angle.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_eye_angle.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_white.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_white.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_chaotuo.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_chaotuo.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_headband.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_headband.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_qingxin.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_qingxin.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_video_xiaofu.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_video_xiaofu.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_langman.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_langman.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_faceslim.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_faceslim.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_star_black_36dp.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_star_black_36dp.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_smile_lines.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_smile_lines.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_yuanqi.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_yuanqi.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_face_shape.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_face_shape.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_yinghong.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_yinghong.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_fennen.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_fennen.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_eyebig.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_eyebig.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_boom.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_boom.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_call.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_call.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_huaijiu.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_huaijiu.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl_dark.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl_dark.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_gesture_pikachu.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_gesture_pikachu.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_chaotuo.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_chaotuo.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_retro.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_retro.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_yinghong.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_yinghong.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_bailan.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_bailan.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_makeups_mixing.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_makeups_mixing.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_flower_fairy.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_flower_fairy.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_bailan.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_bailan.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_landiao.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_landiao.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_face_short.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_face_short.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_filter_weimei.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_filter_weimei.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_effect_purple_cat.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_effect_purple_cat.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_bigeye.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_bigeye.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_bottom_bg2.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_bottom_bg2.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_weimei.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_weimei.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_eye_distance.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_eye_distance.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/beauty_ic_nose_position.png",
+        "source": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/src/main/res/drawable-xxhdpi/beauty_ic_nose_position.png"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl_dark.png",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl_dark.png"
+    }
+]

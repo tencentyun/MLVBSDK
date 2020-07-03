@@ -1,6 +1,8 @@
 package com.tencent.liteav.demo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -13,13 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.tencent.liteav.demo.liveplayer.LivePlayerActivity;
+import com.tencent.liteav.demo.livepusher.cameralivepush.CameraPusherActivity;
+import com.tencent.liteav.demo.liveroom.ui.LiveRoomActivity;
 import com.tencent.liteav.demo.common.widget.expandableadapter.BaseExpandableRecyclerViewAdapter;
-import com.tencent.liteav.demo.lvb.camerapush.CameraPusherActivity;
-import com.tencent.liteav.demo.lvb.liveplayer.LivePlayerActivity;
-import com.tencent.liteav.demo.lvb.liveroom.ui.LiveRoomActivity;
-
+import com.tencent.liteav.login.model.ProfileManager;
+import com.tencent.liteav.login.ui.LoginActivity;
 import com.tencent.rtmp.TXLiveBase;
 
 import java.io.File;
@@ -38,6 +40,8 @@ public class MainActivity extends Activity {
     private TextView mMainTitle, mTvVersion;
     private RecyclerView mRvList;
     private MainExpandableAdapter mAdapter;
+    private ImageView   mLogoutImg;
+    private AlertDialog mAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTvVersion = (TextView) findViewById(R.id.main_tv_version);
-        mTvVersion.setText("视频云工具包 v" + TXLiveBase.getSDKVersionStr());
+        mTvVersion.setText("视频云工具包 v" + TXLiveBase.getSDKVersionStr()+"(7.4.278)");
 
         mMainTitle = (TextView) findViewById(R.id.main_title);
         mMainTitle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -74,7 +78,14 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
-
+        mLogoutImg = (ImageView) findViewById(R.id.img_logout);
+        mLogoutImg.setVisibility(View.VISIBLE);
+        mLogoutImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutDialog();
+            }
+        });
 
         mRvList = (RecyclerView) findViewById(R.id.main_recycler_view);
         List<GroupBean> groupBeans = initGroupData();
@@ -103,7 +114,7 @@ public class MainActivity extends Activity {
                     intent.setData(Uri.parse("http://dldir1.qq.com/hudongzhibo/xiaozhibo/XiaoShiPin.apk"));
                     startActivity(intent);
                     return;
-                } else if (childItem.mIconId ==R.drawable.xiaozhibo) {
+                } else if (childItem.mIconId == R.drawable.xiaozhibo) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse("http://dldir1.qq.com/hudongzhibo/xiaozhibo/xiaozhibo.apk"));
                     startActivity(intent);
@@ -116,6 +127,49 @@ public class MainActivity extends Activity {
             }
         });
         mRvList.setAdapter(mAdapter);
+    }
+
+    private void showLogoutDialog() {
+        if (mAlertDialog == null) {
+            mAlertDialog = new AlertDialog.Builder(this, R.style.common_alert_dialog)
+                    .setMessage("确定要退出登录吗？")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // 执行退出登录操作
+                            ProfileManager.getInstance().logout(new ProfileManager.ActionCallback() {
+                                @Override
+                                public void onSuccess() {
+                                    stopService();
+                                    // 退出登录
+                                    startLoginActivity();
+                                }
+                                @Override
+                                public void onFailed(int code, String msg) {
+                                }
+                            });
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create();
+        }
+        if (!mAlertDialog.isShowing()) {
+            mAlertDialog.show();
+        }
+    }
+
+    private void stopService() {
+    }
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private List<GroupBean> initGroupData() {
@@ -136,8 +190,6 @@ public class MainActivity extends Activity {
 
         // 初始化播放器
         List<ChildBean> playerChildList = new ArrayList<>();
-//        playerChildList.add(new ChildBean("超级播放器", R.drawable.play, SuperPlayerActivity.class));
-//        playerChildList.add(new ChildBean("低延时播放", R.drawable.realtime_play, LivePlayerActivity.class));// 不用了
         if (playerChildList.size() != 0) {
             GroupBean playerGroupBean = new GroupBean("播放器", R.drawable.composite, playerChildList);
             groupList.add(playerGroupBean);
@@ -158,19 +210,6 @@ public class MainActivity extends Activity {
         if (videoConnectChildList.size() != 0) {
             GroupBean videoConnectGroupBean = new GroupBean("实时音视频 TRTC", R.drawable.room_multi, videoConnectChildList);
             groupList.add(videoConnectGroupBean);
-        }
-
-
-        // 调试工具
-        List<ChildBean> debugChildList = new ArrayList<>();
-//        debugChildList.add(new ChildBean("RTMP 推流 (Surface)", R.drawable.push, LivePublisherSurfaceActivity.class));
-//        debugChildList.add(new ChildBean("直播播放器 (Surface)", R.drawable.live, LivePlayerSurfaceActivity.class));
-//        debugChildList.add(new ChildBean("点播播放器", R.drawable.play, VodPlayerActivity.class));
-//        debugChildList.add(new ChildBean("在线答题室", R.drawable.room_qa, AnswerRoomActivity.class));
-//        debugChildList.add(new ChildBean("答题播放器", R.drawable.room_qa, AnswerPlayerActivity.class));
-        if (debugChildList.size() != 0) {
-            GroupBean debugGroupBean = new GroupBean("调试工具", R.drawable.debug, debugChildList);
-            groupList.add(debugGroupBean);
         }
 
         return groupList;

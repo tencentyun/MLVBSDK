@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/mlvb_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".75" />
+
+    <TextView
+        android:id="@+id/mlvb_rtcroom_chat_msg_user_and_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="@string/mlvb_daji"
+        android:textColor="#EEEEEE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mlvb_tv_rtc_room_chat_msg_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:text="@string/mlvb_room_chat_msg"
+        android:textColor="#EEEEEE"
+        app:layout_constraintRight_toRightOf="@id/mlvb_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mlvb_rtcroom_chat_msg_user_and_time_tv" />
+
+</android.support.constraint.ConstraintLayout>

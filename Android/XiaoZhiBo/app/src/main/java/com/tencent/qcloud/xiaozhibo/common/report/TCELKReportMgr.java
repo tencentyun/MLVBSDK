@@ -24,7 +24,7 @@ import org.json.JSONObject;
  */
 public class TCELKReportMgr {
     // 小直播做统计用的，您可以不用关心
-    private static final String DEFAULT_ELK_HOST = "";
+    private static final String DEFAULT_ELK_HOST = "https://ilivelog.qcloud.com";
     private static final String TAG = "TCELKReportMgr";
     private Context mContext;
     private String mAppName;
@@ -76,11 +76,11 @@ public class TCELKReportMgr {
      * @param callback
      */
     public void reportELK(String action, String userName, long code, String errorMsg, TCHTTPMgr.Callback callback) {
+        Log.i(TAG, "reportELK: action = " + action + " userName = " + userName + " code = " + code);
         if (TextUtils.isEmpty(DEFAULT_ELK_HOST)) {
             // 对外的发布的源码版本会将 ELK 的上报拿掉。
             return;
         }
-        Log.i(TAG, "reportELK: action = " + action + " userName = " + userName + " code = " + code);
         String reqUrl = DEFAULT_ELK_HOST;
         try {
             JSONObject jsonObject = new JSONObject();

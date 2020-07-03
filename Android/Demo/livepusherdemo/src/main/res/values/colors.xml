@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="livepusher_accent">#0accac</color>
+    <color name="livepusher_red">#ff3333</color>
+    <color name="livepusher_white">#ffffff</color>
+    <color name="livepusher_black">#000000</color>
+    <color name="livepusher_hlf_transparent">#30000000</color>
+    <color name="livepusher_btn_line">#bbbbbb</color>
+    <color name="livepusher_gray_white">#eeeeee</color>
+    <color name="livepusher_green">#33da33</color>
+    <color name="livepusher_dark_gray">#3f000000</color>
+    <color name="livepusher_light_gray">#ededef</color>
+    <color name="livepusher_gray">#666666</color>
+    <color name="livepusher_audio_gray">#CC000000</color>
+
+</resources>

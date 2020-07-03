@@ -16,10 +16,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tencent.liteav.demo.beauty.BeautyPanel;
+import com.tencent.liteav.audiosettingkit.AudioEffectPanel;
+import com.tencent.liteav.demo.beauty.constant.BeautyConstants;
+import com.tencent.liteav.demo.beauty.model.BeautyInfo;
+import com.tencent.liteav.demo.beauty.model.ItemInfo;
+import com.tencent.liteav.demo.beauty.model.TabInfo;
+import com.tencent.liteav.demo.beauty.view.BeautyPanel;
 import com.tencent.liteav.demo.beauty.BeautyParams;
 import com.tencent.liteav.demo.lvb.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
@@ -72,10 +78,10 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
     private TextView                        mMemberCount;           // 观众数量
 
 
-    private TCAudioControl                  mAudioCtrl;             // 音效控制面板
-    private LinearLayout                    mAudioPluginLayout;
+    private AudioEffectPanel                mPanelAudioControl;     // 音效面板
 
     private BeautyPanel                     mBeautyControl;          // 美颜设置的控制类
+    private LinearLayout                    mLinearToolBar;
 
     // log相关
     private boolean                         mShowLog;               // 是否打开 log 面板
@@ -96,8 +102,11 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
         TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_CAMERA_PUSH, TCUserMgr.getInstance().getUserId(), 0, "摄像头推流", null);
         mPusherList = new ArrayList<>();
 
-        LiveRoomBeautyKit manager = new LiveRoomBeautyKit(mLiveRoom);
-        mBeautyControl.setProxy(manager);
+        LiveRoomBeautyKit liveRoomBeautyKit = new LiveRoomBeautyKit(mLiveRoom);
+        mBeautyControl.setBeautyKit(liveRoomBeautyKit);
+        BeautyInfo beautyInfo = mBeautyControl.getDefaultBeautyInfo();
+        beautyInfo.setBeautyBg(BeautyConstants.BEAUTY_BG_GRAY);
+        mBeautyControl.setBeautyInfo(beautyInfo);
     }
 
     @Override
@@ -125,11 +134,44 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
         mMemberCount = (TextView) findViewById(R.id.anchor_tv_member_counts);
         mMemberCount.setText("0");
 
-        //AudioControl
-        mAudioCtrl = (TCAudioControl) findViewById(R.id.anchor_audio_control);
-        mAudioPluginLayout = (LinearLayout) findViewById(R.id.anchor_ll_audio_plugin);
+        mLinearToolBar = (LinearLayout) findViewById(R.id.tool_bar);
+
+        //AudioEffectPanel
+        mPanelAudioControl = (AudioEffectPanel) findViewById(R.id.anchor_audio_control);
+        mPanelAudioControl.setAudioEffectManager(mLiveRoom.getAudioEffectManager());
+        mPanelAudioControl.setBackgroundColor(getResources().getColor(R.color.audio_gray_color));
+        mPanelAudioControl.setOnAudioEffectPanelHideListener(new AudioEffectPanel.OnAudioEffectPanelHideListener() {
+            @Override
+            public void onClosePanel() {
+                mPanelAudioControl.setVisibility(View.GONE);
+                mLinearToolBar.setVisibility(View.VISIBLE);
+            }
+        });
 
         mBeautyControl = (BeautyPanel) findViewById(R.id.beauty_panel);
+        mBeautyControl.setOnBeautyListener(new BeautyPanel.OnBeautyListener() {
+            @Override
+            public void onTabChange(TabInfo tabInfo, int position) {
+
+            }
+
+            @Override
+            public boolean onClose() {
+                mBeautyControl.setVisibility(View.GONE);
+                mLinearToolBar.setVisibility(View.VISIBLE);
+                return true;
+            }
+
+            @Override
+            public boolean onClick(TabInfo tabInfo, int tabPosition, ItemInfo itemInfo, int itemPosition) {
+                return false;
+            }
+
+            @Override
+            public boolean onLevelChanged(TabInfo tabInfo, int tabPosition, ItemInfo itemInfo, int itemPosition, int beautyLevel) {
+                return false;
+            }
+        });
 
         // 监听踢出的回调
         mPlayerVideoViewList = new TCVideoViewMgr(this, new TCVideoView.OnRoomViewListener() {
@@ -184,7 +226,6 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
 
     @Override
     protected void startPublish() {
-        mAudioCtrl.setPusher(mLiveRoom);
         mTXCloudVideoView.setVisibility(View.VISIBLE);
 
         // 打开本地预览，传入预览的 View
@@ -207,10 +248,9 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
     @Override
     protected void stopPublish() {
         super.stopPublish();
-        if (mAudioCtrl != null) {
-            mAudioCtrl.unInit();
-            mAudioCtrl.setPusher(null);
-            mAudioCtrl = null;
+        if (mPanelAudioControl != null) {
+            mPanelAudioControl.unInit();
+            mPanelAudioControl = null;
         }
     }
 
@@ -356,30 +396,12 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (null != mAudioCtrl && mAudioCtrl.getVisibility() != View.GONE && ev.getRawY() < mAudioCtrl.getTop()) {
-            mAudioCtrl.setVisibility(View.GONE);
+        if (null != mPanelAudioControl && mPanelAudioControl.getVisibility() != View.GONE && ev.getRawY() < mPanelAudioControl.getTop()) {
+            mPanelAudioControl.setVisibility(View.GONE);
+            mPanelAudioControl.hideAudioPanel();
+            mLinearToolBar.setVisibility(View.VISIBLE);
         }
         return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        /** attention to this below ,must add this**/
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {//是否选择，没选择就不会继续
-            if (requestCode == mAudioCtrl.REQUESTCODE) {
-                if (data == null) {
-                    Log.e(TAG, "null data");
-                } else {
-                    Uri uri = data.getData();//得到uri，后面就是将uri转化成file的过程。
-                    if (mAudioCtrl != null) {
-                        mAudioCtrl.processActivityResult(uri);
-                    } else {
-                        Log.e(TAG, "NULL Pointer! Get Music Failed");
-                    }
-                }
-            }
-        }
     }
 
 
@@ -444,25 +466,25 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
             case R.id.beauty_btn:
                 if (mBeautyControl.isShown()) {
                     mBeautyControl.setVisibility(View.GONE);
+                    mLinearToolBar.setVisibility(View.VISIBLE);
                 } else {
                     mBeautyControl.setVisibility(View.VISIBLE);
+                    mLinearToolBar.setVisibility(View.GONE);
                 }
                 break;
             case R.id.btn_close:
                 showExitInfoDialog("当前正在直播，是否退出直播？", false);
                 break;
             case R.id.btn_audio_ctrl:
-                if (null != mAudioCtrl) {
-                    mAudioCtrl.setVisibility(mAudioCtrl.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                if (mPanelAudioControl.isShown()) {
+                    mPanelAudioControl.setVisibility(View.GONE);
+                    mPanelAudioControl.hideAudioPanel();
+                    mLinearToolBar.setVisibility(View.VISIBLE);
+                } else {
+                    mPanelAudioControl.setVisibility(View.VISIBLE);
+                    mPanelAudioControl.showAudioPanel();
+                    mLinearToolBar.setVisibility(View.GONE);
                 }
-                break;
-            case R.id.btn_audio_effect:
-                mAudioCtrl.setVisibility(mAudioCtrl.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-                break;
-            case R.id.btn_audio_close:
-                mAudioCtrl.stopBGM();
-                mAudioPluginLayout.setVisibility(View.GONE);
-                mAudioCtrl.setVisibility(View.GONE);
                 break;
             case R.id.btn_log:
                 showLog();

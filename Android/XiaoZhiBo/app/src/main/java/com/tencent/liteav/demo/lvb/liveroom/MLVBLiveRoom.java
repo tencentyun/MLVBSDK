@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 
+import com.tencent.liteav.audio.TXAudioEffectManager;
 import com.tencent.liteav.beauty.TXBeautyManager;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.LoginInfo;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.AnchorInfo;
@@ -119,10 +120,10 @@ public abstract class MLVBLiveRoom {
 
     /**
      * 获取房间列表
-	 *
-	 * 该接口支持分页获取房间列表，可以用 index 和 count 两个参数控制列表分页的逻辑，
-	 * - index = 0 & count = 10 代表获取第一页的10个房间。
-	 * - index = 11 & count = 10 代表获取第二页的10个房间。
+     *
+     * 该接口支持分页获取房间列表，可以用 index 和 count 两个参数控制列表分页的逻辑，
+     * - index = 0 & count = 10 代表获取第一页的10个房间。
+     * - index = 11 & count = 10 代表获取第二页的10个房间。
      *
      * @param index   房间开始索引，从0开始计算。
      * @param count   希望后台返回的房间个数。
@@ -134,19 +135,19 @@ public abstract class MLVBLiveRoom {
      * 获取观众列表
      *
      * 当有观众进房时，后台会将其信息加入到指定房间的观众列表中，调入该函数即可返回指定房间的观众列表
-	 *
-	 * @note 观众列表最多只保存30人，因为对于常规的 UI 展示来说这已经足够，保存更多除了浪费存储空间，也会拖慢列表返回的速度。
+     *
+     * @note 观众列表最多只保存30人，因为对于常规的 UI 展示来说这已经足够，保存更多除了浪费存储空间，也会拖慢列表返回的速度。
      *
      * @param callback 获取观众列表的结果回调。
      */
     public abstract void getAudienceList(IMLVBLiveRoomListener.GetAudienceListCallback callback);
 
-	/**
+    /**
      * 创建房间（主播调用）
-	 *
-	 * 主播开播的正常调用流程是：
-	 * 1.【主播】调用 startLocalPreview() 打开摄像头预览，此时可以调整美颜参数。
-	 * 2.【主播】调用 createRoom 创建直播间，房间创建成功与否会通过 {@link IMLVBLiveRoomListener.CreateRoomCallback} 通知给主播。
+     *
+     * 主播开播的正常调用流程是：
+     * 1.【主播】调用 startLocalPreview() 打开摄像头预览，此时可以调整美颜参数。
+     * 2.【主播】调用 createRoom 创建直播间，房间创建成功与否会通过 {@link IMLVBLiveRoomListener.CreateRoomCallback} 通知给主播。
      *
      * @param roomID 房间标识，推荐做法是用主播的 userID 作为房间的 roomID，这样省去了后台映射的成本。room ID 可以填空，此时由后台生成。
      * @param roomInfo 房间信息（非必填），用于房间描述的信息，比如房间名称，允许使用 JSON 格式作为房间信息。
@@ -154,15 +155,15 @@ public abstract class MLVBLiveRoom {
      */
     public abstract void createRoom(final String roomID, final String roomInfo, final IMLVBLiveRoomListener.CreateRoomCallback callback);
 
-	 /**
+    /**
      * 进入房间（观众调用）
-	 *
-	 * 观众观看直播的正常调用流程是：
-	 * 1.【观众】调用 getRoomList() 刷新最新的直播房间列表，并通过 {@link IMLVBLiveRoomListener.GetRoomListCallback} 回调拿到房间列表。
-	 * 2.【观众】选择一个直播间以后，调用 enterRoom() 进入该房间。
+     *
+     * 观众观看直播的正常调用流程是：
+     * 1.【观众】调用 getRoomList() 刷新最新的直播房间列表，并通过 {@link IMLVBLiveRoomListener.GetRoomListCallback} 回调拿到房间列表。
+     * 2.【观众】选择一个直播间以后，调用 enterRoom() 进入该房间。
      *
      * @param roomID 房间标识
-	 * @param view 承载视频画面的控件
+     * @param view 承载视频画面的控件
      * @param callback 进入房间的结果回调
      *
      */
@@ -199,28 +200,28 @@ public abstract class MLVBLiveRoom {
     public abstract void getCustomInfo(final IMLVBLiveRoomListener.GetCustomInfoCallback callback);
     /// @}
 
-	
-	/////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////
     //
     //                      主播和观众连麦
     //
     /////////////////////////////////////////////////////////////////////////////////
-	/// @name 主播和观众连麦
+    /// @name 主播和观众连麦
     /// @{
 
-	/**
+    /**
      * 观众请求连麦
-	 * 
-	 * 主播和观众的连麦流程可以简单描述为如下几个步骤：
-	 * 1. 【观众】调用 requestJoinAnchor() 向主播发起连麦请求。
-	 * 2. 【主播】会收到 {@link IMLVBLiveRoomListener#onRequestJoinAnchor(AnchorInfo, String)} 的回调通知。
-	 * 3. 【主播】调用 responseJoinAnchor() 确定是否接受观众的连麦请求。
-	 * 4. 【观众】会收到 {@link IMLVBLiveRoomListener.RequestJoinAnchorCallback} 回调通知，可以得知请求是否被同意。
-	 * 5. 【观众】如果请求被同意，则调用 startLocalPreview() 开启本地摄像头，如果 App 还没有取得摄像头和麦克风权限，会触发 UI 提示。
-	 * 6. 【观众】然后调用 joinAnchor() 正式进入连麦状态。
+     *
+     * 主播和观众的连麦流程可以简单描述为如下几个步骤：
+     * 1. 【观众】调用 requestJoinAnchor() 向主播发起连麦请求。
+     * 2. 【主播】会收到 {@link IMLVBLiveRoomListener#onRequestJoinAnchor(AnchorInfo, String)} 的回调通知。
+     * 3. 【主播】调用 responseJoinAnchor() 确定是否接受观众的连麦请求。
+     * 4. 【观众】会收到 {@link IMLVBLiveRoomListener.RequestJoinAnchorCallback} 回调通知，可以得知请求是否被同意。
+     * 5. 【观众】如果请求被同意，则调用 startLocalPreview() 开启本地摄像头，如果 App 还没有取得摄像头和麦克风权限，会触发 UI 提示。
+     * 6. 【观众】然后调用 joinAnchor() 正式进入连麦状态。
      * 7. 【主播】一旦观众进入连麦状态，主播就会收到 {@link IMLVBLiveRoomListener#onAnchorEnter(AnchorInfo)} 通知。
-	 * 8. 【主播】主播调用 startRemoteView() 就可以看到连麦观众的视频画面。
-	 * 9. 【观众】如果直播间里已经有其他观众正在跟主播进行连麦，那么新加入的这位连麦观众也会收到 onAnchorJoin() 通知，用于展示（startRemoteView）其他连麦者的视频画面。
+     * 8. 【主播】主播调用 startRemoteView() 就可以看到连麦观众的视频画面。
+     * 9. 【观众】如果直播间里已经有其他观众正在跟主播进行连麦，那么新加入的这位连麦观众也会收到 onAnchorJoin() 通知，用于展示（startRemoteView）其他连麦者的视频画面。
      *
      *
      * @param reason 连麦原因
@@ -233,7 +234,7 @@ public abstract class MLVBLiveRoom {
     /**
      * 主播处理连麦请求
      *
-	 * 主播在收到 {@link IMLVBLiveRoomListener#onRequestJoinAnchor(AnchorInfo, String)} 回调之后会需要调用此接口来处理观众的连麦请求。
+     * 主播在收到 {@link IMLVBLiveRoomListener#onRequestJoinAnchor(AnchorInfo, String)} 回调之后会需要调用此接口来处理观众的连麦请求。
      *
      * @param userID 观众 ID
      * @param agree true：同意；false：拒绝
@@ -243,7 +244,7 @@ public abstract class MLVBLiveRoom {
      */
     public abstract int responseJoinAnchor(String userID, boolean agree, String reason);
 
-	/**
+    /**
      * 进入连麦状态
      *
      * 进入连麦成功后，主播和其他连麦观众会收到 {@link IMLVBLiveRoomListener#onAnchorEnter(AnchorInfo)} 通知
@@ -272,9 +273,9 @@ public abstract class MLVBLiveRoom {
      * @see {@link IMLVBLiveRoomListener#onKickoutJoinAnchor()}
      */
     public abstract void kickoutJoinAnchor(String userID);
-	/// @}
-	
-	
+    /// @}
+
+
     /////////////////////////////////////////////////////////////////////////////////
     //
     //                      主播跨房间 PK
@@ -285,14 +286,14 @@ public abstract class MLVBLiveRoom {
 
     /**
      * 请求跨房 PK
-	 *
-	 * 主播和主播之间可以跨房间 PK，两个正在直播中的主播 A 和 B，他们之间的跨房 PK 流程如下：
-	 * 1. 【主播 A】调用 requestRoomPK() 向主播 B 发起连麦请求。
-	 * 2. 【主播 B】会收到 {@link IMLVBLiveRoomListener#onRequestRoomPK(AnchorInfo)} 回调通知。
-	 * 3. 【主播 B】调用 responseRoomPK() 确定是否接受主播 A 的 PK 请求。
-	 * 4. 【主播 B】如果接受了主播 A 的要求，可以直接调用 startRemoteView() 来显示主播 A 的视频画面。
-	 * 5. 【主播 A】会收到 {@link IMLVBLiveRoomListener.RequestRoomPKCallback} 回调通知，可以得知请求是否被同意。
-	 * 6. 【主播 A】如果请求被同意，则可以调用 startRemoteView() 显示主播 B 的视频画面。
+     *
+     * 主播和主播之间可以跨房间 PK，两个正在直播中的主播 A 和 B，他们之间的跨房 PK 流程如下：
+     * 1. 【主播 A】调用 requestRoomPK() 向主播 B 发起连麦请求。
+     * 2. 【主播 B】会收到 {@link IMLVBLiveRoomListener#onRequestRoomPK(AnchorInfo)} 回调通知。
+     * 3. 【主播 B】调用 responseRoomPK() 确定是否接受主播 A 的 PK 请求。
+     * 4. 【主播 B】如果接受了主播 A 的要求，可以直接调用 startRemoteView() 来显示主播 A 的视频画面。
+     * 5. 【主播 A】会收到 {@link IMLVBLiveRoomListener.RequestRoomPKCallback} 回调通知，可以得知请求是否被同意。
+     * 6. 【主播 A】如果请求被同意，则可以调用 startRemoteView() 显示主播 B 的视频画面。
      *
      * @param userID 被邀约主播 ID
      * @param callback 请求跨房 PK 的结果回调
@@ -316,8 +317,8 @@ public abstract class MLVBLiveRoom {
 
     /**
      * 退出跨房 PK
-	 *
-	 * 当两个主播中的任何一个退出跨房 PK 状态后，另一个主播会收到 {@link IMLVBLiveRoomListener#onQuitRoomPK(AnchorInfo)} 回调通知。
+     *
+     * 当两个主播中的任何一个退出跨房 PK 状态后，另一个主播会收到 {@link IMLVBLiveRoomListener#onQuitRoomPK(AnchorInfo)} 回调通知。
      *
      * @param callback 退出跨房 PK 的结果回调
      */
@@ -437,11 +438,11 @@ public abstract class MLVBLiveRoom {
      * @param enable true：开启；false：关闭
      */
     public abstract boolean enableTorch(boolean enable);
-	
-	/**
+
+    /**
      * 主播屏蔽摄像头期间需要显示的等待图片
-	 *
-	 * 当主播屏蔽摄像头，或者由于 App 切入后台无法使用摄像头的时候，我们需要使用一张等待图片来提示观众“主播暂时离开，请不要走开”。
+     *
+     * 当主播屏蔽摄像头，或者由于 App 切入后台无法使用摄像头的时候，我们需要使用一张等待图片来提示观众“主播暂时离开，请不要走开”。
      *
      * @param bitmap 位图
      */
@@ -449,8 +450,8 @@ public abstract class MLVBLiveRoom {
 
     /**
      * 主播屏蔽摄像头期间需要显示的等待图片
-	 *
-	 * 当主播屏蔽摄像头，或者由于 App 切入后台无法使用摄像头的时候，我们需要使用一张等待图片来提示观众“主播暂时离开，请不要走开”。
+     *
+     * 当主播屏蔽摄像头，或者由于 App 切入后台无法使用摄像头的时候，我们需要使用一张等待图片来提示观众“主播暂时离开，请不要走开”。
      *
      * @param id 设置默认显示图片的资源文件
      */
@@ -722,6 +723,11 @@ public abstract class MLVBLiveRoom {
      * @return 结果是否成功，true：成功；false：失败。
      */
     public abstract boolean setBGMPosition(int position);
+
+    /**
+     * 音效控制相关
+     */
+    public abstract TXAudioEffectManager getAudioEffectManager();
 
     /// @}
 }

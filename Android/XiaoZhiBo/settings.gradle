@@ -1,6 +1,9 @@
 include ':app'
+include ':beautysettingkit'
+include ':audioeffectsettingkit'
 
-include ':beauty'
+
+
 
 
 

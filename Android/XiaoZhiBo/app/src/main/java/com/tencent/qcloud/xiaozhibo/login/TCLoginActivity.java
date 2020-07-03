@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
@@ -20,9 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
-import com.tencent.liteav.demo.lvb.liveroom.roomutil.misc.NameGenerator;
 import com.tencent.qcloud.xiaozhibo.R;
-import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.net.TCHTTPMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 import com.tencent.qcloud.xiaozhibo.main.TCMainActivity;
@@ -47,10 +44,11 @@ public class TCLoginActivity extends Activity {
     private ProgressBar progressBar;
 
     private EditText etUsername;
-
     private EditText etPassword;
 
+
     private Button btnLogin;
+
 
     private TextView tvRegister;
 
@@ -61,15 +59,19 @@ public class TCLoginActivity extends Activity {
 
         rootRelativeLayout = (RelativeLayout) findViewById(R.id.rl_login_root);
 
+
+
+
         etPassword = (EditText) findViewById(R.id.et_password);
 
         etUsername = (EditText) findViewById(R.id.et_username);
-
         tvRegister = (TextView) findViewById(R.id.btn_register);
 
         btnLogin = (Button) findViewById(R.id.btn_login);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
+
+
 
         userNameLoginViewInit();
 
@@ -89,6 +91,8 @@ public class TCLoginActivity extends Activity {
 
         etPassword.setText("");
         etPassword.setError(null, null);
+
+
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,12 +209,6 @@ public class TCLoginActivity extends Activity {
                         showOnLoadingInUIThread(false);
                     }
                 });
-            } else if (TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-                showOnLoading(true);
-
-                if (TCUtils.isNetworkAvailable(this)) {
-                    login(NameGenerator.getRandomUserID(), "");
-                }
             }
         }
     }

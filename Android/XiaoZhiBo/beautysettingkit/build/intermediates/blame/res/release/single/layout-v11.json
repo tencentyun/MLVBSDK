@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/layout-v11/notification_template_big_media.xml",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/layout-v11/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/layout-v11/notification_media_cancel_action.xml",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/layout-v11/notification_media_action.xml",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/layout-v11/notification_template_big_media_narrow.xml"
+    }
+]

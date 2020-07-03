@@ -7,9 +7,7 @@ import android.util.Log;
 
 import com.tencent.liteav.demo.lvb.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.lvb.liveroom.MLVBLiveRoom;
-import com.tencent.liteav.demo.lvb.liveroom.debug.GenerateTestUserSig;
 import com.tencent.liteav.demo.lvb.liveroom.roomutil.commondef.LoginInfo;
-import com.tencent.liteav.demo.lvb.liveroom.roomutil.misc.NameGenerator;
 import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.net.TCHTTPMgr;
 import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
@@ -252,111 +250,69 @@ public class TCUserMgr {
                     .put("userid", userId)
                     .put("password", pwd);
 
-            if (!TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-                TCHTTPMgr.getInstance().request(TCGlobalConfig.APP_SVR_URL + "/login", body, new TCHTTPMgr.Callback() {
-                    @Override
-                    public void onSuccess(JSONObject data) {
-                        mUserId = userId;
-                        mUserPwd = pwd;
-                        int code = data.optInt("code");
-                        String msg = data.optString("message");
-                        final JSONObject retData = data.optJSONObject("data");
-                        if (code == 200 && retData != null) {
-                            mToken = retData.optString("token");                   // 用于计算网络请求的 sig
-                            JSONObject serviceSig = retData.optJSONObject("roomservice_sign");
-                            mUserSig = serviceSig.optString("userSig");         // IM 的 sign
-                            mUserId = serviceSig.optString("userID");           // 后台分配的userId
-                            mAccountType = serviceSig.optString("accountType"); //
-                            mSdkAppID = serviceSig.optInt("sdkAppID");          // sdkappId
+            TCHTTPMgr.getInstance().request(TCGlobalConfig.APP_SVR_URL + "/login", body, new TCHTTPMgr.Callback() {
+                @Override
+                public void onSuccess(JSONObject data) {
+                    mUserId = userId;
+                    mUserPwd = pwd;
+                    int code = data.optInt("code");
+                    String msg = data.optString("message");
+                    data = data.optJSONObject("data");
+                    if (code == 200 && data != null) {
+                        mToken = data.optString("token");                   // 用于计算网络请求的 sig
+                        JSONObject serviceSig = data.optJSONObject("roomservice_sign");
+                        mUserSig = serviceSig.optString("userSig");         // IM 的 sign
+                        mUserId = serviceSig.optString("userID");           // 后台分配的userId
+                        mAccountType = serviceSig.optString("accountType"); //
+                        mSdkAppID = serviceSig.optInt("sdkAppID");          // sdkappId
 
-                            JSONObject cosInfo = retData.optJSONObject("cos_info");      // COS 存储相关的信息
-                            mCosInfo.bucket = cosInfo.optString("Bucket");      // COS 存储的Buket
-                            mCosInfo.appID = cosInfo.optString("Appid");        // COS 对应的AppId
-                            mCosInfo.region = cosInfo.optString("Region");      // COS 的存储区域
-                            mCosInfo.secretID = cosInfo.optString("SecretId");  // COS 的密钥ID
-                            // 登录到 MLVB 组件
-                            loginMLVB(new IMLVBLiveRoomListener.LoginCallback() {
-                                @Override
-                                public void onError(int errCode, String errInfo) {
-                                    Log.i(TAG, "onError: errorCode = " + errInfo + " info = " + errInfo);
-                                }
+                        JSONObject cosInfo = data.optJSONObject("cos_info");      // COS 存储相关的信息
+                        mCosInfo.bucket = cosInfo.optString("Bucket");      // COS 存储的Buket
+                        mCosInfo.appID = cosInfo.optString("Appid");        // COS 对应的AppId
+                        mCosInfo.region = cosInfo.optString("Region");      // COS 的存储区域
+                        mCosInfo.secretID = cosInfo.optString("SecretId");  // COS 的密钥ID
+                        // 登录到 MLVB 组件
+                        loginMLVB();
 
-                                @Override
-                                public void onSuccess() {
-                                    if (callback != null) {
-                                        callback.onSuccess(retData);
-                                    }
-                                    Log.i(TAG, "onSuccess: ");
-                                }
-                            });
+                        // 拉取用户信息
+                        fetchUserInfo(null);
 
-                            // 拉取用户信息
-                            fetchUserInfo(null);
+                        // 保存用户信息到本地
+                        saveUserInfo();
 
-                            // 保存用户信息到本地
-                            saveUserInfo();
-
-
-                            // 登录成功上报
-                            TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, 0, "登录成功", null);
-
-
-                            TCHTTPMgr.getInstance().setUserIdAndToken(mUserId, mToken);
-                        } else {
-                            String errorMsg = msg;
-                            if (code == 620) {
-                                errorMsg = "用户不存在";
-                                TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, -1, msg, null);
-                            } else if (code == 621) {
-                                errorMsg = "密码错误";
-                                TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, -2, msg, null);
-                            }
-                            if (callback != null) {
-                                callback.onFailure(code, errorMsg);
-                            }
-                            clearUserInfo();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(int code, String msg) {
                         if (callback != null) {
-                            callback.onFailure(code, msg);
+                            callback.onSuccess(data);
+                        }
+
+                        // 登录成功上报
+                        TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, 0, "登录成功", null);
+
+
+                        TCHTTPMgr.getInstance().setUserIdAndToken(mUserId, mToken);
+                    } else {
+                        String errorMsg = msg;
+                        if (code == 620) {
+                            errorMsg = "用户不存在";
+                            TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, -1, msg, null);
+                        } else if (code == 621) {
+                            errorMsg = "密码错误";
+                            TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, -2, msg, null);
+                        }
+                        if (callback != null) {
+                            callback.onFailure(code, errorMsg);
                         }
                         clearUserInfo();
                     }
-                });
-            } else { //没有后台，仅本地运行
-                mUserId = userId;
-                mSdkAppID = TCGlobalConfig.SDKAPPID;
-                mUserSig = GenerateTestUserSig.genTestUserSig(mUserId);
-
-                // 登录到 MLVB 组件
-                loginMLVB(new IMLVBLiveRoomListener.LoginCallback() {
-                    @Override
-                    public void onError(int errCode, String errInfo) {
-                        Log.i(TAG, "onError: errorCode = " + errInfo + " info = " + errInfo);
-                    }
-
-                    @Override
-                    public void onSuccess() {
-                        if (callback != null) {
-                            callback.onSuccess(null);
-                        }
-                        Log.i(TAG, "onSuccess: ");
-                    }
-                });
-
-                if (TextUtils.isEmpty(mNickName)) {
-                    mNickName = NameGenerator.getRandomName();
                 }
 
-                // 保存用户信息到本地
-                saveUserInfo();
-
-                // 登录成功上报
-                TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_LOGIN, userId, 0, "登录成功", null);
-            }
+                @Override
+                public void onFailure(int code, String msg) {
+                    if (callback != null) {
+                        callback.onFailure(code, msg);
+                    }
+                    clearUserInfo();
+                }
+            });
         } catch (Exception e) {
             if (callback != null) {
                 callback.onFailure(-1, "");
@@ -370,35 +326,29 @@ public class TCUserMgr {
      * @param callback
      */
     public void fetchUserInfo(final TCHTTPMgr.Callback callback) {
-        if (!TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-            JSONObject body = new JSONObject();
-            TCHTTPMgr.getInstance().requestWithSign(TCGlobalConfig.APP_SVR_URL + "/get_user_info", body, new TCHTTPMgr.Callback() {
-                @Override
-                public void onSuccess(JSONObject data) {
-                    if (data != null) {
-                        mUserAvatar = data.optString("avatar");
-                        mNickName = data.optString("nickname");
-                        mCoverPic = data.optString("frontcover");
-                        mSex = data.optInt("sex");
-                    }
-                    if (callback != null) {
-                        callback.onSuccess(data);
-                    }
-                    saveUserInfo();
+        JSONObject body = new JSONObject();
+        TCHTTPMgr.getInstance().requestWithSign(TCGlobalConfig.APP_SVR_URL + "/get_user_info", body, new TCHTTPMgr.Callback() {
+            @Override
+            public void onSuccess(JSONObject data) {
+                if (data != null) {
+                    mUserAvatar = data.optString("avatar");
+                    mNickName   = data.optString("nickname");
+                    mCoverPic   = data.optString("frontcover");
+                    mSex        = data.optInt("sex");
                 }
-
-                @Override
-                public void onFailure(int code, String msg) {
-                    if (callback != null) {
-                        callback.onFailure(code, msg);
-                    }
+                if (callback != null) {
+                    callback.onSuccess(data);
                 }
-            });
-        } else {
-            if (callback != null) {
-                callback.onSuccess(null);
+                saveUserInfo();
             }
-        }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                if (callback != null) {
+                    callback.onFailure(code, msg);
+                }
+            }
+        });
     }
 
     /**
@@ -407,17 +357,15 @@ public class TCUserMgr {
      * @param callback
      */
     public void uploadUserInfo(final TCHTTPMgr.Callback callback) {
-        if (!TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-            try {
-                JSONObject body = new JSONObject()
-                        .put("nickname", mNickName != null ? mNickName : "")
-                        .put("avatar", mUserAvatar != null ? mUserAvatar : "")
-                        .put("sex", mSex)
-                        .put("frontcover", mCoverPic != null ? mCoverPic : "");
-                TCHTTPMgr.getInstance().requestWithSign(TCGlobalConfig.APP_SVR_URL + "/upload_user_info", body, callback);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            JSONObject body = new JSONObject()
+                    .put("nickname", mNickName != null ? mNickName : "")
+                    .put("avatar", mUserAvatar != null ? mUserAvatar : "")
+                    .put("sex", mSex)
+                    .put("frontcover", mCoverPic != null ? mCoverPic : "");
+            TCHTTPMgr.getInstance().requestWithSign(TCGlobalConfig.APP_SVR_URL + "/upload_user_info", body, callback);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -425,7 +373,7 @@ public class TCUserMgr {
     /**
      * 初始化 MLVB 组件
      */
-    private void loginMLVB(IMLVBLiveRoomListener.LoginCallback mlvbCb) {
+    private void loginMLVB() {
         if (mContext == null) return;
         LoginInfo loginInfo = new LoginInfo();
         loginInfo.sdkAppID = getSDKAppID();
@@ -436,7 +384,17 @@ public class TCUserMgr {
         loginInfo.userName = !TextUtils.isEmpty(userName) ? userName : getUserId();
         loginInfo.userAvatar = getUserAvatar();
         MLVBLiveRoom liveRoom = MLVBLiveRoom.sharedInstance(mContext);
-        liveRoom.login(loginInfo, mlvbCb);
+        liveRoom.login(loginInfo, new IMLVBLiveRoomListener.LoginCallback() {
+            @Override
+            public void onError(int errCode, String errInfo) {
+                Log.i(TAG, "onError: errorCode = " + errInfo + " info = " + errInfo);
+            }
+
+            @Override
+            public void onSuccess() {
+                Log.i(TAG, "onSuccess: ");
+            }
+        });
     }
 
 }

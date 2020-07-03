@@ -85,4 +85,6 @@
 
     <!-- 40%不透明度 -->
 
+    <color name="audio_gray_color">#CC000000</color>
+
 </resources>

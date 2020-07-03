@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/res/merged/release/values-v24/values-v24.xml",
+            "map": [
+                {
+                    "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/values-v24/values-v24.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,212,347,416,480,549",
+                        "endColumns": "156,134,68,63,68,69",
+                        "endOffsets": "207,342,411,475,544,614"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/data/landun/workspace/Android/XiaoZhiBo_Android_7.4.9209/Demo/beautysettingkit/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v24/values-v24.xml",
+            "map": [
+                {
+                    "source": "/root/.gradle/caches/transforms-2/files-2.1/f6f7cc80d0fa3b1ad8b13db1d9a21fca/appcompat-v7-25.4.0/res/values-v24/values-v24.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,212,347,416,480,549",
+                        "endColumns": "156,134,68,63,68,69",
+                        "endOffsets": "207,342,411,475,544,614"
+                    }
+                }
+            ]
+        }
+    ]
+}

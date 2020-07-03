@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="beauty_category">
+        <item>美颜</item>
+        <item>滤镜</item>
+        <item>动效</item>
+        <item>美妆</item>
+        <item>手势</item>
+        <item>抠背</item>
+        <item>绿幕</item>
+    </string-array>
+    <string-array name="beauty_cutout_background">
+        <item>无动效</item>
+        <item>AI抠背</item>
+    </string-array>
+    <string-array name="beauty_filter_type">
+        <item>无</item>
+        <item>标准</item>
+        <item>樱红</item>
+        <item>云裳</item>
+        <item>纯真</item>
+        <item>白兰</item>
+        <item>元气</item>
+        <item>超脱</item>
+        <item>香氛</item>
+        <item>美白</item>
+        <item>浪漫</item>
+        <item>清新</item>
+        <item>唯美</item>
+        <item>粉嫩</item>
+        <item>怀旧</item>
+        <item>蓝调</item>
+        <item>清凉</item>
+        <item>日系</item>
+    </string-array>
+    <string-array name="beauty_gesture_type">
+        <item>皮卡丘</item>
+        <item>流星雨</item>
+        <item>控雪</item>
+        <item>电视之星</item>
+        <item>瓶盖挑战</item>
+    </string-array>
+    <string-array name="beauty_green_screen">
+        <item>无</item>
+        <item>Good luck</item>
+    </string-array>
+    <string-array name="beauty_makeup_type">
+        <item>原宿复古</item>
+        <item>樱桃</item>
+        <item>海洋</item>
+        <item>粉粉霞</item>
+        <item>寡姐妆</item>
+        <item>七夕唇印</item>
+        <item>古风妆</item>
+        <item>小丑女</item>
+        <item>混合妆</item>
+    </string-array>
+    <string-array name="beauty_motion_type">
+        <item>无</item>
+        <item>Boom</item>
+        <item>霓虹鼠</item>
+        <item>星耳</item>
+        <item>疯狂打call</item>
+        <item>Q星座</item>
+        <item>彩色丝带</item>
+        <item>刘海发带</item>
+        <item>变脸</item>
+        <item>紫色小猫</item>
+        <item>花仙子</item>
+        <item>小公举</item>
+    </string-array>
+    <string-array name="beauty_style">
+        <item>美颜(光滑)</item>
+        <item>美颜(自然)</item>
+        <item>美颜(天天P图)</item>
+    </string-array>
+    <string-array name="beauty_type">
+        <item>美颜</item>
+        <item>美白</item>
+        <item>红润</item>
+        <item>大眼</item>
+        <item>瘦脸</item>
+        <item>V脸</item>
+        <item>下巴</item>
+        <item>短脸</item>
+        <item>瘦鼻</item>
+        <item>亮眼</item>
+        <item>白牙</item>
+        <item>祛眼袋</item>
+        <item>祛法令纹</item>
+        <item>祛皱</item>
+        <item>发际线</item>
+        <item>眼距</item>
+        <item>眼角</item>
+        <item>嘴形</item>
+        <item>鼻翼</item>
+        <item>鼻子位置</item>
+        <item>嘴唇厚度</item>
+        <item>脸型</item>
+    </string-array>
+    <color name="beauty_color_red">#FF584C</color>
+    <color name="beauty_color_white">#FFFFFF</color>
+    <dimen name="beauty_h1">9sp</dimen>
+    <dimen name="beauty_h10">18sp</dimen>
+    <dimen name="beauty_h11">19sp</dimen>
+    <dimen name="beauty_h12">20sp</dimen>
+    <dimen name="beauty_h2">10sp</dimen>
+    <dimen name="beauty_h3">11sp</dimen>
+    <dimen name="beauty_h4">12sp</dimen>
+    <dimen name="beauty_h5">13sp</dimen>
+    <dimen name="beauty_h6">14sp</dimen>
+    <dimen name="beauty_h7">15sp</dimen>
+    <dimen name="beauty_h8">16sp</dimen>
+    <dimen name="beauty_h9">17sp</dimen>
+    <dimen name="beauty_live_btn_size">35dp</dimen>
+    <dimen name="beauty_qav_grid_view_item_width_audio">75dp</dimen>
+    <dimen name="beauty_qav_multi_video_friend_item_width">60dp</dimen>
+    <dimen name="beauty_sub_content">14sp</dimen>
+    <dimen name="beauty_title">18sp</dimen>
+    <dimen name="beauty_ugc_aspect_divider">18dp</dimen>
+    <dimen name="beauty_ugc_aspect_width">50dp</dimen>
+    <dimen name="beauty_ugc_cut_margin">10dp</dimen>
+    <dimen name="beauty_ugc_item_thumb_height">60dp</dimen>
+    <dimen name="beauty_ugc_progress_cursor">2dp</dimen>
+    <dimen name="beauty_ugc_progress_divider">1dp</dimen>
+    <dimen name="beauty_ugc_progress_min_pos">2dp</dimen>
+    <dimen name="beauty_video_progress_height">50dp</dimen>
+    <dimen name="beauty_video_thumbnail_width">50dp</dimen>
+    <string name="beauty_cancel">取消</string>
+    <string name="beauty_close">关闭</string>
+    <string name="beauty_common_none">无</string>
+    <string name="beauty_confirm">确定</string>
+    <string name="beauty_cutout_background_ai">AI抠背</string>
+    <string name="beauty_effect_boom">Boom</string>
+    <string name="beauty_effect_call">疯狂打call</string>
+    <string name="beauty_effect_constellation">Q星座</string>
+    <string name="beauty_effect_face_change">变脸</string>
+    <string name="beauty_effect_flower_faerie">花仙子</string>
+    <string name="beauty_effect_headband">刘海发带</string>
+    <string name="beauty_effect_neon_rat">霓虹鼠</string>
+    <string name="beauty_effect_princess">小公举</string>
+    <string name="beauty_effect_purple_kitten">紫色小猫</string>
+    <string name="beauty_effect_ribbon">彩色丝带</string>
+    <string name="beauty_effect_star_ear">星耳</string>
+    <string name="beauty_gesture_bottle_cap_challenge">瓶盖挑战</string>
+    <string name="beauty_gesture_meteor_shower">流星雨</string>
+    <string name="beauty_gesture_pikaqiu">皮卡丘</string>
+    <string name="beauty_gesture_snow_control">控雪</string>
+    <string name="beauty_gesture_tv_star">电视之星</string>
+    <string name="beauty_good_luck">Good luck</string>
+    <string name="beauty_makeups_cherry">樱桃</string>
+    <string name="beauty_makeups_costume">古风妆</string>
+    <string name="beauty_makeups_lip">七夕唇印</string>
+    <string name="beauty_makeups_mixing">混合妆</string>
+    <string name="beauty_makeups_pink">粉粉霞</string>
+    <string name="beauty_makeups_retro">原宿复古</string>
+    <string name="beauty_makeups_seas">海洋</string>
+    <string name="beauty_makeups_ugly">小丑女</string>
+    <string name="beauty_makeups_widow">寡姐妆</string>
+    <string name="beauty_palm_out">伸出手掌</string>
+    <string name="beauty_panel_beauty">美颜</string>
+    <string name="beauty_panel_bigeye">大眼</string>
+    <string name="beauty_panel_chin">下巴</string>
+    <string name="beauty_panel_eyeangle">眼角</string>
+    <string name="beauty_panel_eyedistance">眼距</string>
+    <string name="beauty_panel_eyelighten">亮眼</string>
+    <string name="beauty_panel_faceshape">脸型</string>
+    <string name="beauty_panel_faceshort">短脸</string>
+    <string name="beauty_panel_faceslim">瘦脸</string>
+    <string name="beauty_panel_facev">V脸</string>
+    <string name="beauty_panel_filter_Japanese">日系</string>
+    <string name="beauty_panel_filter_beautiful">唯美</string>
+    <string name="beauty_panel_filter_blues">蓝调</string>
+    <string name="beauty_panel_filter_cheery">樱红</string>
+    <string name="beauty_panel_filter_cloud">云裳</string>
+    <string name="beauty_panel_filter_cool">清凉</string>
+    <string name="beauty_panel_filter_fragrance">香氛</string>
+    <string name="beauty_panel_filter_fresh">清新</string>
+    <string name="beauty_panel_filter_orchid">白兰</string>
+    <string name="beauty_panel_filter_pink">粉嫩</string>
+    <string name="beauty_panel_filter_pure">纯真</string>
+    <string name="beauty_panel_filter_reminiscence">怀旧</string>
+    <string name="beauty_panel_filter_romantic">浪漫</string>
+    <string name="beauty_panel_filter_standard">标准</string>
+    <string name="beauty_panel_filter_super">超脱</string>
+    <string name="beauty_panel_filter_vitality">元气</string>
+    <string name="beauty_panel_filter_white">美白</string>
+    <string name="beauty_panel_forehead">发际线</string>
+    <string name="beauty_panel_mousewidth">嘴唇厚度</string>
+    <string name="beauty_panel_mouthshape">嘴形</string>
+    <string name="beauty_panel_noseposition">鼻子位置</string>
+    <string name="beauty_panel_noseslim">瘦鼻</string>
+    <string name="beauty_panel_nosewing">鼻翼</string>
+    <string name="beauty_panel_pounchremove">祛眼袋</string>
+    <string name="beauty_panel_ruddy">红润</string>
+    <string name="beauty_panel_smilelinesremove">祛法令纹</string>
+    <string name="beauty_panel_style_natural">美颜(自然)</string>
+    <string name="beauty_panel_style_pitu">美颜(天天P图)</string>
+    <string name="beauty_panel_style_smooth">美颜(光滑)</string>
+    <string name="beauty_panel_toothwhite">白牙</string>
+    <string name="beauty_panel_uniforms">校服</string>
+    <string name="beauty_panel_white">美白</string>
+    <string name="beauty_panel_wrinkleremove">祛皱</string>
+    <string name="beauty_setting_panel_beauty">美颜</string>
+    <string name="beauty_setting_panel_dynamic_effect">动效</string>
+    <string name="beauty_setting_panel_facebeauty">美妆</string>
+    <string name="beauty_setting_panel_filter">滤镜</string>
+    <string name="beauty_setting_panel_gesture">手势</string>
+    <string name="beauty_setting_panel_green_screen">绿幕</string>
+    <string name="beauty_setting_panel_key">抠背</string>
+    <string name="beauty_setting_panel_style">风格</string>
+    <string name="beauty_setup">设置</string>
+    <string name="beauty_strength">强度</string>
+    <string name="beauty_video_material_download_progress_download_failed">下载失败</string>
+    <string name="beauty_video_material_download_progress_material_unzip_failed">素材解压失败</string>
+    <string name="beauty_video_material_download_progress_no_enough_storage_space">存储空间不足</string>
+    <style name="BeautyLoadingDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="BeautyPanelStyle">
+        <!-- 美颜面板 -->
+        <item name="beautyPanelColorPrimary">@color/beauty_color_red</item>
+        <item name="beautyPanelSmoothIcon">@drawable/beauty_ic_smooth</item>
+        <item name="beautyPanelNaturalIcon">@drawable/beauty_ic_natural</item>
+        <item name="beautyPanelPituIcon">@drawable/beauty_ic_pitu</item>
+        <item name="beautyPanelWhiteIcon">@drawable/beauty_ic_white</item>
+        <item name="beautyPanelRuddyIcon">@drawable/beauty_ic_ruddy</item>
+        <item name="beautyPanelBigeyeIcon">@drawable/beauty_ic_bigeye</item>
+        <item name="beautyPanelFaceslimIcon">@drawable/beauty_ic_faceslim</item>
+        <item name="beautyPanelFacevIcon">@drawable/beauty_ic_facev</item>
+        <item name="beautyPanelChinIcon">@drawable/beauty_ic_chin</item>
+        <item name="beautyPanelFaceshortIcon">@drawable/beauty_ic_face_short</item>
+        <item name="beautyPanelNoseslimIcon">@drawable/beauty_ic_noseslim</item>
+        <item name="beautyPanelEyeLightenIcon">@drawable/beauty_ic_eye_bright</item>
+        <item name="beautyPanelToothWhiteIcon">@drawable/beauty_ic_tooth_white</item>
+        <item name="beautyPanelPouchRemoveIcon">@drawable/beauty_ic_pouch_remove</item>
+        <item name="beautyPanelSmileLinesRemoveIcon">@drawable/beauty_ic_smile_lines</item>
+        <item name="beautyPanelWrinkleIcon">@drawable/beauty_ic_wrinkles</item>
+        <item name="beautyPanelForeheadIcon">@drawable/beauty_ic_forehead</item>
+        <item name="beautyPanelEyeDistanceIcon">@drawable/beauty_ic_eye_distance</item>
+        <item name="beautyPanelEyeAngleIcon">@drawable/beauty_ic_eye_angle</item>
+        <item name="beautyPanelMouthShapeIcon">@drawable/beauty_ic_mouse_shape</item>
+        <item name="beautyPanelNoseWingIcon">@drawable/beauty_ic_nose_wing</item>
+        <item name="beautyPanelNosePositionIcon">@drawable/beauty_ic_nose_position</item>
+        <item name="beautyPanelMouseWidthIcon">@drawable/beauty_ic_mouse_width</item>
+        <item name="beautyPanelFaceShapeIcon">@drawable/beauty_ic_face_shape</item>
+    </style>
+    <declare-styleable name="BeautyPanelStyle">
+        <!-- 美颜面板 -->
+        <attr format="reference" name="beautyPanelColorPrimary"/>
+        <attr format="reference" name="beautyPanelSmoothIcon"/>
+        <attr format="reference" name="beautyPanelNaturalIcon"/>
+        <attr format="reference" name="beautyPanelPituIcon"/>
+        <attr format="reference" name="beautyPanelWhiteIcon"/>
+        <attr format="reference" name="beautyPanelRuddyIcon"/>
+        <attr format="reference" name="beautyPanelBigeyeIcon"/>
+        <attr format="reference" name="beautyPanelFaceslimIcon"/>
+        <attr format="reference" name="beautyPanelFacevIcon"/>
+        <attr format="reference" name="beautyPanelChinIcon"/>
+        <attr format="reference" name="beautyPanelFaceshortIcon"/>
+        <attr format="reference" name="beautyPanelNoseslimIcon"/>
+        <attr format="reference" name="beautyPanelEyeLightenIcon"/>
+        <attr format="reference" name="beautyPanelToothWhiteIcon"/>
+        <attr format="reference" name="beautyPanelPouchRemoveIcon"/>
+        <attr format="reference" name="beautyPanelSmileLinesRemoveIcon"/>
+        <attr format="reference" name="beautyPanelWrinkleIcon"/>
+        <attr format="reference" name="beautyPanelForeheadIcon"/>
+        <attr format="reference" name="beautyPanelEyeDistanceIcon"/>
+        <attr format="reference" name="beautyPanelEyeAngleIcon"/>
+        <attr format="reference" name="beautyPanelMouthShapeIcon"/>
+        <attr format="reference" name="beautyPanelNoseWingIcon"/>
+        <attr format="reference" name="beautyPanelNosePositionIcon"/>
+        <attr format="reference" name="beautyPanelMouseWidthIcon"/>
+        <attr format="reference" name="beautyPanelFaceShapeIcon"/>
+    </declare-styleable>
+</resources>
