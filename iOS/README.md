@@ -7,7 +7,7 @@
 |  ├─ TXLiteAVSDK_Smart.framework // 如果您下载的是专业版 zip 包，解压后将出现此文件
 |  ├─ TXLiteAVSDK_Professional.framework // 如果您下载的是专业版 zip 包，解压后将出现此文件
 |  ├─ TXLiteAVSDK_Enterprise.framework   // 如果您下载的是企业版 zip 包，解压后将出现此文件
-├─ Demo // 移动直播 Demo，包括直播推流，直播播放，互动直播（IM）
+├─ Demo // 移动直播 Demo，包括直播推流，直播播放，互动直播
 └── TXLiteAVDemo
     ├── App               // 程序入口界面
     ├── AudioSettingKit   // 音效面板，包含BGM播放，变声，混响，变调等效果

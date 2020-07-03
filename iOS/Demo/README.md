@@ -39,7 +39,7 @@ iOS 中填写 Licence 的接口为：
 
 - **填写到 Demo 中**
 
-Demo 中填写 Licence 的位置在 `Demo/TXLiteAVDemo/App/AppDelegate.m` 和 `Deom/ReplaykitUpload/SampleHandler.m` （用于录屏推流）中：
+Demo 中填写 Licence 的位置在 `Demo/TXLiteAVDemo/App/AppDelegate.m` 和 `Demo/ReplaykitUpload/SampleHandler.m` （用于录屏推流）中：
 
 ```
 [TXLiveBase setLicenceURL:@"<#Licence URL#>" key:@"<#Licence Key#>"];
