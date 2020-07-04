@@ -38,8 +38,6 @@ target 'TXLiteAVDemo_Smart' do
   common_pods_smart
   tx_im
   swift_pods
-  # Smart SDK
-  pod 'TXLiteAVSDK_Smart', :podspec => 'http://pod-1252463788.cosgz.myqcloud.com/liteavsdkspec/TXLiteAVSDK_Smart.podspec'
 end
 
 target 'TXReplaykitUpload_Smart' do
