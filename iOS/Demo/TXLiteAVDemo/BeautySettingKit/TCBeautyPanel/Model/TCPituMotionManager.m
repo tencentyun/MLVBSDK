@@ -28,13 +28,13 @@
             @[@"video_boom", @"http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_boom.zip", L(@"Boom")],
         ];
         NSArray *gestureMotionArray = @[
-            @[@"video_pikachu", @"", L(@"皮卡丘")],
+            @[@"video_pikachu", @"http://dldir1.qq.com/hudongzhibo/AISpecial/Android/181/video_pikachu.zip", L(@"皮卡丘")],
         ];
         NSArray *cosmeticMotionArray = @[
-            @[@"video_qingchunzannan_iOS", @"", L(@"原宿复古")],
+            @[@"video_qingchunzannan_iOS", @"http://res.tu.qq.com/materials/video_qingchunzannan_iOS.zip", L(@"原宿复古")],
         ];
         NSArray *backgroundRemovalArray = @[
-            @[@"video_xiaofu", @"", L(@"AI抠背")],
+            @[@"video_xiaofu", @"http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_xiaofu.zip", L(@"AI抠背")],
         ];
         NSArray *(^generate)(NSArray *) = ^(NSArray *inputArray){
             NSMutableArray *array = [NSMutableArray arrayWithCapacity:inputArray.count];

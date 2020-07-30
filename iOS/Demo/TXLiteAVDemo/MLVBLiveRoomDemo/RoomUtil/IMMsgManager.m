@@ -299,7 +299,7 @@ double getSystemUptime(void)
         for (V2TIMGroupMemberFullInfo *memberInfo in memberList) {
             MLVBAudienceInfo *info = [[MLVBAudienceInfo alloc] init];
             info.userID = memberInfo.userID;
-            info.userName = memberInfo.nickName;
+            info.userName = memberInfo.nickName ?: @"";
             info.userAvatar = memberInfo.faceURL;
             [result addObject:info];
         }

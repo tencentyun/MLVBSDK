@@ -192,9 +192,9 @@
     
     _btnPush = [self createButton:@"start2" action:@selector(clickPush:)
                            center:CGPointMake(startSpace + ICON_SIZE / 2, iconY) size:ICON_SIZE];
-    _btnCamera = [self createButton:@"camera" action:@selector(clickCamera:)
+    _btnCamera = [self createButton:@"mlvb_camera_front" action:@selector(clickCamera:)
                              center:CGPointMake(startSpace + ICON_SIZE / 2 + centerInterVal * 1, iconY) size:ICON_SIZE];
-    _btnBeauty = [self createButton:@"beauty" action:@selector(clickBeauty:)
+    _btnBeauty = [self createButton:@"mlvb_beauty" action:@selector(clickBeauty:)
                              center:CGPointMake(startSpace + ICON_SIZE / 2 + centerInterVal * 2, iconY) size:ICON_SIZE];
     _btnBgm = [self createButton:@"music" action:@selector(clickBgm:)
                           center:CGPointMake(startSpace + ICON_SIZE / 2 + centerInterVal * 3, iconY) size:ICON_SIZE];
@@ -353,12 +353,12 @@
     if (_btnCamera.tag == 0) {
         [_pusher switchCamera];
         _btnCamera.tag = 1;
-        [_btnCamera setImage:[UIImage imageNamed:@"camera2"] forState:UIControlStateNormal];
+        [_btnCamera setImage:[UIImage imageNamed:@"mlvb_camera_back"] forState:UIControlStateNormal];
     }
     else {
         [_pusher switchCamera];
         _btnCamera.tag = 0;
-        [_btnCamera setImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
+        [_btnCamera setImage:[UIImage imageNamed:@"mlvb_camera_front"] forState:UIControlStateNormal];
     }
 }
 

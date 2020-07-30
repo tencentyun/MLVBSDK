@@ -163,7 +163,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _btnChat = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnChat.center = CGPointMake(startSpace + ICON_SIZE/2, iconY);
     _btnChat.bounds = CGRectMake(0, 0, ICON_SIZE, ICON_SIZE);
-    [_btnChat setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+    [_btnChat setImage:[UIImage imageNamed:@"mlvb_comment"] forState:UIControlStateNormal];
     [_btnChat addTarget:self action:@selector(clickChat:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnChat];
     
@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _btnCamera = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnCamera.center = CGPointMake(startSpace + ICON_SIZE/2 + centerInterVal * 1, iconY);
     _btnCamera.bounds = CGRectMake(0, 0, ICON_SIZE, ICON_SIZE);
-    [_btnCamera setImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
+    [_btnCamera setImage:[UIImage imageNamed:@"mlvb_camera_front"] forState:UIControlStateNormal];
     [_btnCamera addTarget:self action:@selector(clickCamera:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnCamera];
     
@@ -181,7 +181,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _btnBeauty = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnBeauty.center = CGPointMake(startSpace + ICON_SIZE/2 + centerInterVal * 2, iconY);
     _btnBeauty.bounds = CGRectMake(0, 0, ICON_SIZE, ICON_SIZE);
-    [_btnBeauty setImage:[UIImage imageNamed:@"beauty"] forState:UIControlStateNormal];
+    [_btnBeauty setImage:[UIImage imageNamed:@"mlvb_beauty"] forState:UIControlStateNormal];
     [_btnBeauty addTarget:self action:@selector(clickBeauty:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnBeauty];
     
@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _btnPK = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnPK.center = CGPointMake(startSpace + ICON_SIZE/2 + centerInterVal * 4, iconY);
     _btnPK.bounds = CGRectMake(0, 0, ICON_SIZE, ICON_SIZE);
-    [_btnPK setImage:[UIImage imageNamed:@"pk_start"] forState:UIControlStateNormal];
+    [_btnPK setImage:[UIImage imageNamed:@"mlvb_pk"] forState:UIControlStateNormal];
     [_btnPK addTarget:self action:@selector(clickPK:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnPK];
     
@@ -339,7 +339,10 @@ typedef NS_ENUM(NSInteger, PKStatus) {
         videoViewWidth = self.view.width / 2.0;
         videoViewHeight = videoViewWidth * 16.0 / 9.0;
         _pusherView.frame = CGRectMake(0, 0, videoViewWidth, videoViewHeight); // 9:16
-        _msgListView.frame = CGRectMake(10, videoViewHeight + 6, self.view.width - 20, self.view.height - videoViewHeight - self.view.width / 10 - 30);
+        _msgListView.frame = CGRectMake(10,
+                                        videoViewHeight + 6,
+                                        self.view.width - 20,
+                                        self.view.height - videoViewHeight - self.view.width / 10 - 30);
  
     } else {
         _pusherView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
@@ -398,7 +401,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     if (_liveRoom) {
         [_liveRoom switchCamera];
     }
-    [btn setImage:[UIImage imageNamed:(_camera_switch? @"camera2" : @"camera")] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:(_camera_switch? @"mlvb_camera_back" : @"mlvb_camera_front")] forState:UIControlStateNormal];
 }
 
 // 设置美颜
@@ -699,7 +702,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     [self.view addSubview:playerView];
     
     _pkStatus = PKStatus_BEING;  // PK中
-    [_btnPK setImage:[UIImage imageNamed:@"pk_stop"] forState:UIControlStateNormal];
+    [_btnPK setImage:[UIImage imageNamed:@"mlvb_pk_stop_button"] forState:UIControlStateNormal];
     
     // 重新布局
     _roomCreatorListView.hidden = YES;
@@ -726,7 +729,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     [_playerViewDic removeAllObjects];
     
     _pkStatus = PKStatus_IDLE;  // 空闲状态
-    [_btnPK setImage:[UIImage imageNamed:@"pk_start"] forState:UIControlStateNormal];
+    [_btnPK setImage:[UIImage imageNamed:@"mlvb_pk"] forState:UIControlStateNormal];
     [self relayout];
 }
 

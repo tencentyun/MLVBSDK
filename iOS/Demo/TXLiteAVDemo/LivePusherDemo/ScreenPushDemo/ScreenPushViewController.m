@@ -110,7 +110,6 @@
     topOffset += self.navigationController.navigationBar.height+5;
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
     _addressBarController.view.textField.placeholder = @"请地址扫描二维码或点New生成地址";
-//    _addressBarController.view.textField.text = @"rtmp://2157.livepush.myqcloud.com/live/2157_rst2?bizid=2157&txSecret=ab575be22fc2b6a95335c0bb9247824e&txTime=5B4234FF";
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
@@ -138,9 +137,6 @@
     self.btnReplaykit .bounds = CGRectMake(0, 0, 100, 50);
     self.btnReplaykit.backgroundColor = UIColor.lightTextColor;
     self.btnReplaykit.layer.cornerRadius = 5;
-//    if ([InAppReplayKit2Pusher  sharedInstance].isPushing)
-//        [self.btnReplaykit  setTitle:@"结束推流" forState:UIControlStateNormal];
-//    else
     [self.btnReplaykit  setTitle:@"开始推流" forState:UIControlStateNormal];
     [self.btnReplaykit  addTarget:self action:@selector(clickStartReplaykit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnReplaykit];
@@ -179,14 +175,12 @@
     _fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_fullScreenBtn setImage:[UIImage imageNamed:@"player_fullscreen"] forState:UIControlStateNormal];
     _fullScreenBtn.frame = CGRectMake(_playerView.width - 40, _playerView.height - 40, 40, 40);
-//    _fullScreenBtn.backgroundColor = UIColor.redColor;
     [_fullScreenBtn addTarget:self action:@selector(onFullScreenClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_playerView addSubview:_fullScreenBtn];
 #ifndef DISABLE_VOD
     //播放演示视频
     _vodPlayer = [TXVodPlayer new];
     [_vodPlayer setIsAutoPlay:YES];
-//    [_vodPlayer setLoop:YES];
     [_vodPlayer setupVideoWidget:_playerView insertIndex:0];
     [_vodPlayer startPlay:@"http://1252463788.vod2.myqcloud.com/95576ef5vodtransgzp1252463788/1bfa444e7447398156520498412/v.f30.mp4"];
     _vodPlayer.vodDelegate = self;

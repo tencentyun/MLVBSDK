@@ -130,7 +130,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
     _btnChat = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnChat.center = CGPointMake(startSpace + ICON_SIZE/2, iconY);
     _btnChat.bounds = CGRectMake(0, 0, ICON_SIZE, ICON_SIZE);
-    [_btnChat setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+    [_btnChat setImage:[UIImage imageNamed:@"mlvb_comment"] forState:UIControlStateNormal];
     [_btnChat addTarget:self action:@selector(clickChat:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnChat];
     

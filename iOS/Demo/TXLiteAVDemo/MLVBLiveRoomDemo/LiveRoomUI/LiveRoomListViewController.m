@@ -77,7 +77,7 @@ static NSString * const kAPPID = @"1252463788";
 #pragma mark - Login
 - (void)login {
     NSString *userID = [[ProfileManager shared] curUserID];
-    NSString *userSig = [GenerateTestUserSig genTestUserSig:userID];
+    NSString *userSig = [[ProfileManager shared] curUserSig];
     
     MLVBLoginInfo *loginInfo = [MLVBLoginInfo new];
     loginInfo.sdkAppID = SDKAPPID;
@@ -85,7 +85,7 @@ static NSString * const kAPPID = @"1252463788";
     loginInfo.userName = _userName;
     loginInfo.userAvatar = @"headpic.png";
     loginInfo.userSig = userSig;
-    
+    _userID = userID;
     // 初始化LiveRoom
     _createBtn.enabled = NO;
     __weak __typeof(self) weakSelf = self;
@@ -186,33 +186,7 @@ static NSString * const kAPPID = @"1252463788";
 
     
     HelpBtnUI(MLVBLiveRoom)
-    
-//    // 查看帮助
-//    _helpBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 160*kScaleX, self.view.height - 50*kScaleY, 120*kScaleX, 40*kScaleY)];
-//    [_helpBtn setImage:[UIImage imageNamed:@"help_small"] forState:UIControlStateNormal];
-//    [_helpBtn setTitle:@"查看帮助" forState:UIControlStateNormal];
-//    [_helpBtn setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
-//    _helpBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 5);
-//    _helpBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
-//    _helpBtn.backgroundColor = [UIColor clearColor];
-//    [_helpBtn addTarget:self action:@selector(clickHelp:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_helpBtn];
-//    
-//    // log按钮
-//    _btnLog = [[UIButton alloc] initWithFrame:CGRectMake(60*kScaleX, self.view.height - 50*kScaleY, 120*kScaleX, 40*kScaleY)];
-//    [_btnLog setImage:[UIImage imageNamed:@"look_log"] forState:UIControlStateNormal];
-//    [_btnLog setTitle:@"查看log" forState:UIControlStateNormal];
-//    [_btnLog setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
-//    _btnLog.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 5);
-//    _btnLog.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
-//    _btnLog.backgroundColor = [UIColor clearColor];
-//    [_btnLog addTarget:self action:@selector(clickLog:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_btnLog];
-//    
-//#ifdef APPSTORE
-//    _helpBtn.hidden = YES;
-//    _btnLog.hidden = YES;
-//#endif
+
     // LOG界面
     _log_switch = NO;
     _logView = [[UITextView alloc] initWithFrame:CGRectMake(0, 80*kScaleY, self.view.size.width, self.view.size.height - 150*kScaleY)];
