@@ -76,6 +76,8 @@ typedef void (^TCLogoutComplete)(void);
 - (TCLoginParam *)getLoginParam;
 
 - (void)getCosSign:(void (^)(int errCode, NSString* msg, NSDictionary* resultDict))completion;
+- (void)getVodSign:(void (^)(int errCode, NSString* msg, NSDictionary* resultDict))completion;
+- (void)uploadUGC:(NSDictionary*)params completion:(void (^)(int errCode, NSString* msg, NSDictionary* resultDict))completion;
 
 - (void)reLoginIfNeeded:(TCLoginSuccess)succ fail:(TCLoginFail)fail;
 - (void)reLogin:(TCLoginSuccess)succ fail:(TCLoginFail)fail;

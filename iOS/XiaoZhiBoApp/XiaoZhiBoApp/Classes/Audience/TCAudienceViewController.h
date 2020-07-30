@@ -16,6 +16,7 @@
 @property (nonatomic, retain) TCRoomInfo  *liveInfo;
 @property (nonatomic, copy)   videoIsReadyBlock   videoIsReady;
 @property (nonatomic, copy)  void(^onPlayError)(void);
+@property (nonatomic, copy)  void(^onShield)(TCRoomInfo *liveInfo);
 @property (nonatomic, retain) TCAudienceToolbarView *logicView;
 @property (nonatomic, retain) MLVBLiveRoom* liveRoom;
 @property (nonatomic, assign) BOOL  log_switch;

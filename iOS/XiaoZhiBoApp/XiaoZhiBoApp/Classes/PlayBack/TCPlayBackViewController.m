@@ -12,7 +12,7 @@
 #import <mach/mach.h>
 #import <UIImageView+WebCache.h>
 #import "TCMsgModel.h"
-#import "TCConfig.h"
+#import "TCGlobalConfig.h"
 #import <Accelerate/Accelerate.h>
 #import "TCAccountMgrModel.h"
 #import "NSString+Common.h"
@@ -56,7 +56,7 @@
         _log_switch    = NO;
         
         _rtmpUrl = self.liveInfo.hls_play_url;
-        if (_rtmpUrl == nil || ![_rtmpUrl isKindOfClass:[NSString class]] || _rtmpUrl.length == 0 ) {
+        if (_rtmpUrl == nil || ![_rtmpUrl isKindOfClass:[NSString class]]) {
             _rtmpUrl = self.liveInfo.playurl;
         }
         
@@ -376,6 +376,17 @@
         _log_switch = YES;
     }
     
+}
+
+- (void)clickSheild:(UIButton *)button {
+    // 回调屏蔽接口
+    if (self.onShield) {
+        self.onShield(self.liveInfo);
+    }
+}
+
+- (UIViewController *)getCurrentController {
+    return self;
 }
 
 #pragma mark - TXLivePlayListener

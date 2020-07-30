@@ -96,12 +96,25 @@
     
     [self addSubview:_topView];
     
-    //举报
+    // 举报
     UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [reportBtn setFrame:CGRectMake(_topView.left, _topView.bottom + 10, 50, 20)];
-    [reportBtn setImage:[UIImage imageNamed:@"user_report"] forState:UIControlStateNormal];
+    reportBtn.layer.cornerRadius = 10;
+    reportBtn.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    [reportBtn setTitle:@"举报" forState:UIControlStateNormal];
+    [reportBtn setBackgroundColor:RGB(37, 37, 37)];
     [reportBtn addTarget:self action:@selector(userReport) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:reportBtn];
+    
+    // 屏蔽
+    UIButton *shieldBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [shieldBtn setFrame:CGRectMake(_topView.left + 60, _topView.bottom + 10, 50, 20)];
+    shieldBtn.layer.cornerRadius = 10;
+    shieldBtn.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    [shieldBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
+    [shieldBtn setBackgroundColor:RGB(37, 37, 37)];
+    [shieldBtn addTarget:self action:@selector(userShield:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:shieldBtn];
     
     int   icon_size = BOTTOM_BTN_ICON_WIDTH;
     float startSpace = 15;
@@ -197,10 +210,10 @@
             make.right.equalTo(self).offset(-15);
         }];
         
-//        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
-//            make.centerY.equalTo(self->_closeBtn.mas_centerY);
-//        }];
+        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
+            make.centerY.equalTo(self->_closeBtn.mas_centerY);
+        }];
     } else {
         //直播
         //聊天
@@ -224,10 +237,10 @@
             make.right.equalTo(self).offset(-15);
         }];
         
-//        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
-//            make.centerY.equalTo(self->_closeBtn.mas_centerY);
-//        }];
+        [_btnShare mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self->_closeBtn.mas_left).offset(-15);
+            make.centerY.equalTo(self->_closeBtn.mas_centerY);
+        }];
         //点赞
         _likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _likeBtn.frame = CGRectMake(0, 0, icon_size, icon_size);
@@ -335,12 +348,47 @@
 }
 
 - (void)userReport {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定举报？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定举报？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    if (!(self.delegate &&[self.delegate respondsToSelector:@selector(getCurrentController)])) {
+        return;
+    }
+    UIViewController *controller = [self.delegate getCurrentController];
+    if (!controller) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf clickedActionButtonAtIndex:1];
+    }];
+    UIAlertAction *CancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:sureAction];
+    [alertController addAction:CancelAction];
+    [controller presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)userShield:(UIButton *)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定屏蔽？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIViewController *controller = [self.delegate getCurrentController];
+    if (!controller) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (weakSelf.delegate &&
+            [weakSelf.delegate respondsToSelector:@selector(closeVC:)] &&
+            [weakSelf.delegate respondsToSelector:@selector(clickSheild:)]) {
+            [weakSelf.delegate closeVC:YES];
+            [weakSelf.delegate clickSheild:sender];
+        }
+    }];
+    UIAlertAction *CancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:sureAction];
+    [alertController addAction:CancelAction];
+    [controller presentViewController:alertController animated:YES completion:nil];
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)clickedActionButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         //举报
         [[HUDHelper sharedInstance] tipMessage:@"感谢你的举报，我们会尽快处理"];

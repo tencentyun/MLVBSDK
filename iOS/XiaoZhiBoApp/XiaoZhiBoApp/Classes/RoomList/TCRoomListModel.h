@@ -104,6 +104,13 @@ typedef NS_ENUM(NSInteger,GetType) {
  */
 - (TCRoomInfo *)readRoom:(int)type userId:(NSString *)userId fileId:(NSString *)fileId;
 
+/// 加入本地黑名单
+/// @param roomInfo 房间信息
+- (void)updateBlackList:(TCRoomInfo *)roomInfo;
+
+/// 清空本地黑名单
++ (void)clearBlackList;
+
 /**
  *  从本地文件加载列表数据
  */

@@ -34,7 +34,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		401ACFF324ACDB53003076C7 /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE489B46F454F100F5F7455A /* TXLiteAVSDK_Professional.framework */; };
 		40A3735B246A3F6C004E3FC7 /* TCBeautyPanelResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40A37356246A3F0D004E3FC7 /* TCBeautyPanelResources.bundle */; };
 		40A3735C246A3F76004E3FC7 /* TCBeautyPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A37354246A3F0D004E3FC7 /* TCBeautyPanel.framework */; };
 		40B28A7B249B612300A75AFD /* AudioEffectSettingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40DB70EB249B56C200B15EDA /* AudioEffectSettingKit.framework */; };
@@ -42,7 +41,11 @@
 		40DB7116249B570C00B15EDA /* AudioEffectSettingKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 40DB70EF249B56C200B15EDA /* AudioEffectSettingKitResources.bundle */; };
 		4507D4C62284292700100F8B /* 2gei_5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4507D4C52284292700100F8B /* 2gei_5.mp4 */; };
 		4507D4C82284294700100F8B /* goodluck.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4507D4C72284294700100F8B /* goodluck.mp4 */; };
+		4553C6F32272FC17008544F7 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		4553C6FD2272FE86008544F7 /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = 4553C6FC2272FE86008544F7 /* Resource */; };
+		457845D32272A93300A5F2BA /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CED41D4B28120028B598 /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45784EB62272E3E700A5F2BA /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784BE02272E3E400A5F2BA /* Bugly.framework */; };
+		45784EB72272E3E700A5F2BA /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784BE12272E3E400A5F2BA /* ImSDK.framework */; };
 		45784EBA2272E3E700A5F2BA /* UserProtocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 45784BE42272E3E400A5F2BA /* UserProtocol.html */; };
 		45784EBB2272E3E700A5F2BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45784BE52272E3E400A5F2BA /* Assets.xcassets */; };
 		45784EDB2272E3E700A5F2BA /* QCloudCOSXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45784C312272E3E400A5F2BA /* QCloudCOSXML.framework */; };
@@ -114,6 +117,7 @@
 		914C597E1D7D5C1200EB763D /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914C597D1D7D5C1200EB763D /* ReplayKit.framework */; };
 		914C598C1D7D5C1200EB763D /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914C597D1D7D5C1200EB763D /* ReplayKit.framework */; };
 		914C598E1D7D5C1200EB763D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914C598D1D7D5C1200EB763D /* UIKit.framework */; };
+		914F1F22241FE6FC930B46FD /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4FC8CEC64A9D53E9724274 /* TXLiteAVSDK_Professional.framework */; };
 		91A4DAC61D7EA58200B47AA3 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CED41D4B28120028B598 /* ImSDK.framework */; };
 		91A4DACA1D7EACC600B47AA3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CEDE1D4B28340028B598 /* libsqlite3.tbd */; };
 		91A4DACB1D7EACCB00B47AA3 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */; };
@@ -136,9 +140,8 @@
 		91B45A251E8CB0FF0058E8F6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91B45A1E1E8CB0FF0058E8F6 /* MainInterface.storyboard */; };
 		91B45A261E8CB0FF0058E8F6 /* BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B45A211E8CB0FF0058E8F6 /* BroadcastViewController.m */; };
 		91B45A281E8CB0FF0058E8F6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91B45A231E8CB0FF0058E8F6 /* Media.xcassets */; };
-		A0B7B19524AEDF700054C342 /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B7B19324AEDF700054C342 /* GenerateTestUserSig.m */; };
 		B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B732EBB31D7C593C006E6FA0 /* libresolv.tbd */; };
-		CEEDF8282181FF2900D4EB94 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		CEEDF8282181FF2900D4EB94 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		D8D256811261DF4C40C7748A /* libPods-XiaoZhiBoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 894E4A2363E21E853A1F9757 /* libPods-XiaoZhiBoApp.a */; };
 		EF47CE5B1D4B1ED60028B598 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */; };
 		EF47CE5D1D4B1EE10028B598 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47CE5C1D4B1EE10028B598 /* AVFoundation.framework */; };
@@ -683,6 +686,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				457845D32272A93300A5F2BA /* ImSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,6 +790,7 @@
 		457851182272EAA200A5F2BA /* MaterialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialManager.h; sourceTree = "<group>"; };
 		4578511A2272EAA200A5F2BA /* MCPackageDownloadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPackageDownloadTask.h; sourceTree = "<group>"; };
 		45ACB2E623C47C6B002DCCE8 /* FilterResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FilterResource.bundle; sourceTree = "<group>"; };
+		4F4FC8CEC64A9D53E9724274 /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Professional.framework; path = ./XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
 		519E58EA23138AD5003E2ACA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		6A786A2322B91E7500F47BE8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6A786A2422B91E7500F47BE8 /* TCGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlobalConfig.h; sourceTree = "<group>"; };
@@ -899,12 +904,8 @@
 		91BA6E5B1F2721F4008700CF /* TXLiteAVSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TXLiteAVSDK.xcodeproj; path = ../../sdk/liteav/TXLiteAVSDK.xcodeproj; sourceTree = "<group>"; };
 		91BA6E871F27229C008700CF /* TXLiteAVSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TXLiteAVSDK.xcodeproj; path = ../../sdk/liteav/TXLiteAVSDK.xcodeproj; sourceTree = "<group>"; };
 		952A710DCB72E0868862BDB4 /* Pods-XiaoZhiBoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoZhiBoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp.debug.xcconfig"; sourceTree = "<group>"; };
-		A0B7B19024AEDF510054C342 /* TCConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConfig.h; sourceTree = "<group>"; };
-		A0B7B19324AEDF700054C342 /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
-		A0B7B19424AEDF700054C342 /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 		B732EBB31D7C593C006E6FA0 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		B7558FA91D4B56C70072705F /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
-		BE489B46F454F100F5F7455A /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Professional.framework; path = ./XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
 		EF47CE281D4B03FC0028B598 /* XiaoZhiBoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoZhiBoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF47CE5A1D4B1ED60028B598 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		EF47CE5C1D4B1EE10028B598 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -935,7 +936,7 @@
 				91A4DAD81D7EB5FB00B47AA3 /* CoreGraphics.framework in Frameworks */,
 				91A4DAD61D7EB5F600B47AA3 /* libstdc++.tbd in Frameworks */,
 				91A4DAD51D7EB5F100B47AA3 /* libresolv.tbd in Frameworks */,
-				CEEDF8282181FF2900D4EB94 /* (null) in Frameworks */,
+				CEEDF8282181FF2900D4EB94 /* BuildFile in Frameworks */,
 				914C597E1D7D5C1200EB763D /* ReplayKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -963,9 +964,10 @@
 				40A3735C246A3F76004E3FC7 /* TCBeautyPanel.framework in Frameworks */,
 				519E592D23138AD5003E2ACA /* OpenAL.framework in Frameworks */,
 				457905F22285CFEA003BB4F8 /* libSocialQQ.a in Frameworks */,
+				45784EB62272E3E700A5F2BA /* Bugly.framework in Frameworks */,
 				45784EDB2272E3E700A5F2BA /* QCloudCOSXML.framework in Frameworks */,
+				45784EB72272E3E700A5F2BA /* ImSDK.framework in Frameworks */,
 				B732EBB41D7C593C006E6FA0 /* libresolv.tbd in Frameworks */,
-				401ACFF324ACDB53003076C7 /* TXLiteAVSDK_Professional.framework in Frameworks */,
 				EF47CEDF1D4B28340028B598 /* libsqlite3.tbd in Frameworks */,
 				457905F12285CFEA003BB4F8 /* libSocialWeChat.a in Frameworks */,
 				457905EF2285CFC7003BB4F8 /* UMSocialNetwork.framework in Frameworks */,
@@ -979,6 +981,7 @@
 				457905F02285CFC7003BB4F8 /* UMSocialCore.framework in Frameworks */,
 				457905F32285CFED003BB4F8 /* TencentOpenAPI.framework in Frameworks */,
 				D8D256811261DF4C40C7748A /* libPods-XiaoZhiBoApp.a in Frameworks */,
+				914F1F22241FE6FC930B46FD /* TXLiteAVSDK_Professional.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,7 +1067,6 @@
 		45784C722272E3E500A5F2BA /* LiveRoom */ = {
 			isa = PBXGroup;
 			children = (
-				A0B7B19224AEDF700054C342 /* Debug */,
 				45784C732272E3E500A5F2BA /* RoomUtil */,
 				45784C7B2272E3E500A5F2BA /* LiveRoom */,
 			);
@@ -1296,7 +1298,6 @@
 		6A786A2222B91E7500F47BE8 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				A0B7B19024AEDF510054C342 /* TCConfig.h */,
 				6A786A2522B91E7500F47BE8 /* AppDelegate.m */,
 				6A786A2322B91E7500F47BE8 /* AppDelegate.h */,
 				6A786A2422B91E7500F47BE8 /* TCGlobalConfig.h */,
@@ -1592,15 +1593,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A0B7B19224AEDF700054C342 /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				A0B7B19324AEDF700054C342 /* GenerateTestUserSig.m */,
-				A0B7B19424AEDF700054C342 /* GenerateTestUserSig.h */,
-			);
-			path = Debug;
-			sourceTree = "<group>";
-		};
 		B49FE0366F1F0A7CBF2E06AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1635,7 +1627,7 @@
 				914C597D1D7D5C1200EB763D /* ReplayKit.framework */,
 				914C598D1D7D5C1200EB763D /* UIKit.framework */,
 				894E4A2363E21E853A1F9757 /* libPods-XiaoZhiBoApp.a */,
-				BE489B46F454F100F5F7455A /* TXLiteAVSDK_Professional.framework */,
+				4F4FC8CEC64A9D53E9724274 /* TXLiteAVSDK_Professional.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1711,7 +1703,6 @@
 				91BECB9D1D9B61B7002FCD1E /* CopyFiles */,
 				CFB30BFBE82844BD91BB30BC /* [CP] Copy Pods Resources */,
 				EFCCED911D75CACE0062F02F /* Run Script */,
-				F434ED94D401F3EE06FCB51A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2419,23 +2410,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CONFIGURATION\" = \"DEBUG\" ]; then\nexit 0\nfi\n# compress application.\n/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Payload\n/bin/cp -R $CONFIGURATION_BUILD_DIR/${PRODUCT_NAME}.app $CONFIGURATION_BUILD_DIR/Payload\n#/bin/cp images/logo_itunes.png $CONFIGURATION_BUILD_DIR/iTunesArtwork\ncd $CONFIGURATION_BUILD_DIR\n# zip up the HelloWorld directory\n/usr/bin/zip -r -q ${PRODUCT_NAME}.ipa Payload iTunesArtwork\n";
 		};
-		F434ED94D401F3EE06FCB51A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XiaoZhiBoApp/Pods-XiaoZhiBoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2490,7 +2464,6 @@
 				45784EF82272E3E700A5F2BA /* IMMsgManager.m in Sources */,
 				6A786A9422B91E7500F47BE8 /* TCStatusInfoView.m in Sources */,
 				6A786A9E22B91E7500F47BE8 /* TCRoomListViewController.m in Sources */,
-				A0B7B19524AEDF700054C342 /* GenerateTestUserSig.m in Sources */,
 				6A786A9222B91E7500F47BE8 /* TCUtil.m in Sources */,
 				6A786A9F22B91E7500F47BE8 /* TCUserProfileEditViewController.m in Sources */,
 				6A786A8822B91E7500F47BE8 /* TCUploadHelper.m in Sources */,
@@ -2847,6 +2820,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nian Suo (LVNF537769)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5GHU44CJHG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2859,7 +2833,6 @@
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/COSSDK",
-					"$(PROJECT_DIR)/./XiaoZhiBoApp/Framework",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2895,6 +2868,7 @@
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/WXApi",
 				);
+				MARKETING_VERSION = 7.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2917,6 +2891,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FN2V63AD2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2929,7 +2904,6 @@
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/COSSDK",
-					"$(PROJECT_DIR)/./XiaoZhiBoApp/Framework",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2965,6 +2939,7 @@
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/UMSocial/UMSocialSDKPlugin",
 					"$(PROJECT_DIR)/XiaoZhiBoApp/Thirdparty/WXApi",
 				);
+				MARKETING_VERSION = 7.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

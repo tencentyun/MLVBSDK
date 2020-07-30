@@ -58,14 +58,11 @@ typedef void (^TCUserProfileSaveHandle)(int errCode,NSString *strMsg);
                 token:(NSString*)token
            completion:(void(^)(int code, NSString *errMsg, NSString *nickname, NSString *avatar))completion;
 
-- (void)setIdentifier:(NSString *)identifier
-              expires:(NSNumber*)expires;
-
 - (void)setBucket:(NSString *)bucket secretId:(NSString*)secretId appid:(long)appid region:(NSString *)region accountType:(NSString *)accountType;
 
 - (TCUserProfileData*)getUserProfile;  // 从内存中读取
 
-- (void)loadUserProfile;  // 从文件中读取
+- (TCUserProfileData*)loadUserProfile;  // 从文件中读取
 
 //- (void)setUserProfile:(TIMUserProfile *)profile; //imTODO:
 

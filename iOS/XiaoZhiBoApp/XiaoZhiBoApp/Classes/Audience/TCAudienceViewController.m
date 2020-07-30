@@ -816,4 +816,14 @@
     }
 }
 
+- (void)clickSheild:(UIButton *)button {
+    if (self.onShield) {
+        self.onShield(self.liveInfo);
+    }
+}
+
+- (UIViewController *)getCurrentController {
+    return self;
+}
+
 @end

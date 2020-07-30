@@ -7,7 +7,7 @@
 #import "TCUserProfileModel.h"
 #import "TCAccountMgrModel.h"
 #import <UIImageView+WebCache.h>
-#import "TCConfig.h"
+#import "TCGlobalConfig.h"
 #import "TCUtil.h"
 
 #define kUserInfoKey     @"kUserInfoKey"
@@ -24,7 +24,7 @@ static TCUserProfileModel *_shareInstance = nil;
 @end
 
 @interface TCUserProfileModel() {
-    NSArray<NSString*>       *_userNameArray;
+    
 }
 @property(nonatomic, copy) NSString            *identifier;
 @property(nonatomic, strong) NSNumber          *expires;
@@ -37,8 +37,6 @@ static TCUserProfileModel *_shareInstance = nil;
 - (instancetype)init {
     if (self = [super init]) {
         _userInfo   = [[TCUserProfileData alloc] init];
-        _userNameArray = [[NSArray alloc] initWithObjects:@"李元芳", @"刘备", @"梦奇", @"王昭君", @"周瑜", @"鲁班", @"后裔", @"安其拉", @"亚瑟", @"曹操",
-        @"百里守约", @"东皇太一", @"花木兰", @"诸葛亮", @"黄忠", @"不知火舞", @"钟馗", @"李白", @"娜可露露", @"张飞", nil];
     }
     
     return self;
@@ -66,13 +64,6 @@ static TCUserProfileModel *_shareInstance = nil;
     _expires = expires;
     _token = token;
     [self fetchUserInfo:completion];
-}
-
-- (void)setIdentifier:(NSString *)identifier expires:(NSNumber*)expires {
-    _identifier = identifier;
-    _expires = expires;
-    [self loadUserProfile];
-    [self saveToLocal];
 }
 
 - (void)setBucket:(NSString *)bucket secretId:(NSString*)secretId appid:(long)appid region:(NSString *)region accountType:(NSString *)accountType {
@@ -125,11 +116,7 @@ static TCUserProfileModel *_shareInstance = nil;
     
     [[MLVBLiveRoom sharedInstance] setSelfProfile:nickname avatarURL:avatar completion:nil];
 
-    __weak typeof(self) weakSelf = self;
     [TCUtil asyncSendHttpRequest:@"upload_user_info" token:self.token params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
-        if (resultCode == kError_NotSupport) {
-            [weakSelf saveToLocal];
-        }
         handle(resultCode, message);
     }];
 }
@@ -149,7 +136,7 @@ static TCUserProfileModel *_shareInstance = nil;
     NSString* oldCoverURL = _userInfo.coverURL;
     _userInfo.coverURL = coverURL;
     [self uploadUserInfo:^(int errCode, NSString *strMsg) {
-        if (errCode != ERROR_SUCESS && errCode != kError_NotSupport) {
+        if (errCode != ERROR_SUCESS) {
             weakSelf.userInfo.coverURL = oldCoverURL;
         }
         handle(errCode, strMsg);
@@ -169,7 +156,7 @@ static TCUserProfileModel *_shareInstance = nil;
     NSString *oldNickname = _userInfo.nickName;
     _userInfo.nickName = nickName;
     [self uploadUserInfo:^(int errCode, NSString *strMsg) {
-        if (errCode != ERROR_SUCESS && errCode != kError_NotSupport) {
+        if (errCode != ERROR_SUCESS) {
             weakSelf.userInfo.nickName = oldNickname;
         }
         handle(errCode, strMsg);
@@ -211,7 +198,7 @@ static TCUserProfileModel *_shareInstance = nil;
     int oldGender = _userInfo.gender;
     _userInfo.gender = gender;
     [self uploadUserInfo:^(int errCode, NSString *strMsg) {
-        if (errCode != ERROR_SUCESS && errCode != kError_NotSupport) {
+        if (errCode != ERROR_SUCESS) {
             weakSelf.userInfo.gender = oldGender;
         }
         handle(errCode, strMsg);
@@ -229,7 +216,9 @@ static TCUserProfileModel *_shareInstance = nil;
     return _userInfo;
 }
 
-- (void)loadUserProfile {
+- (TCUserProfileData*)loadUserProfile {
+    TCUserProfileData *info = [[TCUserProfileData alloc] init];
+    
     // 从文件中读取
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP];
     if (defaults == nil) {
@@ -241,19 +230,14 @@ static TCUserProfileModel *_shareInstance = nil;
         NSString *strUserInfo = [defaults objectForKey:useridKey];
         NSDictionary *dic = [TCUtil jsonData2Dictionary: strUserInfo];
         if (dic) {
-            _userInfo.identifier = [_identifier copy];
-            _userInfo.nickName = [dic objectForKey:@"nickName"];
-            _userInfo.faceURL = [dic objectForKey:@"faceURL"];
-            _userInfo.coverURL = [dic objectForKey:@"coverURL"];
-            _userInfo.gender = [[dic objectForKey:@"gender"] intValue];
-        } else {
-            _userInfo.identifier = [_identifier copy];
-            _userInfo.nickName = _userNameArray[arc4random() % _userNameArray.count];
-            _userInfo.faceURL = @"";
-            _userInfo.coverURL = @"";
-            _userInfo.gender = -1;
+            info.identifier = [_identifier copy];
+            info.nickName = [dic objectForKey:@"nickName"];
+            info.faceURL = [dic objectForKey:@"faceURL"];
+            info.coverURL = [dic objectForKey:@"coverURL"];
+            info.gender = [[dic objectForKey:@"gender"] intValue];
         }
     }
+    return info;
 }
 
 - (void)saveToLocal {

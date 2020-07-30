@@ -7,10 +7,8 @@
 #import "TCAccountMgrModel.h"
 #import "MLVBLiveRoomDef.h"
 #import "TCUserProfileModel.h"
-#import "TCGlobalConfig.h"
-#import "GenerateTestUserSig.h"
 #import "TCRoomListModel.h"
-#import "TCConfig.h"
+#import "TCGlobalConfig.h"
 #import "TCUtil.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
@@ -50,7 +48,6 @@
 }
 
 + (instancetype)loadFromLocal {
-    TCLoginParam *param = [[TCLoginParam alloc] init];
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP];
     if (defaults == nil) {
         defaults = [NSUserDefaults standardUserDefaults];
@@ -60,6 +57,7 @@
         NSString *strLoginParam = [defaults objectForKey:useridKey];
         NSDictionary *dic = [TCUtil jsonData2Dictionary: strLoginParam];
         if (dic) {
+            TCLoginParam *param = [[TCLoginParam alloc] init];
             param.tokenTime = [[dic objectForKey:@"tokenTime"] longValue];
             param.identifier = [dic objectForKey:@"identifier"];
             param.hashedPwd = [dic objectForKey:@"hashedPwd"];
@@ -67,11 +65,7 @@
             return param;
         }
     }
-    if ([kHttpServerAddr length] == 0) {
-        param.identifier = [NSString stringWithFormat:@"%@",[[NSString alloc]initWithFormat:@"%lx",[[NSDate date] timeIntervalSince1970]]];
-        param.hashedPwd = @"nonsense";
-    }
-    return param;
+    return [[TCLoginParam alloc] init];
 }
 
 - (void)saveToLocal {
@@ -160,9 +154,6 @@ static TCAccountMgrModel *_sharedInstance = nil;
 
 
 + (BOOL)isAutoLogin {
-    if ([kHttpServerAddr length] == 0) {
-        return YES;
-    }
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP];
     if (defaults == nil) {
         defaults = [NSUserDefaults standardUserDefaults];
@@ -220,95 +211,66 @@ static TCAccountMgrModel *_sharedInstance = nil;
 - (void)loginByToken:(NSString*)username hashPwd:(NSString*)hashPwd succ:(TCLoginSuccess)succ fail:(TCLoginFail)fail {
     NSDictionary* params = @{@"userid": username, @"password": hashPwd};
     __weak typeof(self) weakSelf = self;
-    if ([kHttpServerAddr length] != 0) {
-        [TCUtil asyncSendHttpRequest:@"login" params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
-            __strong typeof(weakSelf) self = weakSelf;
+
+    [TCUtil asyncSendHttpRequest:@"login" params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
+        __strong typeof(weakSelf) self = weakSelf;
+        
+        if (resultCode == 200) {
+            self.token = resultDict[@"token"];
+            self.expires = ((NSNumber*)resultDict[@"expires"]).unsignedLongLongValue;
+            self.expireTime = [NSDate dateWithTimeIntervalSinceNow:self.expires];
+            self.refreshToken = resultDict[@"refresh_token"];
+            if (resultDict[@"roomservice_sign"]) {
+                self.sign = resultDict[@"roomservice_sign"][@"userSig"];
+                self.accountType = resultDict[@"roomservice_sign"][@"accountType"];
+                self.sdkAppID = ((NSNumber*)resultDict[@"roomservice_sign"][@"sdkAppID"]).intValue;
+            }
             
-            if (resultCode == 200) {
-                self.token = resultDict[@"token"];
-                self.expires = ((NSNumber*)resultDict[@"expires"]).unsignedLongLongValue;
-                self.expireTime = [NSDate dateWithTimeIntervalSinceNow:self.expires];
-                self.refreshToken = resultDict[@"refresh_token"];
-                if (resultDict[@"roomservice_sign"]) {
-                    self.sign = resultDict[@"roomservice_sign"][@"userSig"];
-                    self.accountType = resultDict[@"roomservice_sign"][@"accountType"];
-                    self.sdkAppID = ((NSNumber*)resultDict[@"roomservice_sign"][@"sdkAppID"]).intValue;
-                }
+            if (resultDict[@"cos_info"]) {
+                [[TCUserProfileModel sharedInstance] setBucket:resultDict[@"cos_info"][@"Bucket"] secretId:resultDict[@"cos_info"][@"SecretId"]
+                                        appid:[resultDict[@"cos_info"][@"Appid"] longValue] region:resultDict[@"cos_info"][@"Region"] accountType:self.accountType];
+            }
+
+            self.loginParam = [TCLoginParam new];
+            self.loginParam.identifier = username;
+            self.loginParam.hashedPwd = hashPwd;
+
+            [TCAccountMgrModel setAutoLogin:YES];
+            [[TCUserProfileModel sharedInstance] setIdentifier:username expires:@(self.expires) token:self.token completion:^(int code, NSString *errMsg, NSString *nickname, NSString *avatar) {
+                [[TCRoomListMgr sharedMgr] setUserId:username expires:@(self.expires) token:self.token];
                 
-                if (resultDict[@"cos_info"]) {
-                    [[TCUserProfileModel sharedInstance] setBucket:resultDict[@"cos_info"][@"Bucket"] secretId:resultDict[@"cos_info"][@"SecretId"]
-                                            appid:[resultDict[@"cos_info"][@"Appid"] longValue] region:resultDict[@"cos_info"][@"Region"] accountType:self.accountType];
-                }
-
-                self.loginParam = [TCLoginParam new];
-                self.loginParam.identifier = username;
-                self.loginParam.hashedPwd = hashPwd;
-
-                [TCAccountMgrModel setAutoLogin:YES];
-                [[TCUserProfileModel sharedInstance] setIdentifier:username expires:@(self.expires) token:self.token completion:^(int code, NSString *errMsg, NSString *nickname, NSString *avatar) {
-                    [[TCRoomListMgr sharedMgr] setUserId:username expires:@(self.expires) token:self.token];
-                    
-                    MLVBLoginInfo* loginInfo = [MLVBLoginInfo new];
-                    loginInfo.sdkAppID = self.sdkAppID;
-                    loginInfo.userID = username;
-                    loginInfo.userName = nickname;
-                    NSString *userAvatar = avatar;
-                    loginInfo.userAvatar = (userAvatar == nil ? @"" : userAvatar);
-                    loginInfo.userSig = self.sign;
-                    [[MLVBLiveRoom sharedInstance] loginWithInfo:loginInfo completion:^(int errCode, NSString *errMsg) {
-                        NSLog(@"errCode:%d, errMsg:%@", errCode, errMsg);
-                        if (errCode == ROOM_SUCCESS) {
-                            succ(username, hashPwd);
-                        }
-                        else {
-                            fail(errCode, errMsg);
-                        }
-                    }];
+                MLVBLoginInfo* loginInfo = [MLVBLoginInfo new];
+                loginInfo.sdkAppID = self.sdkAppID;
+                loginInfo.userID = username;
+                loginInfo.userName = nickname;
+                NSString *userAvatar = avatar;
+                loginInfo.userAvatar = (userAvatar == nil ? @"" : userAvatar);
+                loginInfo.userSig = self.sign;
+                [[MLVBLiveRoom sharedInstance] loginWithInfo:loginInfo completion:^(int errCode, NSString *errMsg) {
+                    NSLog(@"errCode:%d, errMsg:%@", errCode, errMsg);
+                    if (errCode == ROOM_SUCCESS) {
+                        succ(username, hashPwd);
+                    }
+                    else {
+                        fail(errCode, errMsg);
+                    }
                 }];
-            } else {
-                int code = resultCode;
-                NSString *msg = message;
-                
-                if (resultCode == 620) {
-                    code = -1;
-                    msg = @"用户不存在";
-                } else if (resultCode == 621) {
-                    code = -2;
-                    msg = @"密码错误";
-                }
-                
-                fail(code, msg);
+            }];
+        } else {
+            int code = resultCode;
+            NSString *msg = message;
+            
+            if (resultCode == 620) {
+                code = -1;
+                msg = @"用户不存在";
+            } else if (resultCode == 621) {
+                code = -2;
+                msg = @"密码错误";
             }
-        }];
-    } else {
-        self.sign = [GenerateTestUserSig genTestUserSig:username];
-        self.sdkAppID = SDKAPPID;
-        self.expires = 86400;
-        self.expireTime = [NSDate dateWithTimeIntervalSinceNow:self.expires];
-        
-        self.loginParam = [TCLoginParam new];
-        self.loginParam.identifier = username;
-        self.loginParam.hashedPwd = hashPwd;
-        
-        [[TCUserProfileModel sharedInstance] setIdentifier:username expires:@(self.expires)];
-        [[TCRoomListMgr sharedMgr] setUserId:username expires:@(self.expires) token:self.token];
-        
-        MLVBLoginInfo* loginInfo = [MLVBLoginInfo new];
-        loginInfo.sdkAppID = self.sdkAppID;
-        loginInfo.userID = username;
-        loginInfo.userName = [[TCUserProfileModel sharedInstance] getUserProfile].nickName;
-        loginInfo.userAvatar = @"";
-        loginInfo.userSig = self.sign;
-        [[MLVBLiveRoom sharedInstance] loginWithInfo:loginInfo completion:^(int errCode, NSString *errMsg) {
-            NSLog(@"errCode:%d, errMsg:%@", errCode, errMsg);
-            if (errCode == ROOM_SUCCESS) {
-                succ(username, hashPwd);
-            }
-            else {
-                fail(errCode, errMsg);
-            }
-        }];
-    }
+            
+            fail(code, msg);
+        }
+    }];
 }
 
 - (void)reLoginIfNeeded:(TCLoginSuccess)succ fail:(TCLoginFail)fail {
@@ -372,6 +334,24 @@ static TCAccountMgrModel *_sharedInstance = nil;
     NSDictionary* params = @{@"userid": _loginParam.identifier, @"timestamp":@([[NSDate date] timeIntervalSince1970] * 1000), @"expires":@(self.expires)};
     
     [TCUtil asyncSendHttpRequest:@"get_cos_sign" token:self.token params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
+        completion(resultCode, message, resultDict);
+    }];
+}
+
+- (void)getVodSign:(void (^)(int, NSString *, NSDictionary *))completion {
+    NSDictionary* params = @{@"userid": _loginParam.identifier, @"timestamp":@([[NSDate date] timeIntervalSince1970] * 1000), @"expires":@(self.expires)};
+    [TCUtil asyncSendHttpRequest:@"get_vod_sign" token:self.token params:params handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
+        completion(resultCode, message, resultDict);
+    }];
+}
+
+- (void)uploadUGC:(NSDictionary *)params completion:(void (^)(int, NSString *, NSDictionary *))completion {
+    NSDictionary* hparams = @{@"userid": _loginParam.identifier, @"timestamp":@([[NSDate date] timeIntervalSince1970] * 1000), @"expires":@(self.expires)};
+
+    NSMutableDictionary* mparams = [NSMutableDictionary dictionaryWithDictionary:hparams];
+    [mparams addEntriesFromDictionary:params];
+    
+    [TCUtil asyncSendHttpRequest:@"upload_ugc" token:self.token params:mparams handler:^(int resultCode, NSString *message, NSDictionary *resultDict) {
         completion(resultCode, message, resultDict);
     }];
 }

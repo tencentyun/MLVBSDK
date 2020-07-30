@@ -19,6 +19,8 @@
 - (void)clickShare:(UIButton *)button;
 - (void)clickRecord:(UIButton *)button;
 - (void)onRecvGroupDeleteMsg;
+- (UIViewController *)getCurrentController; // 主要用于弹出Alert使用
+- (void)clickSheild:(UIButton *)button;
 @end
 
 

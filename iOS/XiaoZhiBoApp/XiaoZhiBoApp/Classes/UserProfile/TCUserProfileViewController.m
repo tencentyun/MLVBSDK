@@ -15,14 +15,13 @@
 #import <ImSDK/ImSDK.h>
 #import "TCUserProfileModel.h"
 #import "TCAccountMgrModel.h"
-#import "TCConfig.h"
-#import "TXLivePlayer.h"
 #import "TCGlobalConfig.h"
+#import "TXLivePlayer.h"
 #import "TCLVBWebViewController.h"
 #import "ColorMacro.h"
 #import "TCUtil.h"
 #import "UIView+Additions.h"
-
+#import "TCRoomListModel.h"
 
 static NSString * const HomePageURL = @"https://cloud.tencent.com/product/mlvb";
 #define L(X) NSLocalizedString((X), nil)
@@ -63,6 +62,8 @@ extern BOOL g_bNeedEnterPushSettingView;
     TCUserProfileCellItem *setItem = [[TCUserProfileCellItem alloc] initWith:@"编辑个人信息" value:nil type:TCUserProfile_Edit action:^(TCUserProfileCellItem *menu, TCUserInfoTableViewCell *cell) {
         [ws onEditUserInfo:menu cell:cell]; } ];
     
+    TCUserProfileCellItem *cleanBlackListItem = [[TCUserProfileCellItem alloc] initWith:@"清空屏蔽名单" value:nil type:TCUserProfile_About action:^(TCUserProfileCellItem *menu, TCUserInfoTableViewCell *cell) { [ws onCleanBlackList:menu cell:cell]; } ];
+    
     TCUserProfileCellItem *aboutItem = [[TCUserProfileCellItem alloc] initWith:@"关于小直播" value:nil type:TCUserProfile_About action:^(TCUserProfileCellItem *menu, TCUserInfoTableViewCell *cell) { [ws onShowAppVersion:menu cell:cell]; } ];
     
     TCUserProfileCellItem *getSupportItem = [[TCUserProfileCellItem alloc] initWith:NSLocalizedString(@"获取技术支持服务", nil) value:nil type:TCUserProfile_About action:^(TCUserProfileCellItem *menu, TCUserInfoTableViewCell *cell) { [ws onShowAppSupport:menu cell:cell]; } ];
@@ -71,7 +72,7 @@ extern BOOL g_bNeedEnterPushSettingView;
 
 
     CGFloat quitBtnYSpace = 385;
-    _userInfoUISetArry = [NSMutableArray arrayWithArray:@[backFaceItem,setItem, aboutItem,getSupportItem, aboutSDKItem]];
+    _userInfoUISetArry = [NSMutableArray arrayWithArray:@[backFaceItem, setItem, cleanBlackListItem, aboutItem, getSupportItem, aboutSDKItem]];
     
     //设置tableview属性
     CGRect frame = self.view.bounds;//CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, tableHeight);
@@ -199,6 +200,17 @@ extern BOOL g_bNeedEnterPushSettingView;
     NSString *message = [@[L(@"关注公众号“腾讯云视频”"), L(@"给公众号发送“小直播”")] componentsJoinedByString:@"\n"];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"获取技术支持服务", nil) message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"关闭", nil) otherButtonTitles:nil, nil];
     [alert show];
+}
+
+- (void)onCleanBlackList:(id)menu cell:(id)cell {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"该操作将清空您的历史屏蔽记录，所有被屏蔽的直播间和视频回放将会解禁。" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [TCRoomListMgr clearBlackList];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [controller addAction:sureAction];
+    [controller addAction:cancelAction];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 /**

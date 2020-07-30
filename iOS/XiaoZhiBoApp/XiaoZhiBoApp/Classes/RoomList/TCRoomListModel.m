@@ -184,6 +184,7 @@ NSString *const kTCRoomListUpdated = @"kTCLiveListUpdated";
     [self.liveRoom getRoomList:0 count:_currentPage * 20 completion:^(int errCode, NSString *errMsg, NSArray<MLVBRoomInfo *> *roomInfoArray) {
         if (errCode == 0) {
             NSMutableArray* pusherArray = [NSMutableArray new];
+            NSArray *blackList = [self getBlackList:TCRoomListItemType_Live];
             for (MLVBRoomInfo* roomInfo in roomInfoArray) {
                 TCRoomInfo* liveInfo = [TCRoomInfo new];
                 liveInfo.userinfo = [TCUserInfo new];
@@ -216,8 +217,9 @@ NSString *const kTCRoomListUpdated = @"kTCLiveListUpdated";
                 if (liveInfo.playurl.length < 1) {
                     liveInfo.playurl = anchorInfo.accelerateURL;
                 }
-                
-                [pusherArray addObject:liveInfo];
+                if (!blackList || ![blackList containsObject:liveInfo.groupid]) {
+                    [pusherArray addObject:liveInfo];
+                }
             }
             
             if (![pusherArray isEqualToArray:weakSelf.liveArray]) {
@@ -247,6 +249,7 @@ NSString *const kTCRoomListUpdated = @"kTCLiveListUpdated";
         if (resultCode == 200) {
             NSArray* vodInfoArray = resultDict[@"list"];
             NSMutableArray* vodArray = [NSMutableArray new];
+            NSArray *blackList = [self getBlackList:TCRoomListItemType_Record];
             for (NSDictionary* roomInfo in vodInfoArray) {
                 TCRoomInfo* liveInfo = [TCRoomInfo new];
                 liveInfo.userinfo = [TCUserInfo new];
@@ -265,12 +268,13 @@ NSString *const kTCRoomListUpdated = @"kTCLiveListUpdated";
                 liveInfo.userinfo.location = roomInfo[@"location"];
                 liveInfo.userinfo.headpic = roomInfo[@"avatar"];
                 liveInfo.userinfo.frontcover = roomInfo[@"frontcover"];
-                [vodArray addObject:liveInfo];
+                if (!blackList || ![blackList containsObject:liveInfo.fileid]) {
+                    [vodArray addObject:liveInfo];
+                }
             }
             
             if (![vodArray isEqualToArray:weakSelf.liveArray]) {
                 @synchronized (weakSelf) {
-                    
                     [weakSelf.allLivesArray removeObjectsInArray:weakSelf.liveArray];
                     weakSelf.liveArray = vodArray;
                     [weakSelf.allLivesArray addObjectsFromArray:weakSelf.liveArray];
@@ -371,6 +375,42 @@ NSString *const kTCRoomListUpdated = @"kTCLiveListUpdated";
 }
 
 #pragma mark - 持久化存储
+- (void)updateBlackList:(TCRoomInfo *)roomInfo {
+    // 更新黑名单列表
+    NSString *key = @"room_black_list";
+    if (roomInfo.type != TCRoomListItemType_Live) {
+        key = @"vod_black_list";
+    }
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *saveArray = [[userDefault arrayForKey:key] mutableCopy];
+    if (!saveArray) {
+        saveArray = [NSMutableArray arrayWithCapacity:2];
+    }
+    if (roomInfo.type == TCRoomListItemType_Live) {
+        [saveArray addObject:roomInfo.groupid ?: @""];
+    } else {
+        if (roomInfo.fileid) {
+            [saveArray addObject:roomInfo.fileid];
+        }
+    }
+    [userDefault setObject:saveArray forKey:key];
+}
+
+- (NSArray *)getBlackList:(TCRoomListItemType)type {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *key = @"room_black_list";
+    if (type != TCRoomListItemType_Live) {
+        key = @"vod_black_list";
+    }
+    return [userDefault arrayForKey:key];
+}
+
++ (void)clearBlackList {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault removeObjectForKey:@"room_black_list"];
+    [userDefault removeObjectForKey:@"vod_black_list"];
+}
+
 - (void)loadLivesFromArchive:(VideoType)type {
     NSString *key = [NSString stringWithFormat:@"%@_%ld", userDefaultsKey, type];
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
