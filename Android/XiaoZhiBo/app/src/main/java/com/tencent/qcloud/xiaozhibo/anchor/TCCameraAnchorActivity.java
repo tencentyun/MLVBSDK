@@ -34,7 +34,6 @@ import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 import com.tencent.qcloud.xiaozhibo.common.widget.TCUserAvatarListAdapter;
-import com.tencent.qcloud.xiaozhibo.common.widget.beauty.LiveRoomBeautyKit;
 import com.tencent.qcloud.xiaozhibo.common.widget.video.TCVideoView;
 import com.tencent.qcloud.xiaozhibo.common.widget.video.TCVideoViewMgr;
 import com.tencent.qcloud.xiaozhibo.common.msg.TCSimpleUserInfo;
@@ -102,8 +101,7 @@ public class TCCameraAnchorActivity extends TCBaseAnchorActivity {
         TCELKReportMgr.getInstance().reportELK(TCConstants.ELK_ACTION_CAMERA_PUSH, TCUserMgr.getInstance().getUserId(), 0, "摄像头推流", null);
         mPusherList = new ArrayList<>();
 
-        LiveRoomBeautyKit liveRoomBeautyKit = new LiveRoomBeautyKit(mLiveRoom);
-        mBeautyControl.setBeautyKit(liveRoomBeautyKit);
+        mBeautyControl.setBeautyManager(mLiveRoom.getBeautyManager());
         BeautyInfo beautyInfo = mBeautyControl.getDefaultBeautyInfo();
         beautyInfo.setBeautyBg(BeautyConstants.BEAUTY_BG_GRAY);
         mBeautyControl.setBeautyInfo(beautyInfo);

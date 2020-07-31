@@ -36,7 +36,6 @@ import com.tencent.qcloud.xiaozhibo.R;
 import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.report.TCELKReportMgr;
 import com.tencent.qcloud.xiaozhibo.common.ui.ErrorDialogFragment;
-import com.tencent.qcloud.xiaozhibo.common.widget.beauty.LiveRoomBeautyKit;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 import com.tencent.qcloud.xiaozhibo.common.widget.TCInputTextMsgDialog;
@@ -193,8 +192,7 @@ public class TCAudienceActivity extends Activity implements IMLVBLiveRoomListene
         mLiveRoom = MLVBLiveRoom.sharedInstance(this);
 
         initView();
-        LiveRoomBeautyKit liveRoomBeautyKit = new LiveRoomBeautyKit(mLiveRoom);
-        mBeautyControl.setBeautyKit(liveRoomBeautyKit);
+        mBeautyControl.setBeautyManager(mLiveRoom.getBeautyManager());
         startPlay();
 
         //在这里停留，让列表界面卡住几百毫秒，给sdk一点预加载的时间，形成秒开的视觉效果
