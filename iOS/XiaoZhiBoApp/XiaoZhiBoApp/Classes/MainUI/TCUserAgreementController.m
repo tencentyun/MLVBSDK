@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "TCAccountMgrModel.h"
 #import "ColorMacro.h"
-#import "TCGlobalConfig.h"
+#import "TCConfig.h"
 
 @implementation TCUserAgreementController
 {

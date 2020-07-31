@@ -7,6 +7,7 @@
 #import "TCRoomListViewController.h"
 #import "TCRoomListCell.h"
 #import "TCRoomListModel.h"
+#import "TCGlobalConfig.h"
 #import <MJRefresh/MJRefresh.h>
 #import <AFNetworking.h>
 #import "HUDHelper.h"
@@ -116,23 +117,33 @@
         make.centerY.equalTo(tabContainer).offset(statusBarHeight/2);
     }];
     
-    _clickVieoBtn = createButton(@"精彩回放");
-    _clickVieoBtn.tag = 1;
-    [tabContainer addSubview:_clickVieoBtn];
-    [_clickVieoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_liveVideoBtn.mas_right).offset(30);
-        make.centerY.equalTo(tabContainer).offset(statusBarHeight/2);
-    }];
+    if ([kHttpServerAddr length] != 0) {
+        _clickVieoBtn = createButton(@"精彩回放");
+        _clickVieoBtn.tag = 1;
+        [tabContainer addSubview:_clickVieoBtn];
+        [_clickVieoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self->_liveVideoBtn.mas_right).offset(30);
+            make.centerY.equalTo(tabContainer).offset(statusBarHeight/2);
+        }];
+        _clickVieoBtn.selected = YES;
+        
+        [tabContainer addSubview:_tabIndicator];
+        _tabIndicator.bottom = 0;
+        [_tabIndicator mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self->_clickVieoBtn);
+            make.bottom.equalTo(self->_clickVieoBtn.mas_bottom).offset(3);
+        }];
+    } else {
+        _liveVideoBtn.selected = YES;
+        
+        [tabContainer addSubview:_tabIndicator];
+        _tabIndicator.bottom = 0;
+        [_tabIndicator mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self->_liveVideoBtn);
+            make.bottom.equalTo(self->_liveVideoBtn.mas_bottom).offset(3);
+        }];
+    }
     
-    _clickVieoBtn.selected = YES;
-    
-    [tabContainer addSubview:_tabIndicator];
-    _tabIndicator.bottom = 0;
-    [_tabIndicator mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self->_clickVieoBtn);
-        make.bottom.equalTo(self->_clickVieoBtn.mas_bottom).offset(3);
-    }];
-
     
     // 内容列表
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -394,7 +405,7 @@
             [(TCAudienceViewController*)_playVC setOnPlayError:onPlayError];
             [(TCAudienceViewController*)_playVC setOnShield:onSheild];
         } else {
-            if (info.hls_play_url.length == 0) {
+            if (info.hls_play_url.length == 0 && info.playurl.length == 0) {
                 return;
             }
             _playVC = [[TCPlayBackViewController alloc] initWithPlayInfo:info videoIsReady:^{

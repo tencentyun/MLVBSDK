@@ -15,8 +15,9 @@
 #import <ImSDK/ImSDK.h>
 #import "TCUserProfileModel.h"
 #import "TCAccountMgrModel.h"
-#import "TCGlobalConfig.h"
+#import "TCConfig.h"
 #import "TXLivePlayer.h"
+#import "TCGlobalConfig.h"
 #import "TCLVBWebViewController.h"
 #import "ColorMacro.h"
 #import "TCUtil.h"
