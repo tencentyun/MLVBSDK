@@ -11,15 +11,11 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 7.4 @ 2020.07.03
-- iOS&Android：优化预处理清晰度，提高画质。
-- iOS&Android：支持全链路128kbps高音质立体声。
-- iOS&Android：支持多路背景音乐播放，用于支持原声和伴唱分离的 K 歌场景，同时支持双声道背景音乐及循环播放。
-- iOS&Android：在兼容老背景音播放接口的情况下，增加了全新的音效管理接口 TXAudioEffectManager，用于支持更加灵活和多样的音效能力。
-- iOS：耳返支持叠加混响等声音效果。
-- iOS：修复录屏直播声音卡顿问题；
-- iOS：修复前后摄像头偶现切换失败的问题；
-- Android：音效文件支持 asset 打包的音效文件。
+### Version 7.5 @ 2020.07.31
+- Android：点播播放器新增自动获取音频焦点控制接口。
+- Android：修复直播推流本地录制文件没有声音的问题。
+- Android：直播推流与直播播放Demo UI优化。
+- iOS：解决短视频尾部水印观看闪烁的问题。
 
 ## MLVB Demo
 
