@@ -111,7 +111,7 @@ Component({
         clipPusherIDs(){
             var self = this;
             var data = '';
-            var main = ''; 
+            var main = '';
             var link = '';
             if (self.data.mainPusherInfo.url) main = substring(aa.lastIndexOf('/') + 1, aa.indexOf('?'))
             if (self.data.linkPusherInfo.url) link = substring(aa.lastIndexOf('/') + 1, aa.indexOf('?'))
@@ -129,7 +129,7 @@ Component({
         },
         unfoldCtrlMenu(){
             var self = this;
-            
+
             var items = self.data.menuItems;
             if (items.length > 0){
                 items = [];
@@ -167,8 +167,9 @@ Component({
                 }
             }
             liveroom.sendRoomTextMsg({
-                data:{msg: text},
+                data:{msg: text,roomID: self.data.roomID},
                 success: ()=>{
+                    console.log("发送消息成功")
                 },
                 fail: (e) => {
                     console.log("发送消息失败: ", e)
@@ -180,7 +181,6 @@ Component({
                 }
             });
         },
-
         switchCamera(){
             var self = this;
             console.log('切换摄像头: ', self.data.pusherContext)
@@ -249,7 +249,7 @@ Component({
             }
         },
         stop() {
-            console.log('stop() called');                        
+            console.log('stop() called');
             var self = this;
             console.log('stop pusherContext：', self.data.pusherContext, self.data.playerContext);
             self.data.pusherContext && self.data.pusherContext.stop();
@@ -275,7 +275,7 @@ Component({
             self.data.playerContext && self.data.playerContext.pause();
         },
         resume() {
-            console.log('resume() called');            
+            console.log('resume() called');
             var self = this;
             self.data.pusherContext && self.data.pusherContext.resume();
             self.data.playerContext && self.data.playerContext.resume();
@@ -301,8 +301,8 @@ Component({
                     accelerateURL: p.accelerateURL,
                     context: null
                 }
-            });     
-            
+            });
+
             temp = temp.concat(pushers);
             console.log('设置推流模式为:RTC');
             self.setData({
@@ -367,7 +367,6 @@ Component({
             liveroom.setListener({
                 onRoomDestroy: self.onRoomDestroy,
                 onRecvRoomTextMsg: self.onRecvRoomTextMsg,
-                onSketchpadData: self.onSketchpadData,
                 onAnchorExit: self.onLinkPusherQuit,
                 onAnchorEnter: self.onAnchorEnter,
                 onKickoutJoinAnchor: self.onKickoutJoinAnchor
@@ -389,7 +388,7 @@ Component({
                         console.error('缺少加速流');
                     }
                     //{ "cmd":"C2CCustomMsg", "data":{ userName: "xxx", userAvatar:"xxx", "roomID":"XXX", "cmd":"xx", msg:"xx" } }
-                    liveroom.sendC2CCustomMsg({ cmd: "sketchpad", msg: '{"type":"request", "action":"currentPPT"}' })
+                    //liveroom.sendC2CCustomMsg({ cmd: "sketchpad", msg: '{"type":"request", "action":"currentPPT"}' })
                     self.playMixedUrl().then(() => {
                         console.log('playMixedUrl done');
                     }).catch(e => {
@@ -451,7 +450,6 @@ Component({
             console.log('exit() called')
             liveroom.exitRoom({});
         },
-
         onPlay(ret) {
             var self = this;
             console.error('拉流情况：', ret.detail.code);
@@ -541,7 +539,7 @@ Component({
                 url: self.data.audience.accelerateUrl,
                 mode: 'RTC',
                 loading: false,
-                objectFit: 'fillCrop',                
+                objectFit: 'fillCrop',
                 userName: self.data.audience.pusherName
             }]
             return new Promise((resolve) => {
@@ -641,19 +639,19 @@ Component({
                 return;
             }
             console.info('用户请求连麦')
-            self.data.requestLinking = true;                    
+            self.data.requestLinking = true;
             liveroom.requestJoinAnchor({
                 data: {
                     timeout: 10000
                 },
                 success: function (ret) {
-                    self.data.requestLinking = false;                    
+                    self.data.requestLinking = false;
                     console.log('请求连麦成功: ', ret)
                     self.link();
                 },
                 fail: function (e) {
                     console.log('请求连麦失败: ', e)
-                    self.data.requestLinking = false;                                        
+                    self.data.requestLinking = false;
                     self.triggerEvent('RoomEvent', {
                         tag: 'error',
                         code: -9004,
@@ -772,7 +770,7 @@ Component({
             if (!pushers) return;
             var userIndex = pushers.map(p => { return p.userID }).indexOf(self.data.userID);
             if (userIndex != -1) { // 自己退出link
-                
+
                 self.resetToAudience();
             } else { // 别人退出link
                 self.onAnchorExit(ret);
@@ -930,7 +928,7 @@ Component({
         onMainPlayState(e) {
             console.log('===> onMainPlayState: ', e)
             var self = this;
-            //主播拉流失败不抛错误事件出去 
+            //主播拉流失败不抛错误事件出去
             if (self.data.isCaster == true) {
               return;
             }
@@ -956,7 +954,6 @@ Component({
             console.log('onRoomDestroy: e=', e)
             _this && _this.triggerEvent('RoomEvent', { tag: 'roomClosed', code: -9006, detail: '房间已经解散了' })
         },
-
         onRecvRoomTextMsg(ret) {
             var self = _this;
             console.log("onRecvRoomTextMsg called, ret: ", ret)
@@ -966,15 +963,6 @@ Component({
                 detail: ret
             })
         },
-        onSketchpadData(ret) {
-            var self = _this;
-            console.log("onSketchpadData called, ret: ", ret)
-            self.triggerEvent('RoomEvent', {
-                tag: 'sketchpadData',
-                code: 0,
-                detail: ret
-            })
-        }
     },
 
     attached: function () {
