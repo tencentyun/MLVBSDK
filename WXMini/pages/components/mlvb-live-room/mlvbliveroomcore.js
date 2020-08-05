@@ -1,9 +1,12 @@
+import TYPES from "./utils/types";
+import {isJSON} from "./utils/common";
+
 /**
  * @file liveroom.js 直播模式房间管理sdk
  * @author binniexu
  */
-var webim = require('webim_wx.js');
-var webimhandler = require('webim_handler.js');
+var TIM = require('tim_wx.js');
+var timHandler = require('tim_handler.js');
 
 
 //移动直播（<mlvb-live-room>）使用此地址实现房间服务和连麦功能
@@ -13,6 +16,7 @@ var RoomServiceUrl = "https://liveroom.qcloud.com/weapp/live_room/",
 	requestSeq = 0,			// 请求id
 	requestTask = [],		// 请求task
 	// 用户信息
+	tim = null,
 	accountInfo = {
 		userID: '',			// 用户ID
 		userName: '',		// 用户昵称
@@ -41,11 +45,10 @@ var RoomServiceUrl = "https://liveroom.qcloud.com/weapp/live_room/",
     		onAnchorEnter: function () {},			// 进房通知
     		onAnchorExit: function () {},			// 退房通知
     		onRoomDestroy: function() {},			// 群解散通知
-        onRecvRoomTextMsg: function() {},		// 消息通知
+		    onRecvRoomTextMsg: function() {},		// 消息通知
     		onRequestJoinAnchor: function() {}, //大主播收到小主播连麦请求通知
     		onKickoutJoinAnchor: function() {}, //小主播被踢通知
         onRecvRoomCustomMsg: function() {}, //自定义消息通知
-				onSketchpadData: function(){}
 	};
 // 随机昵称
 var userName = ['林静晓', '陆杨', '江辰', '付小司', '陈小希', '吴柏松', '肖奈', '芦苇微微', '一笑奈何', '立夏'];
@@ -188,7 +191,7 @@ function logout() {
 	accountInfo.userAvatar = '';
 	accountInfo.token = '';
 	// 退出IM登录
-	webimhandler.logout();
+	timHandler.logout();
 }
 
 /**
@@ -200,17 +203,97 @@ function logout() {
  *   success: 成功回调
  *   fail: 失败回调
  */
+
+//im 事件监听
+function initListener() {
+	unbind()
+	bind()
+}
+
+function bind() {
+	tim.on(TIM.EVENT.SDK_READY, onReadyStateUpdate)
+	// SDK NOT READT
+	tim.on(TIM.EVENT.SDK_NOT_READY, onReadyStateUpdate)
+	//收到新消息
+	tim.on(TIM.EVENT.MESSAGE_RECEIVED, onReceiveMessage)
+	// 网络监测
+	tim.on(TIM.EVENT.NET_STATE_CHANGE, onNetStateChange)
+	// SDK内部出错
+	tim.on(TIM.EVENT.ERROR, onError)
+
+}
+
+function unbind() {
+	tim.off(TIM.EVENT.SDK_READY, onReadyStateUpdate)
+	// SDK NOT READT
+	tim.off(TIM.EVENT.SDK_NOT_READY, onReadyStateUpdate)
+	//收到新消息
+	tim.off(TIM.EVENT.MESSAGE_RECEIVED, onReceiveMessage)
+	// 网络监测
+	tim.off(TIM.EVENT.NET_STATE_CHANGE, onNetStateChange)
+	// SDK内部出错
+	tim.off(TIM.EVENT.ERROR, onError)
+}
+function onError(event) {
+	// event.data.code - 错误码
+	// event.data.message - 错误信息
+}
+
+function onReadyStateUpdate() {
+
+}
+
+function onNetStateChange(event) {
+	switch (event.data.state) {
+		case TIM.TYPES.NET_STATE_CONNECTED:
+			return console.log('已接入网络')
+		case TIM.TYPES.NET_STATE_CONNECTING:
+			return console.log('当前网络不稳定')
+		case TIM.TYPES.NET_STATE_DISCONNECTED:
+			return console.log('当前网络不可用')
+		default:
+			return ''
+	}
+}
+
+function onReceiveMessage ({ data: messageList }) {
+	for (let i = 0; i < messageList.length; i++) {
+		let item = messageList[i]
+		if (item.type === TIM.TYPES.MSG_TEXT) {
+			event.onRecvRoomTextMsg({msg:item});
+		}
+		// C2C 自定义消息
+		if (item.type === TYPES.MSG_CUSTOM) {
+			recvC2CMsg(item)
+		}
+		if (item.type === TIM.TYPES.MSG_GRP_SYS_NOTICE) {
+			// 系统消息
+			if (item.payload.operationType === TIM.TYPES.GRP_TIP_MBR_CANCELED_ADMIN) {
+				console.log(item.payload,'群被解散')
+				roomInfo.isDestory = true;
+				event.onRoomDestroy()
+			}
+		}
+	}
+	// 提示消息
+}
+
 function loginIM(options) {
 	// 初始化设置参数
-	webimhandler.init({
+	tim = TIM.create({
+		SDKAppID: accountInfo.sdkAppID
+	})
+	timHandler.init({
 		accountMode: accountInfo.accountMode,
 		accountType: '0',
 		sdkAppID: accountInfo.sdkAppID,
 		avChatRoomId: options.roomID || 0,
-		selType: webim.SESSION_TYPE.GROUP,
+		selType: TIM.TYPES.CONV_GROUP,
 		selToID: options.roomID || 0,
-		selSess: null //当前聊天会话
+		selSess: null,//当前聊天会话
+		tim:tim
 	});
+
 	//当前用户身份
 	var loginInfo = {
 		'sdkAppID': accountInfo.sdkAppID, //用户所属应用id,必填
@@ -220,89 +303,28 @@ function loginIM(options) {
 		'identifierNick': accountInfo.userID, //当前用户昵称，选填
 		'userSig': accountInfo.userSig, //当前用户身份凭证，必须是字符串类型，选填
 	};
-	//监听（多终端同步）群系统消息方法，方法都定义在demo_group_notice.js文件中
-	var onGroupSystemNotifys = {
-		// 群被解散(全员接收)
-		"5": function (notify) {
-			roomInfo.isDestory = true;
-			event.onRoomDestroy();
-		},
-		"11": webimhandler.onRevokeGroupNotify, //群已被回收(全员接收)
-		// 用户自定义通知(默认全员接收)
-		"255": function (notify) {
-			// console.error('收到系统通知：', notify.UserDefinedField);
-			// var content = JSON.parse(notify.UserDefinedField);
-			// if (content && content.cmd == 'notifyPusherChange') {
-			// 	mergeAnchors();
-			// }
-		}
-	};
-
-	//监听连接状态回调变化事件
-	var onConnNotify = function (resp) {
-		switch (resp.ErrorCode) {
-			case webim.CONNECTION_STATUS.ON:
-				//webim.Log.warn('连接状态正常...');
-				break;
-			case webim.CONNECTION_STATUS.OFF:
-				webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
-				break;
-			default:
-				webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
-				break;
-		}
-	};
 
 	//监听事件
-	var listeners = {
-		"onConnNotify": webimhandler.onConnNotify, //选填
-		"onBigGroupMsgNotify": function (msg) {
-            webimhandler.onBigGroupMsgNotify(msg, function (msgs) {
-                receiveMsg(msgs);
-            }, function (datas) {
-                //收到白板数据
-                console.log("LiveRoom callback --> 收到白板数据")
-                onSketchpadData(datas);
-            })
-			// webimhandler.onBigGroupMsgNotify(msg, function (msgs) {
-			// 	receiveMsg(msgs);
-			// })
-		}, //监听新消息(大群)事件，必填
-		"onMsgNotify": function (newMsgList) { //监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
-			webimhandler.onMsgNotify(newMsgList, function(msg) {
-				recvC2CMsg(msg);
-			});
-		},
-		"onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
-		"onGroupInfoChangeNotify": webimhandler.onGroupInfoChangeNotify,
-		// 'onKickedEventCall': self.onKickedEventCall // 踢人操作
-	};
-
-	//其他对象，选填
-	var others = {
-		'isAccessFormalEnv': true, //是否访问正式环境，默认访问正式，选填
-		'isLogOn': false //是否开启控制台打印日志,默认开启，选填
-	};
-
+	initListener()
 	if (accountInfo.accountMode == 1) { //托管模式
-		webimhandler.sdkLogin(loginInfo, listeners, others, 0, afterLoginIM, options);
+		timHandler.sdkLogin(loginInfo, 0, afterLoginIM, options);
 	} else { //独立模式
 		//sdk登录
-		webimhandler.sdkLogin(loginInfo, listeners, others, 0, afterLoginIM, options);
+		timHandler.sdkLogin(loginInfo,  0, afterLoginIM, options);
 	}
 }
 function afterLoginIM(options) {
 	if (options.errCode) {
-		// webim登录失败
-		console.log('webim登录失败:', options);
+		// tim登录失败
+		console.log('tim登录失败:', options);
 		options.callback.fail && options.callback.fail({
 			errCode: -2,
 			errMsg: 'IM登录失败，如果你是在配置线上环境，请将IM域名[https://webim.tim.qq.com]配置到小程序request合法域名'
 		});
 		return;
 	}
-	// webim登录成功
-	console.log('webim登录成功');
+	// tim登录成功
+	console.log('tim登录成功');
 	roomInfo.isLoginIM = true;
 	options.callback.success && options.callback.success({
 		userName: accountInfo.userName
@@ -310,7 +332,7 @@ function afterLoginIM(options) {
 }
 function afterJoinBigGroup(options) {
 	if (options.errCode && options.errCode != 10025) {
-		console.log('webim进群失败: ', options);
+		console.log('tim进群失败: ', options);
 		options.callback.fail && options.callback.fail({
 			errCode: -2,
 			errMsg: 'IM进群失败'
@@ -326,110 +348,25 @@ function onSketchpadData(data){
     event.onSketchpadData(data);
 }
 
-/**
- * [receiveMsg 接收消息处理]
- * @param {options}
- *
- * @return event.onRecvRoomTextMsg
- *   roomID: 房间ID
- *   userID: 用户ID
- *   nickName: 用户昵称
- *   headPic: 用户头像
- *   textMsg: 文本消息
- *   time: 消息时间
- */
-function receiveMsg(msg) {
-	if (!msg.content) {  return; }
-	console.log('IM消息: ',JSON.stringify(msg));
-	var time = new Date();
-	var h = time.getHours()+'', m = time.getMinutes()+'', s = time.getSeconds()+'';
-	h.length == 1 ? (h='0'+h) : '';
-	m.length == 1 ? (m='0'+m) : '';
-	s.length == 1 ? (s='0'+s) : '';
-	time = h + ':' + m + ':' + s;
-	msg.time = time;
-
-	if(msg.fromAccountNick == '@TIM#SYSTEM') {
-		msg.fromAccountNick = '';
-		msg.content = msg.content.split(';');
-		msg.content = msg.content[0];
-		event.onRecvRoomTextMsg && event.onRecvRoomTextMsg({
-			roomID: roomInfo.roomID,
-			userID: msg.fromAccountNick,
-			userName: msg.userName,
-			userAvatar: msg.userAvatar,
-			message: msg.content,
-			time: msg.time
-		});
-	} else {
-		var contentObj,newContent;
-		try {
-      newContent = msg.content.split('}}');
-      contentObj = JSON.parse(newContent[0] + '}}');
-		} catch (e) {
-			console.warn("IM消息解析异常，重新按json格式解析");
-      newContent = new Array(1);
-      newContent[0] = msg.content;
-      contentObj = JSON.parse(msg.content);
-		}
-		if(contentObj.cmd == 'CustomTextMsg') {
-			msg.userName = contentObj.data.nickName;
-			msg.userAvatar = contentObj.data.headPic;
-			var content = '';
-			for(var i = 1; i < newContent.length; i++) {
-				if(i == newContent.length - 1)
-					content += newContent[i];
-				else content += newContent[i] + '}}';
-			}
-			msg.content = content;
-			event.onRecvRoomTextMsg && event.onRecvRoomTextMsg({
-				roomID: roomInfo.roomID,
-				userID: msg.fromAccountNick,
-				userName: msg.userName,
-				userAvatar: msg.userAvatar,
-				message: msg.content,
-				time: msg.time
-			});
-		} else if (contentObj.cmd == 'CustomCmdMsg') {
-			msg.userName = contentObj.data.nickName;
-			msg.userAvatar = contentObj.data.headPic;
-			msg.cmd = contentObj.data.cmd;
-			var content = '';
-			for(var i = 1; i < newContent.length; i++) {
-				if(i == newContent.length - 1)
-					content += newContent[i];
-				else content += newContent[i] + '}}';
-			}
-			msg.content = content;
-			event.onRecvRoomCustomMsg && event.onRecvRoomCustomMsg({
-				roomID: roomInfo.roomID,
-				userID: msg.fromAccountNick,
-				userName: msg.userName,
-				userAvatar: msg.userAvatar,
-				cmd: msg.cmd,
-				message: msg.content,
-				time: msg.time
-			});
-		} else if (contentObj.cmd == 'notifyPusherChange') {
-      mergeAnchors();
-		}
-	}
-
-};
 
 function recvC2CMsg(msg) {
-	console.log("收到C2C消息:", JSON.stringify(msg));
-	var contentObj = JSON.parse(msg.content);
+	console.log("收到C2C消息:", msg);
+	if (isJSON(msg.payload.data)) {
+		var contentObj = JSON.parse(msg.payload.data)
+	}
+	console.log(contentObj)
 	if (contentObj) {
 		if (contentObj.cmd == 'linkmic') {
 			if (contentObj.data.type && contentObj.data.type == 'request') {
+				console.log('发起连麦请求')
 				event.onRequestJoinAnchor({
-					userID: msg.fromAccountNick,
+					userID: msg.from,
 					userName: contentObj.data.userName,
 					userAvatar: contentObj.data.userAvatar
 				})
 			} else if (contentObj.data.type && contentObj.data.type == 'response') {
 				if (contentObj.data.result == 'accept') {
+					console.log('接收了连麦')
 					requestJoinCallback && requestJoinCallback({
 						errCode: 0,
 						errMsg: ''
@@ -449,14 +386,7 @@ function recvC2CMsg(msg) {
 	}
 }
 
-function notifyPusherChange() {
-	var customMsg = {
-		cmd: "notifyPusherChange",
-		data: {}
-	}
-	var strCustomMsg = JSON.stringify(customMsg);
-	webimhandler.sendCustomMsg({data:strCustomMsg, text:"notify"}, null)
-}
+
 
 function mergeAnchors() {
 	if (!roomInfo.hasJoinAnchor) {
@@ -487,10 +417,6 @@ function innerMergerAnchors(data) {
    * ishave：用于判断去重操作
    */
   var enterPushers = [],leavePushers = [],ishave = 0;
-  console.log('去重操作');
-  console.log('旧', JSON.stringify(roomInfo.pushers));
-  console.log('新',JSON.stringify(data.pushers));
-  console.log('用户信息:', JSON.stringify(accountInfo));
   data.pushers && data.pushers.forEach(function(val1){
     ishave = 0;
     roomInfo.pushers && roomInfo.pushers.forEach(function(val2) {
@@ -569,29 +495,6 @@ function getAnchors(object) {
     });
 }
 
-/**
- * [sendRoomTextMsg 发送文本消息]
- * @param {options}
- *   data: {
- *   	msg: 文本消息
- *   }
- */
-function sendRoomTextMsg(options) {
-	if (!options || !options.data.msg || !options.data.msg.replace(/^\s*|\s*$/g, '')) {
-		console.log('sendRoomTextMsg参数错误',options);
-		options.fail && options.fail({
-			errCode: -9,
-			errMsg: 'sendRoomTextMsg参数错误'
-		});
-		return;
-	}
-	webimhandler.sendCustomMsg({
-		data: '{"cmd":"CustomTextMsg","data":{"nickName":"'+accountInfo.userName+'","headPic":"'+accountInfo.userAvatar+'"}}',
-		text: options.data.msg
-	},function() {
-		options.success && options.success();
-	});
-}
 
 /**
  * [pusherHeartBeat 推流者心跳]
@@ -750,6 +653,29 @@ function getPushURL(options) {
 	});
 };
 
+/**
+ * [sendRoomTextMsg 发送文本消息]
+ * @param {options}
+ *   data: {
+ *   	msg: 文本消息
+ *   }
+ */
+function sendRoomTextMsg(options) {
+	if (!options || !options.data.msg || !options.data.msg.replace(/^\s*|\s*$/g, '')) {
+		console.log('sendRoomTextMsg参数错误',options);
+		options.fail && options.fail({
+			errCode: -9,
+			errMsg: 'sendRoomTextMsg参数错误'
+		});
+		return;
+	}
+	timHandler.sendTextMessage({
+		text: options.data.msg,
+		to: options.data.roomID
+	},function() {
+		options.success && options.success();
+	});
+}
 
 /**
  * [setListener 设置监听事件]
@@ -762,11 +688,10 @@ function setListener(options) {
         event.onAnchorEnter = options.onAnchorEnter || function () {};
         event.onAnchorExit = options.onAnchorExit || function () {};
         event.onRoomDestroy = options.onRoomDestroy || function () {};
-        event.onRecvRoomTextMsg = options.onRecvRoomTextMsg || function () {};
-        event.onRequestJoinAnchor = options.onRequestJoinAnchor || function () {};
+	      event.onRecvRoomTextMsg = options.onRecvRoomTextMsg || function () {};
+	      event.onRequestJoinAnchor = options.onRequestJoinAnchor || function () {};
         event.onKickoutJoinAnchor = options.onKickoutJoinAnchor || function () {};
         event.onRecvRoomCustomMsg = options.onRecvRoomCustomMsg || function () {};
-				event.onSketchpadData = options.onSketchpadData || function(){};
 }
 
 /**
@@ -829,7 +754,7 @@ function proto_createRoom(options) {
 				userID: accountInfo.userID,
         roomName: options.data.roomID
 			}
-      webimhandler.createBigGroup(createIMGroupInfo, afterJoinBigGroup, {
+      timHandler.createBigGroup(createIMGroupInfo, afterJoinBigGroup, {
         success: function() {
           joinAnchor(options);
         },
@@ -899,7 +824,7 @@ function proto_joinAnchor(options) {
 			heart = true;
 			pusherHeartBeat(1);
       //通知房间内其他主播
-      notifyPusherChange();
+      //notifyPusherChange();
   		options.success && options.success({roomID: roomInfo.roomID});
 		},
 		fail: function(ret) {
@@ -957,16 +882,17 @@ function enterRoom(options) {
 }
 function proto_enterRoom(options) {
 	console.log('开始IM: ', roomInfo.roomID);
-	webimhandler.applyJoinBigGroup(roomInfo.roomID, afterJoinBigGroup, {
+	timHandler.applyJoinBigGroup(roomInfo.roomID, afterJoinBigGroup, {
 		success: function(ret) {
       getAnchors({
 				data: {
 					roomID: roomInfo.roomID
 				},
 				success: function(ret) {
+					console.log(ret,'进入房间成功')
 					roomInfo.roomID = ret.data.roomID;
-                	roomInfo.roomInfo = ret.data.roomInfo;
-                	roomInfo.roomCreator = ret.data.roomCreator;
+          roomInfo.roomInfo = ret.data.roomInfo;
+          roomInfo.roomCreator = ret.data.roomCreator;
 					roomInfo.mixedPlayURL = ret.data.mixedPlayURL;
 					options.success && options.success({
 						roomID: roomInfo.roomID,
@@ -985,18 +911,6 @@ function proto_enterRoom(options) {
 		},
 		fail: options.fail
 	});
-}
-
-/**
- * [clearRequest 中断请求]
- * @param {options}
- */
-function clearRequest() {
-	for(var i = 0; i < requestSeq; i++) {
-		requestTask[i].abort();
-	}
-	requestTask = [];
-	requestSeq = 0;
 }
 
 /**
@@ -1024,10 +938,7 @@ function exitRoom(options) {
 function leaveRoom(options) {
 	// 停止心跳
 	stopPusherHeartBeat();
-  //通知房间内其他主播
-  notifyPusherChange();
-	// clearRequest();
-	roomInfo.isJoinGroup && webimhandler.quitBigGroup();
+	roomInfo.isJoinGroup && timHandler.quitBigGroup();
 	request({
 		url: 'delete_anchor',
 		data: {
@@ -1076,8 +987,7 @@ function leaveRoom(options) {
 function destoryRoom(options) {
 	// 停止心跳
 	stopPusherHeartBeat();
-	// clearRequest();
-	roomInfo.isJoinGroup && webimhandler.destroyGroup();
+	roomInfo.isJoinGroup && timHandler.destroyGroup();
 	if(roomInfo.isDestory) return;
 	request({
 		url: 'destroy_room',
@@ -1134,7 +1044,7 @@ function quitJoinAnchor(options) {
 			console.log('退出推流成功');
 			roomInfo.pushers = [];
       //通知房间内其他主播
-      notifyPusherChange();
+      //notifyPusherChange();
 			options.success && options.success({});
 		},
 		fail: function(ret) {
@@ -1191,7 +1101,7 @@ function requestJoinAnchor (object) {
 	var msg = {
 		data: JSON.stringify(body)
 	}
-	webimhandler.sendC2CCustomMsg(roomInfo.roomCreator, msg, function (ret) {
+	timHandler.sendC2CCustomMsg(roomInfo.roomCreator, msg, function (ret) {
 		if (isTimeout) {
 			return;
 		}
@@ -1218,7 +1128,7 @@ function acceptJoinAnchor (object) {
 	var msg = {
 		data: JSON.stringify(body)
 	}
-	webimhandler.sendC2CCustomMsg(object.data.userID, msg, function (ret) {});
+	timHandler.sendC2CCustomMsg(object.data.userID, msg, function (ret) {});
 }
 
 function rejectJoinAnchor (object) {
@@ -1236,7 +1146,7 @@ function rejectJoinAnchor (object) {
 	var msg = {
 		data: JSON.stringify(body)
 	}
-	webimhandler.sendC2CCustomMsg(object.data.userID, msg, function (ret) {});
+	timHandler.sendC2CCustomMsg(object.data.userID, msg, function (ret) {});
 }
 
 function kickoutJoinAnchor (object) {
@@ -1252,7 +1162,7 @@ function kickoutJoinAnchor (object) {
 	var msg = {
 		data: JSON.stringify(body)
 	}
-	webimhandler.sendC2CCustomMsg(object.data.userID, msg, function (ret) {
+	timHandler.sendC2CCustomMsg(object.data.userID, msg, function (ret) {
 		if (ret && ret.errCode==0) {
 			object.success && object.success(ret);
 		} else {
@@ -1266,7 +1176,7 @@ function getAccountInfo() {
 }
 
 /**
- * 
+ *
  * @param {Int} retryCount
  */
 function mergeStream(retryCount) {
@@ -1390,7 +1300,7 @@ function createMergeInfo(mergeStreams) {
     //组装混流JSON结构体
     var streamInfoArray = [];
     if (mergeStreams && mergeStreams.length > 0) {
-        
+
         //大主播
         var bigAnchorInfo = {
             input_stream_id: bigAnchorStreamID || '',
@@ -1478,7 +1388,7 @@ function sendC2CCustomMsg(object) {
 	var msg = {
 		data: JSON.stringify(body)
 	}
-	webimhandler.sendC2CCustomMsg(object.toUserID?object.toUserID:roomInfo.roomCreator, msg, function (ret) {
+	timHandler.sendC2CCustomMsg(object.toUserID?object.toUserID:roomInfo.roomCreator, msg, function (ret) {
 		if (ret && ret.errCode) {
 			console.log('请求连麦失败:', JSON.stringify(ret));
 			object.fail && object.fail(ret);
