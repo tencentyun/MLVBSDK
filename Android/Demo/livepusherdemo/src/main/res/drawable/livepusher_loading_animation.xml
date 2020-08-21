@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/livepusher_loading_image0" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image1" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image2" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image3" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image4" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image5" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image6" android:duration="100"></item>
+    <item android:drawable="@drawable/livepusher_loading_image7" android:duration="100"></item>
+</animation-list>

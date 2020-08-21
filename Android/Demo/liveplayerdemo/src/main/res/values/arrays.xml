@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="liveplayer_cache_strategy">
+        <item>极速</item>
+        <item>流畅</item>
+        <item>自动</item>
+    </string-array>
+
+    <string-array name="liveplayer_hw_decode">
+        <item>硬解码</item>
+        <item>软解码</item>
+    </string-array>
+</resources>

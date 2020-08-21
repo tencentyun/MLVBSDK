@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/livepusher_content_bg"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp">
+
+    <include
+        layout="@layout/livepusher_top_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/livepusher_play_hint"
+        android:textColor="@color/livepusher_white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/livepusher_play_hint_1"
+        android:textColor="#FF6B82A8"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/livepusher_play_hint_2"
+        android:textColor="#FF6B82A8"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/livepusher_btn_normal_url"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/livepusher_btn_bg"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="@string/livepusher_auto_fetch_url"
+        android:textColor="@color/livepusher_white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="#FF122755" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/livepusher_have_push_url"
+        android:textColor="#FF6B82A8"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/livepusher_et_input_url"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/livepusher_input_bg"
+        android:hint="@string/livepusher_input_push_url"
+        android:imeOptions="actionGo"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:singleLine="true"
+        android:textColor="@color/livepusher_white"
+        android:textColorHint="#FF6B82A8" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/livepusher_btn_qr_code_scan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/livepusher_btn_bg"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:textColor="@color/livepusher_white"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/livepusher_ic_qcode" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/livepusher_btn_play"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/livepusher_btn_bg"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="@string/livepusher_start_push"
+        android:textColor="@color/livepusher_white"
+        android:textSize="16sp" />
+
+</LinearLayout>

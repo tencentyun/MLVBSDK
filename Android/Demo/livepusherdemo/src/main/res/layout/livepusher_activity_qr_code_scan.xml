@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/livepusher_ibtn_back"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:background="@android:color/transparent"
+        android:onClick="onClick"
+        android:paddingLeft="12dp"
+        android:paddingTop="17dp"
+        android:paddingRight="17dp"
+        android:paddingBottom="17dp"
+        android:src="@drawable/livepusher_ic_back" />
+
+    <TextView
+        android:id="@+id/livepusher_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="14dp"
+        android:text="@string/livepusher_camera_push"
+        android:textColor="@color/livepusher_white"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

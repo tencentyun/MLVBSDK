@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/liveplayer_rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/liveplayer_content_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/liveplayer_iv_root"
+        android:layout_width="116dp"
+        android:layout_height="112dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/liveplayer_bg_icon"/>
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/liveplayer_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+    <include
+        layout="@layout/liveplayer_top_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp" />
+
+    <LinearLayout
+        android:id="@+id/liveplayer_ll_menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/liveplayer_btn_play"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/liveplayer_play_start_btn"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/liveplayer_btn_decode"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/liveplayer_decode_btn"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/liveplayer_btn_render_rotate_landscape"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/liveplayer_render_rotate_landscape"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/liveplayer_btn_render_mode_fill"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/liveplayer_render_mode_fill"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="30dp">
+
+            <ImageButton
+                android:id="@+id/liveplayer_btn_cache_strategy"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/liveplayer_cache_strategy"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/liveplayer_btn_cache_strategy_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#cc000000"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/liveplayer_btn_acc"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/liveplayer_acc"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/liveplayer_iv_loading"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/liveplayer_loading_animation"
+        android:visibility="gone" />
+
+    <com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView
+        android:id="@+id/liveplayer_rsv_decode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+
+    <com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView
+        android:id="@+id/liveplayer_rsv_cache_strategy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+</RelativeLayout>

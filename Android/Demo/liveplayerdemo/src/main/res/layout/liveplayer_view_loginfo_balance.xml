@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V"
+            android:textColor="@color/liveplayer_white"
+            android:textSize="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="A"
+            android:textColor="@color/liveplayer_white"
+            android:textSize="5dp" />
+
+        <ProgressBar
+            android:id="@+id/liveplayer_pb_video_cache"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginLeft="5dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/liveplayer_video_cache_progress" />
+
+        <ProgressBar
+            android:id="@+id/liveplayer_pb_audio_cache"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/liveplayer_pb_video_cache"
+            android:layout_marginLeft="5dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/liveplayer_audio_cache_progress" />
+
+        <com.tencent.liteav.demo.liveplayer.ui.view.BalanceSeekBar
+            android:id="@+id/liveplayer_seekbar_balance"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_marginLeft="5dp"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/liveplayer_seek_bar_with_text_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/liveplayer_ic_slider"
+            android:thumbOffset="0dp"
+            app:textColor="@color/liveplayer_white"
+            app:textSize="10dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/liveplayer_progress_video_cache_min"
+            android:textColor="@color/liveplayer_white"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/liveplayer_progress_video_cache_middle"
+            android:textColor="@color/liveplayer_white"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/liveplayer_tv_max_auto_adjust_cache_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/liveplayer_progress_video_cache_max"
+            android:textColor="@color/liveplayer_white"
+            android:textSize="10dp" />
+    </RelativeLayout>
+
+</LinearLayout>

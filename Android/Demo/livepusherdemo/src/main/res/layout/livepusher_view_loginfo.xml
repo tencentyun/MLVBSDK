@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="14dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:id="@+id/livepusher_ll_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/livepusher_iv_net_speed"
+        android:layout_width="75dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginStart="106dp" />
+
+</RelativeLayout>

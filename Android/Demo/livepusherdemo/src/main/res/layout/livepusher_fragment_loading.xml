@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FF13233F"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="69dp"
+    android:paddingTop="40dp"
+    android:paddingRight="69dp"
+    android:paddingBottom="40dp">
+
+    <ImageView
+        android:id="@+id/livepusher_iv_fragment_loading"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:src="@drawable/livepusher_loading_animation" />
+
+    <TextView
+        android:id="@+id/livepusher_tv_fragment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/livepusher_fetch_url"
+        android:textColor="@color/livepusher_white"
+        android:textSize="16dp" />
+
+</LinearLayout>
