@@ -191,9 +191,7 @@ public class LiveRoomChatFragment extends Fragment implements IMLVBLiveRoomListe
         BeautyInfo defaultBeauty = mBeautyPanelView.getDefaultBeautyInfo();
         defaultBeauty.setBeautyBg(BeautyConstants.BEAUTY_BG_GRAY);
         mBeautyPanelView.setBeautyInfo(defaultBeauty);
-        MLVBLiveRoom liveRoom = mActivityInterface.getLiveRoom();
-        LiveRoomBeautyKit liveRoomBeautyKit = new LiveRoomBeautyKit(liveRoom);
-        mBeautyPanelView.setBeautyKit(liveRoomBeautyKit);
+        mBeautyPanelView.setBeautyManager(mActivityInterface.getLiveRoom().getBeautyManager());
 
         mBeautyPanelView.setOnBeautyListener(new BeautyPanel.OnBeautyListener() {
             @Override

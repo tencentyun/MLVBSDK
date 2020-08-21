@@ -16,10 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tencent.liteav.demo.liveplayer.LivePlayerActivity;
-import com.tencent.liteav.demo.livepusher.cameralivepush.CameraPusherActivity;
-import com.tencent.liteav.demo.liveroom.ui.LiveRoomActivity;
 import com.tencent.liteav.demo.common.widget.expandableadapter.BaseExpandableRecyclerViewAdapter;
+import com.tencent.liteav.demo.liveplayer.ui.LivePlayerEntranceActivity;
+import com.tencent.liteav.demo.livepusher.camerapush.ui.CameraPushEntranceActivity;
+import com.tencent.liteav.demo.liveroom.ui.LiveRoomActivity;
 import com.tencent.liteav.login.model.ProfileManager;
 import com.tencent.liteav.login.ui.LoginActivity;
 import com.tencent.rtmp.TXLiveBase;
@@ -36,12 +36,12 @@ import java.util.zip.ZipOutputStream;
 
 public class MainActivity extends Activity {
 
-    private static final String TAG = MainActivity.class.getName();
-    private TextView mMainTitle, mTvVersion;
-    private RecyclerView mRvList;
+    private static final String   TAG = MainActivity.class.getName();
+    private              TextView mMainTitle, mTvVersion;
+    private RecyclerView          mRvList;
     private MainExpandableAdapter mAdapter;
-    private ImageView   mLogoutImg;
-    private AlertDialog mAlertDialog;
+    private ImageView             mLogoutImg;
+    private AlertDialog           mAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTvVersion = (TextView) findViewById(R.id.main_tv_version);
-        mTvVersion.setText("视频云工具包 v" + TXLiveBase.getSDKVersionStr()+"(7.4.278)");
+        mTvVersion.setText("Smart版本 v" + TXLiveBase.getSDKVersionStr()+"(7.6.506)");
 
         mMainTitle = (TextView) findViewById(R.id.main_title);
         mMainTitle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -140,10 +140,10 @@ public class MainActivity extends Activity {
                             ProfileManager.getInstance().logout(new ProfileManager.ActionCallback() {
                                 @Override
                                 public void onSuccess() {
-                                    stopService();
                                     // 退出登录
                                     startLoginActivity();
                                 }
+
                                 @Override
                                 public void onFailed(int code, String msg) {
                                 }
@@ -163,7 +163,30 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void stopService() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //退出登录
+        AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.common_alert_dialog)
+                .setMessage("确定要退出APP吗？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
     private void startLoginActivity() {
@@ -179,8 +202,8 @@ public class MainActivity extends Activity {
         // 直播
         List<ChildBean> pusherChildList = new ArrayList<>();
         pusherChildList.add(new ChildBean("MLVBLiveRoom", R.drawable.room_live, 0, LiveRoomActivity.class));
-        pusherChildList.add(new ChildBean("摄像头推流", R.drawable.push, 0, CameraPusherActivity.class));
-        pusherChildList.add(new ChildBean("直播拉流", R.drawable.live, LivePlayerActivity.ACTIVITY_TYPE_LIVE_PLAY, LivePlayerActivity.class));
+        pusherChildList.add(new ChildBean("摄像头推流", R.drawable.push, 0, CameraPushEntranceActivity.class));
+        pusherChildList.add(new ChildBean("直播播放器", R.drawable.live, 0, LivePlayerEntranceActivity.class));
         if (pusherChildList.size() != 0) {
             // 这个是网页链接，配合build.sh避免在如ugc_smart版中出现
             pusherChildList.add(new ChildBean("小直播", R.drawable.xiaozhibo, 0, null));
@@ -188,37 +211,13 @@ public class MainActivity extends Activity {
             groupList.add(pusherGroupBean);
         }
 
-        // 初始化播放器
-        List<ChildBean> playerChildList = new ArrayList<>();
-        if (playerChildList.size() != 0) {
-            GroupBean playerGroupBean = new GroupBean("播放器", R.drawable.composite, playerChildList);
-            groupList.add(playerGroupBean);
-        }
-
-        // 短视频
-        List<ChildBean> shortVideoChildList = new ArrayList<>();
-
-        if (shortVideoChildList.size() != 0) {
-            // 这个是网页链接，配合build.sh避免在其他版本中出现
-            shortVideoChildList.add(new ChildBean("小视频", R.drawable.xiaoshipin, 0, null));
-            GroupBean shortVideoGroupBean = new GroupBean("短视频", R.drawable.video, shortVideoChildList);
-            groupList.add(shortVideoGroupBean);
-        }
-
-        // 视频通话
-        List<ChildBean> videoConnectChildList = new ArrayList<>();
-        if (videoConnectChildList.size() != 0) {
-            GroupBean videoConnectGroupBean = new GroupBean("实时音视频 TRTC", R.drawable.room_multi, videoConnectChildList);
-            groupList.add(videoConnectGroupBean);
-        }
-
         return groupList;
     }
 
 
-    private static class MainExpandableAdapter extends BaseExpandableRecyclerViewAdapter<GroupBean, ChildBean, MainExpandableAdapter.GroupVH, MainExpandableAdapter.ChildVH> {
+    private static class MainExpandableAdapter extends BaseExpandableRecyclerViewAdapter<GroupBean, ChildBean, GroupVH, ChildVH> {
         private List<GroupBean> mListGroupBean;
-        private GroupBean mGroupBean;
+        private GroupBean       mGroupBean;
 
         public void setSelectedChildBean(GroupBean groupBean) {
             boolean isExpand = isExpand(groupBean);
@@ -287,40 +286,41 @@ public class MainActivity extends Activity {
             }
 
         }
+    }
 
-        public class GroupVH extends BaseExpandableRecyclerViewAdapter.BaseGroupViewHolder {
-            ImageView ivLogo;
-            TextView textView;
 
-            GroupVH(View itemView) {
-                super(itemView);
-                textView = (TextView) itemView.findViewById(R.id.name_tv);
-                ivLogo = (ImageView) itemView.findViewById(R.id.icon_iv);
-            }
+    public static class GroupVH extends BaseExpandableRecyclerViewAdapter.BaseGroupViewHolder {
+        ImageView ivLogo;
+        TextView  textView;
 
-            @Override
-            protected void onExpandStatusChanged(RecyclerView.Adapter relatedAdapter, boolean isExpanding) {
-            }
-
+        GroupVH(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.name_tv);
+            ivLogo = (ImageView) itemView.findViewById(R.id.icon_iv);
         }
 
-        public class ChildVH extends RecyclerView.ViewHolder {
-            TextView textView;
-            View divideView;
-
-            ChildVH(View itemView) {
-                super(itemView);
-                textView = (TextView) itemView.findViewById(R.id.name_tv);
-                divideView = itemView.findViewById(R.id.item_view_divide);
-            }
-
+        @Override
+        protected void onExpandStatusChanged(RecyclerView.Adapter relatedAdapter, boolean isExpanding) {
         }
+
+    }
+
+    public static class ChildVH extends RecyclerView.ViewHolder {
+        TextView textView;
+        View     divideView;
+
+        ChildVH(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.name_tv);
+            divideView = itemView.findViewById(R.id.item_view_divide);
+        }
+
     }
 
     private class GroupBean implements BaseExpandableRecyclerViewAdapter.BaseGroupBean<ChildBean> {
-        private String mName;
+        private String          mName;
         private List<ChildBean> mChildList;
-        private int mIconId;
+        private int             mIconId;
 
         public GroupBean(String name, int iconId, List<ChildBean> list) {
             mName = name;
@@ -358,9 +358,9 @@ public class MainActivity extends Activity {
 
     private class ChildBean {
         public String mName;
-        public int mIconId;
-        public Class mTargetClass;
-        public int mType;
+        public int    mIconId;
+        public Class  mTargetClass;
+        public int    mType;
 
         public ChildBean(String name, int iconId, int type, Class targetActivityClass) {
             this.mName = name;
@@ -391,12 +391,12 @@ public class MainActivity extends Activity {
             return null;
         }
 
-        String path = sdcardDir.getAbsolutePath() + "/log/tencent/liteav";
-        List<String> logs = new ArrayList<>();
-        File directory = new File(path);
+        String       path      = sdcardDir.getAbsolutePath() + "/log/tencent/liteav";
+        List<String> logs      = new ArrayList<>();
+        File         directory = new File(path);
         if (directory != null && directory.exists() && directory.isDirectory()) {
             long lastModify = 0;
-            File files[] = directory.listFiles();
+            File files[]    = directory.listFiles();
             if (files != null && files.length > 0) {
                 for (File file : files) {
                     if (file.getName().endsWith("xlog")) {
@@ -414,7 +414,7 @@ public class MainActivity extends Activity {
     private File zip(List<String> files, String zipFileName) {
         File zipFile = new File(zipFileName);
         zipFile.deleteOnExit();
-        InputStream is = null;
+        InputStream     is  = null;
         ZipOutputStream zos = null;
 
         try {
@@ -423,12 +423,12 @@ public class MainActivity extends Activity {
             for (String path : files) {
                 File file = new File(path);
                 try {
-                    if(file.length() == 0 || file.length() > 8 * 1024 * 1024) continue;
+                    if (file.length() == 0 || file.length() > 8 * 1024 * 1024) continue;
 
                     is = new FileInputStream(file);
                     zos.putNextEntry(new ZipEntry(file.getName()));
                     byte[] buffer = new byte[8 * 1024];
-                    int length = 0;
+                    int    length = 0;
                     while ((length = is.read(buffer)) != -1) {
                         zos.write(buffer, 0, length);
                     }

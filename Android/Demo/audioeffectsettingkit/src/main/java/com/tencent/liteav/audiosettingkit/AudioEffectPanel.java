@@ -88,9 +88,13 @@ public class AudioEffectPanel extends FrameLayout {
     private int     mBGMId     = -1;
     private float   mPitch     = 0;
     private boolean mIsPlaying = false;
+    private boolean mIsPause   = false;
     private boolean mIsPlayEnd = false;
 
     private int     mBGMVolume = 100;
+
+    private int mVoiceChangerPosition = 0;
+    private int mVoiceReverbPosition = 0;
 
     public AudioEffectPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -227,13 +231,9 @@ public class AudioEffectPanel extends FrameLayout {
                 if (mAudioEffectManager != null) {
                     mAudioEffectManager.setVoiceChangerType(translateChangerType(type));
                 }
-                for (int i = 0 ; i <  mChangerItemEntityList.size(); i++) {
-                    if (position == i) {
-                        mChangerItemEntityList.get(i).mIsSelected = true;
-                    } else {
-                        mChangerItemEntityList.get(i).mIsSelected = false;
-                    }
-                }
+                mChangerItemEntityList.get(position).mIsSelected = true;
+                mChangerItemEntityList.get(mVoiceChangerPosition).mIsSelected = false;
+                mVoiceChangerPosition = position;
                 mChangerRVAdapter.notifyDataSetChanged();
             }
         });
@@ -250,13 +250,9 @@ public class AudioEffectPanel extends FrameLayout {
                 if (mAudioEffectManager != null) {
                     mAudioEffectManager.setVoiceReverbType(translateReverbType(type));
                 }
-                for (int i = 0 ; i <  mReverbItemEntityList.size(); i++) {
-                    if (position == i) {
-                        mReverbItemEntityList.get(i).mIsSelected = true;
-                    } else {
-                        mReverbItemEntityList.get(i).mIsSelected = false;
-                    }
-                }
+                mReverbItemEntityList.get(position).mIsSelected = true;
+                mReverbItemEntityList.get(mVoiceReverbPosition).mIsSelected = false;
+                mVoiceReverbPosition = position;
                 mReverbRVAdapter.notifyDataSetChanged();
             }
         });
@@ -361,6 +357,7 @@ public class AudioEffectPanel extends FrameLayout {
             mHandler.removeCallbacksAndMessages(null);
         }
         mIsPlaying = false;
+        mIsPause = false;
         mIsPlayEnd = false;
         mBGMPlayListenr = null;
     }
@@ -623,6 +620,65 @@ public class AudioEffectPanel extends FrameLayout {
         mAudioEffectManager = audioEffectManager;
     }
 
+    public void reset() {
+        mAudioEffectManager.stopPlayMusic(mBGMId);
+        mBGMId = -1;
+        mIsPlaying = false;
+        mIsPause = false;
+        mIsPlayEnd = false;
+
+        mSbMicVolume.setProgress(100);
+        mTvMicVolume.setText("100");
+
+        mBGMVolume = 100;
+        mSbBGMVolume.setProgress(mBGMVolume);
+        mTvBGMVolume.setText(mBGMVolume + "");
+
+        mPitch = 0;
+        mSbPitchLevel.setProgress(50);
+        mTvPitchLevel.setText("50");
+
+        mBtnSelectedSong.setVisibility(View.VISIBLE);
+        mTvBGM.setVisibility(View.VISIBLE);
+        mTvActor.setVisibility(View.GONE);
+        mTvActor.setText("");
+        mTvStartTime.setVisibility(GONE);
+        mTvTotalTime.setVisibility(GONE);
+        mImgbtnBGMPlay.setVisibility(GONE);
+
+        mChangerItemEntityList.get(mVoiceChangerPosition).mIsSelected = false;
+        mChangerRVAdapter.notifyDataSetChanged();
+        mVoiceChangerPosition = 0;
+
+        mReverbItemEntityList.get(mVoiceReverbPosition).mIsSelected = false;
+        mReverbRVAdapter.notifyDataSetChanged();
+        mVoiceReverbPosition = 0;
+
+        if (mAudioEffectManager != null) {
+            Log.d(TAG, "select changer type1 " + translateChangerType(mVoiceChangerPosition));
+            mAudioEffectManager.setVoiceChangerType(translateChangerType(mVoiceChangerPosition));
+            mAudioEffectManager.setVoiceReverbType(translateReverbType(mVoiceReverbPosition));
+        }
+    }
+
+    public void pauseBGM() {
+        if (!mIsPlaying) {
+            return;
+        }
+        mAudioEffectManager.pausePlayMusic(mBGMId);
+        mImgbtnBGMPlay.setImageResource(R.drawable.audio_effect_setting_bgm_play);
+        mIsPlaying = false;
+    }
+
+    public void resumeBGM() {
+        Log.i(TAG, "resumeBGM: mIsPlayEnd -> " + mIsPlayEnd + ", mIsPlaying -> " + mIsPlaying);
+        if (!mIsPlayEnd && !mIsPlaying && !mIsPause) {
+            mAudioEffectManager.resumePlayMusic(mBGMId);
+            mImgbtnBGMPlay.setImageResource(R.drawable.audio_effect_setting_bgm_pause);
+            mIsPlaying = true;
+        }
+    }
+
     private void handleBGM(int position, final BGMItemEntity model) {
         Log.d(TAG, "handleBGM position " + position + ", mAudioEffectManager " + mAudioEffectManager);
         if (mAudioEffectManager == null) {
@@ -659,6 +715,7 @@ public class AudioEffectPanel extends FrameLayout {
         mBGMPlayListenr = new BGMListener();
         mAudioEffectManager.setMusicObserver(mBGMId, mBGMPlayListenr);
         mIsPlaying = true;
+        mIsPause = false;
 
         mImgbtnBGMPlay.setOnClickListener(new OnClickListener() {
             @Override
@@ -668,15 +725,17 @@ public class AudioEffectPanel extends FrameLayout {
                     mImgbtnBGMPlay.setImageResource(R.drawable.audio_effect_setting_bgm_pause);
                     mIsPlayEnd = false;
                     mIsPlaying = true;
-                    return;
+                    mIsPause = false;
                 } else if (mIsPlaying) {
                     mAudioEffectManager.pausePlayMusic(mBGMId);
                     mImgbtnBGMPlay.setImageResource(R.drawable.audio_effect_setting_bgm_play);
                     mIsPlaying = false;
+                    mIsPause = true;
                 } else {
                     mAudioEffectManager.resumePlayMusic(mBGMId);
                     mImgbtnBGMPlay.setImageResource(R.drawable.audio_effect_setting_bgm_pause);
                     mIsPlaying = true;
+                    mIsPause = false;
                 }
             }
         });

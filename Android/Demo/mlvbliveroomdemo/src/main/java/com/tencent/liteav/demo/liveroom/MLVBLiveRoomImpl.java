@@ -2077,6 +2077,9 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     }
 
     private void notifyPusherChange() {
+        if (mSelfAccountInfo == null) {
+            return;
+        }
         //通知房间内其他主播
         CommonJson<AnchorInfo> msg = new CommonJson<>();
         msg.cmd = "notifyPusherChange";

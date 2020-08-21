@@ -24,7 +24,7 @@ dependencies {
     compile rootProject.ext.liteavSdk
     compile rootProject.ext.imSdk
 
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     compile 'com.google.code.gson:gson:2.3.1'
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportSdkVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportSdkVersion"

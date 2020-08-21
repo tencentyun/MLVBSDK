@@ -4,13 +4,16 @@
     <application android:theme="@style/AppTheme">
 
         <activity
-            android:name=".cameralivepush.CameraPusherActivity"
+            android:name=".camerapush.ui.CameraPushMainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
-            android:name=".cameralivepush.QRCodeScanActivity"
+            android:name=".camerapush.ui.QRCodeScanActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".camerapush.ui.CameraPushEntranceActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

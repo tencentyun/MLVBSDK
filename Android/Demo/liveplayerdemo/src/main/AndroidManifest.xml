@@ -4,11 +4,15 @@
     <application android:theme="@style/AppTheme">
 
         <activity
-            android:name=".LivePlayerActivity"
+            android:name=".ui.LivePlayerMainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".QRCodeScanActivity"
+            android:name=".ui.QRCodeScanActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.LivePlayerEntranceActivity"
             android:screenOrientation="portrait" />
 
         <provider

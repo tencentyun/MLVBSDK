@@ -9,7 +9,7 @@
     <string name="mlvb_clear">清除</string>
     <string name="mlvb_clear_log">清除Log</string>
     <string name="mlvb_global_log">Global Log</string>
-    <string name="mlvb_live_room_destroy">直播间【%s】解散了</string>
+    <string name="mlvb_live_room_destroy" formatted="false">直播间【%s】解散了</string>
     <string name="mlvb_send_msg_fail">发送消息失败</string>
     <string name="mlvb_system_msg">系统消息</string>
     <string name="mlvb_title_activity_rtmp_room_demo">RtmpRoomDemoActivity</string>
@@ -35,11 +35,11 @@
     <string name="mlvb_parameter_error_hint">参数错误，请检查 UserID， userSig 是否为空！</string>
     <string name="mlvb_im_login_fail">IM登录失败</string>
     <string name="mlvb_im_init_fail">IM初始化失败</string>
-    <string name="mlvb_im_init_fail_msg">[IM] 初始化失败[%s:%d]</string>
+    <string name="mlvb_im_init_fail_msg" formatted="false" >[IM] 初始化失败[%s:%d]</string>
     <string name="mlvb_im_no_init">IM没有初始化</string>
     <string name="mlvb_im_no_init_hint">[joinGroup] IM 没有初始化</string>
-    <string name="mlvb_join_group_fail">加入群 {%s} 失败:%s(%d)</string>
-    <string name="mlvb_join_group_suceess">加入群 {%s} 成功</string>
+    <string name="mlvb_join_group_fail" formatted="false">加入群 {%s} 失败:%s(%d)</string>
+    <string name="mlvb_join_group_suceess" formatted="false">加入群 {%s} 成功</string>
     <string name="mlvb_room_disbanded">房间已解散</string>
     <string name="mlvb_answer_room_name">答题室名称：</string>
     <string name="mlvb_answer_room_id">答题室ID：</string>
@@ -47,7 +47,7 @@
     <string name="mlvb_live_room_id">直播间ID：</string>
     <string name="mlvb_chat_name">会话名：</string>
     <string name="mlvb_chat_id">会话ID：</string>
-    <string name="mlvb_number_of_people">%d 人</string>
+    <string name="mlvb_number_of_people" formatted="false">%d 人</string>
     <string name="mlvb_input_can_not_be_empty">input can not be empty!</string>
 
     <string name="mlvb_license_click_info"> 详情请点击[</string>
@@ -79,35 +79,35 @@
     <string name="mlvb_permission_hint">需要录音和摄像头权限，请到【设置】【应用】打开</string>
     <string name="mlvb_connecting">连接中...</string>
     <string name="mlvb_retry">重试...</string>
-    <string name="mlvb_live_room_init_fail">[Activity]LiveRoom初始化失败：{%s}</string>
-    <string name="mlvb_live_room_init_success">[Activity]LiveRoom初始化成功,userID{%s}</string>
+    <string name="mlvb_live_room_init_fail" formatted="false">[Activity]LiveRoom初始化失败：{%s}</string>
+    <string name="mlvb_live_room_init_success" formatted="false">[Activity]LiveRoom初始化成功,userID{%s}</string>
     <string name="mlvb_fetch_login_info_fail">获取登录信息失败</string>
-    <string name="mlvb_fetch_login_info_fail_hint">[Activity]获取登录信息失败：{%s}</string>
-    <string name="mlvb_group_disband">群 {%s} 已经解散了</string>
-    <string name="mlvb_group_quit_fail">退出群 {%s} 失败： %s(%d)</string>
-    <string name="mlvb_group_quit_success">退出群 {%s} 成功</string>
+    <string name="mlvb_fetch_login_info_fail_hint" formatted="false">[Activity]获取登录信息失败：{%s}</string>
+    <string name="mlvb_group_disband" formatted="false">群 {%s} 已经解散了</string>
+    <string name="mlvb_group_quit_fail" formatted="false" >退出群 {%s} 失败： %s(%d)</string>
+    <string name="mlvb_group_quit_success" formatted="false">退出群 {%s} 成功</string>
 
-    <string name="mlvb_group_create_success">创建群 {%s} 成功</string>
-    <string name="mlvb_group_create_fail">创建群 {%s} 失败：%s(%d)</string>
+    <string name="mlvb_group_create_success" formatted="false">创建群 {%s} 成功</string>
+    <string name="mlvb_group_create_fail" formatted="false">创建群 {%s} 失败：%s(%d)</string>
     <string name="mlvb_group_create_hint">您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】，地址：https://buy.cloud.tencent.com/avc</string>
 
-    <string name="mlvb_group_destroy_fail">解散群 {%s} 失败：%s(%d)</string>
-    <string name="mlvb_group_destroy_success">解散群 {%s} 成功</string>
+    <string name="mlvb_group_destroy_fail" formatted="false">解散群 {%s} 失败：%s(%d)</string>
+    <string name="mlvb_group_destroy_success" formatted="false">解散群 {%s} 成功</string>
     <string name="mlvb_group_send_fail">发送群消息失败</string>
-    <string name="mlvb_group_send_fail_hint">[sendGroupTextMessage] 发送群{%s}消息失败，组包异常</string>
-    <string name="mlvb_group_send_fail_hint_s_d">[sendGroupTextMessage] 发送群{%s}消息失败: %s(%d)</string>
+    <string name="mlvb_group_send_fail_hint" formatted="false">[sendGroupTextMessage] 发送群{%s}消息失败，组包异常</string>
+    <string name="mlvb_group_send_fail_hint_s_d" formatted="false">[sendGroupTextMessage] 发送群{%s}消息失败: %s(%d)</string>
     <string name="mlvb_group_send_success">[sendGroupTextMessage] 发送群消息成功</string>
     <string name="mlvb_no_user_id">没有 UserId</string>
 
-    <string name="mlvb_custom_group_msg_send">[sendGroupCustomMessage] 发送自定义群{%s}消息失败，组包异常</string>
-    <string name="mlvb_custom_group_msg_send_s_d">[sendGroupCustomMessage] 发送自定义群{%s}消息失败: %s(%d)</string>
+    <string name="mlvb_custom_group_msg_send" formatted="false">[sendGroupCustomMessage] 发送自定义群{%s}消息失败，组包异常</string>
+    <string name="mlvb_custom_group_msg_send_s_d" formatted="false">[sendGroupCustomMessage] 发送自定义群{%s}消息失败: %s(%d)</string>
     <string name="mlvb_custom_group_msg_fail">发送CC消息失败</string>
     <string name="mlvb_custom_group_msg_success">[sendGroupCustomMessage] 发送自定义群消息成功</string>
-    <string name="mlvb_custom_msg_fail">[sendCustomMessage] 发送CC{%s}消息失败，组包异常</string>
-    <string name="mlvb_custom_msg_fail_s_d">[sendCustomMessage] 发送CC{%s}消息失败: %s(%d)</string>
-    <string name="mlvb_custom_msg_success">[sendCustomMessage] 发送CC消息成功</string>
-    <string name="mlvb_custom_msg_send_fail">[IM] 自定义消息发送失败[%s:%d]</string>
-    <string name="mlvb_im_msg_send_fail">[IM] 消息发送失败[%s:%d]</string>
+    <string name="mlvb_custom_msg_fail" formatted="false">[sendCustomMessage] 发送CC{%s}消息失败，组包异常</string>
+    <string name="mlvb_custom_msg_fail_s_d" formatted="false">[sendCustomMessage] 发送CC{%s}消息失败: %s(%d)</string>
+    <string name="mlvb_custom_msg_success" formatted="false">[sendCustomMessage] 发送CC消息成功</string>
+    <string name="mlvb_custom_msg_send_fail" formatted="false">[IM] 自定义消息发送失败[%s:%d]</string>
+    <string name="mlvb_im_msg_send_fail" formatted="false">[IM] 消息发送失败[%s:%d]</string>
 
     <string name="mlvb_live_push_suceess">推流成功</string>
     <string name="mlvb_live_push_fail_camera_error">[LivePusher] 推流失败[打开摄像头失败]</string>
@@ -116,45 +116,45 @@
     <string name="mlvb_live_push_fail_screen_recording_error">[LivePusher] 推流失败[录屏启动失败]</string>
     <string name="mlvb_live_room_unrecognized_pk_response">[LiveRoom] 无法识别的 PK 响应[%s]</string>
     <string name="mlvb_force_to_go_offline">[LiveRoom] IM 被强制下线[请确保已经不要多端登录]</string>
-    <string name="mlvb_anchor_stop_pk">[LiveRoom] 对方主播停止PK, UserID {%s} UserName {%s}</string>
-    <string name="mlvb_receive_pk_request">[LiveRoom] 收到PK请求, UserID {%s} UserName {%s}</string>
+    <string name="mlvb_anchor_stop_pk" formatted="false">[LiveRoom] 对方主播停止PK, UserID {%s} UserName {%s}</string>
+    <string name="mlvb_receive_pk_request" formatted="false">[LiveRoom] 收到PK请求, UserID {%s} UserName {%s}</string>
     <string name="mlvb_anchor_logout">[LiveRoom] 被主播踢出连麦</string>
-    <string name="mlvb_receive_link_request">[LiveRoom] 收到连麦请求, UserID {%s} UserName {%s}</string>
-    <string name="mlvb_update_anchor_list">[LiveRoom] 更新主播列表 new(%d), remove(%d)</string>
+    <string name="mlvb_receive_link_request" formatted="false">[LiveRoom] 收到连麦请求, UserID {%s} UserName {%s}</string>
+    <string name="mlvb_update_anchor_list" formatted="false">[LiveRoom] 更新主播列表 new(%d), remove(%d)</string>
     <string name="mlvb_fetch_anchor_list_fail">[LiveRoom] 获取主播列表失败</string>
     <string name="mlvb_send_update_request_success">发送房间列表更新通知成功</string>
-    <string name="mlvb_send_update_request_fail">[IM] 发送房间列表更新通知失败[%s:%d]</string>
-    <string name="mlvb_enter_group_fail">[IM] 进群失败[%s:%d]</string>
-    <string name="mlvb_create_group_fail">[IM] 创建群失败[%s:%d]</string>
+    <string name="mlvb_send_update_request_fail" formatted="false">[IM] 发送房间列表更新通知失败[%s:%d]</string>
+    <string name="mlvb_enter_group_fail" formatted="false">[IM] 进群失败[%s:%d]</string>
+    <string name="mlvb_create_group_fail" formatted="false">[IM] 创建群失败[%s:%d]</string>
     <string name="mlvb_do_create_live_room_error">[LiveRoom] 创建房间错误[</string>
     <string name="mlvb_live_push_no_init">[LiveRoom] 推流失败[TXLivePusher未初始化，请确保已经调用startLocalPreview]</string>
-    <string name="mlvb_live_pull_fail">[LivePlayer] 拉流失败[%s]</string>
-    <string name="mlvb_base_room_address">[BaseRoom] 播放成员 {%s} 地址 {%s} 失败</string>
+    <string name="mlvb_live_pull_fail" formatted="false">[LivePlayer] 拉流失败[%s]</string>
+    <string name="mlvb_base_room_address" formatted="false">[BaseRoom] 播放成员 {%s} 地址 {%s} 失败</string>
     <string name="mlvb_anchor_fetch_fail_pk_cross_room">获取不到 PK 主播信息，请确认是否已经跨房 PK</string>
-    <string name="mlvb_im_exit_fail">[IM] 退出PK失败[%s:%d]</string>
-    <string name="mlvb_im_request_fail">[IM] 请求PK失败[%s:%d]</string>
-    <string name="mlvb_conn_request_fail">[IM] 请求连麦失败[%s:%d]</string>
+    <string name="mlvb_im_exit_fail" formatted="false">[IM] 退出PK失败[%s:%d]</string>
+    <string name="mlvb_im_request_fail" formatted="false">[IM] 请求PK失败[%s:%d]</string>
+    <string name="mlvb_conn_request_fail" formatted="false">[IM] 请求连麦失败[%s:%d]</string>
     <string name="mlvb_online_conn_exit_then_pk">当前在连麦状态。请先停止连麦，再进行PK</string>
     <string name="mlvb_online_pk_exit_then_conn">当前在PK状态。请先停止PK，再进行连麦</string>
-    <string name="mlvb_exit_conn_fail">[LiveRoom] 结束连麦失败：%s(%d)</string>
+    <string name="mlvb_exit_conn_fail" formatted="false">[LiveRoom] 结束连麦失败：%s(%d)</string>
     <string name="mlvb_exit_conn_success">[LiveRoom] 结束连麦成功</string>
-    <string name="mlvb_fetch_push_url_fail">[LiveRoom] 获取推流地址失败[%s:%d]</string>
+    <string name="mlvb_fetch_push_url_fail" formatted="false">[LiveRoom] 获取推流地址失败[%s:%d]</string>
     <string name="mlvb_fetch_speed_url_fail">观众连麦获取不到加速流地址</string>
-    <string name="mlvb_group_exit_fail">[LiveRoom] 退群失败：%s(%d)</string>
+    <string name="mlvb_group_exit_fail" formatted="false">[LiveRoom] 退群失败：%s(%d)</string>
     <string name="mlvb_group_exit_success">[LiveRoom] 退群成功</string>
     <string name="mlvb_group_im_exit_success">[IM] 退群成功</string>
-    <string name="mlvb_group_im_exit_fail">[IM] 退群失败:[%d:%s]</string>
-    <string name="mlvb_group_im_destroy_fail">[IM] 销毁群失败:[%d:%s]</string>
+    <string name="mlvb_group_im_exit_fail" formatted="false">[IM] 退群失败:[%d:%s]</string>
+    <string name="mlvb_group_im_destroy_fail" formatted="false">[IM] 销毁群失败:[%d:%s]</string>
     <string name="mlvb_group_im_destroy_success">[IM] 销毁群成功</string>
     <string name="mlvb_cdn_url_not_found">[LiveRoom] 未找到CDN播放地址</string>
     <string name="mlvb_join_room_fail_no_id">[LiveRoom] 进房失败[房间号为空]</string>
     <string name="mlvb_create_room_fail_push_url_fail">[LiveRoom] 创建房间失败[获取推流地址失败]</string>
-    <string name="mlvb_room_id_exist">[IM] 群组 %s 已被使用，并且操作者为群主，可以直接使用</string>
-    <string name="mlvb_fetch_group_user_fail">[IM] 获取群成员失败[%s]</string>
+    <string name="mlvb_room_id_exist" formatted="false">[IM] 群组 %s 已被使用，并且操作者为群主，可以直接使用</string>
+    <string name="mlvb_fetch_group_user_fail" formatted="false">[IM] 获取群成员失败[%s]</string>
     <string name="mlvb_getAudienceList_fail_no_room_id">[LiveRoom] getAudienceList 失败[房间号为空]</string>
-    <string name="mlvb_getRoomList_fail">[LiveRoom] getRoomList 失败[%s]</string>
+    <string name="mlvb_getRoomList_fail" formatted="false">[LiveRoom] getRoomList 失败[%s]</string>
     <string name="mlvb_getRoomList_fail_http_no_init">[LiveRoom] getRoomList失败[Http 未初始化，请确保已经login]</string>
-    <string name="mlvb_login_success">[LiveRoom] 登录成功, userID {%s}, userName {%s}, sdkAppID {%d}</string>
-    <string name="mlvb_RoomService_login_success">[LiveRoom] RoomService登录失败[%s:%d]</string>
+    <string name="mlvb_login_success" formatted="false">[LiveRoom] 登录成功, userID {%s}, userName {%s}, sdkAppID {%d}</string>
+    <string name="mlvb_RoomService_login_success" formatted="false" >[LiveRoom] RoomService登录失败[%s:%d]</string>
 
 </resources>

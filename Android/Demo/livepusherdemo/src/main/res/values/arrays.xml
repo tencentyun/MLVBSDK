@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="livepusher_video_fps">
-        <item>15</item>
-        <item>20</item>
-    </string-array>
-
     <!-- 画质偏好列表 -->
     <string-array name="livepusher_video_quality_list">
         <item>蓝光</item>
@@ -21,6 +16,21 @@
         <item>语音</item>
         <item>标准</item>
         <item>音乐</item>
+    </string-array>
+
+    <string-array name="livepusher_setting">
+        <item>带宽适应</item>
+        <item>硬件加速</item>
+        <item>耳返</item>
+        <item>隐私模式</item>
+        <item>静音模式</item>
+        <item>横屏推流</item>
+        <item>图像水印</item>
+        <item>纯音频推流</item>
+        <item>观看端镜像</item>
+        <item>后置闪光灯</item>
+        <item>手动点击曝光对焦</item>
+        <item>手势放大预览画面</item>
     </string-array>
 
 </resources>

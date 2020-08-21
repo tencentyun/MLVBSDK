@@ -10,5 +10,6 @@
     <color name="liveplayer_color_primary_dark">#21a3f5</color>
     <color name="liveplayer_hint_color">#777777</color>
     <color name="liveplayer_dim_gray">#696969</color>
+    <color name="liveplayer_text_gray">#FF6B82A8</color>
 
 </resources>
