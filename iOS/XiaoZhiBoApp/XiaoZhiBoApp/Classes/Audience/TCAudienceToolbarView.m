@@ -209,6 +209,7 @@
             make.top.equalTo(self).offset(statusBarHeight+6);
             make.right.equalTo(self).offset(-15);
         }];
+        
     } else {
         //直播
         //聊天

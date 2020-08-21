@@ -29,6 +29,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Bugly (2.5.71)
   - CWStatusBarNotification (2.3.5)
   - Masonry (1.0.2)
   - MBProgressHUD (0.9.2)
@@ -38,10 +39,12 @@ PODS:
   - SDWebImage (3.8.3):
     - SDWebImage/Core (= 3.8.3)
   - SDWebImage/Core (3.8.3)
+  - TXIMSDK_iOS (4.9.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0)
   - BlocksKit (~> 2.2.5)
+  - Bugly
   - CWStatusBarNotification (~> 2.3.5)
   - Masonry (~> 1.0.1)
   - MBProgressHUD (~> 0.9.2)
@@ -49,11 +52,13 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.1)
   - QBImagePickerController
   - SDWebImage (~> 3.8.1)
+  - TXIMSDK_iOS
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - BlocksKit
+    - Bugly
     - CWStatusBarNotification
     - Masonry
     - MBProgressHUD
@@ -61,10 +66,12 @@ SPEC REPOS:
     - MJRefresh
     - QBImagePickerController
     - SDWebImage
+    - TXIMSDK_iOS
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
   CWStatusBarNotification: 3d2738b25c3207f60cc50201388d3c96182545ff
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -72,7 +79,8 @@ SPEC CHECKSUMS:
   MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
+  TXIMSDK_iOS: 587e25fa8b42c9f228bb9065084270fa6990190f
 
-PODFILE CHECKSUM: 888086684f880cccf3ac6438e36cc197dc080475
+PODFILE CHECKSUM: daba3c14e8056b20625cfa2034e28e767c5ca270
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

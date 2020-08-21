@@ -283,7 +283,7 @@
         return;
     }
     __weak __typeof(self) wself = self;
-    [self.liveRoom requestJoinAnchor:@"" completion:^(int errCode, NSString *errMsg) {
+    void(^completionBlock)(int errCode, NSString *errMsg) = ^(int errCode, NSString *errMsg) {
         __strong __typeof(wself) self = wself;
         if (self == nil) {
             return;
@@ -330,6 +330,15 @@
             self->_isBeingLinkMic = NO;
             self->_isWaitingResponse = NO;
             [self->_btnLinkMic setImage:[UIImage imageNamed:@"linkmic_on"] forState:UIControlStateNormal];
+        }
+    };
+    [self.liveRoom requestJoinAnchor:@"" completion:^(int errCode, NSString *errMsg) {
+        if ([NSThread isMainThread]) {
+            completionBlock(errCode, errMsg);
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(errCode, errMsg);
+            });
         }
     }];
     _isWaitingResponse = YES;
