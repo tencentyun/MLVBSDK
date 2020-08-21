@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.tencent.imsdk.TIMManager;
 import com.tencent.qcloud.xiaozhibo.R;
-import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.net.TCHTTPMgr;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 import com.tencent.qcloud.xiaozhibo.login.TCLoginActivity;
@@ -48,7 +47,6 @@ public class TCUserInfoFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_info, container, false);
-        view.findViewById(R.id.rl_user_info).setBackgroundColor(TCGlobalConfig.MAIN_COLOR);
         mAvatar = (ImageView) view.findViewById(R.id.iv_ui_head);
         mNickName = (TextView) view.findViewById(R.id.tv_ui_nickname);
         mUserId = (TextView) view.findViewById(R.id.tv_ui_user_id);

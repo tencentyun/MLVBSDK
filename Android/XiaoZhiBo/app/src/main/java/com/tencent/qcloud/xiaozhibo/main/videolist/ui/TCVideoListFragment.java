@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.qcloud.xiaozhibo.R;
-import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCConstants;
 import com.tencent.qcloud.xiaozhibo.main.videolist.utils.TCVideoInfo;
 import com.tencent.qcloud.xiaozhibo.main.videolist.utils.TCVideoListMgr;
@@ -51,7 +50,7 @@ public class TCVideoListFragment extends Fragment implements SwipeRefreshLayout.
 
     private List<ListTabItem> mListTabs;
 
-    private int mDataType = LIST_TYPE_LIVE;
+    private int mDataType = LIST_TYPE_VOD;
     private boolean mLiveListFetched = false;
     private boolean mUGCListFetched = false;
     private View mEmptyView;
@@ -114,18 +113,8 @@ public class TCVideoListFragment extends Fragment implements SwipeRefreshLayout.
 
         mListTabs = new ArrayList<>();
         mListTabs.add(LIST_TYPE_LIVE, new ListTabItem(LIST_TYPE_LIVE, (TextView) view.findViewById(R.id.text_live), (ImageView) view.findViewById(R.id.image_live), this));
-
-        // 填写了后台服务器地址，即有回放列表。默认展示回放列表。
-        if (!TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-            // 直播设置为不选中
-            mListTabs.get(LIST_TYPE_LIVE).textView.setTextColor(Color.rgb(119, 119, 119));
-            view.findViewById(R.id.image_live).setVisibility(View.INVISIBLE);
-
-            // 回放tab可见且选中
-            view.findViewById(R.id.tab_vod).setVisibility(View.VISIBLE);
-            mListTabs.add(LIST_TYPE_VOD, new ListTabItem(LIST_TYPE_VOD, (TextView) view.findViewById(R.id.text_vod), (ImageView) view.findViewById(R.id.image_vod), this));
-            mDataType = LIST_TYPE_VOD;
-        }
+        mListTabs.add(LIST_TYPE_VOD, new ListTabItem(LIST_TYPE_VOD, (TextView) view.findViewById(R.id.text_vod), (ImageView) view.findViewById(R.id.image_vod), this));
+//        mListTabs.add(LIST_TYPE_UGC, new ListTabItem(LIST_TYPE_UGC, (TextView) view.findViewById(R.id.text_ugc), (ImageView) view.findViewById(R.id.image_ugc), this));
 
         refreshListView();
 

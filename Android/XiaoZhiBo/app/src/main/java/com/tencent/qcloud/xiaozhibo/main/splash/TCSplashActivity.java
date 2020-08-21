@@ -31,6 +31,19 @@ public class TCSplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 对外发布的小直播源码客户需要自行搭建小直播的后台，所以需要进行判断。
+        // 小直播后台搭建指引，详见：https://cloud.tencent.com/document/product/454/15187
+        if (TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
+            URLGuideDialogFragment fragment = new URLGuideDialogFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(URLGuideDialogFragment.ERROR_TITLE, "未填写后台服务地址");
+            bundle.putString(URLGuideDialogFragment.ERROR_MSG, "需要搭建小直播后台，详情请点击[快速搭建小直播]");
+            bundle.putString(URLGuideDialogFragment.ERROR_LINK, "https://cloud.tencent.com/document/product/454/15187");
+            fragment.setArguments(bundle);
+            fragment.show(getFragmentManager(), "url_guide_dialog");
+            return;
+        }
+
         if (!isTaskRoot()
                 && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
                 && getIntent().getAction() != null

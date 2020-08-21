@@ -3,7 +3,6 @@ package com.tencent.qcloud.xiaozhibo.common.net;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.common.utils.TCUtils;
 
 import org.json.JSONException;
@@ -88,13 +87,6 @@ public class TCHTTPMgr {
      * @param callback
      */
     public void requestWithSign(String url, JSONObject body, Callback callback) {
-        if (TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-            if (callback != null) {
-                callback.onFailure(-999, "没有填写后台地址，此功能暂不支持.");
-                Log.e(TAG, "requestWithSign: token or userId can't be null.");
-            }
-            return;
-        }
         if (TextUtils.isEmpty(mToken) || TextUtils.isEmpty(mUserId)) {
             if (callback != null) {
                 callback.onFailure(-1, "token or userId can't be null.");

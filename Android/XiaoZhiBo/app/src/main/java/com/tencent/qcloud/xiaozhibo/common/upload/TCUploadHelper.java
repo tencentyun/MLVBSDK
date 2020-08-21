@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.tencent.cos.xml.CosXmlService;
@@ -17,7 +16,6 @@ import com.tencent.cos.xml.model.CosXmlRequest;
 import com.tencent.cos.xml.model.CosXmlResult;
 import com.tencent.cos.xml.model.object.PutObjectACLRequest;
 import com.tencent.cos.xml.model.object.PutObjectRequest;
-import com.tencent.qcloud.xiaozhibo.TCGlobalConfig;
 import com.tencent.qcloud.xiaozhibo.login.TCUserMgr;
 
 /**
@@ -78,19 +76,6 @@ public class TCUploadHelper {
 
     public void uploadPic(final String path) {
         Log.d(TAG,"uploadPic do upload path:"+path);
-
-        if (TextUtils.isEmpty(TCGlobalConfig.APP_SVR_URL)) {
-            mMainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (mCallbackListener != null) {
-                        mCallbackListener.onUploadResult(UPLOAD_RESULT_FAIL, "没有填写后台地址，此功能暂不支持.");
-                    }
-                }
-            });
-            return;
-        }
-
         final String netUrl = createNetUrl();
 
         final TCUserMgr.CosInfo cosInfo = TCUserMgr.getInstance().getCosInfo();
