@@ -12,6 +12,7 @@
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
 ### Version 7.7 @ 2020.09.08
+- Android：推流基础美颜优化，新增白皙和自然两种滤镜；
 - Android：点播支持不设置 View 时播放纯音频流；
 - Android：点播播放视频支持保留最后一帧；
 
