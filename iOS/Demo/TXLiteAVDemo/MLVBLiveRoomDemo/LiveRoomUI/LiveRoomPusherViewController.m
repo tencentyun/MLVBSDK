@@ -294,14 +294,19 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     [self.view insertSubview:_pusherView atIndex:0];
     [_liveRoom startLocalPreview:YES view:_pusherView];
     
+    CGFloat bottomOffset = 0;
+    if (@available(iOS 11, *)) {
+        bottomOffset = UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom;
+    }
     // 美颜
-    NSUInteger controlHeight = [TCBeautyPanel getHeight];
+    NSUInteger controlHeight = [TCBeautyPanel getHeight] + bottomOffset;
+    
     _vBeauty =[TCBeautyPanel beautyPanelWithFrame:CGRectMake(0, self.view.frame.size.height - controlHeight, self.view.frame.size.width, controlHeight)
                                             SDKObject:_liveRoom];
     [ThemeConfigurator configBeautyPanelTheme:_vBeauty];
     _vBeauty.hidden = YES;
+    _vBeauty.bottomOffset = bottomOffset;
     [self.view addSubview:_vBeauty];
-
 
     // 美颜初始化为默认值
     [_vBeauty resetAndApplyValues];
