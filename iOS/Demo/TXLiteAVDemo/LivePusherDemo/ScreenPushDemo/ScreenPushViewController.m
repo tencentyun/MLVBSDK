@@ -109,7 +109,8 @@
     CGFloat topOffset = [UIApplication sharedApplication].statusBarFrame.size.height;
     topOffset += self.navigationController.navigationBar.height+5;
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
-    _addressBarController.view.textField.placeholder = @"请地址扫描二维码或点New生成地址";
+    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:15]};
+    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请地址扫描二维码或点New生成地址" attributes:dic];
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
@@ -118,6 +119,7 @@
     self.rotateSelector.center = CGPointMake(self.view.center.x, _addressBarController.view.bottom + 60);
     self.rotateSelector.bounds = CGRectMake(0, 0, self.view.width - 100, 40);
     self.rotateSelector.tintColor = UIColor.whiteColor;
+    self.rotateSelector.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:0.5];
     self.rotateSelector.selectedSegmentIndex = 0;
     [self.view addSubview:self.rotateSelector];
     [self.rotateSelector addTarget:self action:@selector(onSwitchRotation:) forControlEvents:UIControlEventValueChanged];
@@ -127,6 +129,7 @@
     self.resolutionSelector.center = CGPointMake(self.view.center.x, self.rotateSelector.bottom + 50);
     self.resolutionSelector.bounds = CGRectMake(0, 0, self.view.width - 100, 40);
     self.resolutionSelector.tintColor = UIColor.whiteColor;
+    self.resolutionSelector.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:0.5];
     self.resolutionSelector.selectedSegmentIndex = 0;
     [self.resolutionSelector addTarget:self action:@selector(onSwitchresolution:) forControlEvents:UIControlEventValueChanged];
 

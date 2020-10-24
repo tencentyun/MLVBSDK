@@ -100,6 +100,9 @@
     
     // 界面布局
     [self initUI];
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -175,7 +178,8 @@
     CGFloat topOffset = [UIApplication sharedApplication].statusBarFrame.size.height;
     topOffset += (self.navigationController.navigationBar.height + 5);
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
-    _addressBarController.view.textField.placeholder = RTMP_PUBLISH_URL;
+    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:15]};
+    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:RTMP_PUBLISH_URL attributes:dic];
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
@@ -189,6 +193,10 @@
     if (@available(iOS 11, *)) {
         iconY -= [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
     }
+    
+    // 在控制按钮下方加入透明视图，防止误触聚焦
+    UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, iconY - ICON_SIZE / 2, self.view.frame.size.width, self.view.frame.size.height - (iconY - ICON_SIZE / 2))];
+    [self.view addSubview:buttonContainer];
     
     _btnPush = [self createButton:@"start2" action:@selector(clickPush:)
                            center:CGPointMake(startSpace + ICON_SIZE / 2, iconY) size:ICON_SIZE];
@@ -350,6 +358,10 @@
 }
 
 - (void)clickCamera:(UIButton *)btn {
+    btn.enabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        btn.enabled = YES;
+    });
     if (_btnCamera.tag == 0) {
         [_pusher switchCamera];
         _btnCamera.tag = 1;

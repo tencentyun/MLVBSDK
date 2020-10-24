@@ -25,7 +25,7 @@
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
         textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.text = @"";
-        textField.background = [UIImage imageNamed:@"Input_box"];
+        textField.backgroundColor = UIColor.whiteColor;
         textField.alpha = 0.5;
         textField.autocapitalizationType = UITextAutocorrectionTypeNo;
         [self addSubview:textField];

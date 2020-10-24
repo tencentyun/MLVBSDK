@@ -84,6 +84,9 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     
     // 界面布局
     [self initUI];
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,7 +113,8 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     CGFloat topOffset = [UIApplication sharedApplication].statusBarFrame.size.height;
     topOffset += (self.navigationController.navigationBar.height + 5);
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
-    _addressBarController.view.textField.placeholder = PLAY_URL;
+    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:15]};
+    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:PLAY_URL attributes:dic];
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
