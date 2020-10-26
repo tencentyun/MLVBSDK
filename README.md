@@ -11,10 +11,9 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 7.8 @ 2020.09.28
-- iOS：推流基础美颜优化，新增白皙和自然两种滤镜；
-- iOS：超级播放器修复iOS14兼容性问题；
-- Android：修复高级美颜Android4.4系统Crash的问题；
+### Version 7.9 @ 2020.10.23
+- Android：修复Android5.0以下版本使用拍摄功能崩溃的问题；
+- iOS&Android：直播播放器优化延迟控制算法，避免频繁加减速；
 
 ## MLVB Demo
 

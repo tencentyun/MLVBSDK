@@ -142,9 +142,6 @@ public class CameraPushImpl implements CameraPush, ITXLivePushListener {
             // 设置推流分辨率
             mLivePushConfig.setVideoResolution(mVideoResolution);
 
-            // 设置美颜
-            mLivePusher.setBeautyFilter(mBeautyStyle, mBeautyLevel, mWhiteningLevel, mRuddyLevel);
-
             // 如果当前Activity可以自动旋转的话，那么需要进行设置
             if (isActivityCanRotation(mContext)) {
                 setRotationForActivity();
@@ -474,6 +471,8 @@ public class CameraPushImpl implements CameraPush, ITXLivePushListener {
         mLivePushConfig = new TXLivePushConfig();
         mLivePushConfig.setVideoEncodeGop(5);
         mLivePusher.setConfig(mLivePushConfig);
+        // 设置美颜
+        mLivePusher.setBeautyFilter(mBeautyStyle, mBeautyLevel, mWhiteningLevel, mRuddyLevel);
         mWaterMarkBitmap = decodeResource(mContext.getResources(), R.drawable.livepusher_watermark);
         initListener();
     }
