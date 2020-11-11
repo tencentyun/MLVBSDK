@@ -77,6 +77,10 @@ function applyJoinBigGroup(groupId, callback, callbackOptions) {
                 console.log(imResponse.data.group); // 加入的群组资料
                 break;
             case TIM.TYPES.JOIN_STATUS_ALREADY_IN_GROUP: // 已经在群中
+                callback && callback({
+                  errCode: 0,
+                  callback: callbackOptions
+                });
                 break;
             default:
                 break;
