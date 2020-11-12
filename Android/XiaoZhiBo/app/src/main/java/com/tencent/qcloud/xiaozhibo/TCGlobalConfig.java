@@ -1,11 +1,17 @@
 package com.tencent.qcloud.xiaozhibo;
 
+import android.graphics.Color;
+
 /**
  * Module:   TCGlobalConfig
  *
- * Function: app 的全局配置类
+ * Function: 小直播 的全局配置类
  *
- * 主要是记录一些重要的变量
+ * 1. LiteAVSDK Licence
+ * 2. 计算腾讯云 UserSig 的 SDKAppId、加密密钥、签名过期时间
+ * 3. 小直播后台服务器地址
+ * 4. App 主色调
+ * 5. 是否启用连麦
  */
 
 public class TCGlobalConfig {
@@ -70,11 +76,19 @@ public class TCGlobalConfig {
      */
     public static final String APP_SVR_URL = "";
 
+
     /**
-     * bugly 组件的 AppId
-     *
-     * bugly sdk 系腾讯提供用于 APP Crash 收集和分析的组件。
+     *  4. App 主色调。
      */
-    public static final String BUGLY_APPID = #设置成您自己的BUGLY账号;
+    public static final int MAIN_COLOR = 0xff222B48;
+
+
+    /**
+     *  5. 是否启用连麦。
+     *
+     *  由于连麦功能使用了比较昂贵的 BGP 专用线路，所以是按照通话时长进行收费的。最初级的体验包包含 3000 分钟的连麦时长，只需要 9.8 元。
+     *  购买链接：https://buy.cloud.tencent.com/mobilelive?urlctr=yes&micconn=3000m##
+     */
+    public static final boolean ENABLE_LINKMIC = false;
 
 }
