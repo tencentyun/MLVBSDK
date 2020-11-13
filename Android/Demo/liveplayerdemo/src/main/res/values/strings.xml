@@ -46,4 +46,5 @@
     <string name="liveplayer_have_url">我有播放地址</string>
     <string name="liveplayer_start_paly">开始播放</string>
     <string name="liveplayer_start_realtime_paly">低延时播放</string>
+    <string name="liveplayer_not_realtime_url">请输入低延时播放地址</string>
 </resources>

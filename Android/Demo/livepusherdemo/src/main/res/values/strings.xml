@@ -32,6 +32,7 @@
     <string name="livepusher_send">发送</string>
     <string name="livepusher_receive_event">receive event: </string>
     <string name="livepusher_pushing_start_stop_retry_push">当前正在推流，启动或关闭缩放需要重新推流</string>
+    <string name="livepusher_pushing_start_stop_retry_push_by_focus">当前正在推流，启动或关闭手动对焦需要重新推流</string>
     <string name="livepusher_screenshot_success">截图成功</string>
     <string name="livepusher_screenshot_fail">截图失败</string>
     <string name="livepusher_screenshot_fail_push">截图失败，请先发起推流</string>

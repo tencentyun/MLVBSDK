@@ -42,11 +42,11 @@ public class LogInfoWindow extends PopupWindow {
 
     private static final String TAG = "LogInfoWindow";
 
-    private static final int ENCODER_HARD                   = 1;
-    private static final int ENCODER_SOFT                   = 2;
+    private static final int ENCODER_HARD   = 1;
+    private static final int ENCODER_SOFT   = 2;
 
-    public static final int CHECK_RTMP_URL_OK               = 999;
-    public static final int CHECK_RTMP_URL_FAIL             = 998;
+    public static final int CHECK_RTMP_URL_OK   = 999;
+    public static final int CHECK_RTMP_URL_FAIL = 998;
 
     private Context mContext;
     private LinearLayout mLayout;
@@ -116,15 +116,15 @@ public class LogInfoWindow extends PopupWindow {
         showAsDropDown(anchor, -xoff, 0);
     }
 
-    public void clear() {
+    public void reset() {
         initData();
     }
 
     private void initView() {
         View rootView = LayoutInflater.from(mContext).inflate(R.layout.livepusher_view_loginfo, null);
         setContentView(rootView);
-        mLayout = (LinearLayout) rootView.findViewById(R.id.livepusher_ll_layout);
-        mImageNetSpeed = (ImageView) rootView.findViewById(R.id.livepusher_iv_net_speed);
+        mLayout = rootView.findViewById(R.id.livepusher_ll_layout);
+        mImageNetSpeed = rootView.findViewById(R.id.livepusher_iv_net_speed);
     }
 
     private void initData() {
@@ -140,6 +140,7 @@ public class LogInfoWindow extends PopupWindow {
         list.add(LogInfo.createStep4LogInfo(getResources().getString(R.string.livepusher_step4_value)));
         list.add(LogInfo.createStep5LogInfo(getResources().getString(R.string.livepusher_step5_value)));
         setLogInfoList(list);
+        mImageNetSpeed.setImageResource(R.drawable.livepusher_ic_net_speed0);
     }
 
     private void updateItemText(LogInfo logInfo) {

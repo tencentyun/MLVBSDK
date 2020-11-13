@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 
 import com.google.zxing.Result;
 import com.tencent.liteav.demo.liveplayer.R;
-import com.tencent.liteav.demo.liveplayer.model.Constants;
 
 import java.util.ArrayList;
 import java.util.List;

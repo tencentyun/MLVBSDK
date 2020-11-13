@@ -304,9 +304,10 @@ public abstract class MLVBLiveRoom {
 	 *
 	 * 当两个主播中的任何一个退出跨房 PK 状态后，另一个主播会收到 {@link IMLVBLiveRoomListener#onQuitRoomPK(AnchorInfo)} 回调通知。
      *
+     * @param anchorInfo 对方的用户信息
      * @param callback 退出跨房 PK 的结果回调
      */
-    public abstract void quitRoomPK(final IMLVBLiveRoomListener.QuitRoomPKCallback callback);
+    public abstract void quitRoomPK(final AnchorInfo anchorInfo, final IMLVBLiveRoomListener.QuitRoomPKCallback callback);
 
     /////////////////////////////////////////////////////////////////////////////////
     //

@@ -71,18 +71,6 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
 
 
     private BottomSheetBehavior     mBehavior;
-    private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback
-            = new BottomSheetBehavior.BottomSheetCallback() {
-
-        @Override
-        public void onStateChanged(View bottomSheet, int newState) {
-            Log.i(TAG, "onStateChanged: newState -> " + newState);
-        }
-        @Override
-        public void onSlide(View bottomSheet, float slideOffset) {
-            Log.i(TAG, "onSlide: slideOffset -> " + slideOffset);
-        }
-    };
     private OnSettingChangeListener mOnSettingChangeListener;
     private BottomSheetDialog       mBottomSheetDialog;
     private CheckSelectView         mCheckSelectView;
@@ -107,7 +95,6 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
             mBottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet)
                     .setBackgroundResource(android.R.color.transparent);
             mBehavior = BottomSheetBehavior.from((View) inflate.getParent());
-            mBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback);
 
             View parent = (View) inflate.getParent();
             BottomSheetBehavior behavior = BottomSheetBehavior.from(parent);

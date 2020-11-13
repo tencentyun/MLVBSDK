@@ -607,7 +607,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                     mTXLivePlayer.setPlayerView(null);
                 }
 
-                quitRoomPK(null);
+                quitRoomPK(mPKAnchorInfo, null);
             }
         };
 
@@ -1174,10 +1174,10 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
      * @param callback 退出跨房 PK 的结果回调
      */
     @Override
-    public void quitRoomPK(final IMLVBLiveRoomListener.QuitRoomPKCallback callback) {
+    public void quitRoomPK(final AnchorInfo anchorInfo, final IMLVBLiveRoomListener.QuitRoomPKCallback callback) {
         TXCLog.i(TAG, "API -> quitRoomPK");
         try {
-            if (mPKAnchorInfo != null && mPKAnchorInfo.userID != null && mPKAnchorInfo.userID.length() > 0) {
+            if (anchorInfo != null && anchorInfo.userID != null && anchorInfo.userID.length() > 0) {
                 CommonJson<PKRequest> request = new CommonJson<>();
                 request.cmd = "pk";
                 request.data = new PKRequest();
@@ -1194,7 +1194,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
                 }.getType());
                 IMMessageMgr imMessageMgr = mIMMessageMgr;
                 if (imMessageMgr != null) {
-                    imMessageMgr.sendC2CCustomMessage(mPKAnchorInfo.userID, content, new IMMessageMgr.Callback() {
+                    imMessageMgr.sendC2CCustomMessage(anchorInfo.userID, content, new IMMessageMgr.Callback() {
                         @Override
                         public void onError(final int code, final String errInfo) {
                             callbackOnThread(callback, "onError", code, mAppContext.getString(R.string.mlvb_im_exit_fail, errInfo, code));

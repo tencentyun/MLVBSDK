@@ -583,20 +583,22 @@ public class LiveRoomChatFragment extends Fragment implements IMLVBLiveRoomListe
     }
 
     private void addMessageItem(final String userName, final String message, final RoomListViewAdapter.TextChatMsg.Alignment aligment) {
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm");
-                mChatMsgList.add(new RoomListViewAdapter.TextChatMsg(userName, TIME_FORMAT.format(new Date()), message, aligment));
-                mChatMsgAdapter.notifyDataSetChanged();
-                mChatListView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mChatListView.setSelection(mChatMsgList.size() - 1);
-                    }
-                });
-            }
-        });
+        if (mActivity != null) {
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm");
+                    mChatMsgList.add(new RoomListViewAdapter.TextChatMsg(userName, TIME_FORMAT.format(new Date()), message, aligment));
+                    mChatMsgAdapter.notifyDataSetChanged();
+                    mChatListView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mChatListView.setSelection(mChatMsgList.size() - 1);
+                        }
+                    });
+                }
+            });
+        }
     }
 
     private void sendMessage(final String message) {
@@ -951,6 +953,12 @@ public class LiveRoomChatFragment extends Fragment implements IMLVBLiveRoomListe
             @Override
             public void onAccept() {
                 hideNoticeToast();
+
+                //如果mActivity为空，则这个fragment已经被移除，不应该继续执行
+                if (mActivity == null) {
+                    return;
+                }
+
                 Toast.makeText(mActivity, getString(R.string.mlvb_start_conn), Toast.LENGTH_SHORT).show();
 
                 RoomVideoView videoView = mPlayerViews.get(0);
@@ -1180,7 +1188,7 @@ public class LiveRoomChatFragment extends Fragment implements IMLVBLiveRoomListe
 
         mActivityInterface.getLiveRoom().stopRemoteView(anchorInfo);
         if (force) {
-            mActivityInterface.getLiveRoom().quitRoomPK(new IMLVBLiveRoomListener.QuitRoomPKCallback() {
+            mActivityInterface.getLiveRoom().quitRoomPK(anchorInfo, new IMLVBLiveRoomListener.QuitRoomPKCallback() {
                 @Override
                 public void onError(int errCode, String errInfo) {
 
