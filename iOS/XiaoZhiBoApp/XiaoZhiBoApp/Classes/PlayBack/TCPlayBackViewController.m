@@ -56,7 +56,7 @@
         _log_switch    = NO;
         
         _rtmpUrl = self.liveInfo.hls_play_url;
-        if (_rtmpUrl == nil || ![_rtmpUrl isKindOfClass:[NSString class]] || _rtmpUrl.length == 0 ) {
+        if (_rtmpUrl == nil || ![_rtmpUrl isKindOfClass:[NSString class]]) {
             _rtmpUrl = self.liveInfo.playurl;
         }
         

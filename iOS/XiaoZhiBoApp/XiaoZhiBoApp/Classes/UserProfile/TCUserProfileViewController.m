@@ -159,8 +159,10 @@ extern BOOL g_bNeedEnterPushSettingView;
     TCUserInfoTableViewCell *cell = (TCUserInfoTableViewCell*)[tableView  dequeueReusableCellWithIdentifier:@"cell"];
     if(cell == nil)
     {
-         cell = [[TCUserInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[TCUserInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         [cell initUserinfoViewCellData:item];
+        cell.backgroundColor = UIColor.whiteColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     [cell drawRichCell:item];
