@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08EAC5F06B21FD410E642D8B /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3F628D1836DD920B50225 /* CommonUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1DC7F349A2B6380DCA056281 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		1EA0A986FB03B486F983DE95 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		230EC47B79840ADB61D72B51 /* LoginViewController_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914E6F96DBA0E5A7E0242CE6 /* LoginViewController_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		23E5C878C75488FE397B00CB /* LoginViewController+UI_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B23A8D4B730D7AC0C334B82 /* LoginViewController+UI_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		24C2B701020AC9712689EBA7 /* ProfileViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E79C4115E5A1F9DA1345A24 /* ProfileViewController+UI.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2840D91C24B8562200723FBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840D91B24B8562200723FBC /* AudioToolbox.framework */; };
 		2840D92924B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840D92824B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift */; };
 		2840D92A24B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840D92824B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift */; };
 		2840D92E24B8801800723FBC /* SDWebImagePlaceholderImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840D92824B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift */; };
 		2840D93124B880EF00723FBC /* SDWebImagePlaceholderImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840D92824B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift */; };
 		285FB46824BEA52F00FFB2BC /* TXVoiceRoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046B13924B36AD700F27349 /* TXVoiceRoomService.m */; };
-		338DAD33932D2CDD41457DA1 /* LoginViewController+UI_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CFFF0A44CF09463E1B9615 /* LoginViewController+UI_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2C451A58BE13CD0F7CC9917A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073DCF6206A6CF2B70E78286 /* ProfileViewController.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40091E661F4FCBB9009B882D /* UIButton+Glossy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F8534B1EE8FCDF00EE47D7 /* UIButton+Glossy.m */; };
 		40091E6B1F4FCBB9009B882D /* ScanQRController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40F853561EE8FCDF00EE47D7 /* ScanQRController.mm */; };
 		40091E6F1F4FCBB9009B882D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F853261EE8FC8400EE47D7 /* AppDelegate.m */; };
@@ -719,6 +721,7 @@
 		45E74D9C23B22BCD00C22B31 /* ThemeConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E74D9A23B22BCD00C22B31 /* ThemeConfigurator.m */; };
 		45F3B3A1232A239D00666F7C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F855361EE8FDAD00EE47D7 /* AssetsLibrary.framework */; };
 		4B6BFC9AAE7FC00699D73AA8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		4E043F011513EA0CFB951049 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D4E3A88843B53D37887C94 /* AppUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		51A289FB230FB95800B9B73F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A289F8230FB93A00B9B73F /* OpenAL.framework */; };
 		51A289FC230FB96000B9B73F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A289F8230FB93A00B9B73F /* OpenAL.framework */; };
 		51CE9F98231944BE00B620BD /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A289F8230FB93A00B9B73F /* OpenAL.framework */; };
@@ -853,9 +856,8 @@
 		6AAEC2C52497807200B57D86 /* TXMeetingPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEC2672497807200B57D86 /* TXMeetingPair.m */; };
 		6AAEC2C62497807200B57D86 /* TXMeetingPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEC2672497807200B57D86 /* TXMeetingPair.m */; };
 		6AAEC3A52499F93300B57D86 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		6EC387AEFA17F71E3390A215 /* LoginViewController_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E226888FB2F40EB8C54F0 /* LoginViewController_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		70BBB7DE684D1125916A97D0 /* ProfileManager_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E470842E58EA8C601C2238 /* ProfileManager_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7B107D8F4C4B5BF9184EC193 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		7F93CC7C217F2DCB19BC708A /* ProfileViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57F810B852D886CB12F2BE /* ProfileViewController+UI.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		910E179F2080A27500178D86 /* TXMoviePlayerNetApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */; };
 		910E17A02080A27500178D86 /* TXMoviePlayerNetApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */; };
 		910E17A22080A27500178D86 /* TXMoviePlayerNetApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */; };
@@ -886,7 +888,7 @@
 		91F87A801FF4A101001644B1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F87A7E1FF4A0FC001644B1 /* libsqlite3.tbd */; };
 		91F87A811FF4A109001644B1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F87A7E1FF4A0FC001644B1 /* libsqlite3.tbd */; };
 		944B0A98D288A86246E2C14B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		9C0C317924BA7F4ADC272C50 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC0427EF796806B9D28030 /* AppUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		97CC1EFFA8E2638928EC086F /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDD1A8C4A97DD371D6CB1E1 /* CommonUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A035040820D20A01007E61C6 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A035040720D20A01007E61C6 /* QRCode.m */; };
 		A035040920D20A01007E61C6 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A035040720D20A01007E61C6 /* QRCode.m */; };
 		A035040A20D20A01007E61C6 /* QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A035040720D20A01007E61C6 /* QRCode.m */; };
@@ -947,7 +949,6 @@
 		A0FFAD94213791B70087FF45 /* TVCHttpMessageURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */; };
 		A0FFAD96213791B70087FF45 /* TVCHttpMessageURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */; };
 		A0FFAD99213791B70087FF45 /* TVCHttpMessageURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */; };
-		AF3AA587A694436C43A29AB8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3397BEF2DC9036E7106C0C /* ProfileViewController.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BD32F8A6AF7CC2FF9A53096E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		CE01F53E206DDE060056D693 /* VideoCompressPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */; };
 		CE01F53F206DDE060056D693 /* VideoCompressPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */; };
@@ -1090,7 +1091,6 @@
 		D6E5D1C320B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
 		D6E5D1C420B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
 		D6E5D1C520B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
-		EAC03BFDBA4852D3EAE5718D /* ProfileManager_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43D61FFE2ADC800125D9E85 /* ProfileManager_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EF69648B8809D6DEA1B7139D /* libPods-TXReplaykitUpload_Smart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8883463F7DB6469C26CDBF /* libPods-TXReplaykitUpload_Smart.a */; };
 		FDD4BF2B24A1F8AE0015388B /* VideoEditor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */; };
 		FDD4BF2C24A1F8AE0015388B /* VideoEditor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */; };
@@ -1334,8 +1334,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		09DC0427EF796806B9D28030 /* AppUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
-		0C57F810B852D886CB12F2BE /* ProfileViewController+UI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UI.swift"; sourceTree = "<group>"; };
+		073DCF6206A6CF2B70E78286 /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0B23A8D4B730D7AC0C334B82 /* LoginViewController+UI_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UI_Mock.swift"; sourceTree = "<group>"; };
 		2840D91B24B8562200723FBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2840D92824B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDWebImagePlaceholderImageManager.swift; sourceTree = "<group>"; };
 		3B8883463F7DB6469C26CDBF /* libPods-TXReplaykitUpload_Smart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TXReplaykitUpload_Smart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1564,9 +1564,10 @@
 		45E74D9923B22BCD00C22B31 /* ThemeConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeConfigurator.h; sourceTree = "<group>"; };
 		45E74D9A23B22BCD00C22B31 /* ThemeConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeConfigurator.m; sourceTree = "<group>"; };
 		48CA90A216ACB2F1AC355B8C /* Pods-TXReplaykitUpload_Smart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXReplaykitUpload_Smart.release.xcconfig"; path = "Target Support Files/Pods-TXReplaykitUpload_Smart/Pods-TXReplaykitUpload_Smart.release.xcconfig"; sourceTree = "<group>"; };
+		48D4E3A88843B53D37887C94 /* AppUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		51A289F8230FB93A00B9B73F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		51A4AD391F1F8AE300B4A806 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		5AD3F628D1836DD920B50225 /* CommonUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
+		5E79C4115E5A1F9DA1345A24 /* ProfileViewController+UI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UI.swift"; sourceTree = "<group>"; };
 		6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		6A03ED401FD13DFB00F2F063 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		6A1C108A2281A674005D7BD9 /* PushLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushLogView.h; sourceTree = "<group>"; };
@@ -1622,6 +1623,7 @@
 		912A62092160D78A00C16E41 /* CFDanmakuInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFDanmakuInfo.m; sourceTree = "<group>"; };
 		912A620A2160D78A00C16E41 /* CFDanmakuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFDanmakuView.h; sourceTree = "<group>"; };
 		912A620B2160D78A00C16E41 /* CFDanmakuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFDanmakuView.m; sourceTree = "<group>"; };
+		914E6F96DBA0E5A7E0242CE6 /* LoginViewController_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController_Mock.swift; sourceTree = "<group>"; };
 		91D47F3920B6B13C0072AC0B /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		91D47F3C20B6B13C0072AC0B /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
 		91D47F3D20B6B13C0072AC0B /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
@@ -1669,10 +1671,7 @@
 		A0B8FC0A207E24F2008D7982 /* TVCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCUtils.h; sourceTree = "<group>"; };
 		A0FFAD92213791B70087FF45 /* TVCHttpMessageURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCHttpMessageURLProtocol.h; sourceTree = "<group>"; };
 		A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCHttpMessageURLProtocol.m; sourceTree = "<group>"; };
-		A43D61FFE2ADC800125D9E85 /* ProfileManager_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileManager_Mock.swift; sourceTree = "<group>"; };
-		BA3397BEF2DC9036E7106C0C /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		BD6E226888FB2F40EB8C54F0 /* LoginViewController_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController_Mock.swift; sourceTree = "<group>"; };
-		C7CFFF0A44CF09463E1B9615 /* LoginViewController+UI_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UI_Mock.swift"; sourceTree = "<group>"; };
+		A8E470842E58EA8C601C2238 /* ProfileManager_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileManager_Mock.swift; sourceTree = "<group>"; };
 		CE01F53C206DDE060056D693 /* VideoCompressPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCompressPreviewController.h; sourceTree = "<group>"; };
 		CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCompressPreviewController.m; sourceTree = "<group>"; };
 		CE45D2971F15C527003506D1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1739,6 +1738,7 @@
 		D6E5D1C020B7B61F00812B2F /* ReplayKit2Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayKit2Define.h; sourceTree = "<group>"; };
 		D6E5D1C120B7B62000812B2F /* ScreenPushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenPushViewController.h; sourceTree = "<group>"; };
 		D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenPushViewController.m; sourceTree = "<group>"; };
+		DEDD1A8C4A97DD371D6CB1E1 /* CommonUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = VideoEditor.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1786,6 +1786,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11B6B2BE70B7D7736CD8040C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				914E6F96DBA0E5A7E0242CE6 /* LoginViewController_Mock.swift */,
+				A8E470842E58EA8C601C2238 /* ProfileManager_Mock.swift */,
+				0B23A8D4B730D7AC0C334B82 /* LoginViewController+UI_Mock.swift */,
+				48D4E3A88843B53D37887C94 /* AppUtils.swift */,
+				DEDD1A8C4A97DD371D6CB1E1 /* CommonUtils.swift */,
+				073DCF6206A6CF2B70E78286 /* ProfileViewController.swift */,
+				5E79C4115E5A1F9DA1345A24 /* ProfileViewController+UI.swift */,
+			);
+			name = Login;
+			path = TXLiteAVDemo/Login;
+			sourceTree = SOURCE_ROOT;
+		};
 		4011CC1524E4DDB600C543D7 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2305,7 +2320,7 @@
 				D50292D02272BA4A00C052B7 /* MLVBLiveRoomDemo */,
 				D50292CF2272BA3F00C052B7 /* LivePlayerDemo */,
 				D50292CD2272BA2A00C052B7 /* LivePusherDemo */,
-				EDAAA0C7E07A719E4AFB9F62 /* Login */,
+				11B6B2BE70B7D7736CD8040C /* Login */,
 			);
 			path = TXLiteAVDemo;
 			sourceTree = "<group>";
@@ -2642,21 +2657,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		EDAAA0C7E07A719E4AFB9F62 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				BD6E226888FB2F40EB8C54F0 /* LoginViewController_Mock.swift */,
-				A43D61FFE2ADC800125D9E85 /* ProfileManager_Mock.swift */,
-				C7CFFF0A44CF09463E1B9615 /* LoginViewController+UI_Mock.swift */,
-				09DC0427EF796806B9D28030 /* AppUtils.swift */,
-				5AD3F628D1836DD920B50225 /* CommonUtils.swift */,
-				BA3397BEF2DC9036E7106C0C /* ProfileViewController.swift */,
-				0C57F810B852D886CB12F2BE /* ProfileViewController+UI.swift */,
-			);
-			name = Login;
-			path = TXLiteAVDemo/Login;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -3022,13 +3022,13 @@
 				40E1F4422468F72F00F3D350 /* HUDHelper.m in Sources */,
 				400921C81F4FCC52009B882D /* NSData+Common.m in Sources */,
 				400921C91F4FCC52009B882D /* UIImage+Additions.m in Sources */,
-				6EC387AEFA17F71E3390A215 /* LoginViewController_Mock.swift in Sources */,
-				EAC03BFDBA4852D3EAE5718D /* ProfileManager_Mock.swift in Sources */,
-				338DAD33932D2CDD41457DA1 /* LoginViewController+UI_Mock.swift in Sources */,
-				9C0C317924BA7F4ADC272C50 /* AppUtils.swift in Sources */,
-				08EAC5F06B21FD410E642D8B /* CommonUtils.swift in Sources */,
-				AF3AA587A694436C43A29AB8 /* ProfileViewController.swift in Sources */,
-				7F93CC7C217F2DCB19BC708A /* ProfileViewController+UI.swift in Sources */,
+				230EC47B79840ADB61D72B51 /* LoginViewController_Mock.swift in Sources */,
+				70BBB7DE684D1125916A97D0 /* ProfileManager_Mock.swift in Sources */,
+				23E5C878C75488FE397B00CB /* LoginViewController+UI_Mock.swift in Sources */,
+				4E043F011513EA0CFB951049 /* AppUtils.swift in Sources */,
+				97CC1EFFA8E2638928EC086F /* CommonUtils.swift in Sources */,
+				2C451A58BE13CD0F7CC9917A /* ProfileViewController.swift in Sources */,
+				24C2B701020AC9712689EBA7 /* ProfileViewController+UI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
