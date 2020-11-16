@@ -11,9 +11,10 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 7.9 @ 2020.10.23
-- Android：修复Android5.0以下版本使用拍摄功能崩溃的问题；
-- iOS&Android：直播播放器优化延迟控制算法，避免频繁加减速；
+### Version 8.0 @ 2020.11.13
+- Android： 优化MLVB主播PK、观众上麦流程；
+- Android： 优化MLVB界面提示语；
+- Android： 直播推拉流Demo工程优化，逻辑更简洁；
 
 ## MLVB Demo
 
