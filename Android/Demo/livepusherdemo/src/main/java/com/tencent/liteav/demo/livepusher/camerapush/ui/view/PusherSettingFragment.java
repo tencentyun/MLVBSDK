@@ -285,11 +285,15 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
     }
 
     public void showOrientationItem() {
-        mCheckSelectView.showItem(POSITION_LANDSCAPE);
+        if (mCheckSelectView != null) {
+            mCheckSelectView.showItem(POSITION_LANDSCAPE);
+        }
     }
 
     public void hideOrientationItem() {
-        mCheckSelectView.hideItem(POSITION_LANDSCAPE);
+        if (mCheckSelectView != null) {
+            mCheckSelectView.hideItem(POSITION_LANDSCAPE);
+        }
     }
 
     public void setOnSettingChangeListener(OnSettingChangeListener onSettingChangeListener) {
