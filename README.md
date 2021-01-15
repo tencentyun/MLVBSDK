@@ -11,12 +11,14 @@
 | Android | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](http://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 8.2 @ 2020.12.24
-- Android: 优化移动直播推流画质；
-- Android: 修复切换摄像头绿幕失效的问题；
-- iOS: 修复播放器弹幕开启后，前后台切换导致的弹幕滞留在屏幕边缘的问题；
-- iOS: 修复播放器倒置旋转，偶现播放画面比例异常的问题；
-- iOS: 修复超级播放器偶现的稳定性问题；
+### Version 8.3 @ 2021.01.15
+- Android: 修复片段录制时，回删片段可能导致的合成失败问题；
+- Android: 修复短视频多例崩溃问题；
+- iOS: 修复直播推流过程中偶现的摄像头切换无效问题；
+- iOS: 修复点播时减速崩溃的问题；
+- iOS: 修复低延时拉流场景下，低音质文件声音播放异常问题；
+- iOS: 修复图片转场时特定步骤下显示黑屏的问题；
+- iOS: 修复部分兼容性问题导致崩溃问题；
 
 ## MLVB Demo
 
