@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		098C9A9F1554D7D9E86AB784 /* ProfileManager_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DC9D38CF0CD86FFEE5FFA /* ProfileManager_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		16FB3A010738B5E3F4BD3EF5 /* LoginViewController_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7BFF76EC0CBC28378FE7BA /* LoginViewController_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1DC7F349A2B6380DCA056281 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		1EA0A986FB03B486F983DE95 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		2840D91C24B8562200723FBC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840D91B24B8562200723FBC /* AudioToolbox.framework */; };
@@ -666,6 +666,8 @@
 		40EF364B24BC4134006AA4BB /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EF364924BC4134006AA4BB /* RoomManager.swift */; };
 		40EF364C24BC4134006AA4BB /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EF364924BC4134006AA4BB /* RoomManager.swift */; };
 		40EF364D24BC4134006AA4BB /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EF364924BC4134006AA4BB /* RoomManager.swift */; };
+		4179B516DE7522864CCACFF0 /* ProfileViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB01B9959D34BC2B9620E53B /* ProfileViewController+UI.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43B01DF638F6A32353B10EE8 /* LoginViewController+UI_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F9F0C845851EC06FB18351 /* LoginViewController+UI_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4509E5D322816E8D001FF14A /* LiveRoomAccPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4509E5D222816E8D001FF14A /* LiveRoomAccPlayerView.m */; };
 		4509E5D422816E8D001FF14A /* LiveRoomAccPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4509E5D222816E8D001FF14A /* LiveRoomAccPlayerView.m */; };
 		4509E5D522816E8D001FF14A /* LiveRoomAccPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4509E5D222816E8D001FF14A /* LiveRoomAccPlayerView.m */; };
@@ -721,8 +723,6 @@
 		51A289FB230FB95800B9B73F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A289F8230FB93A00B9B73F /* OpenAL.framework */; };
 		51A289FC230FB96000B9B73F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A289F8230FB93A00B9B73F /* OpenAL.framework */; };
 		51CE9F98231944BE00B620BD /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A289F8230FB93A00B9B73F /* OpenAL.framework */; };
-		6276E1B2178F66E7F74A50EE /* LoginViewController+UI_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6937F6263BC5727F816329 /* LoginViewController+UI_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69308AA36C2BBDBA877714EF /* LoginViewController_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2481377FD3D48D86D2FE /* LoginViewController_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6A03ED411FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */; };
 		6A03ED421FD13E0C00F2F063 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */; };
 		6A03ED431FD13E0C00F2F063 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */; };
@@ -854,9 +854,52 @@
 		6AAEC2C52497807200B57D86 /* TXMeetingPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEC2672497807200B57D86 /* TXMeetingPair.m */; };
 		6AAEC2C62497807200B57D86 /* TXMeetingPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEC2672497807200B57D86 /* TXMeetingPair.m */; };
 		6AAEC3A52499F93300B57D86 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		6AD1FA24D785408C4E8ABD8B /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73699003A05DD84A641EEDDF /* AppUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7B107D8F4C4B5BF9184EC193 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		7C9A43EEF6B375C9E381CAE4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3F812D654F9C600C9F25E6 /* ProfileViewController.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8B80BE639BE6C15948602283 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B4CDE8C94BB8275BB192C /* AppUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7B5A2DBC25B0355400B4B469 /* V2QRGenerateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B5A2D8D25B0355400B4B469 /* V2QRGenerateViewController.xib */; };
+		7B5A2DBD25B0355400B4B469 /* V2QRGenerateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B5A2D8D25B0355400B4B469 /* V2QRGenerateViewController.xib */; };
+		7B5A2DBE25B0355400B4B469 /* V2MainItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D8E25B0355400B4B469 /* V2MainItemCell.m */; };
+		7B5A2DBF25B0355400B4B469 /* V2MainItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D8E25B0355400B4B469 /* V2MainItemCell.m */; };
+		7B5A2DC025B0355400B4B469 /* V2QRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D8F25B0355400B4B469 /* V2QRScanViewController.m */; };
+		7B5A2DC125B0355400B4B469 /* V2QRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D8F25B0355400B4B469 /* V2QRScanViewController.m */; };
+		7B5A2DC225B0355400B4B469 /* V2MainProtocolSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9125B0355400B4B469 /* V2MainProtocolSelectViewController.m */; };
+		7B5A2DC325B0355400B4B469 /* V2MainProtocolSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9125B0355400B4B469 /* V2MainProtocolSelectViewController.m */; };
+		7B5A2DC425B0355400B4B469 /* V2PlayerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9225B0355400B4B469 /* V2PlayerSettingViewController.m */; };
+		7B5A2DC525B0355400B4B469 /* V2PlayerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9225B0355400B4B469 /* V2PlayerSettingViewController.m */; };
+		7B5A2DC625B0355400B4B469 /* V2PusherSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9325B0355400B4B469 /* V2PusherSettingViewController.m */; };
+		7B5A2DC725B0355400B4B469 /* V2PusherSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9325B0355400B4B469 /* V2PusherSettingViewController.m */; };
+		7B5A2DC825B0355400B4B469 /* V2PusherSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9625B0355400B4B469 /* V2PusherSettingModel.m */; };
+		7B5A2DC925B0355400B4B469 /* V2PusherSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9625B0355400B4B469 /* V2PusherSettingModel.m */; };
+		7B5A2DCA25B0355400B4B469 /* V2SettingBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9A25B0355400B4B469 /* V2SettingBottomBar.m */; };
+		7B5A2DCB25B0355400B4B469 /* V2SettingBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9A25B0355400B4B469 /* V2SettingBottomBar.m */; };
+		7B5A2DCC25B0355400B4B469 /* V2MainProtocolSelectSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9D25B0355400B4B469 /* V2MainProtocolSelectSegmentView.m */; };
+		7B5A2DCD25B0355400B4B469 /* V2MainProtocolSelectSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2D9D25B0355400B4B469 /* V2MainProtocolSelectSegmentView.m */; };
+		7B5A2DCE25B0355400B4B469 /* V2SettingsBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA025B0355400B4B469 /* V2SettingsBaseCell.m */; };
+		7B5A2DCF25B0355400B4B469 /* V2SettingsBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA025B0355400B4B469 /* V2SettingsBaseCell.m */; };
+		7B5A2DD025B0355400B4B469 /* V2SettingsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA125B0355400B4B469 /* V2SettingsBaseViewController.m */; };
+		7B5A2DD125B0355400B4B469 /* V2SettingsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA125B0355400B4B469 /* V2SettingsBaseViewController.m */; };
+		7B5A2DD225B0355400B4B469 /* V2SettingsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA225B0355400B4B469 /* V2SettingsContainerViewController.m */; };
+		7B5A2DD325B0355400B4B469 /* V2SettingsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA225B0355400B4B469 /* V2SettingsContainerViewController.m */; };
+		7B5A2DD425B0355400B4B469 /* UIButton+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA625B0355400B4B469 /* UIButton+V2.m */; };
+		7B5A2DD525B0355400B4B469 /* UIButton+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA625B0355400B4B469 /* UIButton+V2.m */; };
+		7B5A2DD625B0355400B4B469 /* UISegmentedControl+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA825B0355400B4B469 /* UISegmentedControl+V2.m */; };
+		7B5A2DD725B0355400B4B469 /* UISegmentedControl+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA825B0355400B4B469 /* UISegmentedControl+V2.m */; };
+		7B5A2DD825B0355400B4B469 /* UISlider+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA925B0355400B4B469 /* UISlider+V2.m */; };
+		7B5A2DD925B0355400B4B469 /* UISlider+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DA925B0355400B4B469 /* UISlider+V2.m */; };
+		7B5A2DDA25B0355400B4B469 /* UILabel+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DAA25B0355400B4B469 /* UILabel+V2.m */; };
+		7B5A2DDB25B0355400B4B469 /* UILabel+V2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DAA25B0355400B4B469 /* UILabel+V2.m */; };
+		7B5A2DDC25B0355400B4B469 /* V2PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB125B0355400B4B469 /* V2PlayerViewController.m */; };
+		7B5A2DDD25B0355400B4B469 /* V2PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB125B0355400B4B469 /* V2PlayerViewController.m */; };
+		7B5A2DDE25B0355400B4B469 /* V2QRGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB225B0355400B4B469 /* V2QRGenerateViewController.m */; };
+		7B5A2DDF25B0355400B4B469 /* V2QRGenerateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB225B0355400B4B469 /* V2QRGenerateViewController.m */; };
+		7B5A2DE025B0355400B4B469 /* V2PusherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB725B0355400B4B469 /* V2PusherViewController.m */; };
+		7B5A2DE125B0355400B4B469 /* V2PusherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB725B0355400B4B469 /* V2PusherViewController.m */; };
+		7B5A2DE225B0355400B4B469 /* V2MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB825B0355400B4B469 /* V2MainViewController.m */; };
+		7B5A2DE325B0355400B4B469 /* V2MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DB825B0355400B4B469 /* V2MainViewController.m */; };
+		7B5A2DE425B0355400B4B469 /* v2live.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B5A2DBA25B0355400B4B469 /* v2live.xcassets */; };
+		7B5A2DE525B0355400B4B469 /* v2live.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B5A2DBA25B0355400B4B469 /* v2live.xcassets */; };
+		7B5A2DE625B0355400B4B469 /* V2LiveUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DBB25B0355400B4B469 /* V2LiveUtils.m */; };
+		7B5A2DE725B0355400B4B469 /* V2LiveUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A2DBB25B0355400B4B469 /* V2LiveUtils.m */; };
 		910E179F2080A27500178D86 /* TXMoviePlayerNetApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */; };
 		910E17A02080A27500178D86 /* TXMoviePlayerNetApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */; };
 		910E17A22080A27500178D86 /* TXMoviePlayerNetApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */; };
@@ -948,7 +991,7 @@
 		A0FFAD96213791B70087FF45 /* TVCHttpMessageURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */; };
 		A0FFAD99213791B70087FF45 /* TVCHttpMessageURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */; };
 		BD32F8A6AF7CC2FF9A53096E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		CCACB4A890B1B0D71EF2BFA4 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07523910BC5376DE93C284BC /* CommonUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BEB2B1E279A22ED3A32566D1 /* ProfileManager_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F59E3832D64B047034A7E /* ProfileManager_Mock.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CE01F53E206DDE060056D693 /* VideoCompressPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */; };
 		CE01F53F206DDE060056D693 /* VideoCompressPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */; };
 		CE01F541206DDE060056D693 /* VideoCompressPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */; };
@@ -1090,8 +1133,9 @@
 		D6E5D1C320B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
 		D6E5D1C420B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
 		D6E5D1C520B7B62000812B2F /* ScreenPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */; };
-		E287114B6EC4E92989AFB67C /* ProfileViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BAF2E36D4C275E0949A30B /* ProfileViewController+UI.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EDE327F9758C8CCA27D1D532 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9751C43F9823B55DA159E3FA /* ProfileViewController.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EF69648B8809D6DEA1B7139D /* libPods-TXReplaykitUpload_Smart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8883463F7DB6469C26CDBF /* libPods-TXReplaykitUpload_Smart.a */; };
+		F7030D4F0FE45EBE2615B5D2 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD90F7EB8809E6FD5282F62 /* CommonUtils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FDD4BF2B24A1F8AE0015388B /* VideoEditor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */; };
 		FDD4BF2C24A1F8AE0015388B /* VideoEditor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */; };
 		FDD4BF2D24A1F8AE0015388B /* VideoEditor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */; };
@@ -1327,9 +1371,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07523910BC5376DE93C284BC /* CommonUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
+		1DD90F7EB8809E6FD5282F62 /* CommonUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		2840D91B24B8562200723FBC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2840D92824B85E2A00723FBC /* SDWebImagePlaceholderImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDWebImagePlaceholderImageManager.swift; sourceTree = "<group>"; };
+		2D2F59E3832D64B047034A7E /* ProfileManager_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileManager_Mock.swift; sourceTree = "<group>"; };
 		3B8883463F7DB6469C26CDBF /* libPods-TXReplaykitUpload_Smart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TXReplaykitUpload_Smart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE55542D416212AADE83B12 /* Pods-TXLiteAVDemo_Smart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXLiteAVDemo_Smart.debug.xcconfig"; path = "Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart.debug.xcconfig"; sourceTree = "<group>"; };
 		400922A11F4FCC52009B882D /* TXLiteAVDemo_Smart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TXLiteAVDemo_Smart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1558,7 +1603,6 @@
 		48CA90A216ACB2F1AC355B8C /* Pods-TXReplaykitUpload_Smart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXReplaykitUpload_Smart.release.xcconfig"; path = "Target Support Files/Pods-TXReplaykitUpload_Smart/Pods-TXReplaykitUpload_Smart.release.xcconfig"; sourceTree = "<group>"; };
 		51A289F8230FB93A00B9B73F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		51A4AD391F1F8AE300B4A806 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		65BAF2E36D4C275E0949A30B /* ProfileViewController+UI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UI.swift"; sourceTree = "<group>"; };
 		6A03ED3F1FD13DFB00F2F063 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		6A03ED401FD13DFB00F2F063 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		6A1C108A2281A674005D7BD9 /* PushLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushLogView.h; sourceTree = "<group>"; };
@@ -1602,8 +1646,43 @@
 		6AAEC2692497807200B57D86 /* IMProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMProtocol.h; sourceTree = "<group>"; };
 		6AAEC26A2497807200B57D86 /* TRTCMeetingDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTCMeetingDef.h; sourceTree = "<group>"; };
 		6F3B8CE66F615B5126697B01 /* Pods-TXLiteAVDemo_Smart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXLiteAVDemo_Smart.release.xcconfig"; path = "Target Support Files/Pods-TXLiteAVDemo_Smart/Pods-TXLiteAVDemo_Smart.release.xcconfig"; sourceTree = "<group>"; };
+		73699003A05DD84A641EEDDF /* AppUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		7B4C917A24B4B0C80095C041 /* TXLaunchMoviePlayProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TXLaunchMoviePlayProtocol.h; sourceTree = "<group>"; };
-		8C6937F6263BC5727F816329 /* LoginViewController+UI_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UI_Mock.swift"; sourceTree = "<group>"; };
+		7B5A2D8D25B0355400B4B469 /* V2QRGenerateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = V2QRGenerateViewController.xib; sourceTree = "<group>"; };
+		7B5A2D8E25B0355400B4B469 /* V2MainItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MainItemCell.m; sourceTree = "<group>"; };
+		7B5A2D8F25B0355400B4B469 /* V2QRScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2QRScanViewController.m; sourceTree = "<group>"; };
+		7B5A2D9125B0355400B4B469 /* V2MainProtocolSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MainProtocolSelectViewController.m; sourceTree = "<group>"; };
+		7B5A2D9225B0355400B4B469 /* V2PlayerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2PlayerSettingViewController.m; sourceTree = "<group>"; };
+		7B5A2D9325B0355400B4B469 /* V2PusherSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2PusherSettingViewController.m; sourceTree = "<group>"; };
+		7B5A2D9525B0355400B4B469 /* V2PusherSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2PusherSettingModel.h; sourceTree = "<group>"; };
+		7B5A2D9625B0355400B4B469 /* V2PusherSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2PusherSettingModel.m; sourceTree = "<group>"; };
+		7B5A2D9725B0355400B4B469 /* V2PlayerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2PlayerSettingViewController.h; sourceTree = "<group>"; };
+		7B5A2D9825B0355400B4B469 /* V2MainProtocolSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2MainProtocolSelectViewController.h; sourceTree = "<group>"; };
+		7B5A2D9A25B0355400B4B469 /* V2SettingBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2SettingBottomBar.m; sourceTree = "<group>"; };
+		7B5A2D9B25B0355400B4B469 /* V2MainProtocolSelectSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2MainProtocolSelectSegmentView.h; sourceTree = "<group>"; };
+		7B5A2D9C25B0355400B4B469 /* V2SettingBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2SettingBottomBar.h; sourceTree = "<group>"; };
+		7B5A2D9D25B0355400B4B469 /* V2MainProtocolSelectSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MainProtocolSelectSegmentView.m; sourceTree = "<group>"; };
+		7B5A2D9F25B0355400B4B469 /* V2SettingsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2SettingsContainerViewController.h; sourceTree = "<group>"; };
+		7B5A2DA025B0355400B4B469 /* V2SettingsBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2SettingsBaseCell.m; sourceTree = "<group>"; };
+		7B5A2DA125B0355400B4B469 /* V2SettingsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2SettingsBaseViewController.m; sourceTree = "<group>"; };
+		7B5A2DA225B0355400B4B469 /* V2SettingsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2SettingsContainerViewController.m; sourceTree = "<group>"; };
+		7B5A2DA325B0355400B4B469 /* V2SettingsBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2SettingsBaseCell.h; sourceTree = "<group>"; };
+		7B5A2DA525B0355400B4B469 /* UISlider+V2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISlider+V2.h"; sourceTree = "<group>"; };
+		7B5A2DA625B0355400B4B469 /* UIButton+V2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+V2.m"; sourceTree = "<group>"; };
+		7B5A2DA725B0355400B4B469 /* UILabel+V2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+V2.h"; sourceTree = "<group>"; };
+		7B5A2DA825B0355400B4B469 /* UISegmentedControl+V2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+V2.m"; sourceTree = "<group>"; };
+		7B5A2DA925B0355400B4B469 /* UISlider+V2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISlider+V2.m"; sourceTree = "<group>"; };
+		7B5A2DAA25B0355400B4B469 /* UILabel+V2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+V2.m"; sourceTree = "<group>"; };
+		7B5A2DAB25B0355400B4B469 /* UIButton+V2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+V2.h"; sourceTree = "<group>"; };
+		7B5A2DAC25B0355400B4B469 /* UISegmentedControl+V2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+V2.h"; sourceTree = "<group>"; };
+		7B5A2DAD25B0355400B4B469 /* V2SettingsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2SettingsBaseViewController.h; sourceTree = "<group>"; };
+		7B5A2DAE25B0355400B4B469 /* V2PusherSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V2PusherSettingViewController.h; sourceTree = "<group>"; };
+		7B5A2DB125B0355400B4B469 /* V2PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2PlayerViewController.m; sourceTree = "<group>"; };
+		7B5A2DB225B0355400B4B469 /* V2QRGenerateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2QRGenerateViewController.m; sourceTree = "<group>"; };
+		7B5A2DB725B0355400B4B469 /* V2PusherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2PusherViewController.m; sourceTree = "<group>"; };
+		7B5A2DB825B0355400B4B469 /* V2MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2MainViewController.m; sourceTree = "<group>"; };
+		7B5A2DBA25B0355400B4B469 /* v2live.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = v2live.xcassets; sourceTree = "<group>"; };
+		7B5A2DBB25B0355400B4B469 /* V2LiveUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V2LiveUtils.m; sourceTree = "<group>"; };
 		910E179D2080A27500178D86 /* TXMoviePlayerNetApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TXMoviePlayerNetApi.h; sourceTree = "<group>"; };
 		910E179E2080A27500178D86 /* TXMoviePlayerNetApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TXMoviePlayerNetApi.m; sourceTree = "<group>"; };
 		910E17A52080A2EB00178D86 /* TXMoviePlayerNetDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TXMoviePlayerNetDelegate.h; sourceTree = "<group>"; };
@@ -1624,8 +1703,8 @@
 		91EEB3492060AF6C00BD01DB /* DownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
 		91EEB34A2060AF6C00BD01DB /* DownloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
 		91F87A7E1FF4A0FC001644B1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		9751C43F9823B55DA159E3FA /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		989986B80E1E50232B675AE9 /* Pods-TXReplaykitUpload_Smart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TXReplaykitUpload_Smart.debug.xcconfig"; path = "Target Support Files/Pods-TXReplaykitUpload_Smart/Pods-TXReplaykitUpload_Smart.debug.xcconfig"; sourceTree = "<group>"; };
-		9C3F812D654F9C600C9F25E6 /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A035040620D20A01007E61C6 /* QRCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCode.h; sourceTree = "<group>"; };
 		A035040720D20A01007E61C6 /* QRCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCode.m; sourceTree = "<group>"; };
 		A035042E20D24F99007E61C6 /* AddressBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressBarController.h; sourceTree = "<group>"; };
@@ -1663,7 +1742,7 @@
 		A0B8FC0A207E24F2008D7982 /* TVCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCUtils.h; sourceTree = "<group>"; };
 		A0FFAD92213791B70087FF45 /* TVCHttpMessageURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVCHttpMessageURLProtocol.h; sourceTree = "<group>"; };
 		A0FFAD93213791B70087FF45 /* TVCHttpMessageURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVCHttpMessageURLProtocol.m; sourceTree = "<group>"; };
-		B16B4CDE8C94BB8275BB192C /* AppUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
+		B7F9F0C845851EC06FB18351 /* LoginViewController+UI_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UI_Mock.swift"; sourceTree = "<group>"; };
 		CE01F53C206DDE060056D693 /* VideoCompressPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCompressPreviewController.h; sourceTree = "<group>"; };
 		CE01F53D206DDE060056D693 /* VideoCompressPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCompressPreviewController.m; sourceTree = "<group>"; };
 		CE45D2971F15C527003506D1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1730,8 +1809,8 @@
 		D6E5D1C020B7B61F00812B2F /* ReplayKit2Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayKit2Define.h; sourceTree = "<group>"; };
 		D6E5D1C120B7B62000812B2F /* ScreenPushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenPushViewController.h; sourceTree = "<group>"; };
 		D6E5D1C220B7B62000812B2F /* ScreenPushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenPushViewController.m; sourceTree = "<group>"; };
-		DC9D2481377FD3D48D86D2FE /* LoginViewController_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController_Mock.swift; sourceTree = "<group>"; };
-		F39DC9D38CF0CD86FFEE5FFA /* ProfileManager_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileManager_Mock.swift; sourceTree = "<group>"; };
+		FA7BFF76EC0CBC28378FE7BA /* LoginViewController_Mock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController_Mock.swift; sourceTree = "<group>"; };
+		FB01B9959D34BC2B9620E53B /* ProfileViewController+UI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UI.swift"; sourceTree = "<group>"; };
 		FDD4BF2824A1F8AD0015388B /* VideoEditor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = VideoEditor.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2294,10 +2373,10 @@
 				40B3F8DB2446E6C5000C37A3 /* Debug */,
 				40F8531D1EE8FC1E00EE47D7 /* Supporting Files */,
 				40AA533424458EC800303EF7 /* BeautySettingKit */,
-				D50292D02272BA4A00C052B7 /* MLVBLiveRoomDemo */,
+				D50292D02272BA4A00C052B7 /* LiveLinkMicDemoOld */,
 				D50292CF2272BA3F00C052B7 /* LivePlayerDemo */,
 				D50292CD2272BA2A00C052B7 /* LivePusherDemo */,
-				98A2AE319CC47DA5F3119AA3 /* Login */,
+				7EF7B73456ED8F23EE4E0B14 /* Login */,
 			);
 			path = TXLiteAVDemo;
 			sourceTree = "<group>";
@@ -2450,6 +2529,70 @@
 			path = SegmentVC;
 			sourceTree = "<group>";
 		};
+		7B5A2D9425B0355400B4B469 /* V2SettingModel */ = {
+			isa = PBXGroup;
+			children = (
+				7B5A2D9525B0355400B4B469 /* V2PusherSettingModel.h */,
+				7B5A2D9625B0355400B4B469 /* V2PusherSettingModel.m */,
+			);
+			path = V2SettingModel;
+			sourceTree = "<group>";
+		};
+		7B5A2D9925B0355400B4B469 /* V2SettingViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B5A2D9C25B0355400B4B469 /* V2SettingBottomBar.h */,
+				7B5A2D9A25B0355400B4B469 /* V2SettingBottomBar.m */,
+				7B5A2D9B25B0355400B4B469 /* V2MainProtocolSelectSegmentView.h */,
+				7B5A2D9D25B0355400B4B469 /* V2MainProtocolSelectSegmentView.m */,
+			);
+			path = V2SettingViews;
+			sourceTree = "<group>";
+		};
+		7B5A2D9E25B0355400B4B469 /* BaseUI */ = {
+			isa = PBXGroup;
+			children = (
+				7B5A2DA425B0355400B4B469 /* CommonWidgets */,
+				7B5A2DA325B0355400B4B469 /* V2SettingsBaseCell.h */,
+				7B5A2DA025B0355400B4B469 /* V2SettingsBaseCell.m */,
+				7B5A2DAD25B0355400B4B469 /* V2SettingsBaseViewController.h */,
+				7B5A2DA125B0355400B4B469 /* V2SettingsBaseViewController.m */,
+				7B5A2D9F25B0355400B4B469 /* V2SettingsContainerViewController.h */,
+				7B5A2DA225B0355400B4B469 /* V2SettingsContainerViewController.m */,
+			);
+			path = BaseUI;
+			sourceTree = "<group>";
+		};
+		7B5A2DA425B0355400B4B469 /* CommonWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				7B5A2DA525B0355400B4B469 /* UISlider+V2.h */,
+				7B5A2DA625B0355400B4B469 /* UIButton+V2.m */,
+				7B5A2DA725B0355400B4B469 /* UILabel+V2.h */,
+				7B5A2DA825B0355400B4B469 /* UISegmentedControl+V2.m */,
+				7B5A2DA925B0355400B4B469 /* UISlider+V2.m */,
+				7B5A2DAA25B0355400B4B469 /* UILabel+V2.m */,
+				7B5A2DAB25B0355400B4B469 /* UIButton+V2.h */,
+				7B5A2DAC25B0355400B4B469 /* UISegmentedControl+V2.h */,
+			);
+			path = CommonWidgets;
+			sourceTree = "<group>";
+		};
+		7EF7B73456ED8F23EE4E0B14 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA7BFF76EC0CBC28378FE7BA /* LoginViewController_Mock.swift */,
+				2D2F59E3832D64B047034A7E /* ProfileManager_Mock.swift */,
+				B7F9F0C845851EC06FB18351 /* LoginViewController+UI_Mock.swift */,
+				73699003A05DD84A641EEDDF /* AppUtils.swift */,
+				1DD90F7EB8809E6FD5282F62 /* CommonUtils.swift */,
+				9751C43F9823B55DA159E3FA /* ProfileViewController.swift */,
+				FB01B9959D34BC2B9620E53B /* ProfileViewController+UI.swift */,
+			);
+			name = Login;
+			path = TXLiteAVDemo/Login;
+			sourceTree = SOURCE_ROOT;
+		};
 		912A62052160D78A00C16E41 /* CFDanmaku */ = {
 			isa = PBXGroup;
 			children = (
@@ -2476,21 +2619,6 @@
 			);
 			path = ReplaykitUpload;
 			sourceTree = "<group>";
-		};
-		98A2AE319CC47DA5F3119AA3 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				DC9D2481377FD3D48D86D2FE /* LoginViewController_Mock.swift */,
-				F39DC9D38CF0CD86FFEE5FFA /* ProfileManager_Mock.swift */,
-				8C6937F6263BC5727F816329 /* LoginViewController+UI_Mock.swift */,
-				B16B4CDE8C94BB8275BB192C /* AppUtils.swift */,
-				07523910BC5376DE93C284BC /* CommonUtils.swift */,
-				9C3F812D654F9C600C9F25E6 /* ProfileViewController.swift */,
-				65BAF2E36D4C275E0949A30B /* ProfileViewController+UI.swift */,
-			);
-			name = Login;
-			path = TXLiteAVDemo/Login;
-			sourceTree = SOURCE_ROOT;
 		};
 		A035042020D24F73007E61C6 /* AddressBar */ = {
 			isa = PBXGroup;
@@ -2565,14 +2693,14 @@
 			path = LivePlayerDemo;
 			sourceTree = "<group>";
 		};
-		D50292D02272BA4A00C052B7 /* MLVBLiveRoomDemo */ = {
+		D50292D02272BA4A00C052B7 /* LiveLinkMicDemoOld */ = {
 			isa = PBXGroup;
 			children = (
 				D50292D32272BA6100C052B7 /* RoomUtil */,
 				D50292D22272BA5900C052B7 /* LiveRoomUI */,
 				D50292D12272BA5100C052B7 /* LiveRoom */,
 			);
-			path = MLVBLiveRoomDemo;
+			path = LiveLinkMicDemoOld;
 			sourceTree = "<group>";
 		};
 		D50292D12272BA5100C052B7 /* LiveRoom */ = {
@@ -3007,13 +3135,13 @@
 				40E1F4422468F72F00F3D350 /* HUDHelper.m in Sources */,
 				400921C81F4FCC52009B882D /* NSData+Common.m in Sources */,
 				400921C91F4FCC52009B882D /* UIImage+Additions.m in Sources */,
-				69308AA36C2BBDBA877714EF /* LoginViewController_Mock.swift in Sources */,
-				098C9A9F1554D7D9E86AB784 /* ProfileManager_Mock.swift in Sources */,
-				6276E1B2178F66E7F74A50EE /* LoginViewController+UI_Mock.swift in Sources */,
-				8B80BE639BE6C15948602283 /* AppUtils.swift in Sources */,
-				CCACB4A890B1B0D71EF2BFA4 /* CommonUtils.swift in Sources */,
-				7C9A43EEF6B375C9E381CAE4 /* ProfileViewController.swift in Sources */,
-				E287114B6EC4E92989AFB67C /* ProfileViewController+UI.swift in Sources */,
+				16FB3A010738B5E3F4BD3EF5 /* LoginViewController_Mock.swift in Sources */,
+				BEB2B1E279A22ED3A32566D1 /* ProfileManager_Mock.swift in Sources */,
+				43B01DF638F6A32353B10EE8 /* LoginViewController+UI_Mock.swift in Sources */,
+				6AD1FA24D785408C4E8ABD8B /* AppUtils.swift in Sources */,
+				F7030D4F0FE45EBE2615B5D2 /* CommonUtils.swift in Sources */,
+				EDE327F9758C8CCA27D1D532 /* ProfileViewController.swift in Sources */,
+				4179B516DE7522864CCACFF0 /* ProfileViewController+UI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
