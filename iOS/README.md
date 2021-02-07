@@ -16,7 +16,7 @@
     ├── LivePlayerDemo    // 直播播放，可以扫码播放地址进行播放
     ├── LivePusherDemo    // 直播推流，包含推流时，设置美颜，音效，等基础操作
     ├── Login             // 一个演示性质的简单登录界面
-    └── MLVBLiveRoomDemo  // 互动直播，包含连麦、聊天、点赞等特性
+    └── LiveLinkMicDemoOld// 互动直播，包含连麦、聊天、点赞等特性
 ```
 
 ## SDK 分类和下载

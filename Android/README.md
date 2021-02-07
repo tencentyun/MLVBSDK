@@ -11,7 +11,7 @@
 |  ├─ login                 // 一个演示性质的简单登录界面
 |  ├─ liveplayerdemo        // 直播播放，可以扫码播放地址进行播放
 |  ├─ livepusherdemo        // 直播推流，包含推流时，设置美颜，音效，等基础操作
-|  ├─ mlvbliveroomdemo      // 互动直播，包含连麦、聊天、点赞等特性
+|  ├─ livelinkmicdemoold    // 互动直播，包含连麦、聊天、点赞等特性
 |  
 ├─ SDK 
 │  ├─ LiteAVSDK_Smart_x.y.zzzz.aar        // 如果您下载的是 Smart 专用 zip 包，解压后将出现此文件夹，其中 x.y.zzzz 表示 SDK 版本号 
