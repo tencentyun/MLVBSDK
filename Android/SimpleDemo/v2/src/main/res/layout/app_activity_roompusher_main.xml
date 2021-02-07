@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/livepusher_content_bg">
+
+    <RelativeLayout
+        android:id="@+id/rl_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageButton
+            android:id="@+id/livepusher_ibtn_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@android:color/transparent"
+            android:onClick="onClick"
+            android:paddingTop="17dp"
+            android:paddingRight="17dp"
+            android:paddingBottom="17dp"
+            android:src="@mipmap/app_ic_ic_back" />
+
+        <TextView
+            android:id="@+id/livepusher_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="V2推拉流"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_actionbar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <view
+                class="com.example.v2.V2MainActivity$MainItemRenderView"
+                android:id="@+id/live_render_user_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#717371" />
+
+            <view
+                class="com.example.v2.V2MainActivity$MainItemRenderView"
+                android:id="@+id/live_render_user_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <view
+                class="com.example.v2.V2MainActivity$MainItemRenderView"
+                android:id="@+id/live_render_user_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" />
+
+            <ImageView
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#717371" />
+
+            <view
+                class="com.example.v2.V2MainActivity$MainItemRenderView"
+                android:id="@+id/live_render_user_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <view
+                class="com.example.v2.V2MainActivity$MainItemRenderView"
+                android:id="@+id/live_render_user_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" />
+
+            <ImageView
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#717371" />
+
+            <view
+                class="com.example.v2.V2MainActivity$MainItemRenderView"
+                android:id="@+id/live_render_user_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

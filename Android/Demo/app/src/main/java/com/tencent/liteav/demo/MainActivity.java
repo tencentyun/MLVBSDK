@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTvVersion = (TextView) findViewById(R.id.main_tv_version);
-        mTvVersion.setText("Smart版本 v" + TXLiveBase.getSDKVersionStr()+"(8.3.647)");
+        mTvVersion.setText("Smart版本 v" + TXLiveBase.getSDKVersionStr()+"(8.4.664)");
 
         mMainTitle = (TextView) findViewById(R.id.main_title);
         mMainTitle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -201,13 +201,13 @@ public class MainActivity extends Activity {
 
         // 直播
         List<ChildBean> pusherChildList = new ArrayList<>();
-        pusherChildList.add(new ChildBean("MLVBLiveRoom", R.drawable.room_live, 0, LiveRoomActivity.class));
-        pusherChildList.add(new ChildBean("摄像头推流", R.drawable.push, 0, CameraPushEntranceActivity.class));
-        pusherChildList.add(new ChildBean("直播播放器", R.drawable.live, 0, LivePlayerEntranceActivity.class));
+        pusherChildList.add(new ChildBean("推流演示（摄像头推流）", R.drawable.push, 0, CameraPushEntranceActivity.class));
+        pusherChildList.add(new ChildBean("拉流演示", R.drawable.live, 0, LivePlayerEntranceActivity.class));
+        pusherChildList.add(new ChildBean("连麦演示", R.drawable.room_live, 0, LiveRoomActivity.class));
         if (pusherChildList.size() != 0) {
             // 这个是网页链接，配合build.sh避免在如ugc_smart版中出现
             pusherChildList.add(new ChildBean("小直播", R.drawable.xiaozhibo, 0, null));
-            GroupBean pusherGroupBean = new GroupBean("移动直播", R.drawable.room_live, pusherChildList);
+            GroupBean pusherGroupBean = new GroupBean("移动直播 MLVB", R.drawable.room_live, pusherChildList);
             groupList.add(pusherGroupBean);
         }
 

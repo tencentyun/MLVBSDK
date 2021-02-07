@@ -1,0 +1,1 @@
+include ':app', ':v2', ':debug'

@@ -9,4 +9,4 @@ include ':audioeffectsettingkit'
 
 include ':liveplayerdemo'
 include ':livepusherdemo'
-include ':mlvbliveroomdemo'
+include ':livelinkmicdemoold'

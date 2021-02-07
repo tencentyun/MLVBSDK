@@ -8,8 +8,8 @@ android {
         applicationId "com.tencent.liteav.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "8.3.647"
+        versionCode 14
+        versionName "8.4.664"
 
         multiDexEnabled true
         ndk {
@@ -47,7 +47,7 @@ dependencies {
     compile project(':login')
     compile project(':liveplayerdemo')
     compile project(':livepusherdemo')
-    compile project(':mlvbliveroomdemo')
+    compile project(':livelinkmicdemoold')
 
     compile 'com.android.support:appcompat-v7:25.+'
     compile 'com.android.support:recyclerview-v7:25.+'
