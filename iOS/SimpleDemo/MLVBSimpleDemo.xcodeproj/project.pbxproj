@@ -46,7 +46,7 @@
 		7B20FA0F25A6C733000C907C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7B20FA5825A6CADB000C907C /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
 		7B20FA5925A6CADB000C907C /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
-		7BE6AF3125A5F0BC00B61440 /* TXLiteAVDemo_Professional.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TXLiteAVDemo_Professional.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BE6AF3125A5F0BC00B61440 /* MLVBSimpleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLVBSimpleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE6AF3425A5F0BC00B61440 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7BE6AF3525A5F0BC00B61440 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7BE6AF3E25A5F0BC00B61440 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				7BE6B07225A6B19500B61440 /* SDK */,
-				7BE6AF3325A5F0BC00B61440 /* TXLiteAVDemo_Professional */,
+				7BE6AF3325A5F0BC00B61440 /* MLVBSimpleDemo */,
 				7BE6AF3225A5F0BC00B61440 /* Products */,
 				7BE6B0C725A6B36900B61440 /* Frameworks */,
 			);
@@ -127,12 +127,12 @@
 		7BE6AF3225A5F0BC00B61440 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7BE6AF3125A5F0BC00B61440 /* TXLiteAVDemo_Professional.app */,
+				7BE6AF3125A5F0BC00B61440 /* MLVBSimpleDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7BE6AF3325A5F0BC00B61440 /* TXLiteAVDemo_Professional */ = {
+		7BE6AF3325A5F0BC00B61440 /* MLVBSimpleDemo */ = {
 			isa = PBXGroup;
 			children = (
 				7BE6B0C225A6B33B00B61440 /* Debug */,
@@ -146,7 +146,7 @@
 				7BE6AF4525A5F0BD00B61440 /* Info.plist */,
 				7BE6AF4625A5F0BD00B61440 /* main.m */,
 			);
-			path = TXLiteAVDemo_Professional;
+			path = MLVBSimpleDemo;
 			sourceTree = "<group>";
 		};
 		7BE6B07225A6B19500B61440 /* SDK */ = {
@@ -256,9 +256,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7BE6AF3025A5F0BC00B61440 /* TXLiteAVDemo_Professional */ = {
+		7BE6AF3025A5F0BC00B61440 /* MLVBSimpleDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7BE6AF4A25A5F0BD00B61440 /* Build configuration list for PBXNativeTarget "TXLiteAVDemo_Professional" */;
+			buildConfigurationList = 7BE6AF4A25A5F0BD00B61440 /* Build configuration list for PBXNativeTarget "MLVBSimpleDemo" */;
 			buildPhases = (
 				7BE6AF2D25A5F0BC00B61440 /* Sources */,
 				7BE6AF2E25A5F0BC00B61440 /* Frameworks */,
@@ -268,9 +268,9 @@
 			);
 			dependencies = (
 			);
-			name = TXLiteAVDemo_Professional;
+			name = MLVBSimpleDemo;
 			productName = TXLiteAVDemo_Professional;
-			productReference = 7BE6AF3125A5F0BC00B61440 /* TXLiteAVDemo_Professional.app */;
+			productReference = 7BE6AF3125A5F0BC00B61440 /* MLVBSimpleDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -286,7 +286,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7BE6AF2C25A5F0BC00B61440 /* Build configuration list for PBXProject "TXLiteAVDemo_Professional" */;
+			buildConfigurationList = 7BE6AF2C25A5F0BC00B61440 /* Build configuration list for PBXProject "MLVBSimpleDemo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -299,7 +299,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7BE6AF3025A5F0BC00B61440 /* TXLiteAVDemo_Professional */,
+				7BE6AF3025A5F0BC00B61440 /* MLVBSimpleDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -487,7 +487,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK/TXLiteAVSDK_Professional.framework/Headers";
-				INFOPLIST_FILE = TXLiteAVDemo_Professional/Info.plist;
+				INFOPLIST_FILE = MLVBSimpleDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,7 +513,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK/TXLiteAVSDK_Professional.framework/Headers";
-				INFOPLIST_FILE = TXLiteAVDemo_Professional/Info.plist;
+				INFOPLIST_FILE = MLVBSimpleDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -530,7 +530,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7BE6AF2C25A5F0BC00B61440 /* Build configuration list for PBXProject "TXLiteAVDemo_Professional" */ = {
+		7BE6AF2C25A5F0BC00B61440 /* Build configuration list for PBXProject "MLVBSimpleDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BE6AF4825A5F0BD00B61440 /* Debug */,
@@ -539,7 +539,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7BE6AF4A25A5F0BD00B61440 /* Build configuration list for PBXNativeTarget "TXLiteAVDemo_Professional" */ = {
+		7BE6AF4A25A5F0BD00B61440 /* Build configuration list for PBXNativeTarget "MLVBSimpleDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BE6AF4B25A5F0BD00B61440 /* Debug */,
