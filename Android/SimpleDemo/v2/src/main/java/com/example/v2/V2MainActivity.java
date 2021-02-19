@@ -83,7 +83,7 @@ public class V2MainActivity extends AppCompatActivity {
 
     // player
     private final List<PlayerViewContainer> mRemoteRenderViewList = new ArrayList<>();
-    private String mPlayURL;
+    private HashMap<Integer, String> mPlayURL = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -295,39 +295,55 @@ public class V2MainActivity extends AppCompatActivity {
     }
 
     private void startPlayChooseProtocolType(final int positionView) {
-        if (SingleHelper.getInstance().playerViewScanMap.get(mPlayURL) != null) {
-            Toast.makeText(V2MainActivity.this, "该播放地址正在播放，请换一个播放地址", Toast.LENGTH_LONG).show();
-            Log.w(TAG, "[Player] play url is same");
-            return;
-        }
-        final EditText playStreamEdit = new EditText(this);
+        View view  = LayoutInflater.from(V2MainActivity.this).inflate(R.layout.app_item_input, null);
+        final EditText playStreamEdit = view.findViewById(R.id.et_streamid);
         playStreamEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         playStreamEdit.setHint("请输入streamId");
+        final RadioButton cbRTMP = view.findViewById(R.id.rb_rtmp);
+        final RadioButton cbTRTC = view.findViewById(R.id.rb_trtc);
+        final RadioGroup radioGroup = view.findViewById(R.id.rg_protocol);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if (checkedId == R.id.rb_rtmp) {
+                    playStreamEdit.setText("http://liteavapp.qcloud.com/live/liteavdemoplayerstreamid.flv");
+                } else if (checkedId == R.id.rb_trtc) {
+                    playStreamEdit.setText("");
+                }
+            }
+        });
+
         new AlertDialog.Builder(this).setTitle("")
-                .setView(playStreamEdit)
+                .setView(view)
                 .setPositiveButton("开始拉流", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.i(TAG, "[Player] onStart");
-                        // TRTC streamid
-                        if (playStreamEdit != null) {
-                            String streamId = playStreamEdit.getText().toString().trim();
-                            if (TextUtils.isEmpty(streamId)) {
-                                Toast.makeText(V2MainActivity.this, "请输入一个streamId", Toast.LENGTH_LONG).show();
-                                return;
+                        String playURL = "";
+                        if (cbRTMP.isChecked()) {
+                            playURL = playStreamEdit.getText().toString().trim();
+                        } else if (cbTRTC.isChecked()) {
+                            if (playStreamEdit != null) {
+                                String streamId = playStreamEdit.getText().toString().trim();
+                                if (TextUtils.isEmpty(streamId)) {
+                                    Toast.makeText(V2MainActivity.this, "请输入一个streamId", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                String simpleURL = "trtc://cloud.tencent.com/play/" + streamId;
+                                if (SingleHelper.getInstance().playerViewScanMap.get(simpleURL) != null) {
+                                    Toast.makeText(V2MainActivity.this, "重复的streamId，请换一个streamId", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                mPlayURL.put(positionView, simpleURL);
+                                String userId = String.valueOf(new Random().nextInt(10000));
+                                // 拼装 TRTC 下 play 协议
+                                playURL = "trtc://cloud.tencent.com/play/" + streamId + "?sdkappid=" + GenerateTestUserSig.SDKAPPID + "&userid=" + userId + "&usersig=" + GenerateTestUserSig.genTestUserSig(userId);
+                                Log.i(TAG, "[Player] onStart url: " + playURL);
                             }
-                            String simpleURL = "trtc://cloud.tencent.com/play/" + streamId;
-                            if (SingleHelper.getInstance().playerViewScanMap.get(simpleURL) != null) {
-                                Toast.makeText(V2MainActivity.this, "重复的streamId，请换一个streamId", Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                            mPlayURL = simpleURL;
-                            String userId = String.valueOf(new Random().nextInt(10000));
-                            // 拼装 TRTC 下 play 协议
-                            String trtcPlayURL = "trtc://cloud.tencent.com/play/" + streamId + "?sdkappid=" + GenerateTestUserSig.SDKAPPID + "&userid=" + userId + "&usersig=" + GenerateTestUserSig.genTestUserSig(userId);
-                            Log.i(TAG, "[Player] onStart url: " + trtcPlayURL);
-                            startPlay(trtcPlayURL, mRemoteRenderViewList.get(positionView));
                         }
+                        PlayerViewContainer playerViewContainer = mRemoteRenderViewList.get(positionView);
+                        playerViewContainer.index = positionView;
+                        startPlay(playURL, playerViewContainer);
                     }
                 }).setNegativeButton("取消", null).show();
     }
@@ -479,7 +495,7 @@ public class V2MainActivity extends AppCompatActivity {
             return;
         }
         SingleHelper.getInstance().playerURLList.add(url);
-        SingleHelper.getInstance().playerViewScanMap.put(mPlayURL, playerView);
+        SingleHelper.getInstance().playerViewScanMap.put(mPlayURL.get(container.index), playerView);
         container.isPlaying = false;
         container.playURL = url;
         container.livePlayer = player;
@@ -736,13 +752,11 @@ public class V2MainActivity extends AppCompatActivity {
 
     private void resetPlayer(PlayerViewContainer container) {
         Log.i(TAG, "[Player] resetPlayer: player-" + container);
-        if (mPlayURL != null) {
-            SingleHelper.getInstance().playerViewScanMap.remove(mPlayURL);
-        }
         if (container == null) {
             Log.i(TAG, "[Player] resetPlayer: playerViewContainer is null");
             return;
         }
+        SingleHelper.getInstance().playerViewScanMap.remove(mPlayURL.get(container.index));
         if (container.livePlayer != null) {
             container.livePlayer.stopPlay();
             container.isPlaying = false;
@@ -814,6 +828,7 @@ public class V2MainActivity extends AppCompatActivity {
         private V2TXLivePlayer livePlayer;
         private boolean isMuteVideo;
         private boolean isMuteAudio;
+        private int index;
     }
 
     static class SingleHelper {
