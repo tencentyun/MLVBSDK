@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTvVersion = (TextView) findViewById(R.id.main_tv_version);
-        mTvVersion.setText("Smart版本 v" + TXLiveBase.getSDKVersionStr()+"(8.4.664)");
+        mTvVersion.setText("Smart版本 v" + TXLiveBase.getSDKVersionStr()+"(8.5.673)");
 
         mMainTitle = (TextView) findViewById(R.id.main_title);
         mMainTitle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -391,7 +391,7 @@ public class MainActivity extends Activity {
             return null;
         }
 
-        String       path      = sdcardDir.getAbsolutePath() + "/log/tencent/liteav";
+        String       path      = sdcardDir.getAbsolutePath() + "/log/liteav";
         List<String> logs      = new ArrayList<>();
         File         directory = new File(path);
         if (directory != null && directory.exists() && directory.isDirectory()) {
