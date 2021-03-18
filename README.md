@@ -11,13 +11,16 @@
 | Android | [下载](https://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](https://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 8.4 @ 2021.02.05
-- iOS & Android：直播推拉流新增V2接口，提供新的连麦互动方案及超低延时直播能力；
-- iOS & Android：直播播放缓冲策略优化，可配置强制与非强制缓冲；
-- iOS & Android：短视频校验安全性问题fix；
-- Android：短视频支持多音轨视频预览；
-- iOS：优化预处理性能，提高稳定性；
-- iOS：美颜回调脸部坐标问题fix；
+### Version 8.5 @ 2021.03.18
+- iOS & Android：移动直播V2持续优化，包含新特性、易用性、稳定性等，V2更多细节，参考[移动直播-RTC连麦方案](https://cloud.tencent.com/document/product/454/52751);
+- iOS & Android：高级美颜效果优化，优化瘦脸、大眼、V脸等相关效果；
+- iOS & Android：高级美颜新增窄脸接口；
+- iOS & Android：高级美颜人脸特征提取优化；
+- iOS & Android：高级美颜新增窄脸接口；
+- iOS & Android：直播播放支持0x5 SEI消息类型；
+- iOS & Android：优化超级播放器播放部分网络串流seek慢的问题；
+- iOS & Android：修复移动直播编码dts异常的问题；
+- Android: 修复超级播放器通过fileid方式播放出现报错问题；
 
 ## MLVB Demo
 
