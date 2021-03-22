@@ -653,6 +653,11 @@ typedef NS_ENUM(NSInteger, PKStatus) {
         return;
     }
     
+    if (_playerViewDic.count >= 3) {
+        [_liveRoom responseJoinAnchor:userID agree:NO reason:@"当前连麦人数已满"];
+        return;
+    }
+    
     _hasPendingRequest = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *msg = [NSString stringWithFormat:@"[%@]请求连麦", userName];
