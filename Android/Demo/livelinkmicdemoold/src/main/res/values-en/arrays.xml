@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="mlvb_names">
+        <item>Faye</item>
+        <item>Ben</item>
+        <item>Maggie</item>
+        <item>Joe</item>
+        <item>John</item>
+        <item>Ben</item>
+        <item>Hobert</item>
+        <item>Rose</item>
+        <item>Mary</item>
+        <item>James</item>
+        <item>Kevin</item>
+        <item>Mark</item>
+        <item>Amy</item>
+        <item>Tina</item>
+        <item>Jane</item>
+        <item>Julie</item>
+        <item>Alice</item>
+        <item>Betty</item>
+        <item>Lucy</item>
+        <item>Jason</item>
+        <item>Shirley</item>
+        <item>David</item>
+        <item>Kelly</item>
+        <item>Angela</item>
+        <item>Arthur</item>
+        <item>Chace</item>
+        <item>Biden</item>
+        <item>Dobbin</item>
+        <item>Holly</item>
+        <item>Lucas</item>
+        <item>Zachary</item>
+        <item>William</item>
+        <item>Ken</item>
+        <item>Lulu</item>
+        <item>Fernand</item>
+        <item>Tom</item>
+        <item>Jerry</item>
+        <item>Warrior</item>
+    </array>
+</resources>

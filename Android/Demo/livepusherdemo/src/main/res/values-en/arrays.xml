@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 画质偏好列表 -->
+    <string-array name="livepusher_video_quality_list">
+        <item>Blu-ray</item>
+        <item>UHD</item>
+        <item>HD</item>
+        <item>SD</item>
+        <item>Co-anchor (with Room Owner)</item>
+        <item>Co-anchor</item>
+        <item>TRTC</item>
+    </string-array>
+
+    <string-array name="livepusher_voice_channel">
+        <item>Voice</item>
+        <item>Standard</item>
+        <item>Music</item>
+    </string-array>
+
+    <string-array name="livepusher_setting">
+        <item>Bandwidth Adaptation</item>
+        <item>Hardware Acceleration</item>
+        <item>In-ear Monitor</item>
+        <item>Privacy</item>
+        <item>Mute</item>
+        <item>Landscape</item>
+        <item>Watermarking</item>
+        <item>Audio-Only Stream</item>
+        <item>Playback Mirror</item>
+        <item>Back Flashlight</item>
+        <item>Tap to Adjust Focus/Exposure</item>
+        <item>Pinch to Zoom</item>
+    </string-array>
+
+</resources>

@@ -25,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
-            android:singleLine="true"
             android:text="@string/livepusher_another_phone_scan_or_copy"
             android:textColor="@color/livepusher_text_gray"
             android:textSize="12sp" />
@@ -45,7 +44,7 @@
 
             <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
                 android:id="@+id/livepusher_rb_rtmp"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:paddingTop="10dp"
@@ -63,7 +62,7 @@
 
             <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
                 android:id="@+id/livepusher_rb_realtime"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="34dp"

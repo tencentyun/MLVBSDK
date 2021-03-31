@@ -189,7 +189,7 @@ public class LiveRoomActivity extends CommonAppCompatActivity implements LiveRoo
         if (!TextUtils.isEmpty(userNameFromSp)) {
             mUserName = userNameFromSp;
         } else {
-            mUserName = NameGenerator.getRandomName();
+            mUserName = NameGenerator.getRandomName(this);
             sp.edit().putString("userName", mUserName).commit();
         }
         SharedPreferences spf = getSharedPreferences("com.tencent.demo", Context.MODE_PRIVATE);

@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="腾讯云TRTC实时互动"
+                android:text="@string/app_title_trtc"
                 android:layout_centerInParent="true"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="version = 1.0"
+            android:text="@string/app_tv_main_version"
             android:textColor="@color/textColorSecond"
             android:textSize="12sp" />
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="本APP用于展示腾讯视频云实时音视频服务的各类功能"
+            android:text="@string/app_tv_main_bottom_hint"
             android:textColor="@color/textColorSecond"
             android:textSize="12sp" />
 

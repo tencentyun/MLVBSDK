@@ -864,7 +864,7 @@ public class MLVBLiveRoomImpl extends MLVBLiveRoom implements HttpRequests.Heart
     public void joinAnchor(final IMLVBLiveRoomListener.JoinAnchorCallback callback) {
         TXCLog.i(TAG, "API -> joinAnchor");
         if (mCurrRoomID == null || mCurrRoomID.length() == 0) {
-            callbackOnThread(callback, "onError", LiveRoomErrorCode.ERROR_NOT_IN_ROOM, "[LiveRoom] 观众进入连麦失败[房间号为空，请确认是否已经进房]");
+            callbackOnThread(callback, "onError", LiveRoomErrorCode.ERROR_NOT_IN_ROOM, mAppContext.getString(R.string.mlvb_RoomService_not_in_room));
             return;
         }
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="livepusher_camera_push">Push from Camera</string>
+    <string name="livepusher_close">Close</string>
+    <string name="livepusher_coding_rate">Encoding Rate</string>
+    <string name="livepusher_upload_speed">Upload Speed</string>
+    <string name="livepusher_model">Model</string>
+    <string name="livepusher_version">Android</string>
+    <string name="livepusher_fps">FPS</string>
+    <string name="livepusher_gop">GOP</string>
+    <string name="livepusher_step1">Stage 1</string>
+    <string name="livepusher_step1_value">Check address validity</string>
+    <string name="livepusher_step2">Stage 2</string>
+    <string name="livepusher_step2_value">Connected to cloud server</string>
+    <string name="livepusher_step3">Stage 3</string>
+    <string name="livepusher_step3_value">Camera turned on</string>
+    <string name="livepusher_step4">Stage 2</string>
+    <string name="livepusher_step4_value">Encoder started</string>
+    <string name="livepusher_step5">Stage 5</string>
+    <string name="livepusher_step5_value">Starting push</string>
+    <string name="livepusher_hardcode">Encoder [hardware] started</string>
+    <string name="livepusher_softcode">Encoder [software] started</string>
+    <string name="livepusher_input_push_url">Enter a push address</string>
+    <string name="livepusher_check_url">Check address validity</string>
+    <string name="livepusher_url_illegal">Invalid push address. Only RTMP is supported currently.</string>
+    <string name="livepusher_license_check_fail">License verification failed</string>
+    <string name="livepusher_license_click_info">For details, see</string>
+    <string name="livepusher_license_click_use_info">For details, see [License</string>
+    <string name="livepusher_push_fail">Push failed</string>
+    <string name="livepusher_comfirm">OK</string>
+    <string name="livepusher_send">Send</string>
+    <string name="livepusher_receive_event">receive event: </string>
+    <string name="livepusher_pushing_start_stop_retry_push">Streams being pushed. Enabling/Disabling zoom will restart the push.</string>
+    <string name="livepusher_pushing_start_stop_retry_push_by_focus">Streams being pushed. Enabling/Disabling manual focus will restart the push.</string>
+    <string name="livepusher_screenshot_success">Screenshot taken</string>
+    <string name="livepusher_screenshot_fail">Failed to take screenshot</string>
+    <string name="livepusher_screenshot_fail_push">Failed to take screenshot. Please push streams first.</string>
+    <string name="livepusher_share_pic">Share Image</string>
+    <string name="livepusher_network_warning_hint">Poor network conditions. Please move closer to your router and avoid walls.</string>
+    <string name="livepusher_local_snapshot">Local Screenshot</string>
+    <string name="livepusher_snapshot">Take</string>
+    <string name="livepusher_send_message">Send Message</string>
+    <string name="livepusher_empty_message">Send Message</string>
+    <string name="livepusher_error_drop_frame">Severe frame drops</string>
+    <string name="livepusher_video_quality">Image Quality</string>
+    <string name="livepusher_audio_quality">Sound Quality</string>
+    <string name="livepusher_primary_clip">Copied to clipboard</string>
+    <string name="livepusher_realtime">Low Latency</string>
+    <string name="livepusher_play_hint">Test with two phones</string>
+    <string name="livepusher_play_hint_1">1. On phone A, generate a push address and start streaming.</string>
+    <string name="livepusher_play_hint_2">2. On phone B, enter the address or scan the QR code to pull streams for playback.</string>
+    <string name="livepusher_auto_fetch_url">Auto-generate</string>
+    <string name="livepusher_have_push_url">I have a push address</string>
+    <string name="livepusher_start_push">Start Push</string>
+    <string name="livepusher_fetch_url">Getting address</string>
+    <string name="livepusher_play_url_generated_success">Playback address generated</string>
+    <string name="livepusher_another_phone_scan_or_copy">Use the other phone to scan the QR code or copy the address for playback testing</string>
+    <string name="livepusher_copy_play_url">Copy Address</string>
+    <string name="livepusher_setting">Setting</string>
+    <string name="livepusher_audio_quality_speech">Voice</string>
+    <string name="livepusher_audio_quality_default">Standard</string>
+    <string name="livepusher_audio_quality_music">Music</string>
+
+</resources>

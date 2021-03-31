@@ -50,28 +50,35 @@
             android:textColor="@color/livepusher_white"
             android:textSize="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <HorizontalScrollView
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
-            android:id="@+id/livepusher_rb_audio_quality_speech"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
+                    android:id="@+id/livepusher_rb_audio_quality_speech"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
-            android:id="@+id/livepusher_rb_audio_quality_default"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp" />
+                <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
+                    android:id="@+id/livepusher_rb_audio_quality_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp" />
 
-        <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
-            android:id="@+id/livepusher_rb_audio_quality_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp" />
+                <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
+                    android:id="@+id/livepusher_rb_audio_quality_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp" />
 
+            </LinearLayout>
+        </HorizontalScrollView>
     </LinearLayout>
 
     <com.tencent.liteav.demo.livepusher.camerapush.ui.view.CheckSelectView

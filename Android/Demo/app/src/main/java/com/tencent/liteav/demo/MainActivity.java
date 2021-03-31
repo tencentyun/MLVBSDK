@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTvVersion = (TextView) findViewById(R.id.main_tv_version);
-        mTvVersion.setText("Smart版本 v" + TXLiveBase.getSDKVersionStr()+"(8.5.677)");
+        mTvVersion.setText(getString(R.string.app_tv_smart_version, TXLiveBase.getSDKVersionStr()+"(8.5.662)"));
 
         mMainTitle = (TextView) findViewById(R.id.main_title);
         mMainTitle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
                             intent.setType("application/octet-stream");
                             //intent.setPackage("com.tencent.mobileqq");
                             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(logFile));
-                            startActivity(Intent.createChooser(intent, "分享日志"));
+                            startActivity(Intent.createChooser(intent, getString(R.string.app_title_share_log)));
                         }
                     }
                 });
@@ -132,8 +132,8 @@ public class MainActivity extends Activity {
     private void showLogoutDialog() {
         if (mAlertDialog == null) {
             mAlertDialog = new AlertDialog.Builder(this, R.style.common_alert_dialog)
-                    .setMessage("确定要退出登录吗？")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    .setMessage(getString(R.string.app_dialog_log_out))
+                    .setPositiveButton(getString(R.string.btn_ok), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // 执行退出登录操作
@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
                             });
                         }
                     })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.btn_cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -172,14 +172,14 @@ public class MainActivity extends Activity {
     public void onBackPressed() {
         //退出登录
         AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.common_alert_dialog)
-                .setMessage("确定要退出APP吗？")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                .setMessage(getString(R.string.app_dialog_exit_app))
+                .setPositiveButton(getString(R.string.btn_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.btn_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -201,13 +201,13 @@ public class MainActivity extends Activity {
 
         // 直播
         List<ChildBean> pusherChildList = new ArrayList<>();
-        pusherChildList.add(new ChildBean("推流演示（摄像头推流）", R.drawable.push, 0, CameraPushEntranceActivity.class));
-        pusherChildList.add(new ChildBean("拉流演示", R.drawable.live, 0, LivePlayerEntranceActivity.class));
-        pusherChildList.add(new ChildBean("连麦演示", R.drawable.room_live, 0, LiveRoomActivity.class));
+        pusherChildList.add(new ChildBean(getString(R.string.app_item_live_pusher), R.drawable.push, 0, CameraPushEntranceActivity.class));
+        pusherChildList.add(new ChildBean(getString(R.string.app_item_live_player), R.drawable.live, 0, LivePlayerEntranceActivity.class));
+        pusherChildList.add(new ChildBean(getString(R.string.app_item_link_mic), R.drawable.room_live, 0, LiveRoomActivity.class));
         if (pusherChildList.size() != 0) {
             // 这个是网页链接，配合build.sh避免在如ugc_smart版中出现
-            pusherChildList.add(new ChildBean("小直播", R.drawable.xiaozhibo, 0, null));
-            GroupBean pusherGroupBean = new GroupBean("移动直播 MLVB", R.drawable.room_live, pusherChildList);
+            pusherChildList.add(new ChildBean(getString(R.string.app_item_xiao_zhi_bo), R.drawable.xiaozhibo, 0, null));
+            GroupBean pusherGroupBean = new GroupBean(getString(R.string.app_item_mlvb), R.drawable.room_live, pusherChildList);
             groupList.add(pusherGroupBean);
         }
 

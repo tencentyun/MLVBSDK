@@ -7,8 +7,8 @@
     <string name="livepusher_upload_speed">上传网速</string>
     <string name="livepusher_model">机型</string>
     <string name="livepusher_version">Android系统版本</string>
-    <string name="livepusher_fps">"FPS</string>
-    <string name="livepusher_gop">"GOP</string>
+    <string name="livepusher_fps">FPS</string>
+    <string name="livepusher_gop">GOP</string>
     <string name="livepusher_step1">阶段一</string>
     <string name="livepusher_step1_value">检查地址合法性</string>
     <string name="livepusher_step2">阶段二</string>

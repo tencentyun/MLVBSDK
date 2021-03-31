@@ -1,3 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="mlvb_names">
+        <item>宋 江</item>
+        <item>卢俊义</item>
+        <item>吴 用</item>
+        <item>林 冲</item>
+        <item>秦 明</item>
+        <item>呼延灼</item>
+        <item>花 荣</item>
+        <item>李 应</item>
+        <item>鲁智深</item>
+        <item>武 松</item>
+        <item>董 平</item>
+        <item>张 清</item>
+        <item>扬 志</item>
+        <item>徐 宁</item>
+        <item>阮小二</item>
+        <item>扈三娘</item>
+        <item>韩滔</item>
+        <item>萧让</item>
+        <item>裴宣</item>
+        <item>樊瑞</item>
+        <item>圣李衮</item>
+        <item>汤隆</item>
+        <item>郑天寿</item>
+        <item>梦奇</item>
+        <item>苏烈</item>
+        <item>大乔</item>
+        <item>小乔</item>
+        <item>成吉思汗</item>
+        <item>诸葛亮</item>
+        <item>后羿</item>
+        <item>露娜</item>
+        <item>吕布</item>
+        <item>刘邦</item>
+        <item>雅典娜</item>
+        <item>东皇太一</item>
+        <item>李元芳</item>
+        <item>花木兰</item>
+        <item>兰陵王</item>
+    </string-array>
 </resources>

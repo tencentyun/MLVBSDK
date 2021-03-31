@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">腾讯云工具包</string>
 
     <string name="btn_cancel">取消</string>
@@ -12,10 +14,59 @@
     <string name="str_room_id_tips">输入房间号</string>
     <string name="str_user_id_tips">输入用户名</string>
 
+    <string name="main_privacy_text">点击查看<a href="http://privacy.qq.com/">隐私政策</a></string>
+    <string name="working">正在运行中</string>
+
     <string name="item_video_conferencing">多人视频会议</string>
     <string name="item_chat_room">语音聊天室</string>
     <string name="item_video_interactive_live_streaming">视频互动直播</string>
     <string name="item_voice_call">语音通话</string>
     <string name="item_video_call">视频通话</string>
     <string name="item_chat_salon">语音沙龙</string>
+
+    <string name="app_toast_login_success">登录成功</string>
+    <string name="app_toast_login_fail">登录IM失败，所有功能不可用[%d]%s</string>
+
+    <string name="app_tv_video_cloud_tools_version">视频云工具包 v%s</string>
+    <string name="app_title_share_log">分享日志</string>
+    <string name="app_dialog_log_out">确定要退出登录吗？</string>
+    <string name="app_dialog_exit_app">确定要退出APP吗？</string>
+
+    <string name="app_item_live_pusher">推流演示（摄像头推流）</string>
+    <string name="app_item_live_player">拉流演示</string>
+    <string name="app_item_link_mic_new">连麦演示（新方案）</string>
+    <string name="app_item_link_mic_old">连麦演示（旧方案）</string>
+    <string name="app_item_link_mic">连麦演示</string>
+    <string name="app_item_xiao_zhi_bo">小直播</string>
+    <string name="app_item_mlvb">移动直播 MLVB</string>
+
+    <string name="app_item_super_player">超级播放器</string>
+    <string name="app_item_player">播放器 Player</string>
+
+    <string name="app_item_video_recording">视频录制</string>
+    <string name="app_item_effects_editor">特效编辑</string>
+    <string name="app_item_video_stitching">视频拼接</string>
+    <string name="app_item_picture_transition">图片转场</string>
+    <string name="app_item_video_upload">视频上传</string>
+    <string name="app_item_xiao_shi_pin">小视频</string>
+    <string name="app_item_ugsv">短视频 UGSV</string>
+
+    <string name="app_item_trtc">实时音视频 TRTC</string>
+    <string name="app_title_trtc">腾讯云TRTC实时互动</string>
+
+    <string name="app_tv_smart_version">Smart版本 v%s</string>
+    <string name="app_tv_main_title">腾讯视频云</string>
+    <string name="app_tv_main_version">version = 1.0</string>
+    <string name="app_tv_main_bottom_hint">本APP用于展示腾讯视频云终端产品的各类功能</string>
+
+    <string name="app_tv_super_player_version">超级播放器版本 v%s</string>
+
+    <string name="app_tv_trtc_version">腾讯云 TRTC v%s</string>
+    <string name="app_tv_video_conferencing_tips">语音自动降噪、视频画质超高清，适用于在线会议、远程培训、小班课等场景。</string>
+    <string name="app_tv_chat_room_tips">内含变声、音效、混响、背景音乐等声音玩法，适用于闲聊房、K歌房、开黑房等语聊场景。</string>
+    <string name="app_tv_video_interactive_live_streaming_tips">低延时、十万人高并发的大型互动直播解决方案，观众时延低至800ms，上下麦切换免等待。</string>
+    <string name="app_tv_voice_call_tips">48kHz高音质，60%丢包可正常语音通话，领先行业的3A处理，杜绝回声和啸叫。</string>
+    <string name="app_tv_video_call_tips">支持720P/1080P高清画质，50%丢包率可正常视频通话，自带美颜、挂件、抠图等AI特效。</string>
+
+    <string name="app_tv_ugc_version">腾讯云 UGC v%s</string>
 </resources>

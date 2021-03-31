@@ -12,10 +12,59 @@
     <string name="str_room_id_tips">Input Room Id</string>
     <string name="str_user_id_tips">Input Username</string>
 
+    <string name="main_privacy_text">click<a href="http://privacy.qq.com/">privacy policy</a></string>
+    <string name="working">Running</string>
+
     <string name="item_video_conferencing">Video Conferencing</string>
     <string name="item_chat_room">Audio Chat Room</string>
     <string name="item_video_interactive_live_streaming">Interactive Video</string>
     <string name="item_voice_call">Audio Call</string>
     <string name="item_video_call">Video Call</string>
     <string name="item_chat_salon">Chat Salon</string>
+
+    <string name="app_toast_login_success">Logged in</string>
+    <string name="app_toast_login_fail">Login failed [%d]%s</string>
+
+    <string name="app_tv_video_cloud_tools_version">Video Cloud Toolkit v%s</string>
+    <string name="app_title_share_log">Share Logs</string>
+    <string name="app_dialog_log_out">Are you sure you want to log out?</string>
+    <string name="app_dialog_exit_app">Are you sure you want to exit?</string>
+
+    <string name="app_item_live_pusher">Push (Camera)</string>
+    <string name="app_item_live_player">Pull</string>
+    <string name="app_item_link_mic_new">Co-anchoring (New)</string>
+    <string name="app_item_link_mic_old">Co-anchoring (Old)</string>
+    <string name="app_item_link_mic">Co-anchoring</string>
+    <string name="app_item_xiao_zhi_bo">LVB Lite</string>
+    <string name="app_item_mlvb">MLVB</string>
+
+    <string name="app_item_super_player">Superplayer</string>
+    <string name="app_item_player">Player</string>
+
+    <string name="app_item_video_recording">Shooting</string>
+    <string name="app_item_effects_editor">Special Effects</string>
+    <string name="app_item_video_stitching">Video Splicing</string>
+    <string name="app_item_picture_transition">Image Transition</string>
+    <string name="app_item_video_upload">Video Upload</string>
+    <string name="app_item_xiao_shi_pin">UGSV App</string>
+    <string name="app_item_ugsv">UGSV</string>
+
+    <string name="app_item_trtc">TRTC</string>
+    <string name="app_title_trtc">TRTC Interaction</string>
+
+    <string name="app_tv_smart_version">Smart v%s</string>
+    <string name="app_tv_main_title">Tencent Video Cloud</string>
+    <string name="app_tv_main_version">version = 1.0</string>
+    <string name="app_tv_main_bottom_hint">This app demonstrates the features of Tencent Video Cloud terminal products.</string>
+
+    <string name="app_tv_super_player_version">Superplayer v%s</string>
+
+    <string name="app_tv_trtc_version">TRTC v%s</string>
+    <string name="app_tv_video_conferencing_tips">Noise cancellation and HD videos, suitable for online conferences, remote training, small classes, etc.</string>
+    <string name="app_tv_chat_room_tips">Voice change, audio effects, and background music, suitable for chat rooms, karaoke, gaming chat, etc.</string>
+    <string name="app_tv_video_interactive_live_streaming_tips">Watch latency as low as 800 ms, and no waiting periods for mic on/off, suitable for low-latency and high-concurrency live streaming (up to 100,000 participants)</string>
+    <string name="app_tv_voice_call_tips">48 kHz sample rate, uninterrupted even when packet loss reaches 60%, and leading audio processing technologies to eliminate echo and feedback</string>
+    <string name="app_tv_video_call_tips">1080p UHD videos, uninterrupted even when packet loss reaches 50%, and built-in beauty filters to ensure premium video call experience</string>
+
+    <string name="app_tv_ugc_version">Tencent Cloud UGC v%s</string>
 </resources>
