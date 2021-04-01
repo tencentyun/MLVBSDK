@@ -2,4 +2,4 @@
 
 ## 下载地址
 
-[下载 Android MLVB SDK](https://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_Smart_Android_latest.zip)
+[下载 Android MLVB SDK](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_Smart_Android_latest.zip)
