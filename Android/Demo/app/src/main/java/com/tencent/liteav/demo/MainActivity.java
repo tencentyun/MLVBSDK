@@ -111,12 +111,12 @@ public class MainActivity extends Activity {
             public void onChildClicked(GroupBean groupItem, ChildBean childItem) {
                 if (childItem.mIconId == R.drawable.xiaoshipin) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://liteav.sdk.qcloud.com/app/install/XiaoShiPin.apk"));
+                    intent.setData(Uri.parse("https://dldir1.qq.com/hudongzhibo/liteav/XiaoShiPin.apk"));
                     startActivity(intent);
                     return;
                 } else if (childItem.mIconId == R.drawable.xiaozhibo) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://liteav.sdk.qcloud.com/app/install/xiaozhibo.apk"));
+                    intent.setData(Uri.parse("https://dldir1.qq.com/hudongzhibo/liteav/xiaozhibo.apk"));
                     startActivity(intent);
                     return;
                 }
