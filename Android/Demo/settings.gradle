@@ -10,3 +10,11 @@ include ':audioeffectsettingkit'
 include ':liveplayerdemo'
 include ':livepusherdemo'
 include ':livelinkmicdemoold'
+
+if (!liteavSourcePath.isEmpty()) {
+    apply from: new File(settingsDir, '../source_link_gradle/liteav_source_settings.gradle').getAbsolutePath()
+}
+
+if (!videoEngineSourcePath.isEmpty()) {
+    apply from: new File(settingsDir, '../source_link_gradle/videoengine_source_settings.gradle').getAbsolutePath()
+}

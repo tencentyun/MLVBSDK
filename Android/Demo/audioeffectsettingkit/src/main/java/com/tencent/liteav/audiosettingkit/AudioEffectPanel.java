@@ -82,9 +82,9 @@ public class AudioEffectPanel extends FrameLayout {
     private ImageButton mImgbtnBGMPlay;
     private TXAudioEffectManager mAudioEffectManager;
     private BGMListener mBGMPlayListenr;
-    private static final String ONLINE_BGM_FIRST = "https://liteav.sdk.qcloud.com/app/res/bgm/testmusic1.mp3";
-    private static final String ONLINE_BGM_SECOND = "https://liteav.sdk.qcloud.com/app/res/bgm/testmusic2.mp3";
-    private static final String ONLINE_BGM_THIRD = "https://liteav.sdk.qcloud.com/app/res/bgm/testmusic3.mp3";
+    private static final String ONLINE_BGM_FIRST = "http://liteav.sdk.qcloud.com/app/res/bgm/testmusic1.mp3";
+    private static final String ONLINE_BGM_SECOND = "http://liteav.sdk.qcloud.com/app/res/bgm/testmusic2.mp3";
+    private static final String ONLINE_BGM_THIRD = "http://liteav.sdk.qcloud.com/app/res/bgm/testmusic3.mp3";
 
     private int     mBGMId     = -1;
     private float   mPitch     = 0;
@@ -390,7 +390,7 @@ public class AudioEffectPanel extends FrameLayout {
         list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_luoli), R.drawable.audio_effect_setting_changetype_luoli, AUDIO_VOICECHANGER_TYPE_2));
         list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_dashu), R.drawable.audio_effect_setting_changetype_dashu, AUDIO_VOICECHANGER_TYPE_3));
         list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_metal), R.drawable.audio_effect_setting_changetype_metal, AUDIO_VOICECHANGER_TYPE_4));
-        list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_sick), R.drawable.audio_effect_setting_changetype_sick, AUDIO_VOICECHANGER_TYPE_5));
+//        list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_sick), R.drawable.audio_effect_setting_changetype_sick, AUDIO_VOICECHANGER_TYPE_5));
         list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_foreign), R.drawable.audio_effect_setting_changetype_foreign, AUDIO_VOICECHANGER_TYPE_6));
         list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_kunsou), R.drawable.audio_effect_setting_changetype_kunsou, AUDIO_VOICECHANGER_TYPE_7));
         list.add(new ItemEntity(getResources().getString(R.string.audio_effect_setting_changetype_feizai), R.drawable.audio_effect_setting_changetype_feizai, AUDIO_VOICECHANGER_TYPE_8));

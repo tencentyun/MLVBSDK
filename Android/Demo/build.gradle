@@ -8,6 +8,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
+        if (!videoEngineSourcePath.isEmpty()) {
+            classpath 'me.tatarka:gradle-retrolambda:3.7.1'
+        }
 
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -30,13 +33,25 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+if (!liteavSourcePath.isEmpty()) {
+    apply from: new File(getRootDir().getPath(), "../source_link_gradle/liteav_source_build.gradle").getAbsolutePath()
+}
+
+if (!videoEngineSourcePath.isEmpty()) {
+    apply from: new File(getRootDir().getPath(), "../source_link_gradle/videoengine_source_build.gradle").getAbsolutePath()
+}
+
 ext {
     compileSdkVersion = 26
     buildToolsVersion = "28.0.3"
     supportSdkVersion = "26.0.1"
     minSdkVersion = 19
     targetSdkVersion = 26
+    if (!liteavSourcePath.isEmpty()) {
     liteavSdk="com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release"
+    } else {
+    liteavSdk="com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release"
+    }
     imSdk = 'com.tencent.imsdk:imsdk:4.9.1'
     versionCode = 1
     versionName = "v1.0"
