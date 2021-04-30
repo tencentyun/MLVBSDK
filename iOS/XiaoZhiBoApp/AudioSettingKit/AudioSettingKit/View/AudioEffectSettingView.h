@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, AudioEffectSettingViewType) {
 
 @property(nonatomic, weak)id<AudioEffectViewDelegate> delegate;
 
++ (CGFloat)height;
 
 - (instancetype)initWithType:(AudioEffectSettingViewType)type;
 - (instancetype)initWithType:(AudioEffectSettingViewType)type theme:(TCASKitTheme *)theme;
@@ -43,6 +44,9 @@ typedef NS_ENUM(NSUInteger, AudioEffectSettingViewType) {
 
 /// 清除音效设置状态（再次恢复需要重新设置Manager）
 - (void)resetAudioSetting;
+
+/// 清除背景音乐播放状态 （主播暂停播放后需要恢复播放音乐的状态）
+- (void)resetBgmSelectItemStatus;
 
 @end
 

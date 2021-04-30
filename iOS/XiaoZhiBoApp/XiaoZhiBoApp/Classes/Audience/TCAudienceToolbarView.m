@@ -232,7 +232,6 @@
             make.centerY.equalTo(self->_btnChat.mas_centerY);
             make.right.equalTo(self).offset(-15);
         }];
-        
         //点赞
         _likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _likeBtn.frame = CGRectMake(0, 0, icon_size, icon_size);

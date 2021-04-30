@@ -8,7 +8,6 @@
 
 #import "TCUploadHelper.h"
 #import "TCUtil.h"
-#import "TCGlobalConfig.h"
 #import <QCloudCore/QCloudCore.h>
 #import <QCloudCOSXML/QCloudCOSXML.h>
 #import "QCloudAuthentationHeadV5Creator.h"
@@ -49,20 +48,18 @@ static TCUploadHelper *_shareInstance = nil;
 }
 
 - (void) setupCOSXMLShareService {
-    if ([kHttpServerAddr length] != 0) {
-        QCloudServiceConfiguration* configuration = [QCloudServiceConfiguration new];
-        
-        TCUserProfileData *infoData = [[TCUserProfileModel sharedInstance] getUserProfile];
-        configuration.appID =  infoData.appid;
-        configuration.signatureProvider = self;
-        QCloudCOSXMLEndPoint* endpoint = [[QCloudCOSXMLEndPoint alloc] init];
-        
-        endpoint.regionName = infoData.region;
-        configuration.endpoint = endpoint;
-        
-        [QCloudCOSXMLService registerCOSXMLWithConfiguration:configuration withKey:kTCHeadUploadCosKey];
-        [QCloudCOSTransferMangerService registerCOSTransferMangerWithConfiguration:configuration withKey:kTCHeadUploadCosKey];
-    }
+    QCloudServiceConfiguration* configuration = [QCloudServiceConfiguration new];
+    
+    TCUserProfileData *infoData = [[TCUserProfileModel sharedInstance] getUserProfile];
+    configuration.appID =  infoData.appid;
+    configuration.signatureProvider = self;
+    QCloudCOSXMLEndPoint* endpoint = [[QCloudCOSXMLEndPoint alloc] init];
+    
+    endpoint.regionName = infoData.region;
+    configuration.endpoint = endpoint;
+    
+    [QCloudCOSXMLService registerCOSXMLWithConfiguration:configuration withKey:kTCHeadUploadCosKey];
+    [QCloudCOSTransferMangerService registerCOSTransferMangerWithConfiguration:configuration withKey:kTCHeadUploadCosKey];
 }
 
 - (void) signatureWithFields:(QCloudSignatureFields*)fileds
@@ -84,24 +81,6 @@ static TCUploadHelper *_shareInstance = nil;
         if (completion)
         {
             completion(-30001, nil);
-        }
-        return;
-    }
-    
-    // 没有配置后台服务器地址，不支持图片上传
-    if ([kHttpServerAddr length] == 0) {
-        if (completion)
-        {
-            completion(kError_NotSupport, nil);
-        }
-        return;
-    }
-    
-    // 没有配置后台服务器地址，不支持图片上传
-    if ([kHttpServerAddr length] == 0) {
-        if (completion)
-        {
-            completion(kError_NotSupport, nil);
         }
         return;
     }
@@ -204,6 +183,36 @@ static TCUploadHelper *_shareInstance = nil;
             handler(errCode);
         }
     }];
+    
+//    NSDictionary* dictParam = @{@"Action" : @"GetCOSSignV2"};
+//    [TCUtil asyncSendHttpRequest:dictParam handler:^(int result, NSDictionary *resultDict) {
+//        if (result != 0)
+//        {
+//            DebugLog(@"getCOSSign failed");
+//            handler(result);
+//        }
+//        else
+//        {
+//            NSString* strSignKey = nil;
+//            NSString* strKeyTime = nil;
+//            if (resultDict && [resultDict objectForKey:@"signKey"])
+//            {
+//                strSignKey = resultDict[@"signKey"];
+//            }
+//            if (resultDict && [resultDict objectForKey:@"keyTime"])
+//            {
+//                strKeyTime = resultDict[@"keyTime"];
+//            }
+//
+//
+//            if (_creator == nil) {
+//                _creator = [[QCloudAuthentationHeadV5Creator alloc] initWithSignKey:kTCCOSSecretId signKey:strSignKey keyTime:strKeyTime];
+//            } else {
+//                [_creator setSignKey:kTCCOSSecretId signKey:strSignKey keyTime:strKeyTime];
+//            }
+//            handler(result);
+//        }
+//    }];
 }
 
 @end
