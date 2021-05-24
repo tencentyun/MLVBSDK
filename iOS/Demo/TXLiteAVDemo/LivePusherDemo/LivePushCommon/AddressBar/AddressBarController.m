@@ -72,12 +72,12 @@ static NSString * const CellIdentifier = @"Cell";
     if (self.qrPresentView) {
         CGRect frame = UIEdgeInsetsInsetRect(self.qrPresentView.bounds, UIEdgeInsetsMake(90, 15, 80, 15));
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        CGFloat h_size = (CGRectGetWidth(frame) - 20) /2;
-        CGFloat v_size = (CGRectGetHeight(frame) - 20) / 2;
+        CGFloat h_size = (CGRectGetWidth(frame) - 30) / 3;
+        CGFloat v_size = (CGRectGetHeight(frame) - 30) / 3;
         CGFloat size = MIN(h_size, v_size);
         layout.itemSize = CGSizeMake(size, size);
-        layout.minimumInteritemSpacing = 20;
-        layout.minimumLineSpacing = 20;
+        layout.minimumInteritemSpacing = 10;
+        layout.minimumLineSpacing = 10;
         
         CGFloat height = ceil(self.qrStrings.count / 2) * (size + 20) - 20;
         frame.size.height = MIN(height, frame.size.height);

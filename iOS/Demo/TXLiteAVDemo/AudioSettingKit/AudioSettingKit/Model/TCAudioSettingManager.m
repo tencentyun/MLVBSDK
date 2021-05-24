@@ -106,7 +106,7 @@
         [self.manager stopPlayMusic:_bgmID];
         _bgmID = 0;
         self.currentMusicPath = nil;
-        if (self.delegate && [self.delegate respondsToSelector:@selector(onStartPlayMusic)]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onStopPlayerMusic)]) {
             [self.delegate onStopPlayerMusic];
         }
     }
@@ -133,6 +133,8 @@
     }
     [self setVoiceVolume:100];
     [self setBGMVolume:100];
+    [self setVoiceChangerTypeWithValue:0];
+    [self setReverbTypeWithValue:0];
     self.manager = nil;
 }
 

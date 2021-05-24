@@ -81,10 +81,11 @@
 {
     _showQRCode = showQRCode;
     if (showQRCode) {
-        _textField.leftView = _showQRButton;
-        _textField.leftViewMode = UITextFieldViewModeUnlessEditing;
         CGFloat size = _textField.frame.size.height - 4;
         _showQRButton.frame = CGRectMake(0, 0, size, size);
+        _showQRButton.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        _textField.leftView = _showQRButton;
+        _textField.leftViewMode = UITextFieldViewModeAlways;
     } else {
         _textField.leftView = nil;
         _textField.leftViewMode = UITextFieldViewModeNever;

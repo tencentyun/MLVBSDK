@@ -9,6 +9,7 @@
 #import "LiveRoomMsgListTableViewCell.h"
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
+#import "AppLocalized.h"
 
 @implementation LiveRoomMsgModel
 
@@ -67,7 +68,7 @@
     
     // 系统消息
     if (msgModel.type == LiveRoomMsgModeTypeSystem) {
-        NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"系统消息: %@\r\n", msgModel.userMsg]];
+        NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@: %@\r\n", LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomMsgList.systemmessage"), msgModel.userMsg]];
         [attributed appendAttributedString:msg];
         
         [attributed addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, attributed.length)];
@@ -80,7 +81,7 @@
     NSMutableAttributedString *userName = nil;
     UIColor *color = nil;
     if (msgModel.type == LiveRoomMsgModeTypeOneself) {
-        userName = [[NSMutableAttributedString alloc] initWithString:@"我 "];
+        userName = [[NSMutableAttributedString alloc] initWithString:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomMsgList.me")];
         color = UIColorFromRGB(0x999999);
     } else {
         userName = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ ", msgModel.userName]];

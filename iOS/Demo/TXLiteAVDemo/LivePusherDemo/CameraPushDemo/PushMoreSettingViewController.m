@@ -6,7 +6,7 @@
 
 #import "PushMoreSettingViewController.h"
 #import "UIView+Additions.h"
-
+#import "AppLocalized.h"
 
 /* 列表项 */
 #define CELL_DISABLE_VIDEO          0
@@ -81,7 +81,7 @@
     _zoomSwitch           = [self createUISwitch:TAG_ZOOM on:[PushMoreSettingViewController isEnableVideoZoom]];
     _pureAudioSwitch      = [self createUISwitch:TAG_PURE_AUDIO on:[PushMoreSettingViewController isEnablePureAudioPush]];
     
-    _snapShotButton       = [self createButtonWithTitle:@"截图" action:@selector(onSnapShot:)];
+    _snapShotButton       = [self createButtonWithTitle:LivePlayerLocalize(@"LivePusherDemo.MoreSetting.screenshots") action:@selector(onSnapShot:)];
     _messageView          = [self createMessageView];
 }
 
@@ -118,7 +118,7 @@
     _messageField.delegate = self;
     _messageField.backgroundColor = [UIColor whiteColor];
     [panel addSubview:_messageField];
-    UIButton* sendButton = [self createButtonWithTitle:@"发送" action:@selector(onSendMessage:)];
+    UIButton* sendButton = [self createButtonWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.send") action:@selector(onSendMessage:)];
     sendButton.frame = CGRectMake(150, 0, 50, 30);
     [panel addSubview:sendButton];
     
@@ -226,87 +226,87 @@
     
     switch (indexPath.row) {
         case CELL_DISABLE_VIDEO: {
-            cell.textLabel.text = @"开启隐私模式";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.enableprivacymode");
             cell.accessoryView = _disableVideoSwitch;
             
             break;
         }
             
         case CELL_MUTE_AUDIO: {
-            cell.textLabel.text = @"开启静音模式";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.turnonmutemode");
             cell.accessoryView = _muteAudioSwitch;
             
             break;
         }
             
         case CELL_MIRROR: {
-            cell.textLabel.text = @"开启观看端镜像";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.turnonviewmirror");
             cell.accessoryView = _mirrorSwitch;
             
             break;
         }
             
         case CELL_TORCH: {
-            cell.textLabel.text = @"开启后置闪光灯";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.turnontherearflash");
             cell.accessoryView = _torchSwitch;
             
             break;
         }
             
         case CELL_HORIZONTAL_PUSH: {
-            cell.textLabel.text = @"开启横屏推流";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.turnonhorizontalpushflow");
             cell.accessoryView = _horizontalPushSwitch;
             
             break;
         }
             
         case CELL_DEBUG_LOG: {
-            cell.textLabel.text = @"开启调试日志";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.openingdebuglog");
             cell.accessoryView = _debugLogSwitch;
             
             break;
         }
             
         case CELL_WARTERMARK: {
-            cell.textLabel.text = @"添加图像水印";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.addwatermark");
             cell.accessoryView = _watermarkSwitch;
             
             break;
         }
             
         case CELL_DELAY_CHECK: {
-            cell.textLabel.text = @"延迟测定工具条";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.delaymeasurementbar");
             cell.accessoryView = _delayCheckSwitch;
             
             break;
         }
             
         case CELL_TOUCH_FOCUS: {
-            cell.textLabel.text = @"手动点击曝光对焦";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.manuallyclickexposureandfocus");
             cell.accessoryView = _touchFocusSwitch;
             
             break;
         }
         case CELL_ZOOM: {
-            cell.textLabel.text = @"手势放大预览画面";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.gesturetozoominonthepreview");
             cell.accessoryView = _zoomSwitch;
             
             break;
         }
         case CELL_PURE_AUDIO: {
-            cell.textLabel.text = @"开启纯音频推流";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.enableaudiopushstream");
             cell.accessoryView = _pureAudioSwitch;
             
             break;
         }
         case CELL_SNAPSHOT: {
-            cell.textLabel.text = @"本地截图";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.localscreenshots");
             cell.accessoryView = _snapShotButton;
             
             break;
         }
         case CELL_SEND_MESSAGE: {
-            cell.textLabel.text = @"发送消息";
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.sendmessage");
             cell.accessoryView = _messageView;
             
             break;

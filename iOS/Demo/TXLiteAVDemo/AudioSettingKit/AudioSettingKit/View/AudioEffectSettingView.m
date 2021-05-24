@@ -505,6 +505,10 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     [self.viewModel resetStatus];
 }
 
+- (void)resetBgmSelectItemStatus {
+    [self.musicSelectItemView selectMusic:@""];
+}
+
 -(void)onPlayingWithCurrent:(NSInteger)currentSec total:(NSInteger)totalSec {
     NSString *currentStr = [self switchSecondToTimeStr:currentSec];
     NSString *totalString = [self switchSecondToTimeStr:totalSec];

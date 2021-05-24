@@ -62,11 +62,10 @@
 		40E25FB6248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E25F9D248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m */; };
 		40E25FB924803F68005EB543 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 401A9A47247FB78F00C0763B /* libc++.tbd */; };
 		40E25FBE24804490005EB543 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		B2A646F44AB0894AB91ECE44 /* TXLiteAVSDK_Smart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3607943A305013B3C86DBD /* TXLiteAVSDK_Smart.framework */; };
+		90CF263022ED8D9C229582A3 /* TXLiteAVSDK_Smart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E47057FC2E4901BA6D2DB6 /* TXLiteAVSDK_Smart.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D3607943A305013B3C86DBD /* TXLiteAVSDK_Smart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Smart.framework; path = ../../../SDK/TXLiteAVSDK_Smart.framework; sourceTree = "<group>"; };
 		401A9A40247FACAF00C0763B /* TCAudioSettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCAudioSettingManager.h; sourceTree = "<group>"; };
 		401A9A41247FACAF00C0763B /* TCAudioSettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCAudioSettingManager.m; sourceTree = "<group>"; };
 		401A9A47247FB78F00C0763B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -131,6 +130,7 @@
 		40E25F9B248029F8005EB543 /* ASMASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMASLayoutConstraint.h; sourceTree = "<group>"; };
 		40E25F9C248029F8005EB543 /* ASViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		40E25F9D248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASNSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		C7E47057FC2E4901BA6D2DB6 /* TXLiteAVSDK_Smart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Smart.framework; path = ../../../SDK/TXLiteAVSDK_Smart.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 				40E25FBE24804490005EB543 /* BuildFile in Frameworks */,
 				40E25FB924803F68005EB543 /* libc++.tbd in Frameworks */,
 				40D08707249C9D460055F9A6 /* AssetsLibrary.framework in Frameworks */,
-				B2A646F44AB0894AB91ECE44 /* TXLiteAVSDK_Smart.framework in Frameworks */,
+				90CF263022ED8D9C229582A3 /* TXLiteAVSDK_Smart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +199,7 @@
 				40D08706249C9D460055F9A6 /* AssetsLibrary.framework */,
 				40D08703249C9C130055F9A6 /* Accelerate.framework */,
 				401A9A47247FB78F00C0763B /* libc++.tbd */,
-				3D3607943A305013B3C86DBD /* TXLiteAVSDK_Smart.framework */,
+				C7E47057FC2E4901BA6D2DB6 /* TXLiteAVSDK_Smart.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -643,6 +643,8 @@
 					"${SRCROOT}/../XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework/Headers/",
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Professional.framework/Headers/",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Professional.framework/Headers/",
+					"${SRCROOT}/../../../SDK/TXLiteAVSDK_International.framework/Headers/",
+					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_International.framework/Headers/",
 					"$(SRCROOT)/../../../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Smart.framework/Headers",
 				);
@@ -683,6 +685,8 @@
 					"${SRCROOT}/../XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework/Headers/",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Professional.framework/Headers/",
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Professional.framework/Headers/",
+					"${SRCROOT}/../../../SDK/TXLiteAVSDK_International.framework/Headers/",
+					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_International.framework/Headers/",
 					"$(SRCROOT)/../../../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Smart.framework/Headers",
 				);

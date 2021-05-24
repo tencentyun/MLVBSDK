@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "TXLiteAVDemo-Swift.h"
 #import "GenerateTestUserSig.h"
+#import "AppLocalized.h"
 
 // 正式使用时需要换成您自己的 User Sig 签发接口
 // 请参考 https://cloud.tencent.com/document/product/454/14548
@@ -61,8 +62,26 @@ static NSString * const kAPPID = @"1252463788";
     _liveRoom.delegate = self;
     
     _roomInfoArray = [[NSArray alloc] init];
-    _userNameArray = [[NSArray alloc] initWithObjects:@"李元芳", @"刘备", @"梦奇", @"王昭君", @"周瑜", @"鲁班", @"后裔", @"安其拉", @"亚瑟", @"曹操",
-                      @"百里守约", @"东皇太一", @"花木兰", @"诸葛亮", @"黄忠", @"不知火舞", @"钟馗", @"李白", @"娜可露露", @"张飞", nil];
+    _userNameArray = [[NSArray alloc] initWithObjects:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.lyf"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.lb"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.mq"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.wzj"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.zy"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.lb"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.hy"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.aql"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.as"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.cc"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.blsy"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.dhty"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.hml"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.zgl"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.hz"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.bzhw"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.zk"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.lb"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.nkll"),
+                      LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.zf"), nil];
     
     _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
     if (_userName == nil || _userName.length == 0) {
@@ -100,7 +119,7 @@ static NSString * const kAPPID = @"1252463788";
             weakSelf.initSucc = YES;
         } else {
             [self onLoginFailed];
-            [weakSelf alertTips:@"LiveRoom init失败" msg:errMsg];
+            [weakSelf alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.liveRoominitfailure") msg:errMsg];
         }
     }];
 }
@@ -108,7 +127,7 @@ static NSString * const kAPPID = @"1252463788";
 #pragma mark -
 - (void)onLoginSucceed {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_createBtn setTitle:@"新建直播间" forState:UIControlStateNormal];
+        [_createBtn setTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.createliveroom") forState:UIControlStateNormal];
         _createBtn.enabled = YES;
         [self requestRoomList];
     });
@@ -116,7 +135,7 @@ static NSString * const kAPPID = @"1252463788";
 
 - (void)onLoginFailed {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_createBtn setTitle:@"登录" forState:UIControlStateNormal];
+        [_createBtn setTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.login") forState:UIControlStateNormal];
         _createBtn.enabled = YES;
     });
 }
@@ -150,7 +169,7 @@ static NSString * const kAPPID = @"1252463788";
     
     _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(70*kScaleX, 200*kScaleY, self.view.width - 140*kScaleX, 60*kScaleY)];
     _tipLabel.textColor = UIColorFromRGB(0x999999);
-    _tipLabel.text = @"当前没有进行中的直播\n请点击新建直播间";
+    _tipLabel.text = [NSString stringWithFormat:@"%@\n%@",LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.thereisnolivebroadcastinprogress"),LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.pleaseclickonthenewbroadcastroom")];
     _tipLabel.textAlignment = NSTextAlignmentCenter;
     _tipLabel.numberOfLines = 2;
     _tipLabel.font = [UIFont systemFontOfSize:16];
@@ -179,8 +198,8 @@ static NSString * const kAPPID = @"1252463788";
     _createBtn.layer.shadowColor = UIColorFromRGB(0x019b5c).CGColor;
     _createBtn.layer.shadowOpacity = 0.8;
     _createBtn.backgroundColor = UIColorFromRGB(0x05a764);
-    [_createBtn setTitle:@"新建直播间" forState:UIControlStateNormal];
-    [_createBtn setTitle:@"登录中..." forState:UIControlStateDisabled];
+    [_createBtn setTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.createliveroom") forState:UIControlStateNormal];
+    [_createBtn setTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.inthelogin") forState:UIControlStateDisabled];
     [_createBtn addTarget:self action:@selector(onCreateBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_createBtn];
 
@@ -219,11 +238,11 @@ static NSString * const kAPPID = @"1252463788";
         dispatch_async(dispatch_get_main_queue(), ^{
             [self->_roomlistView reloadData];
             if (self->_roomInfoArray.count) {
-                self->_tipLabel.text = @"选择直播间点击进入";
+                self->_tipLabel.text = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.selectthebroadcastroomandclickin");
                 self->_tipLabel.frame = CGRectMake(14*kScaleX, 80*kScaleY, self.view.width, 30*kScaleY);
                 self->_tipLabel.textAlignment = NSTextAlignmentLeft;
             } else {
-                self->_tipLabel.text = @"当前没有进行中的直播\r\n请点击新建直播间";
+                self->_tipLabel.text = [NSString stringWithFormat:@"%@\r\n%@",LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.thereisnolivebroadcastinprogress"),LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.pleaseclickonthenewbroadcastroom")];
                 self->_tipLabel.frame = CGRectMake(70*kScaleX, 200*kScaleY, self.view.width - 140*kScaleX, 60*kScaleY);
                 self->_tipLabel.textAlignment = NSTextAlignmentCenter;
             }
@@ -302,7 +321,7 @@ static NSString * const kAPPID = @"1252463788";
 - (void)alertTips:(NSString *)title msg:(NSString *)msg {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         }]];
         
         [self.navigationController presentViewController:alertController animated:YES completion:nil];

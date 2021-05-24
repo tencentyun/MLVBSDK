@@ -14,6 +14,7 @@
 #import "LiveRoomMsgListTableView.h"
 #import "LiveRoomAccPlayerView.h"
 #import "TXLiteAVDemo-Swift.h"
+#import "AppLocalized.h"
 
 #if DEBUG
 #  define Log NSLog
@@ -182,7 +183,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
     _msgInputTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, _msgInputView.width - 80, _msgInputView.height)];
     _msgInputTextField.backgroundColor = UIColorFromRGB(0xfdfdfd);
     _msgInputTextField.returnKeyType = UIReturnKeySend;
-    _msgInputTextField.placeholder = @"输入文字内容";
+    _msgInputTextField.placeholder = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.entertextcontent");
     _msgInputTextField.delegate = self;
     _msgInputTextField.leftView = paddingView;
     _msgInputTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -191,7 +192,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
     
     _msgSendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _msgSendBtn.frame = CGRectMake(_msgInputView.width - 80, 0, 80, _msgInputView.height);
-    [_msgSendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [_msgSendBtn setTitle: LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.send") forState:UIControlStateNormal];
     [_msgSendBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_msgSendBtn setTitleColor:UIColorFromRGB(0x05a764) forState:UIControlStateNormal];
     [_msgSendBtn setBackgroundColor:UIColorFromRGB(0xfdfdfd)];
@@ -239,10 +240,10 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
         Log(@"enterRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errCode == 0) {
-                [self appendSystemMsg:@"连接成功"];
+                [self appendSystemMsg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.connectionsuccessful")];
                 
             } else {
-                [self alertTips:@"进入直播间失败" msg:errMsg completion:^{
+                [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.enterliveroomfailed") msg:errMsg completion:^{
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
             }
@@ -273,7 +274,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
                     [self->_liveRoom joinAnchor:^(int errCode, NSString *errMsg) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if (errCode != 0) {
-                                [self alertTips:@"提示" msg:errMsg completion:^{
+                                [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:errMsg completion:^{
                                     [self onKickoutJoinAnchor];
                                 }];
                             }
@@ -283,7 +284,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
                     
                 } else {
                     self->_linkMicStatus = LinkMicStatus_IDEL;  // 空闲状态
-                    [self alertTips:@"提示" msg:errMsg completion:nil];
+                    [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:errMsg completion:nil];
                 }
             });
         }];
@@ -361,7 +362,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
 #pragma mark - LiveRoomListener
 
 - (void)onRoomDestroy:(NSString *)roomID {
-    [self alertTips:@"提示" msg:@"直播间已被解散" completion:^{
+    [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.liveroomhasbeendisbanded") completion:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -417,9 +418,8 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
             } onPlayError:^(int errCode, NSString *errMsg) {
                 [self onAnchorExit:anchorInfo];
             } playEvent:nil];
-            
             //LOG
-            [self appendLog:[NSString stringWithFormat:@"播放: userID[%@] userName[%@] accelerateURL[%@]", anchorInfo.userID, anchorInfo.userName, anchorInfo.accelerateURL]];
+            [self appendLog:LocalizeReplaceThreeCharacter(LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.playxx"), [NSString stringWithFormat:@"%@",anchorInfo.userID], [NSString stringWithFormat:@"%@",anchorInfo.userName], [NSString stringWithFormat:@"%@",anchorInfo.accelerateURL])];
         }
     });
 }
@@ -477,7 +477,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
 }
 
 - (void)onError:(int)errCode errMsg:(NSString *)errMsg extraInfo:(NSDictionary *)extraInfo {
-    [self alertTips:@"提示" msg:errMsg completion:^{
+    [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:errMsg completion:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -486,7 +486,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
 - (void)alertTips:(NSString *)title msg:(NSString *)msg completion:(void(^)())completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if (completion) {
                 completion();
             }
@@ -560,7 +560,7 @@ typedef NS_ENUM(NSInteger, LinkMicStatus) {
     NSString *textMsg = [textField.text stringByTrimmingCharactersInSet:[NSMutableCharacterSet whitespaceCharacterSet]];
     if (textMsg.length <= 0) {
         textField.text = @"";
-        [self alertTips:@"提示" msg:@"消息不能为空" completion:nil];
+        [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.messagecannotbeempty") completion:nil];
         return YES;
     }
     

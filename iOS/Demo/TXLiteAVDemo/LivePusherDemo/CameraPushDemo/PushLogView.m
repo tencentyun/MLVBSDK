@@ -6,6 +6,7 @@
 
 #import "PushLogView.h"
 #import "TXLiveSDKTypeDef.h"
+#import "AppLocalized.h"
 
 @interface PushLogView() {
     int _step;
@@ -25,8 +26,8 @@
         int height = 20;
         
         int statusOffsetX = 40, statusOffsetY = 10, statusIntervalY = 40;
-        [self addLabel:@"编码码率：" withFrame:CGRectMake(statusOffsetX, statusOffsetY, 100, height)];
-        [self addLabel:@"上传网速：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY, 100, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.coderate") withFrame:CGRectMake(statusOffsetX, statusOffsetY, 100, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.uploadspeed") withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY, 100, height)];
         [self addLabel:@"FPS：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * 2, 50, height)];
         [self addLabel:@"GOP：" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * 2, 60, height)];
         
@@ -45,11 +46,11 @@
         [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY + stepIntervalY * 3, imgSize, imgSize)]];
         [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY + stepIntervalY * 4, imgSize, imgSize)]];
         
-        [self addLabel:@"阶段一：检查地址合法性" withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY, 200, height)];
-        [self addLabel:@"阶段二：连接到云服务器" withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY, 200, height)];
-        [self addLabel:@"阶段三：摄像头打开成功" withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 2, 200, height)];
-        [self addLabel:@"阶段四：编码器正常启动" withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 3, 200, height)];
-        [self addLabel:@"阶段五：开始进入推流中" withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 4, 200, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.stepcheckaddresslegitimacy")  withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY, 250, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.connecttothecloudserver") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY, 250, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.cameraissuccessfullyopened") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 2, 250, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.encoderstartsnormally") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 3, 250, height)];
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.begintopushflow") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 4, 250, height)];
         
     }
     return self;
@@ -58,6 +59,7 @@
 - (UILabel *)addLabel:(NSString *)text withFrame:(CGRect)frame {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.text = text;
+    label.adjustsFontSizeToFitWidth = true;
     [self addSubview:label];
     return label;
 }

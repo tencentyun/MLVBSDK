@@ -32,6 +32,8 @@
 
 @implementation AudioEffectSettingViewModel
 
+#define L(x) [self.theme localizedString:x]
+
 - (instancetype)init
 {
     self = [super init];
@@ -63,18 +65,92 @@
 }
 
 - (NSArray<TCAudioScrollMenuCellModel *> *)createVoiceChangeDataSource{
-    NSArray *titleArray = @[@"原声", @"熊孩子", @"萝莉", @"大叔", @"重金属", @"感冒", @"外国人", @"困兽", @"死肥宅", @"强电流", @"重机械", @"空灵"];
-    NSArray *iconNameArray = @[@"voiceChange_normal_close", @"voiceChange_xionghaizi", @"voiceChange_luoli", @"voiceChange_dashu", @"voiceChange_zhongjinshu", @"voiceChange_ganmao", @"voiceChange_waiguo", @"voiceChange_kunshou", @"voiceChange_feizhai", @"voiceChange_qiangdianliu", @"voiceChange_jixie", @"voiceChange_konglin"];
-    NSArray *iconSelectedNameArray = @[@"voiceChange_normal_open", @"voiceChange_xionghaizi", @"voiceChange_luoli", @"voiceChange_dashu", @"voiceChange_zhongjinshu", @"voiceChange_ganmao", @"voiceChange_waiguo", @"voiceChange_kunshou", @"voiceChange_feizhai", @"voiceChange_qiangdianliu", @"voiceChange_jixie", @"voiceChange_konglin"];
+    NSArray *audioChangeEffect = @[@{
+                                       @"title":L(@"ASKit.MenuItem.Original"),
+                                       @"iconName":@"voiceChange_normal_close",
+                                       @"selectIconName":@"voiceChange_normal_open",
+                                       @"voiceChangerType":@(0)
+                                    },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Naughty boy"),
+                                       @"iconName":@"voiceChange_xionghaizi",
+                                       @"selectIconName":@"voiceChange_xionghaizi",
+                                       @"voiceChangerType":@(1)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Little girl"),
+                                       @"iconName":@"voiceChange_luoli",
+                                       @"selectIconName":@"voiceChange_luoli",
+                                       @"voiceChangerType":@(2)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Middle-aged man"),
+                                       @"iconName":@"voiceChange_dashu",
+                                       @"selectIconName":@"voiceChange_dashu",
+                                       @"voiceChangerType":@(3)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Heavy metal"),
+                                       @"iconName":@"voiceChange_zhongjinshu",
+                                       @"selectIconName":@"voiceChange_zhongjinshu",
+                                       @"voiceChangerType":@(4)
+                                   },
+                                   //TODO: 由于感冒特效SDK层有bug 8.6版本暂时移除
+//                                   @{
+//                                       @"title":L(@"ASKit.MenuItem.Being cold"),
+//                                       @"iconName":@"voiceChange_ganmao",
+//                                       @"selectIconName":@"voiceChange_ganmao",
+//                                       @"voiceChangerType":@(5)
+//                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Non-native speaker"),
+                                       @"iconName":@"voiceChange_waiguo",
+                                       @"selectIconName":@"voiceChange_waiguo",
+                                       @"voiceChangerType":@(6)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Furious animal"),
+                                       @"iconName":@"voiceChange_kunshou",
+                                       @"selectIconName":@"voiceChange_kunshou",
+                                       @"voiceChangerType":@(7)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Fat otaku"),
+                                       @"iconName":@"voiceChange_feizhai",
+                                       @"selectIconName":@"voiceChange_feizhai",
+                                       @"voiceChangerType":@(8)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Strong electric current"),
+                                       @"iconName":@"voiceChange_qiangdianliu",
+                                       @"selectIconName":@"voiceChange_qiangdianliu",
+                                       @"voiceChangerType":@(9)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Robot"),
+                                       @"iconName":@"voiceChange_jixie",
+                                       @"selectIconName":@"voiceChange_jixie",
+                                       @"voiceChangerType":@(10)
+                                   },
+                                   @{
+                                       @"title":L(@"ASKit.MenuItem.Ethereal voice"),
+                                       @"iconName":@"voiceChange_konglin",
+                                       @"selectIconName":@"voiceChange_konglin",
+                                       @"voiceChangerType":@(11)
+                                   }];
+    
     NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:2];
-    for (int index = 0; index < titleArray.count; index += 1) {
-        NSString *title = titleArray[index];
-        NSString *normalIconName = iconNameArray[index];
-        NSString *selectedIconName = iconSelectedNameArray[index];
+    for (int index = 0; index < audioChangeEffect.count; index++) {
+        NSDictionary *audioChangeEffectDic = audioChangeEffect[index];
+        NSString *title = audioChangeEffectDic[@"title"];
+        NSString *normalIconName = audioChangeEffectDic[@"iconName"];
+        NSString *selectedIconName = audioChangeEffectDic[@"selectIconName"];
+        NSInteger voiceChangerIndex = [audioChangeEffectDic[@"voiceChangerType"] integerValue];
+        
         TCAudioScrollMenuCellModel *model = [[TCAudioScrollMenuCellModel alloc] init];
         model.title = title;
-        model.actionID = index;
-        if ([title isEqualToString:@"原声"]) {
+        model.actionID = voiceChangerIndex;
+        if ([title isEqualToString:L(@"ASKit.MenuItem.Original")]) {
             model.selected = YES;
         } else {
             model.selected = NO;
@@ -82,8 +158,8 @@
         model.icon = [self.theme imageNamed:normalIconName];
         model.selectedIcon = [self.theme imageNamed:selectedIconName];
         model.action = ^{
-            [self.manager setVoiceChangerTypeWithValue:index];
-            self.currentChangerType = index;
+            [self.manager setVoiceChangerTypeWithValue:voiceChangerIndex];
+            self.currentChangerType = voiceChangerIndex;
         };
         if (model.icon) {
             [result addObject:model];
@@ -93,7 +169,16 @@
 }
 
 - (NSArray<TCAudioScrollMenuCellModel *> *)createReverberationDataSource{
-    NSArray *titleArray = @[@"无效果", @"KTV", @"小房间", @"大会堂", @"低沉", @"洪亮", @"金属声", @"磁性"];
+    NSArray *titleArray = @[
+        L(@"ASKit.MenuItem.No effect"),
+        L(@"ASKit.MenuItem.Karaoke room"),
+        L(@"ASKit.MenuItem.Small room"),
+        L(@"ASKit.MenuItem.Big hall"),
+        L(@"ASKit.MenuItem.Deep"),
+        L(@"ASKit.MenuItem.Resonant"),
+        L(@"ASKit.MenuItem.Metallic"),
+        L(@"ASKit.MenuItem.Husky")
+    ];
     NSArray *iconNameArray = @[@"Reverb_normal_close", @"Reverb_KTV", @"Reverb_literoom", @"Reverb_dahuitang", @"Reverb_dicheng", @"Reverb_hongliang", @"Reverb_zhongjinshu", @"Reverb_cixin"];
     NSArray *iconSelectedNameArray =  @[@"Reverb_normal_open", @"Reverb_KTV", @"Reverb_literoom", @"Reverb_dahuitang", @"Reverb_dicheng", @"Reverb_hongliang", @"Reverb_zhongjinshu", @"Reverb_cixin"];
     NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:2];
@@ -104,7 +189,7 @@
         TCAudioScrollMenuCellModel *model = [[TCAudioScrollMenuCellModel alloc] init];
         model.actionID = index;
         model.title = title;
-        if ([title isEqualToString:@"无效果"]) {
+        if ([title isEqualToString:L(@"ASKit.MenuItem.No effect")]) {
             model.selected = YES;
         } else {
             model.selected = NO;
@@ -125,18 +210,18 @@
 - (NSArray<TCMusicSelectedModel *> *)createMusicDataSources {
     NSArray* musicsData = @[
         @{
-            @"name": @"环绕声测试1",
-            @"singer": @"佚名",
+            @"name": L(@"ASKit.MenuItem.Surround sound test 1"),
+            @"singer": L(@"ASKit.MenuItem.Unknown"),
             @"url": @"https://liteav.sdk.qcloud.com/app/res/bgm/testmusic1.mp3"
         },
         @{
-            @"name": @"环绕声测试2",
-            @"singer": @"佚名",
+            @"name": L(@"ASKit.MenuItem.Surround sound test 2"),
+            @"singer": L(@"ASKit.MenuItem.Unknown"),
             @"url": @"https://liteav.sdk.qcloud.com/app/res/bgm/testmusic2.mp3"
         },
         @{
-            @"name": @"环绕声测试3",
-            @"singer": @"佚名",
+            @"name": L(@"ASKit.MenuItem.Surround sound test 3"),
+            @"singer": L(@"ASKit.MenuItem.Unknown"),
             @"url": @"https://liteav.sdk.qcloud.com/app/res/bgm/testmusic3.mp3"
         }
     ];

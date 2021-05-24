@@ -19,6 +19,8 @@
 #import "AddressBarController.h"
 #import "AppDelegate.h"
 #import "SimpleIPC.h"
+#import "AppLocalized.h"
+#import "NSString+Common.h"
 
 //#import "CWStatusBarNotification.h"
 
@@ -95,7 +97,7 @@
 - (void)initUI
 {
     //主界面排版
-    self.title = @"录屏直播";
+    self.title = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.recordthelivescreen");
     
     //    self.view.backgroundColor = UIColor.blackColor;
     [self.view setBackgroundImage:[UIImage imageNamed:@"background.jpg"]];
@@ -105,16 +107,17 @@
     _addressBarController = [[AddressBarController alloc] initWithButtonOption:AddressBarButtonOptionNew | AddressBarButtonOptionQRScan];
     _addressBarController.qrPresentView = self.view;
     CGSize size = [[UIScreen mainScreen] bounds].size;
-    int ICON_SIZE = (int) (size.width / 11);
+    int ICON_SIZE = (int) (size.width / 8);
     CGFloat topOffset = [UIApplication sharedApplication].statusBarFrame.size.height;
     topOffset += self.navigationController.navigationBar.height+5;
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
-    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:15]};
-    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请地址扫描二维码或点New生成地址" attributes:dic];
+    
+    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:[NSString isCurrentLanguageEnglish] ? 11 : 15]};
+    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.scantheqrcodeorclick") attributes:dic];
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
-    NSArray* rotations = @[@"竖屏", @"横屏"];
+    NSArray* rotations = @[LivePlayerLocalize(@"LivePusherDemo.ScreenPush.verticalscreen"),LivePlayerLocalize(@"LivePusherDemo.ScreenPush.landscape")];
     self.rotateSelector = [[UISegmentedControl alloc] initWithItems:rotations];
     self.rotateSelector.center = CGPointMake(self.view.center.x, _addressBarController.view.bottom + 60);
     self.rotateSelector.bounds = CGRectMake(0, 0, self.view.width - 100, 40);
@@ -124,7 +127,7 @@
     [self.view addSubview:self.rotateSelector];
     [self.rotateSelector addTarget:self action:@selector(onSwitchRotation:) forControlEvents:UIControlEventValueChanged];
     
-    NSArray* resolutions = @[@"超清", @"高清", @"标清"];
+    NSArray* resolutions = @[LivePlayerLocalize(@"LivePusherDemo.PushSetting.superclear"), LivePlayerLocalize(@"LivePusherDemo.PushSetting.hd"), LivePlayerLocalize(@"LivePusherDemo.PushSetting.standarddefinition")];
     self.resolutionSelector = [[UISegmentedControl alloc] initWithItems:resolutions];
     self.resolutionSelector.center = CGPointMake(self.view.center.x, self.rotateSelector.bottom + 50);
     self.resolutionSelector.bounds = CGRectMake(0, 0, self.view.width - 100, 40);
@@ -140,13 +143,13 @@
     self.btnReplaykit .bounds = CGRectMake(0, 0, 100, 50);
     self.btnReplaykit.backgroundColor = UIColor.lightTextColor;
     self.btnReplaykit.layer.cornerRadius = 5;
-    [self.btnReplaykit  setTitle:@"开始推流" forState:UIControlStateNormal];
+    [self.btnReplaykit  setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
     [self.btnReplaykit  addTarget:self action:@selector(clickStartReplaykit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnReplaykit];
 
     UILabel* labelTipTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, self.btnReplaykit.bottom + 20, 200, 15)];
     labelTipTitle.textAlignment = NSTextAlignmentLeft;
-    labelTipTitle.text = @"屏幕录制操作说明:";
+    labelTipTitle.text = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.instructionsforscreenrecording");
     labelTipTitle.textColor = UIColor.whiteColor;
     [labelTipTitle sizeToFit];
     [self.view addSubview:labelTipTitle];
@@ -155,7 +158,7 @@
     labelTip.textAlignment = NSTextAlignmentLeft;
     labelTip.textColor = UIColor.whiteColor;
     labelTip.font = [UIFont systemFontOfSize:14];
-    labelTip.text = @"      请先到控制中心长按启动屏幕录制(若无此项请从设置中的控制中心里添加)->选择视频云工具包启动后再回到此界面开始推流:";
+    labelTip.text = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.gotothecontrolcenterandlongpressthestartscreen");
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelTip.text];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:6.f];//设置行间距
@@ -247,7 +250,7 @@
 
     MBProgressHUD* hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hub.mode = MBProgressHUDModeIndeterminate;
-    hub.label.text = @"地址获取中";
+    hub.label.text = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.addressinprocess");
     [hub showAnimated:YES];
     __weak ScreenPushViewController* weakSelf = self;
     [TCHttpUtil asyncSendHttpRequest:@"get_test_pushurl" httpServerAddr:kHttpServerAddr HTTPMethod:@"GET" param:nil handler:^(int result, NSDictionary *resultDict) {
@@ -256,7 +259,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
 //                _hub = [MBProgressHUD HUDForView:weakSelf.view];
                 hub.mode = MBProgressHUDModeText;
-                hub.label.text = @"获取推流地址失败";
+                hub.label.text = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.failedtogetpushstreamaddress");
                 [hub showAnimated:YES];
                 [hub hideAnimated:YES afterDelay:2];
             });
@@ -283,16 +286,17 @@
             controller.qrStrings = @[c(@"rtmp", rtmpPlayUrl),
                                      c(@"flv", flvPlayUrl),
                                      c(@"hls", hlsPlayUrl),
-                                     c(@"低延时", accPlayUrl)];
-            NSString* playUrls = [NSString stringWithFormat:@"rtmp播放地址:%@\n\nflv播放地址:%@\n\nhls播放地址:%@\n\n低延时播放地址:%@", rtmpPlayUrl, flvPlayUrl, hlsPlayUrl, accPlayUrl];
+                                     c(LivePlayerLocalize(@"LivePusherDemo.CameraPush.lowlatency"), accPlayUrl)];
+            
+            NSString* playUrls = LocalizeReplaceFourCharacter(LivePlayerLocalize(@"LivePusherDemo.CameraPush.rtmpaddressxxflvaddressyyhlsaddresszz"), [NSString stringWithFormat:@"%@",rtmpPlayUrl], [NSString stringWithFormat:@"%@",flvPlayUrl], [NSString stringWithFormat:@"%@",hlsPlayUrl], [NSString stringWithFormat:@"%@",accPlayUrl]);
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = playUrls;
             weakSelf.playFlvUrl = flvPlayUrl;
             dispatch_async(dispatch_get_main_queue(), ^{
 //                _hub = [MBProgressHUD HUDForView:weakSelf.view];
                 hub.mode = MBProgressHUDModeText;
-                hub.label.text = @"获取地址成功";
-                hub.detailsLabel.text = @"播放地址已复制到剪贴板";
+                hub.label.text = LivePlayerLocalize(@"LivePusherDemo.CameraPush.getaddresssuccess");
+                hub.detailsLabel.text = LivePlayerLocalize(@"LivePusherDemo.CameraPush.playbackaddresshasbeencopiedtotheclipboard");
                 [hub showAnimated:YES];
                 [hub hideAnimated:YES afterDelay:2];
 //                controller.qrString = accPlayUrl;
@@ -304,24 +308,24 @@
 - (void)clickStartReplaykit:(UIButton*)btn
 {
     if ([UIDevice currentDevice].systemVersion.floatValue < 11.0) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"腾讯云录屏推流" message:@"录屏只支持iOS11以上系统，请升级！" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.systempleaseupgrade") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:action1];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
     if (self.addressBarController.text.length < 1) {
-        NSString* message = @"请输入推流地址";
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"腾讯云录屏推流" message:message preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        NSString* message = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.enterpushaddress");
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:action1];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
     NSString* btntitle = btn.currentTitle;
-    BOOL isStart = [btntitle isEqualToString:@"开始推流"];
+    BOOL isStart = [btntitle isEqualToString:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream")];
     
     if (isStart) {
         NSString* resolution = kResolutionFHD;
@@ -338,22 +342,22 @@
             isCaptured = [UIScreen mainScreen].isCaptured;
         }
         if (!isCaptured) {
-            NSString* message = @"请先到控制中心->长按启动屏幕录制";
+            NSString* message = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.gotothecontrolcenter");
 
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"腾讯云录屏推流" message:message preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //                [[InAppReplayKit2Pusher  sharedInstance] startPushWithUrl:self.addressBarController.text rotation:rotation resolution:resolution];
 //                [btn setTitle:@"结束推流" forState:UIControlStateNormal];
             }];
-            UIAlertAction* action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction* action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:action1];
             [alert addAction:action2];
             [self presentViewController:alert animated:YES completion:nil];
             return;
         }
         else {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"腾讯云录屏推流" message:@"确定要开启屏幕录制推流?" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.turnonscreenrecordingpushstreams") preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //              正式应用不建议合用剪贴板传值。建议配置appgroup，使用NSUserDefault的方式传值
 //                NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
 //                [defaults setObject:_rtcRoom.roomID forKey:kReplayKit2UserDefaultRoomidKey];
@@ -362,15 +366,15 @@
                 [dict setObject:self.addressBarController.text forKey:kReplayKit2PushUrlKey];
                 [dict setObject:rotation forKey:kReplayKit2RotateKey];
                 if (self.playFlvUrl)
-                    [dict setObject:self.playFlvUrl forKey:@"flv播放地址"];
+                    [dict setObject:self.playFlvUrl forKey:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.flvplayaddress")];
 
                 [dict setObject:resolution forKey:kReplayKit2ResolutionKey];
 
                 [self _sendMessageToExtension:kDarvinNotificationNamePushStart object:dict];
 
-                [btn setTitle:@"结束推流" forState:UIControlStateNormal];
+                [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.pushoverflow") forState:UIControlStateNormal];
             }];
-            UIAlertAction* action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction* action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
             
             [alert addAction:action1];
             [alert addAction:action2];
@@ -378,12 +382,12 @@
         }
     }
     else {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"腾讯云录屏推流" message:@"确定要关闭录屏推流?" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.closescreenpushstream") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
 //            [defaults setObject:_rtcRoom.roomID forKey:kReplayKit2UserDefaultRoomidKey];
 //            [defaults synchronize];
-            [btn setTitle:@"开始推流" forState:UIControlStateNormal];
+            [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
             
 //            if ([InAppReplayKit2Pusher  sharedInstance].isPushing) {
 //                [[InAppReplayKit2Pusher  sharedInstance] stopPush];
@@ -391,7 +395,7 @@
 //            }
             [self _sendMessageToExtension:kDarvinNotificaiotnNamePushStop object:@{}];
         }];
-        UIAlertAction* action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction* action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
         
         [alert addAction:action1];
         [alert addAction:action2];
@@ -403,7 +407,7 @@
 
 - (void)onReplayKit2RecordStop:(NSNotification*)noti
 {
-    [_btnReplaykit setTitle:@"开始推流" forState:UIControlStateNormal];
+    [_btnReplaykit setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
 }
 
 - (void)onSwitchRotation:(UISegmentedControl*)segment

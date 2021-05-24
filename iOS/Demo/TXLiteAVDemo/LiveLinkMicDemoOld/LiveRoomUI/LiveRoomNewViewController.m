@@ -10,6 +10,7 @@
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
 #import "LiveRoomPusherViewController.h"
+#import "AppLocalized.h"
 
 @interface LiveRoomNewViewController() <UITextFieldDelegate> {
     UILabel           *_tipLabel;
@@ -23,12 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"创建直播间";
+    self.title = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.createliveroom");
     [self.view setBackgroundColor:UIColorFromRGB(0x333333)];
     
     _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 100, 200, 30)];
     _tipLabel.textColor = UIColorFromRGB(0x999999);
-    _tipLabel.text = @"直播间名称";
+    _tipLabel.text = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.liveroomname");
     _tipLabel.textAlignment = NSTextAlignmentLeft;
     _tipLabel.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:_tipLabel];
@@ -38,7 +39,7 @@
     _roomNameTextField.delegate = self;
     _roomNameTextField.leftView = paddingView;
     _roomNameTextField.leftViewMode = UITextFieldViewModeAlways;
-    _roomNameTextField.placeholder = @"请输入直播间名称";
+    _roomNameTextField.placeholder = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.enterthenameofthestudio");
     _roomNameTextField.backgroundColor = UIColorFromRGB(0x4a4a4a);
     _roomNameTextField.textColor = UIColorFromRGB(0x939393);
     
@@ -52,7 +53,7 @@
     _createBtn.layer.shadowColor = UIColorFromRGB(0x019b5c).CGColor;
     _createBtn.layer.shadowOpacity = 0.8;
     _createBtn.backgroundColor = UIColorFromRGB(0x05a764);
-    [_createBtn setTitle:@"开始直播" forState:UIControlStateNormal];
+    [_createBtn setTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.beginlive") forState:UIControlStateNormal];
     [_createBtn addTarget:self action:@selector(onCreateBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_createBtn];
 }
@@ -70,11 +71,11 @@
 - (void)onCreateBtnClicked:(UIButton *)sender {
     NSString *roomName = _roomNameTextField.text;
     if (roomName.length == 0) {
-        [self alertTips:@"提示" msg:@"直播间名称不能为空"];
+        [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.nameoftheliveroomcannotbeempty")];
         return;
     }
     if (roomName.length > 30) {
-        [self alertTips:@"提示" msg:@"直播间名称长度超过限制"];
+        [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.liveroomnamelengthexceedslimit")];
         return;
     }
     
@@ -91,7 +92,7 @@
 - (void)alertTips:(NSString *)title msg:(NSString *)msg {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         }]];
         
         [self.navigationController presentViewController:alertController animated:YES completion:nil];

@@ -7,6 +7,7 @@
 #import "PushSettingViewController.h"
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
+#import "AppLocalized.h"
 
 /* 列表项 */
 #define SECTION_QUALITY             0
@@ -46,10 +47,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
+    self.title = LivePlayerLocalize(@"LivePusherDemo.PushSetting.setting");
 
-    NSArray<NSString *> * titleArray = @[@"蓝光", @"超清", @"高清", @"标清",
-                                         @"连麦大主播", @"连麦小主播", @"实时音视频"];
+    NSArray<NSString *> * titleArray = @[LivePlayerLocalize(@"LivePusherDemo.PushSetting.bluray"),
+                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.superclear"),
+                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.hd"),
+                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.standarddefinition"),
+                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.lianmaibighost"),
+                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.lianmaismallhost"),
+                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.realtimeaudioandvideo")];
     TX_Enum_Type_VideoQuality qualityArray[] = {
         VIDEO_QUALITY_ULTRA_DEFINITION,
         VIDEO_QUALITY_SUPER_DEFINITION,
@@ -67,8 +73,8 @@
         [qualities addObject:quality];
     }
     _qualities = qualities;
-    _audioQualities = @[@"语音", @"标准", @"音乐"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedCancel:)];
+    _audioQualities = @[LivePlayerLocalize(@"LivePusherDemo.PushSetting.voice"), LivePlayerLocalize(@"LivePusherDemo.PushSetting.standard"), LivePlayerLocalize(@"LivePusherDemo.PushSetting.music")];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.back") style:UIBarButtonItemStylePlain target:self action:@selector(onClickedCancel:)];
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOK:)];
     
     _bandwidthSwitch = [self createUISwitch:TAG_BANDWIDTH_ADJUST on:[PushSettingViewController getBandWidthAdjust]];
@@ -152,7 +158,7 @@
 }
 
 - (void)_showQualityActionSheet {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"画质"
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.imagequality")
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
     __weak __typeof(self) wself = self;
@@ -170,14 +176,14 @@
         }];
         [controller addAction:action];
     }
-    [controller addAction:[UIAlertAction actionWithTitle:@"取消"
+    [controller addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel")
                                                    style:UIAlertActionStyleCancel
                                                  handler:nil]];
     [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)_showAudioQualityActionSheet {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"音质"
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.thesoundquality")
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
     __weak typeof(self) wsself = self;
@@ -197,7 +203,7 @@
         }];
         [controller addAction:action];
     }
-    [controller addAction:[UIAlertAction actionWithTitle:@"取消"
+    [controller addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel")
                                                    style:UIAlertActionStyleCancel
                                                  handler:nil]];
     [self presentViewController:controller animated:YES completion:nil];
@@ -223,13 +229,13 @@
         cell.textLabel.text = [self getAudioQualityStr];
         cell.accessoryView = [PushSettingViewController buildAccessoryView];
     } else if (indexPath.section == SECTION_BANDWIDTH_ADJUST) {
-        cell.textLabel.text = @"开启带宽适应";
+        cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushSetting.openbandwidthadaptation");
         cell.accessoryView = _bandwidthSwitch;
     } else if (indexPath.section == SECTION_HW) {
-        cell.textLabel.text = @"开启硬件加速";
+        cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushSetting.enablehardwareacceleration");
         cell.accessoryView = _hwSwitch;
     } else if (indexPath.section == SECTION_AUDIO_PREVIEW) {
-        cell.textLabel.text = @"开启耳返";
+        cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushSetting.opentheearsback");
         cell.accessoryView = _audioPreviewSwitch;
     }
     
@@ -238,10 +244,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SECTION_QUALITY) {
-        return @"画质偏好";
+        return LivePlayerLocalize(@"LivePusherDemo.PushSetting.qualitypreference");
     }
     if (section == SECTION_AUDIO_QUALITY) {
-        return @"音质选择";
+        return LivePlayerLocalize(@"LivePusherDemo.PushSetting.thesoundqualitychoice");
     }
     return @"";
 }

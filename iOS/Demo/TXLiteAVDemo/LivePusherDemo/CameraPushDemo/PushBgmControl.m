@@ -6,6 +6,7 @@
 
 #import "PushBgmControl.h"
 #import "UIView+Additions.h"
+#import "AppLocalized.h"
 
 @interface PushBgmControl() <UITextFieldDelegate> {
     UISwitch    *_onlineSwitch;
@@ -26,7 +27,7 @@
         int height = 30;
         
         UILabel *loopTimesLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, offsetY, 100, height)];
-        loopTimesLabel.text = @"循环次数：";
+        loopTimesLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushBgm.numberofcycles");
         loopTimesLabel.textColor = [UIColor whiteColor];
         _loopTimesFiled = [[UITextField alloc] initWithFrame:CGRectMake(loopTimesLabel.right, loopTimesLabel.top,
                                                                         50, height)];
@@ -36,13 +37,13 @@
         
         UILabel *onlineLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width - 160, loopTimesLabel.top,
                                                                          100, height)];
-        onlineLabel.text = @"在线音乐？";
+        onlineLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushBgm.onlinemusic");
         onlineLabel.textColor = [UIColor whiteColor];
         _onlineSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(self.width - 55, loopTimesLabel.top, 50, height)];
         _onlineSwitch.on = NO;
         
         UILabel *micVolumeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, loopTimesLabel.bottom + 10, loopTimesLabel.width, height)];
-        micVolumeLabel.text = @"MIC音量：";
+        micVolumeLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushBgm.micvolume");
         micVolumeLabel.textColor = [UIColor whiteColor];
         UISlider *micVolumeSlider = [[UISlider alloc] initWithFrame:CGRectMake(micVolumeLabel.right, micVolumeLabel.top,
                                                                                self.width - micVolumeLabel.right - offsetX, height)];
@@ -53,7 +54,7 @@
         
         UILabel *bgmVolumeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, micVolumeLabel.bottom + 10,
                                                                             micVolumeLabel.width, height)];
-        bgmVolumeLabel.text = @"BGM音量：";
+        bgmVolumeLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushBgm.bgmvolume");
         bgmVolumeLabel.textColor = [UIColor whiteColor];
         UISlider *bgmVolumeSlider = [[UISlider alloc] initWithFrame:CGRectMake(bgmVolumeLabel.right, bgmVolumeLabel.top,
                                                                                self.width - bgmVolumeLabel.right - offsetX, height)];
@@ -64,7 +65,7 @@
         
         UILabel *bgmPitchLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, bgmVolumeLabel.bottom + 10,
                                                                            bgmVolumeLabel.width, height)];
-        bgmPitchLabel.text = @"BGM音调：";
+        bgmPitchLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushBgm.bgmtone");
         bgmPitchLabel.textColor = [UIColor whiteColor];
         UISlider *bgmPitchSlider = [[UISlider alloc] initWithFrame:CGRectMake(bgmPitchLabel.right, bgmPitchLabel.top,
                                                                               self.width - bgmVolumeLabel.right - offsetX, height)];
@@ -75,14 +76,14 @@
         
         UIButton *startBtn = [[UIButton alloc] initWithFrame:CGRectMake(60, bgmPitchLabel.bottom + 10,
                                                                         60, height)];
-        [startBtn setTitle:@"开始" forState:UIControlStateNormal];
+        [startBtn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.start") forState:UIControlStateNormal];
         [startBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         [startBtn addTarget:self action:@selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
         startBtn.tag = 0;
         _startBtn = startBtn;
         
         _pauseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 120, startBtn.top, startBtn.width, startBtn.height)];
-        [_pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+        [_pauseBtn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.pause") forState:UIControlStateNormal];
         [_pauseBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         [_pauseBtn addTarget:self action:@selector(clickPause:) forControlEvents:UIControlEventTouchUpInside];
         _pauseBtn.tag = 0;
@@ -105,13 +106,13 @@
 }
 
 - (void)notifyBgmIsEnded {
-    [_startBtn setTitle:@"开始" forState:UIControlStateNormal];
+    [_startBtn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.start") forState:UIControlStateNormal];
     _startBtn.tag = 0;
 }
 
 - (void)clickStart:(UIButton *)btn {
     if (btn.tag == 0) {
-        [btn setTitle:@"结束" forState:UIControlStateNormal];
+        [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.end") forState:UIControlStateNormal];
         btn.tag = 1;
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(onBgmStart:online:)]) {
@@ -123,9 +124,9 @@
         }
         
     } else {
-        [btn setTitle:@"开始" forState:UIControlStateNormal];
+        [btn setTitle: LivePlayerLocalize(@"LivePusherDemo.PushBgm.start") forState:UIControlStateNormal];
         btn.tag = 0;
-        [_pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+        [_pauseBtn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.pause") forState:UIControlStateNormal];
         _pauseBtn.tag = 0;
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(onBgmStop)]) {
@@ -136,7 +137,7 @@
 
 - (void)clickPause:(UIButton *)btn {
     if (btn.tag == 0) {
-        [btn setTitle:@"恢复" forState:UIControlStateNormal];
+        [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.restore") forState:UIControlStateNormal];
         btn.tag = 1;
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(onBgmPause)]) {
@@ -144,7 +145,7 @@
         }
         
     } else {
-        [btn setTitle:@"暂停" forState:UIControlStateNormal];
+        [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.PushBgm.pause") forState:UIControlStateNormal];
         btn.tag = 0;
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(onBgmResume)]) {

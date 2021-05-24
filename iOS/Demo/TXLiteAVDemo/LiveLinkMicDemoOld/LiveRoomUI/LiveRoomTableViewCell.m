@@ -8,6 +8,7 @@
 
 #import "LiveRoomTableViewCell.h"
 #import "ColorMacro.h"
+#import "AppLocalized.h"
 
 @interface LiveRoomTableViewCell() {
     UILabel   *_roomNameLeftLabel;
@@ -26,19 +27,19 @@
         self.backgroundColor = UIColorFromRGB(0x262626);
         
         _roomNameLeftLabel = [UILabel new];
-        _roomNameLeftLabel.text = @"直播间名称:";
+        _roomNameLeftLabel.text = [NSString stringWithFormat:@"%@:",LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.liveroomname")];
         _roomNameLeftLabel.font = [UIFont systemFontOfSize:16];
         _roomNameLeftLabel.textAlignment = NSTextAlignmentLeft;
         _roomNameLeftLabel.textColor = UIColorFromRGB(0x999999);
         
         _roomIDLeftLabel = [UILabel new];
-        _roomIDLeftLabel.text = @"直播间ID:";
+        _roomIDLeftLabel.text = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomTableCell.liveroomid");
         _roomIDLeftLabel.font = [UIFont systemFontOfSize:16];
         _roomIDLeftLabel.textAlignment = NSTextAlignmentLeft;
         _roomIDLeftLabel.textColor = UIColorFromRGB(0x999999);
         
         _memberNumLeftLabel = [UILabel new];
-        _memberNumLeftLabel.text = @"在线人数:";
+        _memberNumLeftLabel.text = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomTableCell.onlinenumber");
         _memberNumLeftLabel.font = [UIFont systemFontOfSize:16];
         _memberNumLeftLabel.textAlignment = NSTextAlignmentLeft;
         _memberNumLeftLabel.textColor = UIColorFromRGB(0x999999);
@@ -85,7 +86,7 @@
     
     _roomNameRightLabel.text = _roomInfo;
     _roomIDRightLabel.text = _roomID;
-    _memberNumRightLabel.text = [NSString stringWithFormat:@"%d人", (int)_memberNum];
+    _memberNumRightLabel.text = LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomTableCell.xxxpeople"), [NSString stringWithFormat:@"%d",(int)_memberNum]);
 }
 
 - (void)setFrame:(CGRect)frame {

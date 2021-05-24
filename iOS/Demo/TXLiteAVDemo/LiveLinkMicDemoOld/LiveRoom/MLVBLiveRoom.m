@@ -14,6 +14,7 @@
 #import "IMMsgManager.h"
 #import "RoomUtil.h"
 #import <pthread.h>
+#import "AppLocalized.h"
 
 @interface MLVBProxy : NSProxy {
     MLVBLiveRoom *_object;
@@ -253,24 +254,25 @@ static pthread_mutex_t sharedInstanceLock;
             self-> _msgMgr = [[IMMsgManager alloc] initWithConfig:loginInfo];
             [self->_msgMgr setDelegate:self];
             
-            [self sendDebugMsg:[NSString stringWithFormat:@"初始化IMSDK: appID[%d] userID[%@] timestamp[%@]", loginInfo.sdkAppID, loginInfo.userID, timestamp]];
+            ;
+            [self sendDebugMsg:LocalizeReplaceThreeCharacter(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.initIMSDKxxyyzz"), [NSString stringWithFormat:@"%d",loginInfo.sdkAppID] , [NSString stringWithFormat:@"%@",loginInfo.userID] , [NSString stringWithFormat:@"%@",[timestamp stringValue]])];
             
             [self->_msgMgr loginWithCompletion:^(int errCode, NSString *errMsg) {
                 [weakSelf asyncRun:^(MLVBLiveRoom *self){
-                    [self sendDebugMsg:[NSString stringWithFormat:@"IM登录返回: errCode[%d] errMsg[%@]", errCode, errMsg]];
+                    [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.imloginbackxxyy"), [NSString stringWithFormat:@"%d",errCode], [NSString stringWithFormat:@"%@",errMsg])];
                     if (completion) {
                         if (errCode == 0) {
                             [self setSelfProfile:loginInfo.userName avatarURL:loginInfo.userAvatar completion:nil];
-                            completion(0, @"登录成功");
+                            completion(0, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.loginsuccess"));
                         } else if (errCode != 0) {
-                            completion(ROOM_ERR_IM_LOGIN, @"登录失败");
+                            completion(ROOM_ERR_IM_LOGIN, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.loginfailed"));
                         }
                     }
                 }];
             }];
             self->_msgMgr.loginServerTime = [timestamp unsignedLongLongValue];
         } else {
-            [weakSelf sendDebugMsg:[NSString stringWithFormat:@"初始化LiveRoom失败: errorCode[%d] errorMsg[%@]", errCode, errMsg]];
+            [weakSelf sendDebugMsg: LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.initliveroomfailedxxyy"), [NSString stringWithFormat:@"%d",errCode], [NSString stringWithFormat:@"%@",errMsg])];
             completion(errCode, errMsg);
         }
     }];
@@ -324,7 +326,7 @@ static pthread_mutex_t sharedInstanceLock;
 
 #pragma mark - 被踢
 - (void)onForceOffline {
-    [self.delegate onError:ROOM_ERR_IM_FORCE_OFFLINE errMsg:@"IM 被强制下线" extraInfo:nil];
+    [self.delegate onError:ROOM_ERR_IM_FORCE_OFFLINE errMsg:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.imforcedoffline") extraInfo:nil];
 }
 
 #pragma mark - 前后台切换
@@ -355,7 +357,7 @@ static pthread_mutex_t sharedInstanceLock;
 - (void)getRoomList:(int)index count:(int)count completion:(IGetRoomListCompletionHandler)completion {
     [self asyncRun:^(MLVBLiveRoom *self) {
         NSDictionary *params = @{@"cnt": @(count), @"index": @(index)};
-        [self sendDebugMsg:[NSString stringWithFormat:@"发起获取房间列表请求: index[%d] cnt[%d]", index, count]];
+        [self sendDebugMsg:LocalizeReplace(@"LiveLinkMicDemoOld.MLVBLiveRoom.requestgetliveroom", [NSString stringWithFormat:@"%d",index], [NSString stringWithFormat:@"%d",count])];
         [self requestWithName:kHttpServerAddr_GetRoomList params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             NSArray<MLVBRoomInfo *> *roomList = [self parseRoomListFromResponse:responseObject];
             if (self) {
@@ -465,7 +467,7 @@ static pthread_mutex_t sharedInstanceLock;
         
         [self->_msgMgr enterRoom:groupID completion:^(int errCode, NSString *errMsg) {
             [weakSelf asyncRun:^(MLVBLiveRoom *self) {
-                [self sendDebugMsg:[NSString stringWithFormat:@"加入IMGroup完成: errCode[%d] errMsg[%@]", errCode, errMsg]];
+                [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.joinimfinishxxyy"), [NSString stringWithFormat:@"%d",errCode], [NSString stringWithFormat:@"%@",errMsg])];
                 if (errCode == 0) {
                     
                     // 找到当前房间
@@ -480,7 +482,7 @@ static pthread_mutex_t sharedInstanceLock;
                     if (roomInfo == nil) {
                         self.roomInfo = nil;
                         if (completion) {
-                            NSString *message = [NSString stringWithFormat:@"进房失败\n获取房间信息失败"];
+                            NSString *message = LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.enterroomfailed");
                             completion(ROOM_ERR_ENTER_ROOM, message);
                         }
                         return;
@@ -494,7 +496,7 @@ static pthread_mutex_t sharedInstanceLock;
                     RoomLivePlayerWrapper *playerWrapper = [self playerWrapperForUserID:self.roomInfo.roomCreator];
                     playerWrapper.playErrorBlock = ^(int event, NSString *msg) {
                         dispatch_async(self.delegateQueue, ^{
-                            [self.delegate onError:event errMsg:@"播放地址无效或者当前没有数据" extraInfo:nil];
+                            [self.delegate onError:event errMsg:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.invalidplaybackaddress") extraInfo:nil];
                         });
                     };
                     TXLivePlayer *player = playerWrapper.player;
@@ -524,7 +526,7 @@ static pthread_mutex_t sharedInstanceLock;
                 }
                 else {
                     if (completion) {
-                        NSString *message = [NSString stringWithFormat:@"进房失败\nIM:%@", errMsg];
+                        NSString *message = LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.joinroomfailedxx"), [NSString stringWithFormat:@"%@",errMsg]);
                         completion(ROOM_ERR_ENTER_ROOM, message);
                     }
                 }
@@ -579,7 +581,7 @@ static pthread_mutex_t sharedInstanceLock;
             [self notifyAnchorChange];
             // 退出IM群组
             [IMManager quitGroup:groupID completion:^(int errCode, NSString *errMsg) {
-                [weakSelf sendDebugMsg:[NSString stringWithFormat:@"离开IM Group完成: errCode[%d] errMsg[%@]", errCode, errMsg]];
+                [weakSelf sendDebugMsg: LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.leaveimfinishxxyy"), [NSString stringWithFormat:@"%d",errCode],[NSString stringWithFormat:@"%@",errMsg])];
             }];
         }
         
@@ -649,7 +651,7 @@ static pthread_mutex_t sharedInstanceLock;
     
     [self asyncRun:^(MLVBLiveRoom *self) {
         if (self.roomInfo.roomID == nil) {
-            completion(-1, @"未进入房间");
+            completion(-1, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.notjoinroom"));
             return;
         }
         
@@ -666,7 +668,7 @@ static pthread_mutex_t sharedInstanceLock;
 {
     [self asyncRun:^(MLVBLiveRoom *self) {
         if (self.roomInfo.roomID == nil) {
-            completion(-1, @"未进入房间", nil);
+            completion(-1, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.notjoinroom"), nil);
             return;
         }
         NSDictionary *params = @{@"roomID": self.roomInfo.roomID,};
@@ -865,7 +867,7 @@ static pthread_mutex_t sharedInstanceLock;
     [self asyncRun:^(MLVBLiveRoom *self) {
         if (self.pkAnchor == nil) {
             if (completion) {
-                completion(ROOM_ERR_CANCELED, @"没有正在进行的PK");
+                completion(ROOM_ERR_CANCELED, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.donothavepking"));
             }
             return;
         }
@@ -1188,8 +1190,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         }];
         [query deleteCharactersInRange:NSMakeRange(query.length-1, 1)];
         NSString * cgiUrl = [NSString stringWithFormat:@"%@/login?%@", self->_serverDomain, query];
-        
-        [weakSelf sendDebugMsg:[NSString stringWithFormat:@"LiveRoom登录, userID[%@]", userID]];
+        [weakSelf sendDebugMsg:LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.liveroomloginxx"), [NSString stringWithFormat:@"%@",userID])];
         
         [self->_httpSession POST:cgiUrl parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             int errCode = [responseObject[RespCodeKey] intValue];
@@ -1203,9 +1204,10 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 completion(errCode == 0 ? ROOM_SUCCESS : ROOM_ERR_REQUEST_TIMEOUT, [NSString stringWithFormat:@"%@[%d]", errMsg, errCode], userID, token, timestamp);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [weakSelf sendDebugMsg:[NSString stringWithFormat:@"LiveRoom登录失败: error[%@]", [error description]]];
+            
+            [weakSelf sendDebugMsg:LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.liveroomloginfailedxx"), [NSString stringWithFormat:@"%@",[error description]])];
             if (completion) {
-                completion(ROOM_ERR_REQUEST_TIMEOUT, @"网络请求超时，请检查网络设置", nil, nil, nil);
+                completion(ROOM_ERR_REQUEST_TIMEOUT, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.networktimeout"), nil, nil, nil);
             }
         }];
     }];
@@ -1228,7 +1230,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 
 -(void) handleRequestJoinAnchorTimeOut:(NSObject*)obj {
     if (_requestAnchorCompletion) {
-        _requestAnchorCompletion(1, @"主播未处理您的连麦请求");
+        _requestAnchorCompletion(1, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.anchordidnotprocessconnectionrequest"));
         _requestAnchorCompletion = nil;
     }
 }
@@ -1236,7 +1238,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 
 - (void)handleRequestPKTimeout:(NSObject *)obj {
     if (_requestPKCompletion) {
-        _requestPKCompletion(1, @"主播未处理您的PK请求或者超时", nil);
+        _requestPKCompletion(1, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.anchordidnotprocesspk"), nil);
         _requestPKCompletion = nil;
     }
 }
@@ -1332,7 +1334,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         if (isNewMember) {
             dispatch_async(self.delegateQueue, ^{
                 [self.delegate onAnchorEnter:anchorInfo];
-                [self sendDebugMsg:[NSString stringWithFormat:@"加入房间: userID[%@] userName[%@] playUrl[%@]", anchorInfo.userID, anchorInfo.userName, anchorInfo.accelerateURL]];
+                [self sendDebugMsg: LocalizeReplaceThreeCharacter(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.joinroomxxyyzz"), [NSString stringWithFormat:@"%@",anchorInfo.userID], [NSString stringWithFormat:@"%@",anchorInfo.userName], [NSString stringWithFormat:@"%@",anchorInfo.accelerateURL])];
             });
             anchorChanged = YES;
             // 有新主播加入，混流时采用连麦配置
@@ -1346,7 +1348,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         [self stopRemoteView:anchorInfo];
         dispatch_async(self.delegateQueue, ^{
             [self.delegate onAnchorExit:anchorInfo];
-            [self sendDebugMsg:[NSString stringWithFormat:@"离开房间: userID[%@] userName[%@]", anchorInfo.userID, anchorInfo.userName]];
+            [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.leaveroomxxyy"), [NSString stringWithFormat:@"%@",anchorInfo.userID], [NSString stringWithFormat:@"%@",anchorInfo.userName])];
         });
         anchorChanged = YES;
     }
@@ -1401,7 +1403,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         if (EvtID == PUSH_EVT_PUSH_BEGIN) {
             [self onPushBegin];
         } else if (EvtID == PUSH_ERR_NET_DISCONNECT || EvtID == PUSH_ERR_INVALID_ADDRESS) {
-            NSString *errMsg = @"推流断开，请检查网络设置";
+            NSString *errMsg = LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.pushstreamdisconnected");
             if (self.createRoomCompletion) {
                 self.createRoomCompletion(ROOM_ERR_CREATE_ROOM, errMsg);
                 self.createRoomCompletion = nil;
@@ -1414,7 +1416,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 });
             }
         } else if (EvtID == PUSH_ERR_OPEN_CAMERA_FAIL) {
-            NSString *errMsg = @"获取摄像头权限失败，请前往隐私-相机设置里面打开应用权限";
+            NSString *errMsg = LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetcamerapermission");
             if (self.createRoomCompletion) {
                 self.createRoomCompletion(ROOM_ERR_CREATE_ROOM, errMsg);
                 self.createRoomCompletion = nil;
@@ -1423,7 +1425,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                 self.joinAnchorCompletion = nil;
             }
         } else if (EvtID == PUSH_ERR_OPEN_MIC_FAIL) {
-            NSString *errMsg = @"获取麦克风权限失败，请前往隐私-麦克风设置里面打开应用权限";
+            NSString *errMsg = LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetmicrophonepermission");
             if (self->_createRoomCompletion) {
                 self->_createRoomCompletion(ROOM_ERR_CREATE_ROOM, errMsg);
                 self->_createRoomCompletion = nil;
@@ -1476,12 +1478,13 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                     if (self == nil) return;
                     if (errCode == 0) {
                         [IMManager createGroupWithID:roomID name:roomID completion:^(int errCode, NSString *errMsg) {
-                            [self sendDebugMsg:[NSString stringWithFormat:@"加入IMGroup完成: errCode[%d] errMsg[%@]", errCode, errMsg]];
+                            [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.joinimfinishxxyy"), [NSString stringWithFormat:@"%d",errCode], [NSString stringWithFormat:@"%@",errMsg])];
                             
                             if (errCode == 0 || errCode == 10025) {
                                 //群组 ID 已被使用，并且操作者为群主，可以直接使用
                                 if (errCode == 10025) {
-                                    NSLog(@"群组 %@ 已被使用，并且操作者为群主，可以直接使用", roomID);
+                                   
+                                    NSLog( @"%@", LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.groupisusedxx"), [NSString stringWithFormat:@"%@",roomID]));
                                 }
                                 self.roomInfo.roomCreator = userID;
                                 [self startHeartBeat]; // 启动心跳
@@ -1489,7 +1492,8 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                                 //mStreamMixturer.setMainVideoStream(pushURL);
                                 errCode = 0;
                             } else if (errCode == 10036) {
-                                NSLog(@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】 https://buy.cloud.tencent.com/avc");
+                                
+                                NSLog(@"%@",LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.thecloudcommunicationaccountyou"));
                             }
                             finish(errCode, errMsg);
                         }];
@@ -1534,7 +1538,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
              completion:(void(^)(__strong MLVBLiveRoom *self, int code, NSString *message, NSDictionary *responseObject))completion {
     __weak __typeof(self) weakSelf = self;
     NSString *paramDesc = [[params description] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    [self sendDebugMsg:[NSString stringWithFormat:@"开始请求 %@, %@", name, paramDesc]];
+    [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.startrequestxxyy"), [NSString stringWithFormat:@"%@",name],[NSString stringWithFormat:@"%@",paramDesc])];
     [self->_httpSession POST:_apiAddr[name]
                   parameters:params
                      headers:nil
@@ -1543,7 +1547,8 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
      ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          __strong __typeof(weakSelf) self = weakSelf;
          int errCode = [responseObject[RespCodeKey] intValue];
-         [self sendDebugMsg:[NSString stringWithFormat:@"请求 %@ %@, 返回 %@", name, errCode == 0 ? @"成功" : @"失败", responseObject]];
+        
+         [self sendDebugMsg:LocalizeReplaceThreeCharacter(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.requestxxyybackzz"), [NSString stringWithFormat:@"%@",name], errCode == 0 ? LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.success") : LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failed"), [NSString stringWithFormat:@"%@",responseObject])];
          if (completion) {
              NSString *errMsg = responseObject[@"message"];
              if (errCode != 0) {
@@ -1553,9 +1558,9 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
              }
          }
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         [weakSelf sendDebugMsg:[NSString stringWithFormat:@"请求 %@ 失败: error[%@]", name, [error description]]];
+         [weakSelf sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.requestxxerroryy"),[NSString stringWithFormat:@"%@",name],[NSString stringWithFormat:@"%@",[error description]])];
          if (completion) {
-             completion(weakSelf, ROOM_ERR_REQUEST_TIMEOUT, [NSString stringWithFormat: @"[MLVBLiveRoom] 网络请求超时，请检查网络设置, %@", error], nil);
+             completion(weakSelf, ROOM_ERR_REQUEST_TIMEOUT,LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.networktimeoutchecknetworksettingxx"), [NSString stringWithFormat:@"%@",[error description]]), nil);
          }
      }];
 }
@@ -1570,7 +1575,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         [self requestWithName:kHttpServerAddr_GetAnchorUrl params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (errCode == 0) {
                 if (self == nil) {
-                    completion(ROOM_ERR_INSTANCE_RELEASED, @"[MLVBLiveRoom] MLVBLiveRoom 已经被销毁");
+                    completion(ROOM_ERR_INSTANCE_RELEASED, LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.isdestruction"));
                     return;
                 }
                 // 启动推流
@@ -1585,7 +1590,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
                         if (result == 0) {
                             completion(0, nil);
                         } else {
-                            completion(result, [NSString stringWithFormat:@"[MLVBLiveRoom] 启动推流失败, %d", result]);
+                            completion(result, LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.startpushfailedxx"), [NSString stringWithFormat:@"%d",result]));
                         }
                     });
                 });
@@ -1710,15 +1715,14 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         [self requestWithName:kHttpServerAddr_MergeStream params:mergeParams completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (errCode == ROOM_ERR_REQUEST_TIMEOUT) {
                 // 因网络原因失败
-                [self sendDebugMsg:[NSString stringWithFormat:@"merge_video_stream请求失败: error[%@]", errMsg]];
+                [self sendDebugMsg:LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.requestfailedxx"), [NSString stringWithFormat:@"%@",errMsg])];
                 return;
             }
 
             int merge_code = [responseObject[@"merge_code"] intValue];
             NSString *merge_msg = responseObject[@"merge_message"];
             NSNumber *timestamp = responseObject[@"timestamp"];
-
-            [self sendDebugMsg:[NSString stringWithFormat:@"AppSvr回复merge_video_stream请求: errCode[%d] errMsg[%@] description[code = %d message = %@ timestamp = %@]", errCode, errMsg, merge_code, merge_msg, timestamp]];
+            [self sendDebugMsg:LocalizeReplaceFiveCharacter(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.appsvrmsgrequestxxyyzzmmnn"), [NSString stringWithFormat:@"%d",errCode],[NSString stringWithFormat:@"%@",errMsg], [NSString stringWithFormat:@"%d",merge_code], [NSString stringWithFormat:@"%@",merge_msg], [NSString stringWithFormat:@"%@",[timestamp stringValue]])];
 
             if (merge_code != 0) {
                 if (retryCount > 0) {
@@ -1871,7 +1875,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 }
 
 - (void)onGroupDelete:(NSString *)groupID {
-    [self sendDebugMsg:[NSString stringWithFormat:@"房间[%@]被解散", groupID]];
+    [self sendDebugMsg:LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.roomxxxwasdisbanded"), [NSString stringWithFormat:@"%@",groupID])];
     dispatch_async(self.delegateQueue, ^{
         if ([groupID isEqualToString:self.roomInfo.roomID]) {
             if ([self.delegate respondsToSelector:@selector(onRoomDestroy:)]) {
@@ -1886,8 +1890,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
     if (![roomID isEqualToString:self.roomInfo.roomID]) {
         return;
     }
-    
-    [self sendDebugMsg:[NSString stringWithFormat:@"收到小主播[%@-%@]连麦请求", userID, userName]];
+    [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.rogerthehostxxyy"),[NSString stringWithFormat:@"%@",userID],[NSString stringWithFormat:@"%@",userName])];
     [self asyncRun:^(MLVBLiveRoom *self) {
         dispatch_async(self.delegateQueue, ^{
             if ([self.delegate respondsToSelector:@selector(onRequestJoinAnchor:reason:)]) {
@@ -1906,8 +1909,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
     if (![roomID isEqualToString:self.roomInfo.roomID]) {
         return;
     }
-    
-    [self sendDebugMsg:[NSString stringWithFormat:@"收到大主播回应连麦请求:result[%d] message[%@]", result, message]];
+    [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.receivethebiganchortorespondxxyy"), [NSString stringWithFormat:@"%d",result],[NSString stringWithFormat:@"%@",message])];
     dispatch_async(dispatch_get_main_queue(), ^{
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(handleRequestJoinAnchorTimeOut:) object:self];
         if (self.requestAnchorCompletion) {
@@ -1923,7 +1925,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
         return;
     }
     
-    [self sendDebugMsg:@"收到被大主播踢出连麦的消息"];
+    [self sendDebugMsg:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.receiveanchorkickoutthenewsofevenwheat")];
     dispatch_async(self.delegateQueue, ^{
         if ([self.delegate respondsToSelector:@selector(onKickoutJoinAnchor)]) {
             [self.delegate onKickoutJoinAnchor];
@@ -1946,7 +1948,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 
 // 接收到PK请求
 - (void)onRequestRoomPK:(NSString *)roomID userID:(NSString *)userID userName:(NSString *)userName userAvatar:(NSString *)userAvatar streamUrl:(NSString *)streamUrl {
-    [self sendDebugMsg:[NSString stringWithFormat:@"收到房间[%@]主播[%@]的PK请求", roomID, userID]];
+    [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.receiveroomanchorpkrequestxxyy"),[NSString stringWithFormat:@"%@",roomID],[NSString stringWithFormat:@"%@",userID])];
     dispatch_async(self.delegateQueue, ^{
         if ([self.delegate respondsToSelector:@selector(onRequestRoomPK:)]) {
             MLVBAnchorInfo *info = [[MLVBAnchorInfo alloc] init];
@@ -1961,7 +1963,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 
 // 接收到PK请求回应, result为YES表示同意PK，为NO表示拒绝PK，若同意，则streamUrl为对方的播放流地址
 - (void)onRecvPKResponse:(NSString *)roomID userID:(NSString *)userID result:(BOOL)result message:(NSString *)message streamUrl:(NSString *)streamUrl {
-    [self sendDebugMsg:[NSString stringWithFormat:@"收到房间[%@]主播[%@]回应PK请求:result[%d] message[%@]", roomID, userID, result, message]];
+    [self sendDebugMsg:LocalizeReplaceFourCharacter(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.pushstreamdisconnectedxxyyzzmm"), [NSString stringWithFormat:@"%@",roomID],[NSString stringWithFormat:@"%@",userID], [NSString stringWithFormat:@"%d",result],[NSString stringWithFormat:@"%@",message])];
     MLVBAnchorInfo *anchor = [[MLVBAnchorInfo alloc] init];
     anchor.userID = userID;
     anchor.accelerateURL = streamUrl;
@@ -1989,7 +1991,7 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 
 // 接收PK结束消息
 - (void)onRecvPKFinishRequest:(NSString *)roomID userID:(NSString *)userID {
-    [self sendDebugMsg:[NSString stringWithFormat:@"收到房间[%@]主播[%@]的结束PK消息", roomID, userID]];
+    [self sendDebugMsg:LocalizeReplace(LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.receiveroomanchorpkendmsgxxyy"),[NSString stringWithFormat:@"%@",roomID],[NSString stringWithFormat:@"%@",userID])];
     // 判断当前pk的人是不是userID
     if (self.pkAnchor == nil || ![self.pkAnchor.userID isEqualToString:userID]) {
         return;

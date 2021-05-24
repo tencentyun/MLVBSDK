@@ -17,6 +17,7 @@
 #import "LiveRoomListViewController.h"
 #import "LiveRoomAccPlayerView.h"
 #import "TXLiteAVDemo-Swift.h"
+#import "AppLocalized.h"
 
 typedef NS_ENUM(NSInteger, PKStatus) {
     PKStatus_IDLE,         // 空闲状态
@@ -104,7 +105,6 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameDidChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
@@ -146,6 +146,9 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     }
     if (targetVC) {
         [self.navigationController popToViewController:targetVC animated:YES];
+        if (_mute_switch == true) {
+            [self clickMute:nil];
+        }
         return NO;
     }
     return YES;
@@ -259,7 +262,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _msgInputTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, _msgInputView.width - 80, _msgInputView.height)];
     _msgInputTextField.backgroundColor = UIColorFromRGB(0xfdfdfd);
     _msgInputTextField.returnKeyType = UIReturnKeySend;
-    _msgInputTextField.placeholder = @"输入文字内容";
+    _msgInputTextField.placeholder = LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.entertextcontent");
     _msgInputTextField.delegate = self;
     _msgInputTextField.leftView = paddingView;
     _msgInputTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -268,7 +271,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     
     _msgSendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _msgSendBtn.frame = CGRectMake(_msgInputView.width - 80, 0, 80, _msgInputView.height);
-    [_msgSendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [_msgSendBtn setTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.send") forState:UIControlStateNormal];
     [_msgSendBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_msgSendBtn setTitleColor:UIColorFromRGB(0x05a764) forState:UIControlStateNormal];
     [_msgSendBtn setBackgroundColor:UIColorFromRGB(0xfdfdfd)];
@@ -358,7 +361,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
         _msgListView.frame = CGRectMake(10,
                                         videoViewHeight + 6,
                                         self.view.width - 20,
-                                        self.view.height - videoViewHeight - self.view.width / 10 - 30);
+                                        self.view.height - videoViewHeight - self.view.width / 10 - 60);
  
     } else {
         _pusherView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
@@ -381,23 +384,23 @@ typedef NS_ENUM(NSInteger, PKStatus) {
         NSLog(@"createRoom: errCode[%d] errMsg[%@]", errCode, errMsg);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (errCode == 0) {
-                [self appendSystemMsg:@"连接成功"];
+                [self appendSystemMsg: LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.connectionsuccessful")];
             } else if (errCode == 10036) {
-                UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"您当前使用的云通讯账号未开通音视频聊天室功能，创建聊天室数量超过限额，请前往腾讯云官网开通【IM音视频聊天室】"
+                UIAlertController *controller = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.imaudioandvideochatrooms")
                                                                                     message:nil
                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"去开通" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertAction *action = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.toopen") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self.navigationController popViewControllerAnimated:YES];
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.cloud.tencent.com/avc"]];
                 }];
-                UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertAction *confirm = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.confirm") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
                 [controller addAction:action];
                 [controller addAction:confirm];
                 [self presentViewController:controller animated:YES completion:nil];
             } else {
-                [self alertTips:@"创建直播间失败" msg:errMsg completion:^{
+                [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.failedtocreatealivebooth") msg:errMsg completion:^{
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
             }
@@ -572,7 +575,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
 #pragma mark - LiveRoomListener
 
 - (void)onRoomDestroy:(NSString *)roomID {
-    [self alertTips:@"提示" msg:@"直播间已被解散" completion:^{
+    [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.liveroomhasbeendisbanded") completion:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -584,7 +587,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
 }
 
 - (void)onError:(int)errCode errMsg:(NSString *)errMsg extraInfo:(NSDictionary *)extraInfo {
-    [self alertTips:@"提示" msg:errMsg completion:^{
+    [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:errMsg completion:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -607,6 +610,10 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     dispatch_async(dispatch_get_main_queue(), ^{
         // 如果正在PK中，则将小主播踢出去
         if (self->_pkStatus == PKStatus_BEING) {
+            [self->_liveRoom kickoutJoinAnchor:anchorInfo.userID];
+            return;
+        }
+        if (self->_playerViewDic.count >= 3) {
             [self->_liveRoom kickoutJoinAnchor:anchorInfo.userID];
             return;
         }
@@ -649,7 +656,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     NSString *userID = anchor.userID;
     NSString *userName = anchor.userName;
     if (_hasPendingRequest || _pkStatus != PKStatus_IDLE) {
-        [_liveRoom responseJoinAnchor:userID agree:NO reason:@"请稍后，主播正忙"];
+        [_liveRoom responseJoinAnchor:userID agree:NO reason:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.pleasewaithostisbusy")];
         return;
     }
     
@@ -660,13 +667,14 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     
     _hasPendingRequest = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *msg = [NSString stringWithFormat:@"[%@]请求连麦", userName];
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"拒绝" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *msg = LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.xxrequestwheat"), [NSString stringWithFormat:@"%@",userName]);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.refusedto") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self->_hasPendingRequest = NO;
-            [self->_liveRoom responseJoinAnchor:userID agree:NO reason:@"主播不同意您的连麦"];
+            [self->_liveRoom responseJoinAnchor:userID agree:NO reason:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.anchordoesnotyourconnection")];
         }]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"接受" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.accept") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self->_hasPendingRequest = NO;
             [self->_liveRoom responseJoinAnchor:userID agree:YES reason:nil];
         }]];
@@ -685,19 +693,20 @@ typedef NS_ENUM(NSInteger, PKStatus) {
  */
 - (void)onRequestRoomPK:(MLVBAnchorInfo *)anchor {
     if (_hasPendingRequest || _pkStatus != PKStatus_IDLE || _playerViewDic.count) {
-        [_liveRoom responseRoomPK:anchor agree:NO reason:@"请稍后，主播正忙"];
+        [_liveRoom responseRoomPK:anchor agree:NO reason:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.pleasewaithostisbusy")];
         return;
     }
     
     _hasPendingRequest = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *msg = [NSString stringWithFormat:@"[%@]请求PK", anchor.userName];
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"拒绝" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *msg = LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.xxrequestpk"), [NSString stringWithFormat:@"%@",anchor.userName]);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.refusedto") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self->_hasPendingRequest = NO;
-            [self->_liveRoom responseRoomPK:anchor agree:NO reason:@"主播不同意您的PK"];
+            [self->_liveRoom responseRoomPK:anchor agree:NO reason:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.anchordoesnotyourpk")];
         }]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"接受" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.accept") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self.pkAnchor = anchor;
             self->_hasPendingRequest = NO;
             [self->_liveRoom responseRoomPK:anchor agree:YES reason:nil];
@@ -718,7 +727,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
  */
 - (void)onQuitRoomPK {
     [self deletePKView];
-    [self toastTip:@"对方结束PK" time:2];
+    [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.theendpk") time:2];
 }
 
 // 播放PK主播的画面
@@ -773,7 +782,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
 - (void)alertTips:(NSString *)title msg:(NSString *)msg completion:(void(^)())completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if (completion) {
                 completion();
             }
@@ -794,6 +803,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     _appIsInActive = NO;
     if (!_appIsBackground && !_appIsInActive) {
         if (_liveRoom) {
+            [_liveRoom muteLocalAudio:_mute_switch];
         }
     }
 }
@@ -831,7 +841,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     NSString *textMsg = [textField.text stringByTrimmingCharactersInSet:[NSMutableCharacterSet whitespaceCharacterSet]];
     if (textMsg.length <= 0) {
         textField.text = @"";
-        [self alertTips:@"提示" msg:@"消息不能为空" completion:nil];
+        [self alertTips:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") msg:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPlayer.messagecannotbeempty") completion:nil];
         return YES;
     }
     
@@ -911,7 +921,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
 #pragma mark - UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"请选择主播";
+    return LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.selecttheanchor");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -936,7 +946,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     }
     
     MLVBAnchorInfo *pusherInfo = _roomCreatorList[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"昵称: %@", pusherInfo.userName];
+    cell.textLabel.text = LocalizeReplaceXX(LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.nicknamexx"),[NSString stringWithFormat:@"%@",pusherInfo.userName]);
     cell.backgroundColor = [UIColor blackColor];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
@@ -967,7 +977,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
     
     if (_pkStatus == PKStatus_IDLE) {  // 空闲状态
         _pkStatus = PKStatus_REQUESTING;  // 请求PK中
-        [self toastTip:@"PK请求已发出，等待对方的接受..." time:10];
+        [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.pkrequestsentwaiting") time:10];
         __weak __typeof(self) wself = self;
         [_liveRoom requestRoomPK:anchor.userID completion:^(int errCode, NSString *errMsg, NSString *streamUrl) {
             __strong __typeof(wself) self = wself;
@@ -978,7 +988,7 @@ typedef NS_ENUM(NSInteger, PKStatus) {
                 self->_pkStatus = PKStatus_BEING; // PK中
                 anchor.accelerateURL = streamUrl;
                 [self addPKView:anchor];
-                [self toastTip:@"对方接受了您的请求，开始PK" time:2];
+                [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomPusher.yourrequestacceptedstartpk") time:2];
             } else {
                 self->_pkStatus = PKStatus_IDLE;  // 空闲状态
                 [self toastTip:errMsg time:2];

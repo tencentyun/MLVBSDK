@@ -13,8 +13,10 @@
 #import "UIImage+Additions.h"
 #import "AddressBarController.h"
 #import "TCHttpUtil.h"
+#import "AppLocalized.h"
+#import "NSString+Common.h"
 
-#define PLAY_URL    @"请输入或扫二维码获取播放地址"
+#define PLAY_URL    @"LivePlayerDemo.PlayViewController.pleaseenterorscantheqrcode"
 
 #define CACHE_TIME_FAST             1.0f
 #define CACHE_TIME_SMOOTH           5.0f
@@ -100,7 +102,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
 }
 
 - (void)initUI {
-    self.title = @"直播播放器";
+    self.title = LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.livestreamingplayer");
     [self.view setBackgroundImage:[UIImage imageNamed:@"background"]];
     
     int buttonCount = 7; // 底部一排按钮的数量
@@ -113,8 +115,8 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     CGFloat topOffset = [UIApplication sharedApplication].statusBarFrame.size.height;
     topOffset += (self.navigationController.navigationBar.height + 5);
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
-    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:15]};
-    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:PLAY_URL attributes:dic];
+    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:[NSString isCurrentLanguageEnglish] ? 13 : 15]};
+    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LivePlayerLocalize(PLAY_URL) attributes:dic];
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
@@ -188,7 +190,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     
     UILabel *title= [[UILabel alloc]init];
     title.frame = CGRectMake(0, 0, size.width, 50);
-    [title setText:@"延迟调整"];
+    [title setText:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.delayadjustment")];
     title.textAlignment = NSTextAlignmentCenter;
     [title setFont:[UIFont fontWithName:@"" size:14]];
     
@@ -198,17 +200,17 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     int width2 = (size.width - gap*2 - 20) / 3;
     _radioBtnFast = [UIButton buttonWithType:UIButtonTypeCustom];
     _radioBtnFast.frame = CGRectMake(10, 60, width2, 40);
-    [_radioBtnFast setTitle:@"极速" forState:UIControlStateNormal];
+    [_radioBtnFast setTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.speed") forState:UIControlStateNormal];
     [_radioBtnFast addTarget:self action:@selector(onAdjustFast:) forControlEvents:UIControlEventTouchUpInside];
     
     _radioBtnSmooth = [UIButton buttonWithType:UIButtonTypeCustom];
     _radioBtnSmooth.frame = CGRectMake(10 + gap + width2, 60, width2, 40);
-    [_radioBtnSmooth setTitle:@"流畅" forState:UIControlStateNormal];
+    [_radioBtnSmooth setTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.smooth") forState:UIControlStateNormal];
     [_radioBtnSmooth addTarget:self action:@selector(onAdjustSmooth:) forControlEvents:UIControlEventTouchUpInside];
     
     _radioBtnAuto = [UIButton buttonWithType:UIButtonTypeCustom];
     _radioBtnAuto.frame = CGRectMake(size.width - 10 - width2, 60, width2, 40);
-    [_radioBtnAuto setTitle:@"自动" forState:UIControlStateNormal];
+    [_radioBtnAuto setTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.auto") forState:UIControlStateNormal];
     [_radioBtnAuto addTarget:self action:@selector(onAdjustAuto:) forControlEvents:UIControlEventTouchUpInside];
     
     [sView addSubview:_radioBtnFast];
@@ -260,7 +262,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
 
 - (void)clickHW:(UIButton *)btn {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
-        [self toastTip:@"iOS 版本低于8.0，不支持硬件加速."];
+        [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.iosversionbelow")];
         return;
     }
     
@@ -274,10 +276,10 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     
     if (_btnPlay.tag == 1) {
         if (isHW) {
-            [self toastTip:@"切换为硬解码. 重启播放流程"];
+            [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.switchtoharddecoding")];
         }
         else {
-            [self toastTip:@"切换为软解码. 重启播放流程"];
+            [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.switchtosoftdecoding")];
         }
         
         [self startPlay];
@@ -356,13 +358,13 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
         _btnRealtime.tag = 1;
         _addressBeforeSwith = _addressBarController.text;
         [self fetchAccURL];
-        self.title = @"低延时播放";
+        self.title = LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.lowdelayplayback");
 
     } else {
         [_btnRealtime setImage:[UIImage imageNamed:@"jisu_off"] forState:UIControlStateNormal];
         _btnRealtime.tag = 0;
         _addressBarController.text = _addressBeforeSwith;
-        self.title = @"直播播放器";
+        self.title = LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.livestreamingplayer");
     }
 }
 
@@ -371,7 +373,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     if (isRealtime) {
         _playType = PLAY_TYPE_LIVE_RTMP_ACC;
         if (!([playUrl containsString:@"txSecret"] || [playUrl containsString:@"txTime"])) {
-            ToastTextView *toast = [self toastTip:@"低延时拉流地址需要防盗链签名，详情参考 https://cloud.tencent.com/document/product/454/7880#RealTimePlay"];
+            ToastTextView *toast = [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.lowdelaypullstreamaddress")];
             toast.url = @"https://cloud.tencent.com/document/product/454/7880#RealTimePlay";
             return NO;
         }
@@ -385,7 +387,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
         } else if (([playUrl hasPrefix:@"https:"] || [playUrl hasPrefix:@"http:"]) && [playUrl rangeOfString:@".m3u8"].length > 0) {
             _playType = PLAY_TYPE_VOD_HLS;
         } else{
-            [self toastTip:@"播放地址不合法，直播目前仅支持rtmp,flv播放方式!"];
+            [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.playaddressisnotlegal")];
             return NO;
         }
     }
@@ -418,7 +420,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     }];
 
     if (ret != 0) {
-        NSLog(@"播放器启动失败");
+        NSLog(LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.playerstartfailed"));
         return NO;
     }
     
@@ -549,16 +551,16 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
                     }
                     if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                                       message:@"您要切换到Wifi再观看吗?"
+                                                                                       message:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.changewifitosee")
                                                                                 preferredStyle:UIAlertControllerStyleAlert];
-                        [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                             [alert dismissViewControllerAnimated:YES completion:nil];
                             
                             // 先停止，再重新播放
                             [weakSelf stopPlay];
                             [weakSelf startPlay];
                         }]];
-                        [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.no") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                             [alert dismissViewControllerAnimated:YES completion:nil];
                         }]];
                         [weakSelf presentViewController:alert animated:YES completion:nil];
@@ -618,13 +620,13 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
  */
 - (float)heightForString:(UITextView *)textView andWidth:(float)width{
     CGSize sizeToFit = [textView sizeThatFits:CGSizeMake(width, MAXFLOAT)];
-    return sizeToFit.height + 10;
+    return sizeToFit.height + 30;
 }
 
 - (ToastTextView *)toastTip:(NSString*)toastInfo {
     CGRect frameRC = [[UIScreen mainScreen] bounds];
-    frameRC.origin.y = frameRC.size.height - 110;
-    frameRC.size.height -= 110;
+    frameRC.origin.y = frameRC.size.height - 150;
+    frameRC.size.height -= 150;
     __block ToastTextView * toastView = [[ToastTextView alloc] init];
     
     toastView.editable = NO;
@@ -657,7 +659,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
             return;
         }
         if (result != 0) {
-            [self toastTip:@"获取低延时播放地址失败"];
+            [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.failedtogetlowdelayplaybackaddress")];
         } else if (self->_btnRealtime.tag) {
             NSString* playUrl = nil;
             if (resultDict)
@@ -665,7 +667,7 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
                 playUrl = resultDict[@"url_rtmpacc"];
             }
             self->_addressBarController.text = playUrl;
-            [self toastTip:@"测试地址的影像来自在线UTC时间的录屏推流，推流工具采用移动直播 Windows SDK + VCam"];
+            [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.testaddressfromonline")];
         }
     }];
 }

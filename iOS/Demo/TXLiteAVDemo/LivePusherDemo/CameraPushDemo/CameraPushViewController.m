@@ -21,6 +21,8 @@
 #import "CWStatusBarNotification.h"
 // 音效设置面板
 #import <AudioEffectSettingKit/AudioEffectSettingKit.h>
+#import "AppLocalized.h"
+#import "NSString+Common.h"
 
 #ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
 #import "CustomAudioFileReader.h"
@@ -28,7 +30,7 @@
 #define CUSTOM_AUDIO_CAPTURE_CHANNEL 1
 #endif
 
-#define RTMP_PUBLISH_URL    @"请输入推流地址或者扫二维码进行输入"
+#define RTMP_PUBLISH_URL    @"LivePusherDemo.CameraPush.pleaseinputthepushstream"
 
 @interface CameraPushViewController () <
     TXLivePushListener,
@@ -50,6 +52,7 @@
     UIView              *_localView;    // 本地预览
     BOOL                _appIsInActive;
     BOOL                _appIsBackground;
+    BOOL                _isMute;
         
     TCBeautyPanel             *_beautyPanel;    // 美颜控件
     PushMoreSettingViewController *_moreSettingVC;  // 更多设置
@@ -77,6 +80,7 @@
     if (self = [super init]) {
         _appIsInActive = NO;
         _appIsBackground = NO;
+        _isMute = NO;
     }
     return self;
 }
@@ -139,6 +143,7 @@
     if (!_appIsBackground && !_appIsInActive) {
         if (![PushMoreSettingViewController isDisableVideo]) {
             [_pusher resumePush];
+            [_pusher setMute:_isMute];
         }
     }
 }
@@ -156,12 +161,13 @@
     if (!_appIsBackground && !_appIsInActive) {
         if (![PushMoreSettingViewController isDisableVideo]) {
             [_pusher resumePush];
+            [_pusher setMute:_isMute];
         }
     }
 }
 
 - (void)initUI {
-    self.title = @"RTMP推流";
+    self.title = LivePlayerLocalize(@"LivePusherDemo.CameraPush.rtmppullstream");
     [self.view setBackgroundImage:[UIImage imageNamed:@"background"]];
     
     _notification = [CWStatusBarNotification new];
@@ -178,8 +184,8 @@
     CGFloat topOffset = [UIApplication sharedApplication].statusBarFrame.size.height;
     topOffset += (self.navigationController.navigationBar.height + 5);
     _addressBarController.view.frame = CGRectMake(10, topOffset, self.view.width-20, ICON_SIZE);
-    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:15]};
-    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:RTMP_PUBLISH_URL attributes:dic];
+    NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:[NSString isCurrentLanguageEnglish] ? 13 : 15]};
+    _addressBarController.view.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LivePlayerLocalize(RTMP_PUBLISH_URL) attributes:dic];
     _addressBarController.delegate = self;
     [self.view addSubview:_addressBarController.view];
     
@@ -251,7 +257,7 @@
     _localView.center = self.view.center;
     
 #if TARGET_IPHONE_SIMULATOR
-    [self toastTip:@"iOS模拟器不支持推流和播放，请使用真机体验"];
+    [self toastTip:LivePlayerLocalize(@"LivePusherDemo.CameraPush.iosemulatordoesnotsupport")];
 #endif
 }
 
@@ -350,7 +356,7 @@
     } else {
         [self stopPush];
         [_logView clear];
-        
+        [self.audioEffectView resetBgmSelectItemStatus];
         [_btnPush setImage:[UIImage imageNamed:@"start2"] forState:UIControlStateNormal];
         _btnPush.tag = 0;
         [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
@@ -381,6 +387,14 @@
 
 - (void)clickBgm:(UIButton *)btn {
     [_audioEffectView show];
+    if (_moreSettingVC) {
+        [_moreSettingVC willMoveToParentViewController:self];
+        [_moreSettingVC.view removeFromSuperview];
+        [_moreSettingVC removeFromParentViewController];
+        
+        [_moreSettingVC setDelegate:nil];
+        _moreSettingVC = nil;
+    }
 }
 
 - (void)clickLog:(UIButton *)btn {
@@ -437,10 +451,10 @@
 - (BOOL)startPush {
     NSString *rtmpUrl = _addressBarController.text;
     if (!([rtmpUrl hasPrefix:@"rtmp://"])) {
-        rtmpUrl = RTMP_PUBLISH_URL;
+        rtmpUrl = LivePlayerLocalize(RTMP_PUBLISH_URL);
     }
     if (!([rtmpUrl hasPrefix:@"rtmp://"])) {
-        [self toastTip:@"推流地址不合法，目前只支持rtmp推流!"];
+        [self toastTip:LivePlayerLocalize(@"LivePusherDemo.CameraPush.pushstreamaddressisnotvalid")];
         [_logView setPushUrlValid:NO];
         return NO;
     }
@@ -449,14 +463,14 @@
     // 检查摄像头权限
     AVAuthorizationStatus statusVideo = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (statusVideo == AVAuthorizationStatusDenied) {
-        [self toastTip:@"获取摄像头权限失败，请前往隐私-相机设置里面打开应用权限"];
+        [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetcamerapermission")];
         return NO;
     }
     
     // 检查麦克风权限
     AVAuthorizationStatus statusAudio = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
     if (statusAudio == AVAuthorizationStatusDenied) {
-        [self toastTip:@"获取麦克风权限失败，请前往隐私-麦克风设置里面打开应用权限"];
+        [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetmicrophonepermission")];
         return NO;
     }
     
@@ -479,8 +493,8 @@
     // 开始推流
     int ret = [_pusher startPush:rtmpUrl];
     if (ret != 0) {
-        [self toastTip:[NSString stringWithFormat:@"推流器启动失败: %d", ret]];
-        NSLog(@"推流器启动失败");
+        [self toastTip:[NSString stringWithFormat:@"%@: %d",LivePlayerLocalize(@"LivePusherDemo.CameraPush.thethrusterfailedtostart"), ret]];
+        NSLog(@"%@",LivePlayerLocalize(@"LivePusherDemo.CameraPush.thethrusterfailedtostart"));
         return NO;
     }
 
@@ -524,7 +538,7 @@
     hud.label.text = text;
     hud.detailsLabel.text = detail;
     [hud.button addTarget:self action:@selector(onCloseHUD:) forControlEvents:UIControlEventTouchUpInside];
-    [hud.button setTitle:@"关闭" forState:UIControlStateNormal];
+    [hud.button setTitle:LivePlayerLocalize(@"LivePusherDemo.CameraPush.off") forState:UIControlStateNormal];
     [hud showAnimated:YES];
     [hud hideAnimated:YES afterDelay:2];
 }
@@ -540,11 +554,11 @@
         [self clickPush:_btnPush];
     }
 
-    [self showInProgressText:@"地址获取中"];
+    [self showInProgressText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.addressacquisitioninprocess")];
     
     [TCHttpUtil asyncSendHttpRequest:@"get_test_pushurl" httpServerAddr:kHttpServerAddr HTTPMethod:@"GET" param:nil handler:^(int result, NSDictionary *resultDict) {
         if (result != 0 || resultDict == nil) {
-            [self showText:@"获取推流地址失败"];
+            [self showText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.failedtogetpushstreamaddress")];
         } else {
             NSString *pusherUrl = resultDict[@"url_push"];
             NSString *rtmpPlayUrl = resultDict[@"url_play_rtmp"];
@@ -556,16 +570,17 @@
             NSString *(^c)(NSString *x, NSString *y) = ^(NSString *x, NSString *y) {
                 return [NSString stringWithFormat:@"%@,%@", x, y];
             };
+            NSString *lebUrl = [rtmpPlayUrl stringByReplacingOccurrencesOfString:@"rtmp://" withString:@"webrtc://"];
             controller.qrStrings = @[c(@"rtmp", rtmpPlayUrl),
                                      c(@"flv", flvPlayUrl),
                                      c(@"hls", hlsPlayUrl),
-                                     c(@"低延时", accPlayUrl)];
-            
-            NSString* playUrls = [NSString stringWithFormat:@"rtmp播放地址:%@\n\nflv播放地址:%@\n\nhls播放地址:%@\n\n低延时播放地址:%@", rtmpPlayUrl, flvPlayUrl, hlsPlayUrl, accPlayUrl];
+                                     c(LivePlayerLocalize(@"LivePusherDemo.CameraPush.lowlatency"), accPlayUrl),
+                                     c(LivePlayerLocalize(@"LivePusherDemo.CameraPush.lebUrl"), lebUrl)];
+            NSString* playUrls = LocalizeReplaceFourCharacter(LivePlayerLocalize(@"LivePusherDemo.CameraPush.rtmpaddressxxflvaddressyyhlsaddresszz"), [NSString stringWithFormat:@"%@",rtmpPlayUrl], [NSString stringWithFormat:@"%@",flvPlayUrl], [NSString stringWithFormat:@"%@",hlsPlayUrl], [NSString stringWithFormat:@"%@",accPlayUrl]);
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = playUrls;
             
-            [self showText:@"获取地址成功" withDetailText:@"播放地址已复制到剪贴板"];
+            [self showText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.getaddresssuccess") withDetailText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.playbackaddresshasbeencopiedtotheclipboard")];
         }
     }];
 }
@@ -596,14 +611,14 @@
             
         } else if (evtID == PUSH_ERR_OPEN_CAMERA_FAIL) {
             [self clickPush:self->_btnPush];
-            [self toastTip:@"获取摄像头权限失败，请前往隐私-相机设置里面打开应用权限"];
+            [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetcamerapermission")];
             
         } else if (evtID == PUSH_EVT_OPEN_CAMERA_SUCC) {
             [self.pusher toggleTorch:[PushMoreSettingViewController isOpenTorch]];
 
         } else if (evtID == PUSH_ERR_OPEN_MIC_FAIL) {
             [self clickPush:self->_btnPush];
-            [self toastTip:@"获取麦克风权限失败，请前往隐私-麦克风设置里面打开应用权限"];
+            [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetmicrophonepermission")];
             
         } else if (evtID == PUSH_EVT_CONNECT_SUCC) {
             [self.pusher setMute:[PushMoreSettingViewController isMuteAudio]];
@@ -618,16 +633,16 @@
                     }
                     if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                                       message:@"您要切换到WiFi再推流吗?"
+                                                                                       message:LivePlayerLocalize(@"LivePusherDemo.CameraPush.changetowifipushstream")
                                                                                 preferredStyle:UIAlertControllerStyleAlert];
-                        [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+                        [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                             [alert dismissViewControllerAnimated:YES completion:nil];
                             
                             // 先暂停，再重新推流
                             [weakSelf.pusher stopPush];
                             [weakSelf.pusher startPush:weakSelf.pushUrl];
                         }]];
-                        [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction *_Nonnull action) {
+                        [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.no") style:UIAlertActionStyleCancel handler:^(UIAlertAction *_Nonnull action) {
                             [alert dismissViewControllerAnimated:YES completion:nil];
                         }]];
                         [weakSelf presentViewController:alert animated:YES completion:nil];
@@ -635,7 +650,7 @@
                 }];
             }
         } else if (evtID == PUSH_WARNING_NET_BUSY) {
-            [self->_notification displayNotificationWithMessage:@"您当前的网络环境不佳，请尽快更换网络保证正常直播" forDuration:5];
+            [self->_notification displayNotificationWithMessage:LivePlayerLocalize(@"LivePusherDemo.CameraPush.currentnetworkenvironmentisnotgood") forDuration:5];
         }
         
         // log
@@ -662,25 +677,25 @@
 
 - (void)onLoadPituStart {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showInProgressText:@"开始加载资源"];
+        [self showInProgressText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.startloadingassets")];
     });
 }
 
 - (void)onLoadPituProgress:(CGFloat)progress {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showInProgressText:[NSString stringWithFormat:@"正在加载资源%d %%",(int)(progress * 100)]];
+        [self showInProgressText:LocalizeReplaceXX(LivePlayerLocalize(@"LivePusherDemo.CameraPush.loadingxx"), [NSString stringWithFormat:@"%d",(int)(progress * 100)])];
     });
 }
 
 - (void)onLoadPituFinished {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showText:@"资源加载成功"];
+        [self showText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.assetsloadsuccess")];
     });
 }
 
 - (void)onLoadPituFailed {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self showText:@"资源加载失败"];
+        [self showText:LivePlayerLocalize(@"LivePusherDemo.CameraPush.assetsloadfailed")];
     });
 }
 
@@ -743,6 +758,7 @@
         }
         else {
             [_pusher resumePush];
+            [_pusher setMute:_isMute];
         }
     }
 }
@@ -750,6 +766,7 @@
 // 是否开启静音模式（发送静音数据，但是不关闭麦克风）
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc muteAudio:(BOOL)mute {
     [_pusher setMute:mute];
+    _isMute = mute;
 }
 
 // 是否开启观看端镜像
