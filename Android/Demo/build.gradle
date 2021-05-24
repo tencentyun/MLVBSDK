@@ -23,6 +23,9 @@ allprojects {
         flatDir {
             dirs 'libs'
             dirs project(':app').file('libs')
+            if (!liteavSourcePath.isEmpty()) {
+                dirs project(':liteav_leb_player').file('src/main/libs')
+            }
         }
         jcenter()
         google()
@@ -55,6 +58,6 @@ ext {
     imSdk = 'com.tencent.imsdk:imsdk:4.9.1'
     versionCode = 1
     versionName = "v1.0"
-    ndkAbi = 'armeabi'//,'armeabi-v7a', 'arm64-v8a'
+    ndkAbi = 'armeabi-v7a'//,'armeabi-v7a', 'arm64-v8a'
     aekit_version = '1.0.10-cloud'
 }

@@ -52,7 +52,7 @@ public class LivePlayerEntranceActivity extends Activity {
                 if (actionId == EditorInfo.IME_ACTION_GO || (event != null && event.getAction() == KeyEvent.ACTION_UP)) {
                     String url = mEditInputURL.getText().toString().trim();
                     if (TextUtils.isEmpty(url)) {
-                        Toast.makeText(mContext, R.string.liveplayer_intpu_url, Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, R.string.liveplayer_intput_url, Toast.LENGTH_LONG).show();
                     } else {
                         startLivePlayer(url);
                     }
@@ -85,14 +85,14 @@ public class LivePlayerEntranceActivity extends Activity {
         } else if (id == R.id.liveplayer_btn_play) {
             String url = mEditInputURL.getText().toString().trim();
             if (TextUtils.isEmpty(url)) {
-                Toast.makeText(mContext, R.string.liveplayer_intpu_url, Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, R.string.liveplayer_intput_url, Toast.LENGTH_LONG).show();
             } else {
                 startLivePlayer(url);
             }
         } else if (id == R.id.liveplayer_btn_realtime_play) {
             String url = mEditInputURL.getText().toString().trim();
             if (TextUtils.isEmpty(url)) {
-                Toast.makeText(mContext, R.string.liveplayer_intpu_url, Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, R.string.liveplayer_intput_url, Toast.LENGTH_LONG).show();
             } else {
                 boolean isLiveRTMP = url.startsWith(Constants.URL_PREFIX_RTMP);
                 boolean hasBizid = url.contains(Constants.URL_BIZID);

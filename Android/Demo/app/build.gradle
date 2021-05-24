@@ -8,8 +8,8 @@ android {
         applicationId "com.tencent.liteav.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 16
-        versionName "8.6.688"
+        versionCode 17
+        versionName "8.7.804"
 
         multiDexEnabled true
         ndk {

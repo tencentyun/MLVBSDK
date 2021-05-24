@@ -68,6 +68,14 @@
                 android:layout_marginTop="34dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp" />
+
+            <com.tencent.liteav.demo.livepusher.camerapush.ui.view.RadioButton
+                android:id="@+id/livepusher_rb_leb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="68dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
         </RelativeLayout>
     </LinearLayout>
 

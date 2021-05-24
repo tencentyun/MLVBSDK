@@ -47,6 +47,7 @@
     <string name="livepusher_audio_quality">音质选择</string>
     <string name="livepusher_primary_clip">已添加至剪切板</string>
     <string name="livepusher_realtime">低延时</string>
+    <string name="livepusher_leb">快直播</string>
     <string name="livepusher_play_hint">你需要a，b两台手机进行测试</string>
     <string name="livepusher_play_hint_1">①a手机生成推流地址录制</string>
     <string name="livepusher_play_hint_2">②b手机输入推流地址或扫码拉流并播放测试</string>

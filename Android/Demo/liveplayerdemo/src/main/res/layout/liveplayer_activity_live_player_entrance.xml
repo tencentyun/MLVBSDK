@@ -52,7 +52,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/liveplayer_input_url_bg"
-        android:hint="@string/liveplayer_intpu_url"
+        android:hint="@string/liveplayer_intput_url"
         android:imeOptions="actionGo"
         android:inputType="textUri"
         android:paddingLeft="10dp"

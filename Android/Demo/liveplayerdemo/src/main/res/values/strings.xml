@@ -40,7 +40,7 @@
     <string name="liveplayer_start_step5_value">收到首帧视频数据</string>
     <string name="liveplayer_cache_strategy">缓存策略</string>
     <string name="liveplayer_title_live_player">直播播放器</string>
-    <string name="liveplayer_intpu_url">请输入播放地址</string>
+    <string name="liveplayer_intput_url">请输入播放地址</string>
     <string name="liveplayer_auto_input_url">自动生成播放地址或手动输入</string>
     <string name="liveplayer_play_default_url">播放默认拉流地址</string>
     <string name="liveplayer_have_url">我有播放地址</string>

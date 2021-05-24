@@ -40,7 +40,7 @@
     <string name="liveplayer_start_step5_value">Received the first video frame</string>
     <string name="liveplayer_cache_strategy">Buffering Strategy</string>
     <string name="liveplayer_title_live_player">Live Streaming Player</string>
-    <string name="liveplayer_intpu_url">Enter a playback address</string>
+    <string name="liveplayer_intput_url">Enter a playback address</string>
     <string name="liveplayer_auto_input_url">Auto-generate or enter a playback address</string>
     <string name="liveplayer_play_default_url">Play via default pull address</string>
     <string name="liveplayer_have_url">I have a playback address</string>

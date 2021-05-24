@@ -44,15 +44,15 @@ public class PusherPlayQRCodeFragment extends DialogFragment {
     private ClipboardManager mClipboardManager;
     private ClipData         mClipData;
 
-    private RadioButton[]    mRadioButtons = new RadioButton[4];
+    private RadioButton[]    mRadioButtons = new RadioButton[5];
     private ImageView        mImageQRCode;
     private LinearLayout     mLayoutCopy;
     private Button           mButtonClose;
 
     private int mCurrentSelected = 0;
 
-    private String[] mQRCodeURL = new String[4];
-    private Bitmap[] mQRCodeBmp = new Bitmap[4];
+    private String[] mQRCodeURL = new String[5];
+    private Bitmap[] mQRCodeBmp = new Bitmap[5];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,17 +107,22 @@ public class PusherPlayQRCodeFragment extends DialogFragment {
         mQRCodeURL[1] = rtmpPlayURL;
         mQRCodeURL[2] = hlsPlayURL;
         mQRCodeURL[3] = realtimePlayURL;
+        if (rtmpPlayURL != null) {
+            mQRCodeURL[4] = rtmpPlayURL.replace("rtmp://", "webrtc://");
+        }
     }
 
     private void initViews(View view) {
-        mRadioButtons[0] = (RadioButton) view.findViewById(R.id.livepusher_rb_flv);
+        mRadioButtons[0] = view.findViewById(R.id.livepusher_rb_flv);
         mRadioButtons[0].setText("flv");
-        mRadioButtons[1] = (RadioButton) view.findViewById(R.id.livepusher_rb_rtmp);
+        mRadioButtons[1] = view.findViewById(R.id.livepusher_rb_rtmp);
         mRadioButtons[1].setText("rtmp");
-        mRadioButtons[2] = (RadioButton) view.findViewById(R.id.livepusher_rb_hls);
+        mRadioButtons[2] = view.findViewById(R.id.livepusher_rb_hls);
         mRadioButtons[2].setText("hls");
-        mRadioButtons[3] = (RadioButton) view.findViewById(R.id.livepusher_rb_realtime);
+        mRadioButtons[3] = view.findViewById(R.id.livepusher_rb_realtime);
         mRadioButtons[3].setText(getString(R.string.livepusher_realtime));
+        mRadioButtons[4] = view.findViewById(R.id.livepusher_rb_leb);
+        mRadioButtons[4].setText(getString(R.string.livepusher_leb));
 
         for (int i = 0; i < mRadioButtons.length; i++) {
             final int position = i;
