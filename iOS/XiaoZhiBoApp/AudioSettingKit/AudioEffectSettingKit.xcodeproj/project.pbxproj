@@ -642,6 +642,8 @@
 					"${SRCROOT}/../XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework/Headers/",
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Professional.framework/Headers/",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Professional.framework/Headers/",
+					"${SRCROOT}/../../../SDK/TXLiteAVSDK_International.framework/Headers/",
+					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_International.framework/Headers/",
 				);
 				INFOPLIST_FILE = AudioSettingKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -682,6 +684,8 @@
 					"${SRCROOT}/../XiaoZhiBoApp/Framework/TXLiteAVSDK_Professional.framework/Headers/",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Professional.framework/Headers/",
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Professional.framework/Headers/",
+					"${SRCROOT}/../../../SDK/TXLiteAVSDK_International.framework/Headers/",
+					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_International.framework/Headers/",
 				);
 				INFOPLIST_FILE = AudioSettingKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
