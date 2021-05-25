@@ -11,14 +11,12 @@
 | Android | [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](https://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 8.6 @ 2021.05.06
-- iOS&Android：移动直播 V2 新增 RTC 协议混流接口。
-- iOS&Android：移动直播 V2 新增预处理接口。
-- iOS&Android：移动直播 V2 修复观众端偶现拉流失败的问题。
-- iOS&Android：移动直播 V2 修复开启自定义采集再关闭后，导致的推流失败问题。
-- iOS&Android：移动直播 V2 优化若干体验问题。
-- iOS&Android：修复移动直播若干稳定性问题。
-- iOS：优化 Swift 编译警告问题。
+### Version 8.7 @ 2021.05.24
+- iOS：修复点播播放器播放特定采样率视频出现的杂音问题；
+- iOS：修复iOS 14.5短视频录制模块出现电流杂音问题；
+- Android：修复移动直播推流过程中FPS设置不生效的问题；
+- Android：优化移动直播的播放体验，默认硬解码；
+- iOS&Android：新增快直播播放能力；
 
 ## MLVB Demo
 
