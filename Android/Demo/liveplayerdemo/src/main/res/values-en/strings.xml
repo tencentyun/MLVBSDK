@@ -47,4 +47,5 @@
     <string name="liveplayer_start_paly">Start Playback</string>
     <string name="liveplayer_start_realtime_paly">Low-latency Play</string>
     <string name="liveplayer_not_realtime_url">Enter a low-latency playback address</string>
+    <string name="liveplayer_camera">Please turn on the camera permission first</string>
 </resources>

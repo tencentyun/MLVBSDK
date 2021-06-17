@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.tencent.liteav.debug.GenerateTestUserSig;
 import com.tencent.liteav.demo.liveroom.R;
-import com.tencent.liteav.demo.liveroom.roomutil.misc.CommonAppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import com.tencent.liteav.demo.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.liveroom.MLVBLiveRoom;
 import com.tencent.liteav.demo.liveroom.ui.fragment.LiveRoomChatFragment;
@@ -36,7 +36,7 @@ import java.util.Date;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
-public class LiveRoomActivity extends CommonAppCompatActivity implements LiveRoomActivityInterface {
+public class LiveRoomActivity extends AppCompatActivity implements LiveRoomActivityInterface {
 
     public final Handler mUiHandler = new Handler();
 
@@ -145,23 +145,6 @@ public class LiveRoomActivity extends CommonAppCompatActivity implements LiveRoo
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public void onPermissionDisable() {
-        new AlertDialog.Builder(this, R.style.MlvbRtmpRoomDialogTheme)
-                .setMessage(getString(R.string.mlvb_permission_hint))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-    }
-
-    @Override
-    public void onPermissionGranted() {
-
     }
 
     private class LoginInfoResponse {

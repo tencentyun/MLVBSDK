@@ -2,12 +2,9 @@ package com.tencent.liteav.demo.livepusher.camerapush.ui;
 
 import android.app.AlertDialog;
 import android.app.Service;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -15,7 +12,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.StringRes;
@@ -29,9 +25,9 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -39,6 +35,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.liteav.audiosettingkit.AudioEffectPanel;
 import com.tencent.liteav.demo.beauty.view.BeautyPanel;
 import com.tencent.liteav.demo.livepusher.R;
@@ -46,28 +45,34 @@ import com.tencent.liteav.demo.livepusher.camerapush.ui.view.LogInfoWindow;
 import com.tencent.liteav.demo.livepusher.camerapush.ui.view.PusherPlayQRCodeFragment;
 import com.tencent.liteav.demo.livepusher.camerapush.ui.view.PusherSettingFragment;
 import com.tencent.liteav.demo.livepusher.camerapush.ui.view.PusherVideoQualityFragment;
-import com.tencent.rtmp.ITXLivePushListener;
+import com.tencent.live2.V2TXLiveCode;
+import com.tencent.live2.V2TXLiveDef;
+import com.tencent.live2.V2TXLivePusher;
+import com.tencent.live2.V2TXLivePusherObserver;
+import com.tencent.live2.impl.V2TXLivePusherImpl;
 import com.tencent.rtmp.TXLiveConstants;
-import com.tencent.rtmp.TXLivePushConfig;
-import com.tencent.rtmp.TXLivePusher;
 import com.tencent.rtmp.TXLog;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
+import static com.tencent.live2.V2TXLiveDef.V2TXLiveVideoResolutionMode.V2TXLiveVideoResolutionModeLandscape;
+import static com.tencent.live2.V2TXLiveDef.V2TXLiveVideoResolutionMode.V2TXLiveVideoResolutionModePortrait;
+
 /**
- * 腾讯云 {@link TXLivePusher} 推流器使用参考 Demo
+ * 腾讯云 {@link com.tencent.live2.V2TXLivePusher} 推流器 V2 使用参考 Demo
  * <p>
  * 有以下功能参考 ：
  * <p>
  * - 基本功能参考： 启动推流 {@link #startPush()} 与 结束推流 {@link #stopPush()} ()}
  * <p>
- * - 性能数据查看参考： {@link #onNetStatus(Bundle)}
+ * - 性能数据查看参考： {@link com.tencent.live2.V2TXLivePusherObserver#onStatisticsUpdate(V2TXLiveDef.V2TXLivePusherStatistics)}
  * <p>
- * - 处理 SDK 回调事件参考： {@link #onPushEvent(int, Bundle)}
+ * - 处理 SDK 回调事件参考： {@link com.tencent.live2.V2TXLivePusherObserver#onPushStatusUpdate(V2TXLiveDef.V2TXLivePushStatus, String, Bundle)}
  * <p>
  * - 美颜面板：{@link BeautyPanel}
  * <p>
@@ -77,7 +82,7 @@ import java.util.UUID;
  * <p>
  * - 混响、变声、码率自适应、硬件加速等使用参考： {@link PusherSettingFragment} 与 {@link PusherSettingFragment.OnSettingChangeListener}
  */
-public class CameraPushMainActivity extends FragmentActivity implements ITXLivePushListener,
+public class CameraPushMainActivity extends FragmentActivity implements
         PusherVideoQualityFragment.OnVideoQualityChangeListener, PusherSettingFragment.OnSettingChangeListener {
 
     private static final String TAG = CameraPushMainActivity.class.getSimpleName();
@@ -87,7 +92,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     private static final String PUSHER_VIDEO_QUALITY_FRAGMENT = "push_video_quality_fragment";
 
     private TXPhoneStateListener     mPhoneListener;
-    private ActivityRotationObserver mActivityRotationObserver;
 
     private TextView         mTextNetBusyTips;              // 网络繁忙Tips
     private BeautyPanel      mBeautyPanelView;              // 美颜模块pannel
@@ -108,8 +112,7 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
 
     private int mLogClickCount = 0;
 
-    private TXLivePusher     mLivePusher;
-    private TXLivePushConfig mLivePushConfig;
+    private V2TXLivePusher mLivePusher;
     private TXCloudVideoView mPusherView;
 
     private Bitmap mWaterMarkBitmap;
@@ -118,22 +121,15 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     private boolean mIsResume              = false;
     private boolean mIsWaterMarkEnable     = true;
     private boolean mIsDebugInfo           = false;
-    private boolean mIsMuteAudio           = false;
-    private boolean mIsPrivateMode         = false;
-    private boolean mIsLandscape           = true;
+    private boolean mIsLandscape           = false;
     private boolean mIsMirrorEnable        = false;
     private boolean mIsFocusEnable         = false;
-    private boolean mIsZoomEnable          = false;
-    private boolean mIsPureAudio           = false;
     private boolean mIsEarMonitoringEnable = false;
-    private boolean mIsHWAcc               = false;
     private boolean mFrontCamera           = true;
     private boolean mIsEnableAdjustBitrate = false;
-    private boolean mIsFlashLight          = false;
 
-    private int mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960;
-    private int mAudioChannels;
-    private int mAudioSample;
+    private V2TXLiveDef.V2TXLiveVideoResolution mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540;
+    private V2TXLiveDef.V2TXLiveAudioQuality mAudioQuality = V2TXLiveDef.V2TXLiveAudioQuality.V2TXLiveAudioQualityDefault;
     private int mQualityType;
 
     @Override
@@ -148,8 +144,21 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         initMainView();            // 初始化一些核心的 View
 
         // 进入页面，自动开始推流，并且弹出推流对应的拉流地址
-        startPush();
-        mPusherPlayQRCodeFragment.toggle(getFragmentManager(), PUSHER_PLAY_QR_CODE_FRAGMENT);
+        PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.MICROPHONE).callback(new PermissionUtils.FullCallback() {
+            @Override
+            public void onGranted(List<String> permissionsGranted) {
+                // 初始化完成之后自动播放
+                startPush();
+                mPusherPlayQRCodeFragment.toggle(getFragmentManager(), PUSHER_PLAY_QR_CODE_FRAGMENT);
+            }
+
+            @Override
+            public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                ToastUtils.showShort(R.string.livepusher_app_camera_mic);
+                finish();
+            }
+        }).request();
+
     }
 
     @Override
@@ -174,12 +183,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
             mAudioEffectPanel.unInit();
             mAudioEffectPanel = null;
         }
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        setRotationForActivity(); // Activity 旋转
     }
 
     @Override
@@ -269,81 +272,11 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         }
     }
 
-    /**
-     * 推流器状态回调
-     *
-     * @param event 事件id.id类型请参考 {@linkplain TXLiveConstants#PLAY_EVT_CONNECT_SUCC 推流事件列表}.
-     * @param param
-     */
     @Override
-    public void onPushEvent(int event, Bundle param) {
-        String msg = param.getString(TXLiveConstants.EVT_DESCRIPTION);
-        String pushEventLog = getString(R.string.livepusher_receive_event) + event + ", " + msg;
-        TXLog.d(TAG, pushEventLog);
-
-        // 如果开始推流，设置了隐私模式。 需要在回调里面设置，不能直接start之后直接pause
-        if (event == TXLiveConstants.PUSH_EVT_PUSH_BEGIN) {
-            if (mIsPrivateMode) {
-                mLivePusher.pausePusher();
-            }
-        }
-        if (event == TXLiveConstants.PUSH_ERR_NET_DISCONNECT
-                || event == TXLiveConstants.PUSH_ERR_INVALID_ADDRESS
-                || event == TXLiveConstants.PUSH_ERR_OPEN_CAMERA_FAIL
-                || event == TXLiveConstants.PUSH_ERR_OPEN_MIC_FAIL) {
-            // 遇到以上错误，则停止推流
-            stopPush();
-        } else if (event == TXLiveConstants.PUSH_WARNING_HW_ACCELERATION_FAIL) {
-            // 开启硬件加速失败
-            mLivePushConfig.setHardwareAcceleration(TXLiveConstants.ENCODE_VIDEO_SOFTWARE);
-            mLivePusher.setConfig(mLivePushConfig);
-            showToast(param.getString(TXLiveConstants.EVT_DESCRIPTION));
-        } else if (event == TXLiveConstants.PUSH_EVT_CHANGE_RESOLUTION) {
-            TXLog.d(TAG, "change resolution to " + param.getInt(TXLiveConstants.EVT_PARAM2) + ", bitrate to" + param.getInt(TXLiveConstants.EVT_PARAM1));
-        } else if (event == TXLiveConstants.PUSH_EVT_CHANGE_BITRATE) {
-            TXLog.d(TAG, "change bitrate to" + param.getInt(TXLiveConstants.EVT_PARAM1));
-        } else if (event == TXLiveConstants.PUSH_EVT_OPEN_CAMERA_SUCC) {
-            // 只有后置摄像头可以打开闪光灯，若默认需要开启闪光灯。 那么在打开摄像头成功后，才可以进行配置。 若果当前是前置，设定无效；若是后置，打开闪光灯。
-            turnOnFlashLight(mIsFlashLight);
-        } else if (event == TXLiveConstants.PUSH_WARNING_NET_BUSY) {
-            showNetBusyTips();
-        }
-
-        mLogInfoWindow.setLogText(null, param, event);
-
-        // Toast错误内容
-        if (event < 0) {
-            showToast(param.getString(TXLiveConstants.EVT_DESCRIPTION));
-        }
-    }
-
-    @Override
-    public void onNetStatus(Bundle status) {
-        TXLog.d(TAG, "Current status, CPU:" + status.getString(TXLiveConstants.NET_STATUS_CPU_USAGE) +
-                ", RES:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT) +
-                ", SPD:" + status.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps" +
-                ", FPS:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS) +
-                ", ARA:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps" +
-                ", VRA:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps");
-        mLogInfoWindow.setLogText(status, null, 0);
-    }
-
-    @Override
-    public void onPrivateModeChange(boolean enable) {
-        setPrivateMode(enable);
-        if (mIsPushing) {
-            mBeautyPanelView.setMotionTmplEnable(enable);
-        }
-    }
-
-    @Override
-    public void onMuteChange(boolean enable) {
-        setMute(enable);
-    }
-
-    @Override
-    public void onHomeOrientationChange(boolean isPortrait) {
-        setHomeOrientation(isPortrait);
+    public void onHomeOrientationChange(boolean isLandscape) {
+        mIsLandscape = isLandscape;
+        // 横竖屏推流
+        mLivePusher.setVideoQuality(mVideoResolution, isLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
     }
 
     @Override
@@ -362,16 +295,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     }
 
     @Override
-    public void onPureAudioPushChange(boolean enable) {
-        enablePureAudioPush(enable);
-    }
-
-    @Override
-    public void onHardwareAcceleration(boolean enable) {
-        setHardwareAcceleration(enable);
-    }
-
-    @Override
     public void onTouchFocusChange(boolean enable) {
         setTouchFocus(enable);
         if (mIsPushing) {
@@ -380,21 +303,8 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     }
 
     @Override
-    public void onEnableZoomChange(boolean enable) {
-        setEnableZoom(enable);
-        if (mIsPushing) {
-            showToast(R.string.livepusher_pushing_start_stop_retry_push);
-        }
-    }
-
-    @Override
     public void onClickSnapshot() {
         snapshot();
-    }
-
-    @Override
-    public void onSendMessage(String msg) {
-        sendMessage(msg);
     }
 
     @Override
@@ -413,8 +323,8 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     }
 
     @Override
-    public void onAudioQualityChange(int channel, int sampleRate) {
-        setAudioQuality(channel, sampleRate);
+    public void onAudioQualityChange(V2TXLiveDef.V2TXLiveAudioQuality audioQuality) {
+        setAudioQuality(audioQuality);
     }
 
     private void initData() {
@@ -432,28 +342,24 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     private void initPusher() {
         mPusherView = findViewById(R.id.livepusher_tx_cloud_view);
 
-        mLivePusher = new TXLivePusher(this);
-        mLivePushConfig = new TXLivePushConfig();
-        mLivePushConfig.setVideoEncodeGop(5);
-        mLivePusher.setConfig(mLivePushConfig);
+        mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTMP);
         // 设置默认美颜参数， 美颜样式为光滑，美颜等级 5，美白等级 3，红润等级 2
-        mLivePusher.setBeautyFilter(TXLiveConstants.BEAUTY_STYLE_SMOOTH, 5, 3, 2);
+        mLivePusher.getBeautyManager().setBeautyStyle(TXLiveConstants.BEAUTY_STYLE_SMOOTH);
+        mLivePusher.getBeautyManager().setBeautyLevel(5);
+        mLivePusher.getBeautyManager().setWhitenessLevel(3);
+        mLivePusher.getBeautyManager().setRuddyLevel(2);
 
         mWaterMarkBitmap = decodeResource(getResources(), R.drawable.livepusher_watermark);
         initListener();
 
-        setMute(mPusherSettingFragment.isMute());
         setMirror(mPusherSettingFragment.isMirror());
         setWatermark(mPusherSettingFragment.isWatermark());
         setTouchFocus(mPusherSettingFragment.isTouchFocus());
-        setEnableZoom(mPusherSettingFragment.isEnableZoom());
-        enablePureAudioPush(mPusherSettingFragment.enablePureAudioPush());
         enableAudioEarMonitoring(mPusherSettingFragment.enableAudioEarMonitoring());
         setQuality(mPusherSettingFragment.isAdjustBitrate(), mPusherVideoQualityFragment.getQualityType());
-        setAudioQuality(mPusherSettingFragment.getAudioChannels(), mPusherSettingFragment.getAudioSampleRate());
-        setHomeOrientation(mPusherSettingFragment.isLandscape());
+        setAudioQuality(mPusherSettingFragment.getAudioQuality());
         turnOnFlashLight(mPusherSettingFragment.isFlashEnable());
-        setHardwareAcceleration(mPusherSettingFragment.isHardwareAcceleration());
+        mIsLandscape = mPusherSettingFragment.isLandscape();
     }
 
     /**
@@ -617,28 +523,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         }
     }
 
-    /**
-     * 获取当前推流状态
-     *
-     * @param status
-     * @return
-     */
-    private String getStatus(Bundle status) {
-        String str = String.format("%-14s %-14s %-12s\n%-8s %-8s %-8s %-8s\n%-14s %-14s %-12s\n%-14s %-14s",
-                "CPU:" + status.getString(TXLiveConstants.NET_STATUS_CPU_USAGE),
-                "RES:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT),
-                "SPD:" + status.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps",
-                "JIT:" + status.getInt(TXLiveConstants.NET_STATUS_NET_JITTER),
-                "FPS:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS),
-                "GOP:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_GOP) + "s",
-                "ARA:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps",
-                "QUE:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_CACHE) + "|" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_CACHE),
-                "DRP:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_DROP) + "|" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_DROP),
-                "VRA:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps",
-                "SVR:" + status.getString(TXLiveConstants.NET_STATUS_SERVER_IP),
-                "AUDIO:" + status.getString(TXLiveConstants.NET_STATUS_AUDIO_INFO));
-        return str;
-    }
 
     private void startPush() {
         int resultCode = Constants.PLAY_STATUS_SUCCESS;
@@ -656,68 +540,39 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
             // 显示本地预览的View
             mPusherView.setVisibility(View.VISIBLE);
             // 添加播放回调
-            mLivePusher.setPushListener(this);
-            // 添加后台垫片推流参数
-            Bitmap bitmap = decodeResource(getResources(), R.drawable.livepusher_pause_publish);
-            mLivePushConfig.setPauseImg(bitmap);
-            mLivePushConfig.setPauseImg(300, 5);
-            mLivePushConfig.setPauseFlag(TXLiveConstants.PAUSE_FLAG_PAUSE_VIDEO);// 设置暂停时，只停止画面采集，不停止声音采集。
-
+            mLivePusher.setObserver(new MyPusherObserver());
             // 设置推流分辨率
-            mLivePushConfig.setVideoResolution(mVideoResolution);
-
-            // 如果当前Activity可以自动旋转的话，那么需要进行设置
-            if (isActivityCanRotation()) {
-                setRotationForActivity();
-            }
-            // 开启麦克风推流相关
-            mLivePusher.setMute(mIsMuteAudio);
-
-            // 横竖屏推流相关
-            int renderRotation = 0;
-            if (mIsLandscape) {
-                mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_RIGHT);
-                renderRotation = 90; // 因为采集旋转了，那么保证本地渲染是正的，则设置渲染角度为90度。
-            } else {
-                mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_DOWN);
-                renderRotation = 0;
-            }
-            mLivePusher.setRenderRotation(renderRotation);
+            mLivePusher.setVideoQuality(mVideoResolution, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
 
             // 是否开启观众端镜像观看
-            mLivePusher.setMirror(mIsMirrorEnable);
+            mLivePusher.setEncoderMirror(mIsMirrorEnable);
             // 是否打开调试信息
             mPusherView.showLog(mIsDebugInfo);
 
             // 是否添加水印
             if (mIsWaterMarkEnable) {
-                mLivePushConfig.setWatermark(mWaterMarkBitmap, 0.02f, 0.05f, 0.2f);
+                mLivePusher.setWatermark(mWaterMarkBitmap, 0.02f, 0.05f, 0.2f);
             } else {
-                mLivePushConfig.setWatermark(null, 0, 0, 0);
+                mLivePusher.setWatermark(null, 0, 0, 0);
             }
 
             // 是否打开曝光对焦
-            mLivePushConfig.setTouchFocus(mIsFocusEnable);
-            // 是否打开手势放大预览画面
-            mLivePushConfig.setEnableZoom(mIsZoomEnable);
-            mLivePushConfig.enablePureAudioPush(mIsPureAudio);
-            mLivePushConfig.enableAudioEarMonitoring(mIsEarMonitoringEnable);
-            // 设置推流配置
-            mLivePusher.setConfig(mLivePushConfig);
+            mLivePusher.getDeviceManager().enableCameraAutoFocus(mIsFocusEnable);
+
+            mLivePusher.getAudioEffectManager().enableVoiceEarMonitor(mIsEarMonitoringEnable);
             // 设置场景
             setPushScene(mQualityType, mIsEnableAdjustBitrate);
 
-            // 设置声道，必须在 TXLivePusher.setVideoQuality 之后，TXLivePusher.startPusher之前设置才能生效
-            mLivePushConfig.setAudioChannels(mAudioChannels);
-            // 设置音频采样率，必须在 TXLivePusher.setVideoQuality 之后，TXLivePusher.startPusher之前设置才能生效
-            mLivePushConfig.setAudioSampleRate(mAudioSample);
-            mLivePusher.setConfig(mLivePushConfig);
+            // 设置声道，设置音频采样率，必须在 TXLivePusher.setVideoQuality 之后，TXLivePusher.startPusher之前设置才能生效
+            setAudioQuality(mAudioQuality);
 
             // 设置本地预览View
-            mLivePusher.startCameraPreview(mPusherView);
-            if (!mFrontCamera) mLivePusher.switchCamera();
+            mLivePusher.setRenderView(mPusherView);
+            mLivePusher.startCamera(mFrontCamera);
+            mLivePusher.startMicrophone();
+            if (!mFrontCamera) mLivePusher.getDeviceManager().switchCamera(mFrontCamera);
             // 发起推流
-            resultCode = mLivePusher.startPusher(tRTMPURL.trim());
+            resultCode = mLivePusher.startPush(tRTMPURL.trim());
 
             mIsPushing = true;
         }
@@ -730,23 +585,86 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
             return;
         }
         // 停止本地预览
-        mLivePusher.stopCameraPreview(true);
+        mLivePusher.stopCamera();
         // 移除监听
-        mLivePusher.setPushListener(null);
+        mLivePusher.setObserver(null);
         // 停止推流
-        mLivePusher.stopPusher();
+        mLivePusher.stopPush();
         // 隐藏本地预览的View
         mPusherView.setVisibility(View.GONE);
-        // 移除垫片图像
-        mLivePushConfig.setPauseImg(null);
-        mIsPrivateMode = false;
         mIsPushing = false;
-        if (mPusherSettingFragment != null) {
-            mPusherSettingFragment.closePrivateModel();
-        }
         mBtnStartPush.setBackgroundResource(R.drawable.livepusher_start);
         mLogInfoWindow.reset();
         mAudioEffectPanel.reset();
+    }
+
+    private class MyPusherObserver extends V2TXLivePusherObserver {
+        @Override
+        public void onWarning(int code, String msg, Bundle extraInfo) {
+            Log.w(TAG, "[Pusher] onWarning errorCode: " + code + ", msg " + msg);
+            if (code == V2TXLiveCode.V2TXLIVE_WARNING_NETWORK_BUSY) {
+                showNetBusyTips();
+            }
+        }
+
+        @Override
+        public void onError(int code, String msg, Bundle extraInfo) {
+            Log.e(TAG, "[Pusher] onError: " + msg + ", extraInfo " + extraInfo);
+        }
+
+        @Override
+        public void onCaptureFirstAudioFrame() {
+            Log.i(TAG, "[Pusher] onCaptureFirstAudioFrame");
+        }
+
+        @Override
+        public void onCaptureFirstVideoFrame() {
+            Log.i(TAG, "[Pusher] onCaptureFirstVideoFrame");
+        }
+
+        @Override
+        public void onMicrophoneVolumeUpdate(int volume) {
+        }
+
+        @Override
+        public void onPushStatusUpdate(V2TXLiveDef.V2TXLivePushStatus status, String msg, Bundle bundle) {
+        }
+
+        @Override
+        public void onSnapshotComplete(Bitmap bitmap) {
+            if (mLivePusher.isPushing() == 1) {
+                if (bitmap != null) {
+                    saveSnapshotBitmap(bitmap);
+                } else {
+                    showToast(R.string.livepusher_screenshot_fail);
+                }
+            } else {
+                showToast(R.string.livepusher_screenshot_fail_push);
+            }
+        }
+
+        @Override
+        public void onStatisticsUpdate(V2TXLiveDef.V2TXLivePusherStatistics statistics) {
+            Bundle netStatus = new Bundle();
+            netStatus.putInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH, statistics.width);
+            netStatus.putInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT, statistics.height);
+            int appCpu = statistics.appCpu / 10;
+            int totalCpu = statistics.systemCpu / 10;
+            String strCpu = appCpu + "/" + totalCpu + "%";
+            netStatus.putCharSequence(TXLiveConstants.NET_STATUS_CPU_USAGE, strCpu);
+            netStatus.putInt(TXLiveConstants.NET_STATUS_NET_SPEED, statistics.videoBitrate + statistics.audioBitrate);
+            netStatus.putInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE, statistics.audioBitrate);
+            netStatus.putInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE, statistics.videoBitrate);
+            netStatus.putInt(TXLiveConstants.NET_STATUS_VIDEO_FPS, statistics.fps);
+            netStatus.putInt(TXLiveConstants.NET_STATUS_VIDEO_GOP, 5);
+            Log.d(TAG, "Current status, CPU:" + netStatus.getString(TXLiveConstants.NET_STATUS_CPU_USAGE) +
+                    ", RES:" + netStatus.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + netStatus.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT) +
+                    ", SPD:" + netStatus.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps" +
+                    ", FPS:" + netStatus.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS) +
+                    ", ARA:" + netStatus.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps" +
+                    ", VRA:" + netStatus.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps");
+            mLogInfoWindow.setLogText(netStatus, null, 0);
+        }
     }
 
     private void togglePush() {
@@ -765,12 +683,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         if (mPusherView != null) {
             mPusherView.onResume();
         }
-        if (mIsPushing && mLivePusher != null) {
-            // 如果当前是隐私模式，那么不resume
-            if (!mIsPrivateMode) {
-                mLivePusher.resumePusher();
-            }
-        }
         mIsResume = true;
         mAudioEffectPanel.resumeBGM();
     }
@@ -780,62 +692,22 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         if (mPusherView != null) {
             mPusherView.onPause();
         }
-        if (mIsPushing && mLivePusher != null) {
-            // 如果当前已经是隐私模式，那么则不pause
-            if (!mIsPrivateMode) {
-                mLivePusher.pausePusher();
-            }
-        }
         mIsResume = false;
         mAudioEffectPanel.pauseBGM();
     }
 
     private void switchCamera() {
         mFrontCamera = !mFrontCamera;
-        mLivePusher.switchCamera();
-    }
-
-    private void setHomeOrientation(boolean isLandscape) {
-        mIsLandscape = isLandscape;
-        int renderRotation;
-        if (isLandscape) {  // 横屏
-            mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_RIGHT);
-            renderRotation = 90; // 因为采集旋转了，那么保证本地渲染是正的，则设置渲染角度为90度。
-        } else {            // 竖屏
-            mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_DOWN);
-            renderRotation = 0;
-        }
-        if (mLivePusher.isPushing()) {
-            mLivePusher.setConfig(mLivePushConfig);
-            mLivePusher.setRenderRotation(renderRotation);
-        }
-    }
-
-    private void setPrivateMode(boolean enable) {
-        mIsPrivateMode = enable;
-        // 隐私模式下，会进入垫片推流
-        if (mIsPushing) {
-            if (enable) {
-                mLivePusher.pausePusher();
-            } else {
-                mLivePusher.resumePusher();
-            }
-        }
-    }
-
-    private void setMute(boolean enable) {
-        mIsMuteAudio = enable;
-        mLivePusher.setMute(enable);
+        mLivePusher.getDeviceManager().switchCamera(mFrontCamera);
     }
 
     private void setMirror(boolean enable) {
         mIsMirrorEnable = enable;
-        mLivePusher.setMirror(enable);
+        mLivePusher.setEncoderMirror(enable);
     }
 
     private void turnOnFlashLight(boolean enable) {
-        mIsFlashLight = enable;
-        mLivePusher.turnOnFlashLight(enable);
+        mLivePusher.getDeviceManager().enableCameraTorch(enable);
     }
 
     private void showLog(boolean enable) {
@@ -846,66 +718,23 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     private void setWatermark(boolean enable) {
         mIsWaterMarkEnable = enable;
         if (enable) {
-            mLivePushConfig.setWatermark(mWaterMarkBitmap, 0.02f, 0.05f, 0.2f);
+            mLivePusher.setWatermark(mWaterMarkBitmap, 0.02f, 0.05f, 0.2f);
         } else {
-            mLivePushConfig.setWatermark(null, 0, 0, 0);
-        }
-        if (mLivePusher.isPushing()) {
-            // 水印变更不需要重启推流，直接应用配置项即可
-            mLivePusher.setConfig(mLivePushConfig);
+            mLivePusher.setWatermark(null, 0, 0, 0);
         }
     }
 
     private void setTouchFocus(boolean enable) {
-        mIsFocusEnable = enable;
-        mLivePushConfig.setTouchFocus(enable);
-        if (mLivePusher.isPushing()) {
-            stopPush();
-            startPush();
-        }
-    }
-
-    private void setEnableZoom(boolean enable) {
-        mIsZoomEnable = enable;
-        mLivePushConfig.setEnableZoom(enable);
-        if (mLivePusher.isPushing()) {
+        mIsFocusEnable = !enable;
+        mLivePusher.getDeviceManager().enableCameraAutoFocus(mIsFocusEnable);
+        if (mLivePusher.isPushing() == 1) {
             stopPush();
             startPush();
         }
     }
 
     private void snapshot() {
-        mLivePusher.snapshot(new TXLivePusher.ITXSnapshotListener() {
-            @Override
-            public void onSnapshot(Bitmap bitmap) {
-                if (mLivePusher.isPushing()) {
-                    if (bitmap != null) {
-                        saveSnapshotBitmap(bitmap);
-                    } else {
-                        showToast(R.string.livepusher_screenshot_fail);
-                    }
-                } else {
-                    showToast(R.string.livepusher_screenshot_fail_push);
-                }
-            }
-        });
-    }
-
-    private void sendMessage(String msg) {
-        mLivePusher.sendMessage(msg.getBytes());
-    }
-
-    private void setHardwareAcceleration(boolean enable) {
-        mIsHWAcc = enable;
-        if (enable) {
-            mLivePushConfig.setHardwareAcceleration(TXLiveConstants.ENCODE_VIDEO_HARDWARE); // 启动硬编
-        } else {
-            mLivePushConfig.setHardwareAcceleration(TXLiveConstants.ENCODE_VIDEO_SOFTWARE); // 启动软编
-        }
-        if (mLivePusher.isPushing()) {
-            // 硬件加速变更不需要重启推流，直接应用配置项即可
-            mLivePusher.setConfig(mLivePushConfig);
-        }
+        mLivePusher.snapshot();
     }
 
     private void setAdjustBitrate(boolean enable, int qualityType) {
@@ -920,60 +749,14 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     private void enableAudioEarMonitoring(boolean enable) {
         mIsEarMonitoringEnable = enable;
         if (mLivePusher != null) {
-            TXLivePushConfig config = mLivePusher.getConfig();
-            config.enableAudioEarMonitoring(enable);
-            mLivePusher.setConfig(config);
+            mLivePusher.getAudioEffectManager().enableVoiceEarMonitor(enable);
         }
     }
 
-    private void enablePureAudioPush(boolean enable) {
-        mIsPureAudio = enable;
-    }
-
-    private void setAudioQuality(int channel, int sampleRate) {
-        mAudioChannels = channel;
-        mAudioSample = sampleRate;
+    private void setAudioQuality(V2TXLiveDef.V2TXLiveAudioQuality audioQuality) {
+        mAudioQuality = audioQuality;
         if (mLivePusher != null) {
-            TXLivePushConfig config = mLivePusher.getConfig();
-            config.setAudioChannels(channel);
-            config.setAudioSampleRate(sampleRate);
-            mLivePusher.setConfig(config);
-        }
-    }
-
-    /**
-     * 根据当前 Activity 的旋转方向，配置推流器
-     */
-    private void setRotationForActivity() {
-        // 自动旋转打开，Activity随手机方向旋转之后，需要改变推流方向
-        int mobileRotation = getWindowManager().getDefaultDisplay().getRotation();
-        int pushRotation = TXLiveConstants.VIDEO_ANGLE_HOME_DOWN;
-        switch (mobileRotation) {
-            case Surface.ROTATION_0:
-                pushRotation = TXLiveConstants.VIDEO_ANGLE_HOME_DOWN;
-                break;
-            case Surface.ROTATION_180:
-                pushRotation = TXLiveConstants.VIDEO_ANGLE_HOME_UP;
-                break;
-            case Surface.ROTATION_90:
-                pushRotation = TXLiveConstants.VIDEO_ANGLE_HOME_RIGHT;
-                break;
-            case Surface.ROTATION_270:
-                pushRotation = TXLiveConstants.VIDEO_ANGLE_HOME_LEFT;
-                break;
-            default:
-                break;
-        }
-
-        mLivePusher.setRenderRotation(0);                                   // 因为activity也旋转了，本地渲染相对正方向的角度为0。
-        mLivePushConfig.setHomeOrientation(pushRotation);                   // 根据Activity方向，设置采集角度
-
-        if (mLivePusher.isPushing()) {                                      // 当前正在推流，
-            mLivePusher.setConfig(mLivePushConfig);
-            if (!mIsPrivateMode) {                       // 不是隐私模式，则开启摄像头推流。
-                mLivePusher.stopCameraPreview(true);
-                mLivePusher.startCameraPreview(mPusherView);
-            }
+            mLivePusher.setAudioQuality(audioQuality);
         }
     }
 
@@ -984,67 +767,44 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
      * <p>
      * 适用于一般客户，方便快速进行配置
      * <p>
-     * 专业客户，推荐通过 {@link TXLivePushConfig} 进行逐一配置
      */
     private void setPushScene(int type, boolean enableAdjustBitrate) {
         TXLog.i(TAG, "setPushScene: type = " + type + " enableAdjustBitrate = " + enableAdjustBitrate);
         mQualityType = type;
         mIsEnableAdjustBitrate = enableAdjustBitrate;
-        // 码率、分辨率自适应都关闭
-        boolean autoResolution = false;
         switch (type) {
             case TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION:     // 360P
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_360_640;
+                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution640x360, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
+                    mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution640x360;
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION:         // 540P
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960;
+                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
+                    mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540;
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION:        // 720p
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_720_1280;
+                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1280x720, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
+                    mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1280x720;
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_ULTRA_DEFINITION:        // 1080p
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_ULTRA_DEFINITION, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_1080_1920;
-                }
-                break;
-            case TXLiveConstants.VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER:  //连麦大主播
-                if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960;
+                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
+                    mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080;
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER:   //连麦小主播
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_320_480;
-                }
-                break;
-            case TXLiveConstants.VIDEO_QUALITY_REALTIEM_VIDEOCHAT:      //实时
-                if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_REALTIEM_VIDEOCHAT, enableAdjustBitrate, autoResolution);
-                    mVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_360_640;
+                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution480x360, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
+                    mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution480x360;
                 }
                 break;
             default:
                 break;
-        }
-        // 设置场景化配置后，SDK 内部会根据场景自动选择相关的配置参数，所以我们这里把内部的config获取出来，赋值到外部。
-        mLivePushConfig = mLivePusher.getConfig();
-
-        // 是否开启硬件加速
-        if (mIsHWAcc) {
-            mLivePushConfig.setHardwareAcceleration(TXLiveConstants.ENCODE_VIDEO_HARDWARE);
-            mLivePusher.setConfig(mLivePushConfig);
         }
     }
 
@@ -1055,8 +815,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         mPhoneListener = new TXPhoneStateListener();
         TelephonyManager tm = (TelephonyManager) getSystemService(Service.TELEPHONY_SERVICE);
         tm.listen(mPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
-        mActivityRotationObserver = new ActivityRotationObserver(new Handler(Looper.getMainLooper()));
-        mActivityRotationObserver.startObserver();
     }
 
     /**
@@ -1065,7 +823,6 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
     private void unInitPhoneListener() {
         TelephonyManager tm = (TelephonyManager) getSystemService(Service.TELEPHONY_SERVICE);
         tm.listen(mPhoneListener, PhoneStateListener.LISTEN_NONE);
-        mActivityRotationObserver.stopObserver();
     }
 
     /**
@@ -1157,45 +914,4 @@ public class CameraPushMainActivity extends FragmentActivity implements ITXLiveP
         }
     }
 
-    /**
-     * 观察屏幕旋转设置变化
-     */
-    private class ActivityRotationObserver extends ContentObserver {
-        ContentResolver mResolver;
-
-        public ActivityRotationObserver(Handler handler) {
-            super(handler);
-            mResolver = getContentResolver();
-        }
-
-        //屏幕旋转设置改变时调用
-        @Override
-        public void onChange(boolean selfChange) {
-            super.onChange(selfChange);
-            if (isActivityCanRotation()) {
-                setRotationForActivity();
-            } else {
-                // 恢复到正方向
-                mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_DOWN);
-                // 恢复渲染角度
-                mLivePusher.setRenderRotation(0);
-                if (mLivePusher.isPushing()) {
-                    mLivePusher.setConfig(mLivePushConfig);
-                }
-            }
-            if (isActivityCanRotation()) {
-                mPusherSettingFragment.hideOrientationItem();
-            } else {
-                mPusherSettingFragment.showOrientationItem();
-            }
-        }
-
-        public void startObserver() {
-            mResolver.registerContentObserver(Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false, this);
-        }
-
-        public void stopObserver() {
-            mResolver.unregisterContentObserver(this);
-        }
-    }
 }

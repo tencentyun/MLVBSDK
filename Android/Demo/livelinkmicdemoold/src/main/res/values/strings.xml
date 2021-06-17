@@ -157,5 +157,6 @@
     <string name="mlvb_login_success">[LiveRoom] 登录成功, userID {%s}, userName {%s}, sdkAppID {%d}</string>
     <string name="mlvb_RoomService_login_success" >[LiveRoom] RoomService登录失败[%s:%d]</string>
     <string name="mlvb_RoomService_not_in_room" >[LiveRoom] 观众进入连麦失败[房间号为空，请确认是否已经进房]</string>
+    <string name="mlvb__camera_mic">请打开摄像头和麦克风权限</string>
 
 </resources>

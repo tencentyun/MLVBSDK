@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="livepusher_screen_push">Screen Push</string>
+
+    <string name="livepusher_screen_tv_resolution_portrait">Portrait mode</string>
+    <string name="livepusher_screen_tv_resolution_landscape">Landscape mode</string>
+    <string name="livepusher_screen_tv_resolution_mode">Screen mode</string>
+    <string name="livepusher_screen_rb_video_super">Super Definition</string>
+    <string name="livepusher_screen_rb_video_stand">Standard Definition</string>
+    <string name="livepusher_screen_rb_video_high">High Definition</string>
+    <string name="livepusher_screen_tv_video_quality">Video quality selection</string>
+    <string name="livepusher_screen_start_screen_push">Start Screen Capture</string>
+    <string name="livepusher_screen_stop_screen_push">Stop Screen Capture</string>
+    <string name="livepusher_screen_auto_fetch_url">Automatically generate push URL</string>
+    <string name="livepusher_screen_have_push_url">I have a push address</string>
+    <string name="livepusher_screen_input_push_url">Please enter the push URL</string>
+
+    <string name="livepusher_screen_tv_generate_play_url_success">The playback address is generated successfully</string>
+    <string name="livepusher_screen_tv_use_another_phone_to_play">Use another mobile phone to scan the code or copy the address for playback test</string>
+    <string name="livepusher_screen_tv_copy_the_play_url">Copy the live broadcast address</string>
+    <string name="livepusher_screen_btn_close">Close</string>
+
+    <string name="livepusher_screen_primary_clip">Added to clipboard</string>
+    <string name="livepusher_screen_toast_please_start_up_push">Push streaming has not started yet! Please start push!</string>
+    <string name="livepusher_screen_cancel">cancel screen push</string>
+
+    <string name="livepusher_screen_push_tip">ScreenCapture and pushing stream</string>
+    <string name="livepusher_screen_camera">Please turn on the camera permission first</string>
+    <string name="livepusher_screen_camera_storage_mic">Please turn on the camera, microphone and storage permissions first</string>
+</resources>

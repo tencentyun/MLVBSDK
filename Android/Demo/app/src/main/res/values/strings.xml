@@ -33,6 +33,7 @@
     <string name="app_dialog_exit_app">确定要退出APP吗？</string>
 
     <string name="app_item_live_pusher">推流演示（摄像头推流）</string>
+    <string name="app_item_live_pusher_screen">推流演示（录屏推流）</string>
     <string name="app_item_live_player">标准直播播放</string>
     <string name="app_item_leb_player">快直播播放</string>
     <string name="app_item_link_mic_new">连麦演示（新方案）</string>
@@ -70,4 +71,31 @@
     <string name="app_tv_video_call_tips">支持720P/1080P高清画质，50%丢包率可正常视频通话，自带美颜、挂件、抠图等AI特效。</string>
 
     <string name="app_tv_ugc_version">腾讯云 UGC v%s</string>
+    <string name="app_confirm">确认</string>
+    <string name="app_tips_user_name">仅限中文、字母、数字和下划线，2-20个字</string>
+    <string name="app_sdk_version">SDK版本</string>
+    <string name="app_toast_failed_to_set_username">设置失败: %s</string>
+    <string name="app_toast_success_to_set_username">设置成功</string>
+    <string name="app_main_page">主页</string>
+    <string name="app_my">我的</string>
+    <string name="app_login_out">退出登录</string>
+    <string name="app_personal_center">个人中心</string>
+    <string name="app_privacy_statement">隐私条例</string>
+    <string name="app_statement">免责声明</string>
+    <string name="app_about">关于</string>
+    <string name="app_modify_nickname">修改用户昵称</string>
+    <string name="app_input_nickname_hint">请输入用户昵称</string>
+    <string name="app_toast_set_username">请设置用户名</string>
+    <string name="app_version">应用版本</string>
+    <string name="app_btn_confirm">我确定</string>
+    <string name="app_btn_cancel">再等等</string>
+    <string name="app_user_agreement">用户协议</string>
+    <string name="app_statement_detail">视频云工具包（“本产品”）是由腾讯云提供的一款测试产品，腾讯云享有本产品的著作权和所有权。本产品仅用于功能体验，不得用于任何商业用途。为配合相关部门监管要求，本产品音视频互动全程均有录音录像存档，严禁在使用中有任何但不限于色情、辱骂、暴恐、涉政等违规内容的传播。</string>
+    <string name="app_logoff_account_title">注销账户</string>
+    <string name="app_logoff_account_ok">注销成功</string>
+    <string name="app_logoff_hint">注销后，您将无法使用当前账号，相关数据\n也将删除无法找回</string>
+    <string name="app_logoff_cur_account">当前账号：%s</string>
+    <string name="app_logoff_btn_text">确认注销</string>
+    <string name="app_logoff_confirm">确定要注销账户吗？</string>
+    <string name="app_set_user_avatar">设置头像</string>
 </resources>

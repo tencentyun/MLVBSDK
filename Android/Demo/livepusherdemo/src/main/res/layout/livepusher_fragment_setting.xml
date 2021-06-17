@@ -117,45 +117,5 @@
             android:textSize="16dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/livepusher_send_message"
-            android:textColor="@color/livepusher_white"
-            android:textSize="16dp" />
-
-        <EditText
-            android:id="@+id/livepusher_et_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/livepusher_input_bg"
-            android:gravity="center_vertical"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:singleLine="true"
-            android:textColor="@color/livepusher_text_gray"
-            android:textSize="14dp" />
-
-        <Button
-            android:id="@+id/livepusher_btn_send_message"
-            android:layout_width="46dp"
-            android:layout_height="24dp"
-            android:background="@drawable/livepusher_swicth_button_checked"
-            android:text="@string/livepusher_send"
-            android:textColor="@color/livepusher_white"
-            android:textSize="14dp" />
-    </LinearLayout>
 
 </LinearLayout>

@@ -31,6 +31,7 @@
     <string name="app_dialog_exit_app">Are you sure you want to exit?</string>
 
     <string name="app_item_live_pusher">Push (Camera)</string>
+    <string name="app_item_live_pusher_screen">Push (Screen)</string>
     <string name="app_item_live_player">Pull</string>
     <string name="app_item_link_mic_new">Co-anchoring (New)</string>
     <string name="app_item_link_mic_old">Co-anchoring (Old)</string>
@@ -67,4 +68,22 @@
     <string name="app_tv_video_call_tips">1080p UHD videos, uninterrupted even when packet loss reaches 50%, and built-in beauty filters to ensure premium video call experience</string>
 
     <string name="app_tv_ugc_version">Tencent Cloud UGC v%s</string>
+    <string name="app_btn_confirm">Confirm</string>
+    <string name="app_btn_cancel">Wait a bit</string>
+    <string name="app_user_agreement">User Protocol</string>
+    <string name="app_statement_detail">Tencent Cloud Tools(this app) is a tryout app, whose copyright is owned by Tencent Cloud. This app is for tryout only and must not be used commercially. In accordance with relevant regulations, this app forbids pornographic, abusive, terrorism, and politically sensitive content. All audio/video interactions are recorded and archived.</string>
+    <string name="app_logoff_account_title">Delete Account</string>
+    <string name="app_logoff_account_ok">Account deleted</string>
+    <string name="app_logoff_hint">You can no longer use this account after deletion,Its data will also be deleted and cannot be retrieved.</string>
+    <string name="app_logoff_cur_account">Account: %s</string>
+    <string name="app_logoff_btn_text">Delete</string>
+    <string name="app_logoff_confirm">Are you sure you want to delete this account?</string>
+    <string name="app_set_user_avatar">Change Profile Picture</string>
+    <string name="app_privacy_statement">Privacy</string>
+    <string name="app_statement">Disclaimer</string>
+    <string name="app_login_out">Log out</string>
+    <string name="app_personal_center">Me</string>
+    <string name="app_about">About</string>
+    <string name="app_version">Application Version</string>
+    <string name="app_sdk_version">SDK Version</string>
 </resources>

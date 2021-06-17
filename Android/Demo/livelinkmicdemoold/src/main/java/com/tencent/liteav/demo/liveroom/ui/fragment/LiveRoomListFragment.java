@@ -20,6 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.liteav.demo.liveroom.R;
 import com.tencent.liteav.demo.liveroom.IMLVBLiveRoomListener;
 import com.tencent.liteav.demo.liveroom.ui.LiveRoomActivityInterface;
@@ -57,7 +60,18 @@ public class LiveRoomListFragment extends Fragment {
         view.findViewById(R.id.mlvb_btn_rtmproom_create_room).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCreateDialog();
+                PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.MICROPHONE).callback(new PermissionUtils.FullCallback() {
+                    @Override
+                    public void onGranted(List<String> permissionsGranted) {
+                        showCreateDialog();
+                    }
+
+                    @Override
+                    public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                        ToastUtils.showShort(R.string.mlvb__camera_mic);
+                        getActivity().finish();
+                    }
+                }).request();
             }
         });
 

@@ -53,7 +53,6 @@ public class CameraPushEntranceActivity extends Activity {
         mContext = this;
         setContentView(R.layout.livepusher_activity_live_pusher_entrance);
         initViews();
-        checkPublishPermission();
     }
 
     @Override
@@ -142,29 +141,6 @@ public class CameraPushEntranceActivity extends Activity {
                 }
             }
         });
-    }
-
-    private boolean checkPublishPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            List<String> permissions = new ArrayList<>();
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)) {
-                permissions.add(Manifest.permission.CAMERA);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)) {
-                permissions.add(Manifest.permission.RECORD_AUDIO);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)) {
-                permissions.add(Manifest.permission.READ_PHONE_STATE);
-            }
-            if (permissions.size() != 0) {
-                ActivityCompat.requestPermissions(this, permissions.toArray(new String[0]), REQUEST_CODE);
-                return false;
-            }
-        }
-        return true;
     }
 
     private void startLivePusher(String pushURL) {

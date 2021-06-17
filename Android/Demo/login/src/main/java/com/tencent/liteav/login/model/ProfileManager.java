@@ -98,6 +98,23 @@ public class ProfileManager {
         callback.onSuccess();
     }
 
+    public void logoff(final ActionCallback callback) {
+        logout(new ActionCallback() {
+            @Override
+            public void onSuccess() {
+                // 注销登录成功后,将头像和昵称设为空
+                mUserModel.userName = null;
+                mUserModel.userAvatar = null;
+                saveUserModel();
+                callback.onSuccess();
+            }
+            @Override
+            public void onFailed(int code, String msg) {
+                callback.onFailed(code, msg);
+            }
+        });
+    }
+
     public void logout(final ActionCallback callback) {
         setUserId("");
         isLogin = false;
@@ -174,6 +191,18 @@ public class ProfileManager {
         int    index = bytes[bytes.length - 1] % 10;
         String avatarName = "avatar" + index + "_100";
         return "https://imgcache.qq.com/qcloud/public/static//" + avatarName + ".20191230.png";
+    }
+
+    public void setUserName(String userId, final String userName, final ActionCallback callback) {
+        mUserModel.userName = userName;
+        saveUserModel();
+        callback.onSuccess();
+    }
+
+    public void setAvatar(final String avatar, final ActionCallback callback) {
+        mUserModel.userAvatar = avatar;
+        saveUserModel();
+        callback.onSuccess();
     }
 
     private void saveUserModel() {

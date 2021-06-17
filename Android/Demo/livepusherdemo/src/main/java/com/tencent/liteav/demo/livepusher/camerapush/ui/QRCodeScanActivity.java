@@ -19,6 +19,9 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.google.zxing.Result;
 import com.tencent.liteav.demo.livepusher.R;
 
@@ -45,16 +48,24 @@ public class QRCodeScanActivity extends Activity implements ZXingScannerView.Res
         };
         view.addView(mScannerView, 0);
         setContentView(view);
-
-        // 检查权限
-        checkCameraPermission();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
+        PermissionUtils.permission(PermissionConstants.CAMERA).callback(new PermissionUtils.FullCallback() {
+            @Override
+            public void onGranted(List<String> permissionsGranted) {
+                mScannerView.startCamera();
+            }
+
+            @Override
+            public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                ToastUtils.showShort(R.string.livepusher_app_camera);
+                finish();
+            }
+        }).request();
     }
 
     @Override

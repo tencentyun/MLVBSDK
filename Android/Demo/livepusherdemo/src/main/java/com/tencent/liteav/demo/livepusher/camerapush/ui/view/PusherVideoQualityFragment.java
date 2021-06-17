@@ -31,9 +31,7 @@ public class PusherVideoQualityFragment extends BottomSheetDialogFragment {
             TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION,
             TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION,
             TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION,
-            TXLiveConstants.VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER,
-            TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER,
-            TXLiveConstants.VIDEO_QUALITY_REALTIEM_VIDEOCHAT};
+            TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER};
 
     private BottomSheetBehavior          mBehavior;
     private OnVideoQualityChangeListener mOnVideoQualityChangeListener;

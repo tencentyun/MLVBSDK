@@ -37,6 +37,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.liteav.demo.beauty.constant.BeautyConstants;
 import com.tencent.liteav.demo.beauty.model.BeautyInfo;
 import com.tencent.liteav.demo.beauty.model.ItemInfo;
@@ -236,7 +239,17 @@ public class LiveRoomChatFragment extends Fragment implements IMLVBLiveRoomListe
                 if (mOnLinkMic) {
                     stopLinkMic();
                 } else {
-                    startLinkMic();
+                    PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.MICROPHONE).callback(new PermissionUtils.FullCallback() {
+                        @Override
+                        public void onGranted(List<String> permissionsGranted) {
+                            startLinkMic();
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                            ToastUtils.showShort(R.string.mlvb_permission_hint);
+                        }
+                    }).request();
                 }
             }
         });
@@ -1106,9 +1119,11 @@ public class LiveRoomChatFragment extends Fragment implements IMLVBLiveRoomListe
                 mPendingPKReq = false;
                 mBtnPK.setEnabled(true);
                 hideNoticeToast();
-                if (mActivity != null) {
-                    Toast.makeText(mActivity, getString(R.string.mlvb_pk_accept), Toast.LENGTH_SHORT).show();
+                // 当 Activity finish 之后触发回调，会发生 Crash，此处增加 Activity 是否 finish 判断
+                if (mActivity == null || mActivity.isFinishing()) {
+                    return;
                 }
+                Toast.makeText(mActivity, getString(R.string.mlvb_pk_accept), Toast.LENGTH_SHORT).show();
                 startPK(anchorInfo);
             }
 

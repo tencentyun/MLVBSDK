@@ -24,6 +24,7 @@ dependencies {
     compile rootProject.ext.liteavSdk
     compile project(':beautysettingkit')
     compile project(':audioeffectsettingkit')
+    compile 'com.blankj:utilcode:1.25.9'
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportSdkVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportSdkVersion"
     compile 'com.squareup.okhttp3:logging-interceptor:3.11.0'

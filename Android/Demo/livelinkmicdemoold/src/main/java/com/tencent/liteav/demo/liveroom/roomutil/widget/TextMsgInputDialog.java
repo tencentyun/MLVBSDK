@@ -3,7 +3,6 @@ package com.tencent.liteav.demo.liveroom.roomutil.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -147,23 +146,6 @@ public class TextMsgInputDialog extends Dialog {
 
         final LinearLayout llInputDlg = (LinearLayout) findViewById(R.id.mlvb_ll_inputdlg_view);
 
-        llInputDlg.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-                Rect r = new Rect();
-                //获取当前界面可视部分
-                getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
-                //获取屏幕的高度
-                int screenHeight =  getWindow().getDecorView().getRootView().getHeight();
-                //此处就是用来获取键盘的高度的， 在键盘没有弹出的时候 此高度为0 键盘弹出的时候为一个正数
-                int heightDifference = screenHeight - r.bottom;
-
-                if (heightDifference <= 0 && mLastDiff > 0){
-                    dismiss();
-                }
-                mLastDiff = heightDifference;
-            }
-        });
         llInputDlg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,13 +157,6 @@ public class TextMsgInputDialog extends Dialog {
 
     public void setOnTextSendListener(OnTextSendListener onTextSendListener) {
         this.mOnTextSendListener = onTextSendListener;
-    }
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
-        //dismiss之前重置mLastDiff值避免下次无法打开
-        mLastDiff = 0;
     }
 
     @Override

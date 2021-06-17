@@ -61,5 +61,7 @@
     <string name="livepusher_audio_quality_speech">Voice</string>
     <string name="livepusher_audio_quality_default">Standard</string>
     <string name="livepusher_audio_quality_music">Music</string>
+    <string name="livepusher_app_camera">Please turn on the camera permission first</string>
+    <string name="livepusher_app_camera_mic">Please turn on the camera and microphone permissions first</string>
 
 </resources>

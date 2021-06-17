@@ -105,6 +105,7 @@
         android:onClick="onClick"
         android:text="@string/liveplayer_start_realtime_paly"
         android:textColor="@color/liveplayer_white"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone"/>
 
 </LinearLayout>

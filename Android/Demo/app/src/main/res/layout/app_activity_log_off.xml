@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_content_bg">
+
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="@string/app_logoff_account_title"
+        android:textColor="@color/app_color_white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="17dp"
+        android:background="@drawable/app_ic_back_white"
+        app:layout_constraintBottom_toBottomOf="@id/main_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/main_title" />
+
+    <ImageView
+        android:id="@+id/img_app_logoff"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/app_logoff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_title" />
+
+    <TextView
+        android:id="@+id/tv_app_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_logoff_hint"
+        android:textColor="@color/app_color_input_normal"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/img_app_logoff" />
+
+    <TextView
+        android:id="@+id/tv_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:text="@string/app_logoff_cur_account"
+        android:textColor="@color/app_color_tab_normal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_app_logout" />
+
+    <Button
+        android:id="@+id/btn_logoff"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/app_color_tab_select"
+        android:gravity="center"
+        android:text="@string/app_logoff_btn_text"
+        android:textColor="@color/app_color_white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_account" />
+
+</android.support.constraint.ConstraintLayout>

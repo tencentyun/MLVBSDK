@@ -25,6 +25,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 //    compile project(':liteav_sdk')
     compile rootProject.ext.liteavSdk
+    compile 'com.blankj:utilcode:1.25.9'
 
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
     compile 'com.google.code.gson:gson:2.3.1'

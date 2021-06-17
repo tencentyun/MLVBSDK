@@ -33,6 +33,7 @@
     <string name="app_dialog_exit_app">确定要退出APP吗？</string>
 
     <string name="app_item_live_pusher">推流演示（摄像头推流）</string>
+    <string name="app_item_live_pusher_screen">推流演示（录屏推流）</string>
     <string name="app_item_live_player">标准直播播放</string>
     <string name="app_item_leb_player">快直播播放</string>
     <string name="app_item_link_mic_new">连麦演示（新方案）</string>

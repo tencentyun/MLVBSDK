@@ -31,21 +31,14 @@ import static com.tencent.liteav.demo.beauty.utils.ResourceUtils.getResources;
  * - 设备版本、型号
  * - 下载速度
  * - 分辨率
- * - FPS 和 GOP
+ * - FPS
  * - 信号强度
- * - 推流执行步骤
- *      1、地址合法性
- *      2、解码器是否正常
- *      3、服务器连接是否正常
- *      4、是否开始播放
- *      5、收到首帧数据
  */
 public class LogInfoWindow extends PopupWindow {
 
     private static final String TAG = "LogInfoWindow";
 
     private static final int DECODER_HARD = 1;                      //硬解码器
-    private static final int DECODER_SOFT = 2;                      //软解码器
 
     public static final int CHECK_RTMP_URL_OK   = 999;     //视频播放检查：地址合法
     public static final int CHECK_RTMP_URL_FAIL = 998;     //视频播放检查：地址不合法
@@ -142,12 +135,7 @@ public class LogInfoWindow extends PopupWindow {
         list.add(LogInfo.createVersionLogInfo(Build.VERSION.RELEASE));
         list.add(LogInfo.createDownloadSpeedLogInfo("0kbps"));
         list.add(LogInfo.createResolutionLogInfo("0*0"));
-        list.add(LogInfo.createFpsGopLogInfo("0 GOP：0"));
-        list.add(LogInfo.createStep1LogInfo(getResources().getString(R.string.liveplayer_start_step1_value)));
-        list.add(LogInfo.createStep2LogInfo(getResources().getString(R.string.liveplayer_start_step2_value)));
-        list.add(LogInfo.createStep3LogInfo(getResources().getString(R.string.liveplayer_start_step3_value)));
-        list.add(LogInfo.createStep4LogInfo(getResources().getString(R.string.liveplayer_start_step4_value)));
-        list.add(LogInfo.createStep5LogInfo(getResources().getString(R.string.liveplayer_start_step5_value)));
+        list.add(LogInfo.createFpsGopLogInfo("0"));
         setLogInfoList(list);
 
         mSeekBarBalance.setText("0");
@@ -250,7 +238,7 @@ public class LogInfoWindow extends PopupWindow {
 
         updateLogInfo(LogInfo.createDownloadSpeedLogInfo(speed + "kbps"));
         updateLogInfo(LogInfo.createResolutionLogInfo(width + "*" + height));
-        updateLogInfo(LogInfo.createFpsGopLogInfo(fps + "  GOP：" + gop));
+        updateLogInfo(LogInfo.createFpsGopLogInfo(fps + ""));
     }
 
     private void handleLogEvent(Bundle event, int eventId) {

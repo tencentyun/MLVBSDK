@@ -156,5 +156,6 @@
     <string name="mlvb_getRoomList_fail_http_no_init">[LiveRoom] Failed to get the room list [HTTP is not initialized. Make sure you have logged in]</string>
     <string name="mlvb_login_success">[LiveRoom] Login successful: userID {%s}, userName {%s}, sdkAppID {%d}</string>
     <string name="mlvb_RoomService_login_success" >[LiveRoom] RoomService login failed [%s:%d]</string>
+    <string name="mlvb__camera_mic">Please turn on the camera and microphone permissions first</string>
 
 </resources>

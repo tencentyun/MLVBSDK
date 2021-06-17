@@ -62,5 +62,7 @@
     <string name="livepusher_audio_quality_speech">语音</string>
     <string name="livepusher_audio_quality_default">标准</string>
     <string name="livepusher_audio_quality_music">音乐</string>
+    <string name="livepusher_app_camera">请先打开摄像头权限</string>
+    <string name="livepusher_app_camera_mic">请先打开摄像头和麦克风权限</string>
 
 </resources>

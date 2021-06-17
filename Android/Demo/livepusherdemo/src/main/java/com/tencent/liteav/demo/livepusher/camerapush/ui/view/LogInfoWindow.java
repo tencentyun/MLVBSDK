@@ -29,14 +29,8 @@ import static com.tencent.liteav.demo.beauty.utils.ResourceUtils.getResources;
  *
  * - 设备版本、型号
  * - 编译码率、上传速度
- * - FPS 和 GOP
+ * - FPS
  * - 信号强度
- * - 推流执行步骤
- *      1、地址合法性
- *      2、链接服务器
- *      3、摄像头是否打开
- *      4、编码器是否正常
- *      5、开始推流
  */
 public class LogInfoWindow extends PopupWindow {
 
@@ -133,12 +127,7 @@ public class LogInfoWindow extends PopupWindow {
         list.add(LogInfo.createVersionLogInfo(Build.VERSION.RELEASE));
         list.add(LogInfo.createCodingRate("0kbps"));
         list.add(LogInfo.createUploadSpeedLogInfo("0kbps"));
-        list.add(LogInfo.createFpsGopLogInfo("0 GOP：0"));
-        list.add(LogInfo.createStep1LogInfo(getResources().getString(R.string.livepusher_step1_value)));
-        list.add(LogInfo.createStep2LogInfo(getResources().getString(R.string.livepusher_step2_value)));
-        list.add(LogInfo.createStep3LogInfo(getResources().getString(R.string.livepusher_step3_value)));
-        list.add(LogInfo.createStep4LogInfo(getResources().getString(R.string.livepusher_step4_value)));
-        list.add(LogInfo.createStep5LogInfo(getResources().getString(R.string.livepusher_step5_value)));
+        list.add(LogInfo.createFpsGopLogInfo("0"));
         setLogInfoList(list);
         mImageNetSpeed.setImageResource(R.drawable.livepusher_ic_net_speed0);
     }
@@ -223,7 +212,7 @@ public class LogInfoWindow extends PopupWindow {
 
         updateLogInfo(LogInfo.createCodingRate((vra + ara) + "kbps"));
         updateLogInfo(LogInfo.createUploadSpeedLogInfo(speed + "kbps"));
-        updateLogInfo(LogInfo.createFpsGopLogInfo(fps + "  GOP：" + gop));
+        updateLogInfo(LogInfo.createFpsGopLogInfo(fps + ""));
     }
 
     private void handleLogEvent(Bundle event, int eventId) {

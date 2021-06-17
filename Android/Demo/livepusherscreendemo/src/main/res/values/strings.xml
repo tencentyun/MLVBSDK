@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="livepusher_screen_push">录屏推流</string>
+
+    <string name="livepusher_screen_tv_resolution_portrait">竖屏模式</string>
+    <string name="livepusher_screen_tv_resolution_landscape">横屏模式</string>
+    <string name="livepusher_screen_tv_resolution_mode">推流模式</string>
+    <string name="livepusher_screen_rb_video_super">超清</string>
+    <string name="livepusher_screen_rb_video_stand">标清</string>
+    <string name="livepusher_screen_rb_video_high">高清</string>
+    <string name="livepusher_screen_tv_video_quality">画质选择</string>
+    <string name="livepusher_screen_start_screen_push">开始录屏推流</string>
+    <string name="livepusher_screen_stop_screen_push">结束录屏推流</string>
+    <string name="livepusher_screen_auto_fetch_url">自动生成推流地址</string>
+    <string name="livepusher_screen_have_push_url">我有推流地址</string>
+    <string name="livepusher_screen_input_push_url">请输入推流地址</string>
+
+    <string name="livepusher_screen_tv_generate_play_url_success">播放地址生成成功</string>
+    <string name="livepusher_screen_tv_use_another_phone_to_play">用另外一台手机扫码或复制地址进行播放测试</string>
+    <string name="livepusher_screen_tv_copy_the_play_url">复制直播地址</string>
+    <string name="livepusher_screen_btn_close">关闭</string>
+
+    <string name="livepusher_screen_primary_clip">已添加至剪切板</string>
+    <string name="livepusher_screen_toast_please_start_up_push">推流尚未启动！请启动推流！</string>
+    <string name="livepusher_screen_cancel">取消录屏推流</string>
+
+    <string name="livepusher_screen_push_tip">正在录屏推流中...</string>
+    <string name="livepusher_screen_camera">请先打开摄像头权限</string>
+    <string name="livepusher_screen_camera_storage_mic">请先打开摄像头,麦克风和存储权限</string>
+
+</resources>

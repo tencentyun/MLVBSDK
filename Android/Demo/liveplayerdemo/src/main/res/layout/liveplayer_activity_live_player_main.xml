@@ -53,18 +53,6 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/liveplayer_btn_decode"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/liveplayer_decode_btn"
-            android:scaleType="fitCenter" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <ImageButton
             android:id="@+id/liveplayer_btn_render_rotate_landscape"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -132,13 +120,6 @@
         android:layout_height="34dp"
         android:layout_centerInParent="true"
         android:src="@drawable/liveplayer_loading_animation"
-        android:visibility="gone" />
-
-    <com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView
-        android:id="@+id/liveplayer_rsv_decode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:visibility="gone" />
 
     <com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView
