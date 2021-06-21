@@ -11,12 +11,14 @@
 | Android | [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](https://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 8.7 @ 2021.05.24
-- iOS：修复点播播放器播放特定采样率视频出现的杂音问题；
-- iOS：修复iOS 14.5短视频录制模块出现电流杂音问题；
-- Android：修复移动直播推流过程中FPS设置不生效的问题；
-- Android：优化移动直播的播放体验，默认硬解码；
-- iOS&Android：新增快直播播放能力；
+### Version 8.8 @ 2021.06.21
+- iOS: 修复点播播放器启动停止播放多次触发内存泄漏的问题;
+- Android: 修复在Android 11上播放hls文件的报错问题;
+- Android: 修复首次进房后嘴形设置无效的问题;
+- Android: 修复特定情况下播放快直播流会闪退的问题;
+- Android: 修复播放器播放默认直播卡顿，其他直播偶现音画加速的问题;
+- Android&iOS: 修复VodPlayer播放特定视频 seek慢的问题;
+- Android&iOS: 修复点播暂停播放后设置进度，画面显示慢的问题;
 
 ## MLVB Demo
 
