@@ -5,26 +5,20 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "TXLiveSDKTypeDef.h"
+#import "V2TXLiveDef.h"
 
 @class PushSettingViewController;
 
 @protocol PushSettingDelegate <NSObject>
 
-// 是否开启带宽适应
-- (void)onPushSetting:(PushSettingViewController *)vc enableBandwidthAdjust:(BOOL)enableBandwidthAdjust;
-
-// 是否开启硬件加速
-- (void)onPushSetting:(PushSettingViewController *)vc enableHWAcceleration:(BOOL)enableHWAcceleration;
-
 // 是否开启耳返
 - (void)onPushSetting:(PushSettingViewController *)vc enableAudioPreview:(BOOL)enableAudioPreview;
 
 // 画质类型
-- (void)onPushSetting:(PushSettingViewController *)vc videoQuality:(TX_Enum_Type_VideoQuality)videoQuality;
+- (void)onPushSetting:(PushSettingViewController *)vc videoQuality:(V2TXLiveVideoResolution)videoQuality;
 
 // 音质类型
-- (void)onPushSetting:(PushSettingViewController *)vc audioQuality:(NSInteger)qulity;
+- (void)onPushSetting:(PushSettingViewController *)vc audioQuality:(V2TXLiveAudioQuality)qulity;
 
 @end
 
@@ -37,7 +31,7 @@
 + (BOOL)getEnableHWAcceleration;
 + (BOOL)getEnableAudioPreview;
 + (NSInteger)getAudioQuality;
-+ (TX_Enum_Type_VideoQuality)getVideoQuality;
++ (V2TXLiveVideoResolution)getVideoQuality;
 
 @end
 

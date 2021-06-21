@@ -7,7 +7,7 @@
 #import "CameraPushViewController.h"
 #import "PushSettingViewController.h"
 #import "PushMoreSettingViewController.h"
-#import "TXLivePush.h"
+#import "V2TXLivePusher.h"
 #import "UIView+Additions.h"
 #import "AppDelegate.h"
 #import "ScanQRController.h"
@@ -24,24 +24,15 @@
 #import "AppLocalized.h"
 #import "NSString+Common.h"
 
-#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
-#import "CustomAudioFileReader.h"
-#define CUSTOM_AUDIO_CAPTURE_SAMPLERATE 48000
-#define CUSTOM_AUDIO_CAPTURE_CHANNEL 1
-#endif
-
 #define RTMP_PUBLISH_URL    @"LivePusherDemo.CameraPush.pleaseinputthepushstream"
 
 @interface CameraPushViewController () <
-    TXLivePushListener,
+    V2TXLivePusherObserver,
     ScanQRDelegate,
     BeautyLoadPituDelegate,
     PushSettingDelegate,
     PushMoreSettingDelegate,
     AddressBarControllerDelegate,
-#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
-    CustomAudioFileReaderDelegate,
-#endif
     PushBgmControlDelegate,
     AudioEffectViewDelegate
     >
@@ -67,7 +58,7 @@
     UIButton     *_btnMoreSetting; // 更多设置
 }
 
-@property (nonatomic, strong) TXLivePush *pusher;
+@property (nonatomic, strong) V2TXLivePusher *pusher;
 @property (nonatomic, strong) NSString *pushUrl;
 
 @property (nonatomic, strong) AudioEffectSettingView *audioEffectView; // 新BGM面板
@@ -101,7 +92,7 @@
     
     // 创建推流器
     _pusher = [self createPusher];
-    
+    _isMute = [PushMoreSettingViewController isMuteAudio];
     // 界面布局
     [self initUI];
     if (@available(iOS 13.0, *)) {
@@ -135,34 +126,35 @@
 
 - (void)onAppWillResignActive:(NSNotification *)notification {
     _appIsInActive = YES;
-    [_pusher pausePush];
+    [_pusher startVirtualCamera:[UIImage imageNamed:@"background"]];
 }
 
 - (void)onAppDidBecomeActive:(NSNotification *)notification {
     _appIsInActive = NO;
     if (!_appIsBackground && !_appIsInActive) {
-        if (![PushMoreSettingViewController isDisableVideo]) {
-            [_pusher resumePush];
-            [_pusher setMute:_isMute];
-        }
+        [_pusher stopVirtualCamera];
     }
 }
 
 - (void)onAppDidEnterBackGround:(NSNotification *)notification {
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        
+        [_pusher startVirtualCamera:[UIImage imageNamed:@"background"]];
     }];
     _appIsBackground = YES;
-    [_pusher pausePush];
 }
 
 - (void)onAppWillEnterForeground:(NSNotification *)notification {
     _appIsBackground = NO;
     if (!_appIsBackground && !_appIsInActive) {
-        if (![PushMoreSettingViewController isDisableVideo]) {
-            [_pusher resumePush];
-            [_pusher setMute:_isMute];
-        }
+        [_pusher stopVirtualCamera];
+    }
+}
+
+- (void)pauseAudio:(BOOL)isMute {
+    if (isMute) {
+        [_pusher stopMicrophone];
+    } else {
+        [_pusher startMicrophone];
     }
 }
 
@@ -273,72 +265,27 @@
 }
 
 // 创建推流器，并使用本地配置初始化它
-- (TXLivePush *)createPusher {
-    // config初始化
-    TXLivePushConfig *config = [[TXLivePushConfig alloc] init];
-    config.pauseFps = 10;
-    config.pauseTime = 300;
-    config.pauseImg = [UIImage imageNamed:@"pause_publish"];
-    config.touchFocus = [PushMoreSettingViewController isEnableTouchFocus];
-    config.enableZoom = [PushMoreSettingViewController isEnableVideoZoom];
-    config.enablePureAudioPush = [PushMoreSettingViewController isEnablePureAudioPush];
-    config.enableAudioPreview = [PushSettingViewController getEnableAudioPreview];
-    NSInteger audioQuality = [PushSettingViewController getAudioQuality];
-    switch (audioQuality) {
-        case 2:
-            // 音乐音质，采样率48000
-            config.audioChannels = 2;
-            config.audioSampleRate = AUDIO_SAMPLE_RATE_48000;
-            break;
-        case 1:
-            // 标准音质，采样率48000
-            config.audioChannels = 1;
-            config.audioSampleRate = AUDIO_SAMPLE_RATE_48000;
-            break;
-        case 0:
-            // 语音音质，采样率16000
-            config.audioChannels = 1;
-            config.audioSampleRate = AUDIO_SAMPLE_RATE_16000;
-            break;
-        default:
-            break;
-    }
-    config.frontCamera = _btnCamera.tag == 0 ? YES : NO;
-    if ([PushMoreSettingViewController isEnableWaterMark]) {
-        config.watermark = [UIImage imageNamed:@"watermark"];
-        config.watermarkPos = CGPointMake(10, 10);
-    }
+- (V2TXLivePusher *)createPusher {
     // 推流器初始化
-    TXLivePush *pusher = [[TXLivePush alloc] initWithConfig:config];
-    [pusher toggleTorch:[PushMoreSettingViewController isOpenTorch]];
-    [pusher setMirror:[PushMoreSettingViewController isMirrorVideo]];
-    [pusher setMute:[PushMoreSettingViewController isMuteAudio]];
-    [pusher setVideoQuality:[PushSettingViewController getVideoQuality] adjustBitrate:[PushSettingViewController getBandWidthAdjust] adjustResolution:NO];
-
-#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
-    config.enableAEC = NO;
-    config.customModeType = CUSTOM_MODE_AUDIO_CAPTURE;
-    config.audioSampleRate = CUSTOM_AUDIO_CAPTURE_SAMPLERATE;
-    config.audioChannels = CUSTOM_AUDIO_CAPTURE_CHANNEL;
-#endif
-    
-    // 修改软硬编需要在setVideoQuality之后设置config.enableHWAcceleration
-    config.enableHWAcceleration = [PushSettingViewController getEnableHWAcceleration];
-    
-    // 横屏推流需要先设置config.homeOrientation = HOME_ORIENTATION_RIGHT，然后再[pusher setRenderRotation:90]
-    config.homeOrientation = ([PushMoreSettingViewController isHorizontalPush] ? HOME_ORIENTATION_RIGHT : HOME_ORIENTATION_DOWN);
-    if ([PushMoreSettingViewController isHorizontalPush]) {
-        [pusher setRenderRotation:90];
-    } else {
-        [pusher setRenderRotation:0];
+    V2TXLivePusher *pusher = [[V2TXLivePusher alloc] initWithLiveMode:V2TXLiveMode_RTMP];
+    [pusher.getDeviceManager enableCameraTorch:[PushMoreSettingViewController isOpenTorch]];
+    [pusher setEncoderMirror:[PushMoreSettingViewController isMirrorVideo]];
+    [self pauseAudio:[PushMoreSettingViewController isMuteAudio]];
+    [pusher setVideoQuality:[PushSettingViewController getVideoQuality]
+             resolutionMode:V2TXLiveVideoResolutionModePortrait];
+    [pusher setRenderRotation:V2TXLiveRotation0];
+    [pusher setProperty:@"setDebugViewMargin" value:@{
+        @"top":@(120),
+        @"left":@(10),
+        @"bottom":@(60),
+        @"right":@(10)
+    }];
+    [pusher showDebugView:[PushMoreSettingViewController isShowDebugLog]];
+    NSInteger audioQuality = [PushSettingViewController getAudioQuality];
+    [pusher setAudioQuality:audioQuality];
+    if ([PushMoreSettingViewController isEnableWaterMark]) {
+        [pusher setWatermark:[UIImage imageNamed:@"watermark"] x:0.05 y:0.05 scale:1];
     }
-    
-    [pusher setLogViewMargin:UIEdgeInsetsMake(120, 10, 60, 10)];
-    [pusher showVideoDebugLog:[PushMoreSettingViewController isShowDebugLog]];
-    [pusher setEnableClockOverlay:[PushMoreSettingViewController isEnableDelayCheck]];
-    
-    [pusher setConfig:config];
-    
     return pusher;
 }
 
@@ -369,12 +316,12 @@
         btn.enabled = YES;
     });
     if (_btnCamera.tag == 0) {
-        [_pusher switchCamera];
+        [_pusher.getDeviceManager switchCamera:NO];
         _btnCamera.tag = 1;
         [_btnCamera setImage:[UIImage imageNamed:@"mlvb_camera_back"] forState:UIControlStateNormal];
     }
     else {
-        [_pusher switchCamera];
+        [_pusher.getDeviceManager switchCamera:YES];
         _btnCamera.tag = 0;
         [_btnCamera setImage:[UIImage imageNamed:@"mlvb_camera_front"] forState:UIControlStateNormal];
     }
@@ -383,6 +330,13 @@
 - (void)clickBeauty:(UIButton *)btn {
     _beautyPanel.hidden = NO;
     [self hideToolButtons:YES];
+    if (_moreSettingVC) {
+        [_moreSettingVC willMoveToParentViewController:self];
+        [_moreSettingVC.view removeFromSuperview];
+        [_moreSettingVC removeFromParentViewController];
+        _moreSettingVC.delegate = nil;
+        _moreSettingVC = nil;
+    }
 }
 
 - (void)clickBgm:(UIButton *)btn {
@@ -410,7 +364,7 @@
 - (void)clickMoreSetting:(UIButton *)btn {
     if (!_moreSettingVC) {
         _moreSettingVC = [[PushMoreSettingViewController alloc] init];
-        [_moreSettingVC setDelegate:self];
+        _moreSettingVC.delegate = self;
         
         [self addChildViewController:_moreSettingVC];
         _moreSettingVC.view.frame = CGRectMake(0, self.view.height * 0.2, self.view.width, self.view.height * 0.7);
@@ -422,8 +376,7 @@
         [_moreSettingVC willMoveToParentViewController:self];
         [_moreSettingVC.view removeFromSuperview];
         [_moreSettingVC removeFromParentViewController];
-        
-        [_moreSettingVC setDelegate:nil];
+        _moreSettingVC.delegate = nil;
         _moreSettingVC = nil;
     }
 }
@@ -443,7 +396,15 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
     _beautyPanel.hidden = YES;
-    [self hideToolButtons:NO];
+    UITouch *touch = [touches.allObjects lastObject];
+    BOOL result = [touch.view isDescendantOfView:_audioEffectView];
+    if (!result) {
+        [_audioEffectView hide];
+    }
+    if (![_audioEffectView isShow]) {
+        [self hideToolButtons:NO];
+    }
+    
 }
 
 #pragma mark - 推流逻辑
@@ -474,26 +435,23 @@
         return NO;
     }
     
-    // 还原设置
-    [PushMoreSettingViewController setDisableVideo:NO];
-    
     // 设置delegate
-    [_pusher setDelegate:self];
+    [_pusher setObserver:self];
     
     // 开启预览
-    [_pusher startPreview:_localView];
-
-#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
-    [CustomAudioFileReader sharedInstance].delegate = self;
-    [[CustomAudioFileReader sharedInstance] start:CUSTOM_AUDIO_CAPTURE_SAMPLERATE
-                                         channels:CUSTOM_AUDIO_CAPTURE_CHANNEL
-                                  framLenInSample:1024];
-#endif
+    [_pusher setRenderView:_localView];
+    [_pusher startCamera:_btnCamera.tag == 0];
+    
+    if (_isMute) {
+        [_pusher stopMicrophone];
+    } else {
+        [_pusher startMicrophone];
+    }
     
     // 开始推流
-    int ret = [_pusher startPush:rtmpUrl];
-    if (ret != 0) {
-        [self toastTip:[NSString stringWithFormat:@"%@: %d",LivePlayerLocalize(@"LivePusherDemo.CameraPush.thethrusterfailedtostart"), ret]];
+    V2TXLiveCode ret = [_pusher startPush:rtmpUrl];
+    if (ret != V2TXLIVE_OK) {
+        [self toastTip:[NSString stringWithFormat:@"%@: %ld",LivePlayerLocalize(@"LivePusherDemo.CameraPush.thethrusterfailedtostart"), (long)ret]];
         NSLog(@"%@",LivePlayerLocalize(@"LivePusherDemo.CameraPush.thethrusterfailedtostart"));
         return NO;
     }
@@ -506,14 +464,10 @@
 
 - (void)stopPush {
     if (_pusher) {
-        [_pusher setDelegate:nil];
-        [_pusher stopPreview];
+        [_pusher setObserver:nil];
+        [_pusher setRenderView:nil];
         [_pusher stopPush];
     }
-#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
-    [[CustomAudioFileReader sharedInstance] stop];
-    [CustomAudioFileReader sharedInstance].delegate = nil;
-#endif
 }
 
 #pragma mark - HUD
@@ -525,6 +479,7 @@
     }
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.label.text = text;
+    hud.userInteractionEnabled = NO;
     [hud showAnimated:YES];
 }
 
@@ -537,14 +492,40 @@
     hud.mode = MBProgressHUDModeText;
     hud.label.text = text;
     hud.detailsLabel.text = detail;
-    [hud.button addTarget:self action:@selector(onCloseHUD:) forControlEvents:UIControlEventTouchUpInside];
-    [hud.button setTitle:LivePlayerLocalize(@"LivePusherDemo.CameraPush.off") forState:UIControlStateNormal];
     [hud showAnimated:YES];
     [hud hideAnimated:YES afterDelay:2];
 }
 
 - (void)onCloseHUD:(id)sender {
     [[MBProgressHUD HUDForView:self.view] hideAnimated:YES];
+}
+
+- (void)checkNet {
+    BOOL isWifi = [AFNetworkReachabilityManager sharedManager].reachableViaWiFi;
+    if (!isWifi) {
+        __weak __typeof(self) weakSelf = self;
+        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            if (weakSelf.pushUrl.length == 0) {
+                return;
+            }
+            if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                               message:LivePlayerLocalize(@"LivePusherDemo.CameraPush.changetowifipushstream")
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                    
+                    // 先暂停，再重新推流
+                    [self stopPush];
+                    [self startPush];
+                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.no") style:UIAlertActionStyleCancel handler:^(UIAlertAction *_Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }]];
+                [weakSelf presentViewController:alert animated:YES completion:nil];
+            }
+        }];
+    }
 }
 
 #pragma mark - AddressBarControllerDelegate
@@ -601,71 +582,69 @@
     _addressBarController.text = result;
 }
 
-#pragma mark - TXLivePushListener
+#pragma mark - V2TXLivePusherObserver
 
-- (void)onPushEvent:(int)evtID withParam:(NSDictionary *)param {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (evtID == PUSH_ERR_NET_DISCONNECT || evtID == PUSH_ERR_INVALID_ADDRESS) {
-            // 断开连接时，模拟点击一次关闭推流
-            [self clickPush:self->_btnPush];
-            
-        } else if (evtID == PUSH_ERR_OPEN_CAMERA_FAIL) {
-            [self clickPush:self->_btnPush];
-            [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetcamerapermission")];
-            
-        } else if (evtID == PUSH_EVT_OPEN_CAMERA_SUCC) {
-            [self.pusher toggleTorch:[PushMoreSettingViewController isOpenTorch]];
-
-        } else if (evtID == PUSH_ERR_OPEN_MIC_FAIL) {
-            [self clickPush:self->_btnPush];
-            [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.failedtogetmicrophonepermission")];
-            
-        } else if (evtID == PUSH_EVT_CONNECT_SUCC) {
-            [self.pusher setMute:[PushMoreSettingViewController isMuteAudio]];
-            [self.pusher showVideoDebugLog:[PushMoreSettingViewController isShowDebugLog]];
-            [self.pusher setMirror:[PushMoreSettingViewController isMirrorVideo]];
-            BOOL isWifi = [AFNetworkReachabilityManager sharedManager].reachableViaWiFi;
-            if (!isWifi) {
-                __weak __typeof(self) weakSelf = self;
-                [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-                    if (weakSelf.pushUrl.length == 0) {
-                        return;
-                    }
-                    if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
-                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                                       message:LivePlayerLocalize(@"LivePusherDemo.CameraPush.changetowifipushstream")
-                                                                                preferredStyle:UIAlertControllerStyleAlert];
-                        [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-                            [alert dismissViewControllerAnimated:YES completion:nil];
-                            
-                            // 先暂停，再重新推流
-                            [weakSelf.pusher stopPush];
-                            [weakSelf.pusher startPush:weakSelf.pushUrl];
-                        }]];
-                        [alert addAction:[UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.no") style:UIAlertActionStyleCancel handler:^(UIAlertAction *_Nonnull action) {
-                            [alert dismissViewControllerAnimated:YES completion:nil];
-                        }]];
-                        [weakSelf presentViewController:alert animated:YES completion:nil];
-                    }
-                }];
-            }
-        } else if (evtID == PUSH_WARNING_NET_BUSY) {
-            [self->_notification displayNotificationWithMessage:LivePlayerLocalize(@"LivePusherDemo.CameraPush.currentnetworkenvironmentisnotgood") forDuration:5];
-        }
-        
-        // log
-        [self->_logView setPushEvent:evtID withParam:param];
-    });
+- (void)onError:(V2TXLiveCode)code
+        message:(NSString *)msg
+      extraInfo:(NSDictionary *)extraInfo {
+    if (code == V2TXLIVE_ERROR_REQUEST_TIMEOUT) {
+        [self toastTip:LivePlayerLocalize(@"LiveLinkMicDemoOld.MLVBLiveRoom.networktimeout")];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopPush];
+        });
+    }
 }
 
-- (void)onNetStatus:(NSDictionary *)param {
+- (void)onWarning:(V2TXLiveCode)code
+          message:(NSString *)msg
+        extraInfo:(NSDictionary *)extraInfo {
+    NSLog(@"code:%ld, msg:%@, extraInfo:%@", (long)code, msg, extraInfo);
+}
+
+- (void)onCaptureFirstAudioFrame {
+    NSLog(@"onCaptureFirstAudioFrame");
+}
+
+- (void)onCaptureFirstVideoFrame {
+    NSLog(@"onCaptureFirstVideoFrame");
+}
+
+- (void)onMicrophoneVolumeUpdate:(NSInteger)volume {
+    NSLog(@"volume:%ld", (long)volume);
+}
+
+- (void)onStatisticsUpdate:(V2TXLivePusherStatistics *)statistics {
     // 这里可以上报相关推流信息到业务服务器
     // 比如：码率，分辨率，帧率，cpu使用，缓存等信息
     // 字段请在TXLiveSDKTypeDef.h中定义
-
+    NSDictionary *param = @{
+        @"CPU_USAGE" : @(statistics.systemCpu/100.0),
+        @"CPU_USAGE_DEVICE" : @(statistics.appCpu/100.0),
+        @"VIDEO_FPS" : @(statistics.fps),
+        @"VIDEO_WIDTH" : @(statistics.width),
+        @"VIDEO_HEIGHT" : @(statistics.height),
+        @"VIDEO_BITRATE" : @(statistics.videoBitrate),
+        @"AUDIO_BITRATE" : @(statistics.audioBitrate)
+    };
     dispatch_async(dispatch_get_main_queue(), ^{
         [self->_logView setNetStatus:param];
     });
+}
+
+- (void)onPushStatusUpdate:(V2TXLivePushStatus)state message:(NSString *)msg extraInfo:(NSDictionary *)extraInfo {
+    if (state == V2TXLivePushStatusDisconnected) {
+        [self clickPush:self->_btnPush];
+    } else if (state == V2TXLivePushStatusConnectSuccess) {
+        [self checkNet];
+    }
+}
+
+- (void)onSnapshotComplete:(TXImage *)img {
+    if (img != nil) {
+        NSArray *images = @[img];
+        UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:images applicationActivities:nil];
+        [self.navigationController presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark - AudioEffectViewDelegate
@@ -700,156 +679,61 @@
 }
 
 #pragma mark - PushSettingDelegate
-// 是否开启带宽适应
-- (void)onPushSetting:(PushSettingViewController *)vc enableBandwidthAdjust:(BOOL)enableBandwidthAdjust {
-    [_pusher setVideoQuality:[PushSettingViewController getVideoQuality] adjustBitrate:[PushSettingViewController getBandWidthAdjust] adjustResolution:NO];
-}
-
-// 是否开启硬件加速
-- (void)onPushSetting:(PushSettingViewController *)vc enableHWAcceleration:(BOOL)enableHWAcceleration {
-    TXLivePushConfig *config = _pusher.config;
-    config.enableHWAcceleration = enableHWAcceleration;
-    [_pusher setConfig:config];
-}
-
 // 是否开启耳返
 - (void)onPushSetting:(PushSettingViewController *)vc enableAudioPreview:(BOOL)enableAudioPreview {
-    TXLivePushConfig *config = _pusher.config;
-    config.enableAudioPreview = enableAudioPreview;
-    [_pusher setConfig:config];
+    [_pusher.getAudioEffectManager enableVoiceEarMonitor:enableAudioPreview];
 }
 
 // 画质类型
-- (void)onPushSetting:(PushSettingViewController *)vc videoQuality:(TX_Enum_Type_VideoQuality)videoQuality {
-    [_pusher setVideoQuality:videoQuality adjustBitrate:[PushSettingViewController getBandWidthAdjust] adjustResolution:NO];
+- (void)onPushSetting:(PushSettingViewController *)vc videoQuality:(V2TXLiveVideoResolution)videoQuality {
+    [_pusher setVideoQuality:videoQuality
+             resolutionMode:V2TXLiveVideoResolutionModePortrait];
 }
 
 - (void)onPushSetting:(PushSettingViewController *)vc audioQuality:(NSInteger)qulity {
-    TXLivePushConfig *config = _pusher.config;
-    switch (qulity) {
-        case 2:
-            // 音乐音质，采样率48000
-            config.audioChannels = 2;
-            config.audioSampleRate = AUDIO_SAMPLE_RATE_48000;
-            break;
-        case 1:
-            // 标准音质，采样率48000
-            config.audioChannels = 1;
-            config.audioSampleRate = AUDIO_SAMPLE_RATE_48000;
-            break;
-        case 0:
-            // 语音音质，采样率16000
-            config.audioChannels = 1;
-            config.audioSampleRate = AUDIO_SAMPLE_RATE_16000;
-            break;
-        default:
-            break;
-    }
-    [_pusher setConfig:config];
+    [_pusher setAudioQuality:qulity];
 }
 
 #pragma mark - PushMoreSettingDelegate
 
-// 是否开启隐私模式（关闭摄像头，并发送pauseImg图片）
-- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc disableVideo:(BOOL)disable {
-    if (_pusher.isPublishing) {
-        if (disable) {
-            [_pusher pausePush];
-        }
-        else {
-            [_pusher resumePush];
-            [_pusher setMute:_isMute];
-        }
-    }
-}
-
 // 是否开启静音模式（发送静音数据，但是不关闭麦克风）
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc muteAudio:(BOOL)mute {
-    [_pusher setMute:mute];
+    [self pauseAudio:mute];
     _isMute = mute;
 }
 
 // 是否开启观看端镜像
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc mirrorVideo:(BOOL)mirror {
-    [_pusher setMirror:mirror];
+    [_pusher setEncoderMirror:mirror];
 }
 
 // 是否开启后置闪光灯
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc openTorch:(BOOL)open {
-    [_pusher toggleTorch:open];
-}
-
-// 是否开启横屏推流
-- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc horizontalPush:(BOOL)enable {
-    TXLivePushConfig *config = _pusher.config;
-    config.homeOrientation = (enable ? HOME_ORIENTATION_RIGHT : HOME_ORIENTATION_DOWN);
-    [_pusher setConfig:config];
-    
-    if (enable) {
-        [_pusher setRenderRotation:90];
-    } else {
-        [_pusher setRenderRotation:0];
-    }
+    [_pusher.getDeviceManager enableCameraTorch:open];
 }
 
 // 是否开启调试信息
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc debugLog:(BOOL)show {
-    [_pusher showVideoDebugLog:show];
+    [_pusher showDebugView:show];
 }
 
 // 是否添加图像水印
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc waterMark:(BOOL)enable {
-    TXLivePushConfig *config = _pusher.config;
     if (enable) {
-        config.watermark = [UIImage imageNamed:@"watermark"];
-        config.watermarkPos = CGPointMake(10, 10);
+        [_pusher setWatermark:[UIImage imageNamed:@"watermark"] x:0.03 y:0.015 scale:1];
     } else {
-        config.watermark = nil;
-        config.watermarkPos = CGPointZero;
+        [_pusher setWatermark:nil x:0.03 y:0.015 scale:1];
     }
-    [_pusher setConfig:config];
-}
-
-// 延迟测定工具条
-- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc delayCheck:(BOOL)enable {
-    [_pusher setEnableClockOverlay:enable];
 }
 
 // 是否开启手动点击曝光对焦
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc touchFocus:(BOOL)enable {
-    TXLivePushConfig *config = _pusher.config;
-    config.touchFocus = enable;
-    [_pusher setConfig:config];
-}
-
-// 是否开启手势放大预览画面
-- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc videoZoom:(BOOL)enable {
-    TXLivePushConfig *config = _pusher.config;
-    config.enableZoom = enable;
-    [_pusher setConfig:config];
-}
-
-// 是否开始纯音频推流(直播不支持动态切换)
-- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc pureAudioPush:(BOOL)enable
-{
-    TXLivePushConfig *config = _pusher.config;
-    config.enablePureAudioPush = enable;
+    [_pusher.getDeviceManager enableCameraAutoFocus:!enable];
 }
 
 // 本地截图
 - (void)onPushMoreSettingSnapShot:(PushMoreSettingViewController *)vc {
-    [_pusher snapshot:^(TXImage *img) {
-        if (img != nil) {
-            NSArray *images = @[img];
-            UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:images applicationActivities:nil];
-            [self.navigationController presentViewController:vc animated:YES completion:nil];
-        }
-    }];
-}
-
-- (void)onPushMoreSettingSendMessage:(PushMoreSettingViewController *)vc message:(NSString *)message
-{
-    [_pusher sendMessageEx:[message dataUsingEncoding:NSUTF8StringEncoding]];
+    [_pusher snapshot];
 }
 
 #pragma mark - 辅助函数
@@ -891,11 +775,5 @@
         toastView = nil;
     });
 }
-
-#ifdef ENABLE_CUSTOM_MODE_AUDIO_CAPTURE
-- (void)onAudioCapturePcm:(NSData *)pcmData sampleRate:(int)sampleRate channels:(int)channels ts:(uint32_t)timestampMs {
-    [self.pusher sendCustomPCMData:pcmData.bytes len:(uint32_t)pcmData.length];
-}
-#endif
 
 @end

@@ -65,6 +65,7 @@ static const NSTimeInterval PKRequestTimeout = 10;
     NSArray<MLVBRoomInfo *>     *_roomList;      // 保存最近一次拉回的房间列表，这里仅仅使用里面的房间混流地址和创建者信息
     NSMutableArray<MLVBAudienceInfo *> *_audienceList;  // 保存最近一次拉回的房间观众列表
     AFHTTPSessionManager    *_httpSession;
+    AFNetworkReachabilityManager *_reachabilityManager;
     NSString                *_serverDomain;   // 保存业务服务器域名
     NSMutableDictionary     *_apiAddr;        // 保存业务服务器相关的rest api
     
@@ -137,13 +138,14 @@ static pthread_mutex_t sharedInstanceLock;
         _roomInfo = [[MLVBRoomInfo alloc] init];
         _audienceList = [[NSMutableArray alloc] init];
         _httpSession = [AFHTTPSessionManager manager];
+        _reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+        [_reachabilityManager startMonitoring];
         [_httpSession setRequestSerializer:[AFJSONRequestSerializer serializer]];
         [_httpSession setResponseSerializer:[AFJSONResponseSerializer serializer]];
         [_httpSession.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         _httpSession.requestSerializer.timeoutInterval = 5.0;
         [_httpSession.requestSerializer didChangeValueForKey:@"timeoutInterval"];
         _httpSession.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/xml", @"text/plain", nil];
-        
         _queue = dispatch_queue_create("LiveRoomQueue", DISPATCH_QUEUE_SERIAL);
         [_httpSession setCompletionQueue:_queue];
         
@@ -1315,7 +1317,6 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 - (void)handleUpdatedAnchorList:(NSArray<MLVBAnchorInfo *> *)updatedAnchorList
 {
     NSArray<MLVBAnchorInfo *>* oldAnchorList = _roomInfo.anchorInfoArray;
-    
     NSMutableSet *leftAnchorSet = [[NSMutableSet alloc] initWithArray:oldAnchorList];
     NSSet *updatedAnchorSet = [NSSet setWithArray:updatedAnchorList];
     if ([updatedAnchorSet isEqualToSet:leftAnchorSet]) {
@@ -1608,7 +1609,14 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
  */
 - (void)_updateAnchorList:(void (^)(int errCode, NSString *errMsg, NSArray<MLVBAnchorInfo *> *anchorList))completion {
     [self asyncRun:^(MLVBLiveRoom *self) {
-        NSDictionary *params = @{@"roomID": self.roomInfo.roomID};
+        NSDictionary *params;
+        if (self.roomInfo == nil || self.roomInfo.roomID == nil) {
+            if (completion) {
+                completion(-1, @"roomID is nil", nil);
+            }
+        } else {
+            params = @{@"roomID": self.roomInfo.roomID};
+        }
         [self requestWithName:kHttpServerAddr_GetAnchors params:params completion:^(MLVBLiveRoom *self, int errCode, NSString *errMsg, NSDictionary *responseObject) {
             if (errCode == 0) {
                 NSArray<MLVBAnchorInfo *> * anchorList = [self parseAnchorsFromJsonArray:responseObject[@"pushers"]];
@@ -2008,8 +2016,47 @@ typedef void (^ILoginCompletionCallback)(int errCode, NSString *errMsg, NSString
 }
 
 - (void)updateAnchorList {
-    [self _updateAnchorList:^(int errCode, NSString *errMsg, NSArray<MLVBAnchorInfo *> *updatedAnchorList) {
-        [self handleUpdatedAnchorList:updatedAnchorList];
+    if ([_reachabilityManager networkReachabilityStatus] == AFNetworkReachabilityStatusNotReachable) {
+        //无网状态时需要情况之前的小主播列表，待有网时重新请求当前房间的小主播列表，否则不会更新小主播UI窗口
+        _roomInfo.anchorInfoArray = @[];
+        __weak __typeof(self)weakSelf = self;
+        [self startNetworkReachability:^(BOOL hasNetwork) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            if (hasNetwork) {
+                [strongSelf _updateAnchorList:^(int errCode, NSString *errMsg, NSArray<MLVBAnchorInfo *> *updatedAnchorList) {
+                    [strongSelf handleUpdatedAnchorList:updatedAnchorList];
+                }];
+            } else {
+                [strongSelf updateAnchorList];
+            }
+        }];
+    } else {
+        __weak __typeof(self)weakSelf = self;
+        [self _updateAnchorList:^(int errCode, NSString *errMsg, NSArray<MLVBAnchorInfo *> *updatedAnchorList) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            [strongSelf handleUpdatedAnchorList:updatedAnchorList];
+        }];
+    }
+}
+
+- (void)startNetworkReachability:(void (^)(BOOL hasNetwork)) block {
+    [_reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                block(false);
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                block(false);
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                block(true);
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                block(true);
+                break;
+            default:
+                break;
+        }
     }];
 }
 

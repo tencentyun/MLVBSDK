@@ -8,32 +8,28 @@
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
 #import "AppLocalized.h"
+#import "V2TXLiveDef.h"
 
 /* 列表项 */
 #define SECTION_QUALITY             0
 #define SECTION_AUDIO_QUALITY       1
-#define SECTION_BANDWIDTH_ADJUST    2
-#define SECTION_HW                  3
-#define SECTION_AUDIO_PREVIEW       4
+#define SECTION_AUDIO_PREVIEW       2
 
 /* 编号，请不要修改，写配置文件依赖这个 */
 #define TAG_QUALITY                 1000
-#define TAG_BANDWIDTH_ADJUST        1003
 #define TAG_HW                      1004
 #define TAG_AUDIO_PREVIEW           1005
 #define TAG_AUDIO_QUALITY           1006
 
 @interface PushSettingQuality : NSObject
 @property (copy, nonatomic) NSString *title;
-@property (assign, nonatomic) TX_Enum_Type_VideoQuality value;
+@property (assign, nonatomic) V2TXLiveVideoResolution value;
 @end
 
 @implementation PushSettingQuality
 @end
 
 @interface PushSettingViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
-    UISwitch *_bandwidthSwitch;
-    UISwitch *_hwSwitch;
     UISwitch *_audioPreviewSwitch;
 
     NSArray<PushSettingQuality *> *_qualities;
@@ -53,17 +49,14 @@
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.superclear"),
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.hd"),
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.standarddefinition"),
-                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.lianmaibighost"),
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.lianmaismallhost"),
-                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.realtimeaudioandvideo")];
-    TX_Enum_Type_VideoQuality qualityArray[] = {
-        VIDEO_QUALITY_ULTRA_DEFINITION,
-        VIDEO_QUALITY_SUPER_DEFINITION,
-        VIDEO_QUALITY_HIGH_DEFINITION,
-        VIDEO_QUALITY_STANDARD_DEFINITION,
-        VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER,
-        VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER,
-        VIDEO_QUALITY_REALTIME_VIDEOCHAT
+    ];
+    V2TXLiveVideoResolution qualityArray[] = {
+        V2TXLiveVideoResolution1920x1080,
+        V2TXLiveVideoResolution1280x720,
+        V2TXLiveVideoResolution960x540,
+        V2TXLiveVideoResolution640x360,
+        V2TXLiveVideoResolution480x270,
     };
     NSMutableArray *qualities = [[NSMutableArray alloc] initWithCapacity:titleArray.count];
     for (int i = 0; i < titleArray.count; ++i) {
@@ -77,8 +70,6 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.back") style:UIBarButtonItemStylePlain target:self action:@selector(onClickedCancel:)];
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOK:)];
     
-    _bandwidthSwitch = [self createUISwitch:TAG_BANDWIDTH_ADJUST on:[PushSettingViewController getBandWidthAdjust]];
-    _hwSwitch = [self createUISwitch:TAG_HW on:[PushSettingViewController getEnableHWAcceleration]];
     _audioPreviewSwitch = [self createUISwitch:TAG_AUDIO_PREVIEW on:[PushSettingViewController getEnableAudioPreview]];
     
     _mainTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
@@ -120,17 +111,7 @@
 - (void)onSwitchTap:(UISwitch *)switchBtn {
     [PushSettingViewController saveSetting:switchBtn.tag value:switchBtn.on];
     
-    if (switchBtn.tag == TAG_BANDWIDTH_ADJUST) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(onPushSetting:enableBandwidthAdjust:)]) {
-            [self.delegate onPushSetting:self enableBandwidthAdjust:switchBtn.on];
-        }
-        
-    } else if (switchBtn.tag == TAG_HW) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(onPushSetting:enableHWAcceleration:)]) {
-            [self.delegate onPushSetting:self enableHWAcceleration:switchBtn.on];
-        }
-        
-    } else if (switchBtn.tag == TAG_AUDIO_PREVIEW) {
+    if (switchBtn.tag == TAG_AUDIO_PREVIEW) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(onPushSetting:enableAudioPreview:)]) {
             [self.delegate onPushSetting:self enableAudioPreview:switchBtn.on];
         }
@@ -139,7 +120,7 @@
 }
 
 - (NSString *)getQualityStr {
-    TX_Enum_Type_VideoQuality quality = [PushSettingViewController getVideoQuality];
+    V2TXLiveAudioQuality quality = [PushSettingViewController getVideoQuality];
     for (PushSettingQuality *q in _qualities) {
         if (q.value == quality) {
             return q.title;
@@ -212,7 +193,7 @@
 #pragma mark - UITableView delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -228,12 +209,6 @@
     } else if (indexPath.section == SECTION_AUDIO_QUALITY) {
         cell.textLabel.text = [self getAudioQualityStr];
         cell.accessoryView = [PushSettingViewController buildAccessoryView];
-    } else if (indexPath.section == SECTION_BANDWIDTH_ADJUST) {
-        cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushSetting.openbandwidthadaptation");
-        cell.accessoryView = _bandwidthSwitch;
-    } else if (indexPath.section == SECTION_HW) {
-        cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushSetting.enablehardwareacceleration");
-        cell.accessoryView = _hwSwitch;
     } else if (indexPath.section == SECTION_AUDIO_PREVIEW) {
         cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.PushSetting.opentheearsback");
         cell.accessoryView = _audioPreviewSwitch;
@@ -273,24 +248,6 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (BOOL)getBandWidthAdjust {
-    NSString *key = [PushSettingViewController getKey:TAG_BANDWIDTH_ADJUST];
-    NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    if (d != nil) {
-        return [d intValue];
-    }
-    return NO;
-}
-
-+ (BOOL)getEnableHWAcceleration {
-    NSString *key = [PushSettingViewController getKey:TAG_HW];
-    NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    if (d != nil) {
-        return [d intValue];
-    }
-    return YES;
-}
-
 + (BOOL)getEnableAudioPreview {
     NSString *key = [PushSettingViewController getKey:TAG_AUDIO_PREVIEW];
     NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
@@ -300,13 +257,13 @@
     return NO;
 }
 
-+ (TX_Enum_Type_VideoQuality)getVideoQuality {
++ (V2TXLiveVideoResolution)getVideoQuality {
     NSString *key = [PushSettingViewController getKey:TAG_QUALITY];
     NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     if (d != nil) {
         return [d intValue];
     }
-    return VIDEO_QUALITY_SUPER_DEFINITION;
+    return V2TXLiveVideoResolution1280x720;
 }
 
 + (NSInteger)getAudioQuality {

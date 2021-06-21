@@ -15,41 +15,20 @@
 #ifndef DISABLE_VOD
 #import "TXVodPlayer.h"
 #endif
-#import "TXLivePush.h"
+#import "V2TXLivePusher.h"
 #import "AddressBarController.h"
 #import "AppDelegate.h"
-#import "SimpleIPC.h"
 #import "AppLocalized.h"
 #import "NSString+Common.h"
+#import <UserNotifications/UserNotifications.h>
 
-//#import "CWStatusBarNotification.h"
-
-/**
- *InAppReplayKit2Pusher类只供录制本界面使用，示例SDK的自定义发送接口的使用方法。屏幕录制的示例代码在扩展中的SampleHandler里
- */
-//@interface InAppReplayKit2Pusher  : NSObject<TXLivePushListener>
-//@property (nonatomic, assign) BOOL isPushing;
-//@property (nonatomic, assign) BOOL isStarting;
-//
-//+ (InAppReplayKit2Pusher *)sharedInstance;
-//
-//- (void)startPushWithUrl:(NSString *)pushUrl rotation:(NSString *)rotation resolution:(NSString *)resolution;
-//- (void)stopPush;
-//- (void)pausePush;
-//- (void)resumePush;
-//- (void)setCustomRotationAndResolution:(NSString*)rotation resolution:(NSString*)resolution;
-//- (void)showRecodingStatus:(BOOL)isShow;
-//
-//@end
-
-@interface ScreenPushViewController () <AddressBarControllerDelegate, ScanQRDelegate, TXVodPlayListener> {
-    SimpleIPC *_ipc;
-}
+@interface ScreenPushViewController () <AddressBarControllerDelegate, ScanQRDelegate, TXVodPlayListener, V2TXLivePusherObserver>
 @property (nonatomic, retain) UISegmentedControl* rotateSelector;
 @property (nonatomic, retain) UISegmentedControl* resolutionSelector;
 @property (nonatomic, retain) UIButton* btnReplaykit;
 @property (nonatomic, copy) NSString *playFlvUrl;
 @property (nonatomic, retain) UIView* playerView;
+@property (nonatomic, strong) V2TXLivePusher *livePusher;
 #ifndef DISABLE_VOD
 @property (nonatomic, retain) TXVodPlayer* vodPlayer;
 #endif
@@ -63,22 +42,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    _ipc = [[SimpleIPC alloc] initWithPort:kReplayKitIPCPort];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReplayKit2RecordStop:) name:kCocoaNotificationNameReplayKit2Stop object:nil];
-
     [self initUI];
 }
 
 - (void)dealloc
 {
+    [self.livePusher stopPush];
 #ifndef DISABLE_VOD
     [_vodPlayer stopPlay];
 #endif
-    [self _sendMessageToExtension:kDarvinNotificaiotnNamePushStop object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-//    [[InAppReplayKit2Pusher sharedInstance] stopPush];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -257,7 +230,6 @@
         if (result != 0)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-//                _hub = [MBProgressHUD HUDForView:weakSelf.view];
                 hub.mode = MBProgressHUDModeText;
                 hub.label.text = LivePlayerLocalize(@"LivePusherDemo.ScreenPush.failedtogetpushstreamaddress");
                 [hub showAnimated:YES];
@@ -293,13 +265,11 @@
             pasteboard.string = playUrls;
             weakSelf.playFlvUrl = flvPlayUrl;
             dispatch_async(dispatch_get_main_queue(), ^{
-//                _hub = [MBProgressHUD HUDForView:weakSelf.view];
                 hub.mode = MBProgressHUDModeText;
                 hub.label.text = LivePlayerLocalize(@"LivePusherDemo.CameraPush.getaddresssuccess");
                 hub.detailsLabel.text = LivePlayerLocalize(@"LivePusherDemo.CameraPush.playbackaddresshasbeencopiedtotheclipboard");
                 [hub showAnimated:YES];
                 [hub hideAnimated:YES afterDelay:2];
-//                controller.qrString = accPlayUrl;
             });
         }
     }];
@@ -328,15 +298,6 @@
     BOOL isStart = [btntitle isEqualToString:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream")];
     
     if (isStart) {
-        NSString* resolution = kResolutionFHD;
-        if (self.resolutionSelector.selectedSegmentIndex == 1) {
-            resolution = kResolutionHD;
-        }
-        else if (self.resolutionSelector.selectedSegmentIndex == 2) {
-            resolution = kResolutionSD;
-        }
-        
-        NSString* rotation = self.rotateSelector.selectedSegmentIndex == 0?kReplayKit2Portrait:kReplayKit2Lanscape;
         BOOL isCaptured = NO;
         if (@available(iOS 11, *)) {
             isCaptured = [UIScreen mainScreen].isCaptured;
@@ -346,8 +307,6 @@
 
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                [[InAppReplayKit2Pusher  sharedInstance] startPushWithUrl:self.addressBarController.text rotation:rotation resolution:resolution];
-//                [btn setTitle:@"结束推流" forState:UIControlStateNormal];
             }];
             UIAlertAction* action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:action1];
@@ -358,23 +317,22 @@
         else {
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.turnonscreenrecordingpushstreams") preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//              正式应用不建议合用剪贴板传值。建议配置appgroup，使用NSUserDefault的方式传值
-//                NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-//                [defaults setObject:_rtcRoom.roomID forKey:kReplayKit2UserDefaultRoomidKey];
-//                [defaults synchronize];
-                NSMutableDictionary* dict = [NSMutableDictionary new];
-                [dict setObject:self.addressBarController.text forKey:kReplayKit2PushUrlKey];
-                [dict setObject:rotation forKey:kReplayKit2RotateKey];
-                if (self.playFlvUrl)
-                    [dict setObject:self.playFlvUrl forKey:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.flvplayaddress")];
-
-                [dict setObject:resolution forKey:kReplayKit2ResolutionKey];
-
-                [self _sendMessageToExtension:kDarvinNotificationNamePushStart object:dict];
-
+                V2TXLiveMode mode = V2TXLiveMode_RTMP;
+                if ([self.addressBarController.text.lowercaseString hasPrefix:@"trtc://"]) {
+                    mode = V2TXLiveMode_RTC;
+                }
+                self.livePusher = [[V2TXLivePusher alloc] initWithLiveMode:mode];
+                [self.livePusher setObserver:self];
+                if (@available(iOS 11.0, *)) {
+                    [self.livePusher startScreenCapture:kReplayKit2AppGroupId];
+                }
+                [self refreshResolutionAndRotation];
+                [[self.livePusher getDeviceManager] setSystemVolumeType:TXSystemVolumeTypeMedia];
+                [self.livePusher startMicrophone];
+                [self.livePusher startPush:self.addressBarController.text];
                 [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.pushoverflow") forState:UIControlStateNormal];
             }];
-            UIAlertAction* action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
             
             [alert addAction:action1];
             [alert addAction:action2];
@@ -384,23 +342,14 @@
     else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.tencentcloudpushstream") message:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.closescreenpushstream") preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* action1 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-//            [defaults setObject:_rtcRoom.roomID forKey:kReplayKit2UserDefaultRoomidKey];
-//            [defaults synchronize];
+            [self.livePusher stopPush];
             [btn setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
-            
-//            if ([InAppReplayKit2Pusher  sharedInstance].isPushing) {
-//                [[InAppReplayKit2Pusher  sharedInstance] stopPush];
-//                return;
-//            }
-            [self _sendMessageToExtension:kDarvinNotificaiotnNamePushStop object:@{}];
         }];
-        UIAlertAction* action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LivePusherDemo.PushSetting.cancel") style:UIAlertActionStyleDefault handler:nil];
         
         [alert addAction:action1];
         [alert addAction:action2];
         [self presentViewController:alert animated:YES completion:nil];
-
     }
 }
 
@@ -412,64 +361,29 @@
 
 - (void)onSwitchRotation:(UISegmentedControl*)segment
 {
-    //建议使用正式的appgroup的NSUserDefaults方式传值
-    //            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-    //            [defaults setObject:self.rotateSelector.selectedSegmentIndex == 0?kReplayKit2Portrait:kReplayKit2Lanscape forKey:kReplayKit2RotateKey];
-    //            [defaults synchronize];
-    NSString* rotation = self.rotateSelector.selectedSegmentIndex == 0?kReplayKit2Portrait:kReplayKit2Lanscape;
-//    if ([InAppReplayKit2Pusher  sharedInstance].isPushing) {
-//        NSString* resolution = kResolutionFHD;
-//        if (self.resolutionSelector.selectedSegmentIndex == 1) {
-//            resolution = kResolutionHD;
-//        }
-//        else if (self.resolutionSelector.selectedSegmentIndex == 2) {
-//            resolution = kResolutionSD;
-//        }
-//        [[InAppReplayKit2Pusher  sharedInstance] setCustomRotationAndResolution:rotation resolution:resolution];
-//        return;
-//    }
-    [self _sendMessageToExtension:kDarvinNotificaiotnNameRotationChange
-                           object:@{kReplayKit2RotateKey: rotation}];
+    [self refreshResolutionAndRotation];
 }
 
 - (void)onSwitchresolution:(UISegmentedControl*)segment
 {
-
-    NSString* resolution = kResolutionFHD;
-    if (self.resolutionSelector.selectedSegmentIndex == 1) {
-        resolution = kResolutionHD;
-    }
-    else if (self.resolutionSelector.selectedSegmentIndex == 2) {
-        resolution = kResolutionSD;
-    }
-//    if ([InAppReplayKit2Pusher  sharedInstance].isPushing) {
-//        NSString* rotation = self.rotateSelector.selectedSegmentIndex == 0?kReplayKit2Portrait:kReplayKit2Lanscape;
-//        [[InAppReplayKit2Pusher  sharedInstance] setCustomRotationAndResolution:rotation resolution:resolution];
-//        return;
-//    }
-    NSMutableDictionary* dict = [NSMutableDictionary new];
-    [dict setObject:resolution forKey:kReplayKit2ResolutionKey];
-
-    [self _sendMessageToExtension:kDarvinNotificaiotnNameResolutionChange
-                           object:dict];
+    [self refreshResolutionAndRotation];
 }
 
-- (void)_sendMessageToExtension:(CFStringRef)message object:(NSDictionary *)object {
-    if (object) {
-#if kReplayKitUseAppGroup
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kReplayKit2AppGroupId];
-        [defaults setValuesForKeysWithDictionary:object];
-        [defaults synchronize];
-        CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), message, NULL, nil, YES);
-#else
-//        UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:@"TXLiteAV" create:YES];
-//        NSString* transString = [self dictionary2JsonString:object];
-//        if (!transString)
-//            return;
-//        pasteboard.string = transString;
-        [_ipc sendCmd:(__bridge NSString *)message info:object];
-#endif
+- (void)refreshResolutionAndRotation
+{
+    V2TXLiveVideoResolution resolution = V2TXLiveVideoResolution960x540;
+    if (2 == self.resolutionSelector.selectedSegmentIndex) {
+        resolution = V2TXLiveVideoResolution640x360;
+    } else if (1 == self.resolutionSelector.selectedSegmentIndex) {
+        resolution = V2TXLiveVideoResolution960x540;
+    } else {
+        resolution = V2TXLiveVideoResolution1280x720;
     }
+    V2TXLiveVideoResolutionMode resMode = V2TXLiveVideoResolutionModePortrait;
+    if (self.rotateSelector.selectedSegmentIndex) {
+        resMode = V2TXLiveVideoResolutionModeLandscape;
+    }
+    [self.livePusher setVideoQuality:resolution resolutionMode:resMode];
 }
 
 #ifndef DISABLE_VOD
@@ -488,6 +402,17 @@
 -(void) onNetStatus:(TXVodPlayer *)player withParam:(NSDictionary*)param {
 }
 #endif
+
+#pragma mark -- V2TXLivePusherObserver
+- (void)onError:(V2TXLiveCode)code
+        message:(NSString *)msg
+      extraInfo:(NSDictionary *)extraInfo {
+    if (code == V2TXLIVE_ERROR_REQUEST_TIMEOUT) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self onScreenCaptureStoped:0];
+        });
+    }
+}
 
 #pragma mark - ScanQRDelegate
 - (void)onScanResult:(NSString *)result {
@@ -516,257 +441,51 @@
     return nil;
 }
 
+#pragma mark - TXLivePushListener
+- (void)onPushEvent:(int)EvtID withParam:(NSDictionary *)param {
+    NSLog(@"onPushEvent %d", EvtID);
+}
+
+- (void)onNetStatus:(NSDictionary *)param {
+}
+
+- (void)onScreenCaptureStarted {
+}
+
+- (void)onScreenCapturePaused:(int)reason {
+}
+
+- (void)onScreenCaptureResumed:(int)reason {
+}
+
+- (void)onScreenCaptureStoped:(int)reason {
+    [self.livePusher stopPush];
+    [_btnReplaykit setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
+}
+
+#pragma mark - localNotification
+- (void)sendLocalNotificationToHostAppWithTitle:(NSString*)title msg:(NSString*)msg userInfo:(NSDictionary*)userInfo
+{
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    content.title = [NSString localizedUserNotificationStringForKey:title arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:msg  arguments:nil];
+    content.sound = [UNNotificationSound defaultSound];
+    content.userInfo = userInfo;
+    
+    // 在 设定时间 后推送本地推送
+    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
+                                                  triggerWithTimeInterval:0.1f repeats:NO];
+    
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"ReplayKit2Demo"
+                                                                          content:content trigger:trigger];
+    
+    //添加推送成功后的处理！
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        
+    }];
+}
+
+
 @end
-
-
-
-
-
-//@interface InAppReplayKit2Pusher()
-//@property (nonatomic) TXLivePush* livePusher;
-//@end
-//
-//@implementation InAppReplayKit2Pusher  {
-//    CWStatusBarNotification *_notification;
-//}
-//
-//
-//+ (InAppReplayKit2Pusher *)sharedInstance
-//{
-//    static InAppReplayKit2Pusher * s_instance = nil;
-//    static dispatch_once_t onceToken ;
-//    dispatch_once(&onceToken, ^{
-//        s_instance = [[InAppReplayKit2Pusher  alloc] init] ;
-//    });
-//
-//    return s_instance ;
-//}
-//
-//- (id)init
-//{
-//    if (self = [super init]) {
-//        _notification = [CWStatusBarNotification new];
-//        _notification.notificationLabelBackgroundColor = [UIColor redColor];
-//        _notification.notificationLabelTextColor = [UIColor whiteColor];
-//
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-//    }
-//    return self;
-//}
-//
-//- (void)onAppWillResignActive:(NSNotification *)notification
-//{
-//    if(@available(iOS 11.0, *)) {
-//        [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
-//        if (_isPushing) {
-//            [self pausePush];
-//        }
-//    }
-//}
-//
-//- (void)onAppDidBecomeActive:(NSNotification *)notification
-//{
-//    if(@available(iOS 11.0, *)) {
-//        if (_isPushing) {
-//            [self resumePush];
-//        }
-//    }
-//}
-//
-//- (void)startPushWithUrl:(NSString *)pushUrl rotation:(NSString *)rotation resolution:(NSString *)resolution;
-//{
-//    if (_livePusher)
-//        [_livePusher stopPush];
-//
-//    //使用自定义音视频发送接口时的初始化
-//    TXLivePushConfig* pushConfigs = [[TXLivePushConfig alloc] init];
-//    pushConfigs.customModeType |= CUSTOM_MODE_VIDEO_CAPTURE; //自定义视频
-//    pushConfigs.enableAutoBitrate = YES;
-//    pushConfigs.autoSampleBufferSize = NO;
-//    pushConfigs.enableHWAcceleration = YES;
-//
-//    pushConfigs.customModeType |=  CUSTOM_MODE_AUDIO_CAPTURE; //自定义音频
-//    pushConfigs.audioSampleRate = AUDIO_SAMPLE_RATE_44100;
-//    pushConfigs.audioChannels = 1;
-//    pushConfigs.pauseImg = [UIImage imageNamed:@"pause_publish.jpg"];
-//    _livePusher = [[TXLivePush alloc] initWithConfig:pushConfigs];
-//    _livePusher.delegate = self;
-//    [self setCustomRotationAndResolution:rotation resolution:resolution];
-//    [_livePusher startPush:pushUrl];
-//    _isStarting = NO;
-//    [self startInAppScreenCapture];
-//    _isPushing = YES;
-//
-//}
-//
-//- (void)startInAppScreenCapture
-//{
-//    if(@available(iOS 11.0, *)) {
-//        if (_isStarting)
-//            return;
-//        _isStarting = YES;
-//        __weak __typeof(self) weakSelf = self;
-//        [[RPScreenRecorder sharedRecorder] setMicrophoneEnabled:YES];
-//        //仅竖屏
-//        [[RPScreenRecorder sharedRecorder] startCaptureWithHandler:^(CMSampleBufferRef  _Nonnull sampleBuffer, RPSampleBufferType bufferType, NSError * _Nullable error) {
-//            if (error == nil) {
-//                switch (bufferType) {
-//                    case RPSampleBufferTypeVideo:
-//                        if(CMSampleBufferIsValid(sampleBuffer)){
-//                            [weakSelf.livePusher sendVideoSampleBuffer:sampleBuffer];
-//                        }
-//                        else {
-//                            NSLog(@"video samplebuffer is invalid");
-//                        }
-//                        break;
-//
-//                    case RPSampleBufferTypeAudioApp:
-//                        if(CMSampleBufferDataIsReady(sampleBuffer)){
-//                            [weakSelf.livePusher sendAudioSampleBuffer:sampleBuffer withType:RPSampleBufferTypeAudioApp];
-//                        }
-//                        break;
-//
-//                    case RPSampleBufferTypeAudioMic:
-//                        if(CMSampleBufferDataIsReady(sampleBuffer)){
-//                            [weakSelf.livePusher sendAudioSampleBuffer:sampleBuffer withType:RPSampleBufferTypeAudioMic];
-//                        }
-//                        break;
-//
-//                    default:
-//                        break;
-//                }
-//            }
-//            else{
-//                NSLog(@"push buffer error : %@", error);
-//            }
-//        } completionHandler:^(NSError * _Nullable error) {
-//            if (error) {
-//                NSLog(@"push buffer fail : %@", error);
-////                [self stopInAppScreenCapture];
-//            }
-//            else {
-//                NSLog(@"startCapture completion");
-//                // [_notification displayNotificationWithMessage:@"界面采集已启动。注:只采集本界面" forDuration:5];
-//                //                触发一次UI变化，否则replaykit可能无数据采集
-//                _isStarting = NO;
-//
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [_notification displayNotificationWithMessage:@"界面采集已启动。注:只采集本界面" forDuration:1];
-//                });
-//            }
-//        }];
-//        //        [[RPScreenRecorder sharedRecorder] setMicrophoneEnabled:YES];
-//
-//    }
-//}
-//
-//- (void)stopPush
-//{
-//    [self stopInAppScreenCapture];
-//    [_livePusher stopPush];
-//    _livePusher.delegate = nil;
-//    _livePusher = nil;
-//    _isPushing = NO;
-//    [_notification dismissNotification];
-//
-//}
-//
-//- (void)stopInAppScreenCapture
-//{
-//    if(@available(iOS 11.0, *)) {
-//        [[RPScreenRecorder sharedRecorder] stopCaptureWithHandler:^(NSError * _Nullable error) {
-//            if (error) {
-//                NSLog(@"stop screen push error %@", error);
-//            }
-//            else{
-//                NSLog(@"stop screen push");
-//            }
-//        }];
-//    }
-//}
-//
-//- (void)pausePush
-//{
-//    [_livePusher pausePush];
-//    [self stopInAppScreenCapture];
-//}
-//
-//- (void)resumePush
-//{
-//    [self startInAppScreenCapture];
-//    [_livePusher resumePush];
-//}
-//
-//- (void)setCustomRotationAndResolution:(NSString *)rotation resolution:(NSString *)resolution
-//{
-//    TXLivePushConfig* config = _livePusher.config;
-//    CGSize screenSize = [[UIScreen mainScreen] currentMode].size;
-//    config.homeOrientation = HOME_ORIENTATION_DOWN;
-//
-//    if ([resolution isEqualToString:kResolutionSD]) {
-//        config.sampleBufferSize = CGSizeMake(368, (uint)(360 * screenSize.height / screenSize.width));
-//        config.videoBitrateMin = 400;
-//        config.videoBitratePIN = 800;
-//        config.videoBitrateMax = 1200;
-//        config.videoFPS = 20;
-//    }
-//    else if ([resolution isEqualToString:kResolutionFHD]) {
-//        config.sampleBufferSize = CGSizeMake(720, (uint)(720 * screenSize.height / screenSize.width)); //建议不超过720P
-//        config.videoBitrateMin = 1200;
-//        config.videoBitratePIN = 1800;
-//        config.videoBitrateMax = 2400;
-//        config.videoFPS = 30;
-//
-//    }
-//    else {
-//        config.sampleBufferSize = CGSizeMake(544, (uint)(540 * screenSize.height / screenSize.width));
-//        config.videoBitrateMin = 800;
-//        config.videoBitratePIN = 1400;
-//        config.videoBitrateMax = 1800;
-//        config.videoFPS = 24;
-//    }
-//
-//    if ([rotation isEqualToString:kReplayKit2Lanscape]) {
-//        config.sampleBufferSize = CGSizeMake(config.sampleBufferSize.height, config.sampleBufferSize.width);
-//        config.homeOrientation = HOME_ORIENTATION_RIGHT;
-//    }
-//    [_livePusher setConfig:config];
-//}
-//
-//- (void)showRecodingStatus:(BOOL)isShow
-//{
-//    if (isShow) {
-//        if (!_notification.notificationIsShowing)
-//            [_notification displayNotificationWithMessage:@"App录屏推流中" completion:nil];
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self showRecodingStatus:_isPushing];
-//        });
-//    }
-//    else {
-//        [_notification dismissNotification];
-//    }
-//}
-//
-//
-//- (void)onPushEvent:(int)EvtID withParam:(NSDictionary *)param; {
-//    if (EvtID == PUSH_ERR_NET_DISCONNECT) {
-//        [self stopPush];
-//        [_notification displayNotificationWithMessage:@"推流失败，请换个姿势再试一次" completion:nil];
-//    }
-//    else if (EvtID == PUSH_EVT_PUSH_BEGIN) {
-//        //        [_notification dismissNotification];
-//        [_notification displayNotificationWithMessage:@"连接服务器成功，开始推流" forDuration:3];
-//        [self showRecodingStatus:YES];
-//    } else if (EvtID == PUSH_WARNING_NET_BUSY) {
-//        [_notification displayNotificationWithMessage:@"您当前的网络环境不佳，请尽快更换网络保证正常直播" forDuration:5];
-//    }
-//}
-//
-//- (void)onNetStatus:(NSDictionary *)param
-//{
-//
-//}
-
-//@end

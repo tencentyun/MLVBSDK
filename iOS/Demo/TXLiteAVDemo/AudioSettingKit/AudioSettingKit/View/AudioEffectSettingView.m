@@ -530,4 +530,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     NSString *secondString = sec > 9 ? [NSString stringWithFormat:@"%ld", sec] : [NSString stringWithFormat:@"0%ld", (long)sec];
     return [NSString stringWithFormat:@"%@:%@", minString, secondString];
 }
+
+- (BOOL)isShow {
+    return _isShow;
+}
 @end

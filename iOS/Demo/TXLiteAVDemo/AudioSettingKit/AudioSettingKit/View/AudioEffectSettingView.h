@@ -36,6 +36,7 @@ typedef NS_ENUM(NSUInteger, AudioEffectSettingViewType) {
 
 - (void)show;
 - (void)hide;
+- (BOOL)isShow;
 
 /// 停止播放音乐
 - (void)stopPlay;

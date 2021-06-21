@@ -27,31 +27,10 @@
         
         int statusOffsetX = 40, statusOffsetY = 10, statusIntervalY = 40;
         [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.coderate") withFrame:CGRectMake(statusOffsetX, statusOffsetY, 100, height)];
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.uploadspeed") withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY, 100, height)];
         [self addLabel:@"FPS：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * 2, 50, height)];
-        [self addLabel:@"GOP：" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * 2, 60, height)];
         
         _encBitrateLabel = [self addLabel:@"0kbps" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY, 100, height)];
-        _upBitrateLabel = [self addLabel:@"0kbps" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY, 100, height)];
         _fpsLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 50, statusOffsetY + statusIntervalY * 2, 20, height)];
-        _gopLabel = [self addLabel:@"0s" withFrame:CGRectMake(statusOffsetX + 160, statusOffsetY + statusIntervalY * 2, 30, height)];
-        
-        
-        int stepOffsetX = 5, stepOffsetY = 150, stepIntervalY = 50;
-        int imgSize = 25;
-        _stepImgViews = [[NSMutableArray alloc] init];
-        [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY, imgSize, imgSize)]];
-        [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY + stepIntervalY, imgSize, imgSize)]];
-        [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY + stepIntervalY * 2, imgSize, imgSize)]];
-        [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY + stepIntervalY * 3, imgSize, imgSize)]];
-        [_stepImgViews addObject:[self addImageView:@"ic_red" withFrame:CGRectMake(stepOffsetX, stepOffsetY + stepIntervalY * 4, imgSize, imgSize)]];
-        
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.stepcheckaddresslegitimacy")  withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY, 250, height)];
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.connecttothecloudserver") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY, 250, height)];
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.cameraissuccessfullyopened") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 2, 250, height)];
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.encoderstartsnormally") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 3, 250, height)];
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.begintopushflow") withFrame:CGRectMake(stepOffsetX+imgSize+10, stepOffsetY + stepIntervalY * 4, 250, height)];
-        
     }
     return self;
 }

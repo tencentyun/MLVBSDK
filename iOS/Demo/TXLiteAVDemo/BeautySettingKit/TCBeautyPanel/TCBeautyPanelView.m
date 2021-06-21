@@ -122,7 +122,7 @@ static  TCBeautyPanelItem * makeMenuItem(NSString *title, UIImage *icon, id targ
 @property (nonatomic, strong) UISlider *slider;                    ///< 数值调节滑杆
 @property (nonatomic, strong) NSURLSessionDownloadTask *operation; ///< 资源下载
 @property (nonatomic, assign) TCBeautyStyle beautyStyle;
-
+@property (nonatomic, assign) NSString *pituName;
 @end
 
 @implementation TCBeautyPanel
@@ -626,8 +626,9 @@ static  TCBeautyPanelItem * makeMenuItem(NSString *title, UIImage *icon, id targ
         if (index == 0){
             [self.actionPerformer setMotionTmpl:nil inDir:localPackageDir];
         } else{
-             TCBeautyPanelItem *item = _optionsContainer[_menu.menuIndex][_menu.optionIndex];
+            TCBeautyPanelItem *item = _optionsContainer[_menu.menuIndex][_menu.optionIndex];
             TCPituMotion *motion = item.userInfo;
+            self.pituName = motion.identifier;
             NSString *pituPath = [NSString stringWithFormat:@"%@/%@", localPackageDir, motion.identifier];
             if ([[NSFileManager defaultManager] fileExistsAtPath:pituPath]) {
                 [self.actionPerformer setMotionTmpl:motion.identifier inDir:localPackageDir];
@@ -710,6 +711,10 @@ didFinishDownloadingToURL:(NSURL *)location
     }
     if (unzipSuccess) {
         [self.pituDelegate onLoadPituFinished];
+        if (![self.pituName isEqualToString:pituName]) {
+            return;
+        }
+        
         if ([self.actionPerformer respondsToSelector:@selector(setMotionTmpl:inDir:)]) {
             [self.actionPerformer setMotionTmpl:pituName inDir:pituDir];
         }
