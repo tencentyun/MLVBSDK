@@ -7,7 +7,6 @@
         <item>UHD</item>
         <item>HD</item>
         <item>SD</item>
-        <item>Co-anchor</item>
     </string-array>
 
     <string-array name="livepusher_voice_channel">

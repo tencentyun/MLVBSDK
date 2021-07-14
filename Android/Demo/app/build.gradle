@@ -8,8 +8,8 @@ android {
         applicationId "com.tencent.liteav.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
-        versionName "8.8.912"
+        versionCode 19
+        versionName "8.9.1015"
 
         multiDexEnabled true
         ndk {
@@ -43,7 +43,6 @@ android {
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
     compile project(':login')
     compile project(':liveplayerdemo')
     compile project(':livepusherdemo')

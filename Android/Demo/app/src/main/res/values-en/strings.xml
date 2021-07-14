@@ -86,4 +86,9 @@
     <string name="app_about">About</string>
     <string name="app_version">Application Version</string>
     <string name="app_sdk_version">SDK Version</string>
+
+    <string name="item_trtc_app">TRTC APP</string>
+    <string name="item_trtc_live">Interactive Live Video Streaming</string>
+    <string name="item_trtc_call">Video Call</string>
+    <string name="item_trtc_speed_test">Speed Test</string>
 </resources>

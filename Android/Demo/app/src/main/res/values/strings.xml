@@ -98,4 +98,9 @@
     <string name="app_logoff_btn_text">确认注销</string>
     <string name="app_logoff_confirm">确定要注销账户吗？</string>
     <string name="app_set_user_avatar">设置头像</string>
+
+    <string name="item_trtc_app">TRTC APP</string>
+    <string name="item_trtc_live">TRTC 视频互动</string>
+    <string name="item_trtc_call">TRTC 视频通话</string>
+    <string name="item_trtc_speed_test">TRTC 网络测速</string>
 </resources>

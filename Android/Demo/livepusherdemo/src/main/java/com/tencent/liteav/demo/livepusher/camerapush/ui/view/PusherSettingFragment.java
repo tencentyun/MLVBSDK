@@ -29,11 +29,12 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
 
     private static final int POSITION_ADJUST_BITRATE        = 0;
     private static final int POSITION_EAR_MONITORING_ENABLE = 1;
-    private static final int POSITION_LANDSCAPE             = 2;
-    private static final int POSITION_WATER_MARK_ENABLE     = 3;
-    private static final int POSITION_MIRROR_ENABLE         = 4;
-    private static final int POSITION_FLASH_ENABLE          = 5;
-    private static final int POSITION_FOCUS_ENABLE          = 6;
+    private static final int POSITION_MUTE_AUDIO            = 2;
+    private static final int POSITION_LANDSCAPE             = 3;
+    private static final int POSITION_WATER_MARK_ENABLE     = 4;
+    private static final int POSITION_MIRROR_ENABLE         = 5;
+    private static final int POSITION_FLASH_ENABLE          = 6;
+    private static final int POSITION_FOCUS_ENABLE          = 7;
 
     /**
      * SharePreferences 用于存储相关配置的key
@@ -41,6 +42,7 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
     private static final String SP_NAME               = "sp_pusher_setting";
     private static final String SP_KEY_ADJUST_BITRATE = "sp_key_adjust_bitrate";
     private static final String SP_KEY_EAR_MONITORING = "sp_key_ear_monitoring";
+    private static final String SP_KEY_MUTE_AUDIO     = "sp_key_mute_audio";
     private static final String SP_KEY_LANDSCAPE      = "sp_key_portrait";
     private static final String SP_KEY_WATER_MARK     = "sp_key_water_mark";
     private static final String SP_KEY_MIRROR         = "sp_key_mirror";
@@ -58,7 +60,7 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
     private CheckSelectView         mCheckSelectView;
     private RadioButton[]           mRadioAudioQuality = new RadioButton[3];
 
-    private boolean[] mEnables = new boolean[7];
+    private boolean[] mEnables = new boolean[8];
 
     private int mAudioQualityIndex = 2;
 
@@ -123,6 +125,9 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
                     case POSITION_EAR_MONITORING_ENABLE:
                         mOnSettingChangeListener.onEnableAudioEarMonitoringChange(enable);
                         break;
+                    case POSITION_MUTE_AUDIO:
+                        mOnSettingChangeListener.onMuteChange(enable);
+                        break;
                     case POSITION_LANDSCAPE:
                         mOnSettingChangeListener.onHomeOrientationChange(enable);
                         break;
@@ -183,6 +188,7 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
                     .edit()
                     .putBoolean(SP_KEY_ADJUST_BITRATE, mEnables[POSITION_ADJUST_BITRATE])
                     .putBoolean(SP_KEY_EAR_MONITORING, mEnables[POSITION_EAR_MONITORING_ENABLE])
+                    .putBoolean(SP_KEY_MUTE_AUDIO, mEnables[POSITION_MUTE_AUDIO])
                     .putBoolean(SP_KEY_LANDSCAPE, mEnables[POSITION_LANDSCAPE])
                     .putBoolean(SP_KEY_WATER_MARK, mEnables[POSITION_WATER_MARK_ENABLE])
                     .putBoolean(SP_KEY_MIRROR, mEnables[POSITION_MIRROR_ENABLE])
@@ -197,6 +203,7 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
         SharedPreferences s = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         mEnables[POSITION_ADJUST_BITRATE] = s.getBoolean(SP_KEY_ADJUST_BITRATE, mEnables[POSITION_ADJUST_BITRATE]);
         mEnables[POSITION_EAR_MONITORING_ENABLE] = s.getBoolean(SP_KEY_EAR_MONITORING, mEnables[POSITION_EAR_MONITORING_ENABLE]);
+        mEnables[POSITION_MUTE_AUDIO] = s.getBoolean(SP_KEY_MUTE_AUDIO, mEnables[POSITION_MUTE_AUDIO]);
         mEnables[POSITION_LANDSCAPE] = s.getBoolean(SP_KEY_LANDSCAPE, mEnables[POSITION_LANDSCAPE]);
         mEnables[POSITION_WATER_MARK_ENABLE] = s.getBoolean(SP_KEY_WATER_MARK, mEnables[POSITION_WATER_MARK_ENABLE]);
         mEnables[POSITION_MIRROR_ENABLE] = s.getBoolean(SP_KEY_MIRROR, mEnables[POSITION_MIRROR_ENABLE]);
@@ -248,6 +255,10 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
 
     public boolean enableAudioEarMonitoring() {
         return mEnables[POSITION_EAR_MONITORING_ENABLE];
+    }
+
+    public boolean isMute() {
+        return mEnables[POSITION_MUTE_AUDIO];
     }
 
     public boolean isLandscape() {
@@ -342,6 +353,13 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
          * @param enable
          */
         void onEnableAudioEarMonitoringChange(boolean enable);
+
+        /**
+         * 是否开启静音推流
+         *
+         * @param enable
+         */
+        void onMuteChange(boolean enable);
 
         /**
          * 横竖屏推流

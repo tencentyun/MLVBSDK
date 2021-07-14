@@ -1,14 +1,10 @@
 package com.tencent.liteav.demo.liveplayer.ui;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -21,28 +17,16 @@ import android.widget.Toast;
 
 import com.tencent.liteav.demo.liveplayer.R;
 import com.tencent.liteav.demo.liveplayer.ui.view.LogInfoWindow;
-import com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView.RadioButton;
 import com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView;
+import com.tencent.liteav.demo.liveplayer.ui.view.RadioSelectView.RadioButton;
 import com.tencent.live2.V2TXLiveDef;
 import com.tencent.live2.V2TXLivePlayer;
 import com.tencent.live2.V2TXLivePlayerObserver;
 import com.tencent.live2.impl.V2TXLivePlayerImpl;
 import com.tencent.rtmp.TXLiveConstants;
-import com.tencent.rtmp.TXLivePlayer;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 import static com.tencent.live2.V2TXLiveCode.V2TXLIVE_ERROR_INVALID_PARAMETER;
 import static com.tencent.live2.V2TXLiveCode.V2TXLIVE_OK;
@@ -68,7 +52,6 @@ public class LivePlayerMainActivity extends Activity {
     private ImageButton      mButtonRenderMode;      //调整视频渲染模式：全屏、自适应
     private ImageButton      mButtonCacheStrategy;   //设置视频的缓存策略
     private ImageView        mImageCacheStrategyShadow;
-    private ImageButton      mButtonAcc;             //切换超低时延视频源，测试专用；
     private ImageButton      mImageLogInfo;
     private RadioSelectView  mLayoutCacheStrategy;   //显示所有缓存模式的View
 
@@ -80,11 +63,9 @@ public class LivePlayerMainActivity extends Activity {
     private TXCloudVideoView mVideoView;
 
     private String mPlayURL = "";
-    private String mAccPlayURL = "";
 
     private boolean mIsPlaying = false;
     private boolean mFetching  = false;          //是否正在获取视频源，测试专用
-    private boolean mIsAcc     = false;          //是否播放超低时延视频，测试专用
 
     private int mCacheStrategy      = Constants.CACHE_STRATEGY_AUTO;                    //Player缓存策略
     private int mActivityPlayType   = Constants.ACTIVITY_TYPE_LIVE_PLAY;                //播放类型
@@ -111,7 +92,6 @@ public class LivePlayerMainActivity extends Activity {
         initRenderRotationButton();
         initRenderModeButton();
         initCacheStrategyButton();
-        initAccButton();
         initNavigationBack();
         initRTMPURL();
 
@@ -231,27 +211,6 @@ public class LivePlayerMainActivity extends Activity {
         mLogInfoWindow.setCacheTime(Constants.CACHE_TIME_SMOOTH);
     }
 
-    private void initAccButton() {
-        mButtonAcc = (ImageButton) findViewById(R.id.liveplayer_btn_acc);
-        mButtonAcc.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isAcc()) {
-                    if (mActivityPlayType != Constants.ACTIVITY_TYPE_REALTIME_PLAY) {
-                        mButtonCacheStrategy.setClickable(true);
-                        mImageCacheStrategyShadow.setVisibility(View.GONE);
-                        mButtonAcc.setBackgroundResource(R.drawable.liveplayer_acc);
-                    }
-                } else {
-                    mImageCacheStrategyShadow.setVisibility(View.VISIBLE);
-                    mButtonCacheStrategy.setClickable(false);
-                }
-                toggleAcc();
-            }
-        });
-
-    }
-
     private void initNavigationBack() {
         findViewById(R.id.liveplayer_ibtn_left).setOnClickListener(new OnClickListener() {
             @Override
@@ -359,7 +318,7 @@ public class LivePlayerMainActivity extends Activity {
     }
 
     private void startPlay() {
-        String playURL = mIsAcc ? mAccPlayURL : mPlayURL;
+        String playURL = mPlayURL;
         int code = checkPlayURL(playURL);
         if (code != Constants.PLAY_STATUS_SUCCESS) {
             mIsPlaying = false;
@@ -407,105 +366,9 @@ public class LivePlayerMainActivity extends Activity {
         }
     }
 
-    private boolean isAcc() {
-        return mIsAcc;
-    }
-
-    private void startAcc() {
-        mIsAcc = true;
-        stopPlay();
-        fetchPlayURL();
-    }
-
-    private void stopAcc() {
-        mIsAcc = false;
-        // 停止 Acc 播放之后，自动开始普通播放
-        stopPlay();
-        startPlay();
-    }
-
-    private void toggleAcc() {
-        if (mIsAcc) {
-            stopAcc();
-        } else {
-            startAcc();
-        }
-    }
-
     private void setPlayURL(int activityPlayType, String url) {
         mActivityPlayType = activityPlayType;
         mPlayURL = url;
-    }
-
-    private void fetchPlayURL() {
-        if (mFetching) {
-            return;
-        }
-        mFetching = true;
-
-        //处理UI相关操作
-        startLoadingAnimation();
-
-        mOkHttpClient = new OkHttpClient().newBuilder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .build();
-
-        Request request = new Request.Builder()
-                .url(Constants.RTMP_ACC_TEST_URL)
-                .addHeader("Content-Type", "application/json; charset=utf-8")
-                .build();
-
-        Log.d(TAG, "start fetch push url");
-        mOkHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "fetch push url error.", e);
-                mFetching = false;
-                onFailure();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                mFetching = false;
-                if (response.isSuccessful()) {
-                    String rspString = response.body().string();
-                    try {
-                        JSONObject   jsonRsp = new JSONObject(rspString);
-                        final String playURL = jsonRsp.optString("url_rtmpacc");
-                        mAccPlayURL = playURL;
-                        onSuccess(playURL);
-                    } catch (Exception e) {
-                        Log.e(TAG, "fetch push url error.", e);
-                        onFailure();
-                    }
-                } else {
-                    onFailure();
-                }
-            }
-
-            void onSuccess(final String url) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        onFetchURLSuccess(url);
-                        // 低延时拉流地址获取成功后自动开始播放
-                        startPlay();
-                    }
-                });
-            }
-
-            void onFailure() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        onFetchURLFailure();
-                    }
-                });
-            }
-
-        });
     }
 
     private class MyPlayerObserver extends V2TXLivePlayerObserver {
@@ -537,6 +400,10 @@ public class LivePlayerMainActivity extends Activity {
                     params.putString(TXLiveConstants.EVT_DESCRIPTION, mContext.getResources().getString(R.string.liveplayer_warning_checkout_res_url));
                     mLogInfoWindow.setLogText(null, params, LogInfoWindow.CHECK_RTMP_URL_OK);
                     break;
+                case V2TXLivePlayStatusStopped:
+                    if (reason == V2TXLiveDef.V2TXLiveStatusChangeReason.V2TXLiveStatusChangeReasonRemoteOffline) {
+                        stopPlay();
+                    }
                 default:
                     break;
             }
@@ -552,6 +419,10 @@ public class LivePlayerMainActivity extends Activity {
                 case V2TXLivePlayStatusPlaying:
                     stopLoadingAnimation();
                     break;
+                case V2TXLivePlayStatusStopped:
+                    if (reason == V2TXLiveDef.V2TXLiveStatusChangeReason.V2TXLiveStatusChangeReasonRemoteOffline) {
+                        stopPlay();
+                    }
                 default:
                     break;
             }

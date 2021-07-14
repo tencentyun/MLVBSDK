@@ -7,7 +7,6 @@
         <item>超清</item>
         <item>高清</item>
         <item>标清</item>
-        <item>连麦小主播</item>
     </string-array>
 
     <string-array name="livepusher_voice_channel">
@@ -19,6 +18,7 @@
     <string-array name="livepusher_setting">
         <item>带宽适应</item>
         <item>耳返</item>
+        <item>静音模式</item>
         <item>横屏推流</item>
         <item>图像水印</item>
         <item>观看端镜像</item>

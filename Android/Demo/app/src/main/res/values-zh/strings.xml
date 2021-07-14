@@ -71,4 +71,7 @@
     <string name="app_tv_video_call_tips">支持720P/1080P高清画质，50%丢包率可正常视频通话，自带美颜、挂件、抠图等AI特效。</string>
 
     <string name="app_tv_ugc_version">腾讯云 UGC v%s</string>
+
+    <string name="item_trtc_app">TRTC APP</string>
+    <string name="item_trtc_speed_test">TRTC 网络测速</string>
 </resources>

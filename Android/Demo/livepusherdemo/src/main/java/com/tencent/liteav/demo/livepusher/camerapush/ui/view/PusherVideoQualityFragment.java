@@ -30,8 +30,7 @@ public class PusherVideoQualityFragment extends BottomSheetDialogFragment {
             TXLiveConstants.VIDEO_QUALITY_ULTRA_DEFINITION,
             TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION,
             TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION,
-            TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION,
-            TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER};
+            TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION};
 
     private BottomSheetBehavior          mBehavior;
     private OnVideoQualityChangeListener mOnVideoQualityChangeListener;
@@ -116,6 +115,7 @@ public class PusherVideoQualityFragment extends BottomSheetDialogFragment {
     public void loadConfig(Context context) {
         SharedPreferences s = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         mQualityIndex = s.getInt(SP_KEY_VIDEO_QUALITY, mQualityIndex);
+        mQualityIndex = mQualityIndex >= VIDEO_QUALITY_TYPE_ARR.length ? VIDEO_QUALITY_TYPE_ARR.length - 1 : mQualityIndex;
     }
 
     @Override

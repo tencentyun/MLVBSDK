@@ -35,6 +35,12 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class GenerateTestUserSig {
 
+    /** TRTC的bizid的appid用于转推直播流，https://console.cloud.tencent.com/rav 点击【应用】【帐号信息】
+     * 在【直播信息】中可以看到bizid和appid，分别填到下面这两个符号
+     */
+    public static final int BIZID = 0;
+    public static final int APPID = 0;
+
     /**
      * 腾讯云 SDKAppId，需要替换为您自己账号下的 SDKAppId。
      * <p>
@@ -63,7 +69,7 @@ public class GenerateTestUserSig {
      * 注意：该方案仅适用于调试Demo，正式上线前请将 UserSig 计算代码和密钥迁移到您的后台服务器上，以避免加密密钥泄露导致的流量盗用。
      * 文档：https://cloud.tencent.com/document/product/269/32688#Server
      */
-    private static final String SECRETKEY = "";
+    private static final String SECRETKEY = "PLACEHOLDER";
 
     /**
      * 计算 UserSig 签名

@@ -89,32 +89,11 @@ public class LivePlayerEntranceActivity extends Activity {
             } else {
                 startLivePlayer(url);
             }
-        } else if (id == R.id.liveplayer_btn_realtime_play) {
-            String url = mEditInputURL.getText().toString().trim();
-            if (TextUtils.isEmpty(url)) {
-                Toast.makeText(mContext, R.string.liveplayer_intput_url, Toast.LENGTH_LONG).show();
-            } else {
-                boolean isLiveRTMP = url.startsWith(Constants.URL_PREFIX_RTMP);
-                boolean hasBizid = url.contains(Constants.URL_BIZID);
-                // "rtmp://" 开头且包含关键字 "bizid" 才认为是低延迟拉流地址
-                if (isLiveRTMP && hasBizid) {
-                    startLivePlayer(url, true);
-                } else {
-                    Toast.makeText(mContext, R.string.liveplayer_not_realtime_url, Toast.LENGTH_LONG).show();
-                }
-            }
         }
     }
 
     private void startLivePlayer(String url) {
-        startLivePlayer(url, false);
-    }
-
-    private void startLivePlayer(String url, boolean isRealtime) {
         Intent intent = new Intent(mContext, LivePlayerMainActivity.class);
-        if(isRealtime) {
-            intent.putExtra(Constants.INTENT_ACTIVITY_TYPE, Constants.ACTIVITY_TYPE_REALTIME_PLAY);
-        }
         intent.putExtra(Constants.INTENT_URL, url);
         startActivity(intent);
     }

@@ -121,6 +121,7 @@ public class CameraPushMainActivity extends FragmentActivity implements
     private boolean mIsResume              = false;
     private boolean mIsWaterMarkEnable     = true;
     private boolean mIsDebugInfo           = false;
+    private boolean mIsMuteAudio           = false;
     private boolean mIsLandscape           = false;
     private boolean mIsMirrorEnable        = false;
     private boolean mIsFocusEnable         = false;
@@ -270,6 +271,11 @@ public class CameraPushMainActivity extends FragmentActivity implements
             }
             mPusherSettingFragment.toggle(getSupportFragmentManager(), PUSHER_SETTING_FRAGMENT);
         }
+    }
+
+    @Override
+    public void onMuteChange(boolean enable) {
+        setMute(enable);
     }
 
     @Override
@@ -683,6 +689,13 @@ public class CameraPushMainActivity extends FragmentActivity implements
         if (mPusherView != null) {
             mPusherView.onResume();
         }
+        mLivePusher.stopVirtualCamera();
+        if (mIsMuteAudio) {// audio这里要结合外部设定的 MuteAudio 和 PausePusher 来决定是否静音上行。
+            mLivePusher.pauseAudio();
+        } else {
+            mLivePusher.resumeAudio();
+        }
+        mLivePusher.resumeVideo();
         mIsResume = true;
         mAudioEffectPanel.resumeBGM();
     }
@@ -692,8 +705,19 @@ public class CameraPushMainActivity extends FragmentActivity implements
         if (mPusherView != null) {
             mPusherView.onPause();
         }
+        mLivePusher.startVirtualCamera(decodeResource(getResources(), R.drawable.livepusher_pause_publish));
+        mLivePusher.pauseAudio();
         mIsResume = false;
         mAudioEffectPanel.pauseBGM();
+    }
+
+    private void setMute(boolean enable) {
+        mIsMuteAudio = enable;
+        if (enable) {
+            mLivePusher.pauseAudio();
+        } else {
+            mLivePusher.resumeAudio();
+        }
     }
 
     private void switchCamera() {
@@ -795,12 +819,6 @@ public class CameraPushMainActivity extends FragmentActivity implements
                 if (mLivePusher != null) {
                     mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
                     mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080;
-                }
-                break;
-            case TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER:   //连麦小主播
-                if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution480x360, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
-                    mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution480x360;
                 }
                 break;
             default:

@@ -14,11 +14,6 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
 
-        <service
-            android:name=".CallService"
-            android:enabled="true"
-            android:exported="false"></service>
-
         <!-- 【必须】消息收发service -->
 
         <activity android:name=".SplashActivity" android:launchMode="singleTask"
@@ -97,6 +92,7 @@
             android:exported="false"
             tools:node="merge">
         </service>
+        <service android:name=".CallService" android:enabled="true" android:exported="false" />
     </application>
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
