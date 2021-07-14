@@ -18,8 +18,6 @@
 // 设置推流地址是否合法
 - (void)setPushUrlValid:(BOOL)valid;
 
-// TXLivePushListener 推流回调，通过下面这两个函数透传进来
-- (void)setPushEvent:(int)evtID withParam:(NSDictionary *)param;
 - (void)setNetStatus:(NSDictionary *)param;
 
 // 清除所有状态

@@ -10,6 +10,7 @@
 #import "UIView+Additions.h"
 #import "MBProgressHUD.h"
 #import "TCHttpUtil.h"
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "ScanQRController.h"
 #import "ReplayKit2Define.h"
 #ifndef DISABLE_VOD
@@ -22,7 +23,11 @@
 #import "NSString+Common.h"
 #import <UserNotifications/UserNotifications.h>
 
-@interface ScreenPushViewController () <AddressBarControllerDelegate, ScanQRDelegate, TXVodPlayListener, V2TXLivePusherObserver>
+@interface ScreenPushViewController () <AddressBarControllerDelegate, ScanQRDelegate,
+#ifndef DISABLE_VOD
+TXVodPlayListener,
+#endif
+V2TXLivePusherObserver>
 @property (nonatomic, retain) UISegmentedControl* rotateSelector;
 @property (nonatomic, retain) UISegmentedControl* resolutionSelector;
 @property (nonatomic, retain) UIButton* btnReplaykit;
@@ -42,11 +47,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReplayKit2RecordStop:) name:kCocoaNotificationNameReplayKit2Stop object:nil];
     [self initUI];
+    [self startMonitoringNetwork];
 }
 
 - (void)dealloc
 {
+    [self stopMonitoringNetwork];
     [self.livePusher stopPush];
 #ifndef DISABLE_VOD
     [_vodPlayer stopPlay];
@@ -64,6 +72,30 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+/// 检查网络
+- (void)startMonitoringNetwork {
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    __weak __typeof(self) weakSelf = self;
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomNew.prompt") message:LivePlayerLocalize(@"LiveLinkMicDemoOld.Live.LinkMicNew.checknetworkandtry") preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:LivePlayerLocalize(@"LiveLinkMicDemoOld.RoomList.determine") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if (![strongSelf.btnReplaykit.currentTitle isEqualToString:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream")]) {
+                    [self.livePusher stopPush];
+                    [strongSelf.btnReplaykit setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
+                }
+            }];
+            [alertVC addAction:action];
+            [strongSelf presentViewController:alertVC animated:true completion:nil];
+        }
+    }];
+}
+
+- (void)stopMonitoringNetwork {
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 
 
@@ -112,8 +144,8 @@
     [self.view addSubview:self.resolutionSelector];
     
     self.btnReplaykit = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnReplaykit .center = CGPointMake(self.view.center.x, self.resolutionSelector.bottom + 60);
-    self.btnReplaykit .bounds = CGRectMake(0, 0, 100, 50);
+    self.btnReplaykit.center = CGPointMake(self.view.center.x, self.resolutionSelector.bottom + 60);
+    self.btnReplaykit.bounds = CGRectMake(0, 0, 100, 50);
     self.btnReplaykit.backgroundColor = UIColor.lightTextColor;
     self.btnReplaykit.layer.cornerRadius = 5;
     [self.btnReplaykit  setTitle:LivePlayerLocalize(@"LivePusherDemo.ScreenPush.startpushstream") forState:UIControlStateNormal];
@@ -157,10 +189,13 @@
     [_fullScreenBtn addTarget:self action:@selector(onFullScreenClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_playerView addSubview:_fullScreenBtn];
 #ifndef DISABLE_VOD
+    
     //播放演示视频
     _vodPlayer = [TXVodPlayer new];
     [_vodPlayer setIsAutoPlay:YES];
     [_vodPlayer setupVideoWidget:_playerView insertIndex:0];
+    [_vodPlayer setAudioPlayoutVolume:0];
+    [_vodPlayer setMute:YES];
     [_vodPlayer startPlay:@"http://1252463788.vod2.myqcloud.com/95576ef5vodtransgzp1252463788/1bfa444e7447398156520498412/v.f30.mp4"];
     _vodPlayer.vodDelegate = self;
 #endif
@@ -396,6 +431,7 @@
     }
     else if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
         [_vodPlayer pause];
+        [_vodPlayer setMute:NO];
     }
 }
 
@@ -408,6 +444,14 @@
         message:(NSString *)msg
       extraInfo:(NSDictionary *)extraInfo {
     if (code == V2TXLIVE_ERROR_REQUEST_TIMEOUT) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self onScreenCaptureStoped:0];
+        });
+    }
+}
+
+- (void)onPushStatusUpdate:(V2TXLivePushStatus)status message:(NSString *)msg extraInfo:(NSDictionary *)extraInfo {
+    if (status == V2TXLivePushStatusDisconnected) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self onScreenCaptureStoped:0];
         });

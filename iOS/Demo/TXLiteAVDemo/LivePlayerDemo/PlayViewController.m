@@ -6,7 +6,6 @@
 
 #import "PlayViewController.h"
 #import "V2TXLivePlayer.h"
-#import "TXLivePlayer.h"
 #import "AppDelegate.h"
 #import "ScanQRController.h"
 #import "AFNetworkReachabilityManager.h"
@@ -45,7 +44,6 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     AddressBarController *_addressBarController;  // 播放地址/二维码扫描 工具栏
     UIImageView          *_loadingImageView;      // 菊花
     UIView               *_videoView;             // 视频画面
-    TX_Enum_PlayType     _playType;               // 播放类型
                 
     UIButton             *_btnPlay;       // 开始/停止播放
     UIButton             *_btnLog;        // 显示日志
@@ -133,6 +131,8 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
                                 center:CGPointMake(startSpace + ICON_WITH / 2 + centerInterVal*index++, iconY) size:iconSize];
     _btnRenderMode = [self createButton:@"fill" action:@selector(clickRenderMode:)
                           center:CGPointMake(startSpace + ICON_WITH / 2 + centerInterVal*index++, iconY) size:iconSize];
+//    _btnRealtime = [self createButton:@"jisu_off" action:@selector(clickRealtime:)
+//                              center:CGPointMake(startSpace + ICON_WITH / 2 + centerInterVal*index++, iconY) size:iconSize];
     
     // 菊花
     float width = 34;
@@ -250,7 +250,6 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
 -(BOOL)checkPlayUrl:(NSString*)playUrl {
     BOOL isRealtime = _btnRealtime.tag;
     if (isRealtime) {
-        _playType = PLAY_TYPE_LIVE_RTMP_ACC;
         if (!([playUrl containsString:@"txSecret"] || [playUrl containsString:@"txTime"])) {
             ToastTextView *toast = [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.lowdelaypullstreamaddress")];
             toast.url = @"https://cloud.tencent.com/document/product/454/7880#RealTimePlay";
@@ -260,11 +259,12 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
     }
     else {
         if ([playUrl hasPrefix:@"rtmp:"]) {
-            _playType = PLAY_TYPE_LIVE_RTMP;
         } else if (([playUrl hasPrefix:@"https:"] || [playUrl hasPrefix:@"http:"]) && ([playUrl rangeOfString:@".flv"].length > 0)) {
-            _playType = PLAY_TYPE_LIVE_FLV;
         } else if (([playUrl hasPrefix:@"https:"] || [playUrl hasPrefix:@"http:"]) && [playUrl rangeOfString:@".m3u8"].length > 0) {
-            _playType = PLAY_TYPE_VOD_HLS;
+        #ifdef LIVE
+            [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.playaddressisnotlegal")];
+            return NO;
+        #endif
         } else {
             [self toastTip:LivePlayerLocalize(@"LivePlayerDemo.PlayViewController.playaddressisnotlegal")];
             return NO;
@@ -367,7 +367,9 @@ typedef NS_ENUM(NSInteger, ENUM_TYPE_CACHE_STRATEGY) {
             [self startLoadingAnimation];
             break;
         case V2TXLivePlayStatusStopped:
-            [self clickPlay:_btnPlay];
+            if (reason == V2TXLiveStatusChangeReasonRemoteOffline) {
+                [self clickPlay:_btnPlay];
+            }
             break;
         default:
             break;

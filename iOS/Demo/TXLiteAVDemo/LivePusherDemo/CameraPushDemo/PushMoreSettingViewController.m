@@ -9,13 +9,14 @@
 #import "AppLocalized.h"
 
 /* 列表项 */
-#define CELL_MUTE_AUDIO             0
-#define CELL_DEBUG_LOG              1
-#define CELL_WARTERMARK             2
-#define CELL_MIRROR                 3
-#define CELL_TORCH                  4
-#define CELL_TOUCH_FOCUS            5
-#define CELL_SNAPSHOT               6
+#define CELL_DISABLE_VIDEO          0
+#define CELL_MUTE_AUDIO             1
+#define CELL_DEBUG_LOG              2
+#define CELL_WARTERMARK             3
+#define CELL_MIRROR                 4
+#define CELL_TORCH                  5
+#define CELL_TOUCH_FOCUS            6
+#define CELL_SNAPSHOT               7
 
 
 /* 编号，请不要修改，写配置文件依赖这个 */
@@ -29,6 +30,7 @@
 
 
 @interface PushMoreSettingViewController ()<UITextFieldDelegate> {
+    UISwitch *_disableVideoSwitch;
     UISwitch *_muteAudioSwitch;
     UISwitch *_mirrorSwitch;
     UISwitch *_torchSwitch;
@@ -52,6 +54,7 @@
     
     _tintColor = [[UISegmentedControl alloc] init].tintColor;
     
+    _disableVideoSwitch   = [self createUISwitch:TAG_DISABLE_VIDEO on:[PushMoreSettingViewController isDisableVideo]];
     _muteAudioSwitch      = [self createUISwitch:TAG_MUTE_AUDIO on:[PushMoreSettingViewController isMuteAudio]];
     _mirrorSwitch         = [self createUISwitch:TAG_MIRROR on:[PushMoreSettingViewController isMirrorVideo]];
     _torchSwitch          = [self createUISwitch:TAG_TORCH on:[PushMoreSettingViewController isOpenTorch]];
@@ -90,8 +93,12 @@
 
 - (void)onSwitchTap:(UISwitch *)switchBtn {
     [PushMoreSettingViewController saveSetting:switchBtn.tag value:switchBtn.on];
-    
-    if (switchBtn.tag == TAG_MUTE_AUDIO) {
+    if (switchBtn.tag == TAG_DISABLE_VIDEO) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onPushMoreSetting:disableVideo:)]) {
+            [self.delegate onPushMoreSetting:self disableVideo:switchBtn.on];
+        }
+    }
+    else if (switchBtn.tag == TAG_MUTE_AUDIO) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(onPushMoreSetting:muteAudio:)]) {
             [self.delegate onPushMoreSetting:self muteAudio:switchBtn.on];
         }
@@ -147,6 +154,12 @@
     cell.textLabel.font = [UIFont systemFontOfSize:16];
     
     switch (indexPath.row) {
+        case CELL_DISABLE_VIDEO: {
+            cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.enableprivacymode");
+            cell.accessoryView = _disableVideoSwitch;
+            
+            break;
+        }
             
         case CELL_MUTE_AUDIO: {
             cell.textLabel.text = LivePlayerLocalize(@"LivePusherDemo.MoreSetting.turnonmutemode");
@@ -215,6 +228,15 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)isDisableVideo {
+    NSString *key = [PushMoreSettingViewController getKey:TAG_DISABLE_VIDEO];
+    NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (d != nil) {
+        return [d intValue];
+    }
+    return NO;
+}
+
 + (BOOL)isMuteAudio {
     NSString *key = [PushMoreSettingViewController getKey:TAG_MUTE_AUDIO];
     NSNumber *d = [[NSUserDefaults standardUserDefaults] objectForKey:key];
@@ -267,6 +289,10 @@
         return [d intValue];
     }
     return YES;
+}
+
++ (void)setDisableVideo:(BOOL)disable {
+    [PushMoreSettingViewController saveSetting:TAG_DISABLE_VIDEO value:disable];
 }
 
 @end

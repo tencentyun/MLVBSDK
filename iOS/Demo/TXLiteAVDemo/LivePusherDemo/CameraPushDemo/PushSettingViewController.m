@@ -49,14 +49,12 @@
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.superclear"),
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.hd"),
                                          LivePlayerLocalize(@"LivePusherDemo.PushSetting.standarddefinition"),
-                                         LivePlayerLocalize(@"LivePusherDemo.PushSetting.lianmaismallhost"),
     ];
     V2TXLiveVideoResolution qualityArray[] = {
         V2TXLiveVideoResolution1920x1080,
         V2TXLiveVideoResolution1280x720,
         V2TXLiveVideoResolution960x540,
         V2TXLiveVideoResolution640x360,
-        V2TXLiveVideoResolution480x270,
     };
     NSMutableArray *qualities = [[NSMutableArray alloc] initWithCapacity:titleArray.count];
     for (int i = 0; i < titleArray.count; ++i) {

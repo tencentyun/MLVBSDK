@@ -51,8 +51,8 @@
 
 + (NSString *)hmac:(NSString *)plainText
 {
-    const char *cKey  = [SECRETKEY cStringUsingEncoding:NSASCIIStringEncoding];
-    const char *cData = [plainText cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *cKey  = [SECRETKEY cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cData = [plainText cStringUsingEncoding:NSUTF8StringEncoding];
 
     unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
 

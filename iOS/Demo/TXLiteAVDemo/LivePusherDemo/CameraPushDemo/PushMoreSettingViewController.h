@@ -10,6 +10,9 @@
 
 @protocol PushMoreSettingDelegate <NSObject>
 
+// 是否开启隐私模式（关闭摄像头，并发送pauseImg图片）
+- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc disableVideo:(BOOL)disable;
+
 // 是否开启静音模式（发送静音数据，但是不关闭麦克风）
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc muteAudio:(BOOL)mute;
 
@@ -37,6 +40,7 @@
 @property (nonatomic, weak) id<PushMoreSettingDelegate> delegate;
 
 /*** 从文件中读取配置 ***/
++ (BOOL)isDisableVideo;
 + (BOOL)isMuteAudio;
 + (BOOL)isMirrorVideo;
 + (BOOL)isOpenTorch;
@@ -44,5 +48,8 @@
 + (BOOL)isEnableDelayCheck;
 + (BOOL)isEnableWaterMark;
 + (BOOL)isEnableTouchFocus;
+
+/*** 写配置文件 ***/
++ (void)setDisableVideo:(BOOL)disable;
 
 @end

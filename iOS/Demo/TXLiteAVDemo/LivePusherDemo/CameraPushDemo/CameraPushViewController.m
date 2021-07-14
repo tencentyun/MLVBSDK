@@ -48,7 +48,7 @@
     TCBeautyPanel             *_beautyPanel;    // 美颜控件
     PushMoreSettingViewController *_moreSettingVC;  // 更多设置
     PushLogView                   *_logView;        // 显示app日志
-    
+
     UIButton     *_btnPush;        // 开始/停止推流
     UIButton     *_btnCamera;      // 切换前后摄像头
     UIButton     *_btnBeauty;      // 美颜
@@ -126,13 +126,16 @@
 
 - (void)onAppWillResignActive:(NSNotification *)notification {
     _appIsInActive = YES;
-    [_pusher startVirtualCamera:[UIImage imageNamed:@"background"]];
+    [_pusher startVirtualCamera:[UIImage imageNamed:@"pause_publish"]];
 }
 
 - (void)onAppDidBecomeActive:(NSNotification *)notification {
     _appIsInActive = NO;
     if (!_appIsBackground && !_appIsInActive) {
-        [_pusher stopVirtualCamera];
+        if (![PushMoreSettingViewController isDisableVideo]) {
+            [_pusher stopVirtualCamera];
+            [self pauseAudio:_isMute];
+        }
     }
 }
 
@@ -141,20 +144,24 @@
         [_pusher startVirtualCamera:[UIImage imageNamed:@"background"]];
     }];
     _appIsBackground = YES;
+    [_pusher startVirtualCamera:[UIImage imageNamed:@"pause_publish"]];
 }
 
 - (void)onAppWillEnterForeground:(NSNotification *)notification {
     _appIsBackground = NO;
     if (!_appIsBackground && !_appIsInActive) {
-        [_pusher stopVirtualCamera];
+        if (![PushMoreSettingViewController isDisableVideo]) {
+            [_pusher stopVirtualCamera];
+            [self pauseAudio:_isMute];
+        }
     }
 }
 
 - (void)pauseAudio:(BOOL)isMute {
     if (isMute) {
-        [_pusher stopMicrophone];
+        [_pusher pauseAudio];
     } else {
-        [_pusher startMicrophone];
+        [_pusher resumeAudio];
     }
 }
 
@@ -236,12 +243,12 @@
     _audioEffectView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
     [_audioEffectView hide];
     [self.view addSubview:_audioEffectView];
+
     // log控件
     _logView = [[PushLogView alloc] initWithFrame:CGRectMake(0, self.view.height * 0.2, self.view.width, self.view.height * 0.7)];
     _logView.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:0.6];
     _logView.hidden = YES;
     [self.view addSubview:_logView];
-    
     
     // 本地视频预览view
     _localView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -441,13 +448,13 @@
     // 开启预览
     [_pusher setRenderView:_localView];
     [_pusher startCamera:_btnCamera.tag == 0];
-    
-    if (_isMute) {
-        [_pusher stopMicrophone];
+    [_pusher startMicrophone];
+    [self pauseAudio:_isMute];
+    if ([PushMoreSettingViewController isDisableVideo]) {
+        [_pusher startVirtualCamera:[UIImage imageNamed:@"pause_publish"]];
     } else {
-        [_pusher startMicrophone];
+        [_pusher stopVirtualCamera];
     }
-    
     // 开始推流
     V2TXLiveCode ret = [_pusher startPush:rtmpUrl];
     if (ret != V2TXLIVE_OK) {
@@ -695,6 +702,18 @@
 }
 
 #pragma mark - PushMoreSettingDelegate
+// 是否开启隐私模式（停止上行摄像头数据，并发送pauseImg图片）
+- (void)onPushMoreSetting:(PushMoreSettingViewController *)vc disableVideo:(BOOL)disable {
+    if (_pusher.isPushing) {
+        if (disable) {
+            [_pusher startVirtualCamera:[UIImage imageNamed:@"pause_publish"]];
+        }
+        else {
+            [_pusher stopVirtualCamera];
+            [self pauseAudio:_isMute];
+        }
+    }
+}
 
 // 是否开启静音模式（发送静音数据，但是不关闭麦克风）
 - (void)onPushMoreSetting:(PushMoreSettingViewController *)vc muteAudio:(BOOL)mute {

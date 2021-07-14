@@ -143,13 +143,14 @@ static NSString * const CellIdentifier = @"Cell";
     NSString *content = self.qrStrings[indexPath.row];
     NSString *title = nil;
     UIImage *image = nil;
+    CGSize qrCodeImageSize = CGSizeMake(300, 300);
     NSRange r = [content rangeOfString:@"," options:NSLiteralSearch];
     if (r.location == NSNotFound) {
-        image = [QRCode qrCodeWithString:content size:imageView.bounds.size];
+        image = [QRCode qrCodeWithString:content size:qrCodeImageSize];
     } else {
         title = [content substringToIndex:r.location];
         NSString *qrString = [content substringFromIndex:NSMaxRange(r)];
-        image = [QRCode qrCodeWithString:qrString size:imageView.bounds.size];
+        image = [QRCode qrCodeWithString:qrString size:qrCodeImageSize];
     }
     if (title.length > 0) {
         label.text = title;

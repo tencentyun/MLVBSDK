@@ -5,16 +5,17 @@
  */
 
 #import "PushLogView.h"
-#import "TXLiveSDKTypeDef.h"
 #import "AppLocalized.h"
 
 @interface PushLogView() {
-    int _step;
     NSMutableArray *_stepImgViews;
-    UILabel *_encBitrateLabel;
-    UILabel *_upBitrateLabel;
+    UILabel *_sysCpuLabel;
+    UILabel *_appCpuLabel;
+    UILabel *_videoBitrateLabel;
+    UILabel *_audioBitrateLabel;
     UILabel *_fpsLabel;
-    UILabel *_gopLabel;
+    UILabel *_videoWidthLabel;
+    UILabel *_videoHeightLabel;
 }
 @end
 
@@ -22,15 +23,36 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _step = 0;
         int height = 20;
+        int labelCount = 0;
         
         int statusOffsetX = 40, statusOffsetY = 10, statusIntervalY = 40;
-        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.coderate") withFrame:CGRectMake(statusOffsetX, statusOffsetY, 100, height)];
-        [self addLabel:@"FPS：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * 2, 50, height)];
+        [self addLabel:@"sysCpu：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _sysCpuLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 50, height)];
         
-        _encBitrateLabel = [self addLabel:@"0kbps" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY, 100, height)];
-        _fpsLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 50, statusOffsetY + statusIntervalY * 2, 20, height)];
+        labelCount++;
+        [self addLabel:@"appCpu：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _appCpuLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 50, height)];
+        
+        labelCount++;
+        [self addLabel:@"FPS：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _fpsLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 50, height)];
+        
+        labelCount++;
+        [self addLabel:@"video Width：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _videoWidthLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 50, height)];
+        
+        labelCount++;
+        [self addLabel:@"video Height：" withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _videoHeightLabel = [self addLabel:@"0" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 50, height)];
+        
+        labelCount++;
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.videobitrate") withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _videoBitrateLabel = [self addLabel:@"0kbps" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        
+        labelCount++;
+        [self addLabel:LivePlayerLocalize(@"LivePusherDemo.PushLogView.audiobitrate") withFrame:CGRectMake(statusOffsetX, statusOffsetY + statusIntervalY * labelCount, 100, height)];
+        _audioBitrateLabel = [self addLabel:@"0kbps" withFrame:CGRectMake(statusOffsetX + 100, statusOffsetY + statusIntervalY * labelCount, 100, height)];
     }
     return self;
 }
@@ -50,60 +72,37 @@
     return imgView;
 }
 
-- (void)setStep:(int)step {
-    _step = step;
-    UIImageView *imgView = _stepImgViews[_step-1];
-    [imgView setImage:[UIImage imageNamed:@"ic_green"]];
-}
-
 - (void)setPushUrlValid:(BOOL)valid {
     if (valid) {
-        [self setStep:1];
-    }
-}
-
-- (void)setPushEvent:(int)evtID withParam:(NSDictionary *)param {
-    switch (evtID) {
-        case EVT_RTMP_PUSH_CONNECT_SUCC:
-            [self setStep:2];
-            break;
-        case EVT_CAMERA_START_SUCC:
-            [self setStep:3];
-            break;
-        case EVT_START_VIDEO_ENCODER:
-            [self setStep:4];
-            break;
-        case EVT_RTMP_PUSH_BEGIN:
-            [self setStep:5];
-            break;
-        default:
-            break;
     }
 }
 
 - (void)setNetStatus:(NSDictionary *)param {
-    int netspeed = [(NSNumber *) [param valueForKey:NET_STATUS_NET_SPEED] intValue];
-    int videoEncBitrate = [(NSNumber *) [param valueForKey:NET_STATUS_VIDEO_BITRATE] intValue];
-    int fps = [(NSNumber *) [param valueForKey:NET_STATUS_VIDEO_FPS] intValue];
-    int gop = [(NSNumber *) [param valueForKey:NET_STATUS_VIDEO_GOP] intValue];
+    CGFloat sysCpu = [(NSNumber *) [param valueForKey:@"CPU_USAGE"] floatValue];
+    CGFloat appCpu = [(NSNumber *) [param valueForKey:@"CPU_USAGE_DEVICE"] floatValue];
+    NSInteger fps = [(NSNumber *) [param valueForKey:@"VIDEO_FPS"] intValue];
+    NSInteger videoWidth = [(NSNumber *) [param valueForKey:@"VIDEO_WIDTH"] intValue];
+    NSInteger videoHeight = [(NSNumber *) [param valueForKey:@"VIDEO_HEIGHT"] intValue];
+    NSInteger videoBitrate = [(NSNumber *) [param valueForKey:@"VIDEO_BITRATE"] intValue];
+    NSInteger audioBitrate = [(NSNumber *) [param valueForKey:@"AUDIO_BITRATE"] intValue];
     
-    _encBitrateLabel.text = [NSString stringWithFormat:@"%dkbps", videoEncBitrate];
-    _upBitrateLabel.text = [NSString stringWithFormat:@"%dkbps", netspeed];
-    _fpsLabel.text = [NSString stringWithFormat:@"%d", fps];
-    _gopLabel.text = [NSString stringWithFormat:@"%ds", gop];
+    _sysCpuLabel.text = [NSString stringWithFormat:@"%.02f",sysCpu];
+    _appCpuLabel.text =[NSString stringWithFormat:@"%.02f",appCpu];
+    _fpsLabel.text = [NSString stringWithFormat:@"%ld", fps];
+    _videoWidthLabel.text = [NSString stringWithFormat:@"%ld", videoWidth];
+    _videoHeightLabel.text = [NSString stringWithFormat:@"%ld", videoHeight];
+    _videoBitrateLabel.text = [NSString stringWithFormat:@"%ldkbps", videoBitrate];
+    _audioBitrateLabel.text = [NSString stringWithFormat:@"%ldkbps", audioBitrate];
 }
 
 - (void)clear {
-    _step = 0;
-    
-    _encBitrateLabel.text = @"0kbps";
-    _upBitrateLabel.text = @"0kbps";
+    _sysCpuLabel.text = @"0";
+    _appCpuLabel.text = @"0";
     _fpsLabel.text = @"0";
-    _gopLabel.text = @"0s";
-    
-    for (UIImageView *imgView in _stepImgViews) {
-        [imgView setImage:[UIImage imageNamed:@"ic_red"]];
-    }
+    _videoWidthLabel.text = @"0";
+    _videoHeightLabel.text = @"0";
+    _videoBitrateLabel.text = @"0kbps";
+    _audioBitrateLabel.text = @"0kbps";
 }
 
 @end

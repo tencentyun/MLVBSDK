@@ -62,7 +62,7 @@
 		40E25FB6248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E25F9D248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m */; };
 		40E25FB924803F68005EB543 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 401A9A47247FB78F00C0763B /* libc++.tbd */; };
 		40E25FBE24804490005EB543 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		CFCBB7A3C85B738FE32D05D1 /* TXLiteAVSDK_Smart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A85976E1B2E43C77ABD079B /* TXLiteAVSDK_Smart.framework */; };
+		4BAFBCD5882082D741C37562 /* TXLiteAVSDK_Smart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7908879631347848C0A99B5 /* TXLiteAVSDK_Smart.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,7 +130,7 @@
 		40E25F9B248029F8005EB543 /* ASMASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMASLayoutConstraint.h; sourceTree = "<group>"; };
 		40E25F9C248029F8005EB543 /* ASViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		40E25F9D248029F8005EB543 /* ASNSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASNSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
-		4A85976E1B2E43C77ABD079B /* TXLiteAVSDK_Smart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Smart.framework; path = ../../../SDK/TXLiteAVSDK_Smart.framework; sourceTree = "<group>"; };
+		E7908879631347848C0A99B5 /* TXLiteAVSDK_Smart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Smart.framework; path = ../../../SDK/TXLiteAVSDK_Smart.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 				40E25FBE24804490005EB543 /* BuildFile in Frameworks */,
 				40E25FB924803F68005EB543 /* libc++.tbd in Frameworks */,
 				40D08707249C9D460055F9A6 /* AssetsLibrary.framework in Frameworks */,
-				CFCBB7A3C85B738FE32D05D1 /* TXLiteAVSDK_Smart.framework in Frameworks */,
+				4BAFBCD5882082D741C37562 /* TXLiteAVSDK_Smart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +199,7 @@
 				40D08706249C9D460055F9A6 /* AssetsLibrary.framework */,
 				40D08703249C9C130055F9A6 /* Accelerate.framework */,
 				401A9A47247FB78F00C0763B /* libc++.tbd */,
-				4A85976E1B2E43C77ABD079B /* TXLiteAVSDK_Smart.framework */,
+				E7908879631347848C0A99B5 /* TXLiteAVSDK_Smart.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -645,6 +645,8 @@
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Professional.framework/Headers/",
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_International.framework/Headers/",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_International.framework/Headers/",
+					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Live.framework/Headers/",
+					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Live.framework/Headers/",
 					"$(SRCROOT)/../../../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Smart.framework/Headers",
 				);
@@ -687,6 +689,8 @@
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Professional.framework/Headers/",
 					"${SRCROOT}/../../../SDK/TXLiteAVSDK_International.framework/Headers/",
 					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_International.framework/Headers/",
+					"${SRCROOT}/../../../SDK/TXLiteAVSDK_Live.framework/Headers/",
+					"$(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Live.framework/Headers/",
 					"$(SRCROOT)/../../../SDK/TXLiteAVSDK_Smart.framework/Headers",
 					"(CONFIGURATION_BUILD_DIR)/TXLiteAVSDK_Smart.framework/Headers",
 				);
