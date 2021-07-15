@@ -9,7 +9,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10
-        versionName "8.8.868"
+        versionName "8.8.869"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
@@ -34,7 +34,7 @@ dependencies {
     implementation project(':Basic:LivePushScreen')
     implementation project(':Basic:LivePlay')
     implementation project(':Basic:LiveLink')
-    implementation project(':Basic:LinkPK')
+    implementation project(':Basic:LivePK')
     implementation project(':Advanced:SwitchRenderView')
     implementation project(':Advanced:ThirdBeauty')
     implementation project(':Advanced:RTCPushAndPlay')

@@ -1,5 +1,5 @@
 # MLVB API-Example 
-[中文](README.md) | English
+_[中文](README.md) | English_
 
 ## Background
 This open-source demo shows how to use some APIs of the [MLVB SDK](https://cloud.tencent.com/document/product/454) to help you better understand the APIs and use them to implement some basic MLVB features.

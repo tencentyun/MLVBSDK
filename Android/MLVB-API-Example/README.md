@@ -56,7 +56,7 @@ _中文 | [English](README.en.md)_
 5. 设置`AddressUtils.java`文件中的相关参数：
   - `PUSH_DOMAIN`：配置的推流地址
   - `PLAY_DOMAIN`：配置的拉流地址
-  - `KEY`：如果开通鉴权，则配置鉴权的Key
+  - `KEY`：如果开通鉴权配置的鉴权Key
 
 ### 集成 SDK
 您可以选择使用 JCenter 自动加载的方式，或者手动下载 aar 再将其导入到您当前的工程项目中，Demo默认采用方法一配置。
