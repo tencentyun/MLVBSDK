@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="liveplay_mute">Mute</string>
+    <string name="liveplay_mlvb_live_play">MLVB Playback</string>
+    <string name="liveplay_please_input_streamid">Stream Id</string>
+    <string name="liveplay_live_play_desc">LEB is an ultra-low-latency version of LVB. It delivers excellent instant streaming performance and can handle ultra-high concurrency.\n\nTencent Cloud’s proprietary RTC protocol features low latency and strong adaptability to poor network conditions, and can be used worldwide. It is suitable for application scenarios such as e-commerce streaming and sports streaming. For details, visit https://cloud.tencent.com/document/product/454/56598.\n\nLVB playback supports multiple protocols including FLV, RTMP, and HLS. It is a mature playback scheme and can handlehigh concurrency, but its latency is high.</string>
+    <string name="liveplay_desc_recommend">LEB playback is recommended.</string>
+    <string name="liveplay_rtc_play">RTC Playback</string>
+    <string name="liveplay_rtmp_play">LVB Playback</string>
+    <string name="liveplay_webrtc_play">LEB Playback (Recommended))</string>
+    <string name="liveplay_cancel_mute">Unmute</string>
+</resources>

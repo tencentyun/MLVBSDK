@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/resolution_360"
+        android:title="360P" />
+    <item
+        android:id="@+id/resolution_540"
+        android:title="540P" />
+    <item
+        android:id="@+id/resolution_720"
+        android:title="720P" />
+    <item
+        android:id="@+id/resolution_1080"
+        android:title="1080P" />
+
+</menu>

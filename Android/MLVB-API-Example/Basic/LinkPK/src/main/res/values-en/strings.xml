@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="livepk_start_pk">Compete</string>
+    <string name="livepk_mlvb_pk">Competition</string>
+    <string name="livepk_please_input_streamid">Stream Id</string>
+    <string name="livepk_please_input_userid">User Id</string>
+    <string name="livepk_please_select_role">Role</string>
+    <string name="livepk_anchor">Anchor</string>
+    <string name="livepk_audience">Audience</string>
+    <string name="livepk_rtc_push">RTC Publishing</string>
+    <string name="livepk_stop_pk">End</string>
+    <string name="livepk_mix_stream_fail">Failed to mix streams.</string>
+    <string name="livepk_webrtc_play">LVB Playback</string>
+    <string name="linkpk_process_description">Competition: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B’s streams are mixed into anchor A’s.\n3.3 Anchor B plays anchor A’s streams.\n3.4 Anchor A’s streams are mixed into anchor B’s.</string>
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="livepushscreen_start_screen_push">开始录屏推流</string>
+    <string name="livepushscreen_mlvb_screen_push">MLVB 录屏推流</string>
+    <string name="livepushscreen_please_input_streamid">请输入streamId</string>
+    <string name="livepushscreen_please_select_audio_quality">请选择音频质量</string>
+    <string name="livepushscreen_default">默认</string>
+    <string name="livepushscreen_voice">语音</string>
+    <string name="livepushscreen_music">音乐</string>
+    <string name="livepushscreen_rtmp_push">标准直播推流</string>
+    <string name="livepushscreen_rtc_desc">腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/56595</string>
+    <string name="livepushscreen_rtc_push">RTC推流(推荐)</string>
+    <string name="livepushscreen_close_screen_push">关闭录屏推流</string>
+</resources>

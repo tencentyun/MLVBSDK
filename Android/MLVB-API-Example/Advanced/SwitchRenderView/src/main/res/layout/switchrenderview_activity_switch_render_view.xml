@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1B1B">
+
+    <SurfaceView
+        android:id="@+id/sv_surface"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextureView
+        android:id="@+id/tuv_texture"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/tx_cloud_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1B1B1B"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@mipmap/common_ic_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_below="@+id/ll_room_info"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:text="@string/switchrenderview_switch_render_view" />
+
+
+        <com.tencent.mlvb.common.FlowRadioGroup
+            android:layout_below="@+id/tv_audio_quality"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/rg_view">
+
+            <RadioButton
+                android:id="@+id/rb_txcloudvideoview"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="TXCloudVideoView"
+                android:buttonTint="#0062e3"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"/>
+
+            <RadioButton
+                android:id="@+id/rb_textureview"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="TextureView"
+                android:buttonTint="#0062e3"
+                android:textColor="@color/white"/>
+
+            <RadioButton
+                android:id="@+id/rb_surfaceview"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="SurfaceView"
+                android:buttonTint="#0062e3"
+                android:textColor="@color/white"/>
+        </com.tencent.mlvb.common.FlowRadioGroup>
+
+        <TextView
+            android:layout_below="@+id/ll_room_info"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:text="StreamId" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/et_stream_id"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:text="235672"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:background="@drawable/common_edit_bg"/>
+
+            <Button
+                android:id="@+id/btn_push"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/switchrenderview_start_push"
+                android:background="@drawable/common_button_bg"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

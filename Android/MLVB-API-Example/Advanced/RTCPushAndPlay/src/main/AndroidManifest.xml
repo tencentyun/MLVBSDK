@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.mlvb.rtcpushandplay">
+    <application android:theme="@style/AppTheme">
+        <activity
+            android:name="com.tencent.mlvb.rtcpushandplay.RTCPushAndPlayEnterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name="com.tencent.mlvb.rtcpushandplay.RTCPushAndPlayAnchorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name="com.tencent.mlvb.rtcpushandplay.RTCPushAndPlayAudienceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    </application>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+</manifest>

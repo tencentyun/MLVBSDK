@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="switchrenderview_please_input_streamid">Stream Id</string>
+    <string name="switchrenderview_start_push">Publish</string>
+    <string name="switchrenderview_stop_push">Stop</string>
+    <string name="switchrenderview_please_restart_push">Stop and publish again.</string>
+    <string name="switchrenderview_switch_render_view">Switch Rendering View</string>
+</resources>

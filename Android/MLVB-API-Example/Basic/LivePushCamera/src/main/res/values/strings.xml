@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="livepushcamera_please_ensure_pushing">请确保正在推流中</string>
+    <string name="livepushcamera_front_camera_open">前摄开启</string>
+    <string name="livepushcamera_camera_all_open">前后摄均开启</string>
+    <string name="livepushcamera_camera_all_close">前后摄均关闭</string>
+    <string name="livepushcamera_close_mic">关闭麦克风</string>
+    <string name="livepushcamera_open_mic">打开麦克风</string>
+    <string name="livepushcamera_please_input_streamid">请输入streamId</string>
+    <string name="livepushcamera_mlvb_camera_push">MLVB 摄像头推流</string>
+    <string name="livepushcamera_audio_setting">音频设置</string>
+    <string name="livepushcamera_video_setting">视频设置</string>
+    <string name="livepushcamera_resolution">分辨率</string>
+    <string name="livepushcamera_local_preview_rotate">本地预览旋转角度</string>
+    <string name="livepushcamera_local_preview_mirror">本地预览镜像</string>
+    <string name="mlvb">MLVB 摄像头推流</string>
+    <string name="livepushcamera_push_desc">腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/56592</string>
+    <string name="livepushcamera_please_select_audio_quality">请选择音频质量</string>
+    <string name="livepushcamera_default">默认</string>
+    <string name="livepushcamera_voice">语音</string>
+    <string name="livepushcamera_music">音乐</string>
+    <string name="livepushcamera_rtmp_push">标准直播推流</string>
+    <string name="livepushcamera_rtc_push">RTC推流(推荐)</string>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="livepk_start_pk">开始PK</string>
+    <string name="livepk_mlvb_pk">MLVB PK互动</string>
+    <string name="livepk_please_input_streamid">请输入streamId</string>
+    <string name="livepk_please_input_userid">请输入userId</string>
+    <string name="livepk_please_select_role">请选择角色</string>
+    <string name="livepk_anchor">主播</string>
+    <string name="livepk_audience">观众</string>
+    <string name="livepk_rtc_push">RTC推流</string>
+    <string name="livepk_stop_pk">停止PK</string>
+    <string name="livepk_mix_stream_fail">混流失败</string>
+    <string name="livepk_webrtc_play">快直播拉流</string>
+    <string name="linkpk_process_description">连麦PK场景实现：\n1、主播A\n1.1、主播A开始推流\n1.2、主播A的观众拉主播A的流\n\n2、主播B\n2.1、主播B开始推流\n2.2、主播B的观众拉主播B的流\n\n3、主播A连麦主播B\n3.1、主播A拉主播B的流\n3.2、主播A与主播B混流到主播A\n3.3、主播B拉主播A的流\n3.4、主播B与主播A混流到主播B</string>
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="customvideocapture_please_input_streamid">Stream ID</string>
+    <string name="customvideocapture_stop_push">Stop</string>
+    <string name="customvideocapture_start_push">Publish</string>
+</resources>

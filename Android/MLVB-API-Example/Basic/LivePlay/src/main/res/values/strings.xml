@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="liveplay_mute">静音</string>
+    <string name="liveplay_mlvb_live_play">MLVB 直播拉流</string>
+    <string name="liveplay_please_input_streamid">请输入streamId</string>
+    <string name="liveplay_live_play_desc">快直播（Live Event Broadcasting,LEB）是标准直播在超低延迟播放场景下的延伸，强烈推荐，秒开效果最好，支持超高并发。\n\n腾讯云自研实时音视频协议，超低延迟、抗弱网能力强，全球覆盖适用于电商秒杀，体育赛事等多个场景，更多细节详见：https://cloud.tencent.com/document/product/454/56598\n\n标准直播拉流支持FLV、RTMP、HLS等多种格式，成熟度高，并 发量强，但是延迟高</string>
+    <string name="liveplay_desc_recommend">腾讯云官方推荐使用快直播拉流方式</string>
+    <string name="liveplay_rtc_play">RTC拉流</string>
+    <string name="liveplay_rtmp_play">标准直播拉流</string>
+    <string name="liveplay_webrtc_play">快直播拉流(推荐)</string>
+    <string name="liveplay_cancel_mute">取消静音</string>
+</resources>

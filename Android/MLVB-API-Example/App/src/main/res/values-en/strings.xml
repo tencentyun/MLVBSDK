@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MLVB-API-Example</string>
+    <string name="app_main_mlvb_title">Tencent Cloud MLVB API Example</string>
+    <string name="app_basic_function">Basic Features</string>
+    <string name="app_camera_push">Publishing from Camera</string>
+    <string name="app_screen_push">Publishing from Screen</string>
+    <string name="app_live_play">Playback</string>
+    <string name="app_live_link">Co-anchoring</string>
+    <string name="app_live_pk">Competition</string>
+    <string name="app_advanced_function">Advanced Features</string>
+    <string name="app_switch_render_view">Dynamically Switching Rendering Control</string>
+    <string name="app_custom_video_capture">Custom Video Capturing</string>
+    <string name="app_third_beauty">Third-Party Beauty Filters</string>
+    <string name="app_rtc_push_and_play">RTC Co-anchoring + Ultra-low-latency Playback</string>
+
+</resources>

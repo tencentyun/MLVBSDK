@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="switchrenderview_please_input_streamid">请输入streamId</string>
+    <string name="switchrenderview_start_push">开始推流</string>
+    <string name="switchrenderview_stop_push">停止推流</string>
+    <string name="switchrenderview_please_restart_push">请停止推流重新推流</string>
+    <string name="switchrenderview_switch_render_view">切换渲染View</string>
+</resources>

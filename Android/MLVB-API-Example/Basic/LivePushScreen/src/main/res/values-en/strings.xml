@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="livepushscreen_start_screen_push">Publish from Screen</string>
+    <string name="livepushscreen_mlvb_screen_push">MLVB Publishing (Screen)</string>
+    <string name="livepushscreen_please_input_streamid">Stream Id</string>
+    <string name="livepushscreen_please_select_audio_quality">Audio Quality</string>
+    <string name="livepushscreen_default">Default</string>
+    <string name="livepushscreen_voice">Speech</string>
+    <string name="livepushscreen_music">Music</string>
+    <string name="livepushscreen_rtmp_push">LVB Playback</string>
+    <string name="livepushscreen_rtc_desc">Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://cloud.tencent.com/document/product/454/56595</string>
+    <string name="livepushscreen_rtc_push">RTC Publishing (Recommended)</string>
+    <string name="livepushscreen_close_screen_push">Stop</string>
+</resources>

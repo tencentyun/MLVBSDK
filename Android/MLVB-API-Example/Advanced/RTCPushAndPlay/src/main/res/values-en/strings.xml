@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="rtcpushandplay_start_link">Co-anchor</string>
+    <string name="rtcpushandplay_rtc_play">RTC Playback</string>
+    <string name="rtcpushandplay_rtc_push_and_play">RTC Co-anchoring + Ultra-low-latency Playback</string>
+    <string name="rtcpushandplay_please_input_streamid">Stream Id</string>
+    <string name="rtcpushandplay_please_select_role">Role</string>
+    <string name="rtcpushandplay_anchor">Anchor</string>
+    <string name="rtcpushandplay_audience">Audience</string>
+    <string name="rtcpushandplay_rtc_push">RTC Publishing</string>
+    <string name="rtcpushandplay_stop_play">Stop</string>
+    <string name="rtcpushandplay_stop_link">Stop</string>
+    <string name="rtcpushandplay_process_description">RTC co-anchoring + ultra-low-latency playback: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B plays anchor A’s streams.\n\n4. Audience\n4.1 Anchor A’s audience play anchor B’s streams.\n4.2 Anchor B’s audience play anchor A’s streams.</string>
+</resources>

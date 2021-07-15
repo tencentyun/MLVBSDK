@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1B1B">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="@string/livepushcamera_mlvb_camera_push"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_room_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:text="@string/livepushcamera_please_input_streamid" />
+
+        <EditText
+            android:id="@+id/et_stream_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="5dp"
+            android:textSize="16sp"
+            android:text="235672"
+            android:background="@drawable/common_edit_bg"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_audio_quality"
+        android:layout_below="@+id/ll_room_info"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="@string/livepushcamera_please_select_audio_quality" />
+
+    <RadioGroup
+        android:layout_below="@+id/tv_audio_quality"
+        android:layout_marginLeft="30dp"
+        android:layout_width="300dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+        android:id="@+id/rg_audio_quality">
+
+        <RadioButton
+            android:id="@+id/rb_default"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/livepushcamera_default"
+            android:buttonTint="#0062e3"
+            android:textColor="@color/white"/>
+
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/livepushcamera_voice"
+            android:buttonTint="#0062e3"
+            android:textColor="@color/white"/>
+
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/livepushcamera_music"
+            android:buttonTint="#0062e3"
+            android:drawablePadding="3dp"
+            android:textColor="@color/white"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_push_rtmp"
+        android:layout_above="@+id/tv_rtc_desc"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:text="@string/livepushcamera_rtmp_push"
+        android:background="@drawable/common_button_grey_bg"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_rtc_desc"
+        android:layout_above="@+id/btn_push_rtc"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:textSize="12sp"
+        android:text="@string/livepushcamera_push_desc"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_push_rtc"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:text="@string/livepushcamera_rtc_push"
+        android:background="@drawable/common_button_bg"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_height="50dp"/>
+</RelativeLayout>

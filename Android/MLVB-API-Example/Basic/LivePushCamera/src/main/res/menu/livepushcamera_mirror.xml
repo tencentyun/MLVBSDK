@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mirror_auto"
+        android:title="@string/livepushcamera_front_camera_open" />
+    <item
+        android:id="@+id/mirror_enable"
+        android:title="@string/livepushcamera_camera_all_open" />
+
+    <item
+        android:id="@+id/mirror_disable"
+        android:title="@string/livepushcamera_camera_all_close" />
+</menu>

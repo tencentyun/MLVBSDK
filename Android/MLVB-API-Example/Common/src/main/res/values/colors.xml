@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_green_bg">#0062e3</color>
+    <color name="common_edit_solid">#EFEFEF</color>
+    <color name="common_edit_stroke">#FFFFFF</color>
+    <color name="common_radio_select">#0062e3</color>
+    <color name="common_raido_select_off">#999999</color>
+    <color name="common_bg_color">#1B1B1B</color>
+</resources>

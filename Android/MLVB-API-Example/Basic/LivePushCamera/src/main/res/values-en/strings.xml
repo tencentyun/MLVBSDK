@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">live</string>
+    <string name="livepushcamera_please_ensure_pushing">Check that streams are being published.</string>
+    <string name="livepushcamera_front_camera_open">Front Camera On</string>
+    <string name="livepushcamera_camera_all_open">Front &amp; Rear Cameras On</string>
+    <string name="livepushcamera_camera_all_close">Front &amp; Rear Cameras Off</string>
+    <string name="livepushcamera_close_mic">Mic Off</string>
+    <string name="livepushcamera_open_mic">Mic On</string>
+    <string name="livepushcamera_please_input_streamid">Stream Id</string>
+    <string name="livepushcamera_mlvb_camera_push">MLVB Publishing (Camera)</string>
+    <string name="livepushcamera_audio_setting">Audio Settings</string>
+    <string name="livepushcamera_video_setting">Video Settings</string>
+    <string name="livepushcamera_resolution">Resolution</string>
+    <string name="livepushcamera_local_preview_rotate">Local Preview Rotation</string>
+    <string name="livepushcamera_local_preview_mirror">Local Preview Mirror</string>
+    <string name="mlvb">MLVB Publishing (Camera)</string>
+    <string name="livepushcamera_push_desc">Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://cloud.tencent.com/document/product/454/56592</string>
+    <string name="livepushcamera_please_select_audio_quality">Audio Quality</string>
+    <string name="livepushcamera_default">Default</string>
+    <string name="livepushcamera_voice">Speech</string>
+    <string name="livepushcamera_music">Music</string>
+    <string name="livepushcamera_rtmp_push">LVB Playback</string>
+    <string name="livepushcamera_rtc_push">RTC Publishing (Recommended)</string>
+</resources>

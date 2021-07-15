@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1B1B">
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/pusher_tx_cloud_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@mipmap/common_ic_back" />
+
+        <TextView
+            android:id="@+id/tv_stream_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/livepushcamera_mlvb_camera_push"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="5dp"
+        android:background="#1b1b1b">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:text="@string/livepushcamera_audio_setting" />
+
+        <Button
+            android:id="@+id/btn_mic"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="@string/livepushcamera_close_mic"
+            android:background="@drawable/common_button_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:text="@string/livepushcamera_video_setting" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/livepushcamera_resolution"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_resolution"
+                    android:layout_width="104dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/common_button_grey_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_resolution"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:text="540P"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:layout_width="12.5dp"
+                        android:layout_height="7dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/common_arrow_above"
+                        android:paddingLeft="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/livepushcamera_local_preview_rotate"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_rotate"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/common_button_grey_bg">
+
+                    <TextView
+                        android:id="@+id/tv_rotate"
+                        android:layout_width="match_parent"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:paddingLeft="20dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="10sp"/>
+
+                    <ImageView
+                        android:layout_width="12.5dp"
+                        android:layout_height="7dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/common_arrow_above"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/livepushcamera_local_preview_mirror"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_mirror"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/common_button_grey_bg">
+
+                    <TextView
+                        android:id="@+id/tv_mirror"
+                        android:layout_width="match_parent"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:paddingLeft="10dp"
+                        android:gravity="center"
+                        android:text="@string/livepushcamera_front_camera_open"
+                        android:textSize="10sp"/>
+
+                    <ImageView
+                        android:layout_width="12.5dp"
+                        android:layout_height="7dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/common_arrow_above"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">SimpleDemo</string>
-    <string name="main_trtc_title">"腾讯云移动直播"</string>
-    <string name="main_item_v2_push_play">"V2推拉流"</string>
-
-</resources>
