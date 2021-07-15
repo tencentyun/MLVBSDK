@@ -1,0 +1,1031 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4723A7BF26315F920094AC81 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4723A7BE26315F920094AC81 /* OpenGLES.framework */; };
+		4723A7C026315F9C0094AC81 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
+		4723A7C226315FA30094AC81 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4723A7C126315FA30094AC81 /* CoreMedia.framework */; };
+		4723A7C426315FAA0094AC81 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4723A7C326315FAA0094AC81 /* AVFoundation.framework */; };
+		4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
+		4723A8902631666E0094AC81 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723A88F2631666E0094AC81 /* NSString+Common.m */; };
+		477EC97A26268B0A007AAC4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477EC96726268B09007AAC4F /* Assets.xcassets */; };
+		477EC97C26268B0A007AAC4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477EC96B26268B09007AAC4F /* LaunchScreen.storyboard */; };
+		477EC97D26268B0A007AAC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477EC96D26268B09007AAC4F /* Main.storyboard */; };
+		477EC97E26268B0A007AAC4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 477EC96F26268B09007AAC4F /* main.m */; };
+		477EC97F26268B0A007AAC4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 477EC97026268B09007AAC4F /* AppDelegate.m */; };
+		477EC9A226268CB9007AAC4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477EC9A026268CB9007AAC4F /* ViewController.m */; };
+		477EC9A826268D0F007AAC4F /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 477EC9AA26268D0F007AAC4F /* Localized.strings */; };
+		477EC9B026268DC8007AAC4F /* AppLocalized.m in Sources */ = {isa = PBXBuildFile; fileRef = 477EC9AF26268DC8007AAC4F /* AppLocalized.m */; };
+		477EC9B526269568007AAC4F /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 477EC9B326269568007AAC4F /* HomeTableViewCell.m */; };
+		477EC9B626269568007AAC4F /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477EC9B426269568007AAC4F /* HomeTableViewCell.xib */; };
+		477EC9C32626D6AB007AAC4F /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 477EC9C22626D6AB007AAC4F /* UIColor+Hex.m */; };
+		477ECA0A2627D344007AAC4F /* UIViewController+AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477ECA092627D344007AAC4F /* UIViewController+AlertViewController.m */; };
+		47E0725F263656110027D05E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47E07261263656110027D05E /* InfoPlist.strings */; };
+		47E073062636A6C80027D05E /* CustomCameraHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072A22636A6C80027D05E /* CustomCameraHelper.m */; };
+		47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
+		47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
+		47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98D2626868E00201FCB /* libresolv.tbd */; };
+		880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 880B3C482624411B002683FB /* GenerateTestUserSig.m */; };
+		88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88167CB1268488C2001D99DC /* LivePushCameraEnterViewController.m */; };
+		88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */; };
+		88167CC52684AC91001D99DC /* LivePushCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88167CC32684AC91001D99DC /* LivePushCameraViewController.m */; };
+		88167CC62684AC91001D99DC /* LivePushCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CC42684AC91001D99DC /* LivePushCameraViewController.xib */; };
+		88167CE62685B823001D99DC /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CE52685B823001D99DC /* TXLiteAVSDK_Professional.framework */; };
+		88167CE92685BF58001D99DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CE82685BF58001D99DC /* Foundation.framework */; };
+		88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8894457726282A3200193FAD /* UIKit.framework */; };
+		88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CEB2685BF8E001D99DC /* libz.tbd */; };
+		8839C3BA2689AE29000FF58C /* LivePushScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8839C3B82689AE29000FF58C /* LivePushScreenViewController.m */; };
+		8839C3BB2689AE29000FF58C /* LivePushScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8839C3B92689AE29000FF58C /* LivePushScreenViewController.xib */; };
+		8839C3BD2689AF9B000FF58C /* TRTCBroadcastExtensionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999071268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.m */; };
+		8839C3CA2689B93F000FF58C /* LivePlayEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8839C3C82689B93F000FF58C /* LivePlayEnterViewController.m */; };
+		8839C3CB2689B93F000FF58C /* LivePlayEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8839C3C92689B93F000FF58C /* LivePlayEnterViewController.xib */; };
+		8839C3D52689BEF5000FF58C /* LivePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8839C3D32689BEF5000FF58C /* LivePlayViewController.m */; };
+		8839C3D62689BEF5000FF58C /* LivePlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8839C3D42689BEF5000FF58C /* LivePlayViewController.xib */; };
+		885A56472689ABB500D9D55F /* LivePushScreenEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A56452689ABB500D9D55F /* LivePushScreenEnterViewController.m */; };
+		885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */; };
+		8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8894456A26282A3200193FAD /* ReplayKit.framework */; };
+		8894458326282A3200193FAD /* TXReplayKit_Screen.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8894456926282A3200193FAD /* TXReplayKit_Screen.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */; };
+		8899908C268487F400CBC983 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999076268486EC00CBC983 /* SampleHandler.m */; };
+		88A1A87D268DA78B007F630D /* LivePkEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A87B268DA78B007F630D /* LivePkEnterViewController.m */; };
+		88A1A87E268DA78B007F630D /* LivePkEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A1A87C268DA78B007F630D /* LivePkEnterViewController.xib */; };
+		88A1A884268DA7DA007F630D /* LivePkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */; };
+		88A1A885268DA7DA007F630D /* LivePkAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */; };
+		88A1A88A268DA81A007F630D /* LivePkAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A888268DA81A007F630D /* LivePkAudienceViewController.m */; };
+		88A1A88B268DA81A007F630D /* LivePkAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A1A889268DA81A007F630D /* LivePkAudienceViewController.xib */; };
+		88A2C846267062FF006FC026 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
+		88A2C84726706305006FC026 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
+		88AB3E4B2689D65D00A75212 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 477EC9AA26268D0F007AAC4F /* Localized.strings */; };
+		88AB3E51268A008C00A75212 /* LiveUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E50268A008C00A75212 /* LiveUrl.m */; };
+		88AB3E5A268ABC5400A75212 /* LiveLinkEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E58268ABC5400A75212 /* LiveLinkEnterViewController.m */; };
+		88AB3E5B268ABC5400A75212 /* LiveLinkEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AB3E59268ABC5400A75212 /* LiveLinkEnterViewController.xib */; };
+		88AB3E61268AF8E800A75212 /* LiveLinkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E5F268AF8E800A75212 /* LiveLinkAnchorViewController.m */; };
+		88AB3E62268AF8E800A75212 /* LiveLinkAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AB3E60268AF8E800A75212 /* LiveLinkAnchorViewController.xib */; };
+		88AB3E67268B035C00A75212 /* LiveLinkAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E65268B035C00A75212 /* LiveLinkAudienceViewController.m */; };
+		88AB3E68268B035C00A75212 /* LiveLinkAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AB3E66268B035C00A75212 /* LiveLinkAudienceViewController.xib */; };
+		88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */; };
+		88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */; };
+		88C4C06A268C48DF00FBB698 /* ThirdBeautyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */; };
+		88C4C06C268C49FD00FBB698 /* ThirdBeautyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E072AE2636A6C80027D05E /* ThirdBeautyViewController.xib */; };
+		88D788592685D85A004B2509 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D788572685D849004B2509 /* libsqlite3.tbd */; };
+		88FC77AE268C625300768C53 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 88FC77AD268C625300768C53 /* README.md */; };
+		88FC784A268C678A00768C53 /* RTCPushAndPlayEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FC7848268C678A00768C53 /* RTCPushAndPlayEnterViewController.m */; };
+		88FC784B268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FC7849268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib */; };
+		88FC7853268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FC7851268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m */; };
+		88FC7854268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FC7852268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib */; };
+		88FC7859268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FC7857268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m */; };
+		88FC785A268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FC7858268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8894458126282A3200193FAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8887C552262151200035C0B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8894456826282A3200193FAD;
+			remoteInfo = TXReplayKit_Screen;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		47E074332638FCCC0027D05E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		889445612628299500193FAD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8894458326282A3200193FAD /* TXReplayKit_Screen.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4723A7BE26315F920094AC81 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4723A7C126315FA30094AC81 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4723A7C326315FAA0094AC81 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4723A88E2631666E0094AC81 /* NSString+Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
+		4723A88F2631666E0094AC81 /* NSString+Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		477EC96726268B09007AAC4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		477EC96926268B09007AAC4F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		477EC96C26268B09007AAC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		477EC96E26268B09007AAC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		477EC96F26268B09007AAC4F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		477EC97026268B09007AAC4F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		477EC97126268B09007AAC4F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		477EC9A026268CB9007AAC4F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		477EC9A126268CB9007AAC4F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		477EC9A926268D0F007AAC4F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
+		477EC9AC26268D61007AAC4F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localized.strings"; sourceTree = "<group>"; };
+		477EC9AE26268DC8007AAC4F /* AppLocalized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLocalized.h; sourceTree = "<group>"; };
+		477EC9AF26268DC8007AAC4F /* AppLocalized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLocalized.m; sourceTree = "<group>"; };
+		477EC9B226269568007AAC4F /* HomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
+		477EC9B326269568007AAC4F /* HomeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		477EC9B426269568007AAC4F /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
+		477EC9C12626D6AB007AAC4F /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		477EC9C22626D6AB007AAC4F /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		477EC9F12626F77E007AAC4F /* MLVB-API-Example-OC-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MLVB-API-Example-OC-PrefixHeader.pch"; sourceTree = "<group>"; };
+		477ECA082627D344007AAC4F /* UIViewController+AlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AlertViewController.h"; sourceTree = "<group>"; };
+		477ECA092627D344007AAC4F /* UIViewController+AlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AlertViewController.m"; sourceTree = "<group>"; };
+		47E07260263656110027D05E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47E07263263656160027D05E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		47E072A22636A6C80027D05E /* CustomCameraHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCameraHelper.m; sourceTree = "<group>"; };
+		47E072A82636A6C80027D05E /* CustomCameraHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCameraHelper.h; sourceTree = "<group>"; };
+		47E072AE2636A6C80027D05E /* ThirdBeautyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdBeautyViewController.xib; sourceTree = "<group>"; };
+		47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdBeautyViewController.m; sourceTree = "<group>"; };
+		47E072CC2636A6C80027D05E /* ThirdBeautyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdBeautyViewController.h; sourceTree = "<group>"; };
+		47ECB9882626867C00201FCB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		47ECB98B2626868400201FCB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		47ECB98D2626868E00201FCB /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		880B3C482624411B002683FB /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
+		880B3C492624411B002683FB /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
+		88167CB0268488C2001D99DC /* LivePushCameraEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushCameraEnterViewController.h; sourceTree = "<group>"; };
+		88167CB1268488C2001D99DC /* LivePushCameraEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePushCameraEnterViewController.m; sourceTree = "<group>"; };
+		88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePushCameraEnterViewController.xib; sourceTree = "<group>"; };
+		88167CC22684AC91001D99DC /* LivePushCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushCameraViewController.h; sourceTree = "<group>"; };
+		88167CC32684AC91001D99DC /* LivePushCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePushCameraViewController.m; sourceTree = "<group>"; };
+		88167CC42684AC91001D99DC /* LivePushCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePushCameraViewController.xib; sourceTree = "<group>"; };
+		88167CE52685B823001D99DC /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
+		88167CE82685BF58001D99DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88167CEB2685BF8E001D99DC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		8839C3B72689AE29000FF58C /* LivePushScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushScreenViewController.h; sourceTree = "<group>"; };
+		8839C3B82689AE29000FF58C /* LivePushScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePushScreenViewController.m; sourceTree = "<group>"; };
+		8839C3B92689AE29000FF58C /* LivePushScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePushScreenViewController.xib; sourceTree = "<group>"; };
+		8839C3C72689B93F000FF58C /* LivePlayEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePlayEnterViewController.h; sourceTree = "<group>"; };
+		8839C3C82689B93F000FF58C /* LivePlayEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePlayEnterViewController.m; sourceTree = "<group>"; };
+		8839C3C92689B93F000FF58C /* LivePlayEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePlayEnterViewController.xib; sourceTree = "<group>"; };
+		8839C3D22689BEF5000FF58C /* LivePlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePlayViewController.h; sourceTree = "<group>"; };
+		8839C3D32689BEF5000FF58C /* LivePlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePlayViewController.m; sourceTree = "<group>"; };
+		8839C3D42689BEF5000FF58C /* LivePlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePlayViewController.xib; sourceTree = "<group>"; };
+		885A56442689ABB500D9D55F /* LivePushScreenEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushScreenEnterViewController.h; sourceTree = "<group>"; };
+		885A56452689ABB500D9D55F /* LivePushScreenEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePushScreenEnterViewController.m; sourceTree = "<group>"; };
+		885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePushScreenEnterViewController.xib; sourceTree = "<group>"; };
+		8887C55A262151200035C0B9 /* MLVB-API-Example-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLVB-API-Example-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_ReplayKitExt.framework; sourceTree = "<group>"; };
+		8894456926282A3200193FAD /* TXReplayKit_Screen.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TXReplayKit_Screen.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8894456A26282A3200193FAD /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		8894457726282A3200193FAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		88999071268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTCBroadcastExtensionLauncher.m; sourceTree = "<group>"; };
+		88999076268486EC00CBC983 /* SampleHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
+		88999077268486EC00CBC983 /* SampleHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
+		88999078268486EC00CBC983 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8899907B268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTCBroadcastExtensionLauncher.h; sourceTree = "<group>"; };
+		88A1A87A268DA78B007F630D /* LivePkEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePkEnterViewController.h; sourceTree = "<group>"; };
+		88A1A87B268DA78B007F630D /* LivePkEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePkEnterViewController.m; sourceTree = "<group>"; };
+		88A1A87C268DA78B007F630D /* LivePkEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkEnterViewController.xib; sourceTree = "<group>"; };
+		88A1A881268DA7DA007F630D /* LivePkAnchorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePkAnchorViewController.h; sourceTree = "<group>"; };
+		88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePkAnchorViewController.m; sourceTree = "<group>"; };
+		88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkAnchorViewController.xib; sourceTree = "<group>"; };
+		88A1A887268DA81A007F630D /* LivePkAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePkAudienceViewController.h; sourceTree = "<group>"; };
+		88A1A888268DA81A007F630D /* LivePkAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePkAudienceViewController.m; sourceTree = "<group>"; };
+		88A1A889268DA81A007F630D /* LivePkAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkAudienceViewController.xib; sourceTree = "<group>"; };
+		88AB3E4F268A008C00A75212 /* LiveUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveUrl.h; sourceTree = "<group>"; };
+		88AB3E50268A008C00A75212 /* LiveUrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveUrl.m; sourceTree = "<group>"; };
+		88AB3E57268ABC5400A75212 /* LiveLinkEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveLinkEnterViewController.h; sourceTree = "<group>"; };
+		88AB3E58268ABC5400A75212 /* LiveLinkEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLinkEnterViewController.m; sourceTree = "<group>"; };
+		88AB3E59268ABC5400A75212 /* LiveLinkEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveLinkEnterViewController.xib; sourceTree = "<group>"; };
+		88AB3E5E268AF8E800A75212 /* LiveLinkAnchorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveLinkAnchorViewController.h; sourceTree = "<group>"; };
+		88AB3E5F268AF8E800A75212 /* LiveLinkAnchorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLinkAnchorViewController.m; sourceTree = "<group>"; };
+		88AB3E60268AF8E800A75212 /* LiveLinkAnchorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveLinkAnchorViewController.xib; sourceTree = "<group>"; };
+		88AB3E64268B035C00A75212 /* LiveLinkAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveLinkAudienceViewController.h; sourceTree = "<group>"; };
+		88AB3E65268B035C00A75212 /* LiveLinkAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLinkAudienceViewController.m; sourceTree = "<group>"; };
+		88AB3E66268B035C00A75212 /* LiveLinkAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveLinkAudienceViewController.xib; sourceTree = "<group>"; };
+		88C4C05F268B503000FBB698 /* CustomVideoCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomVideoCaptureViewController.h; sourceTree = "<group>"; };
+		88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCaptureViewController.m; sourceTree = "<group>"; };
+		88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomVideoCaptureViewController.xib; sourceTree = "<group>"; };
+		88D788572685D849004B2509 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		88FC77AD268C625300768C53 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		88FC7847268C678A00768C53 /* RTCPushAndPlayEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTCPushAndPlayEnterViewController.h; sourceTree = "<group>"; };
+		88FC7848268C678A00768C53 /* RTCPushAndPlayEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTCPushAndPlayEnterViewController.m; sourceTree = "<group>"; };
+		88FC7849268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTCPushAndPlayEnterViewController.xib; sourceTree = "<group>"; };
+		88FC7850268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTCPushAndPlayAnchorViewController.h; sourceTree = "<group>"; };
+		88FC7851268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTCPushAndPlayAnchorViewController.m; sourceTree = "<group>"; };
+		88FC7852268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTCPushAndPlayAnchorViewController.xib; sourceTree = "<group>"; };
+		88FC7856268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTCPushAndPlayAudienceViewController.h; sourceTree = "<group>"; };
+		88FC7857268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTCPushAndPlayAudienceViewController.m; sourceTree = "<group>"; };
+		88FC7858268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTCPushAndPlayAudienceViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8887C557262151200035C0B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4723A7C426315FAA0094AC81 /* AVFoundation.framework in Frameworks */,
+				88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */,
+				88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */,
+				4723A7BF26315F920094AC81 /* OpenGLES.framework in Frameworks */,
+				47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */,
+				88D788592685D85A004B2509 /* libsqlite3.tbd in Frameworks */,
+				4723A7C026315F9C0094AC81 /* Accelerate.framework in Frameworks */,
+				47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */,
+				88167CE92685BF58001D99DC /* Foundation.framework in Frameworks */,
+				4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */,
+				47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */,
+				4723A7C226315FA30094AC81 /* CoreMedia.framework in Frameworks */,
+				88167CE62685B823001D99DC /* TXLiteAVSDK_Professional.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8894456626282A3200193FAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88A2C84726706305006FC026 /* libc++.tbd in Frameworks */,
+				88A2C846267062FF006FC026 /* Accelerate.framework in Frameworks */,
+				8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */,
+				8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		477EC95A26268B09007AAC4F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				88AB3E4D2689FC5D00A75212 /* Common */,
+				477EC9EF2626F754007AAC4F /* PCH */,
+				477EC9BA2626D64F007AAC4F /* Extension */,
+				477EC99F26268CB9007AAC4F /* Home */,
+				477EC96926268B09007AAC4F /* AppDelegate.h */,
+				477EC97026268B09007AAC4F /* AppDelegate.m */,
+				477EC97126268B09007AAC4F /* Info.plist */,
+				477EC96B26268B09007AAC4F /* LaunchScreen.storyboard */,
+				477EC96F26268B09007AAC4F /* main.m */,
+				477EC96D26268B09007AAC4F /* Main.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		477EC96626268B09007AAC4F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				477EC9A426268CE4007AAC4F /* Localized */,
+				477EC96726268B09007AAC4F /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		477EC96826268B09007AAC4F /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				88167CAF26848883001D99DC /* LivePushCamera */,
+				88167CB92684A04C001D99DC /* LivePushScreen */,
+				8839C3C62689B900000FF58C /* LivePlay */,
+				88AB3E56268ABB2C00A75212 /* LiveLink */,
+				888C77E4268DA734004D6A7B /* LivePK */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		477EC99F26268CB9007AAC4F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				477EC9A126268CB9007AAC4F /* ViewController.h */,
+				477EC9A026268CB9007AAC4F /* ViewController.m */,
+				477EC9B226269568007AAC4F /* HomeTableViewCell.h */,
+				477EC9B326269568007AAC4F /* HomeTableViewCell.m */,
+				477EC9B426269568007AAC4F /* HomeTableViewCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		477EC9A426268CE4007AAC4F /* Localized */ = {
+			isa = PBXGroup;
+			children = (
+				477EC9AE26268DC8007AAC4F /* AppLocalized.h */,
+				477EC9AF26268DC8007AAC4F /* AppLocalized.m */,
+				477EC9AA26268D0F007AAC4F /* Localized.strings */,
+				47E07261263656110027D05E /* InfoPlist.strings */,
+			);
+			path = Localized;
+			sourceTree = "<group>";
+		};
+		477EC9BA2626D64F007AAC4F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				477EC9C12626D6AB007AAC4F /* UIColor+Hex.h */,
+				477EC9C22626D6AB007AAC4F /* UIColor+Hex.m */,
+				477ECA082627D344007AAC4F /* UIViewController+AlertViewController.h */,
+				477ECA092627D344007AAC4F /* UIViewController+AlertViewController.m */,
+				4723A88E2631666E0094AC81 /* NSString+Common.h */,
+				4723A88F2631666E0094AC81 /* NSString+Common.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		477EC9D22626E44C007AAC4F /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				88167CE52685B823001D99DC /* TXLiteAVSDK_Professional.framework */,
+				889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */,
+			);
+			name = SDK;
+			path = ../SDK;
+			sourceTree = "<group>";
+		};
+		477EC9EF2626F754007AAC4F /* PCH */ = {
+			isa = PBXGroup;
+			children = (
+				477EC9F12626F77E007AAC4F /* MLVB-API-Example-OC-PrefixHeader.pch */,
+			);
+			path = PCH;
+			sourceTree = "<group>";
+		};
+		47E0727A2636A6C80027D05E /* Advanced */ = {
+			isa = PBXGroup;
+			children = (
+				47E0729D2636A6C80027D05E /* CustomCamera */,
+				47E072AD2636A6C80027D05E /* ThirdBeauty */,
+				88FC7846268C674800768C53 /* RTCPushAndPlay */,
+			);
+			path = Advanced;
+			sourceTree = "<group>";
+		};
+		47E0729D2636A6C80027D05E /* CustomCamera */ = {
+			isa = PBXGroup;
+			children = (
+				47E072A12636A6C80027D05E /* Helper */,
+				88C4C05F268B503000FBB698 /* CustomVideoCaptureViewController.h */,
+				88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */,
+				88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */,
+			);
+			path = CustomCamera;
+			sourceTree = "<group>";
+		};
+		47E072A12636A6C80027D05E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				47E072A82636A6C80027D05E /* CustomCameraHelper.h */,
+				47E072A22636A6C80027D05E /* CustomCameraHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		47E072AD2636A6C80027D05E /* ThirdBeauty */ = {
+			isa = PBXGroup;
+			children = (
+				47E072CC2636A6C80027D05E /* ThirdBeautyViewController.h */,
+				47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */,
+				47E072AE2636A6C80027D05E /* ThirdBeautyViewController.xib */,
+				88FC77AD268C625300768C53 /* README.md */,
+			);
+			path = ThirdBeauty;
+			sourceTree = "<group>";
+		};
+		880B3C472624411B002683FB /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				880B3C482624411B002683FB /* GenerateTestUserSig.m */,
+				880B3C492624411B002683FB /* GenerateTestUserSig.h */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		88167CAF26848883001D99DC /* LivePushCamera */ = {
+			isa = PBXGroup;
+			children = (
+				88167CB0268488C2001D99DC /* LivePushCameraEnterViewController.h */,
+				88167CB1268488C2001D99DC /* LivePushCameraEnterViewController.m */,
+				88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */,
+				88167CC22684AC91001D99DC /* LivePushCameraViewController.h */,
+				88167CC32684AC91001D99DC /* LivePushCameraViewController.m */,
+				88167CC42684AC91001D99DC /* LivePushCameraViewController.xib */,
+			);
+			path = LivePushCamera;
+			sourceTree = "<group>";
+		};
+		88167CB92684A04C001D99DC /* LivePushScreen */ = {
+			isa = PBXGroup;
+			children = (
+				88999075268486EC00CBC983 /* TXReplayKit_Screen */,
+				885A56442689ABB500D9D55F /* LivePushScreenEnterViewController.h */,
+				885A56452689ABB500D9D55F /* LivePushScreenEnterViewController.m */,
+				885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */,
+				8839C3B72689AE29000FF58C /* LivePushScreenViewController.h */,
+				8839C3B82689AE29000FF58C /* LivePushScreenViewController.m */,
+				8839C3B92689AE29000FF58C /* LivePushScreenViewController.xib */,
+				8899907B268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.h */,
+				88999071268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.m */,
+			);
+			path = LivePushScreen;
+			sourceTree = "<group>";
+		};
+		8839C3C62689B900000FF58C /* LivePlay */ = {
+			isa = PBXGroup;
+			children = (
+				8839C3C72689B93F000FF58C /* LivePlayEnterViewController.h */,
+				8839C3C82689B93F000FF58C /* LivePlayEnterViewController.m */,
+				8839C3C92689B93F000FF58C /* LivePlayEnterViewController.xib */,
+				8839C3D22689BEF5000FF58C /* LivePlayViewController.h */,
+				8839C3D32689BEF5000FF58C /* LivePlayViewController.m */,
+				8839C3D42689BEF5000FF58C /* LivePlayViewController.xib */,
+			);
+			path = LivePlay;
+			sourceTree = "<group>";
+		};
+		8887C551262151200035C0B9 = {
+			isa = PBXGroup;
+			children = (
+				477EC9D22626E44C007AAC4F /* SDK */,
+				477EC95A26268B09007AAC4F /* App */,
+				477EC96826268B09007AAC4F /* Basic */,
+				47E0727A2636A6C80027D05E /* Advanced */,
+				477EC96626268B09007AAC4F /* Resource */,
+				880B3C472624411B002683FB /* Debug */,
+				8887C55B262151200035C0B9 /* Products */,
+				88ED6FE02624364700C75B9D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8887C55B262151200035C0B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8887C55A262151200035C0B9 /* MLVB-API-Example-OC.app */,
+				8894456926282A3200193FAD /* TXReplayKit_Screen.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		888C77E4268DA734004D6A7B /* LivePK */ = {
+			isa = PBXGroup;
+			children = (
+				88A1A87A268DA78B007F630D /* LivePkEnterViewController.h */,
+				88A1A87B268DA78B007F630D /* LivePkEnterViewController.m */,
+				88A1A87C268DA78B007F630D /* LivePkEnterViewController.xib */,
+				88A1A881268DA7DA007F630D /* LivePkAnchorViewController.h */,
+				88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */,
+				88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */,
+				88A1A887268DA81A007F630D /* LivePkAudienceViewController.h */,
+				88A1A888268DA81A007F630D /* LivePkAudienceViewController.m */,
+				88A1A889268DA81A007F630D /* LivePkAudienceViewController.xib */,
+			);
+			path = LivePK;
+			sourceTree = "<group>";
+		};
+		88999075268486EC00CBC983 /* TXReplayKit_Screen */ = {
+			isa = PBXGroup;
+			children = (
+				88999076268486EC00CBC983 /* SampleHandler.m */,
+				88999077268486EC00CBC983 /* SampleHandler.h */,
+				88999078268486EC00CBC983 /* Info.plist */,
+			);
+			path = TXReplayKit_Screen;
+			sourceTree = "<group>";
+		};
+		88AB3E4D2689FC5D00A75212 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				88AB3E4F268A008C00A75212 /* LiveUrl.h */,
+				88AB3E50268A008C00A75212 /* LiveUrl.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		88AB3E56268ABB2C00A75212 /* LiveLink */ = {
+			isa = PBXGroup;
+			children = (
+				88AB3E57268ABC5400A75212 /* LiveLinkEnterViewController.h */,
+				88AB3E58268ABC5400A75212 /* LiveLinkEnterViewController.m */,
+				88AB3E59268ABC5400A75212 /* LiveLinkEnterViewController.xib */,
+				88AB3E5E268AF8E800A75212 /* LiveLinkAnchorViewController.h */,
+				88AB3E5F268AF8E800A75212 /* LiveLinkAnchorViewController.m */,
+				88AB3E60268AF8E800A75212 /* LiveLinkAnchorViewController.xib */,
+				88AB3E64268B035C00A75212 /* LiveLinkAudienceViewController.h */,
+				88AB3E65268B035C00A75212 /* LiveLinkAudienceViewController.m */,
+				88AB3E66268B035C00A75212 /* LiveLinkAudienceViewController.xib */,
+			);
+			path = LiveLink;
+			sourceTree = "<group>";
+		};
+		88ED6FE02624364700C75B9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88D788572685D849004B2509 /* libsqlite3.tbd */,
+				88167CEB2685BF8E001D99DC /* libz.tbd */,
+				88167CE82685BF58001D99DC /* Foundation.framework */,
+				4723A7C326315FAA0094AC81 /* AVFoundation.framework */,
+				4723A7C126315FA30094AC81 /* CoreMedia.framework */,
+				4723A7BE26315F920094AC81 /* OpenGLES.framework */,
+				47ECB98D2626868E00201FCB /* libresolv.tbd */,
+				47ECB98B2626868400201FCB /* Accelerate.framework */,
+				47ECB9882626867C00201FCB /* libc++.tbd */,
+				8894456A26282A3200193FAD /* ReplayKit.framework */,
+				8894457726282A3200193FAD /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88FC7846268C674800768C53 /* RTCPushAndPlay */ = {
+			isa = PBXGroup;
+			children = (
+				88FC7847268C678A00768C53 /* RTCPushAndPlayEnterViewController.h */,
+				88FC7848268C678A00768C53 /* RTCPushAndPlayEnterViewController.m */,
+				88FC7849268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib */,
+				88FC7850268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.h */,
+				88FC7851268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m */,
+				88FC7852268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib */,
+				88FC7856268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.h */,
+				88FC7857268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m */,
+				88FC7858268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib */,
+			);
+			path = RTCPushAndPlay;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8887C559262151200035C0B9 /* MLVB-API-Example-OC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8887C573262151270035C0B9 /* Build configuration list for PBXNativeTarget "MLVB-API-Example-OC" */;
+			buildPhases = (
+				8887C556262151200035C0B9 /* Sources */,
+				8887C557262151200035C0B9 /* Frameworks */,
+				8887C558262151200035C0B9 /* Resources */,
+				889445612628299500193FAD /* Embed App Extensions */,
+				47E074332638FCCC0027D05E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8894458226282A3200193FAD /* PBXTargetDependency */,
+			);
+			name = "MLVB-API-Example-OC";
+			productName = "TRTCSimpleDemo-OC";
+			productReference = 8887C55A262151200035C0B9 /* MLVB-API-Example-OC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8894456826282A3200193FAD /* TXReplayKit_Screen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8894458726282A3200193FAD /* Build configuration list for PBXNativeTarget "TXReplayKit_Screen" */;
+			buildPhases = (
+				8894456526282A3200193FAD /* Sources */,
+				8894456626282A3200193FAD /* Frameworks */,
+				8894456726282A3200193FAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TXReplayKit_Screen;
+			productName = TXReplayKit_Screen;
+			productReference = 8894456926282A3200193FAD /* TXReplayKit_Screen.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8887C552262151200035C0B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					8887C559262151200035C0B9 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					8894456826282A3200193FAD = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 8887C555262151200035C0B9 /* Build configuration list for PBXProject "MLVB-API-Example-OC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 8887C551262151200035C0B9;
+			productRefGroup = 8887C55B262151200035C0B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8887C559262151200035C0B9 /* MLVB-API-Example-OC */,
+				8894456826282A3200193FAD /* TXReplayKit_Screen */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8887C558262151200035C0B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8839C3D62689BEF5000FF58C /* LivePlayViewController.xib in Resources */,
+				88FC784B268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib in Resources */,
+				88A1A88B268DA81A007F630D /* LivePkAudienceViewController.xib in Resources */,
+				8839C3BB2689AE29000FF58C /* LivePushScreenViewController.xib in Resources */,
+				885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */,
+				88A1A87E268DA78B007F630D /* LivePkEnterViewController.xib in Resources */,
+				477EC97A26268B0A007AAC4F /* Assets.xcassets in Resources */,
+				88AB3E62268AF8E800A75212 /* LiveLinkAnchorViewController.xib in Resources */,
+				88AB3E68268B035C00A75212 /* LiveLinkAudienceViewController.xib in Resources */,
+				88FC77AE268C625300768C53 /* README.md in Resources */,
+				477EC97D26268B0A007AAC4F /* Main.storyboard in Resources */,
+				8839C3CB2689B93F000FF58C /* LivePlayEnterViewController.xib in Resources */,
+				477EC9A826268D0F007AAC4F /* Localized.strings in Resources */,
+				88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */,
+				88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */,
+				88A1A885268DA7DA007F630D /* LivePkAnchorViewController.xib in Resources */,
+				88FC785A268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib in Resources */,
+				477EC9B626269568007AAC4F /* HomeTableViewCell.xib in Resources */,
+				477EC97C26268B0A007AAC4F /* LaunchScreen.storyboard in Resources */,
+				88167CC62684AC91001D99DC /* LivePushCameraViewController.xib in Resources */,
+				88C4C06C268C49FD00FBB698 /* ThirdBeautyViewController.xib in Resources */,
+				88AB3E5B268ABC5400A75212 /* LiveLinkEnterViewController.xib in Resources */,
+				47E0725F263656110027D05E /* InfoPlist.strings in Resources */,
+				88FC7854268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8894456726282A3200193FAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88AB3E4B2689D65D00A75212 /* Localized.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8887C556262151200035C0B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				477EC9A226268CB9007AAC4F /* ViewController.m in Sources */,
+				88A1A88A268DA81A007F630D /* LivePkAudienceViewController.m in Sources */,
+				88AB3E61268AF8E800A75212 /* LiveLinkAnchorViewController.m in Sources */,
+				477EC9C32626D6AB007AAC4F /* UIColor+Hex.m in Sources */,
+				8839C3CA2689B93F000FF58C /* LivePlayEnterViewController.m in Sources */,
+				47E073062636A6C80027D05E /* CustomCameraHelper.m in Sources */,
+				8839C3BA2689AE29000FF58C /* LivePushScreenViewController.m in Sources */,
+				88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */,
+				88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */,
+				88FC784A268C678A00768C53 /* RTCPushAndPlayEnterViewController.m in Sources */,
+				88AB3E51268A008C00A75212 /* LiveUrl.m in Sources */,
+				880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */,
+				88AB3E67268B035C00A75212 /* LiveLinkAudienceViewController.m in Sources */,
+				885A56472689ABB500D9D55F /* LivePushScreenEnterViewController.m in Sources */,
+				88A1A87D268DA78B007F630D /* LivePkEnterViewController.m in Sources */,
+				477ECA0A2627D344007AAC4F /* UIViewController+AlertViewController.m in Sources */,
+				88AB3E5A268ABC5400A75212 /* LiveLinkEnterViewController.m in Sources */,
+				8839C3D52689BEF5000FF58C /* LivePlayViewController.m in Sources */,
+				477EC97F26268B0A007AAC4F /* AppDelegate.m in Sources */,
+				4723A8902631666E0094AC81 /* NSString+Common.m in Sources */,
+				88C4C06A268C48DF00FBB698 /* ThirdBeautyViewController.m in Sources */,
+				88167CC52684AC91001D99DC /* LivePushCameraViewController.m in Sources */,
+				88FC7853268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m in Sources */,
+				477EC97E26268B0A007AAC4F /* main.m in Sources */,
+				477EC9B526269568007AAC4F /* HomeTableViewCell.m in Sources */,
+				88A1A884268DA7DA007F630D /* LivePkAnchorViewController.m in Sources */,
+				88FC7859268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m in Sources */,
+				8839C3BD2689AF9B000FF58C /* TRTCBroadcastExtensionLauncher.m in Sources */,
+				477EC9B026268DC8007AAC4F /* AppLocalized.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8894456526282A3200193FAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8899908C268487F400CBC983 /* SampleHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8894458226282A3200193FAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8894456826282A3200193FAD /* TXReplayKit_Screen */;
+			targetProxy = 8894458126282A3200193FAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		477EC96B26268B09007AAC4F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				477EC96C26268B09007AAC4F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		477EC96D26268B09007AAC4F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				477EC96E26268B09007AAC4F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		477EC9AA26268D0F007AAC4F /* Localized.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				477EC9A926268D0F007AAC4F /* en */,
+				477EC9AC26268D61007AAC4F /* zh-Hans */,
+			);
+			name = Localized.strings;
+			sourceTree = "<group>";
+		};
+		47E07261263656110027D05E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47E07260263656110027D05E /* en */,
+				47E07263263656160027D05E /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8887C571262151270035C0B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SDK";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8887C572262151270035C0B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SDK";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8887C574262151270035C0B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 8167;
+				DEVELOPMENT_TEAM = F8A3GH6Q4W;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../SDK",
+					"$(PROJECT_DIR)/Advanced/ThirdBeauty/FaceUnity-SDK-iOS-v7.4.0",
+					"$(PROJECT_DIR)/Advanced/ThirdBeauty",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/App/PCH/MLVB-API-Example-OC-PrefixHeader.pch";
+				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/SDK",
+				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = abyWildcardDev;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8887C575262151270035C0B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 8167;
+				DEVELOPMENT_TEAM = F8A3GH6Q4W;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../SDK",
+					"$(PROJECT_DIR)/Advanced/ThirdBeauty/FaceUnity-SDK-iOS-v7.4.0",
+					"$(PROJECT_DIR)/Advanced/ThirdBeauty",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/App/PCH/MLVB-API-Example-OC-PrefixHeader.pch";
+				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/SDK",
+				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = com.tencent.mlvb.apiexample_Production_SignProvision;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8894458826282A3200193FAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = F8A3GH6Q4W;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
+				INFOPLIST_FILE = Basic/LivePushScreen/TXReplayKit_Screen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample.Upload;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = abyWildcardDev;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8894458926282A3200193FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = F8A3GH6Q4W;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
+				INFOPLIST_FILE = Basic/LivePushScreen/TXReplayKit_Screen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample.Upload;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = com.tencent.mlvb.apiexample.Upload_Production_SignProvision;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8887C555262151200035C0B9 /* Build configuration list for PBXProject "MLVB-API-Example-OC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8887C571262151270035C0B9 /* Debug */,
+				8887C572262151270035C0B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8887C573262151270035C0B9 /* Build configuration list for PBXNativeTarget "MLVB-API-Example-OC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8887C574262151270035C0B9 /* Debug */,
+				8887C575262151270035C0B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8894458726282A3200193FAD /* Build configuration list for PBXNativeTarget "TXReplayKit_Screen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8894458826282A3200193FAD /* Debug */,
+				8894458926282A3200193FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8887C552262151200035C0B9 /* Project object */;
+}

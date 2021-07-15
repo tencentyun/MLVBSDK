@@ -1,0 +1,172 @@
+/*
+  Localized.strings
+  TRTCSimpleDemo-OC
+
+  Created by adams on 2021/4/14.
+  
+*/
+
+"MLVB-API-Example.Home.Title" = "腾讯云MLVB API Example";
+
+"MLVB-API-Example.Home.BasicFunctions" = "基础功能";
+"MLVB-API-Example.Home.LivePushCamera" = "摄像头推流";
+"MLVB-API-Example.Home.LivePushScreen" = "录屏推流";
+"MLVB-API-Example.Home.LivePlay" = "直播拉流";
+"MLVB-API-Example.Home.LiveLink" = "连麦互动";
+"MLVB-API-Example.Home.LivePK" = "PK互动";
+
+"MLVB-API-Example.liveStop" = "屏幕共享已结束";
+"MLVB-API-Example.appReset" = "应用断开";
+"MLVB-API-Example.sdkError" = "集成错误（SDK 版本号不相符合）";
+
+"MLVB-API-Example.Home.AdvancedFeatures" = "进阶功能";
+"MLVB-API-Example.Home.CustomCamera" = "自定义视频采集";
+"MLVB-API-Example.Home.ThirdBeauty" = "第三方美颜";
+"MLVB-API-Example.Home.RTCPushAndPlay" = "RTC连麦+超低延时播放";
+
+"MLVB-API-Example.LivePushCamera.title" = "MLVB 摄像头推流";
+"MLVB-API-Example.LivePushCamera.streamIdInput" = "请输入streamId";
+"MLVB-API-Example.LivePushCamera.audioQualityInput" = "请选择音频质量";
+"MLVB-API-Example.LivePushCamera.audioDefault" = "默认";
+"MLVB-API-Example.LivePushCamera.audioSpeech" = "语音";
+"MLVB-API-Example.LivePushCamera.audioMusic" = "音乐";
+"MLVB-API-Example.LivePushCamera.standPush" = "标准直播推流";
+"MLVB-API-Example.LivePushCamera.rtcPush" = "RTC推流(推荐)";
+"MLVB-API-Example.LivePushCamera.descripView" = "腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/52751";
+"MLVB-API-Example.LivePushCamera.audioSetting" = "音频设置";
+"MLVB-API-Example.LivePushCamera.videoSetting" = "视频设置";
+"MLVB-API-Example.LivePushCamera.closeMic" = "关闭麦克风";
+"MLVB-API-Example.LivePushCamera.openMic" = "打开麦克风";
+"MLVB-API-Example.LivePushCamera.resolution" = "分辨率";
+"MLVB-API-Example.LivePushCamera.rotation" = "本地预览旋转角度";
+"MLVB-API-Example.LivePushCamera.mirror" = "本地预览镜像";
+"MLVB-API-Example.LivePushCamera.mirrorFront" = "前摄开启";
+"MLVB-API-Example.LivePushCamera.mirrorAll" = "前后摄均开启";
+"MLVB-API-Example.LivePushCamera.mirrorNO" = "前后摄均关闭";
+
+"MLVB-API-Example.LivePushScreen.title" = "MLVB 录屏推流";
+"MLVB-API-Example.LivePushScreen.streamIdInput" = "请输入streamId";
+"MLVB-API-Example.LivePushScreen.audioQualityInput" = "请选择音频质量";
+"MLVB-API-Example.LivePushScreen.audioDefault" = "默认";
+"MLVB-API-Example.LivePushScreen.audioSpeech" = "语音";
+"MLVB-API-Example.LivePushScreen.audioMusic" = "音乐";
+"MLVB-API-Example.LivePushScreen.standPush" = "标准直播推流";
+"MLVB-API-Example.LivePushScreen.rtcPush" = "RTC推流(推荐)";
+"MLVB-API-Example.LivePushScreen.descripView" = "腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/52751";
+"MLVB-API-Example.LivePushScreen.start" = "开始录屏推流";
+"MLVB-API-Example.LivePushScreen.stop" = "停止录屏推流";
+
+"MLVB-API-Example.LivePlay.title" = "MLVB 直播拉流";
+"MLVB-API-Example.LivePlay.streamIdInput" = "请输入streamId";
+"MLVB-API-Example.LivePlay.standPlay" = "标准直播拉流";
+"MLVB-API-Example.LivePlay.rtcPlay" = "RTC拉流";
+"MLVB-API-Example.LivePlay.lebPlay" = "快直播拉流(推荐)";
+"MLVB-API-Example.LivePlay.descripView" =
+"快直播（Live Event Broadcasting,LEB）是标准直播在超低延迟播放场景下的延伸，强烈推荐，秒开效果最好，支持超高并发
+
+腾讯云自研实时音视频协议，超低延迟，抗弱网能力强，全球覆盖，使用与电商秒杀，体育赛事等多个场景，更多细节详见：https://cloud.tencent.com/document/product/454/52751
+
+标准直播拉流支持FLV、RTMP、HLS等多种格式，成熟度高，并发量强，但是延迟高
+";
+"MLVB-API-Example.LivePlay.descripRecommend" = "腾讯云官方推荐使用快直播拉流方式";
+"MLVB-API-Example.LivePlay.mute" = "静音";
+"MLVB-API-Example.LivePlay.unmute" = "取消静音";
+
+
+"MLVB-API-Example.LiveLink.title" = "MLVB 连麦互动";
+"MLVB-API-Example.LiveLink.streamIdInput" = "请输入streamId";
+"MLVB-API-Example.LiveLink.userIdInput" = "请输入userId";
+"MLVB-API-Example.LiveLink.chooseRole" = "请选择角色";
+"MLVB-API-Example.LiveLink.anchor" = "主播";
+"MLVB-API-Example.LiveLink.audience" = "观众";
+"MLVB-API-Example.LiveLink.descripViewRed" = "2.1、连麦观众B输入自己的推流streamId和userId";
+"MLVB-API-Example.LiveLink.descripView" =
+"连麦互动场景实现步骤：
+1、主播A
+1.1 主播A开始推流
+1.2 主播A的观众拉主播A的流
+1.3 主播A的连麦观众B拉主播A的流
+
+2、连麦观众B
+2.1、连麦观众B输入自己的推流streamId和userId
+2.2、连麦观众B开始停止快直播拉流
+2.3、连麦观众B开始RTC拉流
+2.4、连麦观众B开始推流
+
+3、主播A连麦
+3.1、主播A与连麦观众B混流到主播A";
+"MLVB-API-Example.LiveLink.rtcPush" = "RTC推流";
+"MLVB-API-Example.LiveLink.lebPlay" = "快直播拉流";
+"MLVB-API-Example.LiveLink.acceptLink" = "接受连麦";
+"MLVB-API-Example.LiveLink.stopLink" = "停止连麦";
+"MLVB-API-Example.LiveLink.startLink" = "开始连麦";
+
+"MLVB-API-Example.LivePk.title" = "MLVB PK互动";
+"MLVB-API-Example.LivePk.streamIdInput" = "请输入streamId";
+"MLVB-API-Example.LivePk.userIdInput" = "请输入userId";
+"MLVB-API-Example.LivePk.chooseRole" = "请选择角色";
+"MLVB-API-Example.LivePk.anchor" = "主播";
+"MLVB-API-Example.LivePk.audience" = "观众";
+"MLVB-API-Example.LivePk.descripView" =
+"连麦PK场景实现步骤：
+1、主播A
+1.1 主播A开始推流
+1.2 主播A的观众拉主播A的流
+
+2、主播B
+2.1 主播B开始推流
+2.2 主播B的观众拉主播B的流
+
+3、主播A连麦主播B
+3.1、主播A拉主播B的流
+3.2、主播A与主播B混流到主播A
+3.3、主播B拉主播A的流
+3.4、主播B与主播A混流到主播B";
+"MLVB-API-Example.LivePk.rtcPush" = "RTC推流";
+"MLVB-API-Example.LivePk.lebPlay" = "快直播拉流";
+"MLVB-API-Example.LivePk.startPK" = "开始PK";
+"MLVB-API-Example.LivePk.stopPK" = "停止PK";
+
+
+"MLVB-API-Example.CustomVideoCapture.streamIdInput" = "推流streamId";
+"MLVB-API-Example.CustomVideoCapture.startPush" = "开始推流";
+"MLVB-API-Example.CustomVideoCapture.stopPush" = "停止推流";
+
+"MLVB-API-Example.ThirdBeauty.streamIdInput" = "推流streamId";
+"MLVB-API-Example.ThirdBeauty.beautyLevel" = "设置磨皮级别";
+"MLVB-API-Example.ThirdBeauty.startPush" = "开始推流";
+"MLVB-API-Example.ThirdBeauty.stopPush" = "停止推流";
+
+
+"MLVB-API-Example.RTCPushAndPlay.title" = "RTC连麦+超低延时拉流";
+"MLVB-API-Example.RTCPushAndPlay.streamIdInput" = "请输入streamId";
+"MLVB-API-Example.RTCPushAndPlay.userIdInput" = "请输入userId";
+"MLVB-API-Example.RTCPushAndPlay.chooseRole" = "请选择角色";
+"MLVB-API-Example.RTCPushAndPlay.anchor" = "主播";
+"MLVB-API-Example.RTCPushAndPlay.audience" = "观众";
+"MLVB-API-Example.RTCPushAndPlay.descripView" =
+"RTC连麦+超低延时拉流：
+1、主播A
+1.1 主播A开始推流
+1.2 主播A的观众拉主播A的流
+
+2、主播B
+2.1 主播B开始推流
+2.2 主播B的观众拉主播B的流
+
+3、主播A连麦主播B
+3.1、主播A拉主播B的流
+3.2、主播B拉主播A的流
+
+4、主播连麦后的观众端
+4.1、主播A的观众拉主播B的流
+4.2、主播B的观众拉主播A的流";
+"MLVB-API-Example.RTCPushAndPlay.rtcPush" = "RTC推流";
+"MLVB-API-Example.RTCPushAndPlay.rtcPlay" = "RTC拉流";
+"MLVB-API-Example.RTCPushAndPlay.stopPlay" = "停止拉流";
+"MLVB-API-Example.RTCPushAndPlay.lebPlay" = "快直播拉流";
+"MLVB-API-Example.RTCPushAndPlay.acceptLink" = "接受连麦";
+"MLVB-API-Example.RTCPushAndPlay.stopLink" = "停止连麦";
+"MLVB-API-Example.RTCPushAndPlay.startLink" = "开始连麦";
+
+

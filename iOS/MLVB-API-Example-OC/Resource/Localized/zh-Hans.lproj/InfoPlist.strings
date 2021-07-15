@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  MLVB-API-Example-OC
+
+  Created by adams on 2021/4/26.
+  
+*/
+
+"CFBundleDisplayName" = "MLVB-API-Example";
+"NSCameraUsageDescription" = "MLVB-API-Example 需要访问你的相机权限，开启后录制的视频才会有画面";
+"NSMicrophoneUsageDescription" = "MLVB-API-Example 需要访问你的麦克风权限，开启后录制的视频才会有声音";
+"NSPhotoLibraryAddUsageDescription" = "MLVB-API-Example 需要访问你的相册权限，开启后才能保存编辑的文件";
+"NSPhotoLibraryUsageDescription" = "MLVB-API-Example 需要访问你的相册权限，开启后才能编辑视频文件";

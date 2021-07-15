@@ -1,0 +1,124 @@
+/*
+  Localized.strings
+  TRTCSimpleDemo-OC
+
+  Created by adams on 2021/4/14.
+  
+*/
+
+"MLVB-API-Example.Home.Title" = "Tencent Cloud MLVB API Example";
+
+"MLVB-API-Example.Home.BasicFunctions" = "Basic Features";
+"MLVB-API-Example.Home.LivePushCamera" = "Publishing from Camera";
+"MLVB-API-Example.Home.LivePushScreen" = "Publishing from Screen";
+"MLVB-API-Example.Home.LivePlay" = "Playback";
+"MLVB-API-Example.Home.LiveLink" = "Co-anchoring";
+"MLVB-API-Example.Home.LivePK" = "Competition";
+
+"MLVB-API-Example.Home.AdvancedFeatures" = "Advanced Features";
+"MLVB-API-Example.Home.CustomCamera" = "Custom Video Capturing";
+"MLVB-API-Example.Home.ThirdBeauty" = "Third-Party Beauty Filters";
+"MLVB-API-Example.Home.RTCPushAndPlay" = "RTC Co-anchoring + Ultra-low-latency Playback";
+
+"MLVB-API-Example.LivePushCamera.title" = "MLVB Publishing (Camera)";
+"MLVB-API-Example.LivePushCamera.streamIdInput" = "Stream ID";
+"MLVB-API-Example.LivePushCamera.audioQualityInput" = "Audio Quality";
+"MLVB-API-Example.LivePushCamera.audioDefault" = "Default";
+"MLVB-API-Example.LivePushCamera.audioSpeech" = "Speech";
+"MLVB-API-Example.LivePushCamera.audioMusic" = "Music";
+"MLVB-API-Example.LivePushCamera.standPush" = "LVB Playback";
+"MLVB-API-Example.LivePushCamera.rtcPush" = "RTC Publishing (Recommended)";
+"MLVB-API-Example.LivePushCamera.descripView" = "Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888.";
+"MLVB-API-Example.LivePushCamera.audioSetting" = "Audio Settings";
+"MLVB-API-Example.LivePushCamera.videoSetting" = "Video Settings";
+"MLVB-API-Example.LivePushCamera.closeMic" = "Mic Off";
+"MLVB-API-Example.LivePushCamera.openMic" = "Mic On";
+"MLVB-API-Example.LivePushCamera.resolution" = "Resolution";
+"MLVB-API-Example.LivePushCamera.rotation" = "Local Preview Rotation";
+"MLVB-API-Example.LivePushCamera.mirror" = "Local Preview Mirror";
+"MLVB-API-Example.LivePushCamera.mirrorFront" = "Front Camera On";
+"MLVB-API-Example.LivePushCamera.mirrorAll" = "Front & Rear Cameras On";
+"MLVB-API-Example.LivePushCamera.mirrorNO" = "Front & Rear Cameras Off";
+
+"MLVB-API-Example.LivePushScreen.title" = "MLVB Publishing (Screen)";
+"MLVB-API-Example.LivePushScreen.streamIdInput" = "Stream ID";
+"MLVB-API-Example.LivePushScreen.audioQualityInput" = "Audio Quality";
+"MLVB-API-Example.LivePushScreen.audioDefault" = "Default";
+"MLVB-API-Example.LivePushScreen.audioSpeech" = "Speech";
+"MLVB-API-Example.LivePushScreen.audioMusic" = "Music";
+"MLVB-API-Example.LivePushScreen.standPush" = "LVB Playback";
+"MLVB-API-Example.LivePushScreen.rtcPush" = "RTC Publishing (Recommended)";
+"MLVB-API-Example.LivePushScreen.descripView" = "Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888.";
+"MLVB-API-Example.LivePushScreen.start" = "Publish from Screen";
+"MLVB-API-Example.LivePushScreen.stop" = "Stop";
+
+"MLVB-API-Example.LivePlay.title" = "MLVB Playback";
+"MLVB-API-Example.LivePlay.streamIdInput" = "Stream ID";
+"MLVB-API-Example.LivePlay.standPlay" = "LVB Playback";
+"MLVB-API-Example.LivePlay.rtcPlay" = "RTC Playback";
+"MLVB-API-Example.LivePlay.lebPlay" = "LEB Playback (Recommended)";
+"MLVB-API-Example.LivePlay.descripView" =
+"LEB is an ultra-low-latency version of LVB. It delivers excellent instant streaming performance and can handle ultra-high concurrency.\n\nTencent Cloud’s proprietary RTC protocol features low latency and strong adaptability to poor network conditions, and can be used worldwide. It is suitable for application scenarios such as e-commerce streaming and sports streaming. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888.\n\nLVB playback supports multiple protocols including FLV, RTMP, and HLS. It is a mature playback scheme and can handle
+ high concurrency, but its latency is high.
+";
+"MLVB-API-Example.LivePlay.descripRecommend" = "LEB playback is recommended.";
+"MLVB-API-Example.LivePlay.mute" = "Mute";
+"MLVB-API-Example.LivePlay.unmute" = "Unmute";
+
+
+"MLVB-API-Example.LiveLink.title" = "MLVB Co-anchoring";
+"MLVB-API-Example.LiveLink.streamIdInput" = "Stream ID";
+"MLVB-API-Example.LiveLink.userIdInput" = "User ID";
+"MLVB-API-Example.LiveLink.chooseRole" = "Role";
+"MLVB-API-Example.LiveLink.anchor" = "Anchor";
+"MLVB-API-Example.LiveLink.audience" = "Audience";
+"MLVB-API-Example.LiveLink.descripViewRed" = "2.1 The co-anchoring user B input userId and streamId.";
+"MLVB-API-Example.LiveLink.descripView" =
+"Co-anchoring: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n1.3 The co-anchoring user B plays anchor A’s streams.\n\n2. Co-anchoring user B\n2.1 The co-anchoring user B input userId and streamId.\n2.2 The co-anchoring user B stops playing webrtc streams.\n2.3 The co-anchoring user B playing rtc streams.\n2.4 The co-anchoring user B starts publishing streams.\n\n3. Co-anchoring\n3.1 User B’s streams are mixed into anchor A’s.";
+"MLVB-API-Example.LiveLink.rtcPush" = "RTC Publishing";
+"MLVB-API-Example.LiveLink.lebPlay" = "LEB Playback";
+"MLVB-API-Example.LiveLink.acceptLink" = "Co-anchor";
+"MLVB-API-Example.LiveLink.stopLink" = "Stop";
+"MLVB-API-Example.LiveLink.startLink" = "Co-anchor";
+
+"MLVB-API-Example.LivePk.title" = "Competition";
+"MLVB-API-Example.LivePk.streamIdInput" = "Stream ID";
+"MLVB-API-Example.LivePk.userIdInput" = "User ID";
+"MLVB-API-Example.LivePk.chooseRole" = "Role";
+"MLVB-API-Example.LivePk.anchor" = "Anchor";
+"MLVB-API-Example.LivePk.audience" = "Audience";
+"MLVB-API-Example.LivePk.descripView" =
+"Competition: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B’s streams are mixed into anchor A’s.\n3.3 Anchor B plays anchor A’s streams.\n3.4 Anchor A’s streams are mixed into anchor B’s.";
+"MLVB-API-Example.LivePk.rtcPush" = "RTC Publishing";
+"MLVB-API-Example.LivePk.lebPlay" = "LEB Playback";
+"MLVB-API-Example.LivePk.startPK" = "Compete";
+"MLVB-API-Example.LivePk.stopPK" = "End";
+
+
+"MLVB-API-Example.CustomVideoCapture.streamIdInput" = "StreamId";
+"MLVB-API-Example.CustomVideoCapture.startPush" = "Publish";
+"MLVB-API-Example.CustomVideoCapture.stopPush" = "Stop";
+
+"MLVB-API-Example.ThirdBeauty.streamIdInput" = "StreamId";
+"MLVB-API-Example.ThirdBeauty.beautyLevel" = "Skin Smoothing";
+"MLVB-API-Example.ThirdBeauty.startPush" = "Publish";
+"MLVB-API-Example.ThirdBeauty.stopPush" = "Stop";
+
+
+"MLVB-API-Example.RTCPushAndPlay.title" = "RTC Co-anchoring + Ultra-low-latency Playback";
+"MLVB-API-Example.RTCPushAndPlay.streamIdInput" = "Stream ID";
+"MLVB-API-Example.RTCPushAndPlay.userIdInput" = "User ID";
+"MLVB-API-Example.RTCPushAndPlay.chooseRole" = "Role";
+"MLVB-API-Example.RTCPushAndPlay.anchor" = "Anchor";
+"MLVB-API-Example.RTCPushAndPlay.audience" = "Audience";
+"MLVB-API-Example.RTCPushAndPlay.descripView" =
+"RTC co-anchoring + ultra-low-latency playback: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B plays anchor A’s streams.\n\n4. Audience\n4.1 Anchor A’s audience play anchor B’s streams.\n4.2 Anchor B’s audience play anchor A’s streams.";
+"MLVB-API-Example.RTCPushAndPlay.rtcPush" = "RTC Publishing";
+"MLVB-API-Example.RTCPushAndPlay.rtcPlay" = "RTC Playback";
+"MLVB-API-Example.RTCPushAndPlay.stopPlay" = "Stop";
+"MLVB-API-Example.RTCPushAndPlay.lebPlay" = "LEB Playback";
+"MLVB-API-Example.RTCPushAndPlay.acceptLink" = "Co-anchor";
+"MLVB-API-Example.RTCPushAndPlay.stopLink" = "Stop";
+"MLVB-API-Example.RTCPushAndPlay.startLink" = "Co-anchor";
+
+

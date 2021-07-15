@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LivePushScreenEnterViewController">
+            <connections>
+                <outlet property="audioQualityLabel" destination="oI4-r4-5JG" id="KgT-9M-EKG"/>
+                <outlet property="defaultAudioButton" destination="UyZ-bT-tkw" id="5OC-Jo-07A"/>
+                <outlet property="descriptionTextView" destination="pOs-tw-TR3" id="5wh-J5-LTM"/>
+                <outlet property="musicAudioButton" destination="tMA-YI-TNx" id="z2a-o7-l4Z"/>
+                <outlet property="rtcPushButton" destination="raM-Ov-CR6" id="Z38-kH-ufL"/>
+                <outlet property="speechAudioButton" destination="gHj-54-Ym1" id="6xY-EE-78Q"/>
+                <outlet property="standLivePushButton" destination="Lmx-yP-K17" id="bap-qw-w8F"/>
+                <outlet property="streamIdLabel" destination="JRv-dI-N1W" id="Ps8-G3-ORV"/>
+                <outlet property="streamIdTextField" destination="cfj-LZ-2jR" id="gmw-l6-sCl"/>
+                <outlet property="view" destination="Eyd-yk-9Wy" id="k0s-Ic-cVi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Eyd-yk-9Wy">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="streamId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRv-dI-N1W">
+                    <rect key="frame" x="20" y="84" width="63.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfj-LZ-2jR">
+                    <rect key="frame" x="20" y="113.5" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="LIY-eE-IPq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="audioQuality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-r4-5JG">
+                    <rect key="frame" x="20" y="173.5" width="91" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyZ-bT-tkw">
+                    <rect key="frame" x="20" y="203" width="70" height="30"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="2gP-kU-jxn"/>
+                        <constraint firstAttribute="height" constant="30" id="g7v-JW-m6A"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="default"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onDefaultAudioButtonClick:" destination="-1" eventType="touchUpInside" id="KHG-vC-OW2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHj-54-Ym1">
+                    <rect key="frame" x="120" y="203" width="70" height="30"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="dEI-dR-Ejf"/>
+                        <constraint firstAttribute="height" constant="30" id="vWZ-xI-saV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onSpeechAudioButtonClick:" destination="-1" eventType="touchUpInside" id="KUT-M3-aDK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMA-YI-TNx">
+                    <rect key="frame" x="220" y="203" width="70" height="30"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="LMk-yL-Gue"/>
+                        <constraint firstAttribute="height" constant="30" id="W5t-N0-vxl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onMusicAudioButtonClick:" destination="-1" eventType="touchUpInside" id="fpi-CM-iPe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmx-yP-K17">
+                    <rect key="frame" x="20" y="557" width="374" height="40"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="cI6-z7-FDR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <state key="normal" title="stand live pusher">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onStandPushButtonClick:" destination="-1" eventType="touchUpInside" id="dE5-Q5-AUO"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="descritption" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="pOs-tw-TR3">
+                    <rect key="frame" x="20" y="647" width="374" height="120"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="dQH-Oz-Ms1"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raM-Ov-CR6">
+                    <rect key="frame" x="20" y="772" width="374" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="E5X-et-Oru"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="RTC live pusher">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onRtcPushButtonClick:" destination="-1" eventType="touchUpInside" id="7Pl-Be-MYT"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="y3W-ft-HDb"/>
+            <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="oI4-r4-5JG" firstAttribute="top" secondItem="cfj-LZ-2jR" secondAttribute="bottom" constant="20" id="6Bn-Zo-Nkr"/>
+                <constraint firstItem="JRv-dI-N1W" firstAttribute="leading" secondItem="y3W-ft-HDb" secondAttribute="leading" constant="20" id="6ld-Ic-fXL"/>
+                <constraint firstItem="UyZ-bT-tkw" firstAttribute="top" secondItem="oI4-r4-5JG" secondAttribute="bottom" constant="10" id="7TE-aw-MG6"/>
+                <constraint firstItem="y3W-ft-HDb" firstAttribute="trailing" secondItem="cfj-LZ-2jR" secondAttribute="trailing" constant="20" id="7yQ-O4-mZh"/>
+                <constraint firstItem="gHj-54-Ym1" firstAttribute="top" secondItem="UyZ-bT-tkw" secondAttribute="top" id="LFe-vW-rUB"/>
+                <constraint firstItem="Lmx-yP-K17" firstAttribute="leading" secondItem="pOs-tw-TR3" secondAttribute="leading" id="QjD-TV-RwR"/>
+                <constraint firstItem="y3W-ft-HDb" firstAttribute="trailing" secondItem="raM-Ov-CR6" secondAttribute="trailing" constant="20" id="Tea-nC-kw5"/>
+                <constraint firstItem="raM-Ov-CR6" firstAttribute="top" secondItem="pOs-tw-TR3" secondAttribute="bottom" constant="5" id="WSr-7i-uWd"/>
+                <constraint firstItem="y3W-ft-HDb" firstAttribute="bottom" secondItem="raM-Ov-CR6" secondAttribute="bottom" constant="40" id="XGk-JY-Pfq"/>
+                <constraint firstItem="JRv-dI-N1W" firstAttribute="top" secondItem="y3W-ft-HDb" secondAttribute="top" constant="40" id="XNa-z7-Mt0"/>
+                <constraint firstItem="pOs-tw-TR3" firstAttribute="trailing" secondItem="raM-Ov-CR6" secondAttribute="trailing" id="bHF-MG-znO"/>
+                <constraint firstItem="oI4-r4-5JG" firstAttribute="leading" secondItem="cfj-LZ-2jR" secondAttribute="leading" id="eM5-44-1KF"/>
+                <constraint firstItem="tMA-YI-TNx" firstAttribute="leading" secondItem="gHj-54-Ym1" secondAttribute="trailing" constant="30" id="ech-CT-000"/>
+                <constraint firstItem="pOs-tw-TR3" firstAttribute="top" secondItem="Lmx-yP-K17" secondAttribute="bottom" constant="50" id="fGc-hB-RnQ"/>
+                <constraint firstItem="pOs-tw-TR3" firstAttribute="leading" secondItem="raM-Ov-CR6" secondAttribute="leading" id="h3C-Nj-jev"/>
+                <constraint firstItem="raM-Ov-CR6" firstAttribute="leading" secondItem="y3W-ft-HDb" secondAttribute="leading" constant="20" id="h7T-sD-plr"/>
+                <constraint firstItem="cfj-LZ-2jR" firstAttribute="leading" secondItem="JRv-dI-N1W" secondAttribute="leading" id="iqm-8f-SqL"/>
+                <constraint firstItem="gHj-54-Ym1" firstAttribute="leading" secondItem="UyZ-bT-tkw" secondAttribute="trailing" constant="30" id="kG1-gv-TB3"/>
+                <constraint firstItem="tMA-YI-TNx" firstAttribute="top" secondItem="gHj-54-Ym1" secondAttribute="top" id="sEM-6M-Tds"/>
+                <constraint firstItem="cfj-LZ-2jR" firstAttribute="top" secondItem="JRv-dI-N1W" secondAttribute="bottom" constant="10" id="xKv-in-RhD"/>
+                <constraint firstItem="UyZ-bT-tkw" firstAttribute="leading" secondItem="oI4-r4-5JG" secondAttribute="leading" id="xiQ-qU-dDx"/>
+                <constraint firstItem="Lmx-yP-K17" firstAttribute="trailing" secondItem="pOs-tw-TR3" secondAttribute="trailing" id="ykB-Ml-pTb"/>
+            </constraints>
+            <point key="canvasLocation" x="-236.23188405797103" y="72.991071428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

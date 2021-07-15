@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LivePlayEnterViewController">
+            <connections>
+                <outlet property="descriptionTextView" destination="AqX-Hx-lj2" id="rhb-Wv-lRx"/>
+                <outlet property="lebPlayButton" destination="R1K-9h-7Cl" id="YuC-pO-JW3"/>
+                <outlet property="rtcPlayButton" destination="TVQ-1z-luB" id="QcJ-TF-MJg"/>
+                <outlet property="standPlayButton" destination="sei-9e-Mty" id="gfO-pN-R5Y"/>
+                <outlet property="streamIdLabel" destination="083-mN-hfI" id="7te-ed-S9g"/>
+                <outlet property="streamIdTextField" destination="d2z-S8-AXI" id="M9U-RQ-3dH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="Tpb-zS-dfj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="streamId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="083-mN-hfI">
+                    <rect key="frame" x="20" y="84" width="63.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2z-S8-AXI">
+                    <rect key="frame" x="20" y="113.5" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="E64-fr-E1h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1K-9h-7Cl">
+                    <rect key="frame" x="20" y="772" width="374" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="zey-uZ-2TF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="LEB Play">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onLebPushButtonClick:" destination="-1" eventType="touchUpInside" id="mO7-1v-zYh"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="descritption" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AqX-Hx-lj2">
+                    <rect key="frame" x="20" y="467" width="374" height="220"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="220" id="vx1-X5-ugO"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NCQ-J2-PiB">
+                    <rect key="frame" x="20" y="707" width="374" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sei-9e-Mty">
+                            <rect key="frame" x="0.0" y="0.0" width="177" height="40"/>
+                            <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="nh5-98-IBG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                            <state key="normal" title="stand play">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onStandPushButtonClick:" destination="-1" eventType="touchUpInside" id="QKq-HI-ASL"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVQ-1z-luB">
+                            <rect key="frame" x="197" y="0.0" width="177" height="40"/>
+                            <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="yDx-ph-ETZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                            <state key="normal" title="rtc play">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onRtcPushButtonClick:" destination="-1" eventType="touchUpInside" id="yyu-qt-3en"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="d2z-S8-AXI" secondAttribute="trailing" constant="20" id="AO2-Zq-S2n"/>
+                <constraint firstItem="d2z-S8-AXI" firstAttribute="top" secondItem="083-mN-hfI" secondAttribute="bottom" constant="10" id="DUj-I5-lRG"/>
+                <constraint firstItem="d2z-S8-AXI" firstAttribute="leading" secondItem="083-mN-hfI" secondAttribute="leading" id="EJi-rv-9gS"/>
+                <constraint firstItem="AqX-Hx-lj2" firstAttribute="trailing" secondItem="R1K-9h-7Cl" secondAttribute="trailing" id="IIY-wg-59N"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="R1K-9h-7Cl" secondAttribute="bottom" constant="40" id="LmW-f3-yBo"/>
+                <constraint firstItem="083-mN-hfI" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="40" id="Zh5-fR-fdr"/>
+                <constraint firstItem="NCQ-J2-PiB" firstAttribute="leading" secondItem="R1K-9h-7Cl" secondAttribute="leading" id="aFg-aq-RdU"/>
+                <constraint firstItem="NCQ-J2-PiB" firstAttribute="trailing" secondItem="R1K-9h-7Cl" secondAttribute="trailing" id="fFA-fV-NEi"/>
+                <constraint firstItem="AqX-Hx-lj2" firstAttribute="leading" secondItem="R1K-9h-7Cl" secondAttribute="leading" id="jK9-Ny-HRO"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="R1K-9h-7Cl" secondAttribute="trailing" constant="20" id="joL-19-c2P"/>
+                <constraint firstItem="083-mN-hfI" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="pTR-Mb-bbX"/>
+                <constraint firstItem="NCQ-J2-PiB" firstAttribute="top" secondItem="AqX-Hx-lj2" secondAttribute="bottom" constant="20" id="wN6-OW-qAa"/>
+                <constraint firstItem="R1K-9h-7Cl" firstAttribute="top" secondItem="NCQ-J2-PiB" secondAttribute="bottom" constant="25" id="wRn-po-ACL"/>
+                <constraint firstItem="R1K-9h-7Cl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="yRx-Ri-DCF"/>
+            </constraints>
+            <point key="canvasLocation" x="-236.23188405797103" y="72.991071428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

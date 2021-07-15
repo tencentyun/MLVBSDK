@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LivePushCameraEnterViewController">
+            <connections>
+                <outlet property="audioQualityLabel" destination="jrO-HR-7ce" id="JjS-B5-rPu"/>
+                <outlet property="defaultAudioButton" destination="g81-rl-zgi" id="xfc-7u-bqN"/>
+                <outlet property="descriptionTextView" destination="AqX-Hx-lj2" id="Xco-Pf-ArJ"/>
+                <outlet property="musicAudioButton" destination="DUp-hf-wk4" id="XFb-us-gFr"/>
+                <outlet property="rtcPushButton" destination="R1K-9h-7Cl" id="Oaj-Sq-Mdn"/>
+                <outlet property="speechAudioButton" destination="LJ2-r1-hST" id="eq9-gJ-nd9"/>
+                <outlet property="standLivePushButton" destination="sei-9e-Mty" id="0Qn-6M-en0"/>
+                <outlet property="streamIdLabel" destination="083-mN-hfI" id="YEz-hD-IOC"/>
+                <outlet property="streamIdTextField" destination="d2z-S8-AXI" id="R8q-YK-QI5"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="streamId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="083-mN-hfI">
+                    <rect key="frame" x="20" y="84" width="63.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2z-S8-AXI">
+                    <rect key="frame" x="20" y="113.5" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="E64-fr-E1h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="audioQuality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrO-HR-7ce">
+                    <rect key="frame" x="20" y="173.5" width="91" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-rl-zgi">
+                    <rect key="frame" x="20" y="203" width="70" height="30"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="fMJ-xJ-OJa"/>
+                        <constraint firstAttribute="width" constant="70" id="uoP-cW-Z3K"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="default"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onDefaultAudioButtonClick:" destination="-1" eventType="touchUpInside" id="qs6-7g-ef2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ2-r1-hST">
+                    <rect key="frame" x="120" y="203" width="70" height="30"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="NcD-sK-1Mp"/>
+                        <constraint firstAttribute="width" constant="70" id="ZNx-OZ-dHQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onSpeechAudioButtonClick:" destination="-1" eventType="touchUpInside" id="54b-FV-EzG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUp-hf-wk4">
+                    <rect key="frame" x="220" y="203" width="70" height="30"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="U9R-WY-Q5j"/>
+                        <constraint firstAttribute="width" constant="70" id="p2S-Y6-dQI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.1176470588" green="0.1176470588" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onMusicAudioButtonClick:" destination="-1" eventType="touchUpInside" id="Xvg-6D-swC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sei-9e-Mty">
+                    <rect key="frame" x="20" y="557" width="374" height="40"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="nh5-98-IBG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <state key="normal" title="stand live pusher">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onStandPushButtonClick:" destination="-1" eventType="touchUpInside" id="7Qr-i4-QrY"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="descritption" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="AqX-Hx-lj2">
+                    <rect key="frame" x="20" y="647" width="374" height="120"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="vx1-X5-ugO"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1K-9h-7Cl">
+                    <rect key="frame" x="20" y="772" width="374" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="zey-uZ-2TF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="RTC live pusher">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onRtcPushButtonClick:" destination="-1" eventType="touchUpInside" id="ydF-6P-8CK"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="DUp-hf-wk4" firstAttribute="leading" secondItem="LJ2-r1-hST" secondAttribute="trailing" constant="30" id="2Ux-an-t7J"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="d2z-S8-AXI" secondAttribute="trailing" constant="20" id="AO2-Zq-S2n"/>
+                <constraint firstItem="d2z-S8-AXI" firstAttribute="top" secondItem="083-mN-hfI" secondAttribute="bottom" constant="10" id="DUj-I5-lRG"/>
+                <constraint firstItem="d2z-S8-AXI" firstAttribute="leading" secondItem="083-mN-hfI" secondAttribute="leading" id="EJi-rv-9gS"/>
+                <constraint firstItem="AqX-Hx-lj2" firstAttribute="trailing" secondItem="R1K-9h-7Cl" secondAttribute="trailing" id="IIY-wg-59N"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="R1K-9h-7Cl" secondAttribute="bottom" constant="40" id="LmW-f3-yBo"/>
+                <constraint firstItem="jrO-HR-7ce" firstAttribute="top" secondItem="d2z-S8-AXI" secondAttribute="bottom" constant="20" id="Q3v-Ky-81I"/>
+                <constraint firstItem="LJ2-r1-hST" firstAttribute="leading" secondItem="g81-rl-zgi" secondAttribute="trailing" constant="30" id="Sil-Zo-0sw"/>
+                <constraint firstItem="AqX-Hx-lj2" firstAttribute="top" secondItem="sei-9e-Mty" secondAttribute="bottom" constant="50" id="Umq-nt-sfN"/>
+                <constraint firstItem="083-mN-hfI" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="40" id="Zh5-fR-fdr"/>
+                <constraint firstItem="g81-rl-zgi" firstAttribute="leading" secondItem="jrO-HR-7ce" secondAttribute="leading" id="b62-Fr-ffN"/>
+                <constraint firstItem="sei-9e-Mty" firstAttribute="trailing" secondItem="AqX-Hx-lj2" secondAttribute="trailing" id="bfZ-VI-zxg"/>
+                <constraint firstItem="R1K-9h-7Cl" firstAttribute="top" secondItem="AqX-Hx-lj2" secondAttribute="bottom" constant="5" id="c6x-43-WFq"/>
+                <constraint firstItem="sei-9e-Mty" firstAttribute="leading" secondItem="AqX-Hx-lj2" secondAttribute="leading" id="cfU-aB-2uE"/>
+                <constraint firstItem="AqX-Hx-lj2" firstAttribute="leading" secondItem="R1K-9h-7Cl" secondAttribute="leading" id="jK9-Ny-HRO"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="R1K-9h-7Cl" secondAttribute="trailing" constant="20" id="joL-19-c2P"/>
+                <constraint firstItem="DUp-hf-wk4" firstAttribute="top" secondItem="LJ2-r1-hST" secondAttribute="top" id="m0o-u5-R0g"/>
+                <constraint firstItem="083-mN-hfI" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="pTR-Mb-bbX"/>
+                <constraint firstItem="g81-rl-zgi" firstAttribute="top" secondItem="jrO-HR-7ce" secondAttribute="bottom" constant="10" id="u1k-F8-zoF"/>
+                <constraint firstItem="jrO-HR-7ce" firstAttribute="leading" secondItem="d2z-S8-AXI" secondAttribute="leading" id="usW-Ud-feY"/>
+                <constraint firstItem="LJ2-r1-hST" firstAttribute="top" secondItem="g81-rl-zgi" secondAttribute="top" id="yBS-KA-4ET"/>
+                <constraint firstItem="R1K-9h-7Cl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="yRx-Ri-DCF"/>
+            </constraints>
+            <point key="canvasLocation" x="-236.23188405797103" y="72.991071428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
