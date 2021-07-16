@@ -352,14 +352,14 @@
 		47E0727A2636A6C80027D05E /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
-				47E0729D2636A6C80027D05E /* CustomCamera */,
+				47E0729D2636A6C80027D05E /* CustomVideoCapture */,
 				47E072AD2636A6C80027D05E /* ThirdBeauty */,
 				88FC7846268C674800768C53 /* RTCPushAndPlay */,
 			);
 			path = Advanced;
 			sourceTree = "<group>";
 		};
-		47E0729D2636A6C80027D05E /* CustomCamera */ = {
+		47E0729D2636A6C80027D05E /* CustomVideoCapture */ = {
 			isa = PBXGroup;
 			children = (
 				47E072A12636A6C80027D05E /* Helper */,
@@ -367,7 +367,7 @@
 				88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */,
 				88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */,
 			);
-			path = CustomCamera;
+			path = CustomVideoCapture;
 			sourceTree = "<group>";
 		};
 		47E072A12636A6C80027D05E /* Helper */ = {
