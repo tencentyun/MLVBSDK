@@ -23,7 +23,6 @@ import com.tencent.mlvb.customvideocapture.helper.CustomCameraCapture;
 import com.tencent.mlvb.customvideocapture.helper.CustomFrameRender;
 import com.tencent.mlvb.debug.AddressUtils;
 import com.tencent.rtmp.ui.TXCloudVideoView;
-import com.tencent.trtc.TRTCCloud;
 
 import java.util.Random;
 
@@ -198,7 +197,6 @@ public class CustomVideoCaptureActivity extends MLVBBaseActivity implements View
                 mLivePusher.stopPush();
             }
             mLivePusher = null;
-            TRTCCloud.destroySharedInstance();
         }
         mButtonPush.setText(R.string.customvideocapture_start_push);
     }
