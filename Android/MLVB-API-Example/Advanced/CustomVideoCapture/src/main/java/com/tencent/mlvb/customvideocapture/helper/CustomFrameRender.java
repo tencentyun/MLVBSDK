@@ -23,7 +23,6 @@ import com.tencent.mlvb.customvideocapture.helper.render.opengl.GPUImageFilter;
 import com.tencent.mlvb.customvideocapture.helper.render.opengl.GpuImageI420Filter;
 import com.tencent.mlvb.customvideocapture.helper.render.opengl.OpenGlUtils;
 import com.tencent.mlvb.customvideocapture.helper.render.opengl.Rotation;
-import com.tencent.trtc.TRTCCloudDef;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -35,29 +34,6 @@ import java.util.concurrent.CountDownLatch;
  * 主要包含：
  * - 本地预览视频帧/远端用户视频帧的自定义渲染；
  * - 本地音频/远端音频混音后的播放；
- *
- * ## 视频帧渲染流程
- * 视频帧渲染采用了 texture，也就是 openGL 纹理的方案，这是 android 系统下性能最好的一种视频处理方案，具体流程如下：
- *
- *  1. 构造函数：会创建一个{@link HandlerThread}线程，所有的OpenGL操作均在该线程进行。
- *
- *  2. start()：传入一个系统TextureView（这个 View 需要加到 activity 的控件树上），用来显示渲染的结果。
- *
- *  3. onSurfaceTextureAvailable(): TextureView 的 SurfaceTexture 已经准备好，将SurfaceTexture与
- *     {@link TRTCCloudDef.TRTCVideoFrame#texture}中的EGLContext（可为null）作为参数，
- *     生成一个新的EGLContext，SurfaceTexture也会作为此EGLContext的渲染目标。
- *
- *  4. onRenderVideoFrame(): SDK 视频帧回调，在回调中可以拿到视频纹理ID和对应的 EGLContext。
- *     用这个 EGLContext 作为参数创建出来的新的 EGLContext，这样新的 EGLContext 就能访问SDK返回的纹理。
- *     然后会向HandlerThread发送一个渲染消息，用来渲染得到的视频纹理。
- *
- *  5. renderInternal(): HandlerThread线程具体的渲染流程，将视频纹理渲染到 TextureView。
- *
- *  ## 音频帧播放流程
- *  音频帧的播放采用了AudioTrack的方式，整体流程比较简单：
- *  1. onMixedAllAudioFrame(): SDK 所有音频数据混合后的数据回调（包括采集音频数据和所有播放音频数据）
- *     在这个回调中，可以拿到音频帧的data信息，使用AudioTrack播放即可；
- *
  */
 public class CustomFrameRender extends V2TXLivePusherObserver implements Handler.Callback {
     public static final String TAG = "CustomFrameRender";
