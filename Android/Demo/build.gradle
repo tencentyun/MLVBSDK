@@ -51,9 +51,9 @@ ext {
     minSdkVersion = 19
     targetSdkVersion = 26
     if (!liteavSourcePath.isEmpty()) {
-    liteavSdk="com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release"
+    liteavSdk="com.tencent.liteav:LiteAVSDK_Smart:latest.release"
     } else {
-    liteavSdk="com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release"
+    liteavSdk="com.tencent.liteav:LiteAVSDK_Smart:latest.release"
     }
     imSdk = 'com.tencent.imsdk:imsdk:4.9.1'
     versionCode = 1
