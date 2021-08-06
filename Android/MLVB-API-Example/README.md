@@ -12,7 +12,7 @@ _中文 | [English](README.en.md)_
   - [录屏推流](./Basic/LivePushScreen)
   - [直播拉流](./Basic/LivePlay)
   - [连麦互动](./Basic/LiveLink)
-  - [连麦PK](./Basic/LivePK)
+  - [连麦PK](./Basic/LinkPK)
 - 进阶功能
   - [动态切换渲染组件](./Advanced/SwitchRenderView)
   - [自定义视频采集](./Advanced/CustomVideoCapture)

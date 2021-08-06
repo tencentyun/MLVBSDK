@@ -1,6 +1,6 @@
 package com.nama;
 
-public class authpackbak {
+public class authpack {
     public static void main(String[] args) {
         byte[] a = A();
         for (byte b : a) {

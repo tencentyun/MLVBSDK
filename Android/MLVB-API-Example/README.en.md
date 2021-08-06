@@ -12,7 +12,7 @@ This demo covers the following features (click to view the details of a feature)
   - [Publishing from Screen](./Basic/LivePushScreen)
   - [Playback](./Basic/LivePlay)
   - [Co-anchoring](./Basic/LiveLink)
-  - [Competition](./Basic/LivePK)
+  - [Competition](./Basic/LinkPK)
 - Advanced Features
   - [Dynamically Switching Rendering Controls](./Advanced/SwitchRenderView)
   - [Custom Video Capturing](./Advanced/CustomVideoCapture)

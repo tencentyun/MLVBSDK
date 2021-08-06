@@ -34,6 +34,7 @@ import java.util.concurrent.CountDownLatch;
  * 主要包含：
  * - 本地预览视频帧/远端用户视频帧的自定义渲染；
  * - 本地音频/远端音频混音后的播放；
+ *
  */
 public class CustomFrameRender extends V2TXLivePusherObserver implements Handler.Callback {
     public static final String TAG = "CustomFrameRender";

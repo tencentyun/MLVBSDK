@@ -36,7 +36,7 @@ ext {
     minSdkVersion = 16
     targetSdkVersion = 26
     supportSdkVersion = "29.0.3"
-    liteavSdk = "com.tencent.liteav:LiteAVSDK_Professional:latest.release"
+    liteavSdk="com.tencent.liteav:LiteAVSDK_Professional:latest.release"
     versionCode = 1
     versionName = "v1.0"
     ndkAbi = 'armeabi'//,'armeabi-v7a', 'arm64-v8a'
