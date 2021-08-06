@@ -11,14 +11,13 @@
 | Android | [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](https://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
-### Version 8.9 @ 2021.07.15
-- iOS：修复移动直播 V2 关闭视频上行，再开启垫片推流，远端看不到背景图的问题；
-- iOS：修复短视频新增贴纸时，切换到静态贴纸后，返回再进入，静态贴纸显示动态贴纸的内容的问题；
-- iOS：修复短视频移动位置后，再次点击已选择视频或图片会取消原位置上的文件的问题；
-- Android：修复短视频在小米机型上使用图片转场功能出现图片被旋转现象的问题；
-- Android：修复移动直播自定义音视频出现音画不同步的问题；
-- Android：修复点播播放器断网后的回调事件逻辑错误的问题；
-- iOS&Android：优化播放音质，解决偶现爆音的问题；
+### Version 9.0 @ 2021.08.06
+- Android：修复快直播切换画质导致的异常问题；
+- Android：新增移动直播录屏、麦克风、听筒被占用时异常事件的抛出；
+- iOS：新增快直播onStatisticsUpdate回调；
+- Android & iOS：V2新增 SEI 消息发送和接收功能；
+- iOS：修复在开启smoothSwitchBitrate后，反复切换清晰度导致的Crash问题；
+- iOS：优化点播播放器在网络恢复后播放进度异常的问题；
 
 ## MLVB Demo
 
