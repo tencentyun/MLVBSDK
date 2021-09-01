@@ -19,6 +19,7 @@ public class AddressUtils {
 
     public static final String WEBRTC      = "webrtc://";
     public static final String RTMP        = "rtmp://";
+    public static final String HTTP        = "http://";
     public static final String PUSH_DOMAIN = "PLACEHOLDER";
     public static final String PLAY_DOMAIN = "PLACEHOLDER";
     public static final String KEY         = "PLACEHOLDER";
@@ -58,7 +59,7 @@ public class AddressUtils {
         if(type == 0){
             playUrl = "trtc://cloud.tencent.com/play/" + streamId + "?sdkappid=" + GenerateTestUserSig.SDKAPPID + "&userid=" + userId + "&usersig=" + GenerateTestUserSig.genTestUserSig(userId);
         }else if(type == 1){
-            playUrl = RTMP + PLAY_DOMAIN + File.separator + APP_NAME + File.separator  + streamId;
+            playUrl = HTTP + PLAY_DOMAIN + File.separator + APP_NAME + File.separator  + streamId + ".flv";
         }else if(type == 2){
             playUrl = WEBRTC + PLAY_DOMAIN + File.separator + APP_NAME + File.separator  + streamId;
         }

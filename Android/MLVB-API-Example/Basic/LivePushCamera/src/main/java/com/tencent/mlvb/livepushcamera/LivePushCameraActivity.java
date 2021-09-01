@@ -196,7 +196,9 @@ public class LivePushCameraActivity extends MLVBBaseActivity implements View.OnC
                         mResolutionFlag = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080;
                         mTextResolution.setText("1080P");
                     }
-                    mLivePusher.setVideoQuality(mResolutionFlag, V2TXLiveDef.V2TXLiveVideoResolutionMode.V2TXLiveVideoResolutionModePortrait);
+                    V2TXLiveDef.V2TXLiveVideoEncoderParam param = new V2TXLiveDef.V2TXLiveVideoEncoderParam(mResolutionFlag);
+                    param.videoResolutionMode =  V2TXLiveDef.V2TXLiveVideoResolutionMode.V2TXLiveVideoResolutionModePortrait;
+                    mLivePusher.setVideoQuality(param);
                 }else{
                     Toast.makeText(LivePushCameraActivity.this, getString(R.string.livepushcamera_please_ensure_pushing), Toast.LENGTH_SHORT).show();
                 }
