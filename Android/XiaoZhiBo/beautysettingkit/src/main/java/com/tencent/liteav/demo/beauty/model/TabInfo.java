@@ -8,25 +8,21 @@ import java.util.List;
  */
 public class TabInfo {
 
-    private long tab_id;                            // long, tab id，tab 唯一标识
-
-    private int tab_type;                           // int, tab类型
-    private int tab_item_name_size;                 // int, item文字大小
-    private int tab_item_icon_width;                // int, item icon 宽度
-    private int tab_item_icon_height;               // int, item icon 高度
-    private int tab_item_level_hint_size;           // int, 进度条提示文字大小
-    private int tab_item_level_value_size;          // int, 进度条值文字大小
-
-    private String tab_name;                        // string, tab 名称
-    private String tab_item_name_color_normal;      // string, item 文件常规颜色
-    private String tab_item_name_color_select;      // string, item 文件选中颜色
-    private String tab_item_level_hint_color;       // string, 进度条提示文字颜色
-    private String tab_item_level_value_color;      // string, 进度条值文字颜色
-    private String tab_item_level_progress_drawable;// string, 进度条背景颜色
-    private String tab_item_level_progress_thumb;   // string, 进度条 bar 颜色
-
-    private int tab_item_list_default_selected_index;       // int, 默认选中的item
-
+    private long           tab_id;                            // long, tab id，tab 唯一标识
+    private int            tab_type;                           // int, tab类型
+    private int            tab_item_name_size;                 // int, item文字大小
+    private int            tab_item_icon_width;                // int, item icon 宽度
+    private int            tab_item_icon_height;               // int, item icon 高度
+    private int            tab_item_level_hint_size;           // int, 进度条提示文字大小
+    private int            tab_item_level_value_size;          // int, 进度条值文字大小
+    private String         tab_name;                        // string, tab 名称
+    private String         tab_item_name_color_normal;      // string, item 文件常规颜色
+    private String         tab_item_name_color_select;      // string, item 文件选中颜色
+    private String         tab_item_level_hint_color;       // string, 进度条提示文字颜色
+    private String         tab_item_level_value_color;      // string, 进度条值文字颜色
+    private String         tab_item_level_progress_drawable;// string, 进度条背景颜色
+    private String         tab_item_level_progress_thumb;   // string, 进度条 bar 颜色
+    private int            tab_item_list_default_selected_index;       // int, 默认选中的item
     private List<ItemInfo> tab_item_list;
 
     public long getTabId() {

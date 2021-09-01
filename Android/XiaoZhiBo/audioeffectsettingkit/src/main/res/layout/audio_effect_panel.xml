@@ -39,7 +39,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/audio_bgm_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                 android:text="00:00"
                 android:visibility="gone"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_bgm_end_time"
@@ -151,7 +151,7 @@
                 android:text="/04:00"
                 android:visibility="gone"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
 
             <ImageButton
@@ -165,7 +165,7 @@
                 android:paddingLeft="10dp"
                 android:visibility="gone"
                 android:paddingRight="20dp"
-                android:src="@drawable/audio_effect_setting_bgm_play"/>
+                android:src="@drawable/audio_effect_setting_bgm_play" />
 
         </LinearLayout>
 
@@ -321,7 +321,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/audio_change_type_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -340,7 +340,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/audio_reverb_type_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -5,8 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -32,7 +32,7 @@ import java.util.zip.ZipInputStream;
 
 public class BeautyUtils {
 
-    private static final String TAG = "BeautyUtils";
+    private static final String TAG                 = "BeautyUtils";
     private static final String DEFAULT_BEAUTY_DATA = "default_beauty_data.json";
 
     @SuppressLint("StaticFieldLeak")

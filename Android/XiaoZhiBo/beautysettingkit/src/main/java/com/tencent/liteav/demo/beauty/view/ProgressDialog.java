@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.tencent.liteav.demo.beauty.R;
 
 public class ProgressDialog {
-    private Dialog      mDialog;
-    private TextView    mTextMsg;
+    private Dialog   mDialog;
+    private TextView mTextMsg;
 
     public void createLoadingDialog(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);

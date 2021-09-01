@@ -4,16 +4,16 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 public class ResourceUtils {
 
-    private static final String TYPE_QUOTE_PREFIX   = "@";
-    private static final String TYPE_COLOR_PREFIX   = "#";
+    private static final String TYPE_QUOTE_PREFIX = "@";
+    private static final String TYPE_COLOR_PREFIX = "#";
 
-    private static final String TYPE_STRING         = "string";
-    private static final String TYPE_COLOR          = "color";
-    private static final String TYPE_DRAWABLE       = "drawable";
+    private static final String TYPE_STRING   = "string";
+    private static final String TYPE_COLOR    = "color";
+    private static final String TYPE_DRAWABLE = "drawable";
 
     public static int getDrawableId(String resName) {
         if (resName.startsWith(TYPE_QUOTE_PREFIX)) {

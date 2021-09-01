@@ -8,14 +8,12 @@ import java.util.List;
  */
 public class BeautyInfo {
 
-    private int beauty_tab_name_size;           // int, tab文字大小
-    private int beauty_tab_name_width;          // int, tab 宽度
-    private int beauty_tab_name_height;         // int, tab 高度
-
-    private String beauty_bg;                   // color/drawable, beauty布局的背景色值
-    private String beauty_tab_name_color_normal;// color, tab文字常规颜色
-    private String beauty_tab_name_color_select;// color, tab文字选中颜色
-
+    private int           beauty_tab_name_size;           // int, tab文字大小
+    private int           beauty_tab_name_width;          // int, tab 宽度
+    private int           beauty_tab_name_height;         // int, tab 高度
+    private String        beauty_bg;                   // color/drawable, beauty布局的背景色值
+    private String        beauty_tab_name_color_normal;// color, tab文字常规颜色
+    private String        beauty_tab_name_color_select;// color, tab文字选中颜色
     private List<TabInfo> beauty_tab_list;
 
     public String getBeautyBg() {

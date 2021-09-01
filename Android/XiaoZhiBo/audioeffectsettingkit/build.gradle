@@ -23,9 +23,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportSdkVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportSdkVersion"
-    compile "com.android.support:design:$rootProject.ext.supportSdkVersion"
+    compile 'androidx.appcompat:appcompat:1.0.0'
+    compile 'androidx.recyclerview:recyclerview:1.0.0'
+    compile 'com.google.android.material:material:1.0.0'
     compile 'de.hdodenhof:circleimageview:3.1.0'
     compile rootProject.ext.liteavSdk
 }

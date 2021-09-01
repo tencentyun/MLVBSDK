@@ -3,7 +3,7 @@
 
     <declare-styleable name="BeautyPanelStyle">
         <!-- 美颜面板 -->
-        <attr name="beautyPanelColorPrimary" format="reference"/>
+        <attr name="beautyPanelColorPrimary" format="reference" />
         <attr name="beautyPanelSmoothIcon" format="reference" />
         <attr name="beautyPanelNaturalIcon" format="reference" />
         <attr name="beautyPanelPituIcon" format="reference" />

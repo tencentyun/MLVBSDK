@@ -14,21 +14,17 @@ import java.net.URL;
 
 public class HttpFileHelper implements Runnable {
 
-    private static final int BUFFERED_READER_SIZE   = 8192;
-    private static final int TIMEOUT                = 30000;
+    private static final int BUFFERED_READER_SIZE = 8192;
+    private static final int TIMEOUT              = 30000;
 
-    private Context mContext;
-
+    private Context          mContext;
     private HttpFileListener mListener;
-
-    private String mURL;
-    private String mFolder;
-    private String mFilename;
-
-    private long mContentLength;
-    private long mDownloadingSize;
-
-    private boolean mNeedProgress;
+    private String           mURL;
+    private String           mFolder;
+    private String           mFilename;
+    private long             mContentLength;
+    private long             mDownloadingSize;
+    private boolean          mNeedProgress;
 
     public HttpFileHelper(Context context, String URL, String folder, String filename, HttpFileListener listener, boolean needProgress) {
         mContext = context;

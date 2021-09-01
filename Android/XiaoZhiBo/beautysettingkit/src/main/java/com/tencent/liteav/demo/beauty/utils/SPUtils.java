@@ -2,14 +2,13 @@ package com.tencent.liteav.demo.beauty.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class SPUtils {
 
-    private static final String SP_NAME_DEFAULT = "beauty_default";
-
-    private static SPUtils    sInstance;
-    private SharedPreferences mSharedPreferences;
+    private static final String            SP_NAME_DEFAULT = "beauty_default";
+    private static       SPUtils           sInstance;
+    private              SharedPreferences mSharedPreferences;
 
     public static SPUtils get() {
         return get(SP_NAME_DEFAULT, Context.MODE_PRIVATE);

@@ -284,7 +284,8 @@
           "item_level": 4,
           "item_icon_normal": "@beauty_biaozhun",
           "item_icon_select": "@beauty_biaozhun"
-        },{
+        },
+        {
           "item_id": 4,
           "item_type": 20204,
           "item_name": "@beauty_panel_filter_ziran",

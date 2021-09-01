@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,62 +29,62 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AudioEffectPanel extends FrameLayout {
 
-    private static final String TAG = AudioEffectPanel.class.getSimpleName();
+    private static final String TAG = "AudioEffectPanel";
 
-    private static final int AUDIO_REVERB_TYPE_0 = 0;
-    private static final int AUDIO_REVERB_TYPE_1 = 1;
-    private static final int AUDIO_REVERB_TYPE_2 = 2;
-    private static final int AUDIO_REVERB_TYPE_3 = 3;
-    private static final int AUDIO_REVERB_TYPE_4 = 4;
-    private static final int AUDIO_REVERB_TYPE_5 = 5;
-    private static final int AUDIO_REVERB_TYPE_6 = 6;
-    private static final int AUDIO_REVERB_TYPE_7 = 7;
-    private static final int AUDIO_VOICECHANGER_TYPE_0 = 0;
-    private static final int AUDIO_VOICECHANGER_TYPE_1 = 1;
-    private static final int AUDIO_VOICECHANGER_TYPE_2 = 2;
-    private static final int AUDIO_VOICECHANGER_TYPE_3 = 3;
-    private static final int AUDIO_VOICECHANGER_TYPE_4 = 4;
-    private static final int AUDIO_VOICECHANGER_TYPE_5 = 5;
-    private static final int AUDIO_VOICECHANGER_TYPE_6 = 6;
-    private static final int AUDIO_VOICECHANGER_TYPE_7 = 7;
-    private static final int AUDIO_VOICECHANGER_TYPE_8 = 8;
-    private static final int AUDIO_VOICECHANGER_TYPE_9 = 9;
+    private static final int AUDIO_REVERB_TYPE_0        = 0;
+    private static final int AUDIO_REVERB_TYPE_1        = 1;
+    private static final int AUDIO_REVERB_TYPE_2        = 2;
+    private static final int AUDIO_REVERB_TYPE_3        = 3;
+    private static final int AUDIO_REVERB_TYPE_4        = 4;
+    private static final int AUDIO_REVERB_TYPE_5        = 5;
+    private static final int AUDIO_REVERB_TYPE_6        = 6;
+    private static final int AUDIO_REVERB_TYPE_7        = 7;
+    private static final int AUDIO_VOICECHANGER_TYPE_0  = 0;
+    private static final int AUDIO_VOICECHANGER_TYPE_1  = 1;
+    private static final int AUDIO_VOICECHANGER_TYPE_2  = 2;
+    private static final int AUDIO_VOICECHANGER_TYPE_3  = 3;
+    private static final int AUDIO_VOICECHANGER_TYPE_4  = 4;
+    private static final int AUDIO_VOICECHANGER_TYPE_5  = 5;
+    private static final int AUDIO_VOICECHANGER_TYPE_6  = 6;
+    private static final int AUDIO_VOICECHANGER_TYPE_7  = 7;
+    private static final int AUDIO_VOICECHANGER_TYPE_8  = 8;
+    private static final int AUDIO_VOICECHANGER_TYPE_9  = 9;
     private static final int AUDIO_VOICECHANGER_TYPE_10 = 10;
     private static final int AUDIO_VOICECHANGER_TYPE_11 = 11;
 
-    private Context mContext;
-    private Button mBtnSelectedSong;
-    private RecyclerView mRVAuidoChangeType;
-    private RecyclerView mRVAudioReverbType;
-    private RecyclerView mRVAudioBGM;
-    private SeekBar  mSbMicVolume;
-    private SeekBar  mSbBGMVolume;
-    private SeekBar  mSbPitchLevel;
-    private RecyclerViewAdapter mChangerRVAdapter;
-    private RecyclerViewAdapter mReverbRVAdapter;
-    private BGMRecyclerViewAdapter mBGMRVAdapter;
-    private List<ItemEntity> mChangerItemEntityList;
-    private List<ItemEntity> mReverbItemEntityList;
-    private ImageView mIVBGMBack;
-    private LinearLayout mMainAudioEffectPanel;
-    private LinearLayout mBGMPanel;
-    private List<BGMItemEntity> mBGMItemEntityList;
-    private TextView mTvClosePanel;
-    private TextView mTvBGMVolume;
-    private TextView mTvPitchLevel;
-    private TextView mTvMicVolume;
-    private TextView mTvActor;
-    private TextView mTvStartTime;
-    private TextView mTvTotalTime;
-    private TextView mTvBGM;
-    private LinearLayout mLayoutSelectBGM;
-    private LinearLayout mMainPanel;
-    private ImageButton mImgbtnBGMPlay;
-    private TXAudioEffectManager mAudioEffectManager;
-    private BGMListener mBGMPlayListenr;
-    private static final String ONLINE_BGM_FIRST = "http://dldir1.qq.com/hudongzhibo/LiteAV/demomusic/testmusic1.mp3";
-    private static final String ONLINE_BGM_SECOND = "http://dldir1.qq.com/hudongzhibo/LiteAV/demomusic/testmusic2.mp3";
-    private static final String ONLINE_BGM_THIRD = "http://dldir1.qq.com/hudongzhibo/LiteAV/demomusic/testmusic3.mp3";
+    private              Context                mContext;
+    private              Button                 mBtnSelectedSong;
+    private              RecyclerView           mRVAuidoChangeType;
+    private              RecyclerView           mRVAudioReverbType;
+    private              RecyclerView           mRVAudioBGM;
+    private              SeekBar                mSbMicVolume;
+    private              SeekBar                mSbBGMVolume;
+    private              SeekBar                mSbPitchLevel;
+    private              RecyclerViewAdapter    mChangerRVAdapter;
+    private              RecyclerViewAdapter    mReverbRVAdapter;
+    private              BGMRecyclerViewAdapter mBGMRVAdapter;
+    private              List<ItemEntity>       mChangerItemEntityList;
+    private              List<ItemEntity>       mReverbItemEntityList;
+    private              ImageView              mIVBGMBack;
+    private              LinearLayout           mMainAudioEffectPanel;
+    private              LinearLayout           mBGMPanel;
+    private              List<BGMItemEntity>    mBGMItemEntityList;
+    private              TextView               mTvClosePanel;
+    private              TextView               mTvBGMVolume;
+    private              TextView               mTvPitchLevel;
+    private              TextView               mTvMicVolume;
+    private              TextView               mTvActor;
+    private              TextView               mTvStartTime;
+    private              TextView               mTvTotalTime;
+    private              TextView               mTvBGM;
+    private              LinearLayout           mLayoutSelectBGM;
+    private              LinearLayout           mMainPanel;
+    private              ImageButton            mImgbtnBGMPlay;
+    private              TXAudioEffectManager   mAudioEffectManager;
+    private              BGMListener            mBGMPlayListenr;
+    private static final String                 ONLINE_BGM_FIRST  = "http://dldir1.qq.com/hudongzhibo/LiteAV/demomusic/testmusic1.mp3";
+    private static final String                 ONLINE_BGM_SECOND = "http://dldir1.qq.com/hudongzhibo/LiteAV/demomusic/testmusic2.mp3";
+    private static final String                 ONLINE_BGM_THIRD  = "http://dldir1.qq.com/hudongzhibo/LiteAV/demomusic/testmusic3.mp3";
 
     private int     mBGMId     = -1;
     private float   mPitch     = 0;
@@ -92,10 +92,10 @@ public class AudioEffectPanel extends FrameLayout {
     private boolean mIsPause   = false;
     private boolean mIsPlayEnd = false;
 
-    private int     mBGMVolume = 100;
+    private int mBGMVolume = 100;
 
     private int mVoiceChangerPosition = 0;
-    private int mVoiceReverbPosition = 0;
+    private int mVoiceReverbPosition  = 0;
 
     public AudioEffectPanel(@NonNull Context context) {
         super(context);
@@ -116,7 +116,7 @@ public class AudioEffectPanel extends FrameLayout {
     private void initView() {
         mMainPanel = (LinearLayout) findViewById(R.id.ll_panel);
         mTvClosePanel = (TextView) findViewById(R.id.tv_close_panel);
-        mTvBGMVolume =  (TextView) findViewById(R.id.tv_bgm_volume);
+        mTvBGMVolume = (TextView) findViewById(R.id.tv_bgm_volume);
         mTvMicVolume = (TextView) findViewById(R.id.tv_mic_volume);
         mTvPitchLevel = (TextView) findViewById(R.id.tv_pitch_level);
         mTvActor = (TextView) findViewById(R.id.tv_actor);
@@ -416,9 +416,9 @@ public class AudioEffectPanel extends FrameLayout {
     }
 
     public class ItemEntity {
-        public String mTitle;
-        public int    mIconId;
-        public int    mType;
+        public String  mTitle;
+        public int     mIconId;
+        public int     mType;
         public boolean mIsSelected = false;
 
         public ItemEntity(String title, int iconId, int type) {
@@ -430,9 +430,9 @@ public class AudioEffectPanel extends FrameLayout {
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-        private List<ItemEntity> list;
+        private List<ItemEntity>    list;
         private OnItemClickListener onItemClickListener;
-        private int selectPosition = 0;
+        private int                 selectPosition = 0;
 
         public RecyclerViewAdapter(List<ItemEntity> list, OnItemClickListener onItemClickListener) {
             this.list = list;
@@ -441,7 +441,7 @@ public class AudioEffectPanel extends FrameLayout {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             private CircleImageView mItemImg;
-            private TextView mTitleTv;
+            private TextView        mTitleTv;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -478,7 +478,7 @@ public class AudioEffectPanel extends FrameLayout {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            Context        context  = parent.getContext();
+            Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.audio_main_entry_item, parent, false);
             ViewHolder viewHolder = new ViewHolder(view);
@@ -525,12 +525,12 @@ public class AudioEffectPanel extends FrameLayout {
     public class BGMRecyclerViewAdapter extends
             RecyclerView.Adapter<BGMRecyclerViewAdapter.ViewHolder> {
 
-        private Context mContext;
+        private Context             mContext;
         private List<BGMItemEntity> list;
         private OnItemClickListener onItemClickListener;
 
         public BGMRecyclerViewAdapter(Context context, List<BGMItemEntity> list,
-                                        OnItemClickListener onItemClickListener) {
+                                      OnItemClickListener onItemClickListener) {
             this.mContext = context;
             this.list = list;
             this.onItemClickListener = onItemClickListener;
@@ -538,8 +538,8 @@ public class AudioEffectPanel extends FrameLayout {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             private ImageView mItemImg;
-            private TextView mTitleTv;
-            private TextView mTextActor;
+            private TextView  mTitleTv;
+            private TextView  mTextActor;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -568,7 +568,7 @@ public class AudioEffectPanel extends FrameLayout {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            Context        context  = parent.getContext();
+            Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.audio_bgm_entry_item, parent, false);
             ViewHolder viewHolder = new ViewHolder(view);
@@ -605,7 +605,7 @@ public class AudioEffectPanel extends FrameLayout {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mTvStartTime.setText(formattedTime(curPtsMS /1000) + "");
+                    mTvStartTime.setText(formattedTime(curPtsMS / 1000) + "");
                 }
             });
         }
@@ -723,7 +723,7 @@ public class AudioEffectPanel extends FrameLayout {
                 mTvActor.setText(model.mTitle);
                 mTvStartTime.setVisibility(VISIBLE);
                 mTvTotalTime.setVisibility(VISIBLE);
-                mTvTotalTime.setText("/" + formattedTime(mAudioEffectManager.getMusicDurationInMS(model.mPath)/1000) + "");
+                mTvTotalTime.setText("/" + formattedTime(mAudioEffectManager.getMusicDurationInMS(model.mPath) / 1000) + "");
                 mImgbtnBGMPlay.setVisibility(VISIBLE);
                 mImgbtnBGMPlay.setImageResource(R.drawable.audio_effect_setting_bgm_pause);
             }
