@@ -11,6 +11,13 @@
 | Android | [下载](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_Smart_Android_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/Android/README.md)| [DOC](https://cloud.tencent.com/document/product/454/7877) | [API](https://cloud.tencent.com/document/product/454/34766) |
 | 小程序 | [下载](https://liteavsdk-1252463788.cosgz.myqcloud.com/MLVB_WXMini_latest.zip)| [DOC](https://github.com/tencentyun/MLVBSDK/blob/master/WXMini/README.md)| [DOC](https://cloud.tencent.com/document/product/454/34925) | [API](https://cloud.tencent.com/document/product/454/15368) |
 
+### 移动直播 SDK V1 升级到 V2 API 接口对比说明
+移动直播 SDK 从 8.4 版本开始，提供了新的 V2 接口:
+- 同时支持 RTMP 协议和 RTC 协议
+- 支持更加强大灵活的连麦/PK 能力
+  
+对于使用 V1 的客户，我们提供了 V1 升级到 V2 的[接口升级指引对照表](https://docs.qq.com/sheet/DRkJUckpGdkNTUmt2)
+
 ### Version 9.1 @ 2021.09.02
 - iOS&Android：V2 新增支持设置帧率和码率；
 - iOS&Android：V2 新增拉无效流时失败状态回调；
