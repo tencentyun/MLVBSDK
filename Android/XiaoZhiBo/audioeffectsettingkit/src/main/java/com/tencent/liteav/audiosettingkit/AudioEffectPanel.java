@@ -596,7 +596,7 @@ public class AudioEffectPanel extends FrameLayout {
 
         @Override
         public void onStart(int i, int i1) {
-
+            mIsPlayEnd = false;
         }
 
         @Override
@@ -655,7 +655,7 @@ public class AudioEffectPanel extends FrameLayout {
 
         mPitch = 0;
         mSbPitchLevel.setProgress(50);
-        mTvPitchLevel.setText("50");
+        mTvPitchLevel.setText("0");
 
         mBtnSelectedSong.setVisibility(View.VISIBLE);
         mTvBGM.setVisibility(View.VISIBLE);
