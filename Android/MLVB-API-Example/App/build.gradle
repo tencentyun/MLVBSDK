@@ -8,8 +8,8 @@ android {
         applicationId "com.tencent.mlvb.apiexample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 22
-        versionName "9.1.1084"
+        versionCode 14
+        versionName "9.2.1029"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
