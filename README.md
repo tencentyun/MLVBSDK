@@ -18,13 +18,12 @@
   
 对于使用 V1 的客户，我们提供了 V1 升级到 V2 的[接口升级指引对照表](https://docs.qq.com/sheet/DRkJUckpGdkNTUmt2)
 
-### Version 9.1 @ 2021.09.02
-- iOS&Android：V2 新增支持设置帧率和码率；
-- iOS&Android：V2 新增拉无效流时失败状态回调；
-- iOS&Android：移动直播新增支持H265编码；
-- iOS&Android：修复快直播存在的内存泄漏问题；
-- iOS：修复快直播多实例播放时音频设置相互影响的问题；
-- Android：优化特定条件下视频画面过曝的问题；
+### Version 9.2 @ 2021.09.26
+- iOS：修复 V2 Player onWarning 方法不回的问题；
+- iOS：修复快直播播放拉流端停止拉流，再重新拉流观看音画不同步的问题；
+- Android：修复特定情况下出现崩溃的问题；
+- Android：修复 V2 RTMP 推流存在的内存泄漏问题；
+- Android&iOS：修复快直播 H265 流播放失败的问题；
 
 ## MLVB Demo
 
