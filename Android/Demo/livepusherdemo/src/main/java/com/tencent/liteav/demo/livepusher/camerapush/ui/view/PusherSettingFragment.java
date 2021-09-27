@@ -25,44 +25,39 @@ import com.tencent.live2.V2TXLiveDef;
  */
 public class PusherSettingFragment extends BottomSheetDialogFragment implements View.OnClickListener {
 
-    private static final String TAG = "PusherSettingFragment";
+    private static final String TAG                            = "PusherSettingFragment";
+    private static final int    POSITION_ADJUST_BITRATE        = 0;
+    private static final int    POSITION_EAR_MONITORING_ENABLE = 1;
+    private static final int    POSITION_MUTE_AUDIO            = 2;
+    private static final int    POSITION_LANDSCAPE             = 3;
+    private static final int    POSITION_WATER_MARK_ENABLE     = 4;
+    private static final int    POSITION_MIRROR_ENABLE         = 5;
+    private static final int    POSITION_FLASH_ENABLE          = 6;
+    private static final int    POSITION_FOCUS_ENABLE          = 7;
+    private static final int    POSITION_PRIVACY_MODEL_ENABLE  = 8;
 
-    private static final int POSITION_ADJUST_BITRATE        = 0;
-    private static final int POSITION_EAR_MONITORING_ENABLE = 1;
-    private static final int POSITION_MUTE_AUDIO            = 2;
-    private static final int POSITION_LANDSCAPE             = 3;
-    private static final int POSITION_WATER_MARK_ENABLE     = 4;
-    private static final int POSITION_MIRROR_ENABLE         = 5;
-    private static final int POSITION_FLASH_ENABLE          = 6;
-    private static final int POSITION_FOCUS_ENABLE          = 7;
-
-    /**
-     * SharePreferences 用于存储相关配置的key
-     */
-    private static final String SP_NAME               = "sp_pusher_setting";
-    private static final String SP_KEY_ADJUST_BITRATE = "sp_key_adjust_bitrate";
-    private static final String SP_KEY_EAR_MONITORING = "sp_key_ear_monitoring";
-    private static final String SP_KEY_MUTE_AUDIO     = "sp_key_mute_audio";
-    private static final String SP_KEY_LANDSCAPE      = "sp_key_portrait";
-    private static final String SP_KEY_WATER_MARK     = "sp_key_water_mark";
-    private static final String SP_KEY_MIRROR         = "sp_key_mirror";
-    private static final String SP_KEY_FLASH_LIGHT    = "sp_key_flash_light";
-    private static final String SP_KEY_FOCUS          = "sp_key_focus";
-    private static final String SP_KEY_AUDIO_QUALITY  = "sp_key_audio_quality";
-
-    private static final int AUDIO_SPEECH  = 0;    // 语音(speech)
-    private static final int AUDIO_DEFAULT = 1;    // 标准(default)
-    private static final int AUDIO_MUSIC   = 2;    // 音乐(music)
+    private static final String SP_NAME                        = "sp_pusher_setting";
+    private static final String SP_KEY_PRIVACY_MODEL           = "sp_key_privacy_model";
+    private static final String SP_KEY_ADJUST_BITRATE          = "sp_key_adjust_bitrate";
+    private static final String SP_KEY_EAR_MONITORING          = "sp_key_ear_monitoring";
+    private static final String SP_KEY_MUTE_AUDIO              = "sp_key_mute_audio";
+    private static final String SP_KEY_LANDSCAPE               = "sp_key_portrait";
+    private static final String SP_KEY_WATER_MARK              = "sp_key_water_mark";
+    private static final String SP_KEY_MIRROR                  = "sp_key_mirror";
+    private static final String SP_KEY_FLASH_LIGHT             = "sp_key_flash_light";
+    private static final String SP_KEY_FOCUS                   = "sp_key_focus";
+    private static final String SP_KEY_AUDIO_QUALITY           = "sp_key_audio_quality";
+    private static final int    AUDIO_SPEECH                   = 0;    // 语音(speech)
+    private static final int    AUDIO_DEFAULT                  = 1;    // 标准(default)
+    private static final int    AUDIO_MUSIC                    = 2;    // 音乐(music)
 
     private BottomSheetBehavior     mBehavior;
     private OnSettingChangeListener mOnSettingChangeListener;
     private BottomSheetDialog       mBottomSheetDialog;
     private CheckSelectView         mCheckSelectView;
     private RadioButton[]           mRadioAudioQuality = new RadioButton[3];
-
-    private boolean[] mEnables = new boolean[8];
-
-    private int mAudioQualityIndex = 2;
+    private boolean[]               mEnables           = new boolean[9];
+    private int                     mAudioQualityIndex = AUDIO_DEFAULT;
 
     public PusherSettingFragment() {
         initialize();
@@ -194,6 +189,7 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
                     .putBoolean(SP_KEY_MIRROR, mEnables[POSITION_MIRROR_ENABLE])
                     .putBoolean(SP_KEY_FLASH_LIGHT, mEnables[POSITION_FLASH_ENABLE])
                     .putBoolean(SP_KEY_FOCUS, mEnables[POSITION_FOCUS_ENABLE])
+                    .putBoolean(SP_KEY_PRIVACY_MODEL, mEnables[POSITION_PRIVACY_MODEL_ENABLE])
                     .putInt(SP_KEY_AUDIO_QUALITY, mAudioQualityIndex)
                     .apply();
         }
@@ -209,6 +205,7 @@ public class PusherSettingFragment extends BottomSheetDialogFragment implements 
         mEnables[POSITION_MIRROR_ENABLE] = s.getBoolean(SP_KEY_MIRROR, mEnables[POSITION_MIRROR_ENABLE]);
         mEnables[POSITION_FLASH_ENABLE] = s.getBoolean(SP_KEY_FLASH_LIGHT, mEnables[POSITION_FLASH_ENABLE]);
         mEnables[POSITION_FOCUS_ENABLE] = s.getBoolean(SP_KEY_FOCUS, mEnables[POSITION_FOCUS_ENABLE]);
+        mEnables[POSITION_PRIVACY_MODEL_ENABLE] = s.getBoolean(SP_KEY_PRIVACY_MODEL, mEnables[POSITION_PRIVACY_MODEL_ENABLE]);
         mAudioQualityIndex = s.getInt(SP_KEY_AUDIO_QUALITY, mAudioQualityIndex);
     }
 

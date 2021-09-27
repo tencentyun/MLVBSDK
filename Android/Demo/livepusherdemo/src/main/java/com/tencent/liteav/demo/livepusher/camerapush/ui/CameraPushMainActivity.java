@@ -41,6 +41,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.liteav.audiosettingkit.AudioEffectPanel;
 import com.tencent.liteav.demo.beauty.view.BeautyPanel;
 import com.tencent.liteav.demo.livepusher.R;
+import com.tencent.liteav.demo.livepusher.camerapush.ui.util.Utils;
 import com.tencent.liteav.demo.livepusher.camerapush.ui.view.LogInfoWindow;
 import com.tencent.liteav.demo.livepusher.camerapush.ui.view.PusherPlayQRCodeFragment;
 import com.tencent.liteav.demo.livepusher.camerapush.ui.view.PusherSettingFragment;
@@ -85,53 +86,46 @@ import static com.tencent.live2.V2TXLiveDef.V2TXLiveVideoResolutionMode.V2TXLive
 public class CameraPushMainActivity extends FragmentActivity implements
         PusherVideoQualityFragment.OnVideoQualityChangeListener, PusherSettingFragment.OnSettingChangeListener {
 
-    private static final String TAG = CameraPushMainActivity.class.getSimpleName();
-
-    private static final String PUSHER_SETTING_FRAGMENT = "push_setting_fragment";
-    private static final String PUSHER_PLAY_QR_CODE_FRAGMENT = "push_play_qr_code_fragment";
+    private static final String TAG                           = "CameraPushMainActivity";
+    private static final String PUSHER_SETTING_FRAGMENT       = "push_setting_fragment";
+    private static final String PUSHER_PLAY_QR_CODE_FRAGMENT  = "push_play_qr_code_fragment";
     private static final String PUSHER_VIDEO_QUALITY_FRAGMENT = "push_video_quality_fragment";
 
-    private TXPhoneStateListener     mPhoneListener;
-
-    private TextView         mTextNetBusyTips;              // 网络繁忙Tips
-    private BeautyPanel      mBeautyPanelView;              // 美颜模块pannel
-    private Button           mBtnStartPush;                 // 开启推流的按钮
-    private LinearLayout     mLinearBottomBar;              // 底部工具栏布局
-    private AudioEffectPanel mAudioEffectPanel;             // 音效面板
-
-    private PusherPlayQRCodeFragment   mPusherPlayQRCodeFragment;   // 拉流地址面板
-    private PusherSettingFragment      mPusherSettingFragment;      // 设置面板
-    private PusherVideoQualityFragment mPusherVideoQualityFragment; // 画质面板
-    private LogInfoWindow              mLogInfoWindow;              // Log 信息面板
-
-    private String mPusherURL       = "";   // 推流地址
-    private String mRTMPPlayURL     = "";   // RTMP 拉流地址
-    private String mFlvPlayURL      = "";   // flv 拉流地址
-    private String mHlsPlayURL      = "";   // hls 拉流地址
-    private String mRealtimePlayURL = "";   // 低延时拉流地址
-
-    private int mLogClickCount = 0;
-
-    private V2TXLivePusher mLivePusher;
-    private TXCloudVideoView mPusherView;
-
-    private Bitmap mWaterMarkBitmap;
-
-    private boolean mIsPushing             = false;
-    private boolean mIsResume              = false;
-    private boolean mIsWaterMarkEnable     = true;
-    private boolean mIsDebugInfo           = false;
-    private boolean mIsMuteAudio           = false;
-    private boolean mIsLandscape           = false;
-    private boolean mIsMirrorEnable        = false;
-    private boolean mIsFocusEnable         = false;
-    private boolean mIsEarMonitoringEnable = false;
-    private boolean mFrontCamera           = true;
-    private boolean mIsEnableAdjustBitrate = false;
-
-    private V2TXLiveDef.V2TXLiveVideoResolution mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540;
-    private V2TXLiveDef.V2TXLiveAudioQuality mAudioQuality = V2TXLiveDef.V2TXLiveAudioQuality.V2TXLiveAudioQualityDefault;
-    private int mQualityType;
+    private TXPhoneStateListener                  mPhoneListener;
+    private TextView                              mTextNetBusyTips;              // 网络繁忙Tips
+    private BeautyPanel                           mBeautyPanelView;              // 美颜模块pannel
+    private Button                                mBtnStartPush;                 // 开启推流的按钮
+    private LinearLayout                          mLinearBottomBar;              // 底部工具栏布局
+    private AudioEffectPanel                      mAudioEffectPanel;             // 音效面板
+    private PusherPlayQRCodeFragment              mPusherPlayQRCodeFragment;   // 拉流地址面板
+    private PusherSettingFragment                 mPusherSettingFragment;      // 设置面板
+    private PusherVideoQualityFragment            mPusherVideoQualityFragment; // 画质面板
+    private LogInfoWindow                         mLogInfoWindow;              // Log 信息面板
+    private String                                mPusherURL             = "";   // 推流地址
+    private String                                mRTMPPlayURL           = "";   // RTMP 拉流地址
+    private String                                mFlvPlayURL            = "";   // flv 拉流地址
+    private String                                mHlsPlayURL            = "";   // hls 拉流地址
+    private String                                mRTCPlayURL            = "";   // RTC拉流地址
+    private int                                   mLogClickCount         = 0;
+    private V2TXLivePusher                        mLivePusher;
+    private TXCloudVideoView                      mPusherView;
+    private Bitmap                                mWaterMarkBitmap;
+    private boolean                               mIsPushing             = false;
+    private boolean                               mIsResume              = false;
+    private boolean                               mIsWaterMarkEnable     = true;
+    private boolean                               mIsDebugInfo           = false;
+    private boolean                               mIsMuteAudio           = false;
+    private boolean                               mIsLandscape           = false;
+    private boolean                               mIsMirrorEnable        = false;
+    private boolean                               mIsFocusEnable         = false;
+    private boolean                               mIsEarMonitoringEnable = false;
+    private boolean                               mFrontCamera           = true;
+    private boolean                               mIsEnableAdjustBitrate = false;
+    private V2TXLiveDef.V2TXLiveVideoResolution   mVideoResolution       = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540;
+    private V2TXLiveDef.V2TXLiveAudioQuality      mAudioQuality          = V2TXLiveDef.V2TXLiveAudioQuality.V2TXLiveAudioQualityDefault;
+    private V2TXLiveDef.V2TXLiveVideoEncoderParam mVideoEncoderParam     = new V2TXLiveDef.V2TXLiveVideoEncoderParam(mVideoResolution);
+    private int                                   mQualityType;
+    private boolean                               mIsPrivacyModeFlag     = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -282,8 +276,9 @@ public class CameraPushMainActivity extends FragmentActivity implements
     public void onHomeOrientationChange(boolean isLandscape) {
         mIsLandscape = isLandscape;
         // 横竖屏推流
-        mLivePusher.setVideoQuality(mVideoResolution, isLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
-    }
+        V2TXLiveDef.V2TXLiveVideoEncoderParam param = new V2TXLiveDef.V2TXLiveVideoEncoderParam(mVideoResolution);
+        param.videoResolutionMode = isLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait;
+        mLivePusher.setVideoQuality(param); }
 
     @Override
     public void onMirrorChange(boolean enable) {
@@ -339,7 +334,7 @@ public class CameraPushMainActivity extends FragmentActivity implements
         mRTMPPlayURL = intent.getStringExtra(Constants.INTENT_URL_PLAY_RTMP);
         mFlvPlayURL = intent.getStringExtra(Constants.INTENT_URL_PLAY_FLV);
         mHlsPlayURL = intent.getStringExtra(Constants.INTENT_URL_PLAY_HLS);
-        mRealtimePlayURL = intent.getStringExtra(Constants.INTENT_URL_PLAY_ACC);
+        mRTCPlayURL = intent.getStringExtra(Constants.INTENT_URL_PLAY_RTC);
     }
 
     /**
@@ -348,7 +343,12 @@ public class CameraPushMainActivity extends FragmentActivity implements
     private void initPusher() {
         mPusherView = findViewById(R.id.livepusher_tx_cloud_view);
 
-        mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTMP);
+        if (mPusherURL.startsWith("trtc")) {
+            mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTC);
+        } else {
+            mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTMP);
+        }
+
         // 设置默认美颜参数， 美颜样式为光滑，美颜等级 5，美白等级 3，红润等级 2
         mLivePusher.getBeautyManager().setBeautyStyle(TXLiveConstants.BEAUTY_STYLE_SMOOTH);
         mLivePusher.getBeautyManager().setBeautyLevel(5);
@@ -379,7 +379,7 @@ public class CameraPushMainActivity extends FragmentActivity implements
         }
         if (mPusherPlayQRCodeFragment == null) {
             mPusherPlayQRCodeFragment = new PusherPlayQRCodeFragment();
-            mPusherPlayQRCodeFragment.setQRCodeURL(mFlvPlayURL, mRTMPPlayURL, mHlsPlayURL, mRealtimePlayURL);
+            mPusherPlayQRCodeFragment.setQRCodeURL(mFlvPlayURL, mRTMPPlayURL, mHlsPlayURL,  mRTCPlayURL);
         }
         if (mPusherVideoQualityFragment == null) {
             mPusherVideoQualityFragment = new PusherVideoQualityFragment();
@@ -540,15 +540,15 @@ public class CameraPushMainActivity extends FragmentActivity implements
             }
         }
 
-        if (TextUtils.isEmpty(tRTMPURL) || (!tRTMPURL.trim().toLowerCase().startsWith("rtmp://"))) {
-            resultCode = Constants.PLAY_STATUS_INVALID_URL;
-        } else {
+        if (Utils.checkLegalForPushUrl(tRTMPURL)) {
             // 显示本地预览的View
             mPusherView.setVisibility(View.VISIBLE);
             // 添加播放回调
             mLivePusher.setObserver(new MyPusherObserver());
             // 设置推流分辨率
-            mLivePusher.setVideoQuality(mVideoResolution, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
+            mVideoEncoderParam.videoResolution = mVideoResolution;
+            mVideoEncoderParam.videoResolutionMode = mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait;
+            mLivePusher.setVideoQuality(mVideoEncoderParam);
 
             // 是否开启观众端镜像观看
             mLivePusher.setEncoderMirror(mIsMirrorEnable);
@@ -581,6 +581,8 @@ public class CameraPushMainActivity extends FragmentActivity implements
             resultCode = mLivePusher.startPush(tRTMPURL.trim());
 
             mIsPushing = true;
+        } else {
+            resultCode = Constants.PLAY_STATUS_INVALID_URL;
         }
         TXLog.i(TAG, "start: mIsResume -> " + mIsResume);
         onPushStart(resultCode);
@@ -589,6 +591,9 @@ public class CameraPushMainActivity extends FragmentActivity implements
     private void stopPush() {
         if (!mIsPushing) {
             return;
+        }
+        if (mIsPrivacyModeFlag) {
+            mLivePusher.stopVirtualCamera();
         }
         // 停止本地预览
         mLivePusher.stopCamera();
@@ -799,26 +804,34 @@ public class CameraPushMainActivity extends FragmentActivity implements
         switch (type) {
             case TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION:     // 360P
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution640x360, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
                     mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution640x360;
+                    mVideoEncoderParam.videoResolution = mVideoResolution;
+                    mVideoEncoderParam.videoResolutionMode = mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait;
+                    mLivePusher.setVideoQuality(mVideoEncoderParam);
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION:         // 540P
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
                     mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution960x540;
+                    mVideoEncoderParam.videoResolution = mVideoResolution;
+                    mVideoEncoderParam.videoResolutionMode = mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait;
+                    mLivePusher.setVideoQuality(mVideoEncoderParam);
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION:        // 720p
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1280x720, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
                     mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1280x720;
+                    mVideoEncoderParam.videoResolution = mVideoResolution;
+                    mVideoEncoderParam.videoResolutionMode = mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait;
+                    mLivePusher.setVideoQuality(mVideoEncoderParam);
                 }
                 break;
             case TXLiveConstants.VIDEO_QUALITY_ULTRA_DEFINITION:        // 1080p
                 if (mLivePusher != null) {
-                    mLivePusher.setVideoQuality(V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080, mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait);
                     mVideoResolution = V2TXLiveDef.V2TXLiveVideoResolution.V2TXLiveVideoResolution1920x1080;
+                    mVideoEncoderParam.videoResolution = mVideoResolution;
+                    mVideoEncoderParam.videoResolutionMode = mIsLandscape ? V2TXLiveVideoResolutionModeLandscape : V2TXLiveVideoResolutionModePortrait;
+                    mLivePusher.setVideoQuality(mVideoEncoderParam);
                 }
                 break;
             default:
