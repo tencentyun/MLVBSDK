@@ -1,0 +1,48 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+def tx_im
+   pod 'TXIMSDK_iOS'
+end
+
+def swift_pods
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'SnapKit'
+  pod 'Alamofire'
+  pod 'Toast-Swift'
+  pod 'Material'
+  pod 'NVActivityIndicatorView'
+end
+
+def common_pods_all
+  pod 'Bugly' # 检测bug使用，非必须依赖
+  pod 'SDWebImage'
+  pod 'Masonry'
+  pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'MJExtension'
+  pod 'MJRefresh'
+  pod 'AFNetworking'
+  pod 'BlocksKit', '~> 2.2.5'
+  pod 'CWStatusBarNotification', '~> 2.3.5'
+end
+
+def common_pods_smart
+  pod 'CWStatusBarNotification', '~> 2.3.5'
+end
+
+target 'TXLiteAVDemo_Smart' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  # Pods for TXLiteAVDemo_Smart
+  common_pods_all
+  common_pods_smart
+  tx_im
+  swift_pods
+end
+
+target 'TXReplaykitUpload_Smart' do
+  # Comment the next line if you don't want to use dynamic frameworks
+
+  # Pods for TXReplaykitUpload_Smart
+end
+
