@@ -366,7 +366,6 @@ public class AudioEffectPanel extends FrameLayout {
     public void unInit() {
         if (mAudioEffectManager != null) {
             mAudioEffectManager.stopPlayMusic(mBGMId);
-            mAudioEffectManager = null;
         }
         if (mHandler != null) {
             mHandler.removeCallbacksAndMessages(null);
@@ -374,7 +373,6 @@ public class AudioEffectPanel extends FrameLayout {
         mIsPlaying = false;
         mIsPause = false;
         mIsPlayEnd = false;
-        mBGMPlayListenr = null;
     }
 
     public void stopPlay() {
