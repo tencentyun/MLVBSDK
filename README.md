@@ -18,12 +18,10 @@
   
 对于使用 V1 的客户，我们提供了 V1 升级到 V2 的[接口升级指引对照表](https://docs.qq.com/sheet/DRkJUckpGdkNTUmt2)
 
-### Version 9.2 @ 2021.09.26
-- iOS：修复 V2 Player onWarning 方法不回的问题；
-- iOS：修复快直播播放拉流端停止拉流，再重新拉流观看音画不同步的问题；
-- Android：修复特定情况下出现崩溃的问题；
-- Android：修复 V2 RTMP 推流存在的内存泄漏问题；
-- Android&iOS：修复快直播 H265 流播放失败的问题；
+### Version 9.3 @ 2021.11.05
+- Android&iOS：快直播支持接收 SEI 消息；
+- Android：修复 TXLivePlayer 偶现崩溃的问题；
+- Android：修复 V2 播放多个视频地址后出现画面不渲染的问题；
 
 ## MLVB Demo
 
