@@ -2,6 +2,10 @@
 - [移动直播 SDK](https://cloud.tencent.com/product/mlvb)：基于腾讯云 LiteAV 音视频框架实现的一套推拉流和连麦组件，帮您快速上线手机直播功能。
 - [云直播](https://cloud.tencent.com/product/lvb)：移动直播 SDK 所依赖的的云端服务，主要提供 RTMP 推流接入点、直播 CDN、实时转码等云端能力。
 
+## 工程动态
+尊敬的开发者，您好，感谢您基于小直播APP的支持和关注，随着直播市场的多样化和众多开发者的反馈，我们也积极响应大家的需求，，我们对小直播APP进行了一次新的调整，更加年轻的UI、更加科学的架构，欢迎大家体验我们新的[小直播APP](https://github.com/tencentyun/XiaoZhiBo)！
+<img src="Android/XiaoZhiBo/xiaozhibo.png" width="1080">
+
 ## SDK 下载
 您可以在腾讯云官网下载页面 [DOWNLOAD](https://cloud.tencent.com/document/product/454/7873) 获取精简版、专业版和商用版的 SDK 下载链接，如下为精简版下载链接：
 

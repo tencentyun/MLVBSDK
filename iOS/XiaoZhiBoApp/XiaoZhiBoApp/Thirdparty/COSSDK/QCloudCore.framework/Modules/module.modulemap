@@ -1,6 +1,0 @@
-framework module QCloudCore {
-  umbrella header "QCloudCore.h"
-
-  export *
-  module * { export * }
-}

@@ -4,7 +4,7 @@
 > 旧版本小直播APP，请点击[这里](https://github.com/tencentyun/MLVBSDK/releases/tag/9.3)。
 ## 小直播简介
 小直播 App 是一套开源的、完整的在线直播解决方案，它基于云直播服务、即时通信（IM）构建，并使用云函数（Serverless）提供标准的后台服务，可以实现登录、注册、开播、房间列表、连麦互动、文字互动和弹幕消息等功能。
-<img src="../../Android/XiaoZhiBo/xiaozhibo.png" width="1080">
+<img src="xiaozhibo.png" width="1080">
 
 ## 开始运行
 
