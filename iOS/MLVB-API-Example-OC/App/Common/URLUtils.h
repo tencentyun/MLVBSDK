@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LiveUrl : NSObject
+@interface URLUtils : NSObject
 
 + (NSString*)generateRtmpPushUrl:(NSString*)streamId;
 + (NSString*)generateRtmpPlayUrl:(NSString*)streamId;

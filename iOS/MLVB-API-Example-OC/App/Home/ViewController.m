@@ -40,12 +40,12 @@
                       @{
                           @"title": Localize(@"MLVB-API-Example.Home.LiveLink"),
                           @"desc": @"",
-                          @"class": @"LiveLinkEnterViewController"
+                          @"class": @"LiveLinkUserInputViewController"
                       },
                       @{
                           @"title": Localize(@"MLVB-API-Example.Home.LivePK"),
                           @"desc": @"",
-                          @"class": @"LivePkEnterViewController"
+                          @"class": @"LivePkUserInputViewController"
                       }
               ]},
             @{@"type":Localize(@"MLVB-API-Example.Home.AdvancedFeatures"),

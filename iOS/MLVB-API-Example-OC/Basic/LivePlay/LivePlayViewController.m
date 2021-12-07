@@ -65,13 +65,13 @@
     NSString* url;
     switch (self.mode) {
         case StandPlay:
-            url = [LiveUrl generateRtmpPlayUrl:self.streamId];
+            url = [URLUtils generateRtmpPlayUrl:self.streamId];
             break;
         case RTCPlay:
-            url = [LiveUrl generateTRTCPlayUrl:self.streamId];
+            url = [URLUtils generateTRTCPlayUrl:self.streamId];
             break;
         case LebPlay:
-            url = [LiveUrl generateLebPlayUrl:self.streamId];
+            url = [URLUtils generateLebPlayUrl:self.streamId];
             break;
     }
     [self.livePlayer startPlay:url];

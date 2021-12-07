@@ -11,10 +11,10 @@
  * 详情请参考：「https://cloud.tencent.com/document/product/454/7915」
  */
 
-#import "LiveUrl.h"
+#import "URLUtils.h"
 #import <CommonCrypto/CommonCrypto.h>
 
-@implementation LiveUrl
+@implementation URLUtils
 
 + (NSString*)getMd5WithString:(NSString *)string {
     const char* original_str=[string UTF8String];
@@ -32,33 +32,33 @@
     NSTimeInterval time= [date timeIntervalSince1970] + 60 * 60 * 24;
 
     NSString *hexTxTime = [[NSString alloc] initWithFormat:@"%X", (int)time];
-    NSString *secret = [[URLKEY stringByAppendingString:streamId] stringByAppendingString:hexTxTime];
-    NSString *txSecret = [LiveUrl getMd5WithString:secret];
+    NSString *secret = [[LIVE_URL_KEY stringByAppendingString:streamId] stringByAppendingString:hexTxTime];
+    NSString *txSecret = [URLUtils getMd5WithString:secret];
     
     return [[NSString alloc] initWithFormat:@"txSecret=%@&txTime=%@", txSecret, hexTxTime];
 }
 
 + (NSString*)generateRtmpPushUrl:(NSString*)streamId {
-    NSString *url = [NSString stringWithFormat:@"rtmp://%d.livepush.myqcloud.com/live/%@?%@",
-           BIZID, streamId, [LiveUrl getSafeUrl:streamId]];
+    NSString *url = [NSString stringWithFormat:@"rtmp://%@/live/%@?%@",
+           PUSH_DOMAIN, streamId, [URLUtils getSafeUrl:streamId]];
     return url;
 }
 + (NSString*)generateRtmpPlayUrl:(NSString*)streamId {
-    NSString *url = [NSString stringWithFormat:@"rtmp://%d.liveplay.myqcloud.com/live/%@",
-           BIZID, streamId];
+    NSString *url = [NSString stringWithFormat:@"rtmp://%@/live/%@",
+           PLAY_DOMAIN, streamId];
     return url;
 }
 
 + (NSString*)generateTRTCPushUrl:(NSString*)streamId {
     NSString *userId = [NSString generateRandomUserId];
 
-    return [LiveUrl generateTRTCPushUrl:streamId userId:userId];
+    return [URLUtils generateTRTCPushUrl:streamId userId:userId];
 }
 
 + (NSString*)generateTRTCPlayUrl:(NSString*)streamId {
     NSString *userId = [NSString generateRandomUserId];
 
-    return [LiveUrl generateTRTCPlayUrl:streamId userId:userId];
+    return [URLUtils generateTRTCPlayUrl:streamId userId:userId];
 }
 
 + (NSString*)generateTRTCPushUrl:(NSString*)streamId userId:(NSString*)userId {
@@ -75,8 +75,8 @@
 
 
 + (NSString*)generateLebPlayUrl:(NSString*)streamId {
-    NSString *url = [NSString stringWithFormat:@"webrtc://%d.liveplay.myqcloud.com/live/%@",
-           BIZID, streamId];
+    NSString *url = [NSString stringWithFormat:@"webrtc://%@/live/%@",
+           PLAY_DOMAIN, streamId];
 
     return url;
 }

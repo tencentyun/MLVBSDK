@@ -91,7 +91,7 @@
     [self.livePusher startMicrophone];
     [self.livePusher setRenderView:self.view];
 
-    NSString *url = [LiveUrl generateTRTCPushUrl:self.streamId];
+    NSString *url = [URLUtils generateTRTCPushUrl:self.streamId];
     V2TXLiveCode code = [self.livePusher startPush:url];
     if (code != V2TXLIVE_OK) {
         [self.livePusher stopMicrophone];
@@ -106,7 +106,7 @@
 }
 
 - (void)startPlay:(NSString*)streamId {
-    NSString *url = [LiveUrl generateTRTCPlayUrl:streamId];
+    NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     
     [self.livePlayer setRenderView:self.remoteView];
     [self.livePlayer startPlay:url];

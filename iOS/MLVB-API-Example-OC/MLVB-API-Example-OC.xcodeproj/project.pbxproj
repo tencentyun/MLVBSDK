@@ -32,7 +32,7 @@
 		47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
 		47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98D2626868E00201FCB /* libresolv.tbd */; };
-		62E4DB92798115BB9002FE2D /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4A39EFE097BE07EBDDDBEF /* TXLiteAVSDK_Live.framework */; };
+		8077AD3B4D267D29A0DE8D49 /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */; };
 		880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 880B3C482624411B002683FB /* GenerateTestUserSig.m */; };
 		88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88167CB1268488C2001D99DC /* LivePushCameraEnterViewController.m */; };
 		88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */; };
@@ -55,8 +55,6 @@
 		8894458326282A3200193FAD /* TXReplayKit_Screen.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8894456926282A3200193FAD /* TXReplayKit_Screen.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */; };
 		8899908C268487F400CBC983 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999076268486EC00CBC983 /* SampleHandler.m */; };
-		88A1A87D268DA78B007F630D /* LivePkEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A87B268DA78B007F630D /* LivePkEnterViewController.m */; };
-		88A1A87E268DA78B007F630D /* LivePkEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A1A87C268DA78B007F630D /* LivePkEnterViewController.xib */; };
 		88A1A884268DA7DA007F630D /* LivePkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */; };
 		88A1A885268DA7DA007F630D /* LivePkAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */; };
 		88A1A88A268DA81A007F630D /* LivePkAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A888268DA81A007F630D /* LivePkAudienceViewController.m */; };
@@ -64,13 +62,7 @@
 		88A2C846267062FF006FC026 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
 		88A2C84726706305006FC026 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		88AB3E4B2689D65D00A75212 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 477EC9AA26268D0F007AAC4F /* Localized.strings */; };
-		88AB3E51268A008C00A75212 /* LiveUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E50268A008C00A75212 /* LiveUrl.m */; };
-		88AB3E5A268ABC5400A75212 /* LiveLinkEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E58268ABC5400A75212 /* LiveLinkEnterViewController.m */; };
-		88AB3E5B268ABC5400A75212 /* LiveLinkEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AB3E59268ABC5400A75212 /* LiveLinkEnterViewController.xib */; };
-		88AB3E61268AF8E800A75212 /* LiveLinkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E5F268AF8E800A75212 /* LiveLinkAnchorViewController.m */; };
-		88AB3E62268AF8E800A75212 /* LiveLinkAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AB3E60268AF8E800A75212 /* LiveLinkAnchorViewController.xib */; };
-		88AB3E67268B035C00A75212 /* LiveLinkAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E65268B035C00A75212 /* LiveLinkAudienceViewController.m */; };
-		88AB3E68268B035C00A75212 /* LiveLinkAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AB3E66268B035C00A75212 /* LiveLinkAudienceViewController.xib */; };
+		88AB3E51268A008C00A75212 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E50268A008C00A75212 /* URLUtils.m */; };
 		88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */; };
 		88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */; };
 		88C4C06A268C48DF00FBB698 /* ThirdBeautyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */; };
@@ -82,7 +74,19 @@
 		88FC7854268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FC7852268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib */; };
 		88FC7859268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FC7857268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m */; };
 		88FC785A268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FC7858268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib */; };
-		E4F44B11A47D6D11AF93A0B5 /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4A39EFE097BE07EBDDDBEF /* TXLiteAVSDK_Live.framework */; };
+		C1937C64274F75F700F19E99 /* LivePkUserInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C63274F75F700F19E99 /* LivePkUserInputViewController.m */; };
+		C1937C93274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C84274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m */; };
+		C1937C94274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C85274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.m */; };
+		C1937C95274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1937C86274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.xib */; };
+		C1937C96274F799200F19E99 /* LiveLinkAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C88274F799200F19E99 /* LiveLinkAudienceViewController.m */; };
+		C1937C97274F799200F19E99 /* LiveInputBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1937C8C274F799200F19E99 /* LiveInputBaseViewController.xib */; };
+		C1937C98274F799200F19E99 /* LiveLinkAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1937C8D274F799200F19E99 /* LiveLinkAnchorViewController.xib */; };
+		C1937C99274F799200F19E99 /* LiveLinkUserInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C8E274F799200F19E99 /* LiveLinkUserInputViewController.m */; };
+		C1937C9A274F799200F19E99 /* LiveInputBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C8F274F799200F19E99 /* LiveInputBaseViewController.m */; };
+		C1937C9B274F799200F19E99 /* LiveLinkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C90274F799200F19E99 /* LiveLinkAnchorViewController.m */; };
+		C1937C9C274F799200F19E99 /* LiveLinkAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1937C92274F799200F19E99 /* LiveLinkAudienceViewController.xib */; };
+		C1937CBD275080CB00F19E99 /* LivePkFindPkUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937CBB275080CB00F19E99 /* LivePkFindPkUserController.m */; };
+		F76A7D92853E3FE1908DD17A /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +124,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Live.framework; path = ../SDK/TXLiteAVSDK_Live.framework; sourceTree = "<group>"; };
 		400C520126A67EE30036AC40 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		40D550EB26A6A9BF00FE9F13 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4723A7BE26315F920094AC81 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -158,7 +163,6 @@
 		47ECB9882626867C00201FCB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		47ECB98B2626868400201FCB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		47ECB98D2626868E00201FCB /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		5C4A39EFE097BE07EBDDDBEF /* TXLiteAVSDK_Live.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Live.framework; path = ../SDK/TXLiteAVSDK_Live.framework; sourceTree = "<group>"; };
 		880B3C482624411B002683FB /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
 		880B3C492624411B002683FB /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 		88167CB0268488C2001D99DC /* LivePushCameraEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushCameraEnterViewController.h; sourceTree = "<group>"; };
@@ -191,26 +195,14 @@
 		88999077268486EC00CBC983 /* SampleHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
 		88999078268486EC00CBC983 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8899907B268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTCBroadcastExtensionLauncher.h; sourceTree = "<group>"; };
-		88A1A87A268DA78B007F630D /* LivePkEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePkEnterViewController.h; sourceTree = "<group>"; };
-		88A1A87B268DA78B007F630D /* LivePkEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePkEnterViewController.m; sourceTree = "<group>"; };
-		88A1A87C268DA78B007F630D /* LivePkEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkEnterViewController.xib; sourceTree = "<group>"; };
 		88A1A881268DA7DA007F630D /* LivePkAnchorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePkAnchorViewController.h; sourceTree = "<group>"; };
 		88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePkAnchorViewController.m; sourceTree = "<group>"; };
 		88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkAnchorViewController.xib; sourceTree = "<group>"; };
 		88A1A887268DA81A007F630D /* LivePkAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePkAudienceViewController.h; sourceTree = "<group>"; };
 		88A1A888268DA81A007F630D /* LivePkAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePkAudienceViewController.m; sourceTree = "<group>"; };
 		88A1A889268DA81A007F630D /* LivePkAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkAudienceViewController.xib; sourceTree = "<group>"; };
-		88AB3E4F268A008C00A75212 /* LiveUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveUrl.h; sourceTree = "<group>"; };
-		88AB3E50268A008C00A75212 /* LiveUrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveUrl.m; sourceTree = "<group>"; };
-		88AB3E57268ABC5400A75212 /* LiveLinkEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveLinkEnterViewController.h; sourceTree = "<group>"; };
-		88AB3E58268ABC5400A75212 /* LiveLinkEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLinkEnterViewController.m; sourceTree = "<group>"; };
-		88AB3E59268ABC5400A75212 /* LiveLinkEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveLinkEnterViewController.xib; sourceTree = "<group>"; };
-		88AB3E5E268AF8E800A75212 /* LiveLinkAnchorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveLinkAnchorViewController.h; sourceTree = "<group>"; };
-		88AB3E5F268AF8E800A75212 /* LiveLinkAnchorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLinkAnchorViewController.m; sourceTree = "<group>"; };
-		88AB3E60268AF8E800A75212 /* LiveLinkAnchorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveLinkAnchorViewController.xib; sourceTree = "<group>"; };
-		88AB3E64268B035C00A75212 /* LiveLinkAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveLinkAudienceViewController.h; sourceTree = "<group>"; };
-		88AB3E65268B035C00A75212 /* LiveLinkAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLinkAudienceViewController.m; sourceTree = "<group>"; };
-		88AB3E66268B035C00A75212 /* LiveLinkAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveLinkAudienceViewController.xib; sourceTree = "<group>"; };
+		88AB3E4F268A008C00A75212 /* URLUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLUtils.h; sourceTree = "<group>"; };
+		88AB3E50268A008C00A75212 /* URLUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLUtils.m; sourceTree = "<group>"; };
 		88C4C05F268B503000FBB698 /* CustomVideoCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomVideoCaptureViewController.h; sourceTree = "<group>"; };
 		88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCaptureViewController.m; sourceTree = "<group>"; };
 		88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomVideoCaptureViewController.xib; sourceTree = "<group>"; };
@@ -225,6 +217,26 @@
 		88FC7856268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTCPushAndPlayAudienceViewController.h; sourceTree = "<group>"; };
 		88FC7857268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTCPushAndPlayAudienceViewController.m; sourceTree = "<group>"; };
 		88FC7858268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTCPushAndPlayAudienceViewController.xib; sourceTree = "<group>"; };
+		C1937C62274F75F700F19E99 /* LivePkUserInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivePkUserInputViewController.h; sourceTree = "<group>"; };
+		C1937C63274F75F700F19E99 /* LivePkUserInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivePkUserInputViewController.m; sourceTree = "<group>"; };
+		C1937C83274F799100F19E99 /* LiveLinkAnchorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveLinkAnchorViewController.h; sourceTree = "<group>"; };
+		C1937C84274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveLinkOrPkStreamInputViewController.m; sourceTree = "<group>"; };
+		C1937C85274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveLinkOrPkSwitchRoleViewController.m; sourceTree = "<group>"; };
+		C1937C86274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveLinkOrPkSwitchRoleViewController.xib; sourceTree = "<group>"; };
+		C1937C87274F799200F19E99 /* LiveLinkAudienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveLinkAudienceViewController.h; sourceTree = "<group>"; };
+		C1937C88274F799200F19E99 /* LiveLinkAudienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveLinkAudienceViewController.m; sourceTree = "<group>"; };
+		C1937C89274F799200F19E99 /* LiveLinkUserInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveLinkUserInputViewController.h; sourceTree = "<group>"; };
+		C1937C8A274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveLinkOrPkSwitchRoleViewController.h; sourceTree = "<group>"; };
+		C1937C8B274F799200F19E99 /* LiveInputBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveInputBaseViewController.h; sourceTree = "<group>"; };
+		C1937C8C274F799200F19E99 /* LiveInputBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveInputBaseViewController.xib; sourceTree = "<group>"; };
+		C1937C8D274F799200F19E99 /* LiveLinkAnchorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveLinkAnchorViewController.xib; sourceTree = "<group>"; };
+		C1937C8E274F799200F19E99 /* LiveLinkUserInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveLinkUserInputViewController.m; sourceTree = "<group>"; };
+		C1937C8F274F799200F19E99 /* LiveInputBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveInputBaseViewController.m; sourceTree = "<group>"; };
+		C1937C90274F799200F19E99 /* LiveLinkAnchorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveLinkAnchorViewController.m; sourceTree = "<group>"; };
+		C1937C91274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveLinkOrPkStreamInputViewController.h; sourceTree = "<group>"; };
+		C1937C92274F799200F19E99 /* LiveLinkAudienceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveLinkAudienceViewController.xib; sourceTree = "<group>"; };
+		C1937CBB275080CB00F19E99 /* LivePkFindPkUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivePkFindPkUserController.m; sourceTree = "<group>"; };
+		C1937CBC275080CB00F19E99 /* LivePkFindPkUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivePkFindPkUserController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +257,7 @@
 				4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */,
 				47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */,
 				4723A7C226315FA30094AC81 /* CoreMedia.framework in Frameworks */,
-				E4F44B11A47D6D11AF93A0B5 /* TXLiteAVSDK_Live.framework in Frameworks */,
+				F76A7D92853E3FE1908DD17A /* TXLiteAVSDK_Live.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +269,7 @@
 				88A2C846267062FF006FC026 /* Accelerate.framework in Frameworks */,
 				8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */,
 				8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */,
-				62E4DB92798115BB9002FE2D /* TXLiteAVSDK_Live.framework in Frameworks */,
+				8077AD3B4D267D29A0DE8D49 /* TXLiteAVSDK_Live.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */,
-				5C4A39EFE097BE07EBDDDBEF /* TXLiteAVSDK_Live.framework */,
+				1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */,
 			);
 			name = SDK;
 			path = ../SDK;
@@ -474,9 +486,10 @@
 		888C77E4268DA734004D6A7B /* LivePK */ = {
 			isa = PBXGroup;
 			children = (
-				88A1A87A268DA78B007F630D /* LivePkEnterViewController.h */,
-				88A1A87B268DA78B007F630D /* LivePkEnterViewController.m */,
-				88A1A87C268DA78B007F630D /* LivePkEnterViewController.xib */,
+				C1937CBC275080CB00F19E99 /* LivePkFindPkUserController.h */,
+				C1937CBB275080CB00F19E99 /* LivePkFindPkUserController.m */,
+				C1937C62274F75F700F19E99 /* LivePkUserInputViewController.h */,
+				C1937C63274F75F700F19E99 /* LivePkUserInputViewController.m */,
 				88A1A881268DA7DA007F630D /* LivePkAnchorViewController.h */,
 				88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */,
 				88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */,
@@ -500,8 +513,8 @@
 		88AB3E4D2689FC5D00A75212 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				88AB3E4F268A008C00A75212 /* LiveUrl.h */,
-				88AB3E50268A008C00A75212 /* LiveUrl.m */,
+				88AB3E4F268A008C00A75212 /* URLUtils.h */,
+				88AB3E50268A008C00A75212 /* URLUtils.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -509,15 +522,22 @@
 		88AB3E56268ABB2C00A75212 /* LiveLink */ = {
 			isa = PBXGroup;
 			children = (
-				88AB3E57268ABC5400A75212 /* LiveLinkEnterViewController.h */,
-				88AB3E58268ABC5400A75212 /* LiveLinkEnterViewController.m */,
-				88AB3E59268ABC5400A75212 /* LiveLinkEnterViewController.xib */,
-				88AB3E5E268AF8E800A75212 /* LiveLinkAnchorViewController.h */,
-				88AB3E5F268AF8E800A75212 /* LiveLinkAnchorViewController.m */,
-				88AB3E60268AF8E800A75212 /* LiveLinkAnchorViewController.xib */,
-				88AB3E64268B035C00A75212 /* LiveLinkAudienceViewController.h */,
-				88AB3E65268B035C00A75212 /* LiveLinkAudienceViewController.m */,
-				88AB3E66268B035C00A75212 /* LiveLinkAudienceViewController.xib */,
+				C1937C83274F799100F19E99 /* LiveLinkAnchorViewController.h */,
+				C1937C90274F799200F19E99 /* LiveLinkAnchorViewController.m */,
+				C1937C8D274F799200F19E99 /* LiveLinkAnchorViewController.xib */,
+				C1937C87274F799200F19E99 /* LiveLinkAudienceViewController.h */,
+				C1937C88274F799200F19E99 /* LiveLinkAudienceViewController.m */,
+				C1937C92274F799200F19E99 /* LiveLinkAudienceViewController.xib */,
+				C1937C8B274F799200F19E99 /* LiveInputBaseViewController.h */,
+				C1937C8F274F799200F19E99 /* LiveInputBaseViewController.m */,
+				C1937C8C274F799200F19E99 /* LiveInputBaseViewController.xib */,
+				C1937C91274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.h */,
+				C1937C84274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m */,
+				C1937C8A274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.h */,
+				C1937C85274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.m */,
+				C1937C86274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.xib */,
+				C1937C89274F799200F19E99 /* LiveLinkUserInputViewController.h */,
+				C1937C8E274F799200F19E99 /* LiveLinkUserInputViewController.m */,
 			);
 			path = LiveLink;
 			sourceTree = "<group>";
@@ -640,28 +660,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1937C95274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.xib in Resources */,
 				8839C3D62689BEF5000FF58C /* LivePlayViewController.xib in Resources */,
 				88FC784B268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib in Resources */,
+				C1937C97274F799200F19E99 /* LiveInputBaseViewController.xib in Resources */,
 				88A1A88B268DA81A007F630D /* LivePkAudienceViewController.xib in Resources */,
 				8839C3BB2689AE29000FF58C /* LivePushScreenViewController.xib in Resources */,
 				885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */,
-				88A1A87E268DA78B007F630D /* LivePkEnterViewController.xib in Resources */,
 				477EC97A26268B0A007AAC4F /* Assets.xcassets in Resources */,
-				88AB3E62268AF8E800A75212 /* LiveLinkAnchorViewController.xib in Resources */,
-				88AB3E68268B035C00A75212 /* LiveLinkAudienceViewController.xib in Resources */,
 				88FC77AE268C625300768C53 /* README.md in Resources */,
 				477EC97D26268B0A007AAC4F /* Main.storyboard in Resources */,
 				8839C3CB2689B93F000FF58C /* LivePlayEnterViewController.xib in Resources */,
 				477EC9A826268D0F007AAC4F /* Localized.strings in Resources */,
 				88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */,
 				88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */,
+				C1937C9C274F799200F19E99 /* LiveLinkAudienceViewController.xib in Resources */,
 				88A1A885268DA7DA007F630D /* LivePkAnchorViewController.xib in Resources */,
 				88FC785A268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib in Resources */,
 				477EC9B626269568007AAC4F /* HomeTableViewCell.xib in Resources */,
+				C1937C98274F799200F19E99 /* LiveLinkAnchorViewController.xib in Resources */,
 				477EC97C26268B0A007AAC4F /* LaunchScreen.storyboard in Resources */,
 				88167CC62684AC91001D99DC /* LivePushCameraViewController.xib in Resources */,
 				88C4C06C268C49FD00FBB698 /* ThirdBeautyViewController.xib in Resources */,
-				88AB3E5B268ABC5400A75212 /* LiveLinkEnterViewController.xib in Resources */,
 				47E0725F263656110027D05E /* InfoPlist.strings in Resources */,
 				88FC7854268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib in Resources */,
 			);
@@ -683,29 +703,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				477EC9A226268CB9007AAC4F /* ViewController.m in Sources */,
+				C1937C94274F799200F19E99 /* LiveLinkOrPkSwitchRoleViewController.m in Sources */,
+				C1937C64274F75F700F19E99 /* LivePkUserInputViewController.m in Sources */,
 				88A1A88A268DA81A007F630D /* LivePkAudienceViewController.m in Sources */,
-				88AB3E61268AF8E800A75212 /* LiveLinkAnchorViewController.m in Sources */,
 				477EC9C32626D6AB007AAC4F /* UIColor+Hex.m in Sources */,
+				C1937C9B274F799200F19E99 /* LiveLinkAnchorViewController.m in Sources */,
+				C1937C9A274F799200F19E99 /* LiveInputBaseViewController.m in Sources */,
 				8839C3CA2689B93F000FF58C /* LivePlayEnterViewController.m in Sources */,
 				47E073062636A6C80027D05E /* CustomCameraHelper.m in Sources */,
 				8839C3BA2689AE29000FF58C /* LivePushScreenViewController.m in Sources */,
 				88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */,
 				88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */,
 				88FC784A268C678A00768C53 /* RTCPushAndPlayEnterViewController.m in Sources */,
-				88AB3E51268A008C00A75212 /* LiveUrl.m in Sources */,
+				88AB3E51268A008C00A75212 /* URLUtils.m in Sources */,
 				880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */,
-				88AB3E67268B035C00A75212 /* LiveLinkAudienceViewController.m in Sources */,
 				885A56472689ABB500D9D55F /* LivePushScreenEnterViewController.m in Sources */,
-				88A1A87D268DA78B007F630D /* LivePkEnterViewController.m in Sources */,
+				C1937C99274F799200F19E99 /* LiveLinkUserInputViewController.m in Sources */,
 				477ECA0A2627D344007AAC4F /* UIViewController+AlertViewController.m in Sources */,
-				88AB3E5A268ABC5400A75212 /* LiveLinkEnterViewController.m in Sources */,
 				8839C3D52689BEF5000FF58C /* LivePlayViewController.m in Sources */,
+				C1937CBD275080CB00F19E99 /* LivePkFindPkUserController.m in Sources */,
 				477EC97F26268B0A007AAC4F /* AppDelegate.m in Sources */,
 				4723A8902631666E0094AC81 /* NSString+Common.m in Sources */,
 				88C4C06A268C48DF00FBB698 /* ThirdBeautyViewController.m in Sources */,
+				C1937C93274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m in Sources */,
 				88167CC52684AC91001D99DC /* LivePushCameraViewController.m in Sources */,
 				88FC7853268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m in Sources */,
 				477EC97E26268B0A007AAC4F /* main.m in Sources */,
+				C1937C96274F799200F19E99 /* LiveLinkAudienceViewController.m in Sources */,
 				477EC9B526269568007AAC4F /* HomeTableViewCell.m in Sources */,
 				88A1A884268DA7DA007F630D /* LivePkAnchorViewController.m in Sources */,
 				88FC7859268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m in Sources */,

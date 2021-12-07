@@ -87,7 +87,7 @@
 }
 
 - (void)startPlayWithPlayer:(V2TXLivePlayer*)player streamId:(NSString*)streamId {
-    NSString *url = [LiveUrl generateLebPlayUrl:streamId];
+    NSString *url = [URLUtils generateLebPlayUrl:streamId];
     
     [player setRenderView:self.view];
     [player startPlay:url];

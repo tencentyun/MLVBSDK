@@ -67,7 +67,16 @@
 
 
 "MLVB-API-Example.LiveLink.title" = "MLVB Co-anchoring";
-"MLVB-API-Example.LiveLink.streamIdInput" = "Stream ID";
+"MLVB-API-Example.LiveLink.ok" = "Ok";
+"MLVB-API-Example.LiveLink.startPlay" = "Start Play";
+"MLVB-API-Example.LiveLink.startLink" = "Start Link";
+"MLVB-API-Example.LiveLink.startPush" = "Start Push";
+"MLVB-API-Example.LiveLink.iAmAnchor" = "I am Anchor";
+"MLVB-API-Example.LiveLink.iAmAudience" = "I am Audience";
+"MLVB-API-Example.LiveLink.nextStep" = "Next";
+"MLVB-API-Example.LiveLink.AudienceNameInput" = "Please enter the user name of the audience";
+"MLVB-API-Example.LiveLink.streamIdInput" = "Please enter the name of the live broadcast room";
+"MLVB-API-Example.LiveLink.joinStreamId" = "Please enter the live room you want to enter";
 "MLVB-API-Example.LiveLink.userIdInput" = "User ID";
 "MLVB-API-Example.LiveLink.chooseRole" = "Role";
 "MLVB-API-Example.LiveLink.anchor" = "Anchor";
@@ -81,6 +90,7 @@
 "MLVB-API-Example.LiveLink.stopLink" = "Stop";
 "MLVB-API-Example.LiveLink.startLink" = "Co-anchor";
 
+"MLVB-API-Example.LivePk.roomName" = "Enter room ID of the anchor to call";
 "MLVB-API-Example.LivePk.title" = "Competition";
 "MLVB-API-Example.LivePk.streamIdInput" = "Stream ID";
 "MLVB-API-Example.LivePk.userIdInput" = "User ID";

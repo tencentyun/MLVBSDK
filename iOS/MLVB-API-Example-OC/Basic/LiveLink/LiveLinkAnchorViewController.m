@@ -38,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *acceptLinkButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UIView *remoteView;
+@property (weak, nonatomic) IBOutlet UIButton *liveLinkStartButton;
+@property (weak, nonatomic) IBOutlet UIButton *liveLinkStopButton;
 
 @property (strong, nonatomic) NSString* streamId;
 @property (strong, nonatomic) NSString* userId;
@@ -87,7 +89,8 @@
     [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.acceptLink") forState:UIControlStateNormal];
     [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.stopLink") forState:UIControlStateSelected];
     self.acceptLinkButton.titleLabel.adjustsFontSizeToFitWidth = true;
-
+    [self.liveLinkStopButton setHidden:true];
+    [self.liveLinkStopButton setTitle:@"" forState:UIControlStateNormal];
 }
 
 - (void)dealloc {
@@ -99,7 +102,7 @@
     [self.livePusher startMicrophone];
     [self.livePusher setRenderView:self.view];
 
-    NSString *url = [LiveUrl generateTRTCPushUrl:self.streamId userId:self.userId];
+    NSString *url = [URLUtils generateTRTCPushUrl:self.streamId userId:self.userId];
     V2TXLiveCode code = [self.livePusher startPush:url];
     if (code != V2TXLIVE_OK) {
         [self.livePusher stopMicrophone];
@@ -114,7 +117,7 @@
 }
 
 - (void)startPlay:(NSString*)streamId userId:(NSString*)userId {
-    NSString *url = [LiveUrl generateTRTCPlayUrl:streamId];
+    NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     
     [self.livePlayer setRenderView:self.remoteView];
     [self.livePlayer startPlay:url];
@@ -160,20 +163,45 @@
 
 #pragma mark - Actions
 
-- (IBAction)acceptLinkButtonClick:(UIButton*)sender {
-    sender.selected = !sender.isSelected;
-    if (sender.selected) {
-        [self startPlay:self.streamIdTextField.text userId:self.userIdTextField.text];
-    } else {
-        [self stopPlay];
-    }
+- (IBAction)onLiveLinkStartButtonClick:(id)sender {
+    UIAlertController * alertController = [UIAlertController
+       alertControllerWithTitle:Localize(@"MLVB-API-Example.LiveLink.AudienceNameInput")
+                        message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:Localize(@"MLVB-API-Example.LiveLink.ok")
+        style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *userName = alertController.textFields.firstObject;
+        [self onInputAudienceName:userName.text];
+    }];
+    
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:^{
+        [self.liveLinkStopButton setHidden:false];
+        [self.liveLinkStartButton setHidden:true];
+    }];
+}
+
+- (IBAction)onLiveLinkStopButtonClick:(id)sender {
+    [self.liveLinkStopButton setHidden:true];
+    [self.liveLinkStartButton setHidden:false];
+
+    [self stopPlay];
+}
+
+- (void)onInputAudienceName:(NSString *)name {
+    [self startPlay:name userId:self.userId];
 }
 
 #pragma mark - Notification
 
 - (void)addKeyboardObserver {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+        name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+        name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)removeKeyboardObserver {

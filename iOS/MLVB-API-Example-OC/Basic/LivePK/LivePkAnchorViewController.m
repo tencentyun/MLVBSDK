@@ -30,17 +30,13 @@
  */
 
 #import "LivePkAnchorViewController.h"
+#import "LivePkFindPkUserController.h"
 
-@interface LivePkAnchorViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *streamIdLabel;
-@property (weak, nonatomic) IBOutlet UITextField *streamIdTextField;
-@property (weak, nonatomic) IBOutlet UILabel *userIdLabel;
-@property (weak, nonatomic) IBOutlet UITextField *userIdTextField;
-@property (weak, nonatomic) IBOutlet UIButton *acceptLinkButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-
+@interface LivePkAnchorViewController ()<V2TXLivePlayerObserver,V2TXLivePusherObserver>
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIView *remoteView;
+@property (weak, nonatomic) IBOutlet UIButton *pkEnterButton;
+@property (weak, nonatomic) IBOutlet UIButton *closePkButton;
 
 @property (strong, nonatomic) NSString* streamId;
 @property (strong, nonatomic) NSString* userId;
@@ -61,6 +57,7 @@
 - (V2TXLivePlayer *)livePlayer {
     if (!_livePlayer) {
         _livePlayer = [[V2TXLivePlayer alloc] init];
+        [_livePlayer setObserver:self];
     }
     return _livePlayer;
 }
@@ -69,6 +66,7 @@
 - (V2TXLivePusher *)livePusher {
     if (!_livePusher) {
         _livePusher = [[V2TXLivePusher alloc] initWithLiveMode:V2TXLiveMode_RTC];
+        [_livePusher setObserver:self];
     }
     return _livePusher;
 }
@@ -76,24 +74,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupDefaultUIConfig];
-    [self addKeyboardObserver];
-    
     [self startPush];
 }
 
 - (void)setupDefaultUIConfig {
     self.title = self.streamId;
-    self.streamIdLabel.adjustsFontSizeToFitWidth = true;
-    self.userIdLabel.adjustsFontSizeToFitWidth = true;
-
-    self.acceptLinkButton.backgroundColor = [UIColor themeBlueColor];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LivePk.startPK") forState:UIControlStateNormal];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LivePk.stopPK") forState:UIControlStateSelected];
-    self.acceptLinkButton.titleLabel.adjustsFontSizeToFitWidth = true;
+    self.pkEnterButton.hidden = NO;
+    self.closePkButton.hidden = YES;
 }
 
 - (void)dealloc {
-    [self removeKeyboardObserver];
+    NSLog(@"dealloc:LivePkAnchorViewController");
 }
 
 - (void)startPush {
@@ -101,7 +92,7 @@
     [self.livePusher startMicrophone];
     [self.livePusher setRenderView:self.mainView];
 
-    NSString *url = [LiveUrl generateTRTCPushUrl:self.streamId userId:self.userId];
+    NSString *url = [URLUtils generateTRTCPushUrl:self.streamId userId:self.userId];
     V2TXLiveCode code = [self.livePusher startPush:url];
     if (code != V2TXLIVE_OK) {
         [self.livePusher stopMicrophone];
@@ -116,10 +107,11 @@
 }
 
 - (void)startPlay:(NSString*)streamId userId:(NSString*)userId {
-    NSString *url = [LiveUrl generateTRTCPlayUrl:streamId];
+    NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     
     [self.livePlayer setRenderView:self.remoteView];
-    [self.livePlayer startPlay:url];
+    V2TXLiveCode code = [self.livePlayer startPlay:url];
+    NSLog(@"%ld",code);
     
     V2TXLiveTranscodingConfig *config = [[V2TXLiveTranscodingConfig alloc] init];
     config.videoWidth = 400;
@@ -139,7 +131,7 @@
     
     V2TXLiveMixStream *subStream = [[V2TXLiveMixStream alloc] init];
     subStream.streamId = streamId;
-    subStream.userId = userId;
+    subStream.userId = streamId;
     subStream.height = 300;
     subStream.width = 170;
     subStream.x = 210;
@@ -163,43 +155,61 @@
 
 #pragma mark - Actions
 
-- (IBAction)acceptLinkButtonClick:(UIButton*)sender {
-    sender.selected = !sender.isSelected;
-    if (sender.selected) {
-        [self startPlay:self.streamIdTextField.text userId:self.userIdTextField.text];
-    } else {
-        [self stopPlay];
+- (IBAction)clickClosePkButton:(id)sender {
+    self.pkEnterButton.hidden = NO;
+    self.closePkButton.hidden = YES;
+    [self stopPlay];
+}
+
+- (IBAction)clickPkEnterButton:(id)sender {
+    LivePkFindPkUserController *controller = [[LivePkFindPkUserController alloc] initWithNibName:@"LivePkFindPkUserController" bundle:nil];
+    __weak typeof(self) wealSelf = self;
+    controller.didClickNextBlock = ^(NSString *streamId) {
+        __strong typeof(wealSelf) strongSelf = wealSelf;
+        strongSelf.pkEnterButton.hidden = YES;
+        strongSelf.closePkButton.hidden = NO;
+        [strongSelf startPlay:streamId userId:self.userId];
+    };
+    [self.navigationController pushViewController:controller animated:true];
+}
+
+#pragma mark - V2TXLivePlayerObserver
+
+- (void)onStatisticsUpdate:(id<V2TXLivePlayer>)player
+                statistics:(V2TXLivePlayerStatistics *)statistics {
+}
+
+- (void)onWarning:(id<V2TXLivePlayer>)player
+             code:(V2TXLiveCode)code
+          message:(NSString *)msg
+        extraInfo:(NSDictionary *)extraInfo {
+}
+
+- (void)onError:(id<V2TXLivePlayer>)player
+           code:(V2TXLiveCode)code
+        message:(NSString *)msg
+      extraInfo:(NSDictionary *)extraInfo{
+}
+
+- (void)onVideoPlayStatusUpdate:(id<V2TXLivePlayer>)player
+                         status:(V2TXLivePlayStatus)status
+                         reason:(V2TXLiveStatusChangeReason)reason
+                      extraInfo:(NSDictionary *)extraInfo{
+}
+
+- (void)onReceiveSeiMessage:(id<V2TXLivePlayer>)player
+                payloadType:(int)payloadType
+                       data:(NSData *)data{
+}
+
+- (void)onRenderVideoFrame:(id<V2TXLivePlayer>)player
+                     frame:(V2TXLiveVideoFrame *)videoFrame {
+}
+
+#pragma mark - V2TXLivePusherObserver
+- (void)onSetMixTranscodingConfig:(V2TXLiveCode)code message:(NSString *)msg {
+    if (code != V2TXLIVE_OK) {
+        NSLog(@"混流error message:%@",msg);
     }
 }
-
-#pragma mark - Notification
-
-- (void)addKeyboardObserver {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)removeKeyboardObserver {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (BOOL)keyboardWillShow:(NSNotification *)noti {
-    CGFloat animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGRect keyboardBounds = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    [UIView animateWithDuration:animationDuration animations:^{
-        self.bottomConstraint.constant = keyboardBounds.size.height;
-    }];
-    return YES;
-}
-
-- (BOOL)keyboardWillHide:(NSNotification *)noti {
-     CGFloat animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-     [UIView animateWithDuration:animationDuration animations:^{
-         self.bottomConstraint.constant = 25;
-     }];
-     return YES;
-}
-
-
 @end

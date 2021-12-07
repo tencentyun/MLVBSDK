@@ -39,23 +39,39 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * rtmp 推流 bizId
+ *  配置推流地址
+ *  腾讯云域名管理页面：https://console.cloud.tencent.com/live/domainmanage
  */
+static NSString * const PUSH_DOMAIN = @"";
+
 /**
- * `bizId` for CDN publishing and stream mixing
+ *  配置拉流地址
+ *  腾讯云域名管理页面： https://console.cloud.tencent.com/live/domainmanage
  */
-static const int BIZID = 0;
-
-
-static NSString * const LICENSEURL = @"";
-
-
-static NSString * const LICENSEURLKEY = @"";
+static NSString * const PLAY_DOMAIN = @"";
 
 /**
  * URL 鉴权Key
  */
-static NSString * const URLKEY = @"";
+static NSString * const LIVE_URL_KEY = @"";
+
+/**
+ * 腾讯云License管理页面(https://console.cloud.tencent.com/live/license)
+ * 当前应用的License LicenseUrl
+ *
+ * License Management View (https://console.cloud.tencent.com/live/license)
+ * License URL of your application
+ */
+static NSString * const LICENSEURL = @"";
+
+/**
+ * 腾讯云License管理页面(https://console.cloud.tencent.com/live/license)
+ * 当前应用的License Key
+ *
+ * License Management View (https://console.cloud.tencent.com/live/license)
+ * License key of your application
+ */
+static NSString * const LICENSEURLKEY = @"";
 
 /**
  * 腾讯云 SDKAppId，需要替换为您自己账号下的 SDKAppId。

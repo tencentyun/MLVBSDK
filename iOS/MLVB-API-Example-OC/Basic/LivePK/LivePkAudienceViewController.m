@@ -16,7 +16,7 @@
 
 @implementation LivePkAudienceViewController
 
-- (instancetype)initWithStreamId:(NSString*)streamId {
+- (instancetype)initWithStreamId:(NSString *)streamId userId:(NSString *)userId {
     self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
     self.streamId = streamId;
     return self;
@@ -32,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupDefaultUIConfig];
-    
     [self startLebPlay:self.streamId];
 }
 
@@ -41,7 +40,7 @@
 }
 
 - (void)startLebPlay:(NSString*)streamId {
-    NSString *url = [LiveUrl generateLebPlayUrl:streamId];
+    NSString *url = [URLUtils generateLebPlayUrl:streamId];
     [self.livePlayer setRenderView:self.view];
     [self.livePlayer startPlay:url];
 

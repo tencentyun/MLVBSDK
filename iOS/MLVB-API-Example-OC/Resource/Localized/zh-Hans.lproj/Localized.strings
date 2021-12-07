@@ -74,8 +74,17 @@
 
 
 "MLVB-API-Example.LiveLink.title" = "MLVB 连麦互动";
-"MLVB-API-Example.LiveLink.streamIdInput" = "请输入streamId";
-"MLVB-API-Example.LiveLink.userIdInput" = "请输入userId";
+"MLVB-API-Example.LiveLink.ok" = "确定";
+"MLVB-API-Example.LiveLink.startPlay" = "开始播放";
+"MLVB-API-Example.LiveLink.startLink" = "开始连麦";
+"MLVB-API-Example.LiveLink.startPush" = "开始推流";
+"MLVB-API-Example.LiveLink.iAmAnchor" = "我是主播";
+"MLVB-API-Example.LiveLink.iAmAudience" = "我是观众";
+"MLVB-API-Example.LiveLink.nextStep" = "下一步";
+"MLVB-API-Example.LiveLink.AudienceNameInput" = "请输入观众的用户名";
+"MLVB-API-Example.LiveLink.streamIdInput" = "请输入直播间名称";
+"MLVB-API-Example.LiveLink.joinStreamId" = "请输入要进入的直播间";
+"MLVB-API-Example.LiveLink.userIdInput" = "请输入用户名";
 "MLVB-API-Example.LiveLink.chooseRole" = "请选择角色";
 "MLVB-API-Example.LiveLink.anchor" = "主播";
 "MLVB-API-Example.LiveLink.audience" = "观众";
@@ -101,6 +110,7 @@
 "MLVB-API-Example.LiveLink.stopLink" = "停止连麦";
 "MLVB-API-Example.LiveLink.startLink" = "开始连麦";
 
+"MLVB-API-Example.LivePk.roomName" = "请输入对方直播间名称";
 "MLVB-API-Example.LivePk.title" = "MLVB PK互动";
 "MLVB-API-Example.LivePk.streamIdInput" = "请输入streamId";
 "MLVB-API-Example.LivePk.userIdInput" = "请输入userId";

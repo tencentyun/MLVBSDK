@@ -87,9 +87,9 @@
     
     NSString *url;
     if (self.liveMode == V2TXLiveMode_RTC) {
-        url = [LiveUrl generateTRTCPushUrl:self.streamId];
+        url = [URLUtils generateTRTCPushUrl:self.streamId];
     } else {
-        url = [LiveUrl generateRtmpPushUrl:self.streamId];
+        url = [URLUtils generateRtmpPushUrl:self.streamId];
     }
 
     V2TXLiveCode code = [self.livePusher startPush:url];

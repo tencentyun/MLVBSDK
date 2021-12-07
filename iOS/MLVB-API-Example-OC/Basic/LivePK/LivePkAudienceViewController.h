@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LivePkAudienceViewController : ViewController
-- (instancetype)initWithStreamId:(NSString *)streamId;
+- (instancetype)initWithStreamId:(NSString *)streamId userId:(NSString *)userId;
 @end
 
 NS_ASSUME_NONNULL_END

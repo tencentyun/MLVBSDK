@@ -39,7 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *acceptLinkButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UIView *remoteView;
-
+@property (weak, nonatomic) IBOutlet UIButton *liveLinkStartButton;
+@property (weak, nonatomic) IBOutlet UIButton *liveLinkStopButton;
 
 @property (strong, nonatomic) NSString* streamId;
 @property (strong, nonatomic) NSString* userId;
@@ -89,6 +90,8 @@
     [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.startLink") forState:UIControlStateNormal];
     [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.stopLink") forState:UIControlStateSelected];
     self.acceptLinkButton.titleLabel.adjustsFontSizeToFitWidth = true;
+    [self.liveLinkStopButton setHidden:true];
+    [self.liveLinkStopButton setTitle:@"" forState:UIControlStateNormal];
 }
 
 - (void)dealloc {
@@ -100,7 +103,7 @@
     [self.livePusher startMicrophone];
     [self.livePusher setRenderView:self.view];
 
-    NSString *url = [LiveUrl generateTRTCPushUrl:self.streamIdTextField.text userId:self.userIdTextField.text];
+    NSString *url = [URLUtils generateTRTCPushUrl:self.userId userId:self.userId];
     V2TXLiveCode code = [self.livePusher startPush:url];
     if (code != V2TXLIVE_OK) {
         [self.livePusher stopMicrophone];
@@ -115,14 +118,14 @@
 }
 
 - (void)startLebPlay:(NSString*)streamId {
-    NSString *url = [LiveUrl generateLebPlayUrl:streamId];
+    NSString *url = [URLUtils generateLebPlayUrl:streamId];
     [self.livePlayer setRenderView:self.view];
     [self.livePlayer startPlay:url];
 
 }
 
 - (void)startRtcPlay:(NSString*)streamId {
-    NSString *url = [LiveUrl generateTRTCPlayUrl:streamId];
+    NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     [self.livePlayer setRenderView:self.remoteView];
     [self.livePlayer startPlay:url];
 }
@@ -137,17 +140,22 @@
 
 #pragma mark - Actions
 
-- (IBAction)acceptLinkButtonClick:(UIButton*)sender {
-    sender.selected = !sender.isSelected;
-    [self stopPlay];
+- (IBAction)onLiveLinkStartButton:(id)sender {
+    [self.liveLinkStopButton setHidden:false];
+    [self.liveLinkStartButton setHidden:true];
 
-    if (sender.isSelected) {
-        [self startRtcPlay:self.streamId];
-        [self startPush];
-    } else {
-        [self stopPush];
-        [self startLebPlay:self.streamId];
-    }
+    [self stopPlay];
+    [self startRtcPlay:self.streamId];
+    [self startPush];
+}
+
+- (IBAction)onLiveLinkStopButton:(id)sender {
+    [self.liveLinkStopButton setHidden:true];
+    [self.liveLinkStartButton setHidden:false];
+    
+    [self stopPlay];
+    [self stopPush];
+    [self startLebPlay:self.streamId];
 }
 
 #pragma mark - Notification

@@ -12,7 +12,7 @@
 #import "UIColor+Hex.h"
 #import "GenerateTestUserSig.h"
 #import "NSString+Common.h"
-#import "LiveUrl.h"
+#import "URLUtils.h"
 #import "UIViewController+AlertViewController.h"
 
 @import TXLiteAVSDK_Live;

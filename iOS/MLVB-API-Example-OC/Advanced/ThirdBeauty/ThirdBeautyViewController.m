@@ -110,7 +110,7 @@
     
     [self.livePusher enableCustomVideoProcess:true pixelFormat:V2TXLivePixelFormatNV12 bufferType:V2TXLiveBufferTypePixelBuffer];
     
-    [self.livePusher startPush:[LiveUrl generateTRTCPushUrl:streamId]];
+    [self.livePusher startPush:[URLUtils generateTRTCPushUrl:streamId]];
 }
 
 - (void)stopPush {

@@ -92,7 +92,7 @@
     [self.livePusher startMicrophone];
     [self.customVideoCaputre startCameraCapture];
     
-    [self.livePusher startPush:[LiveUrl generateTRTCPushUrl:streamId]];
+    [self.livePusher startPush:[URLUtils generateTRTCPushUrl:streamId]];
 }
 
 - (void)stopPush {
