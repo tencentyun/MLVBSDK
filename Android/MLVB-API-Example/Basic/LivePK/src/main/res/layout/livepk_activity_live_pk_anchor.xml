@@ -7,21 +7,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="70dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <com.tencent.rtmp.ui.TXCloudVideoView
             android:id="@+id/tx_cloud_view_push"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_weight="1"/>
-
-        <com.tencent.rtmp.ui.TXCloudVideoView
-            android:id="@+id/tx_cloud_view_play"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="1" />
+        <FrameLayout
+            android:id="@+id/ll_link"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_weight="1"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray">
+
+            <Button
+                android:id="@+id/btn_stop_pk"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/livepk_stop_link"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_accept_pk"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/livepk_start_link" />
+
+            <com.tencent.rtmp.ui.TXCloudVideoView
+                android:id="@+id/tx_cloud_view_play"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -44,72 +67,5 @@
             android:gravity="center_horizontal"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:text="PKStreamId"/>
-
-            <EditText
-                android:id="@+id/et_stream_id"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:background="@drawable/common_edit_bg"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:text="PKUserId"/>
-
-            <EditText
-                android:id="@+id/et_user_id"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:background="@drawable/common_edit_bg"/>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_pk"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:text="@string/livepk_start_pk"
-            android:background="@drawable/common_button_bg"/>
     </LinearLayout>
 </RelativeLayout>

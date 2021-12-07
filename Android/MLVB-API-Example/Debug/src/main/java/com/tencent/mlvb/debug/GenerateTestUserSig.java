@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.zip.Deflater;
@@ -123,6 +124,29 @@ public class GenerateTestUserSig {
      * Documentation: https://cloud.tencent.com/document/product/647/17275#Server
      */
     public static final String SECRETKEY = "PLACEHOLDER";
+
+    /**
+     * 配置的推流地址
+     *
+     * 腾讯云域名管理页面：https://console.cloud.tencent.com/live/domainmanage
+     */
+    public static final String PUSH_DOMAIN = "PLACEHOLDER";
+
+    /**
+     * 配置的拉流地址
+     *
+     * 腾讯云域名管理页面：https://console.cloud.tencent.com/live/domainmanage
+     */
+    public static final String PLAY_DOMAIN = "PLACEHOLDER";
+
+    /**
+     * 如果开通鉴权配置的鉴权Key
+     *
+     * 注意：该方案仅适用于调试Demo，正式上线前请将 安全地址生成逻辑迁移到您的后台服务器上，以避免信息泄漏
+     * 详细可参考 https://console.cloud.tencent.com/live/domainmanage 页面 -》 推流配置 -》 鉴权配置
+     */
+    public static final String LIVE_URL_KEY = "PLACEHOLDER";
+
 
     /**
      * 计算 UserSig 签名
@@ -265,6 +289,42 @@ public class GenerateTestUserSig {
     }
 
 
+    private static final char[] DIGITS_LOWER =
+            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+    public static String getSafeUrl(String streamName) {
+        long txTime = System.currentTimeMillis() / 1000 + 60 * 60;
+        String input = new StringBuilder().
+                append(LIVE_URL_KEY).
+                append(streamName).
+                append(Long.toHexString(txTime).toUpperCase()).toString();
+        String txSecret = null;
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            txSecret = byteArrayToHexString(
+                    messageDigest.digest(input.getBytes("UTF-8")));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return new StringBuilder().
+                append("?txSecret=").
+                append(txSecret).
+                append("&").
+                append("txTime=").
+                append(Long.toHexString(txTime).toUpperCase()).
+                toString();
+    }
+
+    private static String byteArrayToHexString(byte[] data) {
+        char[] out = new char[data.length << 1];
+        for (int i = 0, j = 0; i < data.length; i++) {
+            out[j++] = DIGITS_LOWER[(0xF0 & data[i]) >>> 4];
+            out[j++] = DIGITS_LOWER[0x0F & data[i]];
+        }
+        return new String(out);
+    }
 
 
 }

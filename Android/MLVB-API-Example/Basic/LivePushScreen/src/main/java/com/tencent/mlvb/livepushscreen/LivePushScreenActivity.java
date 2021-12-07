@@ -13,7 +13,7 @@ import com.tencent.live2.V2TXLiveDef;
 import com.tencent.live2.V2TXLivePusher;
 import com.tencent.live2.impl.V2TXLivePusherImpl;
 import com.tencent.mlvb.common.MLVBBaseActivity;
-import com.tencent.mlvb.debug.AddressUtils;
+import com.tencent.mlvb.common.URLUtils;
 
 import java.util.Random;
 
@@ -90,10 +90,10 @@ public class LivePushScreenActivity extends MLVBBaseActivity implements View.OnC
         String pushUrl = "";
         if(mStreamType == 0){
             String userId = String.valueOf(new Random().nextInt(10000));
-            pushUrl = AddressUtils.generatePushUrl(mStreamId, userId, 0);
+            pushUrl = URLUtils.generatePushUrl(mStreamId, userId, 0);
             mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTC);
         }else{
-            pushUrl = AddressUtils.generatePushUrl(mStreamId, "", 1);
+            pushUrl = URLUtils.generatePushUrl(mStreamId, "", 1);
             mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTMP);
         }
         Log.d(TAG, "pushUrl: " + pushUrl);

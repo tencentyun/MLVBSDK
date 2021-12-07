@@ -5,9 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -18,10 +17,8 @@ import com.tencent.live2.V2TXLivePusher;
 import com.tencent.live2.impl.V2TXLivePlayerImpl;
 import com.tencent.live2.impl.V2TXLivePusherImpl;
 import com.tencent.mlvb.common.MLVBBaseActivity;
-import com.tencent.mlvb.debug.AddressUtils;
+import com.tencent.mlvb.common.URLUtils;
 import com.tencent.rtmp.ui.TXCloudVideoView;
-
-import java.util.Random;
 
 /**
  * MLVB 连麦互动的观众视角
@@ -43,28 +40,29 @@ import java.util.Random;
  *
  * - For more information, please see the integration document {https://intl.cloud.tencent.com/document/product/1071/39888}.
  */
-public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.OnClickListener {
+public class LiveLinkAudienceActivity extends MLVBBaseActivity {
     private static final String TAG = "LiveLinkActivity";
 
-    private TXCloudVideoView mPlayRenderView;
-    private V2TXLivePlayer   mLivePlayer;
-    private EditText         mEditStreamId;
-    private EditText         mEditUserId;
-    private Button           mButtonLink;
-    private TXCloudVideoView mPushRenderView;
-    private V2TXLivePusher   mLivePusher;
+    private TXCloudVideoView mVideoViewAnchor;
+    private TXCloudVideoView mVideoViewAudience;
     private TextView         mTextTitle;
+    private Button           mButtonStartLink;
+    private Button           mButtonStopLink;
+    private ImageView        mButtonBack;
+
+    private V2TXLivePlayer   mLivePlayer;
+    private V2TXLivePusher   mLivePusher;
 
     private String           mStreamId;
-    private boolean          mLinkFlag = false;
-
+    private String           mUserId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.livelink_activity_live_link_audience);
+
         if (checkPermission()) {
-            initIntentData();
+            initData();
             initView();
             startPlay();
         }
@@ -72,36 +70,54 @@ public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.O
 
     @Override
     protected void onPermissionGranted() {
-        initIntentData();
+        initData();
         initView();
         startPlay();
     }
 
-    private void initIntentData() {
-        mStreamId   = getIntent().getStringExtra("STREAM_ID");
+    private void initData() {
+        mStreamId = getIntent().getStringExtra("STREAM_ID");
+        mUserId = getIntent().getStringExtra("USER_ID");
     }
 
     private void initView() {
-        mPushRenderView = findViewById(R.id.tx_cloud_view_push);
-        mPlayRenderView = findViewById(R.id.tx_cloud_view_play);
-        mEditStreamId   = findViewById(R.id.et_stream_id);
-        mEditUserId     = findViewById(R.id.et_user_id);
-        mButtonLink     = findViewById(R.id.btn_link);
-        mTextTitle      = findViewById(R.id.tv_title);
+        mVideoViewAnchor = findViewById(R.id.tx_cloud_view_anchor);
+        mVideoViewAudience = findViewById(R.id.tx_cloud_view_audience);
 
-        findViewById(R.id.iv_back).setOnClickListener(this);
-        mButtonLink.setOnClickListener(this);
+        mTextTitle = findViewById(R.id.tv_title);
+        mTextTitle.setText(TextUtils.isEmpty(mStreamId) ? "" : mStreamId);
 
-        if(!TextUtils.isEmpty(mStreamId)){
-            mTextTitle.setText(mStreamId);
-        }
+        mButtonStartLink = findViewById(R.id.btn_start_link);
+        mButtonStartLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startLink();
+            }
+        });
+
+        mButtonStopLink = findViewById(R.id.btn_stop_link);
+        mButtonStopLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopLink();
+            }
+        });
+
+        mButtonBack = findViewById(R.id.iv_back);
+        mButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     private void startPush(String streamId, String userId) {
-        String pushUrl = AddressUtils.generatePushUrl(streamId, userId, 0);
+        String pushUrl = URLUtils.generatePushUrl(streamId, userId, 0);
         mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTC);
 
-        mLivePusher.setRenderView(mPushRenderView);
+        mLivePusher.setRenderView(mVideoViewAudience);
         mLivePusher.startCamera(true);
         int ret = mLivePusher.startPush(pushUrl);
         Log.i(TAG, "startPush return: " + ret);
@@ -109,10 +125,10 @@ public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.O
     }
 
     private void startPlay() {
-        String playURL = AddressUtils.generatePlayUrl(mStreamId, "", 2);
+        String playURL = URLUtils.generatePlayUrl(mStreamId, "", 2);
         if(mLivePlayer == null){
             mLivePlayer = new V2TXLivePlayerImpl(LiveLinkAudienceActivity.this);
-            mLivePlayer.setRenderView(mPushRenderView);
+            mLivePlayer.setRenderView(mVideoViewAnchor);
             mLivePlayer.setObserver(new V2TXLivePlayerObserver() {
 
                 @Override
@@ -121,8 +137,20 @@ public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.O
                 }
 
                 @Override
-                public void onVideoPlayStatusUpdate(V2TXLivePlayer player, V2TXLiveDef.V2TXLivePlayStatus status, V2TXLiveDef.V2TXLiveStatusChangeReason reason, Bundle bundle) {
-                    Log.i(TAG, "[Player] onVideoPlayStatusUpdate: player-" + player + ", status-" + status + ", reason-" + reason);
+                public void onVideoLoading(V2TXLivePlayer player, Bundle extraInfo) {
+                    Log.i(TAG, "[Player] onVideoLoading: player-" + player + ", extraInfo-" + extraInfo);
+                }
+
+                @Override
+                public void onVideoPlaying(V2TXLivePlayer player, boolean firstPlay, Bundle extraInfo) {
+                    Log.i(TAG, "[Player] onVideoPlaying: player-"
+                            + player + " firstPlay-" + firstPlay + " info-" + extraInfo);
+                }
+
+                @Override
+                public void onVideoResolutionChanged(V2TXLivePlayer player, int width, int height) {
+                    Log.i(TAG, "[Player] onVideoResolutionChanged: player-"
+                            + player + " width-" + width + " height-" + height);
                 }
             });
         }
@@ -131,40 +159,21 @@ public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.O
         Log.d(TAG, "startPlay : " + result);
     }
 
-    private void link() {
-        if(mLinkFlag){
-            stopLink();
-        }else{
-            startLink();
-        }
-    }
-
     public void startLink(){
-        String linkStreamId = mEditStreamId.getText().toString();
-        String linkUserid   = mEditUserId.getText().toString();
-        if(TextUtils.isEmpty(linkStreamId)){
-            Toast.makeText(LiveLinkAudienceActivity.this, getString(R.string.livelink_please_input_streamid), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(TextUtils.isEmpty(linkUserid)){
-            Toast.makeText(LiveLinkAudienceActivity.this, getString(R.string.livelink_please_input_userid), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         if(mLivePlayer != null && mLivePlayer.isPlaying() == 1){
             mLivePlayer.stopPlay();
         }
 
-        String userId = String.valueOf(new Random().nextInt(10000));
-        String playURL = AddressUtils.generatePlayUrl(mStreamId, userId, 0);
-        mLivePlayer.setRenderView(mPlayRenderView);
+        String playURL = URLUtils.generatePlayUrl(mStreamId, mUserId, 0);
+        mLivePlayer.setRenderView(mVideoViewAnchor);
         int result = mLivePlayer.startPlay(playURL);
         Log.d(TAG, "startPlay : " + result);
 
-        startPush(linkStreamId, linkUserid);
-        mLinkFlag = true;
-        mButtonLink.setText(getString(R.string.livelink_stop_link));
+        // 备注：使用userId作为streamId，尽可能的减少参数；
+        startPush(mUserId, mUserId);
+
+        mButtonStartLink.setVisibility(View.GONE);
+        mButtonStopLink.setVisibility(View.VISIBLE);
     }
 
     public void stopLink(){
@@ -180,8 +189,9 @@ public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.O
             mLivePusher = null;
         }
         startPlay();
-        mButtonLink.setText(getString(R.string.livelink_start_link));
-        mLinkFlag = false;
+
+        mButtonStartLink.setVisibility(View.VISIBLE);
+        mButtonStopLink.setVisibility(View.GONE);
     }
 
     @Override
@@ -207,15 +217,5 @@ public class LiveLinkAudienceActivity extends MLVBBaseActivity implements View.O
     @Override
     public void onBackPressed() {
         finish();
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        if(id == R.id.iv_back){
-            finish();
-        }else if(id == R.id.btn_link){
-            link();
-        }
     }
 }

@@ -29,11 +29,27 @@ import com.tencent.mlvb.livepk.R;
  */
 public class LivePKEnterActivity extends MLVBBaseActivity {
 
-    private EditText        mEditStreamId;
-    private EditText        mEditUserId;
-    private Button          mButtonCommit;
-    private RadioGroup      mRadioRole;
-    private LinearLayout    mLinearUserId;
+    private static final int STEP_INPUT_USERID = 0;
+    private static final int STEP_INPUT_ROLE   = 1;
+    private static final int STEP_INPUT_STREAM = 2;
+
+    private static final int ROLE_UNKNOWN      = -1;
+    private static final int ROLE_ANCHOR       = 0;
+    private static final int ROLE_AUDIENCE     = 1;
+
+    private LinearLayout mLayoutStreamId;
+    private EditText     mEditStreamId;
+    private LinearLayout mLayoutUserId;
+    private EditText     mEditUserId;
+    private LinearLayout mLayoutSelectRole;
+    private Button       mButtonRoleAnchor;
+    private Button       mButtonRoleAudience;
+    private Button       mButtonNext;
+
+    private String       mUserId;
+    private String       mStreamId;
+    private int          mStateInput   = STEP_INPUT_USERID;
+    private int          mRoleSelected = ROLE_UNKNOWN;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,54 +58,94 @@ public class LivePKEnterActivity extends MLVBBaseActivity {
         initView();
     }
 
-    private void initView(){
-        mEditStreamId   = findViewById(R.id.et_stream_id);
-        mEditUserId     = findViewById(R.id.et_user_id);
-        mRadioRole      = findViewById(R.id.rg_role);
-        mButtonCommit   = findViewById(R.id.btn_commit);
-        mLinearUserId   = findViewById(R.id.ll_user_id);
+    private void initView() {
+        mLayoutUserId = findViewById(R.id.ll_user_id);
+        mEditUserId = findViewById(R.id.et_user_id);
+        mLayoutStreamId = findViewById(R.id.ll_stream_id);
+        mEditStreamId = findViewById(R.id.et_stream_id);
+        initSelectRoleLayout();
+        initNextButton();
 
-        mEditStreamId.setText(generateStreamId());
-        mRadioRole.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rb_anchor){
-                    mButtonCommit.setText(getString(R.string.livepk_rtc_push));
-                    mLinearUserId.setVisibility(View.VISIBLE);
-                }else if(i == R.id.rb_audience){
-                    mButtonCommit.setText(R.string.livepk_webrtc_play);
-                    mLinearUserId.setVisibility(View.GONE);
-                }
-            }
-        });
-        mRadioRole.check(R.id.rb_anchor);
+    }
 
-        findViewById(R.id.btn_commit).setOnClickListener(new View.OnClickListener() {
+    private void initSelectRoleLayout() {
+        mLayoutSelectRole = findViewById(R.id.ll_role);
+        mButtonRoleAnchor = findViewById(R.id.bt_anchor);
+        mButtonRoleAudience = findViewById(R.id.bt_audience);
+
+        mButtonRoleAnchor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String streamId = mEditStreamId.getText().toString();
-                String userId = mEditUserId.getText().toString();
-
-                if(TextUtils.isEmpty(streamId)){
-                    Toast.makeText(LivePKEnterActivity.this, getString(R.string.livepk_please_input_streamid), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Intent intent = null;
-                if(mRadioRole.getCheckedRadioButtonId() == R.id.rb_anchor){
-                    if(TextUtils.isEmpty(userId)){
-                        Toast.makeText(LivePKEnterActivity.this, getString(R.string.livepk_please_input_userid), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    intent = new Intent(LivePKEnterActivity.this, LivePKAnchorActivity.class);
-                    intent.putExtra("USER_ID", userId);
-                }else if(mRadioRole.getCheckedRadioButtonId() == R.id.rb_audience){
-                    intent = new Intent(LivePKEnterActivity.this, LivePKAudienceActivity.class);
-                }
-                intent.putExtra("STREAM_ID", streamId);
-                startActivity(intent);
+                mRoleSelected = ROLE_ANCHOR;
+                mButtonRoleAnchor.setSelected(true);
+                mButtonRoleAudience.setSelected(false);
             }
         });
+
+        mButtonRoleAudience.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRoleSelected = ROLE_AUDIENCE;
+                mButtonRoleAnchor.setSelected(false);
+                mButtonRoleAudience.setSelected(true);
+            }
+        });
+    }
+
+    private void initNextButton() {
+        mButtonNext = findViewById(R.id.btn_next);
+        mButtonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mStateInput == STEP_INPUT_USERID) {
+                    mUserId = mEditUserId.getText().toString();
+                    if (TextUtils.isEmpty(mUserId)) {
+                        Toast.makeText(LivePKEnterActivity.this, getString(R.string.livepk_please_input_userid),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    mLayoutUserId.setVisibility(View.GONE);
+                    mLayoutSelectRole.setVisibility(View.VISIBLE);
+                    mLayoutStreamId.setVisibility(View.GONE);
+                    mStateInput = STEP_INPUT_ROLE;
+                } else if (mStateInput == STEP_INPUT_ROLE) {
+                    if (mRoleSelected == ROLE_UNKNOWN) {
+                        Toast.makeText(LivePKEnterActivity.this, getString(R.string.livepk_please_input_userid),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    mLayoutUserId.setVisibility(View.GONE);
+                    mLayoutSelectRole.setVisibility(View.GONE);
+                    mLayoutStreamId.setVisibility(View.VISIBLE);
+                    mButtonNext.setText(mRoleSelected == ROLE_ANCHOR ? R.string.livepk_rtc_push :
+                            R.string.livepk_webrtc_play);
+                    mStateInput = STEP_INPUT_STREAM;
+                } else if (mStateInput == STEP_INPUT_STREAM) {
+                    mStreamId = mEditStreamId.getText().toString();
+                    if (TextUtils.isEmpty(mStreamId)) {
+                        Toast.makeText(LivePKEnterActivity.this, getString(R.string.livepk_please_input_streamid)
+                                , Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Class<?> cls = mRoleSelected == ROLE_ANCHOR ? LivePKAnchorActivity.class :
+                            LivePKAudienceActivity.class;
+                    Intent intent = new Intent(LivePKEnterActivity.this, cls);
+                    intent.putExtra("USER_ID", mUserId);
+                    intent.putExtra("STREAM_ID", mStreamId);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mUserId = "";
+        mRoleSelected = ROLE_UNKNOWN;
+        mStreamId = "";
+        mStateInput = STEP_INPUT_USERID;
     }
 
     @Override

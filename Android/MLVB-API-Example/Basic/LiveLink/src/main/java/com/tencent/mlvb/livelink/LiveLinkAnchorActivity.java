@@ -1,11 +1,15 @@
 package com.tencent.mlvb.livelink;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +22,10 @@ import com.tencent.live2.V2TXLivePusher;
 import com.tencent.live2.impl.V2TXLivePlayerImpl;
 import com.tencent.live2.impl.V2TXLivePusherImpl;
 import com.tencent.mlvb.common.MLVBBaseActivity;
-import com.tencent.mlvb.debug.AddressUtils;
+import com.tencent.mlvb.common.URLUtils;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import static com.tencent.live2.V2TXLiveCode.V2TXLIVE_OK;
 import static com.tencent.live2.V2TXLiveDef.V2TXLiveMixInputType.V2TXLiveMixInputTypePureVideo;
@@ -32,7 +35,7 @@ import static com.tencent.live2.V2TXLiveDef.V2TXLiveMixInputType.V2TXLiveMixInpu
  *
  * 包含如下简单功能：
  * - 开始推流{@link LiveLinkAnchorActivity#startPush()}
- * - 接受连麦{@link LiveLinkAnchorActivity#startLink()}
+ * - 接受连麦{@link LiveLinkAnchorActivity#startLink(String)}
  * - 断开连麦{@link LiveLinkAnchorActivity#stopLink()} ()}
  * - 拉去连麦观众的流{@link LiveLinkAnchorActivity#startPlay(String)}
  *
@@ -43,34 +46,34 @@ import static com.tencent.live2.V2TXLiveDef.V2TXLiveMixInputType.V2TXLiveMixInpu
  *
  * Features:
  * - Start publishing {@link LiveLinkAnchorActivity#startPush()}
- * - Start co-anchoring {@link LiveLinkAnchorActivity#startLink()}
+ * - Start co-anchoring {@link LiveLinkAnchorActivity#startLink(String)}
  * - Stop co-anchoring {@link LiveLinkAnchorActivity#stopLink()}
  * - Play the co-anchoring user’s streams {@link LiveLinkAnchorActivity#startPlay(String)}
  *
  * For more information, please see the integration document {https://intl.cloud.tencent.com/document/product/1071/39888}.
  */
-public class LiveLinkAnchorActivity extends MLVBBaseActivity implements View.OnClickListener {
+public class LiveLinkAnchorActivity extends MLVBBaseActivity {
     private static final String TAG = "LiveLinkAnchorActivity";
 
-    private TXCloudVideoView    mPlayRenderView;
-    private V2TXLivePlayer      mLivePlayer;
-    private EditText            mEditStreamId;
-    private EditText            mEditUserId;
-    private Button              mButtonLink;
-    private TXCloudVideoView    mPushRenderView;
-    private V2TXLivePusher      mLivePusher;
     private TextView            mTextTitle;
+    private ImageView           mButtonBack;
+    private TXCloudVideoView    mVideoViewAnchor;
+    private TXCloudVideoView    mVideoViewAudience;
+    private Button              mButtonAcceptLink;
+    private Button              mButtonStopLink;
+
+    private V2TXLivePlayer      mLivePlayer;
+    private V2TXLivePusher      mLivePusher;
 
     private String              mStreamId;
     private String              mUserId;
-    private boolean             mLinkFlag = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.livelink_activity_live_link_anchor);
         if (checkPermission()) {
-            initIntentData();
+            initData();
             initView();
             startPush();
         }
@@ -78,72 +81,73 @@ public class LiveLinkAnchorActivity extends MLVBBaseActivity implements View.OnC
 
     @Override
     protected void onPermissionGranted() {
-        initIntentData();
+        initData();
         initView();
         startPush();
     }
 
-    private void initIntentData() {
+    private void initData() {
         mStreamId   = getIntent().getStringExtra("STREAM_ID");
         mUserId     = getIntent().getStringExtra("USER_ID");
     }
 
-
     private void initView() {
-        mPushRenderView = findViewById(R.id.tx_cloud_view_push);
-        mPlayRenderView = findViewById(R.id.tx_cloud_view_play);
-        mEditStreamId   = findViewById(R.id.et_stream_id);
-        mEditUserId     = findViewById(R.id.et_user_id);
-        mButtonLink     = findViewById(R.id.btn_link);
-        mTextTitle      = findViewById(R.id.tv_title);
+        mVideoViewAudience = findViewById(R.id.tx_cloud_view_anchor);
+        mVideoViewAnchor = findViewById(R.id.tx_cloud_view_audience);
 
-        mButtonLink.setOnClickListener(this);
-        findViewById(R.id.iv_back).setOnClickListener(this);
+        mTextTitle = findViewById(R.id.tv_title);
+        mTextTitle.setText(TextUtils.isEmpty(mStreamId) ? "" : mStreamId);
 
-        if(!TextUtils.isEmpty(mStreamId)){
-            mTextTitle.setText(mStreamId);
-        }
+        mButtonAcceptLink = findViewById(R.id.btn_accept_link);
+        mButtonAcceptLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showInputUserIdDialog();
+            }
+        });
+
+        mButtonStopLink = findViewById(R.id.btn_stop_link);
+        mButtonStopLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopLink();
+            }
+        });
+
+        mButtonBack = findViewById(R.id.iv_back);
+        mButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
+
     private void startPush() {
-        String pushUrl = AddressUtils.generatePushUrl(mStreamId, mUserId, 0);
+        String pushUrl = URLUtils.generatePushUrl(mStreamId, mUserId, 0);
         mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTC);
 
-        mLivePusher.setRenderView(mPushRenderView);
+        mLivePusher.setRenderView(mVideoViewAudience);
         mLivePusher.startCamera(true);
         int ret = mLivePusher.startPush(pushUrl);
         Log.i(TAG, "startPush return: " + ret);
         mLivePusher.startMicrophone();
     }
 
-    private void link() {
-        if(mLinkFlag){
-            stopLink();
-        }else{
-            startLink();
-        }
-
-    }
-
-    public void startLink(){
-        String linkStreamId = mEditStreamId.getText().toString();
-        String linkUserid   = mEditUserId.getText().toString();
-        if(TextUtils.isEmpty(linkStreamId)){
-            Toast.makeText(LiveLinkAnchorActivity.this, getString(R.string.livelink_please_input_streamid), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(TextUtils.isEmpty(linkUserid)){
+    public void startLink(String linkUserId){
+        if(TextUtils.isEmpty(linkUserId)){
             Toast.makeText(LiveLinkAnchorActivity.this, getString(R.string.livelink_please_input_userid), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        startPlay(linkStreamId);
+        // 备注：因为观众册使用userId作为streamId，此处即为连麦观众的UserId；
+        startPlay(linkUserId);
 
-        int result = mLivePusher.setMixTranscodingConfig(createConfig(linkStreamId, linkUserid));
+        int result = mLivePusher.setMixTranscodingConfig(createConfig(linkUserId, linkUserId));
         if(result == V2TXLIVE_OK){
-            mButtonLink.setText(R.string.livelink_stop_link);
-            mLinkFlag = true;
+            mButtonAcceptLink.setVisibility(View.GONE);
+            mButtonStopLink.setVisibility(View.VISIBLE);
         }else{
             Toast.makeText(LiveLinkAnchorActivity.this, getString(R.string.livelink_mix_stream_fail), Toast.LENGTH_SHORT).show();
         }
@@ -156,16 +160,15 @@ public class LiveLinkAnchorActivity extends MLVBBaseActivity implements View.OnC
         if(mLivePlayer != null && mLivePlayer.isPlaying() == 1){
             mLivePlayer.stopPlay();
         }
-        mButtonLink.setText(getString(R.string.livelink_accept_link));
-        mLinkFlag = false;
+        mButtonAcceptLink.setVisibility(View.VISIBLE);
+        mButtonStopLink.setVisibility(View.GONE);
     }
 
     private void startPlay(String linkStreamId) {
-        String userId = String.valueOf(new Random().nextInt(10000));
-        String playURL = AddressUtils.generatePlayUrl(linkStreamId, userId, 0);
+        String playURL = URLUtils.generatePlayUrl(linkStreamId, mUserId, 0);
         if(mLivePlayer == null){
             mLivePlayer = new V2TXLivePlayerImpl(LiveLinkAnchorActivity.this);
-            mLivePlayer.setRenderView(mPlayRenderView);
+            mLivePlayer.setRenderView(mVideoViewAnchor);
             mLivePlayer.setObserver(new V2TXLivePlayerObserver() {
 
                 @Override
@@ -174,13 +177,69 @@ public class LiveLinkAnchorActivity extends MLVBBaseActivity implements View.OnC
                 }
 
                 @Override
-                public void onVideoPlayStatusUpdate(V2TXLivePlayer player, V2TXLiveDef.V2TXLivePlayStatus status, V2TXLiveDef.V2TXLiveStatusChangeReason reason, Bundle bundle) {
-                    Log.i(TAG, "[Player] onVideoPlayStatusUpdate: player-" + player + ", status-" + status + ", reason-" + reason);
+                public void onVideoLoading(V2TXLivePlayer player, Bundle extraInfo) {
+                    Log.i(TAG, "[Player] onVideoLoading: player-" + player + ", extraInfo-" + extraInfo);
+                }
+
+                @Override
+                public void onVideoPlaying(V2TXLivePlayer player, boolean firstPlay, Bundle extraInfo) {
+                    Log.i(TAG, "[Player] onVideoPlaying: player-"
+                            + player + " firstPlay-" + firstPlay + " info-" + extraInfo);
+                }
+
+                @Override
+                public void onVideoResolutionChanged(V2TXLivePlayer player, int width, int height) {
+                    Log.i(TAG, "[Player] onVideoResolutionChanged: player-"
+                            + player + " width-" + width + " height-" + height);
                 }
             });
         }
         int result = mLivePlayer.startPlay(playURL);
         Log.d(TAG, "startPlay : " + result);
+    }
+
+    private void showInputUserIdDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle(R.string.livelink_tips_input_userid);
+        final EditText editText = new EditText(this);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        dialog.setView(editText);
+        dialog.setPositiveButton(R.string.livelink_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                if (editText != null){
+                    startLink(editText.getText().toString());
+                }
+            }
+        });
+
+        dialog.create();
+        dialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mLivePusher != null){
+            mLivePusher.stopCamera();
+            mLivePusher.stopMicrophone();
+            if(mLivePusher.isPushing() == 1){
+                mLivePusher.stopPush();
+            }
+            mLivePusher = null;
+        }
+
+        if(mLivePlayer != null){
+            if(mLivePlayer.isPlaying() == 1){
+                mLivePlayer.stopPlay();
+            }
+            mLivePlayer = null;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     private V2TXLiveDef.V2TXLiveTranscodingConfig createConfig(String linkStreamId, String linkUserId) {
@@ -222,38 +281,4 @@ public class LiveLinkAnchorActivity extends MLVBBaseActivity implements View.OnC
         return config;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(mLivePusher != null){
-            mLivePusher.stopCamera();
-            mLivePusher.stopMicrophone();
-            if(mLivePusher.isPushing() == 1){
-                mLivePusher.stopPush();
-            }
-            mLivePusher = null;
-        }
-
-        if(mLivePlayer != null){
-            if(mLivePlayer.isPlaying() == 1){
-                mLivePlayer.stopPlay();
-            }
-            mLivePlayer = null;
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        if(id == R.id.iv_back){
-            finish();
-        }else if(id == R.id.btn_link){
-            link();
-        }
-    }
 }

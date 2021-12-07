@@ -21,7 +21,7 @@ import com.tencent.live2.impl.V2TXLivePusherImpl;
 import com.tencent.mlvb.common.MLVBBaseActivity;
 import com.tencent.mlvb.customvideocapture.helper.CustomCameraCapture;
 import com.tencent.mlvb.customvideocapture.helper.CustomFrameRender;
-import com.tencent.mlvb.debug.AddressUtils;
+import com.tencent.mlvb.common.URLUtils;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.Random;
@@ -131,7 +131,7 @@ public class CustomVideoCaptureActivity extends MLVBBaseActivity implements View
         }
         mTextTitle.setText(streamId);
         String userId = String.valueOf(new Random().nextInt(10000));
-        String pushUrl = AddressUtils.generatePushUrl(streamId, userId, 0);
+        String pushUrl = URLUtils.generatePushUrl(streamId, userId, 0);
 
         mCustomCameraCapture = new CustomCameraCapture();
         mCustomFrameRender   = new CustomFrameRender();

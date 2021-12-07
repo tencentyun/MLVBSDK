@@ -13,7 +13,7 @@ import com.tencent.live2.V2TXLivePlayer;
 import com.tencent.live2.V2TXLivePlayerObserver;
 import com.tencent.live2.impl.V2TXLivePlayerImpl;
 import com.tencent.mlvb.common.MLVBBaseActivity;
-import com.tencent.mlvb.debug.AddressUtils;
+import com.tencent.mlvb.common.URLUtils;
 import com.tencent.mlvb.livepk.R;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
@@ -81,7 +81,7 @@ public class LivePKAudienceActivity extends MLVBBaseActivity {
     }
 
     private void startPlay() {
-        String playURL = AddressUtils.generatePlayUrl(mStreamId, "", 2);
+        String playURL = URLUtils.generatePlayUrl(mStreamId, "", 2);
         if(mLivePlayer == null){
             mLivePlayer = new V2TXLivePlayerImpl(LivePKAudienceActivity.this);
             mLivePlayer.setRenderView(mPlayRenderView);
@@ -93,8 +93,20 @@ public class LivePKAudienceActivity extends MLVBBaseActivity {
                 }
 
                 @Override
-                public void onVideoPlayStatusUpdate(V2TXLivePlayer player, V2TXLiveDef.V2TXLivePlayStatus status, V2TXLiveDef.V2TXLiveStatusChangeReason reason, Bundle bundle) {
-                    Log.i(TAG, "[Player] onVideoPlayStatusUpdate: player-" + player + ", status-" + status + ", reason-" + reason);
+                public void onVideoLoading(V2TXLivePlayer player, Bundle extraInfo) {
+                    Log.i(TAG, "[Player] onVideoLoading: player-" + player + ", extraInfo-" + extraInfo);
+                }
+
+                @Override
+                public void onVideoPlaying(V2TXLivePlayer player, boolean firstPlay, Bundle extraInfo) {
+                    Log.i(TAG, "[Player] onVideoPlaying: player-"
+                            + player + " firstPlay-" + firstPlay + " info-" + extraInfo);
+                }
+
+                @Override
+                public void onVideoResolutionChanged(V2TXLivePlayer player, int width, int height) {
+                    Log.i(TAG, "[Player] onVideoResolutionChanged: player-"
+                            + player + " width-" + width + " height-" + height);
                 }
             });
         }

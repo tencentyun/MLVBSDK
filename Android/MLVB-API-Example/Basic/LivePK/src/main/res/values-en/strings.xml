@@ -12,4 +12,7 @@
     <string name="livepk_mix_stream_fail">Failed to mix streams.</string>
     <string name="livepk_webrtc_play">LVB Playback</string>
     <string name="linkpk_process_description">Competition: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B’s streams are mixed into anchor A’s.\n3.3 Anchor B plays anchor A’s streams.\n3.4 Anchor A’s streams are mixed into anchor B’s.</string>
+    <string name="livepk_next_action">Next</string>
+    <string name="livepk_ok">OK</string>
+    <string name="livepk_input_other_info">Please Input Other StreamId And UserId</string>
 </resources>

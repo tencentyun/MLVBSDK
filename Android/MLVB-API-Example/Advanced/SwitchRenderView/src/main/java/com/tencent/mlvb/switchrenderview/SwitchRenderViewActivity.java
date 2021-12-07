@@ -18,7 +18,7 @@ import com.tencent.live2.V2TXLiveDef;
 import com.tencent.live2.V2TXLivePusher;
 import com.tencent.live2.impl.V2TXLivePusherImpl;
 import com.tencent.mlvb.common.MLVBBaseActivity;
-import com.tencent.mlvb.debug.AddressUtils;
+import com.tencent.mlvb.common.URLUtils;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.Random;
@@ -159,7 +159,7 @@ public class SwitchRenderViewActivity extends MLVBBaseActivity {
         }
         mTextTitle.setText(streamId);
         String userId = String.valueOf(new Random().nextInt(10000));
-        String pushUrl = AddressUtils.generatePushUrl(streamId, userId, 0);
+        String pushUrl = URLUtils.generatePushUrl(streamId, userId, 0);
         if(mLivePusher == null){
             mLivePusher = new V2TXLivePusherImpl(this, V2TXLiveDef.V2TXLiveMode.TXLiveMode_RTC);
         }

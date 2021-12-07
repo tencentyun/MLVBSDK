@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">live</string>
+    <string name="livelink_start_pusher">开始推流</string>
+    <string name="livelink_start_play">开始拉流</string>
+    <string name="livelink_ok">确定</string>
     <string name="livelink_start_link">开始连麦</string>
     <string name="livelink_accept_link">接受连麦</string>
     <string name="livelink_mlvb_live_link">MLVB 连麦互动</string>
-    <string name="livelink_please_input_streamid">请输入streamId</string>
-    <string name="livelink_please_input_userid">请输入userId</string>
+    <string name="livelink_please_input_streamid">请输入直播间名称</string>
+    <string name="livelink_please_input_userid">请输入用户名</string>
     <string name="livelink_please_select_role">请选择角色</string>
     <string name="livelink_anchor">主播</string>
     <string name="livelink_audience">观众</string>
@@ -12,5 +15,7 @@
     <string name="livelink_stop_link">停止连麦</string>
     <string name="livelink_mix_stream_fail">混流失败</string>
     <string name="livelink_webrtc_play">快直播拉流</string>
+    <string name="livelink_tips_input_userid">请输入观众的用户名</string>
     <string name="livelink_process_description">连麦互动场景实现：\n1、主播A\n1.1、主播A开始推流\n1.2、主播A的观众拉主播A的流\n1.3、主播A的连麦观众B拉主播A的流\n\n2、连麦观众B\n2.1、连麦观众B输入自己的推流streamId和userId\n2.2、连麦观众B开始停止快直播拉流\n2.3、连麦观众B开始拉主播A的RTC流\n2.4、连麦观众B开始推流\n\n3、主播A连麦连麦观众B\n3.1、主播A与连麦观众B混流到主播A</string>
+    <string name="livelink_next_action">下一步</string>
 </resources>

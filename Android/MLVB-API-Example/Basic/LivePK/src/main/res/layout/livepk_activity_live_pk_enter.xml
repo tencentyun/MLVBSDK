@@ -14,135 +14,117 @@
         android:textSize="20sp" />
 
     <LinearLayout
+        android:id="@+id/ll_user_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginRight="30dp"
         android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/ll_stream_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:text="@string/livepk_please_input_streamid" />
-
-            <EditText
-                android:id="@+id/et_stream_id"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingLeft="5dp"
-                android:textSize="16sp"
-                android:text="235672"
-                android:background="@drawable/common_edit_bg"
-                android:layout_marginTop="5dp"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_user_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:text="@string/livepk_please_input_userid" />
-
-            <EditText
-                android:id="@+id/et_user_id"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingLeft="5dp"
-                android:textSize="16sp"
-                android:background="@drawable/common_edit_bg"
-                android:layout_marginTop="5dp"
-                android:inputType="number" />
-        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_role"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:text="@string/livepk_please_input_userid"
             android:textColor="@android:color/white"
-            android:text="@string/livepk_please_select_role" />
+            android:textSize="18sp" />
 
-        <RadioGroup
-            android:layout_marginLeft="30dp"
-            android:layout_width="300dp"
-            android:layout_marginTop="5dp"
+        <EditText
+            android:id="@+id/et_user_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/common_edit_bg"
+            android:inputType="number"
+            android:paddingLeft="5dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="fill_horizontal"
-            android:orientation="horizontal"
-            android:id="@+id/rg_role">
-
-            <RadioButton
-                android:id="@+id/rb_anchor"
-                android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:text="@string/livepk_anchor"
-                android:buttonTint="#0062e3"
-                android:textColor="@color/white"/>
-
-            <RadioButton
-                android:id="@+id/rb_audience"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:text="@string/livepk_audience"
-                android:buttonTint="#0062e3"
-                android:textColor="@color/white"/>
-        </RadioGroup>
+            android:layout_gravity="center"
+            android:text="@string/livepk_please_select_role"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <LinearLayout
-            android:layout_margin="30dp"
-            android:background="#999999"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:paddingBottom="50dp">
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/linkpk_process_description"
-                />
+            <Button
+                android:id="@+id/bt_anchor"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/livepk_selector_role_btn_bg"
+                android:text="@string/livepk_anchor"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/bt_audience"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/livepk_selector_role_btn_bg"
+                android:text="@string/livepk_audience"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_stream_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical"
+        android:visibility="gone">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/livepk_please_input_streamid"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_stream_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/common_edit_bg"
+            android:inputType="number"
+            android:paddingLeft="5dp"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btn_commit"
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:text="@string/livepk_rtc_push"
-        android:background="@drawable/common_button_bg"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
-        android:layout_height="50dp"/>
+        android:background="@drawable/common_button_bg"
+        android:text="@string/livepk_next_action"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 </RelativeLayout>
