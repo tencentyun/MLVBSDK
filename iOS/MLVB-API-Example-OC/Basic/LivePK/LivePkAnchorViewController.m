@@ -191,10 +191,12 @@
       extraInfo:(NSDictionary *)extraInfo{
 }
 
-- (void)onVideoPlayStatusUpdate:(id<V2TXLivePlayer>)player
-                         status:(V2TXLivePlayStatus)status
-                         reason:(V2TXLiveStatusChangeReason)reason
-                      extraInfo:(NSDictionary *)extraInfo{
+- (void)onVideoLoading:(id<V2TXLivePlayer>)player extraInfo:(NSDictionary *)extraInfo {
+    
+}
+
+- (void)onVideoPlaying:(id<V2TXLivePlayer>)player firstPlay:(BOOL)firstPlay extraInfo:(NSDictionary *)extraInfo {
+    
 }
 
 - (void)onReceiveSeiMessage:(id<V2TXLivePlayer>)player
