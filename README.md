@@ -22,10 +22,12 @@
   
 对于使用 V1 的客户，我们提供了 V1 升级到 V2 的[接口升级指引对照表](https://docs.qq.com/sheet/DRkJUckpGdkNTUmt2)
 
-### Version 9.3 @ 2021.11.05
-- Android&iOS：快直播支持接收 SEI 消息；
-- Android：修复 TXLivePlayer 偶现崩溃的问题；
-- Android：修复 V2 播放多个视频地址后出现画面不渲染的问题；
+### Version 9.4 @ 2021.12.08
+- iOS：修复 V2TXLivePusher 推流前设置横屏预览，预览画面方向错误的问题；
+- Android：修复 V2TXLivePlayer 偶现崩溃的问题；
+- Android&iOS：优化快直播播放延迟；
+- Android&iOS：V2TXLivePlayer 新增分辨率变更通知接口；
+- Android&iOS：V2卡顿回调增加卡顿时长信息；
 
 ## MLVB Demo
 
