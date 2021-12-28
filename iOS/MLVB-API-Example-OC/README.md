@@ -48,8 +48,10 @@
   - SECRETKEY：替换该变量值为上一步骤中在页面上看到的密钥。
   - LICENSEURL：默认为 PLACEHOLDER ，请设置为实际的License Url信息；
   - LICENSEURLKEY：默认为 PLACEHOLDER ，请设置为实际的License Key信息；
-  - URLKEY: 如果开通鉴权配置的鉴权Key
-
+  - PUSH_DOMAIN 中推流地址请设置为您的推流域名的 `CNAME`。
+  - PLAY_DOMAIN 中拉流地址请设置为您的播放域名的 `CNAME`。
+  - LIVE_URL_KEY：非必需，用于生成 txSecret 等鉴权信息。
+  
 >!本文提到的生成 UserSig 的方案是在客户端代码中配置 SECRETKEY，该方法中 SECRETKEY 很容易被反编译逆向破解，一旦您的密钥泄露，攻击者就可以盗用您的腾讯云流量，因此**该方法仅适合本地跑通 Demo 和功能调试**。
 >正确的 UserSig 签发方式是将 UserSig 的计算代码集成到您的服务端，并提供面向 App 的接口，在需要 UserSig 时由您的 App 向业务服务器发起请求获取动态 UserSig。更多详情请参见 [服务端生成 UserSig](https://cloud.tencent.com/document/product/647/17275#Server)。
 

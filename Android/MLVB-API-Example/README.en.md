@@ -52,11 +52,11 @@ You have [signed up for a Tencent Cloud account](https://intl.cloud.tencent.com/
   - `SECRETKEY`: left empty by default. Set it to the actual key.
   - `LICENSEURL`: a placeholder by default. Set it to the actual license URL.
   - `LICENSEURLKEY`: a placeholder by default. Set it to the actual license key.
-4. Find and open `MLVB-API-Example/Debug/src/main/java/com/tencent/mlvb/debug/AddressUtils.java`.
-5. Set parameters in `AddressUtils.java` as follows:
+4. Find and open `MLVB-API-Example/Debug/src/main/java/com/tencent/mlvb/debug/GenerateTestUserSig.java`.
+5. Set parameters in `GenerateTestUserSig.java` as follows:
   - `PUSH_DOMAIN`: set it to the configured publishing URL.
   - `PLAY_DOMAIN`: set it to the configured playback URL.
-  - `KEY`: set it to the authentication key (if authentication configuration is enabled).
+  - `LIVE_URL_KEY`: set it to the authentication key (if authentication configuration is enabled).
 
 ### Integrating the SDK
 You can use JCenter for automatic loading or manually download the AAR file and import it to your project. The demo uses the first method by default.

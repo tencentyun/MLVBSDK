@@ -52,11 +52,12 @@ _中文 | [English](README.en.md)_
   - `SECRETKEY`：默认为空字符串，请设置为实际的密钥信息；
   - `LICENSEURL`：默认为 PLACEHOLDER ，请设置为实际的License Url信息；
   - `LICENSEURLKEY`：默认为 PLACEHOLDER ，请设置为实际的License Key信息；
-4. 找到并打开`MLVB-API-Example/Debug/src/main/java/com/tencent/mlvb/debug/AddressUtils.java`文件。
-5. 设置`AddressUtils.java`文件中的相关参数：
+4. 找到并打开`MLVB-API-Example/Debug/src/main/java/com/tencent/mlvb/debug/GenerateTestUserSig.java`文件。
+5. 设置`GenerateTestUserSig.java`文件中的相关参数：
   - `PUSH_DOMAIN`：配置的推流地址
   - `PLAY_DOMAIN`：配置的拉流地址
-  - `KEY`：如果开通鉴权配置的鉴权Key
+  - `LIVE_URL_KEY`：非必需，用于生成 txSecret 等鉴权信息.
+<img src="https://qcloudimg.tencent-cloud.cn/raw/bb4e9ea8e62489ec908c51bfa0a0132b.png" width=600px>
 
 ### 集成 SDK
 您可以选择使用 JCenter 自动加载的方式，或者手动下载 aar 再将其导入到您当前的工程项目中，Demo默认采用方法一配置。

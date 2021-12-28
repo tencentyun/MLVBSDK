@@ -48,7 +48,9 @@ You have [signed up for a Tencent Cloud account](https://intl.cloud.tencent.com/
   - `SECRETKEY`: set it to the secret key obtained in the previous step.
   - `LICENSEURL`: a placeholder by default. Set it to the actual license URL.
   - `LICENSEURLKEY`: a placeholder by default. Set it to the actual license key.
-  - `URLKEY`: set it to the authentication key (if authentication configuration is enabled).
+  - `PUSH_DOMAIN`: set it to the configured publishing URL.
+  - `PLAY_DOMAIN`: set it to the configured playback URL.
+  - `LIVE_URL_KEY`: set it to the authentication key (if authentication configuration is enabled).
 
 >!The method for generating `UserSig` described in this document involves configuring `SECRETKEY` in client code. In this method, `SECRETKEY` may be easily decompiled and reversed, and if your key is disclosed, attackers can steal your Tencent Cloud traffic. Therefore, **this method is suitable only for the local execution and debugging of the demo**.
 >The correct `UserSig` distribution method is to integrate the calculation code of `UserSig` into your server and provide an application-oriented API. When `UserSig` is needed, your application can send a request to the business server for a dynamic `UserSig`. For more information, please see [How do I calculate UserSig on the server?](https://cloud.tencent.com/document/product/647/17275#Server).
