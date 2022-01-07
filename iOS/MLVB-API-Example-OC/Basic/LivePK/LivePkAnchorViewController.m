@@ -188,7 +188,7 @@
 - (void)onError:(id<V2TXLivePlayer>)player
            code:(V2TXLiveCode)code
         message:(NSString *)msg
-      extraInfo:(NSDictionary *)extraInfo{
+      extraInfo:(NSDictionary *)extraInfo {
 }
 
 - (void)onVideoLoading:(id<V2TXLivePlayer>)player extraInfo:(NSDictionary *)extraInfo {

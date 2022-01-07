@@ -15,7 +15,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [V2TXLivePremier setLicence:LICENSEURL key:LICENSEURLKEY];
+    [TXLiveBase setLicenceURL:LICENSEURL key:LICENSEURLKEY];
     return YES;
 }
 
