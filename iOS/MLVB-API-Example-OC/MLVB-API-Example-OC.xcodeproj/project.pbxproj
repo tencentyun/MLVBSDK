@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3CF1362A13F3BEB8D138DDF2 /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87DBF9D0C798B7CC854B837D /* TXLiteAVSDK_Professional.framework */; };
 		400C520226A67EE30036AC40 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 400C520126A67EE30036AC40 /* AssetsLibrary.framework */; };
 		40D550EC26A6A9D800FE9F13 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D550EB26A6A9BF00FE9F13 /* libsqlite3.0.tbd */; };
 		4723A7BF26315F920094AC81 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4723A7BE26315F920094AC81 /* OpenGLES.framework */; };
@@ -32,7 +33,6 @@
 		47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
 		47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98D2626868E00201FCB /* libresolv.tbd */; };
-		8077AD3B4D267D29A0DE8D49 /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */; };
 		880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 880B3C482624411B002683FB /* GenerateTestUserSig.m */; };
 		88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88167CB1268488C2001D99DC /* LivePushCameraEnterViewController.m */; };
 		88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */; };
@@ -86,7 +86,7 @@
 		C1937C9B274F799200F19E99 /* LiveLinkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C90274F799200F19E99 /* LiveLinkAnchorViewController.m */; };
 		C1937C9C274F799200F19E99 /* LiveLinkAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1937C92274F799200F19E99 /* LiveLinkAudienceViewController.xib */; };
 		C1937CBD275080CB00F19E99 /* LivePkFindPkUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937CBB275080CB00F19E99 /* LivePkFindPkUserController.m */; };
-		F76A7D92853E3FE1908DD17A /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */; };
+		D485904CA4703C69721504AD /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87DBF9D0C798B7CC854B837D /* TXLiteAVSDK_Professional.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +124,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Live.framework; path = ../SDK/TXLiteAVSDK_Live.framework; sourceTree = "<group>"; };
 		400C520126A67EE30036AC40 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		40D550EB26A6A9BF00FE9F13 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4723A7BE26315F920094AC81 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -163,6 +162,7 @@
 		47ECB9882626867C00201FCB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		47ECB98B2626868400201FCB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		47ECB98D2626868E00201FCB /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		87DBF9D0C798B7CC854B837D /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Professional.framework; path = ../SDK/TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
 		880B3C482624411B002683FB /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
 		880B3C492624411B002683FB /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 		88167CB0268488C2001D99DC /* LivePushCameraEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushCameraEnterViewController.h; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */,
 				47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */,
 				4723A7C226315FA30094AC81 /* CoreMedia.framework in Frameworks */,
-				F76A7D92853E3FE1908DD17A /* TXLiteAVSDK_Live.framework in Frameworks */,
+				D485904CA4703C69721504AD /* TXLiteAVSDK_Professional.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +269,7 @@
 				88A2C846267062FF006FC026 /* Accelerate.framework in Frameworks */,
 				8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */,
 				8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */,
-				8077AD3B4D267D29A0DE8D49 /* TXLiteAVSDK_Live.framework in Frameworks */,
+				3CF1362A13F3BEB8D138DDF2 /* TXLiteAVSDK_Professional.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */,
-				1A876E017231587AE8B1F939 /* TXLiteAVSDK_Live.framework */,
+				87DBF9D0C798B7CC854B837D /* TXLiteAVSDK_Professional.framework */,
 			);
 			name = SDK;
 			path = ../SDK;

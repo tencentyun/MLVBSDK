@@ -15,6 +15,6 @@
 #import "URLUtils.h"
 #import "UIViewController+AlertViewController.h"
 
-@import TXLiteAVSDK_Live;
+@import TXLiteAVSDK_Professional;
 
 #endif /* MLVB_API_Example_OC_PrefixHeader_pch */
