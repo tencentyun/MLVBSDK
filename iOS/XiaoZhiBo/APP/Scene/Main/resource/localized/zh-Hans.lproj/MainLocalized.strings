@@ -1,0 +1,58 @@
+/* 
+  MainLocalized.strings
+  TXLiteAVDemo
+
+  Created by adams on 2021/3/22.
+  Copyright © 2021 Tencent. All rights reserved.
+*/
+
+"App.PortalViewController.audioauto" = "语音自动降噪、视频画质超高清，适用于在线会议、远程培训、小班课等场景";
+"App.PortalViewController.includesoundchanges" = "内含变声、音效、伴奏、背景音乐等声音玩法，适用于闲聊房、K歌房和开黑房等场景";
+"App.PortalViewController.audiencedelayaslow" = "观众时延低至800ms，上下麦无需loading，适用于低延时、十万人高并发的大型互动直播";
+"App.PortalViewController.highqualityspeech" = "48kHz高音质语音，60%丢包可正常语音，领先行业的3A处理，杜绝回声和啸叫";
+"App.PortalViewController.supports1080PUHDvideo" = "支持1080P超清视频，50%丢包率可正常视频，自备美颜特效，带来高品质视频通话体验";
+"App.PortalViewController.loginimsuccess" = "登录IM成功";
+"App.PortalViewController.loginimfailed" = "登录IM失败";
+"App.PortalViewController.videocalling" = "视频通话";
+"App.PortalViewController.audiocalling" = "语音通话";
+"App.PortalViewController.areyousureloginout" = "确定要退出登录吗？";
+"App.PortalViewController.cancel" = "取消";
+"App.PortalViewController.determine" = "确定";
+"App.PortalViewController.sharelog" = "分享上传日志";
+
+"AppCommon.TCUtil.sendhttprequest" = "sendHttpRequest failed，参数转成json格式失败";
+"AppCommon.TCUtil.parametererror" = "参数错误";
+"AppCommon.TCUtil.serverrequesterror" = "服务请求失败";
+
+"Demo.TRTC.Portal.Home.meetingdesc" = "全球端到端平均延时<300ms";
+"Demo.TRTC.Portal.Home.chatroomdesc" = "支持BGM、混响、变声趣味互动玩法";
+"Demo.TRTC.Portal.Home.chorusroomdesc" = "超低延时“真”实时合唱，还原线下KTV体验";
+"Demo.TRTC.Portal.Home.videolivedesc" = "PK连麦互动直播，1080P/双声道立体声";
+"Demo.TRTC.Portal.Home.audiocalldesc" = "丢包率70%仍可正常语音通话";
+"Demo.TRTC.Portal.Home.videocalldesc" = "丢包率50%仍可正常视频通话";
+"Demo.TRTC.Portal.Home.chatsalondesc" = "十万人大房间\n观众平滑上麦";
+"Demo.TRTC.Portal.Home.ktvdesc" = "在线上感受线下KTV，用户可通过排麦、点歌等形式实现趣味互动";
+"Demo.TRTC.Portal.Home.logout" = "退出登录";
+"Demo.TRTC.Portal.Mine.personalcenter" = "个人中心";
+"Demo.TRTC.Portal.Mine.about" = "关于";
+"Demo.TRTC.Portal.Main.entertainment" = "娱乐";
+
+"Demo.TRTC.Portal.Main.home" = "主页";
+"Demo.TRTC.Portal.Main.mine" = "我的";
+"Demo.TRTC.Portal.Main.discover" = "发现";
+"Demo.TRTC.Portal.confirm" = "确认";
+"Demo.TRTC.Portal.enterusername" = "请输入用户昵称";
+"Demo.TRTC.Portal.privacy" = "隐私条例";
+"Demo.TRTC.Portal.disclaimer" = "免责声明";
+"Demo.TRTC.Portal.sdkversion" = "SDK 版本";
+"Demo.TRTC.Portal.appversion" = "商店版本";
+"Demo.TRTC.Portal.limit20count" = "仅限中文、字母、数字和下划线，2-20个字";
+"Demo.TRTC.Portal.changenickname" = "修改用户昵称";
+"Demo.TRTC.Portal.disclaimerdesc" = "TRTC（“本产品”）是由腾讯云提供的一款测试产品，腾讯云享有本产品的著作权和所有权。本产品仅用于功能体验，不得用于任何商业用途。\n为配合相关部门监管要求，本产品音视频互动全程均有录音录像存档，严禁在使用中有任何色情、辱骂、暴恐、涉政等违规内容的传播。";
+"Demo.TRTC.Home.appusetoshowfunc" = "本APP用于展示腾讯视频云终端产品的各类功能";
+
+"Demo.TRTC.Portal.Main.title" = "小直播";
+"Demo.TRTC.Portal.Main.showLiveTitle" = "秀场直播";
+"Demo.TRTC.Portal.Main.shopLiveTitle" = "电商直播";
+"Demo.TRTC.Portal.Main.showLiveDesc" = "PK连麦，美颜特效，趣味互动玩法";
+"Demo.TRTC.Portal.Main.shopLiveDesc" = "PK连麦，美颜特效，趣味互动玩法";

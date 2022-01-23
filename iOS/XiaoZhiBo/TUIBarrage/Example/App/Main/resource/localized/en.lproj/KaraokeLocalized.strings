@@ -1,0 +1,22 @@
+/* 
+  LiveRoomLocalized.strings
+  TRTCAPP
+
+  Created by adams on 2021/6/4.
+  
+*/
+
+
+"Demo.TRTC.Karaoke.voicechatroom" = "TUIBarrage";
+"Demo.TRTC.LiveRoom.createRoom" = "Create Room";
+"Demo.TRTC.LiveRoom.roomNumber" = "Room Number  ";
+"Demo.TRTC.LiveRoom.enterRoom" = "Enter Room";
+"Demo.TRTC.LiveRoom.enterRoomNumber" = "Please Enter Room Number";
+"Demo.TRTC.LiveRoom.prompt" = "Prompt";
+"Demo.TRTC.LiveRoom.ok" = "OK";
+"Demo.TRTC.LiveRoom.roomNumberis:" = "The currently created room number is:";
+"Demo.TRTC.LiveRoom.roomdoesnotexist" = "The current room does not exist";
+"App.PortalViewController.areyousureloginout" = "Are you sure you want to log out?";
+"App.PortalViewController.cancel" = "Cancel";
+"App.PortalViewController.determine" = "Yes";
+"Demo.TRTC.Karaoke.roomInfo" = "Room information";

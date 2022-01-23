@@ -1,0 +1,50 @@
+/*
+  LoginNetworkLocalized.strings
+  TXLiteAVDemo
+
+  Created by adams on 2021/3/22.
+  Copyright © 2021 Tencent. All rights reserved.
+*/
+
+"Demo.TRTC.Login.registsuccess" = "Registration successful";
+"LoginNetwork.AppUtils.warmprompt" = "Note";
+"LoginNetwork.AppUtils.tomeettheregulatory" = "In accordance with relevant regulations, the app forbids pornographic, abusive, violent, terrorist, and politically sensitive content. All audio/video calls and live streams are recorded and archived.";
+"LoginNetwork.AppUtils.determine" = "OK";
+"Demo.TRTC.LiveRoom.prompt" = "Information";
+"Demo.TRTC.Home.newversionpublic" = "A new version is available";
+"Demo.TRTC.Home.updatenow" = "Update Now";
+"Demo.TRTC.Home.later" = "Later";
+"LoginNetwork.ProfileManager.sendfailed" = "Send failed. Please try again later.";
+"Demo.TRTC.Login.done" = "Done";
+"Demo.TRTC.Login.setavatar" = "Change Profile Picture";
+"Demo.TRTC.Login.countrycode" = "Country Code";
+"V2.Live.LoginMock.sendtheverificatcode" = "Please send the verification code";
+"LoginNetwork.ProfileManager.loginfailed" = "Login failed. Please try again later.";
+"LoginNetwork.ProfileManager.queryfailed" = "Query failed. Please try again later.";
+"LoginNetwork.ProfileManager.registerfailed" = "Registration failed. Please try again later";
+"Demo.TRTC.Login.welcome" = "Welcome to Tencent Real-Time Communication";
+"V2.Live.LinkMicNew.enterphonenumber" = "Enter a mobile number";
+"V2.Live.LinkMicNew.enterverificationcode" = "Enter a verification code";
+"V2.Live.LinkMicNew.getverificationcode" = "Get";
+"V2.Live.LoginMock.login" = "Log In";
+"Demo.TRTC.Login.regist" = "Register";
+"Demo.TRTC.Login.regist.title" = "欢迎新同学！\n第一次登录需要设置昵称哦~";
+"Demo.TRTC.Login.enterusername" = "Please enter a nickname";
+"Demo.TRTC.Login.limit20count" = "Chinese characters, letters, numbers and underscores, 2 - 20 words";
+"V2.Live.LinkMicNew.verificationcodesent" = "Sent";
+"V2.Live.LinkMicNew.loginsuccess" = "Logged in";
+"V2.Live.LinkMicNew.termsandconditions" = "Terms and Conditions";
+"V2.Live.LinkMicNew.agree" = "Agree";
+"V2.Live.LinkMicNew.disagree" = "Disagree";
+"V2.Live.LoginMock.username" = "User name";
+"V2.Live.LoginMock.password" = "Password";
+"V2.Live.loginMock.registertip" = "No account, go to register";
+
+"Demo.TRTC.Portal.privateandagreement" = "I have read and agree to the xxx and yyy";
+"Demo.TRTC.Portal.agreeprivatefirst" = "You must agree to the Privacy Policy and Terms of Use first.";
+"Demo.TRTC.Portal.<private>" = "Privacy Policy";
+"Demo.TRTC.Portal.<agreement>" = "Terms of Use";
+"Demo.TRTC.Portal.private" = "Privacy Policy";
+"Demo.TRTC.Portal.agreement" = "Terms of Use";
+"Demo.TRTC.LoginMock.adduserinformationforfirstlogin" = "This is your first login. Please complete your profile.";
+"Demo.TRTC.Portal.privatealertdescription" = "Welcome to XiaoZhiBo. The Privacy Policy and Terms of Use agreements detail how we collect, use, and store your information, as well as the rights your are entitled to and how to exercise them. By tapping the button below, you agree to the content of the agreements.";
