@@ -1,0 +1,37 @@
+/* 
+  AudioEffectLocalized.strings
+  TUIAudioEffectView
+
+  Created by jack on 2021/9/27.
+*/
+
+"TUIKit.AudioEffectView.title" = "Sound effect settings";
+"TUIKit.AudioEffectView.VoiceChange.title" = "Voice changing";
+"TUIKit.AudioEffectView.VoiceReverb.title" = "Reverb";
+"TUIKit.AudioEffectView.MusicBackground.title" = "Background music";
+"TUIKit.AudioEffectView.MusicBackground.earMonitor" = "Ear monitor";
+"TUIKit.AudioEffectView.MusicBackground.useEarphones" = "Use earphones for better experience";
+"TUIKit.AudioEffectView.MusicSelect.copyrights" = "Music Library ©";
+"TUIKit.AudioEffectView.MusicSelect.select" = "Select song";
+"TUIKit.AudioEffectView.MusicVolum.title" = "Music volume";
+"TUIKit.AudioEffectView.VoiceVolum.title" = "Voice volume";
+"TUIKit.AudioEffectView.MusicRiseFall.title" = "Music tone";
+// 变声
+"TUIKit.AudioEffectView.VoiceChange.Original" = "Original";
+"TUIKit.AudioEffectView.VoiceChange.Naughty boy" = "Naughty boy";
+"TUIKit.AudioEffectView.VoiceChange.Little girl" = "Little girl";
+"TUIKit.AudioEffectView.VoiceChange.Middle-aged man" = "Middle-aged man";
+"TUIKit.AudioEffectView.VoiceChange.Ethereal voice" = "Ethereal voice";
+// 混响
+"TUIKit.AudioEffectView.VoiceReverb.No effect" = "No effect";
+"TUIKit.AudioEffectView.VoiceReverb.Karaoke room" = "Karaoke room";
+"TUIKit.AudioEffectView.VoiceReverb.Metallic" = "Metallic";
+"TUIKit.AudioEffectView.VoiceReverb.Deep" = "Deep";
+"TUIKit.AudioEffectView.VoiceReverb.Resonant" = "Resonant";
+// 音乐曲目
+"TUIKit.AudioEffectView.MusicSelect.musicname1" = "Happy";
+"TUIKit.AudioEffectView.MusicSelect.musicname2" = "Sad Cinematic Piano";
+"TUIKit.AudioEffectView.MusicSelect.musicname3" = "Wonder World";
+
+
+"TUIKit.AudioEffectView.Back" = "Back";

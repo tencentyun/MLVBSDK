@@ -1,0 +1,6 @@
+Pods/TXCopyrightedMedia/TXCopyrightedMedia.framework/TXCopyrightedMedia filter=lfs diff=lfs merge=lfs -text
+iOS/MLVB-APP-Source/TUIBeauty/Example/Pods/TXIMSDK_Plus_iOS/ImSDK_Plus.framework/ImSDK_Plus filter=lfs diff=lfs merge=lfs -text
+iOS/MLVB-APP-Source/TUIPusher/Example/Pods/TXIMSDK_Plus_iOS/ImSDK_Plus.framework/ImSDK_Plus filter=lfs diff=lfs merge=lfs -text
+iOS/MLVB-APP-Source/TUIPlayer/Example/Pods/TXIMSDK_Plus_iOS/ImSDK_Plus.framework/ImSDK_Plus filter=lfs diff=lfs merge=lfs -text
+iOS/MLVB-APP-Source/APP/Pods/TXCopyrightedMedia/TXCopyrightedMedia.framework/TXCopyrightedMedia filter=lfs diff=lfs merge=lfs -text
+iOS/MLVB-APP-Source/APP/Pods/TXIMSDK_Plus_iOS/ImSDK_Plus.framework/ImSDK_Plus filter=lfs diff=lfs merge=lfs -text

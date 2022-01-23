@@ -1,0 +1,57 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+# 业务库
+def professional
+  pod 'TXIMSDK_Plus_iOS', '5.5.897'
+end
+
+# UI库
+def ui
+  pod 'SnapKit'
+  pod 'Kingfisher'
+  pod 'MJRefresh'
+  pod 'Toast-Swift'
+end
+
+# 工具库
+def tool
+  pod 'Alamofire'
+  pod 'TXCopyrightedMedia', :podspec => 'https://mediacloud-76607.gzc.vod.tencent-cloud.com/Podspec/TXCopyrightedMedia/1.0.2/TXCopyrightedMedia.podspec'
+end
+
+def pod_local(type)
+  pod "TXLiteAVSDK_#{type}"
+  loadLocalPodWithSubspec('TUIPusher', type)
+  loadLocalPodWithSubspec('TUIBeauty', type)
+  loadLocalPodWithSubspec('TUIAudioEffect', type)
+  loadLocalPodWithSubspec('TUIPlayer', type)
+  loadLocalPod('TUIBarrage')
+  loadLocalPod('TUIGift')
+  loadLocalPod('TUICore')
+end
+
+def loadLocalPod(name)
+  pod "#{name}", :path => "../#{name}/"
+end
+
+def loadLocalPodWithSubspec(name, type)
+  pod "#{name}/#{type}", :path => "../#{name}/"
+end
+
+target 'XiaoZhiBoApp' do
+  use_frameworks!
+  ui
+  tool
+  pod_local('Live')
+end
+
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+    end
+  end
+end

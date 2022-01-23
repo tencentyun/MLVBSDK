@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  DemoApp
+
+  Created by adams on 2021/6/4.
+  
+*/
+
+"UILaunchStoryboardName" = "LaunchScreen_en";
+"CFBundleDisplayName" = "TUIBarrage";
