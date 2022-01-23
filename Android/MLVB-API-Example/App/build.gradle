@@ -9,7 +9,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 24
-        versionName "9.5.0.1475"
+        versionName "9.5.0.1482"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
