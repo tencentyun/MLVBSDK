@@ -22,11 +22,15 @@
   
 对于使用 V1 的客户，我们提供了 V1 升级到 V2 的[接口升级指引对照表](https://docs.qq.com/sheet/DRkJUckpGdkNTUmt2)
 
-### Version 9.5 @ 2022.01.10
+### Version 9.5 @ 2022.01.24
 - iOS：录屏直播新增录屏开始和录屏结束回调；
 - iOS：修复 V2TXLivePusher 打开后置摄像头没有生效的问题；
 - iOS：修复 V2TXLivePusher 推流时，关闭摄像头再打开拉流端延时会越来越高的问题；
+- iOS：修复 V2TXLivePusher 使用不合法推流地址出现异常的问题；
+- iOS：修复 TXLivePlayer 某些场景下调用 setupVideoWidget 首帧黑屏的问题；
 - Android：修复RTC推流时，关闭麦克风拉流端看不到推流端画面的问题；
+- Android：修复快直播播放内存泄漏的问题；
+- Android：修复 V2TXLivePusher 推流频繁切换横竖屏偶现画面横屏的问题；
 - Android&iOS：快直播域名支持外部设置；
 
 ## MLVB Demo
