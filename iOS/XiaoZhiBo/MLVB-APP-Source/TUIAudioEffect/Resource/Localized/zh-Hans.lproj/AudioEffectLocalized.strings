@@ -1,0 +1,37 @@
+/*
+  AudioEffectLocalized.strings
+  TUIAudioEffectView
+
+  Created by jack on 2021/9/27.
+*/
+
+"TUIKit.AudioEffectView.title" = "音效设置";
+"TUIKit.AudioEffectView.VoiceChange.title" = "变声";
+"TUIKit.AudioEffectView.VoiceReverb.title" = "混响";
+"TUIKit.AudioEffectView.MusicBackground.title" = "背景音乐";
+"TUIKit.AudioEffectView.MusicBackground.earMonitor" = "耳返";
+"TUIKit.AudioEffectView.MusicBackground.useEarphones" = "请带上耳机获得更好体验";
+"TUIKit.AudioEffectView.MusicSelect.copyrights" = "版权曲库©";
+"TUIKit.AudioEffectView.MusicSelect.select" = "选择歌曲";
+"TUIKit.AudioEffectView.MusicVolum.title" = "音乐音量";
+"TUIKit.AudioEffectView.VoiceVolum.title" = "人声音量";
+"TUIKit.AudioEffectView.MusicRiseFall.title" = "音乐升降调";
+// 变声
+"TUIKit.AudioEffectView.VoiceChange.Original" = "原声";
+"TUIKit.AudioEffectView.VoiceChange.Naughty boy" = "熊孩子";
+"TUIKit.AudioEffectView.VoiceChange.Little girl" = "萝莉";
+"TUIKit.AudioEffectView.VoiceChange.Middle-aged man" = "大叔";
+"TUIKit.AudioEffectView.VoiceChange.Ethereal voice" = "空灵";
+// 混响
+"TUIKit.AudioEffectView.VoiceReverb.No effect" = "无效果";
+"TUIKit.AudioEffectView.VoiceReverb.Karaoke room" = "Karaoke";
+"TUIKit.AudioEffectView.VoiceReverb.Metallic" = "金属声";
+"TUIKit.AudioEffectView.VoiceReverb.Deep" = "低沉";
+"TUIKit.AudioEffectView.VoiceReverb.Resonant" = "洪亮";
+// 曲目
+"TUIKit.AudioEffectView.MusicSelect.musicname1" = "欢快";
+"TUIKit.AudioEffectView.MusicSelect.musicname2" = "忧郁";
+"TUIKit.AudioEffectView.MusicSelect.musicname3" = "神奇世界";
+
+"TUIKit.AudioEffectView.Back" = "返回";
+

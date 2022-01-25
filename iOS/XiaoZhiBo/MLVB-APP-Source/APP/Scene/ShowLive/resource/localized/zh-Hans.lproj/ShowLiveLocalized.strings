@@ -1,0 +1,71 @@
+/*
+  ShowLiveLocalized.strings
+  XiaoZhiBoApp
+
+  Created by adams on 2021/5/10.
+  
+*/
+
+"Scene.ShowLive.List.title" = "秀场直播";
+"Scene.ShowLive.List.pullrefresh" = "下拉刷新";
+"Scene.ShowLive.List.getlistfailed" = "获取列表失败";
+"Scene.ShowLive.List.getroomlistfailed" = "获取房间列表失败";
+"Scene.ShowLive.List.pullrefresh" = "下拉刷新";
+"Scene.ShowLive.List.refreshing" = "刷新中";
+"Scene.ShowLive.List.createroom" = "创建房间";
+"Scene.ShowLive.List.createshowliveroom" = "创建秀场直播房间";
+"Scene.ShowLive.List.nocontentnow~" = "当前暂无内容哦~";
+"Scene.ShowLive.List.nocontentnow" = "当前暂无内容哦";
+"Scene.ShowLive.List.xxissinging" = "xxx人正在观看";
+"Scene.ShowLive.List.invalidappid" = "APPID 不正确";
+"Scene.ShowLive.List.nocontentnow~" = "当前暂无内容哦~";
+"Scene.ShowLive.List.getroomlistfailed" = "获取房间列表失败";
+
+"Scene.ShowLive.Create.roomsubject" = "房间主题";
+"Scene.ShowLive.Create.enterroomsubject" = "请输入房间主题（最多60字）";
+"Scene.ShowLive.Create.join" = "实时合唱";
+"Scene.ShowLive.Create.xxxsroom" = "xxx的房间";
+
+"Scene.ShowLive.Anchor.switchcamera" = "切换摄像头";
+"Scene.ShowLive.Anchor.tools" = "工具";
+"Scene.ShowLive.Anchor.pktitle" = "PK邀请";
+"Scene.ShowLive.Anchor.invite" = "邀请";
+"Scene.ShowLive.Anchor.pkInvite" = "邀请";
+"Scene.ShowLive.Anchor.invitepk" = "PK邀请";
+"Scene.ShowLive.Anchor.loading" = "正在加载...";
+"Scene.ShowLive.Anchor.noanchor" = "暂无主播";
+"Scene.ShowLive.Anchor.cancel" = "取消";
+"Scene.ShowLive.Anchor.exit" = "直播进行中，确定离开吗？";
+"Scene.ShowLive.Anchor.exitwait" = "再等等";
+"Scene.ShowLive.Anchor.exitconfirm" = "我确定";
+"Scene.ShowLive.Anchor.selectPhoto" = "选取照片";
+"Scene.ShowLive.Anchor.camera" = "拍照";
+"Scene.ShowLive.Anchor.photolibrary" = "照片图库";
+"Scene.ShowLive.Authorization" = "请先打开摄像头与麦克风权限";
+"Scene.ShowLive.Authorization.photolibrary" = "请先打开相册权限";
+"Scene.ShowLive.Authorization.camera" = "请先打开摄像头权限";
+
+"Scene.ShowLive.OnlineUsers.title" = "在线观众";
+"Scene.ShowLive.MoreLiveRoom.title" = "更多直播";
+"Scene.ShowLive.MoreLiveRoom.recommend" = "推荐";
+"Scene.ShowLive.Audience.follow" = "关注";
+"Scene.ShowLive.Audience.followed" = "已关注";
+"Scene.ShowLive.Audience.unfollowed" = "取消关注成功";
+"Scene.ShowLive.Audience.fans" = "粉丝";
+"Scene.ShowLive.Audience.anchorexit" = "主播已结束直播";
+"Scene.ShowLive.Ranking.hot" = "人气榜";
+
+/** 连麦 **/
+"Scene.ShowLive.LinkMic.requestreceive" = "%@ 向你发起了连麦请求";
+"Scene.ShowLive.LinkMic.requestaccept" = "接受";
+"Scene.ShowLive.LinkMic.requestrefuse" = "拒绝";
+"Scene.ShowLive.LinkMic.requestreject" = "主播拒绝了请求";
+"Scene.ShowLive.LinkMic.busy" = "主播忙线中";
+"Scene.ShowLive.LinkMic.exit" = "连麦进行中，确定离开吗？";
+
+/** PK **/
+"Scene.ShowLive.PK.requestreceive" = "%@ 申请PK";
+"Scene.ShowLive.PK.requestaccept" = "接受";
+"Scene.ShowLive.PK.requestrefuse" = "拒绝";
+"Scene.ShowLive.PK.requestreject" = "主播拒绝了请求";
+"Scene.ShowLive.PK.busy" = "主播忙线中";

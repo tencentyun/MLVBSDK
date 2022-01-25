@@ -1,0 +1,70 @@
+PODS:
+  - Alamofire (5.4.3)
+  - Kingfisher (6.3.1)
+  - Masonry (1.1.0)
+  - ReactiveObjC (3.1.1)
+  - SDWebImage (5.9.0):
+    - SDWebImage/Core (= 5.9.0)
+  - SDWebImage/Core (5.9.0)
+  - SnapKit (5.0.1)
+  - Toast-Swift (5.0.1)
+  - TUICore (1.0.0):
+    - ReactiveObjC (= 3.1.1)
+    - SDWebImage (= 5.9.0)
+    - TXIMSDK_Plus_iOS
+  - TUIPlayer/Professional (1.0.0):
+    - Masonry
+    - TUICore
+    - TXLiteAVSDK_Professional
+  - TXAppBasic (1.0.0)
+  - TXIMSDK_Plus_iOS (5.6.1200)
+  - TXLiteAVSDK_Professional (8.5.10017)
+
+DEPENDENCIES:
+  - Alamofire
+  - Kingfisher
+  - SnapKit
+  - Toast-Swift
+  - TUICore (from `../../TUICore/`)
+  - TUIPlayer/Professional (from `../`)
+  - TXAppBasic (from `./TXAppBasic/`)
+  - TXLiteAVSDK_Professional (from `../../SDK/`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - Masonry
+    - ReactiveObjC
+    - SDWebImage
+    - SnapKit
+    - Toast-Swift
+    - TXIMSDK_Plus_iOS
+
+EXTERNAL SOURCES:
+  TUICore:
+    :path: "../../TUICore/"
+  TUIPlayer:
+    :path: "../"
+  TXAppBasic:
+    :path: "./TXAppBasic/"
+  TXLiteAVSDK_Professional:
+    :path: "../../SDK/"
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+  TUICore: 675fb902f91cc2ed656daa6926bd00649e9dec3b
+  TUIPlayer: 1d67b426247a5b37ae9142a3f7723728cbdb51df
+  TXAppBasic: f72fd658cb2cec20f0368158752b82226cb6cdec
+  TXIMSDK_Plus_iOS: 1bfe351c84e3dad80e9c8e182267f87f6295f715
+  TXLiteAVSDK_Professional: 701387b8202b7747431a776567da17d860af9981
+
+PODFILE CHECKSUM: 25e48e97a6c810d9f5d4039533b6a23e90be934b
+
+COCOAPODS: 1.11.2
