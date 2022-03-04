@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width*0.7, initial-scale=1.0">
+    <title>验证码</title>
+</head>
+<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+<script>
+function callVerify(appid) {
+    var captcha = new TencentCaptcha(appid + '', function (res) {
+            if (res) {
+                if (res.ret === 0) {
+                    window.webkit.messageHandlers.verifySuccess.postMessage(JSON.stringify({"ticket":res.ticket, "randstr":res.randstr}));
+                } else if (res.ret === 2) {
+                    window.webkit.messageHandlers.verifyCancel.postMessage(2);
+                } else {
+                    window.webkit.messageHandlers.verifyError.postMessage(res.ret);
+                }
+            } else {
+                window.webkit.messageHandlers.verifyError.postMessage(-1);
+            }
+        }, {
+            // 图片验证码加载之后的回调
+            ready: function (data) {
+            },
+            // 是否需要帮助按钮
+            needFeedBack: false,
+            // 自适应深色模式
+            enableDarkMode: true,
+        });
+        captcha.show(); // 显示验证码
+}
+</script>
+<body>
+</body>
+</html>

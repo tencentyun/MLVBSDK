@@ -1,0 +1,29 @@
+PODS:
+  - LiteAVPrivacy (1.0.0):
+    - Masonry
+    - SDWebImage
+  - Masonry (1.1.0)
+  - SDWebImage (5.12.2):
+    - SDWebImage/Core (= 5.12.2)
+  - SDWebImage/Core (5.12.2)
+
+DEPENDENCIES:
+  - LiteAVPrivacy (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  LiteAVPrivacy:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LiteAVPrivacy: e7294cbe473da84b53f949dc2e5ec5105307a69f
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
+
+PODFILE CHECKSUM: cc541806532fcbcb0bc1b849163beaff04a08ef2
+
+COCOAPODS: 1.11.2

@@ -1,0 +1,22 @@
+/* 
+  LiveRoomLocalized.strings
+  TRTCAPP
+
+  Created by adams on 2021/6/4.
+  
+*/
+
+
+"Demo.TRTC.Karaoke.voicechatroom" = "TUIBarrage";
+"Demo.TRTC.LiveRoom.createRoom" = "创建房间";
+"Demo.TRTC.LiveRoom.roomNumber" = "房间号  ";
+"Demo.TRTC.LiveRoom.enterRoom" = "进入房间";
+"Demo.TRTC.LiveRoom.enterRoomNumber" = "请输入您的房间号";
+"Demo.TRTC.LiveRoom.prompt" = "提示";
+"Demo.TRTC.LiveRoom.ok" = "确定";
+"Demo.TRTC.LiveRoom.roomNumberis:" = "当前创建房间号为:";
+"Demo.TRTC.LiveRoom.roomdoesnotexist" = "当前房间不存在";
+"App.PortalViewController.areyousureloginout" = "确定要退出登录吗？";
+"App.PortalViewController.cancel" = "取消";
+"App.PortalViewController.determine" = "确定";
+"Demo.TRTC.Karaoke.roomInfo" = "房间信息";

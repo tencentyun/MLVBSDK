@@ -1,0 +1,35 @@
+use_frameworks!
+
+platform :ios, '12.0'
+
+# 注：如果没有下载SDK，请直接执行后面代码：  sh init.sh
+
+def pod_audioEffect(type) 
+  pod "TXLiteAVSDK_#{type}",:path => "../../SDK/"
+  pod 'TUIAudioEffect', :path => "../", :subspecs => ["#{type}"]
+end
+
+target 'TUIAudioEffectView_Example' do
+  
+#  XiaoZhiBoApp
+  pod 'TUICore', :path => '../../TUICore'
+
+  pod_audioEffect('Professional')
+  
+  pod 'SnapKit'
+  pod 'Kingfisher'
+  pod 'Toast-Swift'
+  pod 'Alamofire'
+end
+
+post_install do |installer|
+
+  installer.pods_project.targets.each do |target|
+
+    target.build_configurations.each do |config|
+
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+
+    end
+  end
+end

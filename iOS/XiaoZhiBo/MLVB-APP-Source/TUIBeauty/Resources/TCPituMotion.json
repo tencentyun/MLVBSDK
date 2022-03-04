@@ -1,0 +1,143 @@
+{
+    "bundle" : "pitu",
+    "package" : {
+        "motion" : [
+            {
+                "title" : "TC.BeautySettingPanel.Boom",
+                "id" : "video_boom",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_boom.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Rainbow Mouse",
+                "id" : "video_nihongshu",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_nihongshu.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Glow stick",
+                "id" : "video_fengkuangdacall",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_fengkuangdacall.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Q constellation",
+                "id" : "video_Qxingzuo_iOS",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_Qxingzuo_iOS.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Color Ribbon",
+                "id" : "video_caidai_iOS",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_caidai_iOS.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Bang Ribbon",
+                "id" : "video_liuhaifadai",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_liuhaifadai.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Violet Cat",
+                "id" : "video_purplecat",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_purplecat.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Floral Fairy",
+                "id" : "video_huaxianzi",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_huaxianzi.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Little princess",
+                "id" : "video_baby_agetest",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_baby_agetest.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.glasses dog",
+                "id" : "video_3DFace_dogglasses2",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_3DFace_dogglasses2.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.rainbow cloud",
+                "id" : "video_rainbow",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_rainbow.zip"
+            }
+        ],
+        "cosmetic" : [
+            {
+                "title" : "TC.BeautySettingPanel.Cherries",
+                "id" : "video_cherries",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_cherries.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Ocean",
+                "id" : "video_haiyang2",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_haiyang2.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.FenFenXia",
+                "id" : "video_fenfenxia_square_iOS",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_fenfenxia_square_iOS.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Widow Makeup",
+                "id" : "video_guajiezhuang",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu/video_guajiezhuang.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Qixichun",
+                "id" : "video_qixichun",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_qixichun.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Gufeng",
+                "id" : "video_gufengzhuang",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_gufengzhuang.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Ugly Girl",
+                "id" : "video_dxxiaochounv",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_dxxiaochounv.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Mixed Makeup",
+                "id" : "video_remix1",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_remix1.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Fu Gu",
+                "id" : "video_qingchunzannan_iOS",
+                "url" : "http://res.tu.qq.com/materials/video_qingchunzannan_iOS.zip"
+            }
+        ],
+        "gesture" : [
+            {
+                "title" : "TC.BeautySettingPanel.PikaQiu",
+                "id" : "video_pikachu",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/Android/181/video_pikachu.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Meteor Shower",
+                "id" : "video_liuxingyu",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_liuxingyu.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Snow Control",
+                "id" : "video_kongxue2",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_kongxue2.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.TV Star",
+                "id" : "video_dianshizhixing",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_dianshizhixing.zip"
+            },
+            {
+                "title" : "TC.BeautySettingPanel.Bottle",
+                "id" : "video_bottle1",
+                "url" : "https://liteav.sdk.qcloud.com/app/res/pitu//video_bottle1.zip"
+            }
+        ],
+        "bgremove" : [
+            {
+                "title" : "TC.BeautyPanel.Menu.BlendPic",
+                "id" : "video_xiaofu",
+                "url" : "http://dldir1.qq.com/hudongzhibo/AISpecial/ios/160/video_xiaofu.zip"
+            }
+        ]
+    }
+}

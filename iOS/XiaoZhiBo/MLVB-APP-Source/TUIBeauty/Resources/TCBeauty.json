@@ -1,0 +1,175 @@
+{
+"package" : "beauty",
+"item" : [
+    {
+        "title" : "TC.BeautySettingPanel.BeautySmooth",
+        "normalIcon" : "smooth_nor",
+        "selIcon" : "smooth_sel",
+        "currentValue" : 6
+    },
+    {
+        "title" : "TC.BeautySettingPanel.Beauty-Natural",
+        "normalIcon" : "natural_nor",
+        "selIcon" : "natural_sel",
+        "currentValue" : 6
+    },
+    {
+        "title" : "TC.BeautySettingPanel.Beauty-P",
+        "normalIcon" : "ps_nor",
+        "selIcon" : "ps_sel",
+        "currentValue" : 6
+    },
+    {
+        "title" : "TC.BeautySettingPanel.White",
+        "normalIcon" : "whitness_nor",
+        "selIcon" : "whitness_sel",
+        "currentValue" : 6
+    },
+    {
+        "title" : "TC.BeautySettingPanel.Ruddy",
+        "normalIcon" : "ruddy_nor",
+        "selIcon" : "ruddy_sel",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.BigEyes",
+        "normalIcon" : "bigeye_nor",
+        "selIcon" : "bigeye_sel",
+        "selector" : "setEyeScaleLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.ThinFace",
+        "normalIcon" : "thinface_nor",
+        "selIcon" : "thinface_sel",
+        "selector" : "setFaceSlimLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.VFace",
+        "normalIcon" : "vface_nor",
+        "selIcon" : "vface_sel",
+        "selector" : "setFaceVLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.Chin",
+        "normalIcon" : "chin_nor",
+        "selIcon" : "chin_sel",
+        "selector" : "setChinLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.ShortFace",
+        "normalIcon" : "shortface_nor",
+        "selIcon" : "shortface_sel",
+        "selector" : "setFaceShortLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.ThinNose",
+        "normalIcon" : "thinnose_nor",
+        "selIcon" : "thinnose_sel",
+        "selector" : "setNoseSlimLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.EyeLighten",
+        "normalIcon" : "eyelighten_nor",
+        "selIcon" : "eyelighten_sel",
+        "selector" : "setEyeLightenLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.ToothWhiten",
+        "normalIcon" : "toothwhiten_nor",
+        "selIcon" : "toothwhiten_sel",
+        "selector" : "setToothWhitenLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.WrinkleRemove",
+        "normalIcon" : "wrinkle_nor",
+        "selIcon" : "wrinkle_sel",
+        "selector" : "setWrinkleRemoveLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.PounchRemove",
+        "normalIcon" : "pounch_nor",
+        "selIcon" : "pounch_sel",
+        "selector" : "setPounchRemoveLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.SmileLinesRemove",
+        "normalIcon" : "smilelines_nor",
+        "selIcon" : "smilelines_sel",
+        "selector" : "setSmileLinesRemoveLevel:",
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.Forehead",
+        "normalIcon" : "forehead_nor",
+        "selIcon" : "forehead_sel",
+        "selector" : "setForeheadLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.EyeDistance",
+        "normalIcon" : "eyedistance_nor",
+        "selIcon" : "eyedistance_sel",
+        "selector" : "setEyeDistanceLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.EyeAngle",
+        "normalIcon" : "eyeangle_nor",
+        "selIcon" : "eyeangle_sel",
+        "selector" : "setEyeAngleLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.MouthShape",
+        "normalIcon" : "mouthshape_nor",
+        "selIcon" : "mouthshape_sel",
+        "selector" : "setMouthShapeLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.NoseWing",
+        "normalIcon" : "nosewing_nor",
+        "selIcon" : "nosewing_sel",
+        "selector" : "setNoseWingLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.NosePosition",
+        "normalIcon" : "noseposition_nor",
+        "selIcon" : "noseposition_sel",
+        "selector" : "setNosePositionLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.LipsThickness",
+        "normalIcon" : "lipsthickness_nor",
+        "selIcon" : "lipsthickness_sel",
+        "selector" : "setLipsThicknessLevel:",
+        "minValue" : -10.0,
+        "currentValue" : 0
+    },
+    {
+        "title" : "TC.BeautySettingPanel.FaceBeauty",
+        "normalIcon" : "facebeauty_nor",
+        "selIcon" : "facebeauty_sel",
+        "selector" : "setFaceBeautyLevel:",
+        "currentValue" : 0
+    },
+]
+}
