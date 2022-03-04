@@ -1,0 +1,43 @@
+
+"LiteAV.Privacy.privacy" = "Privacy";
+"LiteAV.Privacy.privacyAgreement" = "Privacy Policy";
+"LiteAV.Privacy.userAgreement" = "Terms of Use";
+"LiteAV.Privacy.personalAuth" = "My Information & Authorizations";
+"LiteAV.Privacy.dataCollection" = "Personal Information Collected";
+"LiteAV.Privacy.thirdShare" = "Information Shared with Third Parties";
+
+"LiteAV.Privacy.personalAuth.systemAuth" = "System Permissions";
+"LiteAV.Privacy.personalAuth.info" = "My Information";
+
+"LiteAV.Privacy.personalAuth.allow" = "Allow";
+"LiteAV.Privacy.personalAuth.deny" = "Deny";
+"LiteAV.Privacy.personalAuth.unauthorized" = "unauthorized";
+"LiteAV.Privacy.personalAuth.camera" = "Camera";
+"LiteAV.Privacy.personalAuth.microphone" = "Microphone";
+"LiteAV.Privacy.personalAuth.photos" = "Photos";
+"LiteAV.Privacy.personalAuth.manage" = "Manage %@ access";
+
+"LiteAV.Privacy.personalAuth.systemSetting" = "Go to System Settings";
+
+"LiteAV.Privacy.personalAuth.avatar" = "Profile Photo";
+"LiteAV.Privacy.personalAuth.name" = "Name";
+"LiteAV.Privacy.personalAuth.id" = "ID";
+"LiteAV.Privacy.personalAuth.phone" = "Phone";
+"LiteAV.Privacy.personalAuth.email" = "Email";
+
+"LiteAV.Privacy.dataCollection.purpose" = "Purpose of usage";
+"LiteAV.Privacy.dataCollection.desc" = "You can check %@'s collection of your personal information.";
+"LiteAV.Privacy.dataCollection.none" = "None";
+
+"LiteAV.Privacy.thirdShare.desc" = "    When you use a service provided by a third party, we will share the corresponding information after obtaining or ensuring that the third party obtains your authorization and consent, and in other circumstances in compliance with laws and regulations. You can find out how third parties will handle your personal information through the relevant information listed in this list. We will also strictly restrict the behavior of third parties to obtain personal information to protect the security of your personal information. \n\n    In order to ensure the stable operation of %@ or achieve related functions, we may also access software development kits (SDKs) provided by third parties to achieve the aforementioned purposes. The relevant third-party SDKs we access are also listed in the following list. You can view third-party data usage and protection rules through the links or paths provided in the directory. Please note that the type of personal information processing of third-party SDKs may change due to version upgrades, policy adjustments, etc., please refer to the official instructions published by them.";
+
+"LiteAV.Privacy.thirdShare.company" = "Company";
+"LiteAV.Privacy.thirdShare.info" = "Shared information";
+"LiteAV.Privacy.thirdShare.scene" = "Use case";
+"LiteAV.Privacy.thirdShare.purpose" = "Purpose of usage";
+"LiteAV.Privacy.thirdShare.method" = "How to share";
+"LiteAV.Privacy.thirdShare.privacy" = "Privacy Agreement";
+"LiteAV.Privacy.thirdShare.privacyLink" = "[Link]";
+
+"LiteAV.Privacy.tip.copy" = "Copy successfully";
+

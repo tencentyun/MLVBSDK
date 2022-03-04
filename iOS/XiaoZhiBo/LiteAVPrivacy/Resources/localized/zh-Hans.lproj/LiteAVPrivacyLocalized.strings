@@ -1,0 +1,41 @@
+
+"LiteAV.Privacy.privacy" = "隐私";
+"LiteAV.Privacy.privacyAgreement" = "隐私条例";
+"LiteAV.Privacy.userAgreement" = "用户协议";
+"LiteAV.Privacy.personalAuth" = "个人信息与权限";
+"LiteAV.Privacy.dataCollection" = "个人信息收集清单";
+"LiteAV.Privacy.thirdShare" = "第三方信息共享清单";
+
+"LiteAV.Privacy.personalAuth.systemAuth" = "系统权限";
+"LiteAV.Privacy.personalAuth.info" = "个人信息";
+
+"LiteAV.Privacy.personalAuth.allow" = "允许";
+"LiteAV.Privacy.personalAuth.deny" = "拒绝";
+"LiteAV.Privacy.personalAuth.unauthorized" = "未授权";
+"LiteAV.Privacy.personalAuth.camera" = "相机";
+"LiteAV.Privacy.personalAuth.microphone" = "麦克风";
+"LiteAV.Privacy.personalAuth.photos" = "相册";
+"LiteAV.Privacy.personalAuth.manage" = "管理%@权限";
+
+"LiteAV.Privacy.personalAuth.systemSetting" = "前往系统设置";
+
+"LiteAV.Privacy.personalAuth.avatar" = "头像";
+"LiteAV.Privacy.personalAuth.name" = "昵称";
+"LiteAV.Privacy.personalAuth.id" = "ID";
+"LiteAV.Privacy.personalAuth.phone" = "手机号";
+"LiteAV.Privacy.personalAuth.email" = "邮箱";
+
+"LiteAV.Privacy.dataCollection.purpose" = "使用目的";
+"LiteAV.Privacy.dataCollection.desc" = "你可以查阅%@对你的个人信息的收集情况。";
+"LiteAV.Privacy.dataCollection.none" = "未设置";
+
+"LiteAV.Privacy.thirdShare.desc" = "  当你使用第三方提供的服务时，我们会在获得或确保第三方获得你的授权同意后，以及其他符合法律法规规定的情形下共享对应信息。你可以通过本清单中列举的相关信息了解第三方会如何处理你的个人信息。我们也会对第三方荻取个人信息的行为进行严格约束，以保护你的个人信息安全。\n\n  为保障%@稳定运行或实现相关功能，我们还可能会接入由第三方提供的软件开发包 （SDK）实现前述目的。我们对接入的相关第三方SDK同时在以下清单中列明。你可以通过目录中提供的链接或者路径查看第三方的数据使用和保护规则。请注意，第三方SDK可能由于版本升级、策略调整等原因导致其个人信息处理类型发生变化，请以其公示的官方说明为准。";
+"LiteAV.Privacy.thirdShare.company" = "第三方主体";
+"LiteAV.Privacy.thirdShare.info" = "共享的信息";
+"LiteAV.Privacy.thirdShare.scene" = "使用场景";
+"LiteAV.Privacy.thirdShare.purpose" = "使用目的";
+"LiteAV.Privacy.thirdShare.method" = "共享方式";
+"LiteAV.Privacy.thirdShare.privacy" = "第三方个人信息处理规则";
+"LiteAV.Privacy.thirdShare.privacyLink" = "[链接]";
+
+"LiteAV.Privacy.tip.copy" = "复制成功";

@@ -1,0 +1,70 @@
+/* 
+  ShowLiveLocalized.strings
+  XiaoZhiBoApp
+
+  Created by adams on 2021/5/10.
+  
+*/
+
+"Scene.ShowLive.List.title" = "Scene.ShowLive.List.title";
+"Scene.ShowLive.List.getlistfailed" = "Failed to get the list.";
+"Scene.ShowLive.List.getroomlistfailed" = "Failed to get the room list";
+"Scene.ShowLive.List.pullrefresh" = "Pull down to refresh";
+"Scene.ShowLive.List.refreshing" = "Refreshing";
+"Scene.ShowLive.List.createroom" = "Create Room";
+"Scene.ShowLive.List.createshowliveroom" = "Create Show Live Room";
+"Scene.ShowLive.List.nocontentnow~" = "No content now";
+"Scene.ShowLive.List.nocontentnow" = "No content now";
+"Scene.ShowLive.List.xxissinging" = "xxx watching.";
+"Scene.ShowLive.List.invalidappid" = "Incorrect app ID";
+"Scene.ShowLive.List.nocontentnow~" = "No content now";
+"Scene.ShowLive.List.getroomlistfailed" = "Failed to get the room list";
+
+"Scene.ShowLive.Create.roomsubject" = "Subject";
+"Scene.ShowLive.Create.enterroomsubject" = "Enter a room subject (max. 60 characters)";
+"Scene.ShowLive.Create.join" = "Join";
+"Scene.ShowLive.Create.xxxsroom" = "xxx's room";
+
+"Scene.ShowLive.Anchor.switchcamera" = "Switch Camera";
+"Scene.ShowLive.Anchor.tools" = "Tools";
+"Scene.ShowLive.Anchor.pktitle" = "Invite PK";
+"Scene.ShowLive.Anchor.invite" = "Invite";
+"Scene.ShowLive.Anchor.pkInvite" = "Invite";
+"Scene.ShowLive.Anchor.invitepk" = "Invite to Compete";
+"Scene.ShowLive.Anchor.loading" = "Loading...";
+"Scene.ShowLive.Anchor.noanchor" = "No anchor at the moment";
+"Scene.ShowLive.Anchor.cancel" = "Cancel";
+"Scene.ShowLive.Anchor.exit" = "The live broadcast is in progress, are you sure to leave?";
+"Scene.ShowLive.Anchor.exitwait" = "hold on";
+"Scene.ShowLive.Anchor.exitconfirm" = "Sure";
+"Scene.ShowLive.Anchor.selectPhoto" = "Select photo";
+"Scene.ShowLive.Anchor.camera" = "Camera";
+"Scene.ShowLive.Anchor.photolibrary" = "Photo library";
+"Scene.ShowLive.Authorization" = "Please turn on the camera and microphone permissions first";
+"Scene.ShowLive.Authorization.photolibrary" = "Please turn on the photo library";
+"Scene.ShowLive.Authorization.camera" = "Please turn on the camera";
+
+"Scene.ShowLive.OnlineUsers.title" = "Online Audience";
+"Scene.ShowLive.MoreLiveRoom.title" = "More Live";
+"Scene.ShowLive.MoreLiveRoom.recommend" = "Recommend";
+"Scene.ShowLive.Audience.follow" = "Follow";
+"Scene.ShowLive.Audience.followed" = "Followed";
+"Scene.ShowLive.Audience.unfollowed" = "Unfollow success";
+"Scene.ShowLive.Audience.fans" = "Fans";
+"Scene.ShowLive.Audience.anchorexit" = "The anchor has left";
+"Scene.ShowLive.Ranking.hot" = "Hot Ranking";
+
+/** 连麦 **/
+"Scene.ShowLive.LinkMic.receiverequest" = "%@ ask for Link-Mic";
+"Scene.ShowLive.LinkMic.requestaccept" = "Accept";
+"Scene.ShowLive.LinkMic.requestrefuse" = "Refuse";
+"Scene.ShowLive.LinkMic.requestreject" = "The anchor declined the request";
+"Scene.ShowLive.LinkMic.busy" = "Anchor busy";
+"Scene.ShowLive.LinkMic.exit" = "Link-Mic is in progress, are you sure to leave?";
+
+/** PK **/
+"Scene.ShowLive.PK.requestreceive" = "%@ Request PK";
+"Scene.ShowLive.PK.requestaccept" = "Accept";
+"Scene.ShowLive.PK.requestrefuse" = "Refuse";
+"Scene.ShowLive.PK.requestreject" = "The anchor declined the request";
+"Scene.ShowLive.PK.busy" = "Anchor busy";

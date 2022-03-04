@@ -1,0 +1,8 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'LiteAVPrivacy_Example' do
+  pod 'LiteAVPrivacy', :path => '../'
+
+end
