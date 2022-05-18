@@ -113,6 +113,8 @@
 "MLVB-API-Example.ThirdBeauty.beautyLevel" = "Skin Smoothing";
 "MLVB-API-Example.ThirdBeauty.startPush" = "Publish";
 "MLVB-API-Example.ThirdBeauty.stopPush" = "Stop";
+"MLVB-API-Example.ThirdBeauty.faceunity" = "Faceunity Beauty Filters";
+"MLVB-API-Example.ThirdBeauty.xmagic" = "Tencent Effect Beauty Filters";
 
 
 "MLVB-API-Example.RTCPushAndPlay.title" = "RTC Co-anchoring + Ultra-low-latency Playback";

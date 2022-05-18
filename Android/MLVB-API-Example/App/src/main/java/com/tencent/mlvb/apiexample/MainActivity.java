@@ -16,7 +16,8 @@ import com.tencent.mlvb.livepushcamera.LivePushCameraEnterActivity;
 import com.tencent.mlvb.livepushscreen.LivePushScreenEnterActivity;
 import com.tencent.mlvb.rtcpushandplay.RTCPushAndPlayEnterActivity;
 import com.tencent.mlvb.switchrenderview.SwitchRenderViewActivity;
-import com.tencent.mlvb.thirdbeauty.ThirdBeautyActivity;
+import com.tencent.mlvb.thirdbeauty.ThirdBeautyFaceUnityActivity;
+import com.tencent.mlvb.thirdbeauty.ThirdBeautyEntranceActivity;
 
 
 /**
@@ -33,7 +34,7 @@ import com.tencent.mlvb.thirdbeauty.ThirdBeautyActivity;
  * 进阶功能模块如下：
  * - 动态切换渲染控件{@link SwitchRenderViewActivity}
  * - 自定义视频采集{@link CustomVideoCaptureActivity}
- * - 第三方美颜{@link ThirdBeautyActivity}
+ * - 第三方美颜{@link ThirdBeautyFaceUnityActivity}
  * - RTC连麦+超低延时播放{@link RTCPushAndPlayEnterActivity}
  *
  * MLVB API-Example Main View
@@ -49,7 +50,7 @@ import com.tencent.mlvb.thirdbeauty.ThirdBeautyActivity;
  * Advanced features:
  * - Dynamically switching rendering controls {@link SwitchRenderViewActivity}
  * - Custom video capturing {@link CustomVideoCaptureActivity}
- * - Third-party beauty filters {@link ThirdBeautyActivity}
+ * - Third-party beauty filters {@link ThirdBeautyFaceUnityActivity}
  * - RTC co-anchoring + ultra-low-latency playback {@link RTCPushAndPlayEnterActivity}
  *
  */
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ll_third_beauty).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ThirdBeautyActivity.class);
+                Intent intent = new Intent(MainActivity.this, ThirdBeautyEntranceActivity.class);
                 startActivity(intent);
             }
         });

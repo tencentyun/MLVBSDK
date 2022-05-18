@@ -58,7 +58,7 @@
                       @{
                           @"title": Localize(@"MLVB-API-Example.Home.ThirdBeauty"),
                           @"desc": @"",
-                          @"class": @"ThirdBeautyViewController"
+                          @"class": @"ThirdBeautyEntranceViewController"
                       },
                       @{
                           @"title": Localize(@"MLVB-API-Example.Home.RTCPushAndPlay"),
