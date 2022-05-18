@@ -7,8 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07AE28EB0783037E7C49218A /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256A72407FE66B73F90345FE /* TXLiteAVSDK_Professional.framework */; };
 		400C520226A67EE30036AC40 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 400C520126A67EE30036AC40 /* AssetsLibrary.framework */; };
+		406AB15F280048B300A99B81 /* TXFFmpeg.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB15A280048A600A99B81 /* TXFFmpeg.xcframework */; };
+		406AB160280048B300A99B81 /* TXFFmpeg.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB15A280048A600A99B81 /* TXFFmpeg.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		406AB161280048B500A99B81 /* TXSoundTouch.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB159280048A600A99B81 /* TXSoundTouch.xcframework */; };
+		406AB162280048B500A99B81 /* TXSoundTouch.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB159280048A600A99B81 /* TXSoundTouch.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		406AB164280048BB00A99B81 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB163280048BB00A99B81 /* VideoToolbox.framework */; };
+		406AB166280048C800A99B81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB165280048C800A99B81 /* SystemConfiguration.framework */; };
+		406AB168280048D800A99B81 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB167280048D800A99B81 /* CoreTelephony.framework */; };
+		406AB16A280048E100A99B81 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB169280048E100A99B81 /* MetalKit.framework */; };
+		406AB16B280048F400A99B81 /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB158280048A600A99B81 /* TXLiteAVSDK_ReplayKitExt.framework */; };
+		406AB16C280048FB00A99B81 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB163280048BB00A99B81 /* VideoToolbox.framework */; };
+		406AB16D2800490100A99B81 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB169280048E100A99B81 /* MetalKit.framework */; };
+		406AB16E2800491700A99B81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB165280048C800A99B81 /* SystemConfiguration.framework */; };
+		406AB16F2800492000A99B81 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB167280048D800A99B81 /* CoreTelephony.framework */; };
 		40D550EC26A6A9D800FE9F13 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D550EB26A6A9BF00FE9F13 /* libsqlite3.0.tbd */; };
 		4723A7BF26315F920094AC81 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4723A7BE26315F920094AC81 /* OpenGLES.framework */; };
 		4723A7C026315F9C0094AC81 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
@@ -38,7 +50,6 @@
 		88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */; };
 		88167CC52684AC91001D99DC /* LivePushCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88167CC32684AC91001D99DC /* LivePushCameraViewController.m */; };
 		88167CC62684AC91001D99DC /* LivePushCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CC42684AC91001D99DC /* LivePushCameraViewController.xib */; };
-		88167CE62685B823001D99DC /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		88167CE92685BF58001D99DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CE82685BF58001D99DC /* Foundation.framework */; };
 		88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8894457726282A3200193FAD /* UIKit.framework */; };
 		88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CEB2685BF8E001D99DC /* libz.tbd */; };
@@ -53,7 +64,6 @@
 		885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */; };
 		8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8894456A26282A3200193FAD /* ReplayKit.framework */; };
 		8894458326282A3200193FAD /* TXReplayKit_Screen.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8894456926282A3200193FAD /* TXReplayKit_Screen.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */; };
 		8899908C268487F400CBC983 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999076268486EC00CBC983 /* SampleHandler.m */; };
 		88A1A884268DA7DA007F630D /* LivePkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A1A882268DA7DA007F630D /* LivePkAnchorViewController.m */; };
 		88A1A885268DA7DA007F630D /* LivePkAnchorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A1A883268DA7DA007F630D /* LivePkAnchorViewController.xib */; };
@@ -65,8 +75,8 @@
 		88AB3E51268A008C00A75212 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E50268A008C00A75212 /* URLUtils.m */; };
 		88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */; };
 		88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */; };
-		88C4C06A268C48DF00FBB698 /* ThirdBeautyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */; };
-		88C4C06C268C49FD00FBB698 /* ThirdBeautyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E072AE2636A6C80027D05E /* ThirdBeautyViewController.xib */; };
+		88C4C06A268C48DF00FBB698 /* ThirdBeautyFaceunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072AF2636A6C80027D05E /* ThirdBeautyFaceunityViewController.m */; };
+		88C4C06C268C49FD00FBB698 /* ThirdBeautyFaceunityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E072AE2636A6C80027D05E /* ThirdBeautyFaceunityViewController.xib */; };
 		88FC77AE268C625300768C53 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 88FC77AD268C625300768C53 /* README.md */; };
 		88FC784A268C678A00768C53 /* RTCPushAndPlayEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FC7848268C678A00768C53 /* RTCPushAndPlayEnterViewController.m */; };
 		88FC784B268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88FC7849268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib */; };
@@ -86,7 +96,10 @@
 		C1937C9B274F799200F19E99 /* LiveLinkAnchorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937C90274F799200F19E99 /* LiveLinkAnchorViewController.m */; };
 		C1937C9C274F799200F19E99 /* LiveLinkAudienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1937C92274F799200F19E99 /* LiveLinkAudienceViewController.xib */; };
 		C1937CBD275080CB00F19E99 /* LivePkFindPkUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1937CBB275080CB00F19E99 /* LivePkFindPkUserController.m */; };
-		C4E3939C181E5CE236BC0E95 /* TXLiteAVSDK_Professional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256A72407FE66B73F90345FE /* TXLiteAVSDK_Professional.framework */; };
+		EB147B16282B907C00C0E2DC /* ThirdBeautyTencentEffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB147B15282B907C00C0E2DC /* ThirdBeautyTencentEffectViewController.m */; };
+		EB147B18282B908100C0E2DC /* ThirdBeautyTencentEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB147B17282B908100C0E2DC /* ThirdBeautyTencentEffectViewController.xib */; };
+		EB147B1B282D2F1200C0E2DC /* ThirdBeautyEntranceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB147B1A282D2F1200C0E2DC /* ThirdBeautyEntranceViewController.xib */; };
+		EB147B1D282D2F1700C0E2DC /* ThirdBeautyEntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB147B1C282D2F1700C0E2DC /* ThirdBeautyEntranceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +119,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				406AB160280048B300A99B81 /* TXFFmpeg.xcframework in Embed Frameworks */,
+				406AB162280048B500A99B81 /* TXSoundTouch.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,8 +139,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		256A72407FE66B73F90345FE /* TXLiteAVSDK_Professional.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TXLiteAVSDK_Professional.framework; path = ../SDK/TXLiteAVSDK_Professional.framework; sourceTree = "<group>"; };
 		400C520126A67EE30036AC40 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		406AB157280048A600A99B81 /* TXLiteAVSDK_Live.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_Live.framework; sourceTree = "<group>"; };
+		406AB158280048A600A99B81 /* TXLiteAVSDK_ReplayKitExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_ReplayKitExt.framework; sourceTree = "<group>"; };
+		406AB159280048A600A99B81 /* TXSoundTouch.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = TXSoundTouch.xcframework; sourceTree = "<group>"; };
+		406AB15A280048A600A99B81 /* TXFFmpeg.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = TXFFmpeg.xcframework; sourceTree = "<group>"; };
+		406AB163280048BB00A99B81 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		406AB165280048C800A99B81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		406AB167280048D800A99B81 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		406AB169280048E100A99B81 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		40D550EB26A6A9BF00FE9F13 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4723A7BE26315F920094AC81 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4723A7C126315FA30094AC81 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -157,9 +179,9 @@
 		47E07263263656160027D05E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		47E072A22636A6C80027D05E /* CustomCameraHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCameraHelper.m; sourceTree = "<group>"; };
 		47E072A82636A6C80027D05E /* CustomCameraHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCameraHelper.h; sourceTree = "<group>"; };
-		47E072AE2636A6C80027D05E /* ThirdBeautyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdBeautyViewController.xib; sourceTree = "<group>"; };
-		47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdBeautyViewController.m; sourceTree = "<group>"; };
-		47E072CC2636A6C80027D05E /* ThirdBeautyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdBeautyViewController.h; sourceTree = "<group>"; };
+		47E072AE2636A6C80027D05E /* ThirdBeautyFaceunityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdBeautyFaceunityViewController.xib; sourceTree = "<group>"; };
+		47E072AF2636A6C80027D05E /* ThirdBeautyFaceunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdBeautyFaceunityViewController.m; sourceTree = "<group>"; };
+		47E072CC2636A6C80027D05E /* ThirdBeautyFaceunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdBeautyFaceunityViewController.h; sourceTree = "<group>"; };
 		47ECB9882626867C00201FCB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		47ECB98B2626868400201FCB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		47ECB98D2626868E00201FCB /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
@@ -186,7 +208,6 @@
 		885A56452689ABB500D9D55F /* LivePushScreenEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePushScreenEnterViewController.m; sourceTree = "<group>"; };
 		885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePushScreenEnterViewController.xib; sourceTree = "<group>"; };
 		8887C55A262151200035C0B9 /* MLVB-API-Example-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLVB-API-Example-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_ReplayKitExt.framework; sourceTree = "<group>"; };
 		8894456926282A3200193FAD /* TXReplayKit_Screen.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TXReplayKit_Screen.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8894456A26282A3200193FAD /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		8894457726282A3200193FAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -237,6 +258,12 @@
 		C1937C92274F799200F19E99 /* LiveLinkAudienceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveLinkAudienceViewController.xib; sourceTree = "<group>"; };
 		C1937CBB275080CB00F19E99 /* LivePkFindPkUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivePkFindPkUserController.m; sourceTree = "<group>"; };
 		C1937CBC275080CB00F19E99 /* LivePkFindPkUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivePkFindPkUserController.h; sourceTree = "<group>"; };
+		EB147B13282B905000C0E2DC /* ThirdBeautyTencentEffectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdBeautyTencentEffectViewController.h; sourceTree = "<group>"; };
+		EB147B15282B907C00C0E2DC /* ThirdBeautyTencentEffectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdBeautyTencentEffectViewController.m; sourceTree = "<group>"; };
+		EB147B17282B908100C0E2DC /* ThirdBeautyTencentEffectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdBeautyTencentEffectViewController.xib; sourceTree = "<group>"; };
+		EB147B19282D2F0D00C0E2DC /* ThirdBeautyEntranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdBeautyEntranceViewController.h; sourceTree = "<group>"; };
+		EB147B1A282D2F1200C0E2DC /* ThirdBeautyEntranceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdBeautyEntranceViewController.xib; sourceTree = "<group>"; };
+		EB147B1C282D2F1700C0E2DC /* ThirdBeautyEntranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdBeautyEntranceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,20 +271,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				406AB15F280048B300A99B81 /* TXFFmpeg.xcframework in Frameworks */,
 				4723A7C426315FAA0094AC81 /* AVFoundation.framework in Frameworks */,
+				406AB164280048BB00A99B81 /* VideoToolbox.framework in Frameworks */,
 				88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */,
 				88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */,
+				406AB161280048B500A99B81 /* TXSoundTouch.xcframework in Frameworks */,
 				4723A7BF26315F920094AC81 /* OpenGLES.framework in Frameworks */,
 				47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */,
 				4723A7C026315F9C0094AC81 /* Accelerate.framework in Frameworks */,
 				40D550EC26A6A9D800FE9F13 /* libsqlite3.0.tbd in Frameworks */,
+				406AB16A280048E100A99B81 /* MetalKit.framework in Frameworks */,
+				406AB168280048D800A99B81 /* CoreTelephony.framework in Frameworks */,
 				47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */,
 				88167CE92685BF58001D99DC /* Foundation.framework in Frameworks */,
+				406AB166280048C800A99B81 /* SystemConfiguration.framework in Frameworks */,
 				400C520226A67EE30036AC40 /* AssetsLibrary.framework in Frameworks */,
 				4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */,
 				47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */,
 				4723A7C226315FA30094AC81 /* CoreMedia.framework in Frameworks */,
-				C4E3939C181E5CE236BC0E95 /* TXLiteAVSDK_Professional.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,10 +298,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				88A2C84726706305006FC026 /* libc++.tbd in Frameworks */,
+				406AB16E2800491700A99B81 /* SystemConfiguration.framework in Frameworks */,
 				88A2C846267062FF006FC026 /* Accelerate.framework in Frameworks */,
-				8894458D26282AF800193FAD /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */,
+				406AB16C280048FB00A99B81 /* VideoToolbox.framework in Frameworks */,
+				406AB16F2800492000A99B81 /* CoreTelephony.framework in Frameworks */,
+				406AB16D2800490100A99B81 /* MetalKit.framework in Frameworks */,
+				406AB16B280048F400A99B81 /* TXLiteAVSDK_ReplayKitExt.framework in Frameworks */,
 				8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */,
-				07AE28EB0783037E7C49218A /* TXLiteAVSDK_Professional.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,8 +388,10 @@
 		477EC9D22626E44C007AAC4F /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				889444FD262824EA00193FAD /* TXLiteAVSDK_ReplayKitExt.framework */,
-				256A72407FE66B73F90345FE /* TXLiteAVSDK_Professional.framework */,
+				406AB15A280048A600A99B81 /* TXFFmpeg.xcframework */,
+				406AB157280048A600A99B81 /* TXLiteAVSDK_Live.framework */,
+				406AB158280048A600A99B81 /* TXLiteAVSDK_ReplayKitExt.framework */,
+				406AB159280048A600A99B81 /* TXSoundTouch.xcframework */,
 			);
 			name = SDK;
 			path = ../SDK;
@@ -401,9 +438,15 @@
 		47E072AD2636A6C80027D05E /* ThirdBeauty */ = {
 			isa = PBXGroup;
 			children = (
-				47E072CC2636A6C80027D05E /* ThirdBeautyViewController.h */,
-				47E072AF2636A6C80027D05E /* ThirdBeautyViewController.m */,
-				47E072AE2636A6C80027D05E /* ThirdBeautyViewController.xib */,
+				EB147B19282D2F0D00C0E2DC /* ThirdBeautyEntranceViewController.h */,
+				EB147B1C282D2F1700C0E2DC /* ThirdBeautyEntranceViewController.m */,
+				EB147B1A282D2F1200C0E2DC /* ThirdBeautyEntranceViewController.xib */,
+				EB147B13282B905000C0E2DC /* ThirdBeautyTencentEffectViewController.h */,
+				EB147B15282B907C00C0E2DC /* ThirdBeautyTencentEffectViewController.m */,
+				EB147B17282B908100C0E2DC /* ThirdBeautyTencentEffectViewController.xib */,
+				47E072CC2636A6C80027D05E /* ThirdBeautyFaceunityViewController.h */,
+				47E072AF2636A6C80027D05E /* ThirdBeautyFaceunityViewController.m */,
+				47E072AE2636A6C80027D05E /* ThirdBeautyFaceunityViewController.xib */,
 				88FC77AD268C625300768C53 /* README.md */,
 			);
 			path = ThirdBeauty;
@@ -545,6 +588,10 @@
 		88ED6FE02624364700C75B9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				406AB169280048E100A99B81 /* MetalKit.framework */,
+				406AB167280048D800A99B81 /* CoreTelephony.framework */,
+				406AB165280048C800A99B81 /* SystemConfiguration.framework */,
+				406AB163280048BB00A99B81 /* VideoToolbox.framework */,
 				40D550EB26A6A9BF00FE9F13 /* libsqlite3.0.tbd */,
 				400C520126A67EE30036AC40 /* AssetsLibrary.framework */,
 				88D788572685D849004B2509 /* libsqlite3.tbd */,
@@ -664,6 +711,7 @@
 				8839C3D62689BEF5000FF58C /* LivePlayViewController.xib in Resources */,
 				88FC784B268C678A00768C53 /* RTCPushAndPlayEnterViewController.xib in Resources */,
 				C1937C97274F799200F19E99 /* LiveInputBaseViewController.xib in Resources */,
+				EB147B1B282D2F1200C0E2DC /* ThirdBeautyEntranceViewController.xib in Resources */,
 				88A1A88B268DA81A007F630D /* LivePkAudienceViewController.xib in Resources */,
 				8839C3BB2689AE29000FF58C /* LivePushScreenViewController.xib in Resources */,
 				885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */,
@@ -679,9 +727,10 @@
 				88FC785A268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.xib in Resources */,
 				477EC9B626269568007AAC4F /* HomeTableViewCell.xib in Resources */,
 				C1937C98274F799200F19E99 /* LiveLinkAnchorViewController.xib in Resources */,
+				EB147B18282B908100C0E2DC /* ThirdBeautyTencentEffectViewController.xib in Resources */,
 				477EC97C26268B0A007AAC4F /* LaunchScreen.storyboard in Resources */,
 				88167CC62684AC91001D99DC /* LivePushCameraViewController.xib in Resources */,
-				88C4C06C268C49FD00FBB698 /* ThirdBeautyViewController.xib in Resources */,
+				88C4C06C268C49FD00FBB698 /* ThirdBeautyFaceunityViewController.xib in Resources */,
 				47E0725F263656110027D05E /* InfoPlist.strings in Resources */,
 				88FC7854268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib in Resources */,
 			);
@@ -724,15 +773,17 @@
 				C1937CBD275080CB00F19E99 /* LivePkFindPkUserController.m in Sources */,
 				477EC97F26268B0A007AAC4F /* AppDelegate.m in Sources */,
 				4723A8902631666E0094AC81 /* NSString+Common.m in Sources */,
-				88C4C06A268C48DF00FBB698 /* ThirdBeautyViewController.m in Sources */,
+				88C4C06A268C48DF00FBB698 /* ThirdBeautyFaceunityViewController.m in Sources */,
 				C1937C93274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m in Sources */,
 				88167CC52684AC91001D99DC /* LivePushCameraViewController.m in Sources */,
+				EB147B16282B907C00C0E2DC /* ThirdBeautyTencentEffectViewController.m in Sources */,
 				88FC7853268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m in Sources */,
 				477EC97E26268B0A007AAC4F /* main.m in Sources */,
 				C1937C96274F799200F19E99 /* LiveLinkAudienceViewController.m in Sources */,
 				477EC9B526269568007AAC4F /* HomeTableViewCell.m in Sources */,
 				88A1A884268DA7DA007F630D /* LivePkAnchorViewController.m in Sources */,
 				88FC7859268C8F6E00768C53 /* RTCPushAndPlayAudienceViewController.m in Sources */,
+				EB147B1D282D2F1700C0E2DC /* ThirdBeautyEntranceViewController.m in Sources */,
 				8839C3BD2689AF9B000FF58C /* TRTCBroadcastExtensionLauncher.m in Sources */,
 				477EC9B026268DC8007AAC4F /* AppLocalized.m in Sources */,
 			);

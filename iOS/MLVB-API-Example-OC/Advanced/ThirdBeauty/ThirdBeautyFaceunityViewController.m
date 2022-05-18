@@ -32,10 +32,10 @@
  Third-party beauty filter: https://github.com/Faceunity/FUTRTCDemo
  */
 
-#import "ThirdBeautyViewController.h"
+#import "ThirdBeautyFaceunityViewController.h"
 //#import "FUManager.h"
 
-@interface ThirdBeautyViewController () <V2TXLivePusherObserver>
+@interface ThirdBeautyFaceunityViewController () <V2TXLivePusherObserver>
 @property (weak, nonatomic) IBOutlet UILabel *setBeautyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *beautyNumLabel;
 @property (weak, nonatomic) IBOutlet UISlider *setBeautySlider;
@@ -51,7 +51,7 @@
 
 @end
 
-@implementation ThirdBeautyViewController
+@implementation ThirdBeautyFaceunityViewController
 
 //- (FUBeautyParam *)beautyParam {
 //    if (!_beautyParam) {

@@ -3,4 +3,6 @@
     <string name="thirdbeauty_start_push">Publish</string>
     <string name="thirdbeauty_please_input_streamd">Stream Id</string>
     <string name="thirdbeauty_stop_push">Stop</string>
+    <string name="thirdbeauty_faceunity">Third-Party Beauty Filters</string>
+    <string name="thirdbeauty_xmagic">Tencent Effect Beauty Filters</string>
 </resources>

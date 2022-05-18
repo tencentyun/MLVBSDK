@@ -146,6 +146,8 @@
 "MLVB-API-Example.ThirdBeauty.beautyLevel" = "设置磨皮级别";
 "MLVB-API-Example.ThirdBeauty.startPush" = "开始推流";
 "MLVB-API-Example.ThirdBeauty.stopPush" = "停止推流";
+"MLVB-API-Example.ThirdBeauty.faceunity" = "相芯美颜";
+"MLVB-API-Example.ThirdBeauty.xmagic" = "腾讯特效美颜";
 
 
 "MLVB-API-Example.RTCPushAndPlay.title" = "RTC连麦+超低延时拉流";
