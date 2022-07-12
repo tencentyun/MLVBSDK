@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -73,6 +73,8 @@
 		88A2C84726706305006FC026 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		88AB3E4B2689D65D00A75212 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 477EC9AA26268D0F007AAC4F /* Localized.strings */; };
 		88AB3E51268A008C00A75212 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E50268A008C00A75212 /* URLUtils.m */; };
+		88B5DAB5287D516E000EE88A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B5DAB3287D50BF000EE88A /* CoreServices.framework */; };
+		88B5DAB6287D5274000EE88A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B5DAB1287D5047000EE88A /* GLKit.framework */; };
 		88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */; };
 		88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */; };
 		88C4C06A268C48DF00FBB698 /* ThirdBeautyFaceunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072AF2636A6C80027D05E /* ThirdBeautyFaceunityViewController.m */; };
@@ -224,6 +226,8 @@
 		88A1A889268DA81A007F630D /* LivePkAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkAudienceViewController.xib; sourceTree = "<group>"; };
 		88AB3E4F268A008C00A75212 /* URLUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLUtils.h; sourceTree = "<group>"; };
 		88AB3E50268A008C00A75212 /* URLUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLUtils.m; sourceTree = "<group>"; };
+		88B5DAB1287D5047000EE88A /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		88B5DAB3287D50BF000EE88A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		88C4C05F268B503000FBB698 /* CustomVideoCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomVideoCaptureViewController.h; sourceTree = "<group>"; };
 		88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCaptureViewController.m; sourceTree = "<group>"; };
 		88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomVideoCaptureViewController.xib; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 				406AB15F280048B300A99B81 /* TXFFmpeg.xcframework in Frameworks */,
 				4723A7C426315FAA0094AC81 /* AVFoundation.framework in Frameworks */,
 				406AB164280048BB00A99B81 /* VideoToolbox.framework in Frameworks */,
+				88B5DAB5287D516E000EE88A /* CoreServices.framework in Frameworks */,
+				88B5DAB6287D5274000EE88A /* GLKit.framework in Frameworks */,
 				88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */,
 				88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */,
 				406AB161280048B500A99B81 /* TXSoundTouch.xcframework in Frameworks */,
@@ -588,6 +594,8 @@
 		88ED6FE02624364700C75B9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88B5DAB3287D50BF000EE88A /* CoreServices.framework */,
+				88B5DAB1287D5047000EE88A /* GLKit.framework */,
 				406AB169280048E100A99B81 /* MetalKit.framework */,
 				406AB167280048D800A99B81 /* CoreTelephony.framework */,
 				406AB165280048C800A99B81 /* SystemConfiguration.framework */,
