@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/28.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -10,18 +11,20 @@
  MLVB APP 直播拉流功能
  本文件展示如何集成直播拉流功能
  1、设置渲染的view API:[self.livePlayer setRenderView:self.view];
- 2、开始播放 API:[self.livePlayer startPlay:url];
- 参考文档：https://cloud.tencent.com/document/product/454/55880
+ 2、开始播放 API:[self.livePlayer startLivePlay:url];
+ 参考文档：https://cloud.tencent.com/document/product/454/56597
+ RTC拉流目前仅中国大陆支持，其他地区正陆续开发中。
+
  */
 /*
  Playback
  Playback in MLVB App
  This document shows how to integrate the playback feature.
  1. Set the rendering view: [self.livePlayer setRenderView:self.view]
- 2. Start playback: [self.livePlayer startPlay:url]
- Documentation: https://cloud.tencent.com/document/product/454/55880
+ 2. Start playback: [self.livePlayer startLivePlay:url]
+ Documentation: https://cloud.tencent.com/document/product/454/56597
+ Currently only supported in China, other regions are continuing to develop.
  */
-
 
 #import "LivePlayViewController.h"
 
@@ -55,8 +58,8 @@
 - (void)setupDefaultUIConfig {
     self.title = self.streamId;
     [self.muteButton setBackgroundColor:[UIColor themeBlueColor]];
-    [self.muteButton setTitle:Localize(@"MLVB-API-Example.LivePlay.mute") forState:UIControlStateNormal];
-    [self.muteButton setTitle:Localize(@"MLVB-API-Example.LivePlay.unmute") forState:UIControlStateSelected];
+    [self.muteButton setTitle:localize(@"MLVB-API-Example.LivePlay.mute") forState:UIControlStateNormal];
+    [self.muteButton setTitle:localize(@"MLVB-API-Example.LivePlay.unmute") forState:UIControlStateSelected];
 }
 
 - (void)startPlay {
@@ -64,17 +67,20 @@
     
     NSString* url;
     switch (self.mode) {
-        case StandPlay:
+        case RtmpPlay:
             url = [URLUtils generateRtmpPlayUrl:self.streamId];
+            break;
+        case FlvPlay:
+            url = [URLUtils generateFlvPlayUrl:self.streamId];
+            break;
+        case HlsPlay:
+            url = [URLUtils generateHlsPlayUrl:self.streamId];
             break;
         case RTCPlay:
             url = [URLUtils generateTRTCPlayUrl:self.streamId];
             break;
-        case LebPlay:
-            url = [URLUtils generateLebPlayUrl:self.streamId];
-            break;
     }
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
 }
 
 #pragma mark - Actions

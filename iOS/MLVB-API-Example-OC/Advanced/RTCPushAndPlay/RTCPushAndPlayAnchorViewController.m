@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/30.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -12,7 +13,8 @@
  1、打开扬声器 API:[self.livePusher startMicrophone];
  2、打开摄像头 API: [self.livePusher startCamera:true];
  3、开始推流 API：[self.livePusher startPush:url];
- 4、拉观众的流 API: [self.livePlayer startPlay:url];
+ 4、拉观众的流 API: [self.livePlayer startLivePlay:url];
+ 目前仅中国大陆支持，其他地区正陆续开发中。
  */
 /*
  RTC Co-anchoring + Ultra-low-latency Playback View for Anchors
@@ -21,7 +23,8 @@
  1. Turn speaker on: [self.livePusher startMicrophone]
  2. Turn camera on: [self.livePusher startCamera:true]
  3. Start publishing: [self.livePusher startPush:url]
- 4. Play the co-anchoring audience’s stream: [self.livePlayer startPlay:url]
+ 4. Play the co-anchoring audience’s stream: [self.livePlayer startLivePlay:url]
+ Currently only supported in China, other regions are continuing to develop.
  */
 
 #import "RTCPushAndPlayAnchorViewController.h"
@@ -72,12 +75,12 @@
 
 - (void)setupDefaultUIConfig {
     self.title = self.streamId;
-    self.streamIdLabel.text = Localize(@"MLVB-API-Example.RTCPushAndPlay.streamIdInput");
+    self.streamIdLabel.text = localize(@"MLVB-API-Example.RTCPushAndPlay.streamIdInput");
     self.streamIdLabel.adjustsFontSizeToFitWidth = true;
     
     self.acceptLinkButton.backgroundColor = [UIColor themeBlueColor];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.startLink") forState:UIControlStateNormal];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.stopLink") forState:UIControlStateSelected];
+    [self.acceptLinkButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.startLink") forState:UIControlStateNormal];
+    [self.acceptLinkButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.stopLink") forState:UIControlStateSelected];
     self.acceptLinkButton.titleLabel.adjustsFontSizeToFitWidth = true;
 
 }
@@ -109,7 +112,7 @@
     NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     
     [self.livePlayer setRenderView:self.remoteView];
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
 }
 
 - (void)stopPlay {

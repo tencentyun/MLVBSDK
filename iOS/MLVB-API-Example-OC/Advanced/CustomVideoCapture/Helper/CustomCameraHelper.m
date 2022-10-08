@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by abyyxwang on 2021/4/22.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "CustomCameraHelper.h"
@@ -106,10 +107,13 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
     
     // Add video input.
     // Choose the front dual camera if available, otherwise default to a wide angle camera.
-    AVCaptureDevice* videoDevice = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionFront];
+    AVCaptureDevice* videoDevice = [AVCaptureDevice
+     defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo
+     position:AVCaptureDevicePositionFront];
     if (!videoDevice) {
         // If a rear dual camera is not available, default to the rear wide angle camera.
-        videoDevice = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+        videoDevice = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera
+            mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
     }
     AVCaptureDeviceInput* videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
     if (!videoDeviceInput) {
@@ -180,7 +184,8 @@ typedef NS_ENUM(NSInteger, AVCamSetupResult) {
 
 
 #pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
-- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection {
     if (connection == self.videoConnection) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(onVideoSampleBuffer:)]) {
             [self.delegate onVideoSampleBuffer:sampleBuffer];

@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/28.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "LivePushScreenEnterViewController.h"
@@ -33,27 +34,27 @@
 }
 
 - (void)setupDefaultUIConfig {
-    self.title = Localize(@"MLVB-API-Example.LivePushScreen.title");
-    self.streamIdLabel.text = Localize(@"MLVB-API-Example.LivePushScreen.streamIdInput");
+    self.title = localize(@"MLVB-API-Example.LivePushScreen.title");
+    self.streamIdLabel.text = localize(@"MLVB-API-Example.LivePushScreen.streamIdInput");
     self.streamIdLabel.adjustsFontSizeToFitWidth = true;
     
-    self.audioQualityLabel.text = Localize(@"MLVB-API-Example.LivePushScreen.audioQualityInput");
+    self.audioQualityLabel.text = localize(@"MLVB-API-Example.LivePushScreen.audioQualityInput");
     self.audioQualityLabel.adjustsFontSizeToFitWidth = true;
     
-    [self.defaultAudioButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.audioDefault") forState:UIControlStateNormal];
+    [self.defaultAudioButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.audioDefault") forState:UIControlStateNormal];
     [self.defaultAudioButton setBackgroundColor:[UIColor themeBlueColor]];
-    [self.speechAudioButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.audioSpeech") forState:UIControlStateNormal];
+    [self.speechAudioButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.audioSpeech") forState:UIControlStateNormal];
     [self.speechAudioButton setBackgroundColor:[UIColor themeGrayColor]];
-    [self.musicAudioButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.audioMusic") forState:UIControlStateNormal];
+    [self.musicAudioButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.audioMusic") forState:UIControlStateNormal];
     [self.musicAudioButton setBackgroundColor:[UIColor themeGrayColor]];
     
-    [self.standLivePushButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.standPush") forState:UIControlStateNormal];
-    [self.standLivePushButton setBackgroundColor:[UIColor themeGrayColor]];
+    [self.standLivePushButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.standPush") forState:UIControlStateNormal];
+    [self.standLivePushButton setBackgroundColor:[UIColor themeBlueColor]];
     self.standLivePushButton.titleLabel.adjustsFontSizeToFitWidth = true;
     
-    self.descriptionTextView.text = Localize(@"MLVB-API-Example.LivePushScreen.descripView");
+    self.descriptionTextView.text = localize(@"MLVB-API-Example.LivePushScreen.descripView");
 
-    [self.rtcPushButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.rtcPush") forState:UIControlStateNormal];
+    [self.rtcPushButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.rtcPush") forState:UIControlStateNormal];
     [self.rtcPushButton setBackgroundColor:[UIColor themeBlueColor]];
     self.rtcPushButton.titleLabel.adjustsFontSizeToFitWidth = true;
     
@@ -67,12 +68,14 @@
 #pragma mark - Actions
 
 - (IBAction)onStandPushButtonClick:(UIButton*)button {
-    LivePushScreenViewController* cameraVC = [[LivePushScreenViewController alloc] initWithStreamId:self.streamIdTextField.text isRTCPush:false audioQulity:self.qulity];
+    LivePushScreenViewController* cameraVC = [[LivePushScreenViewController alloc]
+     initWithStreamId:self.streamIdTextField.text isRTCPush:false audioQulity:self.qulity];
     [self.navigationController pushViewController:cameraVC animated:YES];
 }
 
 - (IBAction)onRtcPushButtonClick:(UIButton*)button {
-    LivePushScreenViewController* cameraVC = [[LivePushScreenViewController alloc] initWithStreamId:self.streamIdTextField.text isRTCPush:true audioQulity:self.qulity];
+    LivePushScreenViewController* cameraVC = [[LivePushScreenViewController alloc]
+     initWithStreamId:self.streamIdTextField.text isRTCPush:true audioQulity:self.qulity];
     [self.navigationController pushViewController:cameraVC animated:YES];
 }
 

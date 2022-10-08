@@ -38,10 +38,10 @@
     self.roleLabel.adjustsFontSizeToFitWidth = true;
     self.nextStepButton.titleLabel.adjustsFontForContentSizeCategory = true;
     
-    self.roleLabel.text = Localize(@"MLVB-API-Example.LiveLink.chooseRole");
-    [self.nextStepButton setTitle:Localize(@"MLVB-API-Example.LiveLink.nextStep") forState:UIControlStateNormal];
-    [self.anchorButton setTitle:Localize(@"MLVB-API-Example.LiveLink.iAmAnchor") forState:UIControlStateNormal];
-    [self.audienceButton setTitle:Localize(@"MLVB-API-Example.LiveLink.iAmAudience") forState:UIControlStateNormal];
+    self.roleLabel.text = localize(@"MLVB-API-Example.LiveLink.chooseRole");
+    [self.nextStepButton setTitle:localize(@"MLVB-API-Example.LiveLink.nextStep") forState:UIControlStateNormal];
+    [self.anchorButton setTitle:localize(@"MLVB-API-Example.LiveLink.iAmAnchor") forState:UIControlStateNormal];
+    [self.audienceButton setTitle:localize(@"MLVB-API-Example.LiveLink.iAmAudience") forState:UIControlStateNormal];
     [self.anchorButton setBackgroundColor:[UIColor themeBlueColor]];
     [self.audienceButton setBackgroundColor:[UIColor themeGrayColor]];
 }

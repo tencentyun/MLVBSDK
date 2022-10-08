@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = Localize(@"MLVB-API-Example.Home.ThirdBeauty");
+    self.title = localize(@"MLVB-API-Example.Home.ThirdBeauty");
     self.view.backgroundColor = [UIColor blackColor];
     [self setupUI];
 }
@@ -55,7 +55,7 @@
         _faceunityButton.layer.cornerRadius = 5;
         [_faceunityButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _faceunityButton.backgroundColor = [UIColor blueColor];
-        [_faceunityButton setTitle:Localize(@"MLVB-API-Example.ThirdBeauty.faceunity") forState:UIControlStateNormal];
+        [_faceunityButton setTitle:localize(@"MLVB-API-Example.ThirdBeauty.faceunity") forState:UIControlStateNormal];
         [_faceunityButton addTarget:self
                              action:@selector(clickBeautyButton)
                    forControlEvents:UIControlEventTouchUpInside];
@@ -69,7 +69,7 @@
         [_xMagicButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _xMagicButton.layer.cornerRadius = 5;
         _xMagicButton.backgroundColor = [UIColor blueColor];
-        [_xMagicButton setTitle:Localize(@"MLVB-API-Example.ThirdBeauty.xmagic") forState:UIControlStateNormal];
+        [_xMagicButton setTitle:localize(@"MLVB-API-Example.ThirdBeauty.xmagic") forState:UIControlStateNormal];
         [_xMagicButton addTarget:self
                           action:@selector(clickBytedButton)
                 forControlEvents:UIControlEventTouchUpInside];

@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/29.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -44,7 +45,7 @@
 
 - (V2TXLivePusher *)livePusher {
     if (!_livePusher) {
-        _livePusher = [[V2TXLivePusher alloc] initWithLiveMode:V2TXLiveMode_RTC];
+        _livePusher = [[V2TXLivePusher alloc] initWithLiveMode:V2TXLiveMode_RTMP];
     }
     return _livePusher;
 }
@@ -72,12 +73,12 @@
 - (void)setupDefaultUIConfig {
     self.streamIdTextField.text = [NSString generateRandomStreamId];
     
-    self.streamIdLabel.text = Localize(@"MLVB-API-Example.CustomVideoCapture.streamIdInput");
+    self.streamIdLabel.text = localize(@"MLVB-API-Example.CustomVideoCapture.streamIdInput");
     self.streamIdLabel.adjustsFontSizeToFitWidth = true;
     
     self.startPushButton.backgroundColor = [UIColor themeBlueColor];
-    [self.startPushButton setTitle:Localize(@"MLVB-API-Example.CustomVideoCapture.startPush") forState:UIControlStateNormal];
-    [self.startPushButton setTitle:Localize(@"MLVB-API-Example.CustomVideoCapture.stopPush") forState:UIControlStateSelected];
+    [self.startPushButton setTitle:localize(@"MLVB-API-Example.CustomVideoCapture.startPush") forState:UIControlStateNormal];
+    [self.startPushButton setTitle:localize(@"MLVB-API-Example.CustomVideoCapture.stopPush") forState:UIControlStateSelected];
     self.startPushButton.titleLabel.adjustsFontSizeToFitWidth = true;
 
 }
@@ -92,7 +93,7 @@
     [self.livePusher startMicrophone];
     [self.customVideoCaputre startCameraCapture];
     
-    [self.livePusher startPush:[URLUtils generateTRTCPushUrl:streamId]];
+    [self.livePusher startPush:[URLUtils generateRtmpPushUrl:streamId]];
 }
 
 - (void)stopPush {

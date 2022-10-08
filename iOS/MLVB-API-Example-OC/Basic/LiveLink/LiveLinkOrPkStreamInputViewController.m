@@ -36,12 +36,12 @@
 
 
 - (void)setupUIString {
-    self.label.text = Localize(@"MLVB-API-Example.LiveLink.streamIdInput");
+    self.label.text = localize(@"MLVB-API-Example.LiveLink.streamIdInput");
     if (_isAnchor) {
-        [self.button setTitle:Localize(@"MLVB-API-Example.LiveLink.startPush")
+        [self.button setTitle:localize(@"MLVB-API-Example.LiveLink.startPush")
                      forState:UIControlStateNormal];
     } else {
-        [self.button setTitle:Localize(@"MLVB-API-Example.LiveLink.startPlay")
+        [self.button setTitle:localize(@"MLVB-API-Example.LiveLink.startPlay")
                      forState:UIControlStateNormal];
     }
 }

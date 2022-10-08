@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/29.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -12,7 +13,7 @@
  1、打开扬声器 API:[self.livePusher startMicrophone];
  2、开始采集屏幕 API:[self.livePusher startScreenCapture:@"group.com.tencent.liteav.RPLiveStreamShare"];
  3、开始推流 API：[self.livePusher startPush:url];
- 4、开始拉观众的流 API:[self.livePlayer startPlay:url];
+ 4、开始拉观众的流 API:[self.livePlayer startLivePlay:url];
  5、和观众的流进行混流 API:[self.livePusher setMixTranscodingConfig:config];
  参考文档：https://cloud.tencent.com/document/product/454/52751
  */
@@ -23,7 +24,7 @@
   1. Turn speaker on: [self.livePusher startMicrophone]
   2. Capture streams from the screen: [self.livePusher startScreenCapture:@"group.com.tencent.liteav.RPLiveStreamShare"]
   3. Start publishing: [self.livePusher startPush:url]
-  4. Play the co-anchoring audience’s streams: [self.livePlayer startPlay:url]
+  4. Play the co-anchoring audience’s streams: [self.livePlayer startLivePlay:url]
   5. Mix with the audience’s streams: [self.livePusher setMixTranscodingConfig:config]
   Documentation: https://cloud.tencent.com/document/product/454/52751
  */
@@ -86,8 +87,8 @@
     self.userIdLabel.adjustsFontSizeToFitWidth = true;
 
     self.acceptLinkButton.backgroundColor = [UIColor themeBlueColor];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.acceptLink") forState:UIControlStateNormal];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.stopLink") forState:UIControlStateSelected];
+    [self.acceptLinkButton setTitle:localize(@"MLVB-API-Example.LiveLink.acceptLink") forState:UIControlStateNormal];
+    [self.acceptLinkButton setTitle:localize(@"MLVB-API-Example.LiveLink.stopLink") forState:UIControlStateSelected];
     self.acceptLinkButton.titleLabel.adjustsFontSizeToFitWidth = true;
     [self.liveLinkStopButton setHidden:true];
     [self.liveLinkStopButton setTitle:@"" forState:UIControlStateNormal];
@@ -120,7 +121,7 @@
     NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     
     [self.livePlayer setRenderView:self.remoteView];
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
     
     V2TXLiveTranscodingConfig *config = [[V2TXLiveTranscodingConfig alloc] init];
     config.videoWidth = 360;
@@ -165,13 +166,13 @@
 
 - (IBAction)onLiveLinkStartButtonClick:(id)sender {
     UIAlertController * alertController = [UIAlertController
-       alertControllerWithTitle:Localize(@"MLVB-API-Example.LiveLink.AudienceNameInput")
+       alertControllerWithTitle:localize(@"MLVB-API-Example.LiveLink.AudienceNameInput")
                         message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:Localize(@"MLVB-API-Example.LiveLink.ok")
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:localize(@"MLVB-API-Example.LiveLink.ok")
         style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         UITextField *userName = alertController.textFields.firstObject;
         [self onInputAudienceName:userName.text];

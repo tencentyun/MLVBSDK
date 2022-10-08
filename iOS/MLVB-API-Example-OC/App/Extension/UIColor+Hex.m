@@ -3,6 +3,7 @@
 //  TRTCSimpleDemo-OC
 //
 //  Created by adams on 2021/4/14.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "UIColor+Hex.h"

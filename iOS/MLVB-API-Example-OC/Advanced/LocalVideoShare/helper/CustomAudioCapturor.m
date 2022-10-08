@@ -1,3 +1,4 @@
+//  Copyright © 2021 Tencent. All rights reserved.
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
@@ -35,7 +36,7 @@ static UInt64 convertMachTime(UInt64 machTime){
 
 @end
 
-static void HandleInputBuffer (
+static void gHandleInputBuffer (
                                void                                 *aqData,
                                AudioQueueRef                        inAQ,
                                AudioQueueBufferRef                  inBuffer,
@@ -50,7 +51,8 @@ static void HandleInputBuffer (
         inNumPackets =
         inBuffer->mAudioDataByteSize / pAqData->mDataFormat.mBytesPerPacket;
     
-    [[CustomAudioCapturor sharedInstance] sendPcmData:inBuffer->mAudioData len:inBuffer->mAudioDataByteSize ts:(uint32_t)convertMachTime(inStartTime->mHostTime)];
+    [[CustomAudioCapturor sharedInstance] sendPcmData:inBuffer->mAudioData
+     len:inBuffer->mAudioDataByteSize ts:(uint32_t)convertMachTime(inStartTime->mHostTime)];
     
     pAqData->mCurrentPacket += inNumPackets;                     // 4
     
@@ -65,7 +67,7 @@ static void HandleInputBuffer (
                              );
 }
 
-static void DeriveBufferSize (
+static void deriveBufferSize (
                               AudioQueueRef                audioQueue,                  // 1
                               AudioStreamBasicDescription  *asbDescription,             // 2
                               Float64                      seconds,                     // 3
@@ -103,14 +105,14 @@ static void DeriveBufferSize (
     int _sampleLen;
 }
 
-static CustomAudioCapturor *_instance;
+static CustomAudioCapturor *gInstance;
 
 + (instancetype)sharedInstance {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        _instance = [[CustomAudioCapturor alloc] initPrivate];
+        gInstance = [[CustomAudioCapturor alloc] initPrivate];
     });
-    return _instance;
+    return gInstance;
 }
 
 - (instancetype)initPrivate {
@@ -141,7 +143,7 @@ static CustomAudioCapturor *_instance;
     
     AudioQueueNewInput (                              // 1
                         &aqData.mDataFormat,                          // 2
-                        HandleInputBuffer,                            // 3
+                        gHandleInputBuffer,                            // 3
                         &aqData,                                      // 4
                         NULL,                                         // 5
                         kCFRunLoopCommonModes,                        // 6
@@ -160,7 +162,7 @@ static CustomAudioCapturor *_instance;
                            &dataFormatSize                                        // 6
                            );
     
-    DeriveBufferSize (                               // 1
+    deriveBufferSize (                               // 1
                       aqData.mQueue,                               // 2
                       &aqData.mDataFormat,                          // 3
                       0.03,                                         // 4

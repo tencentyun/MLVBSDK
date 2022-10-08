@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = Localize(@"MLVB-API-Example.LivePk.title");
+    self.title = localize(@"MLVB-API-Example.LivePk.title");
     [self setupUIString];
     [self.button addTarget:self
                     action:@selector(onButtonClick:)
@@ -21,8 +21,8 @@
 }
 
 - (void)setupUIString {
-    self.label.text = Localize(@"MLVB-API-Example.LivePk.roomName");
-    [self.button setTitle:Localize(@"MLVB-API-Example.LivePk.startPK") forState:UIControlStateNormal];
+    self.label.text = localize(@"MLVB-API-Example.LivePk.roomName");
+    [self.button setTitle:localize(@"MLVB-API-Example.LivePk.startPK") forState:UIControlStateNormal];
 }
 
 - (void)onButtonClick:(UIButton *)button {

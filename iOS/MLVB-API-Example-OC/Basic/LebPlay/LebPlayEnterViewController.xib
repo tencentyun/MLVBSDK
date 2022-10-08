@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LebPlayEnterViewController">
+            <connections>
+                <outlet property="descriptionTextView" destination="0Cn-TQ-Gbu" id="1fP-97-sgB"/>
+                <outlet property="lebPlayButton" destination="K6i-6h-k7M" id="njJ-nA-s2Q"/>
+                <outlet property="streamIdLabel" destination="Tku-Ln-Bsv" id="Ve2-QL-bt1"/>
+                <outlet property="streamIdTextField" destination="Ki0-p8-JqI" id="dNt-Pk-pHi"/>
+                <outlet property="view" destination="X7K-No-cgd" id="KtC-ff-ETC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="X7K-No-cgd">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="streamId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tku-Ln-Bsv">
+                    <rect key="frame" x="20" y="84" width="63.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ki0-p8-JqI">
+                    <rect key="frame" x="20" y="113.5" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="yb5-AP-Vbs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-6h-k7M">
+                    <rect key="frame" x="20" y="772" width="374" height="50"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="QcS-ru-GJD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <state key="normal" title="LEB Play">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="onLebPlayButtonClick:" destination="-1" eventType="touchUpInside" id="Wsg-rW-irM"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="descritption" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Cn-TQ-Gbu">
+                    <rect key="frame" x="20" y="632" width="374" height="120"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="lWk-sP-7oD"/>
+                    </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="2CE-VF-Ayl"/>
+            <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="0Cn-TQ-Gbu" firstAttribute="trailing" secondItem="K6i-6h-k7M" secondAttribute="trailing" id="48V-Nl-Fcd"/>
+                <constraint firstItem="K6i-6h-k7M" firstAttribute="top" secondItem="0Cn-TQ-Gbu" secondAttribute="bottom" constant="20" id="Dfr-Uy-bpF"/>
+                <constraint firstItem="2CE-VF-Ayl" firstAttribute="trailing" secondItem="Ki0-p8-JqI" secondAttribute="trailing" constant="20" id="EQS-5S-MkP"/>
+                <constraint firstItem="K6i-6h-k7M" firstAttribute="leading" secondItem="2CE-VF-Ayl" secondAttribute="leading" constant="20" id="GXu-1R-aHI"/>
+                <constraint firstItem="Tku-Ln-Bsv" firstAttribute="top" secondItem="2CE-VF-Ayl" secondAttribute="top" constant="40" id="KdJ-aJ-EdX"/>
+                <constraint firstItem="0Cn-TQ-Gbu" firstAttribute="leading" secondItem="K6i-6h-k7M" secondAttribute="leading" id="P52-wj-ekS"/>
+                <constraint firstItem="2CE-VF-Ayl" firstAttribute="bottom" secondItem="K6i-6h-k7M" secondAttribute="bottom" constant="40" id="QT8-IH-BVM"/>
+                <constraint firstItem="Tku-Ln-Bsv" firstAttribute="leading" secondItem="2CE-VF-Ayl" secondAttribute="leading" constant="20" id="gUP-jy-FX2"/>
+                <constraint firstItem="2CE-VF-Ayl" firstAttribute="trailing" secondItem="K6i-6h-k7M" secondAttribute="trailing" constant="20" id="gzI-Gh-POk"/>
+                <constraint firstItem="Ki0-p8-JqI" firstAttribute="leading" secondItem="Tku-Ln-Bsv" secondAttribute="leading" id="iDC-dw-NAX"/>
+                <constraint firstItem="Ki0-p8-JqI" firstAttribute="top" secondItem="Tku-Ln-Bsv" secondAttribute="bottom" constant="10" id="reQ-WR-nWW"/>
+            </constraints>
+            <point key="canvasLocation" x="-236.23188405797103" y="72.991071428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by adams on 2021/4/15.
+//  Copyright (c) 2021 Tencent. All rights reserved.
 //
 
 #import "UIViewController+AlertViewController.h"
@@ -11,7 +12,7 @@
 
 - (void)showAlertViewController:(NSString *)title message:(NSString *)message handler:(void (^ __nullable)(UIAlertAction *action))handler {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:Localize(@"MLVB-API-Example.AlertViewController.determine") style:UIAlertActionStyleDefault handler:handler];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:localize(@"MLVB-API-Example.AlertViewController.determine") style:UIAlertActionStyleDefault handler:handler];
     [alertVC addAction:alertAction];
     [self presentViewController:alertVC animated:true completion:nil];
 }

@@ -11,13 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //MARK: Base
-extern NSString *LocalizeFromTable(NSString *key, NSString *table);
+extern NSString *localizeFromTable(NSString *key, NSString *table);
 
 //MARK: Replace String
-extern NSString *LocalizeReplace(NSString *origin, NSString *xxx_replace);
-extern NSString *LocalizeReplaceTwoCharacter(NSString *origin, NSString *xxx_replace, NSString *yyy_replace);
+extern NSString *localizeReplace(NSString *origin, NSString *xxx_replace);
+extern NSString *localizeReplaceTwoCharacter(NSString *origin, NSString *xxx_replace, NSString *yyy_replace);
 
-extern NSString *const Localize_TableName;
-extern NSString *Localize(NSString *key);
+extern NSString *const localize_TableName;
+extern NSString *localize(NSString *key);
 
 NS_ASSUME_NONNULL_END

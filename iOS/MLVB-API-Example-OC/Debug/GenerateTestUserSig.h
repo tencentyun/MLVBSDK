@@ -1,3 +1,5 @@
+//  Copyright © 2021 Tencent. All rights reserved.
+
 /*
  * Module:   GenerateTestUserSig
  *
@@ -99,7 +101,7 @@ static const int SDKAppID = 0;
  * Unit: second
  * Default value: 604800 (7 days)
  */
-static const int EXPIRETIME = 604800;
+static const int EXPIRETIME = 0;
 
 /**
  * 计算签名用的加密密钥，获取步骤如下：

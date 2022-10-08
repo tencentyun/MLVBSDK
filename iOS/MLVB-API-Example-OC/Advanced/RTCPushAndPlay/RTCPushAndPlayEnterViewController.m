@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/30.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "RTCPushAndPlayEnterViewController.h"
@@ -32,7 +33,7 @@
 }
 
 - (void)setupDefaultUIConfig {
-    self.title = Localize(@"MLVB-API-Example.RTCPushAndPlay.title");
+    self.title = localize(@"MLVB-API-Example.RTCPushAndPlay.title");
     UILabel* tlabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 200, 40)];
     tlabel.text = self.navigationItem.title;
     tlabel.textColor = [UIColor whiteColor];
@@ -42,24 +43,24 @@
     tlabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = tlabel;
 
-    self.streamIdLabel.text = Localize(@"MLVB-API-Example.RTCPushAndPlay.streamIdInput");
+    self.streamIdLabel.text = localize(@"MLVB-API-Example.RTCPushAndPlay.streamIdInput");
     self.streamIdLabel.adjustsFontSizeToFitWidth = true;
     
-    self.roleLabel.text = Localize(@"MLVB-API-Example.RTCPushAndPlay.chooseRole");
+    self.roleLabel.text = localize(@"MLVB-API-Example.RTCPushAndPlay.chooseRole");
     self.roleLabel.adjustsFontSizeToFitWidth = true;
     
-    [self.anchorButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.anchor") forState:UIControlStateNormal];
+    [self.anchorButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.anchor") forState:UIControlStateNormal];
     [self.anchorButton setBackgroundColor:[UIColor themeBlueColor]];
-    [self.audienceButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.audience") forState:UIControlStateNormal];
+    [self.audienceButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.audience") forState:UIControlStateNormal];
     [self.audienceButton setBackgroundColor:[UIColor themeGrayColor]];
     self.anchorButton.titleLabel.adjustsFontSizeToFitWidth = true;
     self.audienceButton.titleLabel.adjustsFontSizeToFitWidth = true;
     
-    self.descriptionTextView.text = Localize(@"MLVB-API-Example.RTCPushAndPlay.descripView");
+    self.descriptionTextView.text = localize(@"MLVB-API-Example.RTCPushAndPlay.descripView");
     self.descriptionTextView.backgroundColor = [UIColor themeGrayColor];
 
-    [self.rtcPushButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.rtcPush") forState:UIControlStateNormal];
-    [self.rtcPushButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.rtcPlay") forState:UIControlStateSelected];
+    [self.rtcPushButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.rtcPush") forState:UIControlStateNormal];
+    [self.rtcPushButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.rtcPlay") forState:UIControlStateSelected];
     [self.rtcPushButton setBackgroundColor:[UIColor themeBlueColor]];
     self.rtcPushButton.titleLabel.adjustsFontSizeToFitWidth = true;
     
@@ -93,14 +94,14 @@
 - (IBAction)onAnchorButtonClick:(id)sender {
     [self.anchorButton setBackgroundColor:[UIColor themeBlueColor]];
     [self.audienceButton setBackgroundColor:[UIColor themeGrayColor]];
-    [self.rtcPushButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.rtcPush") forState:UIControlStateNormal];
+    [self.rtcPushButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.rtcPush") forState:UIControlStateNormal];
     self.isAnchor = true;
 }
 
 - (IBAction)onAudienceButtonClick:(id)sender {
     [self.anchorButton setBackgroundColor:[UIColor themeGrayColor]];
     [self.audienceButton setBackgroundColor:[UIColor themeBlueColor]];
-    [self.rtcPushButton setTitle:Localize(@"MLVB-API-Example.RTCPushAndPlay.lebPlay") forState:UIControlStateNormal];
+    [self.rtcPushButton setTitle:localize(@"MLVB-API-Example.RTCPushAndPlay.lebPlay") forState:UIControlStateNormal];
     self.isAnchor = false;
 }
 

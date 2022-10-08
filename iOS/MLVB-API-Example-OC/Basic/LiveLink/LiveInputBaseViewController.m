@@ -25,7 +25,7 @@
 }
 
 - (void)setupDefaultUIConfig {
-    self.title = Localize(@"MLVB-API-Example.LiveLink.title");
+    self.title = localize(@"MLVB-API-Example.LiveLink.title");
     self.label.adjustsFontSizeToFitWidth = true;
     self.button.titleLabel.adjustsFontForContentSizeCategory = true;
     self.textField.keyboardType = UIKeyboardTypeNumberPad;

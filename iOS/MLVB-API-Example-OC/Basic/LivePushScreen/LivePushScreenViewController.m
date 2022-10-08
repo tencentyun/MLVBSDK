@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/28.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -13,6 +14,7 @@
  2、开始采集屏幕 API:[self.livePusher startScreenCapture:@"group.com.tencent.liteav.RPLiveStreamShare"];
  3、开始推流 API：[self.livePusher startPush:url];
  参考文档：https://cloud.tencent.com/document/product/454/56591
+ RTC推流目前仅中国大陆支持，其他地区正陆续开发中。
  */
 /*
  Publishing from Screen
@@ -22,6 +24,7 @@
   2. Capture streams from the screen: [self.livePusher startScreenCapture:@"group.com.tencent.liteav.RPLiveStreamShare"]
   3. Start publishing: [self.livePusher startPush:url]
   Documentation: https://cloud.tencent.com/document/product/454/56591
+  RTC Push Currently only supported in China, other regions are continuing to develop.
  */
 
 
@@ -59,9 +62,9 @@
     self.title = self.streamId;
     
     [self.startButton setBackgroundColor:[UIColor themeBlueColor]];
-    [self.startButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.start")
+    [self.startButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.start")
                       forState:UIControlStateNormal];
-    [self.startButton setTitle:Localize(@"MLVB-API-Example.LivePushScreen.stop")
+    [self.startButton setTitle:localize(@"MLVB-API-Example.LivePushScreen.stop")
                       forState:UIControlStateSelected];
     self.startButton.titleLabel.adjustsFontSizeToFitWidth = true;
 }

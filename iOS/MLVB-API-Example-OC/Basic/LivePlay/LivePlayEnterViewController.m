@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/28.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "LivePlayEnterViewController.h"
@@ -14,9 +15,10 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UIButton *standPlayButton;
+@property (weak, nonatomic) IBOutlet UIButton *hlsPlayButton;
 @property (weak, nonatomic) IBOutlet UIButton *rtcPlayButton;
-@property (weak, nonatomic) IBOutlet UIButton *lebPlayButton;
+@property (weak, nonatomic) IBOutlet UIButton *rtmpPlayButton;
+@property (weak, nonatomic) IBOutlet UIButton *flvPlayButton;
 
 @end
 
@@ -28,32 +30,32 @@
 }
 
 - (void)setupDefaultUIConfig {
-    self.title = Localize(@"MLVB-API-Example.LivePlay.title");
-    self.streamIdLabel.text = Localize(@"MLVB-API-Example.LivePlay.streamIdInput");
+    self.title = localize(@"MLVB-API-Example.LivePlay.title");
+    self.streamIdLabel.text = localize(@"MLVB-API-Example.LivePlay.streamIdInput");
     self.streamIdLabel.adjustsFontSizeToFitWidth = true;
     
     
-    [self.standPlayButton setTitle:Localize(@"MLVB-API-Example.LivePlay.standPlay") forState:UIControlStateNormal];
-    [self.standPlayButton setBackgroundColor:[UIColor themeGrayColor]];
-    self.standPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
+    [self.hlsPlayButton setTitle:localize(@"MLVB-API-Example.LivePlay.hlsPlay") forState:UIControlStateNormal];
+    [self.hlsPlayButton setBackgroundColor:[UIColor themeBlueColor]];
+    self.hlsPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
     
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:Localize(@"MLVB-API-Example.LivePlay.descripView") attributes:@{
+    [self.rtmpPlayButton setTitle:localize(@"MLVB-API-Example.LivePlay.rtmpPlay") forState:UIControlStateNormal];
+    [self.rtmpPlayButton setBackgroundColor:[UIColor themeBlueColor]];
+    self.rtmpPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
+    
+    [self.flvPlayButton setTitle:localize(@"MLVB-API-Example.LivePlay.flvPlay") forState:UIControlStateNormal];
+    [self.flvPlayButton setBackgroundColor:[UIColor themeBlueColor]];
+    self.flvPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
+    
+    [self.rtcPlayButton setTitle:localize(@"MLVB-API-Example.LivePlay.rtcPlay") forState:UIControlStateNormal];
+    [self.rtcPlayButton setBackgroundColor:[UIColor themeBlueColor]];
+    self.rtcPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:localize(@"MLVB-API-Example.LivePlay.descripView") attributes:@{
         (id)NSForegroundColorAttributeName : [UIColor whiteColor],
         (id)NSFontAttributeName : [UIFont systemFontOfSize:14],
     }];
-    [text appendAttributedString:[[NSAttributedString alloc] initWithString:Localize(@"MLVB-API-Example.LivePlay.descripRecommend") attributes:@{
-        (id)NSForegroundColorAttributeName : [UIColor redColor],
-        (id)NSFontAttributeName : [UIFont systemFontOfSize:14],
-    }]];
     self.descriptionTextView.attributedText = text;
-    
-    [self.rtcPlayButton setTitle:Localize(@"MLVB-API-Example.LivePlay.rtcPlay") forState:UIControlStateNormal];
-    [self.rtcPlayButton setBackgroundColor:[UIColor themeGrayColor]];
-    self.rtcPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
-    
-    [self.lebPlayButton setTitle:Localize(@"MLVB-API-Example.LivePlay.lebPlay") forState:UIControlStateNormal];
-    [self.lebPlayButton setBackgroundColor:[UIColor themeBlueColor]];
-    self.lebPlayButton.titleLabel.adjustsFontSizeToFitWidth = true;
 
     self.streamIdTextField.text = [NSString generateRandomStreamId];
 }
@@ -69,16 +71,20 @@
 
 #pragma mark - Actions
 
-- (IBAction)onStandPushButtonClick:(UIButton*)button {
-    [self pushPlayViewController:StandPlay];
+- (IBAction)onRtmpPlayButtonClick:(UIButton*)button {
+    [self pushPlayViewController:RtmpPlay];
 }
 
-- (IBAction)onRtcPushButtonClick:(UIButton*)button {
+- (IBAction)onFlvPlayButtonClick:(UIButton*)button {
+    [self pushPlayViewController:FlvPlay];
+}
+
+- (IBAction)onHlsPlayButtonClick:(UIButton*)button {
+    [self pushPlayViewController:HlsPlay];
+}
+
+- (IBAction)onRtcPlayButtonClick:(UIButton*)button {
     [self pushPlayViewController:RTCPlay];
-}
-
-- (IBAction)onLebPushButtonClick:(UIButton*)button {
-    [self pushPlayViewController:LebPlay];
 }
 
 @end

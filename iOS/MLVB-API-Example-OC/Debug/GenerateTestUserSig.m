@@ -1,3 +1,4 @@
+//  Copyright © 2021 Tencent. All rights reserved.
 #import "GenerateTestUserSig.h"
 #import <CommonCrypto/CommonCrypto.h>
 #import <zlib.h>
@@ -7,12 +8,12 @@
 + (NSString *)genTestUserSig:(NSString *)identifier
 {
     CFTimeInterval current = CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970;
-    long TLSTime = floor(current);
+    long tlsTime = floor(current);
     NSMutableDictionary *obj = [@{@"TLS.ver": @"2.0",
                                   @"TLS.identifier": identifier,
                                   @"TLS.sdkappid": @(SDKAppID),
                                   @"TLS.expire": @(EXPIRETIME),
-                                  @"TLS.time": @(TLSTime)} mutableCopy];
+                                  @"TLS.time": @(tlsTime)} mutableCopy];
     NSMutableString *stringToSign = [[NSMutableString alloc] init];
     NSArray *keyOrder = @[@"TLS.identifier",
                           @"TLS.sdkappid",
@@ -58,8 +59,8 @@
 
     CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
 
-    NSData *HMACData = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
-    return [HMACData base64EncodedStringWithOptions:0];
+    NSData *hmacData = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
+    return [hmacData base64EncodedStringWithOptions:0];
 }
 
 + (NSString *)base64URL:(NSData *)data

@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/7/1.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "LivePkAudienceViewController.h"
@@ -42,7 +43,7 @@
 - (void)startLebPlay:(NSString*)streamId {
     NSString *url = [URLUtils generateLebPlayUrl:streamId];
     [self.livePlayer setRenderView:self.view];
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
 
 }
 

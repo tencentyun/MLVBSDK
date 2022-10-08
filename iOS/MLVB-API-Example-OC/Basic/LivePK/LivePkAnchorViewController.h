@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/7/1.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "ViewController.h"

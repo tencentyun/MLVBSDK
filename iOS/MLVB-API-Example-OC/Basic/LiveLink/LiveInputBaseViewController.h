@@ -9,6 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LiveInputBaseViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *tips;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;

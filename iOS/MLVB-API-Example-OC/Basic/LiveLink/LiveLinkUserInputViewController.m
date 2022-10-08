@@ -25,8 +25,9 @@
 }
 
 - (void)setupUIString {
-    self.label.text = Localize(@"MLVB-API-Example.LiveLink.userIdInput");
-    [self.button setTitle:Localize(@"MLVB-API-Example.LiveLink.nextStep") forState:UIControlStateNormal];
+    self.label.text = localize(@"MLVB-API-Example.LiveLink.userIdInput");
+    self.tips.text = localize(@"MLVB-API-Example.LiveLink.tips");
+    [self.button setTitle:localize(@"MLVB-API-Example.LiveLink.nextStep") forState:UIControlStateNormal];
 }
 
 - (void)onButtonClick:(UIButton *)button {
@@ -37,7 +38,7 @@
 - (void)enterSwitchRoleViewController {
     LiveLinkOrPkSwitchRoleViewController *vc = [[LiveLinkOrPkSwitchRoleViewController alloc]
                                                 initWithUserId:self.textField.text
-                                                title:Localize(@"MLVB-API-Example.LiveLink.title")];
+                                                title:localize(@"MLVB-API-Example.LiveLink.title")];
     __weak typeof(self) wealSelf = self;
     vc.didClickNextBlock = ^(NSString * _Nonnull userId, BOOL isAnchor) {
         __strong typeof(wealSelf) strongSelf = wealSelf;
@@ -50,7 +51,7 @@
     LiveLinkOrPkStreamInputViewController *vc = [[LiveLinkOrPkStreamInputViewController alloc]
                                                  initWithUserId:userId
                                                  isAnchor:isAnchor
-                                                 title:Localize(@"MLVB-API-Example.LiveLink.title")];
+                                                 title:localize(@"MLVB-API-Example.LiveLink.title")];
     __weak typeof(self) wealSelf = self;
     vc.didClickNextBlock = ^(NSString * _Nonnull streamId, NSString * _Nonnull userId, BOOL isAnchor) {
         __strong typeof(wealSelf) strongSelf = wealSelf;

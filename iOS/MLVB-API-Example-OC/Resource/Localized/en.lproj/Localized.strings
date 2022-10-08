@@ -12,13 +12,26 @@
 "MLVB-API-Example.Home.LivePushCamera" = "Publishing from Camera";
 "MLVB-API-Example.Home.LivePushScreen" = "Publishing from Screen";
 "MLVB-API-Example.Home.LivePlay" = "Playback";
+"MLVB-API-Example.Home.LebPlay" = "Webrtc Playback";
 "MLVB-API-Example.Home.LiveLink" = "Co-anchoring";
 "MLVB-API-Example.Home.LivePK" = "Competition";
+"MLVB-API-Example.Home.LivePushCamera.desc" = "Including rtmp push stream, rtc push stream function
+";
+"MLVB-API-Example.Home.LivePushScreen.desc" = "Including rtmp push stream, rtc push stream function
+";
+"MLVB-API-Example.Home.LivePlay.desc" = "Including standard protocols rtmp, flv, hls streaming and rtc streaming";
 
 "MLVB-API-Example.Home.AdvancedFeatures" = "Advanced Features";
 "MLVB-API-Example.Home.CustomCamera" = "Custom Video Capturing";
 "MLVB-API-Example.Home.ThirdBeauty" = "Third-Party Beauty Filters";
 "MLVB-API-Example.Home.RTCPushAndPlay" = "RTC Co-anchoring + Ultra-low-latency Playback";
+"MLVB-API-Example.Home.PictureInPicture" = "Picture in Picture";
+"MLVB-API-Example.Home.OpenPictureInPicture" = "Open Picture in Picture";
+"MLVB-API-Example.Home.ClosePictureInPicture" = "Close Picture in Picture";
+"MLVB-API-Example.Home.PermissionFailed" = "Failed to enable permission";
+"MLVB-API-Example.Home.NotSupported" = "Picture-in-picture is not supported";
+"MLVB-API-Example.Home.Errormessage" = "Error message:";
+"MLVB-API-Example.Home.Ignorenullsamplebuffer" = "Ignore null samplebuffer";
 
 "MLVB-API-Example.LivePushCamera.title" = "MLVB Publishing (Camera)";
 "MLVB-API-Example.LivePushCamera.streamIdInput" = "Stream ID";
@@ -27,8 +40,8 @@
 "MLVB-API-Example.LivePushCamera.audioSpeech" = "Speech";
 "MLVB-API-Example.LivePushCamera.audioMusic" = "Music";
 "MLVB-API-Example.LivePushCamera.standPush" = "LVB Playback";
-"MLVB-API-Example.LivePushCamera.rtcPush" = "RTC Publishing (Recommended)";
-"MLVB-API-Example.LivePushCamera.descripView" = "Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888.";
+"MLVB-API-Example.LivePushCamera.rtcPush" = "RTC Publishing";
+"MLVB-API-Example.LivePushCamera.descripView" = "Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888. Currently only supported in China, other regions are continuing to develop.";
 "MLVB-API-Example.LivePushCamera.audioSetting" = "Audio Settings";
 "MLVB-API-Example.LivePushCamera.videoSetting" = "Video Settings";
 "MLVB-API-Example.LivePushCamera.closeMic" = "Mic Off";
@@ -47,27 +60,35 @@
 "MLVB-API-Example.LivePushScreen.audioSpeech" = "Speech";
 "MLVB-API-Example.LivePushScreen.audioMusic" = "Music";
 "MLVB-API-Example.LivePushScreen.standPush" = "LVB Playback";
-"MLVB-API-Example.LivePushScreen.rtcPush" = "RTC Publishing (Recommended)";
-"MLVB-API-Example.LivePushScreen.descripView" = "Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888.";
+"MLVB-API-Example.LivePushScreen.rtcPush" = "RTC Publishing";
+"MLVB-API-Example.LivePushScreen.descripView" = "Tencent Cloud’s proprietary RTC protocol features lower latency and better adaptability to poor network conditions when compared with traditional live streaming protocols, and can be used worldwide. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888. Currently only supported in China, other regions are continuing to develop.";
 "MLVB-API-Example.LivePushScreen.start" = "Publish from Screen";
 "MLVB-API-Example.LivePushScreen.stop" = "Stop";
 
 "MLVB-API-Example.LivePlay.title" = "MLVB Playback";
 "MLVB-API-Example.LivePlay.streamIdInput" = "Stream ID";
-"MLVB-API-Example.LivePlay.standPlay" = "LVB Playback";
+"MLVB-API-Example.LivePlay.rtmpPlay" = "RTMP Playback";
+"MLVB-API-Example.LivePlay.flvPlay" = "FLV Playback";
+"MLVB-API-Example.LivePlay.hlsPlay" = "HLS Playback";
 "MLVB-API-Example.LivePlay.rtcPlay" = "RTC Playback";
-"MLVB-API-Example.LivePlay.lebPlay" = "LEB Playback (Recommended)";
 "MLVB-API-Example.LivePlay.descripView" =
-"LEB is an ultra-low-latency version of LVB. It delivers excellent instant streaming performance and can handle ultra-high concurrency.\n\nTencent Cloud’s proprietary RTC protocol features low latency and strong adaptability to poor network conditions, and can be used worldwide. It is suitable for application scenarios such as e-commerce streaming and sports streaming. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888.\n\nLVB playback supports multiple protocols including FLV, RTMP, and HLS. It is a mature playback scheme and can handle
+"Tencent Cloud’s proprietary RTC protocol features low latency and strong adaptability to poor network conditions, and can be used worldwide. It is suitable for application scenarios such as e-commerce streaming and sports streaming. For details, visit https://intl.cloud.tencent.com/document/product/1071/39888. Currently only supported in China, other regions are continuing to develop.\n\nLVB playback supports multiple protocols including FLV, RTMP, and HLS. It is a mature playback scheme and can handle
  high concurrency, but its latency is high.
 ";
-"MLVB-API-Example.LivePlay.descripRecommend" = "LEB playback is recommended.";
 "MLVB-API-Example.LivePlay.mute" = "Mute";
 "MLVB-API-Example.LivePlay.unmute" = "Unmute";
 
+"MLVB-API-Example.LebPlay.title" = "Webrtc Playback";
+"MLVB-API-Example.LebPlay.lebPlay" = "LEB Playback";
+"MLVB-API-Example.LebPlay.descripView" =
+"
+LEB is an ultra-low-latency version of LVB. It delivers excellent instant streaming performance and can handle ultra-high concurrency.
+";
+"MLVB-API-Example.LebPlay.descripRecommend" = "LEB playback is recommended.";
 
 "MLVB-API-Example.LiveLink.title" = "MLVB Co-anchoring";
 "MLVB-API-Example.LiveLink.ok" = "Ok";
+"MLVB-API-Example.LiveLink.tips" = "Currently only supported in China, other regions are continuing to develop.";
 "MLVB-API-Example.LiveLink.startPlay" = "Start Play";
 "MLVB-API-Example.LiveLink.startLink" = "Start Link";
 "MLVB-API-Example.LiveLink.startPush" = "Start Push";
@@ -124,7 +145,7 @@
 "MLVB-API-Example.RTCPushAndPlay.anchor" = "Anchor";
 "MLVB-API-Example.RTCPushAndPlay.audience" = "Audience";
 "MLVB-API-Example.RTCPushAndPlay.descripView" =
-"RTC co-anchoring + ultra-low-latency playback: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B plays anchor A’s streams.\n\n4. Audience\n4.1 Anchor A’s audience play anchor B’s streams.\n4.2 Anchor B’s audience play anchor A’s streams.";
+"RTC co-anchoring + ultra-low-latency playback: \n1. Anchor A\n1.1 Anchor A starts publishing streams.\n1.2 Anchor A’s audience play anchor A’s streams.\n\n2. Anchor B\n2.1 Anchor B starts publishing streams.\n2.2 Anchor B’s audience play anchor B’s streams.\n\n3. Co-anchoring\n3.1 Anchor A plays anchor B’s streams.\n3.2 Anchor B plays anchor A’s streams.\n\n4. Audience\n4.1 Anchor A’s audience play anchor B’s streams.\n4.2 Anchor B’s audience play anchor A’s streams.\nCurrently only supported in China, other regions are continuing to develop.";
 "MLVB-API-Example.RTCPushAndPlay.rtcPush" = "RTC Publishing";
 "MLVB-API-Example.RTCPushAndPlay.rtcPlay" = "RTC Playback";
 "MLVB-API-Example.RTCPushAndPlay.stopPlay" = "Stop";
@@ -133,4 +154,16 @@
 "MLVB-API-Example.RTCPushAndPlay.stopLink" = "Stop";
 "MLVB-API-Example.RTCPushAndPlay.startLink" = "Co-anchor";
 
+"MLVB-API-Example.AlertViewController.determine" = "Ok";
 
+"MLVB-API-Example.LebAutoBitrate.tips" = "tips";
+"MLVB-API-Example.LebAutoBitrate.currentResolution" = "current resulotion is %ld*%ld";
+"MLVB-API-Example.LebAutoBitrate.title" = "Webrtc Auto Bitrate";
+"MLVB-API-Example.LebAutoBitrate.1080p" = "switch to 1080p";
+"MLVB-API-Example.LebAutoBitrate.720p" = "switch to 720p";
+"MLVB-API-Example.LebAutoBitrate.540p" = "switch to 540p";
+"MLVB-API-Example.LebAutoBitrate.startAutoBitrate" = "start auto bitrate";
+"MLVB-API-Example.LebAutoBitrate.stopAutoBitrate" = "stop auto bitrate";
+
+"MLVB-API-Example.HlsAutoBitrate.title" = "HLS Auto Bitrate";
+"MLVB-API-Example.HlsAutoBitrate.autoBitrate" = "switch to auto bitrate";

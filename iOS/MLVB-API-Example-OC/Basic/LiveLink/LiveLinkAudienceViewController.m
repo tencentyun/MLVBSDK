@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/29.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -10,22 +11,25 @@
  MLVB APP 观众连麦功能
  本文件展示如何集成观众连麦功能
  1、设置渲染的view API:[self.livePlayer setRenderView:self.view];
- 2、开始快直播拉流 API:[self.livePlayer startPlay:url];
- 3、停止快直播拉流 API:[self.livePlayer startPlay:url];
+ 2、开始快直播拉流 API:[self.livePlayer startLivePlay:url];
+ 3、停止快直播拉流 API:[self.livePlayer startLivePlay:url];
  4、开始推流 API:[self.livePusher startPush:url];
- 5、开始RTC拉流：API:[self.livePlayer startPlay:url];
+ 5、开始RTC拉流：API:[self.livePlayer startLivePlay:url];
  参考文档：https://cloud.tencent.com/document/product/454/52751
+ 目前仅中国大陆支持，其他地区正陆续开发中。
+
  */
 /*
  Audience-Initiated Co-anchoring
   Audience-Initiated Co-anchoring in MLVB App
   This document shows how to integrate the audience-initiated co-anchoring feature.
   1. Set the rendering view: [self.livePlayer setRenderView:self.view]
-  2. Start LEB playback: [self.livePlayer startPlay:url]
-  3. Stop LEB playback: [self.livePlayer startPlay:url]
+  2. Start LEB playback: [self.livePlayer startLivePlay:url]
+  3. Stop LEB playback: [self.livePlayer startLivePlay:url]
   4. Start publishing: [self.livePusher startPush:url]
-  5. Start RTC playback: [self.livePlayer startPlay:url]
+  5. Start RTC playback: [self.livePlayer startLivePlay:url]
   Documentation: https://cloud.tencent.com/document/product/454/52751
+  Currently only supported in China, other regions are continuing to develop.
  */
 
 
@@ -87,8 +91,8 @@
     self.userIdLabel.adjustsFontSizeToFitWidth = true;
 
     self.acceptLinkButton.backgroundColor = [UIColor themeBlueColor];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.startLink") forState:UIControlStateNormal];
-    [self.acceptLinkButton setTitle:Localize(@"MLVB-API-Example.LiveLink.stopLink") forState:UIControlStateSelected];
+    [self.acceptLinkButton setTitle:localize(@"MLVB-API-Example.LiveLink.startLink") forState:UIControlStateNormal];
+    [self.acceptLinkButton setTitle:localize(@"MLVB-API-Example.LiveLink.stopLink") forState:UIControlStateSelected];
     self.acceptLinkButton.titleLabel.adjustsFontSizeToFitWidth = true;
     [self.liveLinkStopButton setHidden:true];
     [self.liveLinkStopButton setTitle:@"" forState:UIControlStateNormal];
@@ -120,14 +124,14 @@
 - (void)startLebPlay:(NSString*)streamId {
     NSString *url = [URLUtils generateLebPlayUrl:streamId];
     [self.livePlayer setRenderView:self.view];
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
 
 }
 
 - (void)startRtcPlay:(NSString*)streamId {
     NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     [self.livePlayer setRenderView:self.remoteView];
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
 }
 
 - (void)stopPlay {

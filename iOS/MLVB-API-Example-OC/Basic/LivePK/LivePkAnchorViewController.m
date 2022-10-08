@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/7/1.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -12,9 +13,10 @@
  1、打开扬声器 API:[self.livePusher startMicrophone];
  2、开始采集屏幕 API:[self.livePusher startScreenCapture:@"group.com.tencent.liteav.RPLiveStreamShare"];
  3、开始推流 API：[self.livePusher startPush:url];
- 4、开始拉主播的流 API:[self.livePlayer startPlay:url];
+ 4、开始拉主播的流 API:[self.livePlayer startLivePlay:url];
  5、和主播的流进行混流 API:[self.livePusher setMixTranscodingConfig:config];
  参考文档：https://cloud.tencent.com/document/product/454/52751
+ 目前仅中国大陆支持，其他地区正陆续开发中。
  */
 /*
 主播PK
@@ -24,9 +26,10 @@
   1. Turn speaker on: [self.livePusher startMicrophone]
   2. Capture streams from the screen: [self.livePusher startScreenCapture:@"group.com.tencent.liteav.RPLiveStreamShare"]
   3. Start publishing: [self.livePusher startPush:url]
-  4. Play the anchor’s streams: [self.livePlayer startPlay:url]
+  4. Play the anchor’s streams: [self.livePlayer startLivePlay:url]
   5. Mix with the anchor’s streams: [self.livePusher setMixTranscodingConfig:config]
   Documentation: https://cloud.tencent.com/document/product/454/52751
+  Currently only supported in China, other regions are continuing to develop.
  */
 
 #import "LivePkAnchorViewController.h"
@@ -110,7 +113,7 @@
     NSString *url = [URLUtils generateTRTCPlayUrl:streamId];
     
     [self.livePlayer setRenderView:self.remoteView];
-    V2TXLiveCode code = [self.livePlayer startPlay:url];
+    V2TXLiveCode code = [self.livePlayer startLivePlay:url];
     NSLog(@"%ld",code);
     
     V2TXLiveTranscodingConfig *config = [[V2TXLiveTranscodingConfig alloc] init];

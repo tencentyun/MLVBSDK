@@ -1,4 +1,4 @@
-#ifndef CustomAudioCapturor_h
+//  Copyright © 2021 Tencent. All rights reserved.#ifndef CustomAudioCapturor_h
 #define CustomAudioCapturor_h
 
 @protocol CustomAudioCapturorDelegate

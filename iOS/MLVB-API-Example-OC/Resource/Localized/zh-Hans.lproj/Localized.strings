@@ -12,8 +12,12 @@
 "MLVB-API-Example.Home.LivePushCamera" = "摄像头推流";
 "MLVB-API-Example.Home.LivePushScreen" = "录屏推流";
 "MLVB-API-Example.Home.LivePlay" = "直播拉流";
+"MLVB-API-Example.Home.LebPlay" = "快直播拉流";
 "MLVB-API-Example.Home.LiveLink" = "连麦互动";
 "MLVB-API-Example.Home.LivePK" = "PK互动";
+"MLVB-API-Example.Home.LivePushCamera.desc" = "包含rtmp推流，rtc推流功能";
+"MLVB-API-Example.Home.LivePushScreen.desc" = "包含rtmp推流，rtc推流功能";
+"MLVB-API-Example.Home.LivePlay.desc" = "包含标准协议rtmp，flv，hls拉流和rtc拉流功能";
 
 "MLVB-API-Example.liveStop" = "屏幕共享已结束";
 "MLVB-API-Example.appReset" = "应用断开";
@@ -23,6 +27,13 @@
 "MLVB-API-Example.Home.CustomCamera" = "自定义视频采集";
 "MLVB-API-Example.Home.ThirdBeauty" = "第三方美颜";
 "MLVB-API-Example.Home.RTCPushAndPlay" = "RTC连麦+超低延时播放";
+"MLVB-API-Example.Home.PictureInPicture" = "画中画功能";
+"MLVB-API-Example.Home.OpenPictureInPicture" = "开启画中画功能";
+"MLVB-API-Example.Home.ClosePictureInPicture" = "关闭画中画功能";
+"MLVB-API-Example.Home.PermissionFailed" = "开启权限失败";
+"MLVB-API-Example.Home.NotSupported" = "不支持画中画模式";
+"MLVB-API-Example.Home.Errormessage" = "错误信息：";
+"MLVB-API-Example.Home.Ignorenullsamplebuffer" = "忽略无效SampleBuffer";
 
 "MLVB-API-Example.LivePushCamera.title" = "MLVB 摄像头推流";
 "MLVB-API-Example.LivePushCamera.streamIdInput" = "请输入streamId";
@@ -31,8 +42,8 @@
 "MLVB-API-Example.LivePushCamera.audioSpeech" = "语音";
 "MLVB-API-Example.LivePushCamera.audioMusic" = "音乐";
 "MLVB-API-Example.LivePushCamera.standPush" = "标准直播推流";
-"MLVB-API-Example.LivePushCamera.rtcPush" = "RTC推流(推荐)";
-"MLVB-API-Example.LivePushCamera.descripView" = "腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/52751";
+"MLVB-API-Example.LivePushCamera.rtcPush" = "RTC推流";
+"MLVB-API-Example.LivePushCamera.descripView" = "RTC推流为腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/52751 目前仅中国大陆支持，其他地区正持续开发中。";
 "MLVB-API-Example.LivePushCamera.audioSetting" = "音频设置";
 "MLVB-API-Example.LivePushCamera.videoSetting" = "视频设置";
 "MLVB-API-Example.LivePushCamera.closeMic" = "关闭麦克风";
@@ -51,20 +62,19 @@
 "MLVB-API-Example.LivePushScreen.audioSpeech" = "语音";
 "MLVB-API-Example.LivePushScreen.audioMusic" = "音乐";
 "MLVB-API-Example.LivePushScreen.standPush" = "标准直播推流";
-"MLVB-API-Example.LivePushScreen.rtcPush" = "RTC推流(推荐)";
-"MLVB-API-Example.LivePushScreen.descripView" = "腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/52751";
+"MLVB-API-Example.LivePushScreen.rtcPush" = "RTC推流";
+"MLVB-API-Example.LivePushScreen.descripView" = "RTC推流腾讯云自研实时音视频协议，相比传统的直播协议，具备如下优势：超低延迟、弱网超强抗性、支持全球范围，更多细节详见：https://cloud.tencent.com/document/product/454/52751  目前仅中国大陆支持，其他地区正持续开发中。";
 "MLVB-API-Example.LivePushScreen.start" = "开始录屏推流";
 "MLVB-API-Example.LivePushScreen.stop" = "停止录屏推流";
 
 "MLVB-API-Example.LivePlay.title" = "MLVB 直播拉流";
 "MLVB-API-Example.LivePlay.streamIdInput" = "请输入streamId";
-"MLVB-API-Example.LivePlay.standPlay" = "标准直播拉流";
+"MLVB-API-Example.LivePlay.rtmpPlay" = "RTMP拉流";
+"MLVB-API-Example.LivePlay.flvPlay" = "FLV拉流";
+"MLVB-API-Example.LivePlay.hlsPlay" = "HLS拉流";
 "MLVB-API-Example.LivePlay.rtcPlay" = "RTC拉流";
-"MLVB-API-Example.LivePlay.lebPlay" = "快直播拉流(推荐)";
 "MLVB-API-Example.LivePlay.descripView" =
-"快直播（Live Event Broadcasting,LEB）是标准直播在超低延迟播放场景下的延伸，强烈推荐，秒开效果最好，支持超高并发
-
-腾讯云自研实时音视频协议，超低延迟，抗弱网能力强，全球覆盖，使用与电商秒杀，体育赛事等多个场景，更多细节详见：https://cloud.tencent.com/document/product/454/52751
+"RTC拉流为腾讯云自研实时音视频协议，超低延迟，抗弱网能力强，全球覆盖，使用与电商秒杀，体育赛事等多个场景，更多细节详见：https://cloud.tencent.com/document/product/454/52751 目前仅中国大陆支持，其他地区正持续开发中。
 
 标准直播拉流支持FLV、RTMP、HLS等多种格式，成熟度高，并发量强，但是延迟高
 ";
@@ -72,9 +82,17 @@
 "MLVB-API-Example.LivePlay.mute" = "静音";
 "MLVB-API-Example.LivePlay.unmute" = "取消静音";
 
+"MLVB-API-Example.LebPlay.title" = "MLVB 快直播拉流";
+"MLVB-API-Example.LebPlay.lebPlay" = "快直播拉流";
+"MLVB-API-Example.LebPlay.descripView" =
+"
+快直播（Live Event Broadcasting,LEB）是标准直播在超低延迟播放场景下的延伸，强烈推荐，秒开效果最好，支持超高并发
+";
+"MLVB-API-Example.LebPlay.descripRecommend" = "腾讯云官方推荐使用快直播拉流方式";
 
 "MLVB-API-Example.LiveLink.title" = "MLVB 连麦互动";
 "MLVB-API-Example.LiveLink.ok" = "确定";
+"MLVB-API-Example.LiveLink.tips" = "目前仅中国大陆支持，其他地区正陆续开发中。";
 "MLVB-API-Example.LiveLink.startPlay" = "开始播放";
 "MLVB-API-Example.LiveLink.startLink" = "开始连麦";
 "MLVB-API-Example.LiveLink.startPush" = "开始推流";
@@ -172,7 +190,10 @@
 
 4、主播连麦后的观众端
 4.1、主播A的观众拉主播B的流
-4.2、主播B的观众拉主播A的流";
+4.2、主播B的观众拉主播A的流
+
+目前仅中国大陆支持，其他地区正陆续开发中。
+";
 "MLVB-API-Example.RTCPushAndPlay.rtcPush" = "RTC推流";
 "MLVB-API-Example.RTCPushAndPlay.rtcPlay" = "RTC拉流";
 "MLVB-API-Example.RTCPushAndPlay.stopPlay" = "停止拉流";
@@ -181,4 +202,16 @@
 "MLVB-API-Example.RTCPushAndPlay.stopLink" = "停止连麦";
 "MLVB-API-Example.RTCPushAndPlay.startLink" = "开始连麦";
 
+"MLVB-API-Example.AlertViewController.determine" = "确定";
 
+"MLVB-API-Example.LebAutoBitrate.tips" = "提示";
+"MLVB-API-Example.LebAutoBitrate.currentResolution" = "当前分辨率为 %ld*%ld";
+"MLVB-API-Example.LebAutoBitrate.title" = "快直播自适应播放";
+"MLVB-API-Example.LebAutoBitrate.1080p" = "无缝切换到1080p";
+"MLVB-API-Example.LebAutoBitrate.720p" = "无缝切换到720p";
+"MLVB-API-Example.LebAutoBitrate.540p" = "无缝切换到540p";
+"MLVB-API-Example.LebAutoBitrate.startAutoBitrate" = "开始自适应播放";
+"MLVB-API-Example.LebAutoBitrate.stopAutoBitrate" = "停止自适应播放";
+
+"MLVB-API-Example.HlsAutoBitrate.title" = "HLS自适应播放";
+"MLVB-API-Example.HlsAutoBitrate.autoBitrate" = "切换到自适应播放";

@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by bluedang on 2021/6/28.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -45,6 +46,19 @@
 }
 + (NSString*)generateRtmpPlayUrl:(NSString*)streamId {
     NSString *url = [NSString stringWithFormat:@"rtmp://%@/live/%@",
+           PLAY_DOMAIN, streamId];
+    return url;
+}
+
++ (NSString*)generateFlvPlayUrl:(NSString*)streamId {
+    NSString *url = [NSString stringWithFormat:@"http://%@/live/%@.flv",
+           PLAY_DOMAIN, streamId];
+    return url;
+
+}
+
++ (NSString*)generateHlsPlayUrl:(NSString*)streamId {
+    NSString *url = [NSString stringWithFormat:@"http://%@/live/%@.m3u8",
            PLAY_DOMAIN, streamId];
     return url;
 }

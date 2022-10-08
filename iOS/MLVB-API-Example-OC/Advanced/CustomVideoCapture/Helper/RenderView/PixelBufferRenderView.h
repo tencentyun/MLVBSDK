@@ -3,6 +3,7 @@
 //  TRTC-API-Example-OC
 //
 //  Created by luoming on 2021/4/30.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

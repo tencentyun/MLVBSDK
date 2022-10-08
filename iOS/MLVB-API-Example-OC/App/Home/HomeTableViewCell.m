@@ -3,6 +3,7 @@
 //  TRTCSimpleDemo-OC
 //
 //  Created by adams on 2021/4/14.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #import "HomeTableViewCell.h"
@@ -18,7 +19,9 @@
 
 - (CAShapeLayer *)maskLayer {
     if (!_maskLayer) {
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.containerView.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft |UIRectCornerBottomRight cornerRadii:CGSizeMake(8, 8)];
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.containerView.bounds
+         byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft
+        |UIRectCornerBottomRight cornerRadii:CGSizeMake(8, 8)];
         _maskLayer = [[CAShapeLayer alloc] init];
         _maskLayer.frame = self.containerView.bounds;
         _maskLayer.path = maskPath.CGPath;

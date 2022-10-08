@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by adams on 2021/4/14.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 #ifndef MLVB_API_Example_OC_PrefixHeader_pch
@@ -15,6 +16,6 @@
 #import "URLUtils.h"
 #import "UIViewController+AlertViewController.h"
 
-@import TXLiteAVSDK_Professional;
+@import TXLiteAVSDK_Live;
 
 #endif /* MLVB_API_Example_OC_PrefixHeader_pch */

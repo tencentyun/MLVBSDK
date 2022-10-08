@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +15,7 @@
                 <outlet property="button" destination="CbX-M1-Rjd" id="fV1-Sw-Ztl"/>
                 <outlet property="label" destination="KnR-Cn-ath" id="U2M-Zg-JK8"/>
                 <outlet property="textField" destination="Emn-Oj-Ael" id="k0L-S6-nMe"/>
+                <outlet property="tips" destination="nB7-cX-SSS" id="YMt-tp-MjN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -53,14 +54,37 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nB7-cX-SSS">
+                    <rect key="frame" x="40" y="247.5" width="334" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="R1d-8u-n3b"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="lineBreakMode">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="textAlignment">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Emn-Oj-Ael" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="40" id="07y-8V-3Yj"/>
+                <constraint firstItem="nB7-cX-SSS" firstAttribute="leading" secondItem="Emn-Oj-Ael" secondAttribute="leading" id="8p1-YW-ost"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="CbX-M1-Rjd" secondAttribute="trailing" constant="40" id="HQ4-NI-2O2"/>
+                <constraint firstItem="nB7-cX-SSS" firstAttribute="trailing" secondItem="Emn-Oj-Ael" secondAttribute="trailing" id="K4D-nU-cmi"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Emn-Oj-Ael" secondAttribute="trailing" constant="40" id="OkT-bH-hc4"/>
                 <constraint firstItem="CbX-M1-Rjd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="40" id="bib-hS-gT4"/>
+                <constraint firstItem="nB7-cX-SSS" firstAttribute="top" secondItem="Emn-Oj-Ael" secondAttribute="bottom" constant="30" id="ccX-nV-fdU"/>
                 <constraint firstItem="Emn-Oj-Ael" firstAttribute="firstBaseline" secondItem="KnR-Cn-ath" secondAttribute="baseline" constant="45" id="chq-uB-2Na"/>
                 <constraint firstAttribute="bottom" secondItem="CbX-M1-Rjd" secondAttribute="bottom" constant="84" id="mb7-Vc-xXV"/>
                 <constraint firstItem="KnR-Cn-ath" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="100" id="mdl-M5-u8S"/>

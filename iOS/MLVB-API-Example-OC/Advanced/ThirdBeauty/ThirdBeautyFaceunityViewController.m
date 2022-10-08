@@ -3,6 +3,7 @@
 //  MLVB-API-Example-OC
 //
 //  Created by adams on 2021/4/22.
+//  Copyright © 2021 Tencent. All rights reserved.
 //
 
 /*
@@ -64,7 +65,7 @@
 
 - (V2TXLivePusher *)livePusher {
     if (!_livePusher) {
-        _livePusher = [[V2TXLivePusher alloc] initWithLiveMode:V2TXLiveMode_RTC];
+        _livePusher = [[V2TXLivePusher alloc] initWithLiveMode:V2TXLiveMode_RTMP];
         [_livePusher setObserver:self];
     }
     return _livePusher;
@@ -83,14 +84,14 @@
 - (void)setupDefaultUIConfig {
     self.streamIdTextField.text = [NSString generateRandomStreamId];
     
-    self.streamIdLabel.text = Localize(@"MLVB-API-Example.ThirdBeauty.streamIdInput");
+    self.streamIdLabel.text = localize(@"MLVB-API-Example.ThirdBeauty.streamIdInput");
     self.streamIdLabel.adjustsFontSizeToFitWidth = true;
     
     self.startPushStreamButton.backgroundColor = [UIColor themeBlueColor];
-    [self.startPushStreamButton setTitle:Localize(@"MLVB-API-Example.ThirdBeauty.startPush") forState:UIControlStateNormal];
-    [self.startPushStreamButton setTitle:Localize(@"MLVB-API-Example.ThirdBeauty.stopPush") forState:UIControlStateSelected];
+    [self.startPushStreamButton setTitle:localize(@"MLVB-API-Example.ThirdBeauty.startPush") forState:UIControlStateNormal];
+    [self.startPushStreamButton setTitle:localize(@"MLVB-API-Example.ThirdBeauty.stopPush") forState:UIControlStateSelected];
 
-    self.setBeautyLabel.text = Localize(@"MLVB-API-Example.ThirdBeauty.beautyLevel");
+    self.setBeautyLabel.text = localize(@"MLVB-API-Example.ThirdBeauty.beautyLevel");
     NSInteger value = self.setBeautySlider.value * 6;
     self.beautyNumLabel.text = [NSString stringWithFormat:@"%ld",value];
 }
@@ -110,7 +111,7 @@
     
     [self.livePusher enableCustomVideoProcess:true pixelFormat:V2TXLivePixelFormatNV12 bufferType:V2TXLiveBufferTypePixelBuffer];
     
-    [self.livePusher startPush:[URLUtils generateTRTCPushUrl:streamId]];
+    [self.livePusher startPush:[URLUtils generateRtmpPushUrl:streamId]];
 }
 
 - (void)stopPush {

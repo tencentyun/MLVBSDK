@@ -28,6 +28,7 @@
 		4723A7C426315FAA0094AC81 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4723A7C326315FAA0094AC81 /* AVFoundation.framework */; };
 		4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		4723A8902631666E0094AC81 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723A88F2631666E0094AC81 /* NSString+Common.m */; };
+		47748038283E21F900505C4C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47748037283E21F900505C4C /* CoreServices.framework */; };
 		477EC97A26268B0A007AAC4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477EC96726268B09007AAC4F /* Assets.xcassets */; };
 		477EC97C26268B0A007AAC4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477EC96B26268B09007AAC4F /* LaunchScreen.storyboard */; };
 		477EC97D26268B0A007AAC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 477EC96D26268B09007AAC4F /* Main.storyboard */; };
@@ -45,6 +46,8 @@
 		47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98B2626868400201FCB /* Accelerate.framework */; };
 		47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB98D2626868E00201FCB /* libresolv.tbd */; };
+		47F149E4286BF3E900781688 /* PictureInPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F149E2286BF3E900781688 /* PictureInPictureViewController.m */; };
+		47F149E5286BF3E900781688 /* PictureInPictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F149E3286BF3E900781688 /* PictureInPictureViewController.xib */; };
 		880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 880B3C482624411B002683FB /* GenerateTestUserSig.m */; };
 		88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88167CB1268488C2001D99DC /* LivePushCameraEnterViewController.m */; };
 		88167CB4268488C2001D99DC /* LivePushCameraEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88167CB2268488C2001D99DC /* LivePushCameraEnterViewController.xib */; };
@@ -53,6 +56,7 @@
 		88167CE92685BF58001D99DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CE82685BF58001D99DC /* Foundation.framework */; };
 		88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8894457726282A3200193FAD /* UIKit.framework */; };
 		88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88167CEB2685BF8E001D99DC /* libz.tbd */; };
+		882E4C3E28E696D300AE2A6A /* TXLiteAVSDK_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406AB157280048A600A99B81 /* TXLiteAVSDK_Live.framework */; };
 		8839C3BA2689AE29000FF58C /* LivePushScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8839C3B82689AE29000FF58C /* LivePushScreenViewController.m */; };
 		8839C3BB2689AE29000FF58C /* LivePushScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8839C3B92689AE29000FF58C /* LivePushScreenViewController.xib */; };
 		8839C3BD2689AF9B000FF58C /* TRTCBroadcastExtensionLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999071268486EC00CBC983 /* TRTCBroadcastExtensionLauncher.m */; };
@@ -62,6 +66,14 @@
 		8839C3D62689BEF5000FF58C /* LivePlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8839C3D42689BEF5000FF58C /* LivePlayViewController.xib */; };
 		885A56472689ABB500D9D55F /* LivePushScreenEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A56452689ABB500D9D55F /* LivePushScreenEnterViewController.m */; };
 		885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */; };
+		8873801D28D9E5C400B0479E /* LebAutoBitrateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8873801B28D9E5C300B0479E /* LebAutoBitrateViewController.m */; };
+		8873801E28D9E5C400B0479E /* LebAutoBitrateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8873801C28D9E5C300B0479E /* LebAutoBitrateViewController.xib */; };
+		8873802328DCA6FF00B0479E /* LebPlayEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8873802128DCA6FF00B0479E /* LebPlayEnterViewController.m */; };
+		8873802428DCA6FF00B0479E /* LebPlayEnterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8873802228DCA6FF00B0479E /* LebPlayEnterViewController.xib */; };
+		8873802828DCA8CA00B0479E /* LebPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8873802628DCA8CA00B0479E /* LebPlayViewController.m */; };
+		8873802928DCA8CA00B0479E /* LebPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8873802728DCA8CA00B0479E /* LebPlayViewController.xib */; };
+		8873802E28E18D6500B0479E /* HlsAutoBitrateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8873802C28E18D6400B0479E /* HlsAutoBitrateViewController.m */; };
+		8873802F28E18D6500B0479E /* HlsAutoBitrateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8873802D28E18D6400B0479E /* HlsAutoBitrateViewController.xib */; };
 		8894456B26282A3200193FAD /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8894456A26282A3200193FAD /* ReplayKit.framework */; };
 		8894458326282A3200193FAD /* TXReplayKit_Screen.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8894456926282A3200193FAD /* TXReplayKit_Screen.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8899908C268487F400CBC983 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999076268486EC00CBC983 /* SampleHandler.m */; };
@@ -73,8 +85,7 @@
 		88A2C84726706305006FC026 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47ECB9882626867C00201FCB /* libc++.tbd */; };
 		88AB3E4B2689D65D00A75212 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 477EC9AA26268D0F007AAC4F /* Localized.strings */; };
 		88AB3E51268A008C00A75212 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB3E50268A008C00A75212 /* URLUtils.m */; };
-		88B5DAB5287D516E000EE88A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B5DAB3287D50BF000EE88A /* CoreServices.framework */; };
-		88B5DAB6287D5274000EE88A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B5DAB1287D5047000EE88A /* GLKit.framework */; };
+		88BC38A22844710E00814931 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BC38A12844710E00814931 /* GLKit.framework */; };
 		88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */; };
 		88C4C063268B503000FBB698 /* CustomVideoCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */; };
 		88C4C06A268C48DF00FBB698 /* ThirdBeautyFaceunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E072AF2636A6C80027D05E /* ThirdBeautyFaceunityViewController.m */; };
@@ -156,6 +167,7 @@
 		4723A7C326315FAA0094AC81 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4723A88E2631666E0094AC81 /* NSString+Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		4723A88F2631666E0094AC81 /* NSString+Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		47748037283E21F900505C4C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		477EC96726268B09007AAC4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		477EC96926268B09007AAC4F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		477EC96C26268B09007AAC4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -187,6 +199,9 @@
 		47ECB9882626867C00201FCB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		47ECB98B2626868400201FCB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		47ECB98D2626868E00201FCB /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		47F149E1286BF3E900781688 /* PictureInPictureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureInPictureViewController.h; sourceTree = "<group>"; };
+		47F149E2286BF3E900781688 /* PictureInPictureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureInPictureViewController.m; sourceTree = "<group>"; };
+		47F149E3286BF3E900781688 /* PictureInPictureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureInPictureViewController.xib; sourceTree = "<group>"; };
 		880B3C482624411B002683FB /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
 		880B3C492624411B002683FB /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 		88167CB0268488C2001D99DC /* LivePushCameraEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushCameraEnterViewController.h; sourceTree = "<group>"; };
@@ -209,6 +224,18 @@
 		885A56442689ABB500D9D55F /* LivePushScreenEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LivePushScreenEnterViewController.h; sourceTree = "<group>"; };
 		885A56452689ABB500D9D55F /* LivePushScreenEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LivePushScreenEnterViewController.m; sourceTree = "<group>"; };
 		885A56462689ABB500D9D55F /* LivePushScreenEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePushScreenEnterViewController.xib; sourceTree = "<group>"; };
+		8873801A28D9E5C300B0479E /* LebAutoBitrateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LebAutoBitrateViewController.h; sourceTree = "<group>"; };
+		8873801B28D9E5C300B0479E /* LebAutoBitrateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LebAutoBitrateViewController.m; sourceTree = "<group>"; };
+		8873801C28D9E5C300B0479E /* LebAutoBitrateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LebAutoBitrateViewController.xib; sourceTree = "<group>"; };
+		8873802028DCA6FF00B0479E /* LebPlayEnterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LebPlayEnterViewController.h; sourceTree = "<group>"; };
+		8873802128DCA6FF00B0479E /* LebPlayEnterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LebPlayEnterViewController.m; sourceTree = "<group>"; };
+		8873802228DCA6FF00B0479E /* LebPlayEnterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LebPlayEnterViewController.xib; sourceTree = "<group>"; };
+		8873802528DCA8CA00B0479E /* LebPlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LebPlayViewController.h; sourceTree = "<group>"; };
+		8873802628DCA8CA00B0479E /* LebPlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LebPlayViewController.m; sourceTree = "<group>"; };
+		8873802728DCA8CA00B0479E /* LebPlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LebPlayViewController.xib; sourceTree = "<group>"; };
+		8873802B28E18D6400B0479E /* HlsAutoBitrateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HlsAutoBitrateViewController.h; sourceTree = "<group>"; };
+		8873802C28E18D6400B0479E /* HlsAutoBitrateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HlsAutoBitrateViewController.m; sourceTree = "<group>"; };
+		8873802D28E18D6400B0479E /* HlsAutoBitrateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HlsAutoBitrateViewController.xib; sourceTree = "<group>"; };
 		8887C55A262151200035C0B9 /* MLVB-API-Example-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLVB-API-Example-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8894456926282A3200193FAD /* TXReplayKit_Screen.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TXReplayKit_Screen.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8894456A26282A3200193FAD /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
@@ -226,8 +253,7 @@
 		88A1A889268DA81A007F630D /* LivePkAudienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePkAudienceViewController.xib; sourceTree = "<group>"; };
 		88AB3E4F268A008C00A75212 /* URLUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLUtils.h; sourceTree = "<group>"; };
 		88AB3E50268A008C00A75212 /* URLUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLUtils.m; sourceTree = "<group>"; };
-		88B5DAB1287D5047000EE88A /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		88B5DAB3287D50BF000EE88A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		88BC38A12844710E00814931 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		88C4C05F268B503000FBB698 /* CustomVideoCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomVideoCaptureViewController.h; sourceTree = "<group>"; };
 		88C4C060268B503000FBB698 /* CustomVideoCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCaptureViewController.m; sourceTree = "<group>"; };
 		88C4C061268B503000FBB698 /* CustomVideoCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomVideoCaptureViewController.xib; sourceTree = "<group>"; };
@@ -278,11 +304,10 @@
 				406AB15F280048B300A99B81 /* TXFFmpeg.xcframework in Frameworks */,
 				4723A7C426315FAA0094AC81 /* AVFoundation.framework in Frameworks */,
 				406AB164280048BB00A99B81 /* VideoToolbox.framework in Frameworks */,
-				88B5DAB5287D516E000EE88A /* CoreServices.framework in Frameworks */,
-				88B5DAB6287D5274000EE88A /* GLKit.framework in Frameworks */,
 				88167CEC2685BF97001D99DC /* libz.tbd in Frameworks */,
 				88167CEA2685BF7B001D99DC /* UIKit.framework in Frameworks */,
 				406AB161280048B500A99B81 /* TXSoundTouch.xcframework in Frameworks */,
+				882E4C3E28E696D300AE2A6A /* TXLiteAVSDK_Live.framework in Frameworks */,
 				4723A7BF26315F920094AC81 /* OpenGLES.framework in Frameworks */,
 				47ECB98C2626868400201FCB /* Accelerate.framework in Frameworks */,
 				4723A7C026315F9C0094AC81 /* Accelerate.framework in Frameworks */,
@@ -290,11 +315,13 @@
 				406AB16A280048E100A99B81 /* MetalKit.framework in Frameworks */,
 				406AB168280048D800A99B81 /* CoreTelephony.framework in Frameworks */,
 				47ECB98E2626868E00201FCB /* libresolv.tbd in Frameworks */,
+				88BC38A22844710E00814931 /* GLKit.framework in Frameworks */,
 				88167CE92685BF58001D99DC /* Foundation.framework in Frameworks */,
 				406AB166280048C800A99B81 /* SystemConfiguration.framework in Frameworks */,
 				400C520226A67EE30036AC40 /* AssetsLibrary.framework in Frameworks */,
 				4723A7C526315FB10094AC81 /* libc++.tbd in Frameworks */,
 				47ECB9892626867C00201FCB /* libc++.tbd in Frameworks */,
+				47748038283E21F900505C4C /* CoreServices.framework in Frameworks */,
 				4723A7C226315FA30094AC81 /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +376,7 @@
 				88167CAF26848883001D99DC /* LivePushCamera */,
 				88167CB92684A04C001D99DC /* LivePushScreen */,
 				8839C3C62689B900000FF58C /* LivePlay */,
+				8873801F28DCA6D300B0479E /* LebPlay */,
 				88AB3E56268ABB2C00A75212 /* LiveLink */,
 				888C77E4268DA734004D6A7B /* LivePK */,
 			);
@@ -414,6 +442,9 @@
 		47E0727A2636A6C80027D05E /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				8873801928D9E49100B0479E /* LebAutoBitrate */,
+				8873802A28E18C8B00B0479E /* HlsAutoBitrate */,
+				47F149E0286BF3A600781688 /* PictureInPicture */,
 				47E0729D2636A6C80027D05E /* CustomVideoCapture */,
 				47E072AD2636A6C80027D05E /* ThirdBeauty */,
 				88FC7846268C674800768C53 /* RTCPushAndPlay */,
@@ -456,6 +487,16 @@
 				88FC77AD268C625300768C53 /* README.md */,
 			);
 			path = ThirdBeauty;
+			sourceTree = "<group>";
+		};
+		47F149E0286BF3A600781688 /* PictureInPicture */ = {
+			isa = PBXGroup;
+			children = (
+				47F149E1286BF3E900781688 /* PictureInPictureViewController.h */,
+				47F149E2286BF3E900781688 /* PictureInPictureViewController.m */,
+				47F149E3286BF3E900781688 /* PictureInPictureViewController.xib */,
+			);
+			path = PictureInPicture;
 			sourceTree = "<group>";
 		};
 		880B3C472624411B002683FB /* Debug */ = {
@@ -507,6 +548,39 @@
 				8839C3D42689BEF5000FF58C /* LivePlayViewController.xib */,
 			);
 			path = LivePlay;
+			sourceTree = "<group>";
+		};
+		8873801928D9E49100B0479E /* LebAutoBitrate */ = {
+			isa = PBXGroup;
+			children = (
+				8873801A28D9E5C300B0479E /* LebAutoBitrateViewController.h */,
+				8873801B28D9E5C300B0479E /* LebAutoBitrateViewController.m */,
+				8873801C28D9E5C300B0479E /* LebAutoBitrateViewController.xib */,
+			);
+			path = LebAutoBitrate;
+			sourceTree = "<group>";
+		};
+		8873801F28DCA6D300B0479E /* LebPlay */ = {
+			isa = PBXGroup;
+			children = (
+				8873802028DCA6FF00B0479E /* LebPlayEnterViewController.h */,
+				8873802128DCA6FF00B0479E /* LebPlayEnterViewController.m */,
+				8873802228DCA6FF00B0479E /* LebPlayEnterViewController.xib */,
+				8873802528DCA8CA00B0479E /* LebPlayViewController.h */,
+				8873802628DCA8CA00B0479E /* LebPlayViewController.m */,
+				8873802728DCA8CA00B0479E /* LebPlayViewController.xib */,
+			);
+			path = LebPlay;
+			sourceTree = "<group>";
+		};
+		8873802A28E18C8B00B0479E /* HlsAutoBitrate */ = {
+			isa = PBXGroup;
+			children = (
+				8873802B28E18D6400B0479E /* HlsAutoBitrateViewController.h */,
+				8873802C28E18D6400B0479E /* HlsAutoBitrateViewController.m */,
+				8873802D28E18D6400B0479E /* HlsAutoBitrateViewController.xib */,
+			);
+			path = HlsAutoBitrate;
 			sourceTree = "<group>";
 		};
 		8887C551262151200035C0B9 = {
@@ -594,8 +668,8 @@
 		88ED6FE02624364700C75B9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				88B5DAB3287D50BF000EE88A /* CoreServices.framework */,
-				88B5DAB1287D5047000EE88A /* GLKit.framework */,
+				88BC38A12844710E00814931 /* GLKit.framework */,
+				47748037283E21F900505C4C /* CoreServices.framework */,
 				406AB169280048E100A99B81 /* MetalKit.framework */,
 				406AB167280048D800A99B81 /* CoreTelephony.framework */,
 				406AB165280048C800A99B81 /* SystemConfiguration.framework */,
@@ -725,6 +799,9 @@
 				885A56482689ABB500D9D55F /* LivePushScreenEnterViewController.xib in Resources */,
 				477EC97A26268B0A007AAC4F /* Assets.xcassets in Resources */,
 				88FC77AE268C625300768C53 /* README.md in Resources */,
+				8873801E28D9E5C400B0479E /* LebAutoBitrateViewController.xib in Resources */,
+				8873802428DCA6FF00B0479E /* LebPlayEnterViewController.xib in Resources */,
+				8873802928DCA8CA00B0479E /* LebPlayViewController.xib in Resources */,
 				477EC97D26268B0A007AAC4F /* Main.storyboard in Resources */,
 				8839C3CB2689B93F000FF58C /* LivePlayEnterViewController.xib in Resources */,
 				477EC9A826268D0F007AAC4F /* Localized.strings in Resources */,
@@ -740,6 +817,8 @@
 				88167CC62684AC91001D99DC /* LivePushCameraViewController.xib in Resources */,
 				88C4C06C268C49FD00FBB698 /* ThirdBeautyFaceunityViewController.xib in Resources */,
 				47E0725F263656110027D05E /* InfoPlist.strings in Resources */,
+				8873802F28E18D6500B0479E /* HlsAutoBitrateViewController.xib in Resources */,
+				47F149E5286BF3E900781688 /* PictureInPictureViewController.xib in Resources */,
 				88FC7854268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,22 +849,27 @@
 				47E073062636A6C80027D05E /* CustomCameraHelper.m in Sources */,
 				8839C3BA2689AE29000FF58C /* LivePushScreenViewController.m in Sources */,
 				88C4C062268B503000FBB698 /* CustomVideoCaptureViewController.m in Sources */,
+				8873802E28E18D6500B0479E /* HlsAutoBitrateViewController.m in Sources */,
 				88167CB3268488C2001D99DC /* LivePushCameraEnterViewController.m in Sources */,
 				88FC784A268C678A00768C53 /* RTCPushAndPlayEnterViewController.m in Sources */,
+				8873802328DCA6FF00B0479E /* LebPlayEnterViewController.m in Sources */,
 				88AB3E51268A008C00A75212 /* URLUtils.m in Sources */,
 				880B3C4A2624411B002683FB /* GenerateTestUserSig.m in Sources */,
 				885A56472689ABB500D9D55F /* LivePushScreenEnterViewController.m in Sources */,
 				C1937C99274F799200F19E99 /* LiveLinkUserInputViewController.m in Sources */,
 				477ECA0A2627D344007AAC4F /* UIViewController+AlertViewController.m in Sources */,
+				47F149E4286BF3E900781688 /* PictureInPictureViewController.m in Sources */,
 				8839C3D52689BEF5000FF58C /* LivePlayViewController.m in Sources */,
 				C1937CBD275080CB00F19E99 /* LivePkFindPkUserController.m in Sources */,
 				477EC97F26268B0A007AAC4F /* AppDelegate.m in Sources */,
 				4723A8902631666E0094AC81 /* NSString+Common.m in Sources */,
+				8873801D28D9E5C400B0479E /* LebAutoBitrateViewController.m in Sources */,
 				88C4C06A268C48DF00FBB698 /* ThirdBeautyFaceunityViewController.m in Sources */,
 				C1937C93274F799200F19E99 /* LiveLinkOrPkStreamInputViewController.m in Sources */,
 				88167CC52684AC91001D99DC /* LivePushCameraViewController.m in Sources */,
 				EB147B16282B907C00C0E2DC /* ThirdBeautyTencentEffectViewController.m in Sources */,
 				88FC7853268C8C2D00768C53 /* RTCPushAndPlayAnchorViewController.m in Sources */,
+				8873802828DCA8CA00B0479E /* LebPlayViewController.m in Sources */,
 				477EC97E26268B0A007AAC4F /* main.m in Sources */,
 				C1937C96274F799200F19E99 /* LiveLinkAudienceViewController.m in Sources */,
 				477EC9B526269568007AAC4F /* HomeTableViewCell.m in Sources */,
@@ -999,7 +1083,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = abyWildcardDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1034,7 +1118,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../SDK";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = com.tencent.mlvb.apiexample_Production_SignProvision;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1056,7 +1140,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample.Upload;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2.Upload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = abyWildcardDev;
 				SKIP_INSTALL = YES;
@@ -1079,7 +1163,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.mlvb.apiexample.Upload;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.fx.rtmpdemo2.Upload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = com.tencent.mlvb.apiexample.Upload_Production_SignProvision;
 				SKIP_INSTALL = YES;

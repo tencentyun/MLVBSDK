@@ -11,12 +11,15 @@
   - [摄像头推流](./Basic/LivePushCamera)
   - [录屏推流](./Basic/LivePushScreen)
   - [直播拉流](./Basic/LivePlay)
+  - [快直播拉流](./Basic/LebPlay)
   - [连麦互动](./Basic/LiveLink)
   - [连麦PK](./Basic/LinkPK)
 - 进阶功能
   - [自定义视频采集](./Advanced/CustomVideoCapture)
   - [第三方美颜](./Advanced/ThirdBeauty)
   - [RTC连麦+超低延时播放](./Advanced/RTCPushAndPlay)
+  - [画中画](./Advanced/PictureInPicture)
+  - [快直播自适应播放](./Advanced/LebAutoBitrate)
 
 ## 环境准备
 - Xcode 11.0及以上版本
