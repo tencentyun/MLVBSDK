@@ -31,7 +31,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:multidex:1.0.0'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.code.gson:gson:2.11.0'
     compile "com.android.support:design:$rootProject.ext.supportSdkVersion"
     compile 'com.kyleduo.switchbutton:library:2.0.0'
 }
